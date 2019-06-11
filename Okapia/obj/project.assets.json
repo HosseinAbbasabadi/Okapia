@@ -12074,9 +12074,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/hosseinabbasabadi/Projects/Okapia/Okapia/Okapia.csproj",
-      "projectName": "Okapia",
-      "projectPath": "/Users/hosseinabbasabadi/Projects/Okapia/Okapia/Okapia.csproj",
+      "projectUniqueName": "/Users/hosseinabbasabadi/Projects/Okapia/Okapia/Okapia.Mvc.csproj",
+      "projectName": "Okapia.Mvc",
+      "projectPath": "/Users/hosseinabbasabadi/Projects/Okapia/Okapia/Okapia.Mvc.csproj",
       "packagesPath": "/Users/hosseinabbasabadi/.nuget/packages/",
       "outputPath": "/Users/hosseinabbasabadi/Projects/Okapia/Okapia/obj/",
       "projectStyle": "PackageReference",

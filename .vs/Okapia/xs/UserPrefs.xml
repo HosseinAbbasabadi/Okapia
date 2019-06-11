@@ -1,35 +1,26 @@
 ﻿<Properties StartupConfiguration="{21F46A62-11CA-4CEE-A399-704A0D83DFDC}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Okapia/Controllers/RegisterController.cs">
+  <MonoDevelop.Ide.ItemProperties.Okapia.Mvc PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.Okapia.Application FirstBuild="True" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Okapia.Repository/Class1.cs">
     <Files>
       <File FileName="Okapia/Views/Login/Index.cshtml" Line="6" Column="40" />
       <File FileName="Okapia/Models/Login.cs" Line="8" Column="19" />
-      <File FileName="Okapia/Controllers/LoginController.cs" Line="21" Column="34" />
-      <File FileName="Okapia/Controllers/RegisterController.cs" Line="25" Column="49" />
+      <File FileName="Okapia/Controllers/LoginController.cs" Line="21" Column="24" />
+      <File FileName="Okapia/Controllers/RegisterController.cs" Line="20" Column="14" />
+      <File FileName="Okapia.Application/Class1.cs" Line="5" Column="24" />
+      <File FileName="Okapia.Repository/Class1.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Okapia" expanded="True">
-            <Node name="Okapia" expanded="True">
-              <Node name="Areas" expanded="True">
-                <Node name="Customer" expanded="True" />
-              </Node>
-              <Node name="Controllers" expanded="True">
-                <Node name="RegisterController.cs" selected="True" />
-              </Node>
-              <Node name="Models" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Home" expanded="True" />
-                <Node name="Login" expanded="True" />
-                <Node name="Register" expanded="True" />
-              </Node>
-            </Node>
+            <Node name="Okapia" expanded="True" selected="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Okapia PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.Okapia.Repository FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
