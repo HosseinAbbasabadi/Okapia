@@ -28,3 +28,5 @@
 /Users/hosseinabbasabadi/Projects/Okapia/Okapia/obj/Debug/netcoreapp2.2/Okapia.dll
 /Users/hosseinabbasabadi/Projects/Okapia/Okapia/obj/Debug/netcoreapp2.2/Okapia.pdb
 /Users/hosseinabbasabadi/Projects/Okapia/Okapia/obj/Debug/netcoreapp2.2/Okapia.csproj.CopyComplete
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia/obj/Debug/netcoreapp2.2/Razor/Views/Register/Index.g.cshtml.cs
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia/obj/Debug/netcoreapp2.2/Razor/Views/Login/Index.g.cshtml.cs
