@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Okapia.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,9 +13,14 @@ namespace Okapia.Controllers
             return View();
         }
 
-        public void Login()
+        [HttpPost]
+        public IActionResult SignIn([Bind("Username, Password")] Login login)
         {
-
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View("Index", login);
         }
     }
 }
