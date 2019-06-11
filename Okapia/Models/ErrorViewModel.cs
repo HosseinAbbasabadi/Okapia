@@ -1,6 +1,6 @@
 using System;
 
-namespace Okapia.Models
+namespace Okapia.Mvc.Models
 {
     public class ErrorViewModel
     {

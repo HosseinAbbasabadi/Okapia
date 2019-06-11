@@ -17,5 +17,6 @@
     <Folder Include="Areas\" />
     <Folder Include="Areas\Customer\" />
     <Folder Include="Areas\Customer\Views\" />
+    <Folder Include="Areas\Customer\Controllers\" />
   </ItemGroup>
 </Project>

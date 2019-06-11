@@ -1,17 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Okapia.Models;
+using Okapia.Mvc.Models;
 
-namespace Okapia.Controllers
+namespace Okapia.Mvc.Controllers
 {
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
+            var authentication = new Auth();
+            var isAuthorized = Convert.ToBoolean(Request.Cookies["Authentication"]);
+            if (isAuthorized)
+            {
+                authentication.IsAuthorized = true;
+                authentication.Username = "Hossein";
+            }
+            ViewData["Auth"] = authentication;
             return View();
         }
 

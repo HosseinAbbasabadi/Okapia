@@ -1,0 +1,9 @@
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Repository/bin/Debug/netcoreapp2.2/Okapia.Repository.deps.json
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Repository/bin/Debug/netcoreapp2.2/Okapia.Repository.dll
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Repository/bin/Debug/netcoreapp2.2/Okapia.Repository.pdb
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Repository/obj/Debug/netcoreapp2.2/Okapia.Repository.csproj.CoreCompileInputs.cache
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Repository/obj/Debug/netcoreapp2.2/Okapia.Repository.AssemblyInfoInputs.cache
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Repository/obj/Debug/netcoreapp2.2/Okapia.Repository.AssemblyInfo.cs
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Repository/obj/Debug/netcoreapp2.2/Okapia.Repository.dll
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Repository/obj/Debug/netcoreapp2.2/Okapia.Repository.pdb
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Repository/obj/Debug/netcoreapp2.2/Okapia.Repository.csprojAssemblyReference.cache

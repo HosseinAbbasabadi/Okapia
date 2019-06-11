@@ -3,7 +3,7 @@ using Okapia.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Okapia.Controllers
+namespace Okapia.Mvc.Controllers
 {
     public class LoginController : Controller
     {

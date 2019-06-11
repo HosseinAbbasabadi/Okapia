@@ -1,0 +1,8 @@
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Application/bin/Debug/netcoreapp2.2/Okapia.Application.deps.json
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Application/bin/Debug/netcoreapp2.2/Okapia.Application.dll
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Application/bin/Debug/netcoreapp2.2/Okapia.Application.pdb
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Application/obj/Debug/netcoreapp2.2/Okapia.Application.csproj.CoreCompileInputs.cache
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Application/obj/Debug/netcoreapp2.2/Okapia.Application.AssemblyInfoInputs.cache
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Application/obj/Debug/netcoreapp2.2/Okapia.Application.AssemblyInfo.cs
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Application/obj/Debug/netcoreapp2.2/Okapia.Application.dll
+/Users/hosseinabbasabadi/Projects/Okapia/Okapia.Application/obj/Debug/netcoreapp2.2/Okapia.Application.pdb

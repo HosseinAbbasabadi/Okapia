@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okapia.Mvc", "Okapia\Okapia.Mvc.csproj", "{21F46A62-11CA-4CEE-A399-704A0D83DFDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okapia", "Okapia\Okapia.csproj", "{21F46A62-11CA-4CEE-A399-704A0D83DFDC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okapia.Application", "Okapia.Application\Okapia.Application.csproj", "{ADD390EB-9B0B-49B5-BEF0-831821BD7DE4}"
 EndProject
