@@ -26,10 +26,22 @@ namespace Okapia.Controllers
         {
             if (ModelState.IsValid)
             {
-                _authHelper.SetAutheticationCookie();
-                return RedirectToAction("Index", "Home");
+                if (_authHelper.Signin(login))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                ViewData["Error"] = "نام کاربری و یا کلمه عبور اشتباه است";
+                return View("Index", login);
             }
             return View("Index", login);
+        }
+
+        [HttpGet]
+        public IActionResult SignOut()
+        {
+            _authHelper.Signout();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

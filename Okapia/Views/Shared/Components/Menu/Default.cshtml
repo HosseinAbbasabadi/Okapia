@@ -26,9 +26,12 @@
         }
         else
         {
-          
+
           <li class="nav-item">
             <a class="nav-link text-primary" asp-area="Customer" asp-controller="Home" asp-action="Index">Welcome @Model.Username</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" asp-area="" asp-controller="Login" asp-action="SignOut">Logout</a>
           </li>
         }
       </ul>

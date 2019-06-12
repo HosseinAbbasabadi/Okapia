@@ -6,6 +6,7 @@ namespace Okapia.Helpers
 {
     public class AuthHelper : IAuthHelper
     {
+        private const string AuthecticationCookieName = "Authentication";
         public bool IsAuthenticated { get; private set; }
         private readonly IHttpContextAccessor _contextAccessor;
 
@@ -14,22 +15,44 @@ namespace Okapia.Helpers
             _contextAccessor = contextAccessor;
         }
 
+        public void Signout()
+        {
+            _contextAccessor.HttpContext.Response.Cookies.Delete(AuthecticationCookieName);
+        }
+
         public Auth GetAuthenticationInfo()
         {
             var authentication = new Auth();
 
-            var isAuthorized = Convert.ToBoolean(_contextAccessor.HttpContext.Request.Cookies["Authentication"]);
+            var isAuthorized = Convert.ToBoolean(_contextAccessor.HttpContext.Request.Cookies[AuthecticationCookieName]);
             if (!isAuthorized) return authentication;
+            IsAuthenticated = true;
             authentication.IsAuthorized = true;
             authentication.Username = "Hossein";
 
             return authentication;
         }
 
-        public void SetAutheticationCookie()
+        public void Signup()
         {
-            var cookieOptions = new CookieOptions { Expires = DateTime.Now.AddDays(1), IsEssential = true};
-            _contextAccessor.HttpContext.Response.Cookies.Append("Authentication", "True", cookieOptions);
+            SetAuthenticationCookie();
+        }
+
+        public bool Signin(Login login)
+        {
+            if (login.Username == "Hossein" && login.Password == "123456")
+            {
+                SetAuthenticationCookie();
+                return true;
+            }
+            return false;
+
+        }
+
+        private void SetAuthenticationCookie()
+        {
+            var cookieOptions = new CookieOptions {Expires = DateTime.Now.AddDays(1), IsEssential = true};
+            _contextAccessor.HttpContext.Response.Cookies.Append(AuthecticationCookieName, "True", cookieOptions);
         }
     }
 }

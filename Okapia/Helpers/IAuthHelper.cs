@@ -4,7 +4,9 @@ namespace Okapia.Helpers
 {
     public interface IAuthHelper
     {
-        void SetAutheticationCookie();
+        void Signup();
+        bool Signin(Login login);
+        void Signout();
         Auth GetAuthenticationInfo();
     }
 }

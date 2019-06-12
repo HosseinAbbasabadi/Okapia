@@ -26,7 +26,7 @@ namespace Okapia.Controllers
         {
             if (ModelState.IsValid)
             {
-                _authHelper.SetAutheticationCookie();
+                _authHelper.Signup();
                 return RedirectToAction("Index", "Home");
             }
             return View("Index", customer);
