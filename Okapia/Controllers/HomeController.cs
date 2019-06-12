@@ -9,14 +9,6 @@ namespace Okapia.Controllers
     {
         public IActionResult Index()
         {
-            var authentication = new Auth();
-            var isAuthorized = Convert.ToBoolean(Request.Cookies["Authentication"]);
-            if (isAuthorized)
-            {
-                authentication.IsAuthorized = true;
-                authentication.Username = "Hossein";
-            }
-            ViewData["Auth"] = authentication;
             return View();
         }
 
