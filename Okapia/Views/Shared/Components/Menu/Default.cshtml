@@ -10,30 +10,37 @@
     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
       <ul class="navbar-nav flex-grow-1">
         <li class="nav-item">
-          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">خانه</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">درباره اُکاپیا</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">قوانین</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="http://eghamatyab.com/" target="_blank">گردشگری</a>
         </li>
         @if (!Model.IsAuthorized)
         {
           <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">ورود</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">Register</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">ثبت نام</a>
           </li>
         }
         else
         {
 
           <li class="nav-item">
-            <a class="nav-link text-primary" asp-area="Customer" asp-controller="Home" asp-action="Index">Welcome @Model.Username</a>
+            <a class="nav-link text-primary" asp-area="Customer" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" asp-area="" asp-controller="Login" asp-action="SignOut">Logout</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="SignOut">خروج</a>
           </li>
         }
+
       </ul>
     </div>
   </div>

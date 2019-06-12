@@ -28,7 +28,7 @@ namespace Okapia.Helpers
             if (!isAuthorized) return authentication;
             IsAuthenticated = true;
             authentication.IsAuthorized = true;
-            authentication.Username = "Hossein";
+            authentication.Username = "حسین";
 
             return authentication;
         }

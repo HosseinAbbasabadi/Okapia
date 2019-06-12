@@ -65,6 +65,7 @@ body {
   margin: 0;
   -webkit-text-size-adjust: 100%;
   font-family: 'Nunito', sans-serif;
+  direction: rtl;
 }
 h1,
 h2,
@@ -1217,7 +1218,7 @@ lesshat-selector {
   box-shadow: 1px 0 3px 0 rgba(0,0,0,0.2);
 }
 .topbar .topbar-left {
-  float: left;
+  float: right;
   height: 70px;
   position: relative;
   z-index: 1;
@@ -1349,9 +1350,11 @@ body.fixed-left .side-menu.left {
   bottom: 50px;
   margin-bottom: -70px;
   padding-bottom: 70px;
+    direction: rtl;
 }
 .content-page {
-  margin-left: 180px;
+  margin-right: 180px;
+  margin-top: 50px;
   overflow: hidden;
   position: relative;
   min-height: 940px;
