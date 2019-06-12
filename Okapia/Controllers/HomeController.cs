@@ -2,9 +2,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Okapia.Models;
-using Okapia.Mvc.Models;
 
-namespace Okapia.Mvc.Controllers
+namespace Okapia.Controllers
 {
     public class HomeController : Controller
     {

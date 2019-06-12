@@ -1,5 +1,4 @@
-﻿using System;
-namespace Okapia.Mvc.Models
+﻿namespace Okapia.Models
 {
     public class Auth
     {
