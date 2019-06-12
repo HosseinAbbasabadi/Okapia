@@ -82,3 +82,4 @@ C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Okapia.csproj.CopyComp
 C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\Menu\Default.g.cshtml.cs
 C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Customer\Views\Shared\Components\Navigator\Default.g.cshtml.cs
 C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Views\Home\About.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Customer\Views\Shop\Index.g.cshtml.cs
