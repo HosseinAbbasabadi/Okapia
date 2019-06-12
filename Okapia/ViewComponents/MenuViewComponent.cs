@@ -1,28 +1,20 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Okapia.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Okapia.Helpers;
 
 namespace Okapia.ViewComponents
 {
     public class MenuViewComponent : ViewComponent
     {
+        private readonly IAuthHelper _authHelper;
+
+        public MenuViewComponent(IAuthHelper authHelper)
+        {
+            _authHelper = authHelper;
+        }
 
         public IViewComponentResult Invoke()
         {
-            var authentication = new Auth()
-            {
-                IsAuthorized = false,
-                Username = ""
-            };
-
-            var isAuthorized = Convert.ToBoolean(Request.Cookies["Authentication"]);
-            if (isAuthorized)
-            {
-                authentication.IsAuthorized = true;
-                authentication.Username = "Hossein";
-            }
-            ViewData["Auth"] = authentication;
+            var authentication = _authHelper.GetAuthenticationInfo();
             return View("Default", authentication);
         }
     }

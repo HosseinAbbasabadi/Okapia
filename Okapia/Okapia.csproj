@@ -13,10 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Customer\NewFolder\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Register\" />
-    <Folder Include="Areas\" />
-    <Folder Include="Areas\Customer\" />
     <Folder Include="Areas\Customer\Views\" />
     <Folder Include="Areas\Customer\Controllers\" />
   </ItemGroup>

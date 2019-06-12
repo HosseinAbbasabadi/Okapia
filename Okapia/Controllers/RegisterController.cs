@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Okapia.Helpers;
 using Okapia.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -8,6 +8,12 @@ namespace Okapia.Controllers
 {
     public class RegisterController : Controller
     {
+        private readonly IAuthHelper _authHelper;
+
+        public RegisterController(IAuthHelper authHelper)
+        {
+            _authHelper = authHelper;
+        }
 
         // GET: /<controller>/
         public IActionResult Index()
@@ -20,8 +26,7 @@ namespace Okapia.Controllers
         {
             if (ModelState.IsValid)
             {
-                var cookieOptions = new CookieOptions();
-                Response.Cookies.Append("Authentication", "True",cookieOptions);
+                _authHelper.SetAutheticationCookie();
                 return RedirectToAction("Index", "Home");
             }
             return View("Index", customer);

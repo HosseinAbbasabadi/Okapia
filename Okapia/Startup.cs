@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Okapia.Helpers;
 
 namespace Okapia
 {
@@ -32,6 +33,7 @@ namespace Okapia
             });
 
             services.AddHttpContextAccessor();
+            services.AddSingleton<IAuthHelper, AuthHelper>();
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
