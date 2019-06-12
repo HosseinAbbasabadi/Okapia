@@ -80,3 +80,4 @@ C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Okapia.dll
 C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Okapia.pdb
 C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Okapia.csproj.CopyComplete
 C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\Menu\Default.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Customer\Views\Shared\Components\Navigator\Default.g.cshtml.cs
