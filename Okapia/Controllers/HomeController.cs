@@ -12,6 +12,11 @@ namespace Okapia.Controllers
             return View();
         }
 
+        public IActionResult Agency()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
