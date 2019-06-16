@@ -7,12 +7,3 @@
 /Users/hosseinabbasabadi/Projects/Okapia/Okapia.Repository/obj/Debug/netcoreapp2.2/Okapia.Repository.dll
 /Users/hosseinabbasabadi/Projects/Okapia/Okapia.Repository/obj/Debug/netcoreapp2.2/Okapia.Repository.pdb
 /Users/hosseinabbasabadi/Projects/Okapia/Okapia.Repository/obj/Debug/netcoreapp2.2/Okapia.Repository.csprojAssemblyReference.cache
-C:\Hossein\Projects\Okapia\Okapia.Repository\bin\Debug\netcoreapp2.2\Okapia.Repository.deps.json
-C:\Hossein\Projects\Okapia\Okapia.Repository\bin\Debug\netcoreapp2.2\Okapia.Repository.dll
-C:\Hossein\Projects\Okapia\Okapia.Repository\bin\Debug\netcoreapp2.2\Okapia.Repository.pdb
-C:\Hossein\Projects\Okapia\Okapia.Repository\obj\Debug\netcoreapp2.2\Okapia.Repository.csprojAssemblyReference.cache
-C:\Hossein\Projects\Okapia\Okapia.Repository\obj\Debug\netcoreapp2.2\Okapia.Repository.csproj.CoreCompileInputs.cache
-C:\Hossein\Projects\Okapia\Okapia.Repository\obj\Debug\netcoreapp2.2\Okapia.Repository.AssemblyInfoInputs.cache
-C:\Hossein\Projects\Okapia\Okapia.Repository\obj\Debug\netcoreapp2.2\Okapia.Repository.AssemblyInfo.cs
-C:\Hossein\Projects\Okapia\Okapia.Repository\obj\Debug\netcoreapp2.2\Okapia.Repository.dll
-C:\Hossein\Projects\Okapia\Okapia.Repository\obj\Debug\netcoreapp2.2\Okapia.Repository.pdb

@@ -1,54 +1,66 @@
 ﻿@model IEnumerable<Okapia.Areas.Administrator.Models.Club>
 
 @{
-    ViewData["Title"] = "Index";
+  ViewData["Title"] = "Index";
 }
 
 <h1>مدیریت باشگاه مشتریان</h1>
 
 <h3>
-    <a asp-action="Create">ایجاد باشگاه جدید</a>
+  <a asp-action="Create">ایجاد باشگاه جدید</a>
 </h3>
 <table class="table">
   <thead>
 
-    <tr>
-      <th>
-        @Html.DisplayNameFor(model => model.Name)
-      </th>
-      <th>
-        تعداد اعضای فعال
-      </th>
-    </tr>
-    <tr>
-      <td>
-        باشگاه مشتریان کمیته امداد امام خمینی(ره)
-      </td>
-      <td>
-        6000000
-      </td>
-    </tr>
-    <tr>
-      <td>
-        باشگاه مشتریان هواداران تیم پرسپولیس
-      </td>
-      <td>
-        200000
-      </td>
-    </tr>
+  <tr>
+    <th>
+      @Html.DisplayNameFor(model => model.Name)
+    </th>
+    <th>
+      تعداد اعضای فعال
+    </th>
+  </tr>
+
   </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
+  <tbody>
+  <tr>
+    <td>
+      باشگاه مشتریان کمیته امداد امام خمینی(ره)
+    </td>
+    <td>
+      6000000
+    </td>
+    <td>
+      @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
+      @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
+      @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
+    </td>
+  </tr>
+  <tr>
+    <td>
+      باشگاه مشتریان هواداران تیم پرسپولیس
+    </td>
+    <td>
+      200000
+    </td>
+    <td>
+      @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
+      @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
+      @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
+    </td>
+  </tr>
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.Name)
+      </td>
+      <td>
+        @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
+        @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
+        @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
+      </td>
+    </tr>
+  }
+  </tbody>
 </table>

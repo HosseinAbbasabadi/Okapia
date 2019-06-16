@@ -1,9 +1,0 @@
-C:\Hossein\Projects\Okapia\Okapia.Domain\bin\Debug\netcoreapp2.2\Okapia.Domain.deps.json
-C:\Hossein\Projects\Okapia\Okapia.Domain\bin\Debug\netcoreapp2.2\Okapia.Domain.dll
-C:\Hossein\Projects\Okapia\Okapia.Domain\obj\Debug\netcoreapp2.2\Okapia.Domain.csproj.CoreCompileInputs.cache
-C:\Hossein\Projects\Okapia\Okapia.Domain\obj\Debug\netcoreapp2.2\Okapia.Domain.AssemblyInfoInputs.cache
-C:\Hossein\Projects\Okapia\Okapia.Domain\obj\Debug\netcoreapp2.2\Okapia.Domain.AssemblyInfo.cs
-C:\Hossein\Projects\Okapia\Okapia.Domain\bin\Debug\netcoreapp2.2\Okapia.Domain.pdb
-C:\Hossein\Projects\Okapia\Okapia.Domain\obj\Debug\netcoreapp2.2\Okapia.Domain.csprojAssemblyReference.cache
-C:\Hossein\Projects\Okapia\Okapia.Domain\obj\Debug\netcoreapp2.2\Okapia.Domain.dll
-C:\Hossein\Projects\Okapia\Okapia.Domain\obj\Debug\netcoreapp2.2\Okapia.Domain.pdb
