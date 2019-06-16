@@ -15,9 +15,15 @@
         <li class="dropdown nav-item">
           <a href="#" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> مراکز فروشگاهی <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li class="dropdown-menu-li"><a href="#" class="text-dark">کرج</a></li>
-            <li class="dropdown-menu-li"><a href="#" class="text-dark">لرستان</a></li>
-            <li class="dropdown-menu-li"><a href="#" class="text-dark">ارومیه</a></li>
+            <li class="dropdown-menu-li">
+              <a href="#" class="text-dark">کرج</a>
+            </li>
+            <li class="dropdown-menu-li">
+              <a href="#" class="text-dark">لرستان</a>
+            </li>
+            <li class="dropdown-menu-li">
+              <a href="#" class="text-dark">ارومیه</a>
+            </li>
             @*<li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li role="separator" class="divider"></li>
@@ -47,10 +53,18 @@
         }
         else
         {
-
-          <li class="nav-item">
-            <a class="nav-link text-primary" asp-area="Customer" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
-          </li>
+          if (Model.Role == "Administrator")
+           {
+             <li class="nav-item">
+               <a class="nav-link text-primary" asp-area="Administrator" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
+             </li>
+           }
+           else
+           {
+             <li class="nav-item">
+               <a class="nav-link text-primary" asp-area="Customer" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
+             </li>
+           }
           <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="SignOut">خروج</a>
           </li>

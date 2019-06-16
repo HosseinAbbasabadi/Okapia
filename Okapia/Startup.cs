@@ -34,6 +34,7 @@ namespace Okapia
 
             services.AddHttpContextAccessor();
             services.AddSingleton<IAuthHelper, AuthHelper>();
+            //services.AddDbContext<OkapiaContext>();
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

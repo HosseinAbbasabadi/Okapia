@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Okapia.Areas.Administrator.Models;
 
-namespace Okapia.Areas.Customer.Controllers
+namespace Okapia.Areas.Administrator.Controllers
 {
-    [Area("Customer")]
-    public class ShopController : Controller
+    [Area("Administrator")]
+    public class JobController : Controller
     {
         // GET: Shop
         public ActionResult Index()
         {
-            return View();
+            var jobs = new List<Jobs>();
+            return View(jobs);
         }
 
         // GET: Shop/Details/5

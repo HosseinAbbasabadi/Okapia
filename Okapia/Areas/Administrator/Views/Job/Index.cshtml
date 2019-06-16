@@ -1,0 +1,258 @@
+﻿@using Okapia.Areas.Administrator.Models
+@model IEnumerable<Jobs>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.JobId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobSmallDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobContactTitile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobManagerFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobManagerLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobEmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobTel1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobTel2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobMobile1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobMobile2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobProvienceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobCityId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobMap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobPageTittle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobSlug)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobMetaTag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobMetaDesccription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobSeohead)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobCanonicalAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobContractNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobBenefitPercentForEndCustomer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobBenefitPercentForCompany)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobRemoved301InsteadUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobDiscountPercentForCustomer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobDiscountPercentForCompnay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobDiscountPercentForSabaMehrDiscount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobBefitPercentForIntroducingEndCustomer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MarketerPercentForRegisteringShop)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MarketerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobPosNameNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobAccountNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobShowOrderIncategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowInHomePage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegisteringEmployerId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobSmallDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobContactTitile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobManagerFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobManagerLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobEmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobTel1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobTel2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobMobile1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobMobile2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobProvienceId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobCityId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobMap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobPageTittle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobSlug)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobMetaTag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobMetaDesccription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobSeohead)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobCanonicalAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobContractNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobBenefitPercentForEndCustomer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobBenefitPercentForCompany)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobRemoved301InsteadUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobDiscountPercentForCustomer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobDiscountPercentForCompnay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobDiscountPercentForSabaMehrDiscount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobBefitPercentForIntroducingEndCustomer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarketerPercentForRegisteringShop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarketerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobPosNameNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobAccountNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobShowOrderIncategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowInHomePage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegisteringEmployerId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

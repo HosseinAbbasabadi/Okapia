@@ -81,3 +81,6 @@ body {
     padding: 3px 15px;
 }
 
+th {
+    text-align: right !important;
+}

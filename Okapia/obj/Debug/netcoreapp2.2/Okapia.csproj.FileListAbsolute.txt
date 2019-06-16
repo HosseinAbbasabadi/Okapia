@@ -84,3 +84,15 @@ C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Customer\V
 C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Views\Home\About.g.cshtml.cs
 C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Customer\Views\Shop\Index.g.cshtml.cs
 C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Views\Home\Agency.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Customer\Views\Introduce\Index.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\Home\Index.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\Shared\Error.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\Shared\_Layout.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\_ViewImports.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\_ViewStart.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\Shared\Components\Navigator\Default.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\Club\Create.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\Club\Index.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\Job\Index.g.cshtml.cs

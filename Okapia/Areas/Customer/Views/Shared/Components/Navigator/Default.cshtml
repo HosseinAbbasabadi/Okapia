@@ -41,10 +41,8 @@
           <li>
             <a asp-action="Index" asp-controller="Home" asp-area="Customer"><i class="md md-home"></i><span> ناحیه کاربری </span></a>
           </li>
-          @if (auth?.Role == "Customer" || auth?.Role == "ShopKeeper")
-          {
             <li>
-              <a href="email-read.html" class="waves-effect">
+              <a asp-action="Index" asp-controller="Introduce" asp-area="Customer" class="waves-effect">
                 <i class="md md-home"></i>
                 <span>معرفی عضو</span>
               </a>
@@ -54,35 +52,7 @@
                 <i class="md md-home"></i>
                 <span>گزارش حجم خرید</span>
               </a>
-            </li>
-          }
-          @if (auth?.Role == "Administrator")
-          {
-            <li>
-              <a asp-action="Index" asp-controller="Shop" asp-area="Customer" class="waves-effect">
-                <i class="md md-home"></i>
-                <span>افزودن مشاغل</span>
-              </a>
-            </li>
-            <li>
-              <a href="email-compose.html" class="waves-effect">
-                <i class="md md-home"></i>
-                <span>گزارشات مدیریت</span>
-              </a>
-            </li>
-            <li>
-              <a href="task-list.html" class="waves-effect">
-                <i class="md md-home"></i>
-                <span> تعریف باشگاه مشتریان </span>
-              </a>
-            </li>
-            <li>
-              <a href="task-list.html" class="waves-effect">
-                <i class="md md-home"></i>
-                <span> تنظیمات سایت </span>
-              </a>
-            </li>
-          }
+            </li>          
         </ul>
       </div>
       <div class="clearfix"></div>

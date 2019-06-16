@@ -1,0 +1,84 @@
+﻿@{
+  var auth = ViewData["Auth"] as Auth;
+}
+
+<div id="wrapper">
+  <!-- Top Bar Start -->
+  <div class="topbar">
+    <!-- LOGO -->
+    <div class="topbar-left">
+      <div class="text-center">
+        <a href="index.html" class="logo">
+          <i class="md md-terrain"></i> <span> OKAPIA </span>
+        </a>
+      </div>
+    </div>
+    <div class="topbar-left pull-right">
+      <div class="text-center">
+        <a asp-action="Index" asp-controller="Home" asp-area="" class="logo">
+          <i class="md md-terrain"></i><span> بازگشت به سایت </span>
+        </a>
+      </div>
+    </div>
+    <!-- Button mobile view to collapse sidebar menu -->
+    <div class="navbar navbar-default" role="navigation">
+    </div>
+  </div>
+  <!-- Top Bar End -->
+  <!-- ========== Left Sidebar Start ========== -->
+  <div class="left side-menu">
+    <div class="sidebar-inner slimscrollleft">
+      <div class="user-details">
+        <div class="user-info">
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              @auth?.Username
+            </a>
+          </div>
+          <p class="text-muted m-0">@auth?.Role</p>
+        </div>
+      </div>
+      <!--- Divider -->
+      <div id="sidebar-menu">
+        <ul>
+          <li>
+            <a asp-action="Index" asp-controller="Home" asp-area="Administrator">
+              <i class="md md-home"></i><span> ناحیه کاربری </span>
+            </a>
+          </li>
+          <li>
+            <a asp-action="Index" asp-controller="Job" asp-area="Administrator" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>مدیریت کلان اعضا</span>
+            </a>
+          </li>
+          <li>
+            <a asp-action="Index" asp-controller="Club" asp-area="Administrator" class="waves-effect">
+              <i class="md md-home"></i>
+              <span> تعریف باشگاه مشتریان </span>
+            </a>
+          </li>
+          <li>
+            <a asp-action="Index" asp-controller="Job" asp-area="Administrator" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>افزودن مشاغل</span>
+            </a>
+          </li>
+          <li>
+            <a href="email-compose.html" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>گزارشات مدیریت</span>
+            </a>
+          </li>
+          <li>
+            <a href="task-list.html" class="waves-effect">
+              <i class="md md-home"></i>
+              <span> تنظیمات سایت </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
