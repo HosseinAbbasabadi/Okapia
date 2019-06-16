@@ -6,3 +6,12 @@
 /Users/hosseinabbasabadi/Projects/Okapia/Okapia.Application/obj/Debug/netcoreapp2.2/Okapia.Application.AssemblyInfo.cs
 /Users/hosseinabbasabadi/Projects/Okapia/Okapia.Application/obj/Debug/netcoreapp2.2/Okapia.Application.dll
 /Users/hosseinabbasabadi/Projects/Okapia/Okapia.Application/obj/Debug/netcoreapp2.2/Okapia.Application.pdb
+C:\Hossein\Projects\Okapia\Okapia.Application\bin\Debug\netcoreapp2.2\Okapia.Application.deps.json
+C:\Hossein\Projects\Okapia\Okapia.Application\bin\Debug\netcoreapp2.2\Okapia.Application.dll
+C:\Hossein\Projects\Okapia\Okapia.Application\bin\Debug\netcoreapp2.2\Okapia.Application.pdb
+C:\Hossein\Projects\Okapia\Okapia.Application\obj\Debug\netcoreapp2.2\Okapia.Application.csprojAssemblyReference.cache
+C:\Hossein\Projects\Okapia\Okapia.Application\obj\Debug\netcoreapp2.2\Okapia.Application.csproj.CoreCompileInputs.cache
+C:\Hossein\Projects\Okapia\Okapia.Application\obj\Debug\netcoreapp2.2\Okapia.Application.AssemblyInfoInputs.cache
+C:\Hossein\Projects\Okapia\Okapia.Application\obj\Debug\netcoreapp2.2\Okapia.Application.AssemblyInfo.cs
+C:\Hossein\Projects\Okapia\Okapia.Application\obj\Debug\netcoreapp2.2\Okapia.Application.dll
+C:\Hossein\Projects\Okapia\Okapia.Application\obj\Debug\netcoreapp2.2\Okapia.Application.pdb

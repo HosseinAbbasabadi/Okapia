@@ -57,6 +57,11 @@ namespace Okapia.Helpers
                 return true;
             }
 
+            if (login.Username == Constants.Names.Mahdi && login.Password == "123456")
+            {
+                SetAuthenticationCookie(Constants.Roles.Club, "صاحب باشگاه کمیته امداد");
+                return true;
+            }
             return false;
 
         }

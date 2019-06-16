@@ -49,10 +49,10 @@ namespace Okapia.Areas.Administrator.Models
         public string JobMobile2 { get; set; }
 
         [Display(Name = "استان")]
-        public int JobProvienceId { get; set; }
+        public string JobProvienceId { get; set; }
 
         [Display(Name = "شهر")]
-        public int JobCityId { get; set; }
+        public string JobCityId { get; set; }
 
         [Display(Name = "آدرس")]
         public string JobAddress { get; set; }
@@ -96,7 +96,7 @@ namespace Okapia.Areas.Administrator.Models
         [Display(Name = "درصد سود معرف از این شغل")]
         public double? JobBefitPercentForIntroducingEndCustomer { get; set; }
 
-        [Display(Name = "آدرس کانونیکال")]
+        [Display(Name = "درصد سود فروشگاه")]
         public double? MarketerPercentForRegisteringShop { get; set; }
 
         [Display(Name = "بازاریاب")]

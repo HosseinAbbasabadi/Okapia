@@ -17,9 +17,9 @@ namespace Okapia.Domain.Models
         //public virtual DbSet<JobPicture> JobPicture { get; set; }
         //public virtual DbSet<JobRelation> JobRelation { get; set; }
         //public virtual DbSet<Jobs> Jobs { get; set; }
-        public virtual DbSet<Page> Page { get; set; }
-        public virtual DbSet<PageCategory> PageCategory { get; set; }
-        public virtual DbSet<PageComments> PageComments { get; set; }
+        //public virtual DbSet<Page> Page { get; set; }
+        //public virtual DbSet<PageCategory> PageCategory { get; set; }
+        //public virtual DbSet<PageComments> PageComments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

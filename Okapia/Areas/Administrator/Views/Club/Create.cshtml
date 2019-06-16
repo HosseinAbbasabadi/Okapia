@@ -1,7 +1,7 @@
 ﻿@model Okapia.Areas.Administrator.Models.Club
 
 @{
-    ViewData["Title"] = "Create";
+  ViewData["Title"] = "Create";
 }
 
 <h1>ایجاد باشگاه مشتریان</h1>
@@ -9,27 +9,42 @@
 <h4>نام و فایل حاوی اطلاعات مشتریان را وارد کنید</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-      <form asp-action="Create">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-          <label asp-for="Name" class="control-label"></label>
-          <input asp-for="Name" class="form-control" />
-          <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-          <input type="file" name="files" multiple>
-        </div>
-        
-        <div class="form-group">
-          <input type="submit" value="ثبت" class="btn btn-primary" />
-        </div>
-      </form>
-    </div>
+  <div class="col-md-4">
+    <form asp-action="Create">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="OwnerName" class="control-label"></label>
+        <input asp-for="OwnerName" class="form-control" />
+        <span asp-validation-for="OwnerName" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="OwnerFamily" class="control-label"></label>
+        <input asp-for="OwnerFamily" class="form-control" />
+        <span asp-validation-for="OwnerFamily" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="OwnerUsername" class="control-label"></label>
+        <input asp-for="OwnerUsername" class="form-control" />
+        <span asp-validation-for="OwnerUsername" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="OwnerPassword" class="control-label"></label>
+        <input asp-for="OwnerPassword" class="form-control" />
+        <span asp-validation-for="OwnerPassword" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="Customers" class="control-label">فایل اکسل اعضا</label>
+        <input asp-for="Customers" class="form-control" type="file" />
+        <span asp-validation-for="OwnerPassword" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="ثبت" class="btn btn-primary" />
+      </div>
+    </form>
+  </div>
 </div>
-
-<div>
-    <a asp-action="Index">بازگشت به لیست</a>
-</div>
-

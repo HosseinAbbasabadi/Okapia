@@ -1,16 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Okapia.Areas.Customer.Controllers
 {
     [Area("Customer")]
     public class HomeController : Controller
     {
-        // GET: /<controller>/
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult EditCustomer()
+        {
+            var customer = new Okapia.Models.Customer
+            {
+                NationalCardNumber = "0020304050",
+                PhoneNumber = "09102030400"
+            };
+            return View(customer);
         }
     }
 }

@@ -31,7 +31,7 @@
       <div class="user-details">
         <div class="user-info">
           <div class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <a asp-action="Index" asp-controller="Home" asp-area="Administrator" class="dropdown-toggle" aria-expanded="false">
               @auth?.Username
             </a>
           </div>
@@ -41,21 +41,27 @@
       <!--- Divider -->
       <div id="sidebar-menu">
         <ul>
-          <li>
+          @*<li>
             <a asp-action="Index" asp-controller="Home" asp-area="Administrator">
               <i class="md md-home"></i><span> ناحیه کاربری </span>
             </a>
+          </li>*@
+          <li>
+            <a asp-action="Index" asp-controller="Customers" asp-area="Administrator" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>مدیریت مشتریان</span>
+            </a>
           </li>
           <li>
-            <a asp-action="Index" asp-controller="Job" asp-area="Administrator" class="waves-effect">
+            <a href="#" class="waves-effect">
               <i class="md md-home"></i>
-              <span>مدیریت کلان اعضا</span>
+              <span>مدیریت راهبران</span>
             </a>
           </li>
           <li>
             <a asp-action="Index" asp-controller="Club" asp-area="Administrator" class="waves-effect">
               <i class="md md-home"></i>
-              <span> تعریف باشگاه مشتریان </span>
+              <span> مدیریت باشگاه مشتریان </span>
             </a>
           </li>
           <li>
@@ -65,10 +71,39 @@
             </a>
           </li>
           <li>
-            <a href="email-compose.html" class="waves-effect">
+            <a href="#" class="waves-effect">
               <i class="md md-home"></i>
               <span>گزارشات مدیریت</span>
             </a>
+            <ul class="list-unstyled">
+              <li><a href="#">نمونه گزارشات مدیریت۱</a></li>
+              <li><a href="#">نمونه گزارشات مدیریت۲</a></li>
+              <li><a href="#">نمونه گزارشات مدیریت۳</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>گزارشات باشگاه مشتریان</span>
+            </a>
+            <ul class="list-unstyled">
+              <li><a href="#">اعضای باشگاه مشتریان</a></li>
+              <li><a href="#">تراکنش های باشگاه</a></li>
+              <li><a href="#">خرید اعضای باشگاه مشتریان</a></li>
+              <li><a href="#">تخفیف دریافتی اعضای باشگاه</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>مدیریت صفحه ساز</span>
+            </a>
+            <ul class="list-unstyled">
+              <li><a asp-action="Index" asp-controller="Page" asp-area="Administrator">مدیریت صفحات</a></li>
+              <li><a href="#">رده بندی صفحات</a></li>
+              <li><a href="#">مدیریت کامنت ها</a></li>
+              <li><a href="#">مدیریت اعلانات</a></li>
+            </ul>
           </li>
           <li>
             <a href="task-list.html" class="waves-effect">

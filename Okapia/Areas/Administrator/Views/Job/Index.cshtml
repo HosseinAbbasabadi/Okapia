@@ -5,11 +5,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>صفحه مدیریت مشاغل</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h3>
+    <a asp-action="Create">ایجاد شغل جدید</a>
+</h3>
 <table class="table">
     <thead>
         <tr>
@@ -65,9 +65,9 @@
                 @Html.DisplayFor(modelItem => item.JobAddress)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("اطلاح", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("جزيیات", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("حذف", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

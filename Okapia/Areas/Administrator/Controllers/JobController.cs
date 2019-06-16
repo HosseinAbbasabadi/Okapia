@@ -11,7 +11,37 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: Shop
         public ActionResult Index()
         {
-            var jobs = new List<Jobs>();
+            var jobs = new List<Jobs>
+            {
+                new Jobs
+                {
+                    JobId = 1,
+                    JobName = "استخر",
+                    JobContactTitile = "علیرضا کرمی",
+                    JobManagerFirstName = "علی",
+                    JobManagerLastName = "کبیری",
+                    JobProvienceId = "البرز",
+                    JobCityId = "کرج"
+                },new Jobs
+                {
+                    JobId = 2,
+                    JobName = "رستوران سنتی",
+                    JobContactTitile = "محمد علیمی",
+                    JobManagerFirstName = "سپهر",
+                    JobManagerLastName = "جاوید",
+                    JobProvienceId = "لرستان",
+                    JobCityId = "خرم آباد"
+                },new Jobs
+                {
+                    JobId = 3,
+                    JobName = "مرکز تخصصی چشم",
+                    JobContactTitile = "حسین حضرتی",
+                    JobManagerFirstName = "امیر",
+                    JobManagerLastName = "نعیمی",
+                    JobProvienceId = "لرستان",
+                    JobCityId = "بروجرد"
+                },
+            };
             return View(jobs);
         }
 

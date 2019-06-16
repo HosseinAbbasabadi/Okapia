@@ -1,0 +1,96 @@
+﻿@model Okapia.Areas.Administrator.Models.Page
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>فرم ایجاد صفحه جدید</h1>
+
+<h4>برای ایجاد صفحه جدید فرم زیر را کامل کنید</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PageId" class="control-label"></label>
+                <input asp-for="PageId" class="form-control" />
+                <span asp-validation-for="PageId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageCategoryId" class="control-label"></label>
+                <input asp-for="PageCategoryId" class="form-control" />
+                <span asp-validation-for="PageCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageTittle" class="control-label"></label>
+                <input asp-for="PageTittle" class="form-control" />
+                <span asp-validation-for="PageTittle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageSlug" class="control-label"></label>
+                <input asp-for="PageSlug" class="form-control" />
+                <span asp-validation-for="PageSlug" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageMetaTag" class="control-label"></label>
+                <input asp-for="PageMetaTag" class="form-control" />
+                <span asp-validation-for="PageMetaTag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageMetaDesccription" class="control-label"></label>
+                <input asp-for="PageMetaDesccription" class="form-control" />
+                <span asp-validation-for="PageMetaDesccription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageSeohead" class="control-label"></label>
+                <input asp-for="PageSeohead" class="form-control" />
+                <span asp-validation-for="PageSeohead" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageCanonicalAddress" class="control-label"></label>
+                <input asp-for="PageCanonicalAddress" class="form-control" />
+                <span asp-validation-for="PageCanonicalAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageIsDeleted" class="control-label"></label>
+                <input asp-for="PageIsDeleted" class="form-control" />
+                <span asp-validation-for="PageIsDeleted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageRemoved301InsteadUrl" class="control-label"></label>
+                <input asp-for="PageRemoved301InsteadUrl" class="form-control" />
+                <span asp-validation-for="PageRemoved301InsteadUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageSmallDescription" class="control-label"></label>
+                <input asp-for="PageSmallDescription" class="form-control" />
+                <span asp-validation-for="PageSmallDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageContent" class="control-label"></label>
+                <textarea name="editor1" asp-for="PageContent" class="form-control"></textarea>
+                <span asp-validation-for="PageContent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageRegisteringEmployeeId" class="control-label"></label>
+                <input asp-for="PageRegisteringEmployeeId" class="form-control" />
+                <span asp-validation-for="PageRegisteringEmployeeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PageRegistrationDate" class="control-label"></label>
+                <input asp-for="PageRegistrationDate" class="form-control" />
+                <span asp-validation-for="PageRegistrationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ایجاد" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">بازگشت به لیست صفحات</a>
+</div>
+
+ 

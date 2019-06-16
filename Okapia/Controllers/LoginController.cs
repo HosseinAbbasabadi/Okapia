@@ -43,5 +43,27 @@ namespace Okapia.Controllers
             _authHelper.Signout();
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult AdminSignIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AdminSignIn([Bind("Username, Password")] Login login)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_authHelper.Signin(login))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                ViewData["Error"] = "نام کاربری و یا کلمه عبور اشتباه است";
+                return View("Index", login);
+            }
+            return View(login);
+        }
     }
 }

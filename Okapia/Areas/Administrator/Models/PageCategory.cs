@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Okapia.Domain.Models
+namespace Okapia.Areas.Administrator.Models
 {
-    public partial class PageCategory
+    public class PageCategory
     {
         public PageCategory()
         {
@@ -20,10 +21,13 @@ namespace Okapia.Domain.Models
         public string PageCategoryMetaDesccription { get; set; }
         public string PageCategorySeohead { get; set; }
         public string PageCanonicalAddress { get; set; }
-        public bool? PageCategoryIseDeleted { get; set; }
+        public bool? PageCategoryIsDeleted { get; set; }
         public string PageCategoryRemoved301InsteadUrl { get; set; }
         public int? PageCategoryParentId { get; set; }
-        public string PageCategoryLinkTooTip { get; set; }
+        public string PageCategoryLinkToolTip { get; set; }
+        public int? PageCategoryShowOrder { get; set; }
+        public int PageCategoryRegisteredByEmployeId { get; set; }
+        public DateTime PageCategoryRegisterDate { get; set; }
 
         public virtual PageCategory PageCategoryParent { get; set; }
         public virtual ICollection<PageCategory> InversePageCategoryParent { get; set; }

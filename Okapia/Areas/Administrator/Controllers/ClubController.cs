@@ -11,7 +11,7 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: Club
         public ActionResult Index()
         {
-            var clubs = new List<Club>();
+            var clubs = new List<Models.Club>();
             return View(clubs);
         }
 

@@ -1,0 +1,35 @@
+﻿@model Okapia.Models.Introduce
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>فرم معرفی عضو جدید</h1>
+
+<h4>در صورت عدم دسترسی به شماره تلفن و کدملی/ از کد پنج رقمی روی رسید خرید پوز استفاده نمایید</h4>
+<hr />
+<div class="row">
+  <div class="col-md-4">
+    <form asp-action="Index">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="form-group">
+        <label asp-for="NationalCode" class="control-label"></label>
+        <input asp-for="NationalCode" class="form-control"/>
+        <span asp-validation-for="NationalCode" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="PhoneNumber" class="control-label"></label>
+        <input asp-for="PhoneNumber" class="form-control"/>
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="Code" class="control-label"></label>
+        <input asp-for="Code" class="form-control"/>
+        <span asp-validation-for="Code" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="ثبت" class="btn btn-primary"/>
+      </div>
+    </form>
+  </div>
+</div>

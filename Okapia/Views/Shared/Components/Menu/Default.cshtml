@@ -45,7 +45,10 @@
         @if (!Model.IsAuthorized)
         {
           <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">ورود</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">ورود مشتریان</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="AdminSignIn">ورود مشاغل</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">ثبت نام</a>
@@ -54,17 +57,29 @@
         else
         {
           if (Model.Role == "Administrator")
-           {
-             <li class="nav-item">
-               <a class="nav-link text-primary" asp-area="Administrator" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
-             </li>
-           }
-           else
-           {
-             <li class="nav-item">
-               <a class="nav-link text-primary" asp-area="Customer" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
-             </li>
-           }
+          {
+            <li class="nav-item">
+              <a class="nav-link text-primary" asp-area="Administrator" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
+            </li>
+          }
+          if (Model.Role == "Job")
+          {
+            <li class="nav-item">
+              <a class="nav-link text-primary" asp-area="Job" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
+            </li>
+          }
+          if (Model.Role == "Customer")
+          {
+            <li class="nav-item">
+              <a class="nav-link text-primary" asp-area="Customer" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
+            </li>
+          }
+          if (Model.Role == "Club")
+          {
+            <li class="nav-item">
+              <a class="nav-link text-primary" asp-area="Club" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
+            </li>
+          }
           <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="SignOut">خروج</a>
           </li>

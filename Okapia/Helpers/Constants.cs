@@ -11,7 +11,8 @@
     {
         public string Administrator { get; } = "Administrator";
         public string Customer { get; } = "Customer";
-        public string ShopKeeper { get; } = "ShopKeeper";
+        public string ShopKeeper { get; } = "Job";
+        public string Club { get; } = "Club";
     }
 
     public class Cookies
@@ -26,6 +27,6 @@
         public string Ali { get; } = "Ali";
         public string Hasan { get; } = "Hasan";
         public string Hossein { get; } = "Hossein";
+        public string Mahdi { get; } = "Mahdi";
     }
-
 }

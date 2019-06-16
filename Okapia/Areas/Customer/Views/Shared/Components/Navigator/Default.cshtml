@@ -8,12 +8,16 @@
     <!-- LOGO -->
     <div class="topbar-left">
       <div class="text-center">
-        <a href="index.html" class="logo"><i class="md md-terrain"></i> <span> OKAPIA </span></a>
+        <a href="index.html" class="logo">
+          <i class="md md-terrain"></i> <span> OKAPIA </span>
+        </a>
       </div>
     </div>
     <div class="topbar-left pull-right">
       <div class="text-center">
-        <a asp-action="Index" asp-controller="Home" asp-area="" class="logo"><i class="md md-terrain"></i><span> بازگشت به سایت </span></a>
+        <a asp-action="Index" asp-controller="Home" asp-area="" class="logo">
+          <i class="md md-terrain"></i><span> بازگشت به سایت </span>
+        </a>
       </div>
     </div>
     <!-- Button mobile view to collapse sidebar menu -->
@@ -27,7 +31,7 @@
       <div class="user-details">
         <div class="user-info">
           <div class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <a asp-action="Index" asp-controller="Home" asp-area="Customer" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
               @auth?.Username
             </a>
           </div>
@@ -39,20 +43,50 @@
       <div id="sidebar-menu">
         <ul>
           <li>
-            <a asp-action="Index" asp-controller="Home" asp-area="Customer"><i class="md md-home"></i><span> ناحیه کاربری </span></a>
+            <a asp-action="EditCustomer" asp-controller="Home" asp-area="Customer">
+              <i class="md md-home"></i><span> اطلاعات کاربری </span>
+            </a>
           </li>
-            <li>
-              <a asp-action="Index" asp-controller="Introduce" asp-area="Customer" class="waves-effect">
-                <i class="md md-home"></i>
-                <span>معرفی عضو</span>
-              </a>
-            </li>
-            <li>
-              <a href="email-read.html" class="waves-effect">
-                <i class="md md-home"></i>
-                <span>گزارش حجم خرید</span>
-              </a>
-            </li>          
+          <li>
+            <a asp-action="Index" asp-controller="Introduce" asp-area="Customer" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>معرفی عضو</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>گزارشات کارت های من</span>
+            </a>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#">مجموع خریدهای من</a>
+              </li>
+              <li>
+                <a href="#">گزارش تخفیف های خریدهای من</a>
+              </li>
+              <li>
+                <a href="#">کل سود به ازای هر کارت من</a>
+              </li>
+              <li>
+                <a href="#">کل سود به ازای همه کارت ها من</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>گزارشات کارت های معرفی شده من</span>
+            </a>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#">لیست کارتهای معرفی شده من</a>
+              </li>
+              <li>
+                <a href="#">کل سود به ازای شخص معرفی شده</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
       <div class="clearfix"></div>
