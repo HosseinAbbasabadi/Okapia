@@ -121,3 +121,5 @@ C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Customer\V
 C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Views\Login\AdminSignIn.g.cshtml.cs
 C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\Customers\Index.g.cshtml.cs
 C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\Notification\Default.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\Notification\Index.g.cshtml.cs
+C:\Hossein\Projects\Okapia\Okapia\obj\Debug\netcoreapp2.2\Razor\Areas\Administrator\Views\Notification\Create.g.cshtml.cs

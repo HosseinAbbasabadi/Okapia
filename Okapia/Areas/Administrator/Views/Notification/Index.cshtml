@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Okapia.Areas.Administrator.Models.Notification>
+
+@{
+  ViewData["Title"] = "Index";
+}
+
+<h1>صفحه مدیریت اعلانات</h1>
+
+<h3>
+  <a asp-action="Create">ایجاد اعلامیه جدید</a>
+</h3>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>
+      @Html.DisplayNameFor(model => model.Title)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Description)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.FromDate)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.ToDate)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Link)
+    </th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.Title)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Description)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.FromDate)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.ToDate)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Link)
+      </td>
+      <td>
+        @Html.ActionLink("ویرایش", "Edit", new {/* id=item.PrimaryKey */}) |
+        @Html.ActionLink("جزییات", "Details", new {/* id=item.PrimaryKey */}) |
+        @Html.ActionLink("حذف", "Delete", new {/* id=item.PrimaryKey */})
+      </td>
+    </tr>
+  }
+  </tbody>
+</table>
