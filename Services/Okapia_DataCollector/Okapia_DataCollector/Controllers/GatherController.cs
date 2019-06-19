@@ -11,12 +11,10 @@ namespace Okapia_DataCollector.Controllers
     public class GatherController : ControllerBase
     {
         private readonly OkapiaContext _okapiaContext;
-        private readonly ILogger _logger;
 
-        public GatherController(OkapiaContext okapiaContext, ILogger logger)
+        public GatherController(OkapiaContext okapiaContext)
         {
             _okapiaContext = okapiaContext;
-            _logger = logger;
         }
 
         [HttpPost]
