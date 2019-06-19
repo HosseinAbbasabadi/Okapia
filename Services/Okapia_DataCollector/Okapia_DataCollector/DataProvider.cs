@@ -4,9 +4,9 @@ using Okapia_DataCollector.Model;
 
 namespace Okapia_DataCollector
 {
-    public class DataProvider
+    public static class DataProvider
     {
-        public List<JobTransaction> ProvideSomeJobTransactions(int count)
+        public static List<JobTransaction> ProvideSomeJobTransactions(int count)
         {
             var transactions = new List<JobTransaction>();
             for (var i = 0; i <= count; i++)
