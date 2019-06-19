@@ -1,6 +1,5 @@
-﻿using System;
-using System.Globalization;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using EFCore.BulkExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Okapia_DataCollector.Repository;
@@ -14,7 +13,7 @@ namespace Okapia_DataCollector.Controllers
         private readonly OkapiaContext _okapiaContext;
         private readonly ILogger _logger;
 
-        public GatherController(OkapiaContext okapiaContext, ILogger<GatherController> logger)
+        public GatherController(OkapiaContext okapiaContext, ILogger logger)
         {
             _okapiaContext = okapiaContext;
             _logger = logger;
@@ -23,11 +22,14 @@ namespace Okapia_DataCollector.Controllers
         [HttpPost]
         public async Task GetJobPosTransactions()
         {
-            _logger.LogInformation(DateTime.Now.ToString(CultureInfo.InvariantCulture));
             var data = DataProvider.ProvideSomeJobTransactions(40000);
-            _okapiaContext.AddRange(data);
-            await _okapiaContext.SaveChangesAsync();
-            _logger.LogInformation(DateTime.Now.ToString(CultureInfo.InvariantCulture));
+            //_okapiaContext.AddRange(data);
+            //await _okapiaContext.SaveChangesAsync();
+            using (var transaction = _okapiaContext.Database.BeginTransaction())
+            {
+                await _okapiaContext.BulkInsertAsync(data);
+                transaction.Commit();
+            }
         }
     }
 }
