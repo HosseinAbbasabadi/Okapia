@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Okapia_DataCollector.Repository;
 
 namespace Okapia_DataCollector.Controllers
 {
@@ -11,9 +8,16 @@ namespace Okapia_DataCollector.Controllers
     [Route("api/[controller]")]
     public class GatherController : ControllerBase
     {
+        private OkapiaContext _okapiaContext;
+
+        public GatherController(OkapiaContext okapiaContext)
+        {
+            _okapiaContext = okapiaContext;
+        }
+
         public async Task GetJobPosTransactions()
         {
-            
+
         }
     }
 }
