@@ -1,0 +1,75 @@
+﻿@{
+  var auth = ViewData["Auth"] as Auth;
+}
+
+<div id="wrapper">
+  <!-- Top Bar Start -->
+  <div class="topbar">
+    <!-- LOGO -->
+    <div class="topbar-left">
+      <div class="text-center">
+        <a href="index.html" class="logo">
+          <i class="md md-terrain"></i> <span> OKAPIA </span>
+        </a>
+      </div>
+    </div>
+    <div class="topbar-left pull-right">
+      <div class="text-center">
+        <a asp-action="Index" asp-controller="Home" asp-area="" class="logo">
+          <i class="md md-terrain"></i><span> بازگشت به سایت </span>
+        </a>
+      </div>
+    </div>
+    <!-- Button mobile view to collapse sidebar menu -->
+    <div class="navbar navbar-default" role="navigation">
+    </div>
+  </div>
+  <!-- Top Bar End -->
+  <!-- ========== Left Sidebar Start ========== -->
+  <div class="left side-menu">
+    <div class="sidebar-inner slimscrollleft">
+      <div class="user-details">
+        <div class="user-info">
+          <div class="dropdown">
+            <a asp-action="Index" asp-controller="Home" asp-area="Club" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              @auth?.Username
+            </a>
+          </div>
+
+          <p class="text-muted m-0">@auth?.Role</p>
+        </div>
+      </div>
+      <!--- Divider -->
+      <div id="sidebar-menu">
+        <ul>
+          @*<li>
+            <a asp-action="Index" asp-controller="Home" asp-area="Customer">
+              <i class="md md-home"></i><span> ناحیه کاربری </span>
+            </a>
+          </li>*@
+          <li>
+            <a href="#" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>گزارشات باشگاه مشتریان</span>
+            </a>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#">کل اعضا</a>
+              </li>
+              <li>
+                <a href="#">اعضای فعال</a>
+              </li>
+              <li>
+                <a href="#">گزارش فعالیت کاربران</a>
+              </li>
+              <li>
+                <a href="#">گزارش فعالیت کارت ها</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
