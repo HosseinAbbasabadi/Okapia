@@ -28,9 +28,9 @@ namespace Okapia_DataCollector
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<OkapiaContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("OkapiaContext"));
-            });
+                {
+                    options.UseSqlServer(Configuration.GetConnectionString("OkapiaContext"));
+                }, ServiceLifetime.Transient);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
