@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Okapia.Helpers;
+using Okapia.Repository;
 
 namespace Okapia
 {
@@ -34,8 +36,12 @@ namespace Okapia
 
             services.AddHttpContextAccessor();
             services.AddSingleton<IAuthHelper, AuthHelper>();
-            //services.AddDbContext<OkapiaContext>();
-            services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddDbContext<OkapiaContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString(Configuration.GetConnectionString("")));
+            });
+            services.AddMvc(options => options.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +67,7 @@ namespace Okapia
                 routes.MapRoute(
                     name: "customer_area",
                     template: "{area}/{controller}/{action}/{id?}"
-                    );
+                );
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

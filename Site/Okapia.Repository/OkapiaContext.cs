@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Okapia.Domain.Models;
 using Okapia.Repository.Mappings;
 
-namespace Okapia.Domain
+namespace Okapia.Repository
 {
-    public partial class OkapiaContext : DbContext
+    public class OkapiaContext : DbContext
     {
         public OkapiaContext()
         {
@@ -30,37 +29,26 @@ namespace Okapia.Domain
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Okapia;Persist Security Info=True;User ID=sa;Password=H@123456");
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
-
-            modelBuilder.Entity<JobPicture>(entity =>
-            {
-                
-            });
-
-            modelBuilder.ApplyConfiguration(new JobRelationMapping());
-
+            modelBuilder.ApplyConfiguration(new CategoryMapping());
+            modelBuilder.ApplyConfiguration(new GroupMapping());
+            modelBuilder.ApplyConfiguration(new JobTransactionMapping());
+            modelBuilder.ApplyConfiguration(new JobMapping());
             modelBuilder.ApplyConfiguration(new ModalMapping());
-
+            modelBuilder.ApplyConfiguration(new JobPictureMapping());
+            modelBuilder.ApplyConfiguration(new JobRelationMapping());
+            modelBuilder.ApplyConfiguration(new ModalMapping());
             modelBuilder.ApplyConfiguration(new PageMapping());
-
             modelBuilder.ApplyConfiguration(new PageCategoryMapping());
-
             modelBuilder.ApplyConfiguration(new PageCommentMapping());
-
             OnModelCreatingPartial(modelBuilder);
         }
 
-        void OnModelCreatingPartial(ModelBuilder modelBuilder)
+        private static void OnModelCreatingPartial(ModelBuilder modelBuilder)
         {
-            throw new NotImplementedException();
         }
     }
 }

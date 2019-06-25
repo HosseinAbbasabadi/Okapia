@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Okapia.Domain
+﻿namespace Okapia.Domain.Models
 {
     public partial class JobRelation
     {

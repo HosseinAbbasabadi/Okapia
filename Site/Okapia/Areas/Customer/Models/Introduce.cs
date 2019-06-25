@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Okapia.Models
+namespace Okapia.Areas.Customer.Models
 {
     public class Introduce
     {

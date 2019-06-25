@@ -1,4 +1,4 @@
-﻿namespace Okapia.Domain
+﻿namespace Okapia.Domain.Models
 {
     public class Jobs
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Okapia.Domain;
+using Okapia.Domain.Models;
 
 namespace Okapia.Repository.Mappings
 {
