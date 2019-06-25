@@ -1,4 +1,7 @@
-﻿namespace Okapia.Domain.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Okapia.Domain
 {
     public partial class Category
     {
