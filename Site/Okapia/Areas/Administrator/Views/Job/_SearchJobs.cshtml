@@ -1,0 +1,75 @@
+﻿@model Okapia.Application.SeachModels.JobSearchModel
+<hr/>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">جستجو در مشاغل</h2>
+      </div>
+      <div class="panel-body">
+        <form asp-action="Search" asp-controller="Job" method="POST">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label asp-for="JobName" class="control-label"></label>
+              <input asp-for="JobName" class="form-control"/>
+              <span asp-validation-for="JobName" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label asp-for="JobContactTitile" class="control-label"></label>
+              <input asp-for="JobContactTitile" class="form-control"/>
+              <span asp-validation-for="JobContactTitile" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label asp-for="JobManagerFirstName" class="control-label"></label>
+              <input asp-for="JobManagerFirstName" class="form-control"/>
+              <span asp-validation-for="JobManagerFirstName" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label asp-for="JobManagerLastName" class="control-label"></label>
+              <input asp-for="JobManagerLastName" class="form-control"/>
+              <span asp-validation-for="JobManagerLastName" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label asp-for="JobTel1" class="control-label"></label>
+              <input asp-for="JobTel1" class="form-control"/>
+              <span asp-validation-for="JobTel1" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label asp-for="JobMobile1" class="control-label"></label>
+              <input asp-for="JobMobile1" class="form-control"/>
+              <span asp-validation-for="JobMobile1" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label asp-for="JobProvienceId" class="control-label"></label>
+              <input asp-for="JobProvienceId" class="form-control"/>
+              <span asp-validation-for="JobProvienceId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label asp-for="JobCityId" class="control-label"></label>
+              <input asp-for="JobCityId" class="form-control"/>
+              <span asp-validation-for="JobCityId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="جستجو" class="btn btn-primary"/>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Migrations.Operations.Builders;
 using Okapia.Application.Commands.Job;
 using Okapia.Application.Contracts;
-using Okapia.Areas.Administrator.Models;
+using Okapia.Application.SeachModels;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
@@ -28,24 +29,24 @@ namespace Okapia.Areas.Administrator.Controllers
                     JobContactTitile = "علیرضا کرمی",
                     JobManagerFirstName = "علی",
                     JobManagerLastName = "کبیری",
-                    JobProvienceId = "البرز",
-                    JobCityId = "کرج"
+                    //JobProvienceId = "البرز",
+                    //JobCityId = "کرج"
                 },new CreateJob
                 {
                     JobName = "رستوران سنتی",
                     JobContactTitile = "محمد علیمی",
                     JobManagerFirstName = "سپهر",
                     JobManagerLastName = "جاوید",
-                    JobProvienceId = "لرستان",
-                    JobCityId = "خرم آباد"
+                    //JobProvienceId = "لرستان",
+                    //JobCityId = "خرم آباد"
                 },new CreateJob
                 {
                     JobName = "مرکز تخصصی چشم",
                     JobContactTitile = "حسین حضرتی",
                     JobManagerFirstName = "امیر",
                     JobManagerLastName = "نعیمی",
-                    JobProvienceId = "لرستان",
-                    JobCityId = "بروجرد"
+                    //JobProvienceId = "لرستان",
+                    //JobCityId = "بروجرد"
                 },
             };
             return View(jobs);
@@ -122,6 +123,14 @@ namespace Okapia.Areas.Administrator.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(JobSearchModel searchModel)
+        {
+            var data = new List<CreateJob>();
+            return View("Index", data);
         }
     }
 }

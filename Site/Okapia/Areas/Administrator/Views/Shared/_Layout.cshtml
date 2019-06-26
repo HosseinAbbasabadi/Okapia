@@ -30,6 +30,7 @@
 
   <!-- Waves-effect -->
   <link href="~/css/waves-effect.css" rel="stylesheet">
+  
 
   <!-- Custom Files -->
   <link href="~/css/helper.css" rel="stylesheet" type="text/css" />
@@ -88,6 +89,11 @@
     </script>
   </environment>
   <script src="~/js/site.js" asp-append-version="true"></script>
+
+  <script>
+    var resizefunc = [];
+  </script>
+
   <script src="~/assets/flot-chart/jquery.flot.js"></script>
 
   <script src="~/assets/flot-chart/jquery.flot.time.js"></script>
@@ -100,7 +106,8 @@
   <script src="~/js/ckeditor.js"></script>
   <script>
     CKEDITOR.replace('editor1');
-  </script> 
+  </script>
+
   @RenderSection("Scripts", required: false)
 </body>
 </html>
