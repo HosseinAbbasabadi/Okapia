@@ -68,7 +68,7 @@ namespace Okapia.Helpers
 
         private void SetAuthenticationCookie(string role, string username)
         {
-            var cookieOptions = new CookieOptions {Expires = DateTime.Now.AddDays(1), IsEssential = true};
+            var cookieOptions = new CookieOptions { Expires = DateTime.Now.AddDays(1), IsEssential = true };
             _contextAccessor.HttpContext.Response.Cookies.Append(Constants.Cookies.AuthecticationCookieName, "True", cookieOptions);
             _contextAccessor.HttpContext.Response.Cookies.Append(Constants.Cookies.RoleCookieName, role, cookieOptions);
             _contextAccessor.HttpContext.Response.Cookies.Append(Constants.Cookies.UsernameCookieName, username, cookieOptions);

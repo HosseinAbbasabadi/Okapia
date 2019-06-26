@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Okapia.Application;
+using Okapia.Configuration;
 using Okapia.Helpers;
-using Okapia.Repository;
 
 namespace Okapia
 {
@@ -27,19 +22,17 @@ namespace Okapia
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var bootstrapper = new Bootstrapper(Configuration);
+            bootstrapper.Wireup(services);
+            //TODO: should be moved to bootstrapper
+            services.AddSingleton<IAuthHelper, AuthHelper>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
             services.AddHttpContextAccessor();
-            services.AddSingleton<IAuthHelper, AuthHelper>();
-            services.AddDbContext<OkapiaContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString(Configuration.GetConnectionString("")));
-            });
             services.AddMvc(options => options.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
