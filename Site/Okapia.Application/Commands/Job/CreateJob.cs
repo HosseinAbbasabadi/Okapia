@@ -1,20 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Okapia.Areas.Administrator.Models
+namespace Okapia.Application.Commands.Job
 {
-    public class Jobs
+    public class CreateJob
     {
-        public Jobs()
-        {
-            JobPicture = new HashSet<JobPicture>();
-            JobRelationJob = new HashSet<JobRelation>();
-            JobRelationRelated = new HashSet<JobRelation>();
-        }
-        
-        [Display(Name = "شماره")]
-        public int JobId { get; set; }
-
         [Display(Name = "عنوان")]
         public string JobName { get; set; }
 
@@ -114,9 +103,6 @@ namespace Okapia.Areas.Administrator.Models
         [Display(Name = "نمایش در صفحه اصلی")]
         public bool ShowInHomePage { get; set; }
 
-        [Display(Name = "آیا حذف شود")]
-        public bool IsDeleted { get; set; }
-
         [Display(Name = "کارمند ثبت کننده")]
         public int? RegisteringEmployerId { get; set; }
 
@@ -134,9 +120,5 @@ namespace Okapia.Areas.Administrator.Models
 
         [Display(Name = "آدرس تلگرام")]
         public string TelegramUrl { get; set; }
-        
-        public virtual ICollection<JobPicture> JobPicture { get; set; }
-        public virtual ICollection<JobRelation> JobRelationJob { get; set; }
-        public virtual ICollection<JobRelation> JobRelationRelated { get; set; }
     }
 }

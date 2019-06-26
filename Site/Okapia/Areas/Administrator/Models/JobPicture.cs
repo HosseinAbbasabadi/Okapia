@@ -1,4 +1,6 @@
-﻿namespace Okapia.Areas.Administrator.Models
+﻿using Okapia.Application.Commands.Job;
+
+namespace Okapia.Areas.Administrator.Models
 {
     public class JobPicture
     {
@@ -11,6 +13,6 @@
         public int? JobPictureSortOrder { get; set; }
         public int JobId { get; set; }
 
-        public virtual Jobs Job { get; set; }
+        public virtual CreateJob CreateJob { get; set; }
     }
 }

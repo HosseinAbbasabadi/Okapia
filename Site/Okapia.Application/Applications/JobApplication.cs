@@ -1,4 +1,5 @@
 ﻿using System;
+using Okapia.Application.Commands.Job;
 using Okapia.Application.Contracts;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
@@ -14,7 +15,7 @@ namespace Okapia.Application.Applications
             _jobRepository = jobRepository;
         }
 
-        public void Create(Job job)
+        public void Create(CreateJob command)
         {
             throw new NotImplementedException();
         }

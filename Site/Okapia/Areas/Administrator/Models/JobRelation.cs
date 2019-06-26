@@ -1,4 +1,6 @@
-﻿namespace Okapia.Areas.Administrator.Models
+﻿using Okapia.Application.Commands.Job;
+
+namespace Okapia.Areas.Administrator.Models
 {
     public class JobRelation
     {
@@ -6,7 +8,7 @@
         public int JobId { get; set; }
         public int RelatedId { get; set; }
 
-        public virtual Jobs Job { get; set; }
-        public virtual Jobs Related { get; set; }
+        public virtual CreateJob CreateJob { get; set; }
+        public virtual CreateJob Related { get; set; }
     }
 }

@@ -1,5 +1,6 @@
-﻿@using Okapia.Areas.Administrator.Models
-@model IEnumerable<Jobs>
+﻿@using Okapia.Application.Commands.Job
+@using Okapia.Areas.Administrator.Models
+@model IEnumerable<Okapia.Application.Commands.Job.CreateJob>
 
 @{
     ViewData["Title"] = "Index";
@@ -14,7 +15,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.JobId)
+                @*@Html.DisplayNameFor(model => model.JobId)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.JobName)
@@ -41,7 +42,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.JobId)
+                @*@Html.DisplayFor(modelItem => item.JobId)*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.JobName)

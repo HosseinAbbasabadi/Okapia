@@ -1,9 +1,10 @@
-﻿using Okapia.Domain.Models;
+﻿using Okapia.Application.Commands.Job;
+using Okapia.Domain.Models;
 
 namespace Okapia.Application.Contracts
 {
     public interface IJobApplication
     {
-        void Create(Job job);
+        void Create(CreateJob command);
     }
 }
