@@ -38,10 +38,10 @@ namespace Okapia.Application.Commands.Job
         public string JobMobile2 { get; set; }
 
         [Display(Name = "استان")]
-        public string JobProvienceId { get; set; }
+        public int JobProvienceId { get; set; }
 
         [Display(Name = "شهر")]
-        public string JobCityId { get; set; }
+        public int JobCityId { get; set; }
 
         [Display(Name = "آدرس")]
         public string JobAddress { get; set; }
@@ -102,9 +102,6 @@ namespace Okapia.Application.Commands.Job
 
         [Display(Name = "نمایش در صفحه اصلی")]
         public bool ShowInHomePage { get; set; }
-
-        [Display(Name = "کارمند ثبت کننده")]
-        public int? RegisteringEmployerId { get; set; }
 
         [Display(Name = "محدودیت در تعداد معرفی اعضا")]
         public int CustomerIntroductionLimit { get; set; }

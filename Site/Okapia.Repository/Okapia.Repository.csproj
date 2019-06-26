@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj" />
     <ProjectReference Include="..\Okapia.Domain\Okapia.Domain.csproj" />
   </ItemGroup>
 </Project>

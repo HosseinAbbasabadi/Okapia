@@ -1,6 +1,9 @@
-﻿namespace Okapia.Domain.Contracts
+﻿using Framework;
+using Okapia.Domain.Models;
+
+namespace Okapia.Domain.Contracts
 {
-    public interface IJobRepository
+    public interface IJobRepository : IRepository<int, Job>
     {
     }
 }

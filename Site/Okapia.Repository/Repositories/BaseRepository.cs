@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Framework;
 
 namespace Okapia.Repository.Repositories
 {
-    public class BaseRepository<TKey, T> where T : class
+    public class BaseRepository<TKey, T> : IRepository<TKey, T> where T : class
     {
         private readonly OkapiaContext _context;
 

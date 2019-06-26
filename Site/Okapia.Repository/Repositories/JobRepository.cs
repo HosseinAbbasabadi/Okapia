@@ -1,4 +1,5 @@
-﻿using Okapia.Domain.Contracts;
+﻿using Framework;
+using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 
 namespace Okapia.Repository.Repositories
@@ -9,4 +10,5 @@ namespace Okapia.Repository.Repositories
         {
         }
     }
+
 }
