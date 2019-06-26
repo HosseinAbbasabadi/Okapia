@@ -6,7 +6,7 @@
         public int JobId { get; set; }
         public int RelatedId { get; set; }
 
-        public virtual Jobs Job { get; set; }
-        public virtual Jobs Related { get; set; }
+        public virtual Job Job { get; set; }
+        public virtual Job Related { get; set; }
     }
 }

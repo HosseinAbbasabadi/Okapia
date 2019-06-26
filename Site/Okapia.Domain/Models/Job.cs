@@ -1,6 +1,6 @@
 ﻿namespace Okapia.Domain.Models
 {
-    public class Jobs
+    public class Job
     {
         public int JobId { get; set; }
         public string JobName { get; set; }

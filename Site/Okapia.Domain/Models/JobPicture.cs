@@ -11,6 +11,6 @@
         public int? JobPictureSortOrder { get; set; }
         public int JobId { get; set; }
 
-        public virtual Jobs Job { get; set; }
+        public virtual Job Job { get; set; }
     }
 }

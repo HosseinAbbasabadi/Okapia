@@ -1,6 +1,6 @@
 ﻿namespace Okapia.Domain.Models
 {
-    public partial class Category
+    public class Category
     {
         public int CategoryId { get; set; }
         public string CatgoryName { get; set; }

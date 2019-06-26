@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.Application", "Okapi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.Repository", "Okapia.Repository\Okapia.Repository.csproj", "{A0BA29E6-DC45-4675-A7F4-C08488DD083F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okapia.Domain", "Okapia.Domain\Okapia.Domain.csproj", "{9085F0A1-150F-4BBA-8C7F-5E8AF1354E97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.Domain", "Okapia.Domain\Okapia.Domain.csproj", "{9085F0A1-150F-4BBA-8C7F-5E8AF1354E97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

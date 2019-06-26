@@ -20,16 +20,12 @@ namespace Okapia.Repository
         public virtual DbSet<JobPicture> JobPicture { get; set; }
         public virtual DbSet<JobRelation> JobRelation { get; set; }
         public virtual DbSet<JobTransactions> JobTransactions { get; set; }
-        public virtual DbSet<Jobs> Jobs { get; set; }
+        public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<Modals> Modals { get; set; }
         public virtual DbSet<Page> Page { get; set; }
         public virtual DbSet<PageCategory> PageCategory { get; set; }
         public virtual DbSet<PageComments> PageComments { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,6 +41,9 @@ namespace Okapia.Repository
             modelBuilder.ApplyConfiguration(new PageCategoryMapping());
             modelBuilder.ApplyConfiguration(new PageCommentMapping());
             OnModelCreatingPartial(modelBuilder);
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
         }
 
         private static void OnModelCreatingPartial(ModelBuilder modelBuilder)

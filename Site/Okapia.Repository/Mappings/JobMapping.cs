@@ -4,10 +4,11 @@ using Okapia.Domain.Models;
 
 namespace Okapia.Repository.Mappings
 {
-    public class JobMapping : IEntityTypeConfiguration<Jobs>
+    public class JobMapping : IEntityTypeConfiguration<Job>
     {
-        public void Configure(EntityTypeBuilder<Jobs> builder)
+        public void Configure(EntityTypeBuilder<Job> builder)
         {
+            builder.ToTable("Jobs");
             builder.HasKey(e => e.JobId);
 
             builder.Property(e => e.JobId).HasColumnName("JobID");
