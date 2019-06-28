@@ -1,5 +1,4 @@
-﻿@using Okapia.Application.Commands.Job
-@model Okapia.Application.Commands.Job.CreateJob
+﻿@model Okapia.Application.Commands.Job.CreateJob
 
 @{
   ViewData["Title"] = "Create";
@@ -12,7 +11,7 @@
 <hr/>
 <div class="row">
 <div class="col-md-12">
-<form asp-action="Create">
+<form asp-action="Create" enctype="multipart/form-data">
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <div class="col-md-4">
   <div class="form-group">
@@ -94,7 +93,8 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobProvienceId" class="control-label"></label>
-    <input asp-for="JobProvienceId" class="form-control"/>
+    @*<input asp-for="JobProvienceId" class="form-control" />*@
+    <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control"></select>
     <span asp-validation-for="JobProvienceId" class="text-danger"></span>
   </div>
 </div>
@@ -241,8 +241,44 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="CustomerIntroductionLimit" class="control-label"></label>
-    <input asp-for="CustomerIntroductionLimit" class="form-control" />
+    <input asp-for="CustomerIntroductionLimit" class="form-control"/>
     <span asp-validation-for="CustomerIntroductionLimit" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <div class="custom-file">
+      <label asp-for="Photo1" class="control-label"></label>
+      <input asp-for="Photo1" class="form-control custom-file-input"/>
+    </div>
+    <span asp-validation-for="Photo1" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <div class="custom-file">
+      <label asp-for="Photo2" class="control-label"></label>
+      <input asp-for="Photo2" class="form-control custom-file-input"/>
+    </div>
+    <span asp-validation-for="Photo2" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <div class="custom-file">
+      <label asp-for="Photo3" class="control-label"></label>
+      <input asp-for="Photo3" class="form-control custom-file-input"/>
+    </div>
+    <span asp-validation-for="Photo3" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <div class="custom-file">
+      <label asp-for="Photo4" class="control-label"></label>
+      <input asp-for="Photo4" class="form-control custom-file-input" accept="image/*">
+    </div>
+    <span asp-validation-for="Photo4" class="text-danger"></span>
   </div>
 </div>
 <div class="col-md-12">
@@ -280,6 +316,7 @@
     <span asp-validation-for="TelegramUrl" class="text-danger"></span>
   </div>
 </div>
+
 <div class="col-md-6">
   <div class="form-group">
     <input type="submit" value="ثبت" class="btn btn-success btn-lg"/>

@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Okapia.Application.Commands.Job
 {
@@ -117,5 +120,20 @@ namespace Okapia.Application.Commands.Job
 
         [Display(Name = "آدرس تلگرام")]
         public string TelegramUrl { get; set; }
+
+        [Display(Name = "عکس پیشفرش")]
+        public IFormFile Photo1 { get; set; }
+
+        [Display(Name = "عکس دوم")]
+        public IFormFile Photo2 { get; set; }
+
+        [Display(Name = "عکس سوم")]
+        public IFormFile Photo3 { get; set; }
+
+        [Display(Name = "عکس چهارم")]
+        public IFormFile Photo4 { get; set; }
+
+        public List<IFormFile> Photos { get; set; }
+        public SelectList Proviences { get; set; }
     }
 }

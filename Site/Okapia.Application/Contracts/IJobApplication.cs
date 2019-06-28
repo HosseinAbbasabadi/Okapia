@@ -1,5 +1,4 @@
 ﻿using Okapia.Application.Commands.Job;
-using Okapia.Domain.Models;
 
 namespace Okapia.Application.Contracts
 {
