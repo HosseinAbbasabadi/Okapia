@@ -33,6 +33,8 @@ namespace Okapia.Configuration
             services.AddScoped<INeighborhoodApplication, NeighborhoodApplication>();
             services.AddScoped<INeighborhoodRepository, NeighborhoodRepository>();
 
+            services.AddScoped<ICategoryApplication, CategoryApplication>();
+            services.AddScoped<ICategoryRepository, ICategoryRepository>();
 
             services.AddDbContext<OkapiaContext>(options =>
             {

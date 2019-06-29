@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 using Microsoft.AspNetCore.Hosting;
 using Okapia.Application.Commands.Job;
 using Okapia.Application.Contracts;
@@ -96,7 +95,6 @@ namespace Okapia.Application.Applications
                 JobContractNumber = command.JobContractNumber,
                 JobBenefitPercentForCompany = command.JobBenefitPercentForCompany,
                 JobBenefitPercentForEndCustomer = command.JobBenefitPercentForEndCustomer,
-                JobRemoved301InsteadUrl = command.JobRemoved301InsteadUrl,
                 JobDiscountPercentForCustomer = command.JobDiscountPercentForCustomer,
                 //JobDiscountPercentForCompnay = command.disc,
                 //JobDiscountPercentForSabaMehrDiscount = 

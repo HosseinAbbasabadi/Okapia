@@ -11,7 +11,7 @@
 <hr/>
 <div class="row">
 <div class="col-md-12">
-<form asp-action="Create" enctype="multipart/form-data">
+<form asp-area="Administrator" asp-controller="Job" asp-action="Create" enctype="multipart/form-data">
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <div class="col-md-4">
   <div class="form-group">
@@ -205,13 +205,6 @@
 </div>
 <div class="col-md-4">
   <div class="form-group">
-    <label asp-for="JobRemoved301InsteadUrl" class="control-label"></label>
-    <input asp-for="JobRemoved301InsteadUrl" class="form-control"/>
-    <span asp-validation-for="JobRemoved301InsteadUrl" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
     <label asp-for="JobDiscountPercentForCustomer" class="control-label"></label>
     <input asp-for="JobDiscountPercentForCustomer" class="form-control"/>
     <span asp-validation-for="JobDiscountPercentForCustomer" class="text-danger"></span>
@@ -364,7 +357,7 @@
 
 <div class="col-md-6">
   <div class="form-group text-left">
-    <a class="text-info" asp-action="Index">بازگشت به لیست</a>
+    <a class="text-info" asp-action="Index" asp-controller="Job" asp-area="Administrator">بازگشت به لیست</a>
   </div>
 </div>
 </form>

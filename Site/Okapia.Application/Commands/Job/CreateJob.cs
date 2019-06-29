@@ -57,9 +57,6 @@ namespace Okapia.Application.Commands.Job
 
         [Display(Name = "درصد سود شرکت")] public double? JobBenefitPercentForCompany { get; set; }
 
-        [Display(Name = "آدرس صفحه جایگزین در صورت حذف صفحه")]
-        public string JobRemoved301InsteadUrl { get; set; }
-
         [Display(Name = "درصد تخفیف به مشتری")]
         public double? JobDiscountPercentForCustomer { get; set; }
 

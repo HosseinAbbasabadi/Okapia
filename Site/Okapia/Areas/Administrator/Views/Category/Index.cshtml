@@ -1,0 +1,14 @@
+﻿@model Okapia.Areas.Administrator.Models.CategoryIndexViewModel
+
+@{
+  ViewData["Title"] = "Index";
+}
+
+<h1>صفحه مدیریت مشاغل</h1>
+
+<h2>
+  <a asp-action="Create" class="btn btn-success text-lg-center">ایجاد شغل جدید</a>
+</h2>
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/Category/_SearchJobs.cshtml", Model.CategorySearchModel)
+@await Html.PartialAsync("~/Areas/Administrator/Views/Category/_ListJobs.cshtml", Model.CategoryViewModels)

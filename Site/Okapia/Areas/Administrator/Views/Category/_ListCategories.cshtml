@@ -1,0 +1,103 @@
+﻿@using Okapia.Domain.SeachModels
+@model IEnumerable<Okapia.Domain.ViewModels.Category.CategoryViewModel>
+@{
+  var searchModel = ViewData["searchModel"] as CategorySearchModel;
+}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">لیست مشاغل</h2>
+      </div>
+      <div class="panel-body">
+        <table id="datatable" class="table table-striped table-bordered">
+          <tbody>
+          @foreach (var item in Model.Select((value, index) => new {index, value}))
+          {
+            <tr>
+              <td>
+                @{
+                  var index = item.index;
+                  index += 1;
+                }
+                @index
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.CatgoryName)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.CategorySmallDescription)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.CategoryParentName)
+              </td>
+              <td>
+                @Html.ActionLink("اطلاح", "Edit", new {/* id=item.PrimaryKey */}) |
+                @Html.ActionLink("جزيیات", "Details", new {/* id=item.PrimaryKey */}) |
+                @Html.ActionLink("حذف", "Delete", new {/* id=item.PrimaryKey */})
+              </td>
+            </tr>
+          }
+          </tbody>
+          <thead>
+          <tr>
+          <th>
+            ردیف
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CatgoryName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CategorySmallDescription)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CategoryParentName)
+          </th>
+          <th>
+            عملیات
+          </th>
+
+          </thead>
+        </table>
+      </div>
+      <nav>
+        <ul class="pagination">
+          <li>
+            <a href="#" aria-label="Previous">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          @for (var i = 0; i < searchModel.PageCount; i++)
+          {
+            var routingSearchModel = new CategorySearchModel
+            {
+              CategoryName = searchModel.CategoryName,
+              CategoryParrentId = searchModel.CategoryParrentId,
+              PageSize = 20,
+              PageIndex = i
+            };
+            if (searchModel.PageIndex == i)
+            {
+              <li class="active">
+                @Html.ActionLink((i + 1).ToString(), "Index", "Category", routingSearchModel)
+              </li>
+            }
+            else
+            {
+              <li>
+                @Html.ActionLink((i + 1).ToString(), "Index", "Category", routingSearchModel)
+              </li>
+            }
+          }
+
+          <li>
+            <a href="#" aria-label="Next">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

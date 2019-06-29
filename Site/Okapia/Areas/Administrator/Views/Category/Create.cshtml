@@ -1,0 +1,127 @@
+﻿@model Okapia.Application.Commands.Category.CreateCategory
+
+@{
+  ViewData["Title"] = "Create";
+}
+
+<h1>فرم ایجاد گروه شغل</h1>
+
+<h4>برای ثبت گروه جدید فرم زیر را کامل کنید</h4>
+
+<hr/>
+<div class="row">
+<div class="col-md-12">
+<form asp-action="Create" asp-controller="Category" asp-area="Administrator" enctype="multipart/form-data">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="CatgoryName" class="control-label"></label>
+    <input asp-for="CatgoryName" class="form-control" onchange="string_to_slug(document.getElementById('JobName').value)"/>
+    <span asp-validation-for="CatgoryName" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="CategorySmallDescription" class="control-label"></label>
+    <input asp-for="CategorySmallDescription" class="form-control"/>
+    <span asp-validation-for="CategorySmallDescription" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="CategoryMetaTag" class="control-label"></label>
+    <input asp-for="CategoryMetaTag" class="form-control"/>
+    <span asp-validation-for="CategoryMetaTag" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="CategoryMetaDesccription" class="control-label"></label>
+    <input asp-for="CategoryMetaDesccription" class="form-control"/>
+    <span asp-validation-for="CategoryMetaDesccription" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="CategorySeohead" class="control-label"></label>
+    <input asp-for="CategorySeohead" class="form-control"/>
+    <span asp-validation-for="CategorySeohead" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="CategoryPageTittle" class="control-label"></label>
+    <input asp-for="CategoryPageTittle" class="form-control"/>
+    <span asp-validation-for="CategoryPageTittle" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="CategoryParentId" class="control-label"></label>
+    @*<input asp-for="JobProvienceId" class="form-control" />*@
+    <select asp-for="CategoryParentId" asp-items="@Model.Categories" class="form-control"></select>
+    <span asp-validation-for="CategoryParentId" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <div class="custom-file">
+      <label asp-for="Photo" class="control-label"></label>
+      <input asp-for="Photo" class="form-control custom-file-input" accept="image/*"/>
+    </div>
+    <span asp-validation-for="Photo" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="form-group">
+    <input type="submit" value="ثبت" class="btn btn-success btn-lg"/>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="form-group text-left">
+    <a class="text-info" asp-action="Index" asp-controller="Category" asp-area="Administrator">بازگشت به لیست</a>
+  </div>
+</div>
+</form>
+</div>
+</div>
+
+<script>
+  function getList(sourceDropdown, action, distDropdown) {
+    var id = $(sourceDropdown).val();
+    $.ajax({
+      url: action + '/' + id,
+      type: 'Get',
+      //datatype: 'application/json',
+      contentType: 'application/json',
+      //data: JSON.stringify({
+      //  stateId: +stateId
+      //}),
+      success: function (result) {
+        $(distDropdown).html("");
+        $.each(result,
+          function (i, item) {
+            $(distDropdown).append($('<option></option>').val(item.id).html(item.name));
+          });
+      },
+      error: function() {
+        alert("خطا در ارتباط با سرور لطفا با مدیر سیتم تماس بگیرید.");
+      }
+    });
+  }
+
+  function getCityList() {
+    this.getList('#provinceDropDown', 'GetCitiesByProvince', '#cityDropDown');
+  }
+  function getDistrictList() {
+    this.getList('#cityDropDown', 'GetDistrictsByCity', '#districtDropDown');
+  }
+  function getNeighborhoodList() {
+    this.getList('#districtDropDown', 'GetNeighborhoodsByDistrict', '#neighborhoodDropDown');
+  }
+
+  function string_to_slug(str) {
+    document.getElementById("JobSlug").value = str;
+  }
+</script>
