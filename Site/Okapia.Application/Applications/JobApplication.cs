@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using Microsoft.AspNetCore.Hosting;
 using Okapia.Application.Commands.Job;
 using Okapia.Application.Contracts;
@@ -43,11 +44,6 @@ namespace Okapia.Application.Applications
             }
         }
 
-        public List<JobViewModel> GetJobsForList(JobSearchModel searchModel)
-        {
-            
-        }
-
         private IEnumerable<string> SaveJobPhotos(CreateJob command)
         {
             var photoNames = new List<string>();
@@ -87,6 +83,8 @@ namespace Okapia.Application.Applications
                 //JobGeoLocation = command.ge
                 JobProvienceId = command.JobProvienceId,
                 JobCityId = command.JobCityId,
+                JobDistrictId = command.JobDistrictId,
+                JobNeighborhoodId = command.JobneighborhoodId,
                 JobAddress = command.JobAddress,
                 JobMap = command.JobMap,
                 JobPageTittle = command.JobPageTittle,
@@ -140,6 +138,11 @@ namespace Okapia.Application.Applications
 
             job.JobPictures = jobPictures;
             return job;
+        }
+
+        public List<JobViewModel> GetJobsForList(JobSearchModel searchModel, out int recordCount)
+        {
+            return _jobRepository.Search(searchModel, out recordCount);
         }
     }
 }

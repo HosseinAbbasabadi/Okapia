@@ -1,5 +1,9 @@
-﻿@using Okapia.Domain.ViewModels.Job
+﻿@using Okapia.Domain.SeachModels
+@using Okapia.Domain.ViewModels.Job
 @model IEnumerable<Okapia.Domain.ViewModels.Job.JobViewModel>
+@{
+  var searchModel = ViewData["searchModel"] as JobSearchModel;
+}
 
 <div class="row">
   <div class="col-md-12">
@@ -31,6 +35,12 @@
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.JobManagerLastName)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobTel)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobMobile)
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.JobProvience)
@@ -70,6 +80,12 @@
             @Html.DisplayNameFor(model => model.JobManagerLastName)
           </th>
           <th>
+            @Html.DisplayNameFor(model => model.JobTel)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.JobMobile)
+          </th>
+          <th>
             @Html.DisplayNameFor(model => model.JobProvience)
           </th>
           <th>
@@ -95,12 +111,37 @@
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
-          @for (var i = 0; i < Model.Count(); i++)
+          @for (var i = 0; i < searchModel.PageCount; i++)
           {
-            <li>
-              <a href="#">1</a>
-            </li>
+            var routingSearchModel = new JobSearchModel
+            {
+              JobName = searchModel.JobName,
+              JobContactTitile = searchModel.JobContactTitile,
+              JobManagerFirstName = searchModel.JobManagerFirstName,
+              JobManagerLastName = searchModel.JobManagerLastName,
+              JobTel = searchModel.JobTel,
+              JobMobile = searchModel.JobMobile,
+              JobProvienceId = searchModel.JobProvienceId,
+              JobCityId = searchModel.JobCityId,
+              JobDistrictId = searchModel.JobDistrictId,
+              JobNeighborhoodId = searchModel.JobNeighborhoodId,
+              PageSize = 1,
+              PageIndex = i
+            };
+            if (searchModel.PageIndex == i)
+            {
+              <li class="active">
+                @Html.ActionLink((i + 1).ToString(), "Search", "Job", routingSearchModel)
+              </li>
+            }
+            else
+            {
+              <li>
+                @Html.ActionLink((i + 1).ToString(), "Search", routingSearchModel)
+              </li>
+            }
           }
+
           <li>
             <a href="#" aria-label="Next">
               <span aria-hidden="true">&laquo;</span>

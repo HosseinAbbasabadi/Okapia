@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 using Framework;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
@@ -10,6 +8,6 @@ namespace Okapia.Domain.Contracts
 {
     public interface IJobRepository : IRepository<int, Job>
     {
-        List<JobViewModel> Search(Expression<Func<JobViewModel, bool>> conditions,JobSearchModel searchModel, out int recordCount);
+        List<JobViewModel> Search(JobSearchModel searchModel, out int recordCount);
     }
 }

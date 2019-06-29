@@ -8,6 +8,6 @@ namespace Okapia.Application.Contracts
     public interface IJobApplication
     {
         void Create(CreateJob command);
-        List<JobViewModel> GetJobsForList(JobSearchModel searchModel);
+        List<JobViewModel> GetJobsForList(JobSearchModel searchModel, out int recordCount);
     }
 }

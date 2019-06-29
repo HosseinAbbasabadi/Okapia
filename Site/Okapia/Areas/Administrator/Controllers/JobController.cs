@@ -29,21 +29,62 @@ namespace Okapia.Areas.Administrator.Controllers
             _neighborhoodApplication = neighborhoodApplication;
         }
 
-        // GET: Shop
-        public ActionResult Index()
+        private void PreparePager(BaseSerachModel searchModel, int rc)
         {
-            var jobs = CreateJobs();
-            var jobIndex = new JobIndexViewModel
+            if (rc % searchModel.PageSize == 0)
             {
-                JobViewModels = jobs,
-                JobSearchModel = new JobSearchModel
-                {
-                    Proviences = new SelectList(Proviences(), "Id", "Name")
-                }
-            };
+                searchModel.PageCount = rc / searchModel.PageSize;
+            }
+            else
+            {
+                searchModel.PageCount = (rc / searchModel.PageSize) + 1;
+            }
+
+            ViewData["searchModel"] = searchModel;
+        }
+
+        // GET: Shop
+        public ActionResult Index(JobSearchModel searchMd)
+        {
+            var jobSearchModel = ProvideJobSearchModel(searchMd);
+
+            var jobs = _jobApplication.GetJobsForList(jobSearchModel, out var recordCount);
+            var jobIndex = ProvideJobIndex(jobs, jobSearchModel);
+            PreparePager(jobSearchModel, recordCount);
             return View(jobIndex);
         }
 
+        [HttpGet]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Search(JobSearchModel searchModel)
+        {
+            ProvideJobSearchModel(searchModel);
+            var jobs = _jobApplication.GetJobsForList(searchModel, out var recordCount);
+            var jobIndex = ProvideJobIndex(jobs, searchModel);
+            PreparePager(searchModel, recordCount);
+            return View("Index", jobIndex);
+        }
+        private static JobSearchModel ProvideJobSearchModel(JobSearchModel searchModel)
+        {
+            searchModel.Proviences = new SelectList(Proviences(), "Id", "Name");
+            if (searchModel.PageSize == 0)
+            {
+                searchModel.PageSize = 1;
+            }
+
+            return searchModel;
+        }
+
+        private static JobIndexViewModel ProvideJobIndex(IEnumerable<JobViewModel> jobs, JobSearchModel jobSearchModel)
+        {
+            var jobIndex = new JobIndexViewModel
+            {
+                JobViewModels = jobs,
+                JobSearchModel = jobSearchModel
+            };
+            return jobIndex;
+        }
+        
         // GET: Shop/Details/5
         public ActionResult Details(int id)
         {
@@ -143,15 +184,6 @@ namespace Okapia.Areas.Administrator.Controllers
             {
                 return View();
             }
-        }
-
-        [HttpGet]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Search(JobSearchModel searchModel)
-        {
-            var searchResult = new List<JobViewModel>();
-            var jobIndex = new JobIndexViewModel {JobViewModels = searchResult, JobSearchModel = searchModel};
-            return View("Index", jobIndex);
         }
 
         [HttpGet]

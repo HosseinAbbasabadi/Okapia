@@ -18,17 +18,17 @@ namespace Okapia.Repository.Repositories
             _context = context;
         }
 
-        public List<JobViewModel> Search(Expression<Func<JobViewModel, bool>> conditions, JobSearchModel searchModel, out int recordCount)
+        public List<JobViewModel> Search(JobSearchModel searchModel, out int recordCount)
         {
-            var query = (from job in _context.Jobs
+            var query = from job in _context.Jobs
                 join province in _context.Provinces
                     on job.JobProvienceId equals province.Id
                 join city in _context.Cities
-                    on job.JobProvienceId equals city.Id
+                    on job.JobCityId equals city.Id
                 join district in _context.Districts
-                    on job.JobProvienceId equals district.Id
+                    on job.JobDistrictId equals district.Id
                 join neighborhood in _context.Neighborhoods
-                    on job.JobProvienceId equals neighborhood.Id
+                    on job.JobNeighborhoodId equals neighborhood.Id
                 select new JobViewModel
                 {
                     JobId = job.JobId,
@@ -36,15 +36,48 @@ namespace Okapia.Repository.Repositories
                     JobManagerFirstName = job.JobManagerFirstName,
                     JobManagerLastName = job.JobManagerLastName,
                     JobContactTitile = job.JobContactTitile,
+                    JobTel = job.JobTel1,
+                    JobMobile = job.JobMobile1,
                     JobProvience = province.Name,
+                    JobProvienceId = province.Id,
                     JobCity = city.Name,
+                    JobCityId = city.Id,
                     JobDistrict = district.Name,
-                    JobNeighborhood = neighborhood.Name
-                }).Where(conditions);
+                    JobDistrictId = district.Id,
+                    JobNeighborhood = neighborhood.Name,
+                    JobNeighborhoodId = neighborhood.Id
+                };
+
+            query = MakeQueryConditions(searchModel, query);
             recordCount = query.Count();
             query = query.OrderByDescending(x => x.JobId).Skip(searchModel.PageIndex * searchModel.PageSize)
                 .Take(searchModel.PageSize);
             return query.ToList();
+        }
+
+        private static IQueryable<JobViewModel> MakeQueryConditions(JobSearchModel searchModel, IQueryable<JobViewModel> query)
+        {
+            if (!string.IsNullOrEmpty(searchModel.JobName))
+                query = query.Where(x => x.JobName == searchModel.JobName);
+            if (!string.IsNullOrEmpty(searchModel.JobContactTitile))
+                query = query.Where(x => x.JobContactTitile == searchModel.JobContactTitile);
+            if (!string.IsNullOrEmpty(searchModel.JobManagerFirstName))
+                query = query.Where(x => x.JobManagerFirstName == searchModel.JobManagerFirstName);
+            if (!string.IsNullOrEmpty(searchModel.JobManagerLastName))
+                query = query.Where(x => x.JobManagerLastName == searchModel.JobManagerLastName);
+            if (!string.IsNullOrEmpty(searchModel.JobTel))
+                query = query.Where(x => x.JobTel == searchModel.JobTel);
+            if (!string.IsNullOrEmpty(searchModel.JobMobile))
+                query = query.Where(x => x.JobMobile == searchModel.JobMobile);
+            if (searchModel.JobProvienceId != 0)
+                query = query.Where(x => x.JobProvienceId == searchModel.JobProvienceId);
+            if (searchModel.JobCityId != 0)
+                query = query.Where(x => x.JobCityId == searchModel.JobCityId);
+            if (searchModel.JobDistrictId != 0)
+                query = query.Where(x => x.JobDistrictId == searchModel.JobDistrictId);
+            if (searchModel.JobNeighborhoodId != 0)
+                query = query.Where(x => x.JobNeighborhoodId == searchModel.JobNeighborhoodId);
+            return query;
         }
     }
 }

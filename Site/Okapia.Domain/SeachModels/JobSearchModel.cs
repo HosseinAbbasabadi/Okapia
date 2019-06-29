@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Okapia.Domain.SeachModels
 {
@@ -13,9 +14,9 @@ namespace Okapia.Domain.SeachModels
         [Display(Name = "نام خانوادگی مدیر")]
         public string JobManagerLastName { get; set; }
         [Display(Name = "شماره تلفن")]
-        public string JobTel1 { get; set; }
+        public string JobTel { get; set; }
         [Display(Name = "شماره موبایل")]
-        public string JobMobile1 { get; set; }
+        public string JobMobile { get; set; }
         [Display(Name = "استان")]
         public int JobProvienceId { get; set; }
         [Display(Name = "شهر")]

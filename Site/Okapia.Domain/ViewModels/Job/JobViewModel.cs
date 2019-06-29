@@ -15,17 +15,25 @@ namespace Okapia.Domain.ViewModels.Job
 
         [Display(Name = "نام خانوادگی مدیر")]
         public string JobManagerLastName { get; set; }
+        [Display(Name = "شماره تلفن")]
+        public string JobTel { get; set; }
+        [Display(Name = "شماره موبایل")]
+        public string JobMobile { get; set; }
 
         [Display(Name = "استان")]
         public string JobProvience { get; set; }
+        public int JobProvienceId { get; set; }
 
         [Display(Name = "شهر")]
         public string JobCity { get; set; }
+        public int JobCityId { get; set; }
 
         [Display(Name = "منطقه")]
         public string JobDistrict { get; set; }
+        public int JobDistrictId { get; set; }
 
         [Display(Name = "محله")]
         public string JobNeighborhood { get; set; }
+        public int JobNeighborhoodId { get; set; }
     }
 }
