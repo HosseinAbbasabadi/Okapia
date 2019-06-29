@@ -16,7 +16,7 @@ namespace Okapia.Repository
         {
         }
 
-        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Groups> Groups { get; set; }
         public virtual DbSet<JobPicture> JobPicture { get; set; }
         public virtual DbSet<JobRelation> JobRelation { get; set; }

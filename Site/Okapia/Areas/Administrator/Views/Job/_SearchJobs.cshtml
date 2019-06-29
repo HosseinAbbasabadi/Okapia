@@ -56,7 +56,7 @@
             <div class="form-group">
               <label asp-for="JobProvienceId" class="control-label"></label>
               @*<input asp-for="JobProvienceId" class="form-control" />*@
-              <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control" id="provinceDropDown" onchange="getCityList()"></select>
+              <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control"></select>
               <span asp-validation-for="JobProvienceId" class="text-danger"></span>
             </div>
           </div>

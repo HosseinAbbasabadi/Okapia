@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Okapia.Domain.ViewModels.Category;
 
 namespace Okapia.Domain.SeachModels
 {
     public class CategorySearchModel : BaseSerachModel
     {
+        [Display(Name = "نام")]
         public string CategoryName { get; set; }
         public int CategoryParrentId { get; set; }
+        [Display(Name = "عنوان گروه مافوق")]
         public SelectList Categories { get; set; }
     }
 }

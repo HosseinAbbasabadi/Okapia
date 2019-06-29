@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Commands.Job;
 using Okapia.Application.Contracts;
+using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Job;
+using Okapia.Repository.Migrations;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
@@ -29,41 +31,28 @@ namespace Okapia.Areas.Administrator.Controllers
             _neighborhoodApplication = neighborhoodApplication;
         }
 
-        private void PreparePager(BaseSerachModel searchModel, int rc)
-        {
-            if (rc % searchModel.PageSize == 0)
-            {
-                searchModel.PageCount = rc / searchModel.PageSize;
-            }
-            else
-            {
-                searchModel.PageCount = (rc / searchModel.PageSize) + 1;
-            }
-
-            ViewData["searchModel"] = searchModel;
-        }
-
         // GET: Shop
-        public ActionResult Index(JobSearchModel searchMd)
+        public ActionResult Index(JobSearchModel searchModel)
         {
-            var jobSearchModel = ProvideJobSearchModel(searchMd);
-
+            var jobSearchModel = ProvideJobSearchModel(searchModel);
             var jobs = _jobApplication.GetJobsForList(jobSearchModel, out var recordCount);
             var jobIndex = ProvideJobIndex(jobs, jobSearchModel);
-            PreparePager(jobSearchModel, recordCount);
+            Pager.PreparePager(jobSearchModel, recordCount);
+            ViewData["searchModel"] = jobSearchModel;
             return View(jobIndex);
         }
 
-        [HttpGet]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Search(JobSearchModel searchModel)
-        {
-            ProvideJobSearchModel(searchModel);
-            var jobs = _jobApplication.GetJobsForList(searchModel, out var recordCount);
-            var jobIndex = ProvideJobIndex(jobs, searchModel);
-            PreparePager(searchModel, recordCount);
-            return View("Index", jobIndex);
-        }
+        //[HttpGet]
+        ////[ValidateAntiForgeryToken]
+        //public ActionResult Search(JobSearchModel searchModel)
+        //{
+        //    ProvideJobSearchModel(searchModel);
+        //    var jobs = _jobApplication.GetJobsForList(searchModel, out var recordCount);
+        //    var jobIndex = ProvideJobIndex(jobs, searchModel);
+        //    Pager.PreparePager(searchModel, recordCount);
+        //    return View("Index", jobIndex);
+        //}
+
         private static JobSearchModel ProvideJobSearchModel(JobSearchModel searchModel)
         {
             searchModel.Proviences = new SelectList(Proviences(), "Id", "Name");
@@ -98,7 +87,7 @@ namespace Okapia.Areas.Administrator.Controllers
             return View(createModel);
         }
 
-        private static List<Provience> Proviences()
+        private static IEnumerable<Provience> Proviences()
         {
             return new List<Provience>
             {
@@ -205,46 +194,6 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             var cities = _neighborhoodApplication.GetNeighborhoodsBy(id);
             return new JsonResult(cities);
-        }
-
-        private static IEnumerable<JobViewModel> CreateJobs()
-        {
-            return new List<JobViewModel>
-            {
-                new JobViewModel
-                {
-                    JobName = "استخر",
-                    JobContactTitile = "علیرضا کرمی",
-                    JobManagerFirstName = "علی",
-                    JobManagerLastName = "کبیری",
-                    JobProvience = "البرز",
-                    JobCity = "کرج",
-                    JobDistrict = "منطقه",
-                    JobNeighborhood = "محله"
-                },
-                new JobViewModel
-                {
-                    JobName = "رستوران سنتی",
-                    JobContactTitile = "محمد علیمی",
-                    JobManagerFirstName = "سپهر",
-                    JobManagerLastName = "جاوید",
-                    JobProvience = "لرستان",
-                    JobCity = "خرم آباد",
-                    JobDistrict = "منطقه",
-                    JobNeighborhood = "محله"
-                },
-                new JobViewModel
-                {
-                    JobName = "مرکز تخصصی چشم",
-                    JobContactTitile = "حسین حضرتی",
-                    JobManagerFirstName = "امیر",
-                    JobManagerLastName = "نعیمی",
-                    JobProvience = "لرستان",
-                    JobCity = "بروجرد",
-                    JobDistrict = "منطقه",
-                    JobNeighborhood = "محله"
-                },
-            };
         }
     }
 }

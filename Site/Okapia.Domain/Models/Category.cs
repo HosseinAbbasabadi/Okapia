@@ -3,7 +3,7 @@
     public class Category
     {
         public int CategoryId { get; set; }
-        public string CatgoryName { get; set; }
+        public string CategoryName { get; set; }
         public string CategorySmallDescription { get; set; }
         public string CategoryMetaTag { get; set; }
         public string CategoryMetaDesccription { get; set; }

@@ -8,7 +8,7 @@
   <div class="col-md-12">
     <div class="panel panel-border panel-primary">
       <div class="panel-heading">
-        <h2 class="panel-title">لیست مشاغل</h2>
+        <h2 class="panel-title">لیست گروه های مشاغل</h2>
       </div>
       <div class="panel-body">
         <table id="datatable" class="table table-striped table-bordered">
@@ -24,7 +24,7 @@
                 @index
               </td>
               <td>
-                @Html.DisplayFor(modelItem => item.value.CatgoryName)
+                @Html.DisplayFor(modelItem => item.value.CategoryName)
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.CategorySmallDescription)
@@ -46,7 +46,7 @@
             ردیف
           </th>
           <th>
-            @Html.DisplayNameFor(model => model.CatgoryName)
+            @Html.DisplayNameFor(model => model.CategoryName)
           </th>
           <th>
             @Html.DisplayNameFor(model => model.CategorySmallDescription)

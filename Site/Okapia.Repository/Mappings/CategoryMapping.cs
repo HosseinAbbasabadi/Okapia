@@ -29,7 +29,7 @@ namespace Okapia.Repository.Mappings
                 .HasColumnName("CategoryThumbPicURL")
                 .HasMaxLength(1000);
 
-            builder.Property(e => e.CatgoryName).HasMaxLength(400);
+            builder.Property(e => e.CategoryName).HasMaxLength(400);
 
             builder.Property(e => e.Job).HasMaxLength(10);
 

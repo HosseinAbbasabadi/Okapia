@@ -131,13 +131,13 @@
             if (searchModel.PageIndex == i)
             {
               <li class="active">
-                @Html.ActionLink((i + 1).ToString(), "Search", "Job", routingSearchModel)
+                @Html.ActionLink((i + 1).ToString(), "Index", "Job", routingSearchModel)
               </li>
             }
             else
             {
               <li>
-                @Html.ActionLink((i + 1).ToString(), "Search", "Job", routingSearchModel)
+                @Html.ActionLink((i + 1).ToString(), "Index", "Job", routingSearchModel)
               </li>
             }
           }

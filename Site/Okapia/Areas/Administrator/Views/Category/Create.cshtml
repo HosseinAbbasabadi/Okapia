@@ -59,7 +59,9 @@
   <div class="form-group">
     <label asp-for="CategoryParentId" class="control-label"></label>
     @*<input asp-for="JobProvienceId" class="form-control" />*@
-    <select asp-for="CategoryParentId" asp-items="@Model.Categories" class="form-control"></select>
+    <select asp-for="CategoryParentId" asp-items="@Model.Categories" class="form-control">
+      <option value="0">گروه مافوق را انتخاب کنید...</option>
+    </select>
     <span asp-validation-for="CategoryParentId" class="text-danger"></span>
   </div>
 </div>
@@ -87,7 +89,7 @@
 </div>
 </div>
 
-<script>
+@*<script>
   function getList(sourceDropdown, action, distDropdown) {
     var id = $(sourceDropdown).val();
     $.ajax({
@@ -124,4 +126,4 @@
   function string_to_slug(str) {
     document.getElementById("JobSlug").value = str;
   }
-</script>
+</script>*@
