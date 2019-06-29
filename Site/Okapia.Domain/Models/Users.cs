@@ -2,7 +2,7 @@
 
 namespace Okapia.Domain.Models
 {
-    public partial class Users
+    public class User
     {
         public int UserId { get; set; }
         public string UserFirstName { get; set; }

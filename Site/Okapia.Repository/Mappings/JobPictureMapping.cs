@@ -8,6 +8,7 @@ namespace Okapia.Repository.Mappings
     {
         public void Configure(EntityTypeBuilder<JobPicture> builder)
         {
+            builder.ToTable("JobPictures");
             builder.Property(e => e.JobPictureId).HasColumnName("JobPictureID");
 
             builder.Property(e => e.JobId).HasColumnName("JobID");
@@ -26,11 +27,11 @@ namespace Okapia.Repository.Mappings
                 .HasColumnName("JobPictureURL")
                 .HasMaxLength(400);
 
-            //builder.HasOne(d => d.Job)
-            //    .WithMany(p => p.JobPicture)
-            //    .HasForeignKey(d => d.JobId)
-            //    .OnDelete(DeleteBehavior.ClientSetNull)
-            //    .HasConstraintName("FK_JobPicture_Jobs");
+            builder.HasOne(d => d.Job)
+                .WithMany(p => p.JobPictures)
+                .HasForeignKey(d => d.JobId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_JobPicture_Jobs");
         }
     }
 }

@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Mime;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Commands.Job;
 using Okapia.Application.Contracts;
-using Okapia.Application.SeachModels;
-using Okapia.Application.Utilities;
-using Okapia.Application.ViewModels.Job;
 using Okapia.Areas.Administrator.Models;
-using System.Drawing;
+using Okapia.Domain.SeachModels;
+using Okapia.Domain.ViewModels.Job;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
@@ -20,48 +15,32 @@ namespace Okapia.Areas.Administrator.Controllers
     public class JobController : Controller
     {
         private readonly IJobApplication _jobApplication;
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly ICityApplication _cityApplication;
+        private readonly IDistrictApplication _districtApplication;
+        private readonly INeighborhoodApplication _neighborhoodApplication;
 
-        public JobController(IJobApplication jobApplication, IHostingEnvironment hostingEnvironment)
+
+        public JobController(IJobApplication jobApplication, ICityApplication cityApplication,
+            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication)
         {
             _jobApplication = jobApplication;
-            _hostingEnvironment = hostingEnvironment;
+            _cityApplication = cityApplication;
+            _districtApplication = districtApplication;
+            _neighborhoodApplication = neighborhoodApplication;
         }
 
         // GET: Shop
         public ActionResult Index()
         {
-            var jobs = new List<JobViewModel>
+            var jobs = CreateJobs();
+            var jobIndex = new JobIndexViewModel
             {
-                new JobViewModel
+                JobViewModels = jobs,
+                JobSearchModel = new JobSearchModel
                 {
-                    JobName = "استخر",
-                    JobContactTitile = "علیرضا کرمی",
-                    JobManagerFirstName = "علی",
-                    JobManagerLastName = "کبیری",
-                    JobProvience = "البرز",
-                    JobCity = "کرج"
-                },
-                new JobViewModel
-                {
-                    JobName = "رستوران سنتی",
-                    JobContactTitile = "محمد علیمی",
-                    JobManagerFirstName = "سپهر",
-                    JobManagerLastName = "جاوید",
-                    JobProvience = "لرستان",
-                    JobCity = "خرم آباد"
-                },
-                new JobViewModel
-                {
-                    JobName = "مرکز تخصصی چشم",
-                    JobContactTitile = "حسین حضرتی",
-                    JobManagerFirstName = "امیر",
-                    JobManagerLastName = "نعیمی",
-                    JobProvience = "لرستان",
-                    JobCity = "بروجرد"
-                },
+                    Proviences = new SelectList(Proviences(), "Id", "Name")
+                }
             };
-            var jobIndex = new JobIndexViewModel {JobViewModels = jobs};
             return View(jobIndex);
         }
 
@@ -74,15 +53,19 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: Shop/Create
         public ActionResult Create()
         {
-            var provinces = new List<Provience>
+            var createModel = new CreateJob {Proviences = new SelectList(Proviences(), "Id", "Name")};
+            return View(createModel);
+        }
+
+        private static List<Provience> Proviences()
+        {
+            return new List<Provience>
             {
                 new Provience(0, "استان مورد نظر را انتخاب کنید"),
-                new Provience(1, "البرز"),
-                new Provience(2, "قزوین"),
-                new Provience(3, "لرستان")
+                new Provience(31, "البرز"),
+                new Provience(27, "قزوین"),
+                new Provience(16, "لرستان")
             };
-            var createModel = new CreateJob {Proviences = new SelectList(provinces, "Id", "Name")};
-            return View(createModel);
         }
 
         // POST: Shop/Create
@@ -90,30 +73,24 @@ namespace Okapia.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateJob command)
         {
-            if (!ModelState.IsValid) return RedirectToAction(nameof(Index));
+            //TODO: return appropiated message by viewdata
+            if (!ModelState.IsValid) return View(command);
             try
             {
-                if (command.Photo1 == null) return RedirectToAction(nameof(Index));
+                if (command.Photo1 == null) return View(command);
+                //TODO: Make it 6 photos
                 var photos = new List<IFormFile>
                 {
                     command.Photo1,
                     command.Photo2,
                     command.Photo3,
-                    command.Photo4
+                    command.Photo4,
+                    command.Photo5,
+                    command.Photo6
                 };
-                //command.Photos.AddRange(photos);
-                var originalImageDistPath = Path.Combine(_hostingEnvironment.WebRootPath, "JobPhotos");
-                //var thumbImageDistPath = Path.Combine(_hostingEnvironment.WebRootPath, "JobPhotos", "Thumbs");
-                var dateTime = new DateTime();
-                foreach (var photo in photos)
-                {
-                    if (photo == null) continue;
-                    var uniqueFileName = ToFileName(DateTime.Now) + "_" + photo.FileName;
-                    var filePath = Path.Combine(originalImageDistPath, uniqueFileName);
-                    var stream = new FileStream(filePath, FileMode.Create);
-                    photo.CopyTo(stream);
-                }
+                command.Photos = photos;
 
+                _jobApplication.Create(command);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception exception)
@@ -121,10 +98,7 @@ namespace Okapia.Areas.Administrator.Controllers
                 return View();
             }
         }
-        private static string ToFileName(DateTime date)
-        {
-            return $"{date.Year:0000}-{date.Month:00}-{date.Day:00}-{date.Hour:00}-{date.Minute:00}-{date.Second:00}";
-        }
+
         // GET: Shop/Edit/5
         public ActionResult Edit(int id)
         {
@@ -178,6 +152,67 @@ namespace Okapia.Areas.Administrator.Controllers
             var searchResult = new List<JobViewModel>();
             var jobIndex = new JobIndexViewModel {JobViewModels = searchResult, JobSearchModel = searchModel};
             return View("Index", jobIndex);
+        }
+
+        [HttpGet]
+        public JsonResult GetCitiesByProvince(int id)
+        {
+            var cities = _cityApplication.GetCitiesBy(id);
+            return new JsonResult(cities);
+        }
+
+        [HttpGet]
+        public JsonResult GetDistrictsByCity(int id)
+        {
+            var cities = _districtApplication.GetDistrictsBy(id);
+            return new JsonResult(cities);
+        }
+
+        [HttpGet]
+        public JsonResult GetNeighborhoodsByDistrict(int id)
+        {
+            var cities = _neighborhoodApplication.GetNeighborhoodsBy(id);
+            return new JsonResult(cities);
+        }
+
+        private static IEnumerable<JobViewModel> CreateJobs()
+        {
+            return new List<JobViewModel>
+            {
+                new JobViewModel
+                {
+                    JobName = "استخر",
+                    JobContactTitile = "علیرضا کرمی",
+                    JobManagerFirstName = "علی",
+                    JobManagerLastName = "کبیری",
+                    JobProvience = "البرز",
+                    JobCity = "کرج",
+                    JobDistrict = "منطقه",
+                    JobNeighborhood = "محله"
+                },
+                new JobViewModel
+                {
+                    JobName = "رستوران سنتی",
+                    JobContactTitile = "محمد علیمی",
+                    JobManagerFirstName = "سپهر",
+                    JobManagerLastName = "جاوید",
+                    JobProvience = "لرستان",
+                    JobCity = "خرم آباد",
+                    JobDistrict = "منطقه",
+                    JobNeighborhood = "محله"
+                },
+                new JobViewModel
+                {
+                    JobName = "مرکز تخصصی چشم",
+                    JobContactTitile = "حسین حضرتی",
+                    JobManagerFirstName = "امیر",
+                    JobManagerLastName = "نعیمی",
+                    JobProvience = "لرستان",
+                    JobCity = "بروجرد",
+                    JobDistrict = "منطقه",
+                    JobNeighborhood = "محله"
+                },
+            };
         }
     }
 }

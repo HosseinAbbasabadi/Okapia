@@ -11,6 +11,7 @@ namespace Okapia.Repository.Mappings
     {
         public void Configure(EntityTypeBuilder<JobRelation> builder)
         {
+            builder.ToTable("JobRelations");
             builder.Property(e => e.JobRelationId).HasColumnName("JobRelationID");
 
             builder.Property(e => e.JobId).HasColumnName("JobID");

@@ -1,0 +1,109 @@
+   public ActionResult GetAttachments(long artid, string folder, bool haveThumb)
+        {
+            //Get the images list from repository
+            var model = new Article();
+            if (artid > 0)
+            {
+                model = artrep.ArtGetbyID(artid);
+            }
+
+            if (haveThumb) { folder = folder + "/Small"; }
+
+            var attachmentsList =new List<AttachmentsModel>();
+           
+            if (!string.IsNullOrEmpty(model.ArtPic))
+            {
+                var getmulti = model.ArtPic.Split(';').ToList();
+                getmulti = getmulti.Where(w => !string.IsNullOrEmpty(w)).ToList();
+                foreach (var f in getmulti)
+                {
+                    var getnamepic = Path.GetFileNameWithoutExtension(Server.MapPath(folder +"/"+ f));
+                    var getexepic = Path.GetExtension(Server.MapPath(folder +"/"+ f));
+
+                    FileInfo fi = new FileInfo(Server.MapPath(folder + "/" + getnamepic +(haveThumb? "350x0":"") + getexepic));
+                    if (fi.Exists)
+                    {
+                        //attachmentsList = new List<AttachmentsModel>() { new AttachmentsModel { } };
+
+                        attachmentsList.Add(
+
+        new AttachmentsModel
+        {
+            AttachmentID = 1,
+            FileName = f,
+            Path = folder + "/" + f,
+            Size = fi.Length
+        } );
+
+
+                    }
+                }
+            }
+            return Json(new { Data = attachmentsList }, JsonRequestBehavior.AllowGet);
+        }
+
+  public JsonResult UploadFile2(string folder)
+        {
+
+            string fileNameSave = "";
+            string fileNameNew = "";
+
+            if (Request.Files.Count > 0 && !string.IsNullOrEmpty(folder))
+            {
+
+
+
+                foreach (string s in Request.Files)
+                {
+                    HttpPostedFileBase file1 = Request.Files[s];
+
+                    string fileExtension = "";
+                    int fileSizeInBytes = file1.ContentLength;
+                    string fileName = file1.FileName;
+
+
+                    if (!string.IsNullOrEmpty(fileName))
+                        fileExtension = Path.GetExtension(fileName);
+
+                    fileNameNew = Guid.NewGuid().ToString()+fileExtension;
+                    fileNameSave = Server.MapPath(folder+"/" + fileNameNew );
+                    file1.SaveAs(fileNameSave);
+
+                    if (fileExtension.Contains("jpg") || fileExtension.Contains("png") || fileExtension.Contains("bmp"))
+                    {
+                        magicImageTools(fileNameSave, folder + "/small", 350, 0);
+                        magicImageTools(fileNameSave, folder + "/small", 500, 0);
+                        magicImageTools(fileNameSave, folder + "/small", 900, 0);
+                        magicImageTools(fileNameSave, folder + "/small", 1280, 0);
+                    }
+
+
+
+
+                }
+            }
+            return Json(fileNameNew);
+        }
+
+        public void magicImageTools(string filename,string folder,int x,int y) {
+            using (MagickImage image = new MagickImage(filename))
+            {
+                string fileExtension = "";
+                string name = "";
+
+                MagickGeometry size = new MagickGeometry(x, y);
+                // This will resize the image to a fixed size without maintaining the aspect ratio.
+                // Normally an image will be resized to fit inside the specified size.
+               // size.IgnoreAspectRatio = true;
+
+                image.Resize(size);
+
+                if (!string.IsNullOrEmpty(filename)) {
+                    fileExtension = Path.GetExtension(filename);
+                    name = Path.GetFileNameWithoutExtension(filename);
+                    // Save the result
+                    image.Write(Server.MapPath(folder + "/" + name + x+"x"+y+fileExtension));
+                    
+                }
+            }
+        }

@@ -4,10 +4,11 @@ using Okapia.Domain.Models;
 
 namespace Okapia.Repository.Mappings
 {
-    public class UserMapping : IEntityTypeConfiguration<Users>
+    public class UserMapping : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<Users> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.ToTable("User");
             builder.HasKey(e => e.UserId);
 
             builder.Property(e => e.UserAddress).HasMaxLength(500);

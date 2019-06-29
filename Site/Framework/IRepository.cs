@@ -9,10 +9,11 @@ namespace Framework
         T Get(TKey id);
         List<T> GetAll();
         List<T> Get(Expression<Func<T, bool>> predicate);
-        void Create(T aggregate);
-        void Update(T aggregate);
-        void Delete(T aggregate);
+        void Create(T entity);
+        void Update(T entity);
+        void Delete(T entity);
         long GetNextId(string sequenceName);
+        void SaveChanges();
     }
 
 }

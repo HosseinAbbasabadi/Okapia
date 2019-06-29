@@ -8,6 +8,7 @@ namespace Okapia.Repository.Mappings
     {
         public void Configure(EntityTypeBuilder<PageComments> builder)
         {
+            builder.ToTable("PageComments");
             builder.HasKey(e => e.PageCommentId);
 
             builder.Property(e => e.PageCommentId)

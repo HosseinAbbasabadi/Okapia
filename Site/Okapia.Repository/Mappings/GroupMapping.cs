@@ -8,6 +8,7 @@ namespace Okapia.Repository.Mappings
     {
         public void Configure(EntityTypeBuilder<Groups> builder)
         {
+            builder.ToTable("Group");
             builder.HasKey(e => e.GroupId);
 
             builder.Property(e => e.GroupCreationDate).HasColumnType("datetime");

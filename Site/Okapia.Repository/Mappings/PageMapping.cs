@@ -8,7 +8,7 @@ namespace Okapia.Repository.Mappings
     {
         public void Configure(EntityTypeBuilder<Page> builder)
         {
-
+            builder.ToTable("Page");
             builder.Property(e => e.PageId).HasColumnName("PageID");
 
             builder.Property(e => e.PageCanonicalAddress).HasMaxLength(300);

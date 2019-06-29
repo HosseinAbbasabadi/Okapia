@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Okapia.Domain;
 using Okapia.Domain.Models;
 using Okapia.Repository.Mappings;
 
@@ -25,29 +26,51 @@ namespace Okapia.Repository
         public virtual DbSet<Page> Page { get; set; }
         public virtual DbSet<PageCategory> PageCategory { get; set; }
         public virtual DbSet<PageComments> PageComments { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Province> Provinces { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<District> Districts { get; set; }
+        public virtual DbSet<Neighborhood> Neighborhoods { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new CategoryMapping());
-            modelBuilder.ApplyConfiguration(new GroupMapping());
+            // job mapping
             modelBuilder.ApplyConfiguration(new JobTransactionMapping());
             modelBuilder.ApplyConfiguration(new JobMapping());
-            modelBuilder.ApplyConfiguration(new ModalMapping());
             modelBuilder.ApplyConfiguration(new JobPictureMapping());
             modelBuilder.ApplyConfiguration(new JobRelationMapping());
-            modelBuilder.ApplyConfiguration(new ModalMapping());
+
+            // page mapping
             modelBuilder.ApplyConfiguration(new PageMapping());
             modelBuilder.ApplyConfiguration(new PageCategoryMapping());
             modelBuilder.ApplyConfiguration(new PageCommentMapping());
+            modelBuilder.ApplyConfiguration(new CategoryMapping());
+
+            // user mapping
+            modelBuilder.ApplyConfiguration(new UserMapping());
+            modelBuilder.ApplyConfiguration(new GroupMapping());
+
+            // modal mapping
+            modelBuilder.ApplyConfiguration(new ModalMapping());
+
+            // province mapping
+            modelBuilder.ApplyConfiguration(new ProvinceMapping());
+            modelBuilder.ApplyConfiguration(new CityMapping());
+            modelBuilder.ApplyConfiguration(new DistrictMapping());
+            modelBuilder.ApplyConfiguration(new NeighborhoodMapping());
             OnModelCreatingPartial(modelBuilder);
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
 
-        private static void OnModelCreatingPartial(ModelBuilder modelBuilder)
+        public void OnModelCreatingPartial(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasSequence<int>("JobSeq", schema: "shared")
+                .StartsAt(1)
+                .IncrementsBy(1);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

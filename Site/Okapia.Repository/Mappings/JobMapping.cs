@@ -8,10 +8,12 @@ namespace Okapia.Repository.Mappings
     {
         public void Configure(EntityTypeBuilder<Job> builder)
         {
-            builder.ToTable("Jobs");
+            builder.ToTable("Job");
+            
             builder.HasKey(e => e.JobId);
 
             builder.Property(e => e.JobId).HasColumnName("JobID");
+                //.HasDefaultValueSql("NEXT VALUE FOR shared.JobSeq");
 
             builder.Property(e => e.InstagramUrl).HasMaxLength(200);
 

@@ -2,7 +2,7 @@
 
 namespace Okapia.Domain.Models
 {
-    public partial class PageComments
+    public class PageComments
     {
         public int PageCommentId { get; set; }
         public int PageId { get; set; }

@@ -1,4 +1,5 @@
-﻿@model Okapia.Application.SeachModels.JobSearchModel
+﻿@using Okapia.Domain.SeachModels
+@model Okapia.Domain.SeachModels.JobSearchModel
 <hr/>
 <div class="row">
   <div class="col-md-12">
@@ -9,67 +10,127 @@
       <div class="panel-body">
         <form asp-action="Search" asp-controller="Job" method="GET">
           <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label asp-for="JobName" class="control-label"></label>
               <input asp-for="JobName" class="form-control"/>
               <span asp-validation-for="JobName" class="text-danger"></span>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label asp-for="JobContactTitile" class="control-label"></label>
               <input asp-for="JobContactTitile" class="form-control"/>
               <span asp-validation-for="JobContactTitile" class="text-danger"></span>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label asp-for="JobManagerFirstName" class="control-label"></label>
               <input asp-for="JobManagerFirstName" class="form-control"/>
               <span asp-validation-for="JobManagerFirstName" class="text-danger"></span>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label asp-for="JobManagerLastName" class="control-label"></label>
               <input asp-for="JobManagerLastName" class="form-control"/>
               <span asp-validation-for="JobManagerLastName" class="text-danger"></span>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label asp-for="JobTel1" class="control-label"></label>
               <input asp-for="JobTel1" class="form-control"/>
               <span asp-validation-for="JobTel1" class="text-danger"></span>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label asp-for="JobMobile1" class="control-label"></label>
               <input asp-for="JobMobile1" class="form-control"/>
               <span asp-validation-for="JobMobile1" class="text-danger"></span>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label asp-for="JobProvienceId" class="control-label"></label>
-              <input asp-for="JobProvienceId" class="form-control"/>
+              @*<input asp-for="JobProvienceId" class="form-control" />*@
+              <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control" id="provinceDropDown" onchange="getCityList()"></select>
               <span asp-validation-for="JobProvienceId" class="text-danger"></span>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label asp-for="JobCityId" class="control-label"></label>
-              <input asp-for="JobCityId" class="form-control"/>
+              <select asp-for="JobCityId" class="form-control" id="cityDropDown" onchange="getDistrictList()">
+                <option value="0">شهر مورد نظر را انتخاب کنید</option>
+              </select>
               <span asp-validation-for="JobCityId" class="text-danger"></span>
             </div>
           </div>
-          <div class="form-group">
-            <input type="submit" value="جستجو" class="btn btn-primary"/>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobDistrictId" class="control-label"></label>
+              <select asp-for="JobDistrictId" class="form-control" id="districtDropDown" onchange="getNeighborhoodList()">
+                <option value="0">منطقه مورد نظر را انتخاب کنید</option>
+              </select>
+              <span asp-validation-for="JobDistrictId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobNeighborhoodId" class="control-label"></label>
+              <select asp-for="JobNeighborhoodId" class="form-control" id="neighborhoodDropDown">
+                <option value="0">محله مورد نظر را انتخاب کنید</option>
+              </select>
+              <span asp-validation-for="JobNeighborhoodId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="submit" value="جستجو" class="btn btn-primary"/>
+            </div>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  function getList(sourceDropdown, action, distDropdown) {
+    var id = $(sourceDropdown).val();
+    $.ajax({
+      url: action + '/' + id,
+      type: 'Get',
+      //datatype: 'application/json',
+      contentType: 'application/json',
+      //data: JSON.stringify({
+      //  stateId: +stateId
+      //}),
+      success: function(result) {
+        $(distDropdown).html("");
+        $.each(result,
+          function(i, item) {
+            $(distDropdown).append($('<option></option>').val(item.id).html(item.name));
+          });
+      },
+      error: function() {
+        alert("خطا در ارتباط با سرور لطفا با مدیر سیتم تماس بگیرید.");
+      }
+    });
+  }
+
+  function getCityList() {
+    this.getList('#provinceDropDown', 'GetCitiesByProvince', '#cityDropDown');
+  }
+
+  function getDistrictList() {
+    this.getList('#cityDropDown', 'GetDistrictsByCity', '#districtDropDown');
+  }
+
+  function getNeighborhoodList() {
+    this.getList('#districtDropDown', 'GetNeighborhoodsByDistrict', '#neighborhoodDropDown');
+  }
+</script>

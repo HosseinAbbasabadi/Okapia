@@ -1,4 +1,6 @@
-﻿namespace Okapia.Domain.Models
+﻿using System.Collections.Generic;
+
+namespace Okapia.Domain.Models
 {
     public class Job
     {
@@ -18,6 +20,8 @@
         public string JobGeoLocation { get; set; }
         public int JobProvienceId { get; set; }
         public int JobCityId { get; set; }
+        public int JobDistrictId { get; set; }
+        public int JobNeighborhoodId { get; set; }
         public string JobAddress { get; set; }
         public string JobMap { get; set; }
         public string JobPageTittle { get; set; }
@@ -47,5 +51,6 @@
         public string WebSiteUrl { get; set; }
         public string InstagramUrl { get; set; }
         public string TelegramUrl { get; set; }
+        public ICollection<JobPicture> JobPictures { get; set; }
     }
 }

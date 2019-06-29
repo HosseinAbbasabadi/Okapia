@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Okapia.Application.SeachModels;
-using Okapia.Application.ViewModels.Job;
+﻿using System.Collections.Generic;
+using Okapia.Domain.SeachModels;
+using Okapia.Domain.ViewModels.Job;
 
 namespace Okapia.Areas.Administrator.Models
 {

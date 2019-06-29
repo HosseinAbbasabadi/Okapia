@@ -6,7 +6,7 @@ using Framework;
 
 namespace Okapia.Repository.Repositories
 {
-    public class BaseRepository<TKey, T> : IRepository<TKey, T > where T : class
+    public class BaseRepository<TKey, T> : IRepository<TKey, T> where T : class
     {
         private readonly OkapiaContext _context;
 
@@ -15,19 +15,19 @@ namespace Okapia.Repository.Repositories
             _context = context;
         }
 
-        public void Create(T aggregate)
+        public void Create(T entity)
         {
-            _context.Add(aggregate);
+            _context.Add(entity);
         }
 
-        public void Update(T aggregate)
+        public void Update(T entity)
         {
-            _context.Update(aggregate);
+            _context.Update(entity);
         }
 
-        public void Delete(T aggregate)
+        public void Delete(T entity)
         {
-            _context.Remove(aggregate);
+            _context.Remove(entity);
         }
 
         public T Get(TKey id)
@@ -37,18 +37,23 @@ namespace Okapia.Repository.Repositories
 
         public List<T> Get(Expression<Func<T, bool>> predicate)
         {
-            return _context.Query<T>().Where(predicate).ToList();
+            return _context.Set<T>().Where(predicate).ToList();
         }
 
         public List<T> GetAll()
         {
-            return _context.Query<T>().ToList();
+            return _context.Set<T>().ToList();
         }
 
         public long GetNextId(string sequenceName)
         {
-            //return _context.GetNextSequence(sequenceName);
+            //return _context.GetNextSequence(sequenceName);    
             throw new NotImplementedException();
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
         }
     }
 }

@@ -12,7 +12,5 @@ namespace Okapia.Areas.Administrator.Models
         public string JobPictureUrl { get; set; }
         public int? JobPictureSortOrder { get; set; }
         public int JobId { get; set; }
-
-        public virtual CreateJob CreateJob { get; set; }
     }
 }

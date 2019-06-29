@@ -8,6 +8,7 @@ namespace Okapia.Repository.Mappings
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
+            builder.ToTable("Category");
             builder.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
             builder.Property(e => e.CategoryMetaDesccription).HasMaxLength(200);

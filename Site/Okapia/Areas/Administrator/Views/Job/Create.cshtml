@@ -16,7 +16,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobName" class="control-label"></label>
-    <input asp-for="JobName" class="form-control"/>
+    <input asp-for="JobName" class="form-control" onchange="string_to_slug(document.getElementById('JobName').value)"/>
     <span asp-validation-for="JobName" class="text-danger"></span>
   </div>
 </div>
@@ -94,15 +94,36 @@
   <div class="form-group">
     <label asp-for="JobProvienceId" class="control-label"></label>
     @*<input asp-for="JobProvienceId" class="form-control" />*@
-    <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control"></select>
+    <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control" id="provinceDropDown" onchange="getCityList()"></select>
     <span asp-validation-for="JobProvienceId" class="text-danger"></span>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="JobCityId" class="control-label"></label>
+    <select asp-for="JobCityId" class="form-control" id="cityDropDown" onchange="getDistrictList()">
+      <option value="0">شهر مورد نظر را انتخاب کنید</option>
+    </select>
+    <span asp-validation-for="JobCityId" class="text-danger"></span>
   </div>
 </div>
 <div class="col-md-4">
   <div class="form-group">
-    <label asp-for="JobCityId" class="control-label"></label>
-    <input asp-for="JobCityId" class="form-control"/>
-    <span asp-validation-for="JobCityId" class="text-danger"></span>
+    <label asp-for="JobDistrictId" class="control-label"></label>
+    <select asp-for="JobDistrictId" class="form-control" id="districtDropDown" onchange="getNeighborhoodList()">
+      <option value="0">منطقه مورد نظر را انتخاب کنید</option>
+    </select>
+    <span asp-validation-for="JobDistrictId" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="JobneighborhoodId" class="control-label"></label>
+    <select asp-for="JobneighborhoodId" class="form-control" id="neighborhoodDropDown">
+      <option value="0">محله مورد نظر را انتخاب کنید</option>
+    </select>
+    <span asp-validation-for="JobneighborhoodId" class="text-danger"></span>
   </div>
 </div>
 <div class="col-md-4">
@@ -249,7 +270,7 @@
   <div class="form-group">
     <div class="custom-file">
       <label asp-for="Photo1" class="control-label"></label>
-      <input asp-for="Photo1" class="form-control custom-file-input"/>
+      <input asp-for="Photo1" class="form-control custom-file-input" accept="image/*"/>
     </div>
     <span asp-validation-for="Photo1" class="text-danger"></span>
   </div>
@@ -258,7 +279,7 @@
   <div class="form-group">
     <div class="custom-file">
       <label asp-for="Photo2" class="control-label"></label>
-      <input asp-for="Photo2" class="form-control custom-file-input"/>
+      <input asp-for="Photo2" class="form-control custom-file-input" accept="image/*"/>
     </div>
     <span asp-validation-for="Photo2" class="text-danger"></span>
   </div>
@@ -267,7 +288,7 @@
   <div class="form-group">
     <div class="custom-file">
       <label asp-for="Photo3" class="control-label"></label>
-      <input asp-for="Photo3" class="form-control custom-file-input"/>
+      <input asp-for="Photo3" class="form-control custom-file-input" accept="image/*"/>
     </div>
     <span asp-validation-for="Photo3" class="text-danger"></span>
   </div>
@@ -279,6 +300,24 @@
       <input asp-for="Photo4" class="form-control custom-file-input" accept="image/*">
     </div>
     <span asp-validation-for="Photo4" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <div class="custom-file">
+      <label asp-for="Photo5" class="control-label"></label>
+      <input asp-for="Photo5" class="form-control custom-file-input" accept="image/*">
+    </div>
+    <span asp-validation-for="Photo5" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <div class="custom-file">
+      <label asp-for="Photo6" class="control-label"></label>
+      <input asp-for="Photo6" class="form-control custom-file-input" accept="image/*">
+    </div>
+    <span asp-validation-for="Photo6" class="text-danger"></span>
   </div>
 </div>
 <div class="col-md-12">
@@ -331,3 +370,42 @@
 </form>
 </div>
 </div>
+
+<script>
+  function getList(sourceDropdown, action, distDropdown) {
+    var id = $(sourceDropdown).val();
+    $.ajax({
+      url: action + '/' + id,
+      type: 'Get',
+      //datatype: 'application/json',
+      contentType: 'application/json',
+      //data: JSON.stringify({
+      //  stateId: +stateId
+      //}),
+      success: function (result) {
+        $(distDropdown).html("");
+        $.each(result,
+          function (i, item) {
+            $(distDropdown).append($('<option></option>').val(item.id).html(item.name));
+          });
+      },
+      error: function() {
+        alert("خطا در ارتباط با سرور لطفا با مدیر سیتم تماس بگیرید.");
+      }
+    });
+  }
+
+  function getCityList() {
+    this.getList('#provinceDropDown', 'GetCitiesByProvince', '#cityDropDown');
+  }
+  function getDistrictList() {
+    this.getList('#cityDropDown', 'GetDistrictsByCity', '#districtDropDown');
+  }
+  function getNeighborhoodList() {
+    this.getList('#districtDropDown', 'GetNeighborhoodsByDistrict', '#neighborhoodDropDown');
+  }
+
+  function string_to_slug(str) {
+    document.getElementById("JobSlug").value = str;
+  }
+</script>

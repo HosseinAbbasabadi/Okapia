@@ -23,6 +23,17 @@ namespace Okapia.Configuration
             //services.AddSingleton<IAuthHelper, AuthHelper>();
             services.AddScoped<IJobApplication, JobApplication>();
             services.AddScoped<IJobRepository, JobRepository>();
+
+            services.AddScoped<ICityApplication, CityApplication>();
+            services.AddScoped<ICityRepository, CityRepository>();
+
+            services.AddScoped<IDistrictApplication, DistrictApplication>();
+            services.AddScoped<IDistrictRepository, DistrictRepository>();
+
+            services.AddScoped<INeighborhoodApplication, NeighborhoodApplication>();
+            services.AddScoped<INeighborhoodRepository, NeighborhoodRepository>();
+
+
             services.AddDbContext<OkapiaContext>(options =>
             {
                 options.UseSqlServer(_configuration.GetConnectionString("OkapiaContext"));

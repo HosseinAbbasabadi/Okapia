@@ -8,6 +8,7 @@ namespace Okapia.Repository.Mappings
     {
         public void Configure(EntityTypeBuilder<Modals> builder)
         {
+            builder.ToTable("Modal");
             builder.HasKey(e => e.ModalId);
 
             builder.Property(e => e.ModalCreationDate).HasColumnType("datetime");

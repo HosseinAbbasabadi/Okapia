@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Okapia.Application.ViewModels.Job.JobViewModel>
+﻿@using Okapia.Domain.ViewModels.Job
+@model IEnumerable<Okapia.Domain.ViewModels.Job.JobViewModel>
 
 <div class="row">
   <div class="col-md-12">
@@ -38,6 +39,12 @@
                 @Html.DisplayFor(modelItem => item.value.JobCity)
               </td>
               <td>
+                @Html.DisplayFor(modelItem => item.value.JobDistrict)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobNeighborhood)
+              </td>
+              <td>
                 @Html.ActionLink("اطلاح", "Edit", new {/* id=item.PrimaryKey */}) |
                 @Html.ActionLink("جزيیات", "Details", new {/* id=item.PrimaryKey */}) |
                 @Html.ActionLink("حذف", "Delete", new {/* id=item.PrimaryKey */})
@@ -67,6 +74,12 @@
           </th>
           <th>
             @Html.DisplayNameFor(model => model.JobCity)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.JobDistrict)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.JobNeighborhood)
           </th>
           <th>
             عملیات

@@ -1,0 +1,162 @@
+﻿ <div class="jumbotron">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <form action="@Url.Action("UploadFile2", "AHome")" id="frmGalleryUp" enctype="multipart/form-data" class="dropzone">
+                        <div class="fallback">
+                            <input name="file" type="file" multiple />
+                        </div>
+                        @Html.ValidationMessageFor(m => m.ArtPic)
+                    </form>
+
+                </div>
+                <div class="col-lg-6 col-sm-12 text-right">
+                    <h3>محل ارسال تصویر</h3>
+                    <p class="h6 lead text-danger "><small>لطفا ابتدا تصویر را بارگذاری کنید و سپس اطلاعات را وارد و کلید ثبت را بزنید</small></p>
+                    <hr class="my-4">
+                    <i class="fas fa-info-circle text-info"></i>
+                    <p class=" h6 text-dark">فرمت های قابل ارسال : jpg , png  </p>
+                    <p class="h6 text-dark">سایز فایل : کمتر از 6 مگابایت </p>
+                </div>
+               
+            </div>
+        </div>
+
+<script type="text/javascript">
+        UploadDropzone("#frmGalleryUp", 500, 500, 1, 6, false, true, "image/jpeg,image/png", "@Url.Action("UploadFile2", "AHome")", "@Url.Action("Uploadthumbnail", "AHome")", "@Url.Action("DeleteFileServer", "AHome")", "/Banner", "#ArtPic", "#ArtID");
+    </script>
+
+
+<script type="text/javascript">
+function UploadDropzone(drpID, tw, th, filemax, maxsize, multi, viathumb, filetype, urlupload, urlPThumb, urlDelFile, folderpath, modelFileNamePage,modelfiledid) {
+   
+    var multifile = filemax;
+   
+    //image/*,application/pdf,.psd
+    //var myDropzone = new Dropzone(drpID, { url: urlupload });
+    $(drpID).dropzone({
+        
+     
+        maxFilesize: maxsize,
+        uploadMultiple: multi,
+        maxFiles: filemax,
+        acceptedFiles: filetype,
+        createImageThumbnails: viathumb,
+        addRemoveLinks: true,
+    
+        maxfilesexceeded: function (file) {
+            this.removeAllFiles();
+            this.addFile(file);
+        },
+        init: function () {
+            var getThumb = "";
+            var thisDropzone = this;
+            //thisDropzone.autoDiscover = false;
+            var getID = $(modelfiledid).val();
+            //View File 
+            if (getID != '' && getID != '0') {
+                $.ajax({
+                    url: "/Admin/AHome/GetAttachments/",
+                    type: "GET",
+                    data: JSON.stringify = {
+                        artid: getID,
+                        folder: folderpath,
+                        haveThumb: viathumb
+                    }
+                }).done(function (data) {
+                    if (data.Data != '') {
+
+                        $.each(data.Data, function (index, item) {
+                            //// Create the mock file:
+                            var mockFile = {
+                                name: item.FileName,
+                                size: item.Size,
+                                accepted: true,
+                                processing: true,
+
+                            };
+                            thisDropzone.files.push(mockFile);
+                            thisDropzone.emit("addedfile", mockFile);
+
+                            thisDropzone.emit("thumbnail", mockFile, item.Path);
+
+                            thisDropzone.emit("success", mockFile);
+
+                            thisDropzone.emit("complete", mockFile);
+
+                        });
+                    }
+                });
+                
+            }
+
+            this.on("sending", function (file, xhr, formData) {
+               
+                formData.append("folder", folderpath);
+            });
+            this.on('success', function (file, serverResponse) {
+
+                if (serverResponse != null) {
+
+                    if (multifile > 1) {
+                        var filenames = '';
+                        var oldid = $(modelFileNamePage).val();
+                        if (serverResponse != oldid) { filenames = serverResponse + ';'+oldid  }
+                        $(modelFileNamePage).val(filenames);
+                    } else {
+                        $(modelFileNamePage).val(serverResponse);
+                    }
+
+                    
+
+
+                    var formdata = new FormData();
+                    formdata.append("upfile", getThumb);
+                    formdata.append("filename", serverResponse);
+                    formdata.append("folder", folderpath);
+                    
+                }
+               
+                $(".dz-remove").addClass("btn btn-danger ");
+                
+            });
+          
+            this.on('removedfile', function (file) {
+
+                x = confirm('آیا برای حذف از روی سرور هم مطمئن هستید ؟');
+                if (!x) return false;
+
+                var getfile = file;
+
+                var formdata = new FormData();
+                var getid = $(modelfiledid).val();
+                var getFile = $(modelFileNamePage).val();
+                formdata.append("filename", file.name);
+                formdata.append("folder", folderpath);
+                formdata.append("id", getid );
+                var filename = file.name;
+                
+
+                $.ajax({
+                    url: urlDelFile,
+                    type: "POST",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                      $(modelFileNamePage).val(data);
+                    }
+
+                });
+            });
+            this.on('complete', function (file, serverResponse) {
+
+                $("#frmGalleryUp .dz-remove").text("حذف");
+                $(".dz-remove").addClass("btn-sm");
+              
+
+            });
+            //this.on('error', function (error) { //alert(error); });
+        }
+    });
+};
+    </script>

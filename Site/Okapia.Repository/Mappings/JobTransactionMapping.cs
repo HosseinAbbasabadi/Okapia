@@ -8,6 +8,7 @@ namespace Okapia.Repository.Mappings
     {
         public void Configure(EntityTypeBuilder<JobTransactions> builder)
         {
+            builder.ToTable("JobTransactions");
             builder.Property(e => e.Ammount).HasColumnType("decimal(18, 3)");
 
             builder.Property(e => e.LocalDateTime).HasColumnType("datetime");
