@@ -15,11 +15,14 @@ function hideDeleteBtn(name) {
   $('#delete' + name).addClass("hidden");
 }
 
+function setHiddenInputPhotoName(inputId, data) {
+  $('#name' + inputId).val(data);
+}
+
 function uploadFiles(inputId) {
   const input = document.getElementById(inputId);
   const files = input.files;
   const formData = new FormData();
-
   for (let i = 0; i !== files.length; i++) {
     formData.append("files", files[i]);
   }
@@ -39,6 +42,7 @@ function uploadFiles(inputId) {
         else {
           alert("عکس با موفقیت بارگذاری شد");
           showDeleteBtn(inputId, data);
+          setHiddenInputPhotoName(inputId, data);
         }
       }
     }

@@ -12,62 +12,13 @@
       </div>
       <div class="panel-body">
         <table id="datatable" class="table table-striped table-bordered">
-          <tbody>
-          @foreach (var item in Model.Select((value, index) => new {index, value}))
-          {
-            <tr>
-              <td>
-                @{
-                  var index = item.index;
-                  index += 1;
-                }
-                @index
-              </td>
-              <td>      
-                @Html.DisplayFor(modelItem => item.value.JobName)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.JobContactTitile)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.JobManagerFirstName)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.JobManagerLastName)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.JobTel)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.JobMobile)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.JobCategory)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.JobProvience)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.JobCity)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.JobDistrict)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.JobNeighborhood)
-              </td>
-              <td>
-                @Html.ActionLink("اطلاح", "Edit", new {/* id=item.PrimaryKey */}) |
-                @Html.ActionLink("جزيیات", "Details", new {/* id=item.PrimaryKey */}) |
-                @Html.ActionLink("حذف", "Delete", new {/* id=item.PrimaryKey */})
-              </td>
-            </tr>
-          }
-          </tbody>
           <thead>
           <tr>
           <th>
             ردیف
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.JobPicture)
           </th>
           <th>
             @Html.DisplayNameFor(model => model.JobName)
@@ -107,45 +58,203 @@
           </th>
 
           </thead>
-        </table>
-      </div>
-      <nav>
-        <ul class="pagination">
-          @for (var i = 0; i < searchModel.PageCount; i++)
-          {
-            var routingSearchModel = new JobSearchModel
-            {
-              JobName = searchModel.JobName,
-              JobContactTitile = searchModel.JobContactTitile,
-              JobManagerFirstName = searchModel.JobManagerFirstName,
-              JobManagerLastName = searchModel.JobManagerLastName,
-              JobTel = searchModel.JobTel,
-              JobMobile = searchModel.JobMobile,
-              JobProvienceId = searchModel.JobProvienceId,
-              JobCityId = searchModel.JobCityId,
-              JobDistrictId = searchModel.JobDistrictId,
-              JobNeighborhoodId = searchModel.JobNeighborhoodId,
-              JobCategoryId = searchModel.JobCategoryId,
-              PageSize = 1,
-              PageIndex = i
-            };
-            if (searchModel.PageIndex == i)
-            {
-              <li class="active">
-                @Html.ActionLink((i + 1).ToString(), "Index", "Job", routingSearchModel)
-              </li>
-            }
-            else
-            {
-              <li>
-                @Html.ActionLink((i + 1).ToString(), "Index", "Job", routingSearchModel)
-              </li>
-            }
-          }
+          <tbody>
 
-          
-        </ul>
-      </nav>
+          @foreach (var item in Model.Select((value, index) => new {index, value}))
+          {
+            <tr>
+              <td>
+                @{
+                  var index = item.index;
+                  index += 1;
+                }
+                @index
+              </td>
+              <td>
+                <img src="~/JobPhotos/Thumbs/@item.value.JobPicture" with="100" height="100" />
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobName)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobContactTitile)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobManagerFirstName)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobManagerLastName)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobTel)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobMobile)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobCategory)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobProvience)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobCity)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobDistrict)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobNeighborhood)
+              </td>
+              <td>
+                <a class="btn btn-sm btn-info">ویرایش</a> |
+                @if (!item.value.IsDeleted)
+                {
+                  <a id="deleteJob-@item.value.JobId" class="btn btn-sm btn-danger" onclick="showDeleteForm('@item.value.JobId')">حذف</a>
+                  <br/>
+                  <br/>
+                  <form id="deleteForm-@item.value.JobId" class="hidden" asp-route-id="@item.value.JobId" asp-area="Administrator" asp-controller="Job" asp-action="Delete" method="post">
+                    <input type="text" id="301Redirect" name="301Redirect" class="form-control" placeholder="صفحه جایگزین 301 redirect"/>
+                    <button type="submit" class="btn btn-sm btn-danger">حذف</button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="hideDeleteForm('@item.value.JobId')">انصراف</button>
+                  </form>
+                }
+                else
+                {
+                  <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Job" asp-action="Activate" asp-route-id="@item.value.JobId">فعال سازی</a>
+                }
+              </td>
+            </tr>
+          }
+          </tbody>
+
+        </table>
+
+        <div class="row">
+          تعداد کل رکوردها: @searchModel.RecordCount
+        </div>
+
+        <nav>
+          <ul class="pagination">
+            @for (var i = 0; i < searchModel.PageCount; i++)
+            {
+              var routingSearchModel = new JobSearchModel
+              {
+                JobName = searchModel.JobName,
+                JobContactTitile = searchModel.JobContactTitile,
+                JobManagerFirstName = searchModel.JobManagerFirstName,
+                JobManagerLastName = searchModel.JobManagerLastName,
+                JobTel = searchModel.JobTel,
+                JobMobile = searchModel.JobMobile,
+                JobProvienceId = searchModel.JobProvienceId,
+                JobCityId = searchModel.JobCityId,
+                JobDistrictId = searchModel.JobDistrictId,
+                JobNeighborhoodId = searchModel.JobNeighborhoodId,
+                JobCategoryId = searchModel.JobCategoryId,
+                PageSize = 40,
+                PageIndex = i,
+                RecordCount = searchModel.RecordCount
+              };
+
+              if (searchModel.PageIndex == i)
+              {
+                <li class="active">
+                  @Html.ActionLink((i + 1).ToString(), "Index", "Job", routingSearchModel)
+                </li>
+              }
+              else
+              {
+                <li>
+                  @Html.ActionLink((i + 1).ToString(), "Index", "Job", routingSearchModel)
+                </li>
+              }
+            }
+          </ul>
+        </nav>
+      </div>
     </div>
+    <!-- Modal -->
   </div>
 </div>
+
+<script>
+  //function deleteJob(jobId) {
+  //  const redirectUrl = $('#301Redirec-' + jobId).val();
+  //    $.ajax({
+  //      url: action + '/' + id,
+  //      type: 'Get',
+  //      //datatype: 'application/json',
+  //      contentType: 'application/json',
+  //      //data: JSON.stringify({
+  //      //  stateId: +stateId
+  //      //}),
+  //      success: function(result) {
+  //        $(distDropdown).html("");
+  //        $.each(result,
+  //          function(i, item) {
+  //            $(distDropdown).append($('<option></option>').val(item.id).html(item.name));
+  //          });
+  //      },
+  //      error: function() {
+  //        alert("خطا در ارتباط با سرور لطفا با مدیر سیتم تماس بگیرید.");
+  //      }
+  //    });
+  //  debugger;
+  //}
+
+  function showDeleteForm(id) {
+    $('#deleteForm-' + id).removeClass('hidden');
+  }
+
+  function hideDeleteForm(id) {
+    $('#deleteForm-' + id).addClass('hidden');
+  }
+
+  //function getList(sourceDropdown, action, distDropdown) {
+  //  var id = $(sourceDropdown).val();
+  //  $.ajax({
+  //    url: action + '/' + id,
+  //    type: 'Get',
+  //    //datatype: 'application/json',
+  //    contentType: 'application/json',
+  //    //data: JSON.stringify({
+  //    //  stateId: +stateId
+  //    //}),
+  //    success: function(result) {
+  //      $(distDropdown).html("");
+  //      $.each(result,
+  //        function(i, item) {
+  //          $(distDropdown).append($('<option></option>').val(item.id).html(item.name));
+  //        });
+  //    },
+  //    error: function() {
+  //      alert("خطا در ارتباط با سرور لطفا با مدیر سیتم تماس بگیرید.");
+  //    }
+  //  });
+  //}
+
+  //function getCityList() {
+  //  this.getList('#provinceDropDown', 'GetCitiesByProvince', '#cityDropDown');
+  //}
+
+  //function getDistrictList() {
+  //  this.getList('#cityDropDown', 'GetDistrictsByCity', '#districtDropDown');
+  //}
+
+  //function getNeighborhoodList() {
+  //  this.getList('#districtDropDown', 'GetNeighborhoodsByDistrict', '#neighborhoodDropDown');
+  //}
+
+  //function string_to_slug(str) {
+  //  document.getElementById("JobSlug").value = str;
+  //}
+
+  //function PreviewImage(input, img) {
+  //  var oFReader = new FileReader();
+  //  oFReader.readAsDataURL(document.getElementById(input).files[0]);
+
+  //  oFReader.onload = function(oFREvent) {
+  //    document.getElementById(img).src = oFREvent.target.result;
+  //  };
+  //};
+</script>

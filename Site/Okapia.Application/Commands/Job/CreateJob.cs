@@ -37,7 +37,8 @@ namespace Okapia.Application.Commands.Job
 
         [Display(Name = "آدرس")] public string JobAddress { get; set; }
 
-        [Display(Name = "موقعیت جغرافیایی")] public string JobMap { get; set; }
+        [Display(Name = "نقشه روی Waze")] public string JobWazeMap { get; set; }
+        [Display(Name = "لینک Waze")] public string JobWazeLink { get; set; }
 
         [Display(Name = "عنوان صفحه شغل")] public string JobPageTittle { get; set; }
 
@@ -88,16 +89,16 @@ namespace Okapia.Application.Commands.Job
 
         [Display(Name = "آدرس تلگرام")] public string TelegramUrl { get; set; }
 
-        [Display(Name = "عکس پیشفرش")] public IFormFile Photo1 { get; set; }
+        [Display(Name = "عکس پیشفرش")] public string NamePhoto1 { get; set; }
 
-        [Display(Name = "عکس دوم")] public IFormFile Photo2 { get; set; }
+        [Display(Name = "عکس دوم")] public string NamePhoto2 { get; set; }
 
-        [Display(Name = "عکس سوم")] public IFormFile Photo3 { get; set; }
+        [Display(Name = "عکس سوم")] public string NamePhoto3 { get; set; }
 
-        [Display(Name = "عکس چهارم")] public IFormFile Photo4 { get; set; }
-        [Display(Name = "عکس پنجم")] public IFormFile Photo5 { get; set; }
-        [Display(Name = "عکس ششم")] public IFormFile Photo6 { get; set; }
-        public IEnumerable<IFormFile> Photos { get; set; }
+        [Display(Name = "عکس چهارم")] public string NamePhoto4 { get; set; }
+        [Display(Name = "عکس پنجم")] public string NamePhoto5 { get; set; }
+        [Display(Name = "عکس ششم")] public string NamePhoto6 { get; set; }
+        public IReadOnlyCollection<string> Photos { get; set; }
         public SelectList Proviences { get; set; }
         public SelectList Categories { get; set; }
     }

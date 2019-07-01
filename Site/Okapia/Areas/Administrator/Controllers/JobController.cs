@@ -10,7 +10,6 @@ using Okapia.Areas.Administrator.Models;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Job;
-using System.Drawing.Printing;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
@@ -22,7 +21,6 @@ namespace Okapia.Areas.Administrator.Controllers
         private readonly ICityApplication _cityApplication;
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
-
 
         public JobController(IJobApplication jobApplication, ICityApplication cityApplication,
             IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication, ICategoryRepository categoryRepository)
@@ -37,12 +35,18 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: Shop
         public ActionResult Index(JobSearchModel searchModel)
         {
+            var jobIndex = RenderPage(searchModel);
+            return View(jobIndex);
+        }
+
+        private JobIndexViewModel RenderPage(JobSearchModel searchModel)
+        {
             var jobSearchModel = ProvideJobSearchModel(searchModel);
             var jobs = _jobApplication.GetJobsForList(jobSearchModel, out var recordCount);
             var jobIndex = ProvideJobIndex(jobs, jobSearchModel);
             Pager.PreparePager(jobSearchModel, recordCount);
             ViewData["searchModel"] = jobSearchModel;
-            return View(jobIndex);
+            return jobIndex;
         }
 
         //[HttpGet]
@@ -62,7 +66,7 @@ namespace Okapia.Areas.Administrator.Controllers
             searchModel.Categories = new SelectList(_categoryRepository.GetCategories(), "CategoryId", "CategoryName");
             if (searchModel.PageSize == 0)
             {
-                searchModel.PageSize = 1;
+                searchModel.PageSize = 40;
             }
 
             return searchModel;
@@ -115,16 +119,15 @@ namespace Okapia.Areas.Administrator.Controllers
             if (!ModelState.IsValid) return View(command);
             try
             {
-                if (command.Photo1 == null) return View(command);
-                //TODO: Make it 6 photos
-                var photos = new List<IFormFile>
+                if (command.NamePhoto1 == null) return View(command);
+                var photos = new List<string>
                 {
-                    command.Photo1,
-                    command.Photo2,
-                    command.Photo3,
-                    command.Photo4,
-                    command.Photo5,
-                    command.Photo6
+                    command.NamePhoto1,
+                    command.NamePhoto2,
+                    command.NamePhoto3,
+                    command.NamePhoto4,
+                    command.NamePhoto5,
+                    command.NamePhoto6
                 };
                 command.Photos = photos;
 
@@ -173,9 +176,24 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                var redirect301Url = collection["301Redirect"].ToString();
+                _jobApplication.Delete(id, redirect301Url);
+                var referer = Request.Headers["Referer"].ToString();
+                return Redirect(referer);
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
-                return RedirectToAction(nameof(Index));
+        public ActionResult Activate(int id)
+        {
+            try
+            {
+                _jobApplication.Activate(id);
+                var referer = Request.Headers["Referer"].ToString();
+                return Redirect(referer);
             }
             catch
             {

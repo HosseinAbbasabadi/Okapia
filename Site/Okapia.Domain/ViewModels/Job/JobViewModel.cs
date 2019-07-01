@@ -39,5 +39,11 @@ namespace Okapia.Domain.ViewModels.Job
         [Display(Name = "محله")]
         public string JobNeighborhood { get; set; }
         public int JobNeighborhoodId { get; set; }
+
+        [Display(Name = "عکس")]
+        public string JobPicture { get; set; }
+
+        [Display(Name = "حذف شده؟")]
+        public bool IsDeleted { get; set; }
     }
 }

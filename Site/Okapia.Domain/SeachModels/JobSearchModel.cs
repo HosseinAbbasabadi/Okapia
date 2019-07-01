@@ -27,6 +27,8 @@ namespace Okapia.Domain.SeachModels
         public int JobDistrictId { get; set; }
         [Display(Name = "محله")]
         public int JobNeighborhoodId { get; set; }
+        [Display(Name = "آیا حذف شده است؟")]
+        public bool IsDeleted { get; set; }
 
         public SelectList Proviences { get; set; }
         public SelectList Categories { get; set; }

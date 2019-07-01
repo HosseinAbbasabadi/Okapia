@@ -17,13 +17,14 @@ namespace Okapia.Domain.Models
         public string JobTel2 { get; set; }
         public string JobMobile1 { get; set; }
         public string JobMobile2 { get; set; }
-        public string JobGeoLocation { get; set; }
+        //public string JobGeoLocation { get; set; }
         public int JobProvienceId { get; set; }
         public int JobCityId { get; set; }
         public int JobDistrictId { get; set; }
         public int JobNeighborhoodId { get; set; }
         public string JobAddress { get; set; }
-        public string JobMap { get; set; }
+        public string JobWazeMap { get; set; }
+        public string JobWazeLink { get; set; }
         public string JobPageTittle { get; set; }
         public string JobSlug { get; set; }
         public string JobMetaTag { get; set; }

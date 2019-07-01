@@ -29,6 +29,9 @@ namespace Okapia.Repository.Repositories
                     on job.JobDistrictId equals district.Id
                 join neighborhood in _context.Neighborhoods
                     on job.JobNeighborhoodId equals neighborhood.Id
+                join picture in _context.JobPicture
+                    on job.JobId equals picture.JobId
+                where picture.IsDefault
                 select new JobViewModel
                 {
                     JobId = job.JobId,
@@ -39,6 +42,7 @@ namespace Okapia.Repository.Repositories
                     JobTel = job.JobTel1,
                     JobMobile = job.JobMobile1,
                     JobCategoryId = job.JobCategory,
+                    IsDeleted = job.IsDeleted,
                     JobCategory = category.CategoryName,
                     JobProvience = province.Name,
                     JobProvienceId = province.Id,
@@ -47,8 +51,10 @@ namespace Okapia.Repository.Repositories
                     JobDistrict = district.Name,
                     JobDistrictId = district.Id,
                     JobNeighborhood = neighborhood.Name,
-                    JobNeighborhoodId = neighborhood.Id
+                    JobNeighborhoodId = neighborhood.Id,
+                    JobPicture = picture.JobPictureUrl
                 };
+
 
             query = MakeQueryConditions(searchModel, query);
             recordCount = query.Count();
@@ -60,6 +66,7 @@ namespace Okapia.Repository.Repositories
         private static IQueryable<JobViewModel> MakeQueryConditions(JobSearchModel searchModel,
             IQueryable<JobViewModel> query)
         {
+            query = query.Where(x => x.IsDeleted == searchModel.IsDeleted);
             if (!string.IsNullOrEmpty(searchModel.JobName))
                 query = query.Where(x => x.JobName.Contains(searchModel.JobName));
             if (!string.IsNullOrEmpty(searchModel.JobContactTitile))

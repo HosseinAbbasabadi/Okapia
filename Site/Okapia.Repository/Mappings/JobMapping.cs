@@ -9,11 +9,10 @@ namespace Okapia.Repository.Mappings
         public void Configure(EntityTypeBuilder<Job> builder)
         {
             builder.ToTable("Job");
-            
+
             builder.HasKey(e => e.JobId);
 
             builder.Property(e => e.JobId).HasColumnName("JobID");
-                //.HasDefaultValueSql("NEXT VALUE FOR shared.JobSeq");
 
             builder.Property(e => e.InstagramUrl).HasMaxLength(200);
 
@@ -35,7 +34,8 @@ namespace Okapia.Repository.Mappings
 
             builder.Property(e => e.JobManagerLastName).HasMaxLength(60);
 
-            builder.Property(e => e.JobMap).HasMaxLength(1000);
+            builder.Property(e => e.JobWazeMap).HasMaxLength(1000);
+            builder.Property(e => e.JobWazeLink).HasMaxLength(1000);
 
             builder.Property(e => e.JobMetaDesccription).HasMaxLength(200);
 
@@ -80,6 +80,9 @@ namespace Okapia.Repository.Mappings
             builder.Property(e => e.TelegramUrl).HasMaxLength(200);
 
             builder.Property(e => e.WebSiteUrl).HasMaxLength(200);
+
+            builder.HasMany(x => x.JobPictures)
+                .WithOne(x => x.Job).HasForeignKey(x => x.JobId).OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

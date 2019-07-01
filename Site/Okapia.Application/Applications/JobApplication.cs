@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net.Mime;
-using Microsoft.AspNetCore.Hosting;
 using Okapia.Application.Commands.Job;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
@@ -11,30 +8,25 @@ using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Job;
-using System.Drawing;
 
 namespace Okapia.Application.Applications
 {
     public class JobApplication : IJobApplication
     {
         private readonly IJobRepository _jobRepository;
-        private readonly IHostingEnvironment _hostingEnvironment;
-        private const int TenMegaBytes = 2 * 1024 * 1024;
 
-        public JobApplication(IJobRepository jobRepository, IHostingEnvironment hostingEnvironment)
+        public JobApplication(IJobRepository jobRepository)
         {
             _jobRepository = jobRepository;
-            _hostingEnvironment = hostingEnvironment;
         }
 
         public void Create(CreateJob command)
         {
             try
             {
-                var photoNames = SaveJobPhotos(command).ToList();
-                if (photoNames.Count == 0) return;
-                var jobWithoutPictures = MapCreateJobToJob(command, photoNames);
-                var job = MapJobPictures(photoNames, command.JobName, command.JobSmallDescription, "", jobWithoutPictures);
+                if (string.IsNullOrEmpty(command.Photos.First())) return;
+                var jobWithoutPictures = MapCreateJobToJob(command, command.Photos);
+                var job = MapJobPictures(command.Photos, command.JobName, command.JobSmallDescription, "", jobWithoutPictures);
                 _jobRepository.Create(job);
                 _jobRepository.SaveChanges();
             }
@@ -45,24 +37,38 @@ namespace Okapia.Application.Applications
             }
         }
 
-        private IEnumerable<string> SaveJobPhotos(CreateJob command)
+        public void Delete(int id, string redirect301Url)
         {
-            var photoNames = new List<string>();
-            var originalImageDistPath = Path.Combine(_hostingEnvironment.WebRootPath, "JobPhotos");
-            //var thumbImageDistPath = Path.Combine(_hostingEnvironment.WebRootPath, "JobPhotos", "Thumbs");
-            foreach (var photo in command.Photos)
+            try
             {
-                if (photo == null) continue;
-                if (!photo.FileName.IsValidFileName()) return null;
-                if (photo.Length > TenMegaBytes) return null;
-                var uniqueFileName = DateTime.Now.ToFileName() + "_" + photo.FileName;
-                var filePath = Path.Combine(originalImageDistPath, uniqueFileName);
-                var stream = new FileStream(filePath, FileMode.Create);
-                photo.CopyTo(stream);
-                photoNames.Add(uniqueFileName);
+                var job = _jobRepository.Get(x => x.JobId == id).First();
+                job.IsDeleted = true;
+                job.JobRemoved301InsteadUrl = redirect301Url;
+                _jobRepository.Update(job);
+                _jobRepository.SaveChanges();
             }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+        }
 
-            return photoNames;
+        public void Activate(int id)
+        {
+            try
+            {
+                var job = _jobRepository.Get(x => x.JobId == id).First();
+                job.IsDeleted = false;
+                job.JobRemoved301InsteadUrl = null;
+                _jobRepository.Update(job);
+                _jobRepository.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
         }
 
         private static Job MapCreateJobToJob(CreateJob command, IEnumerable<string> photoNames)
@@ -81,13 +87,13 @@ namespace Okapia.Application.Applications
                 JobTel2 = command.JobTel2,
                 JobMobile1 = command.JobMobile1,
                 JobMobile2 = command.JobMobile2,
-                //JobGeoLocation = command.ge
                 JobProvienceId = command.JobProvienceId,
                 JobCityId = command.JobCityId,
                 JobDistrictId = command.JobDistrictId,
                 JobNeighborhoodId = command.JobneighborhoodId,
                 JobAddress = command.JobAddress,
-                JobMap = command.JobMap,
+                JobWazeMap = command.JobWazeMap,
+                JobWazeLink = command.JobWazeLink,
                 JobPageTittle = command.JobPageTittle,
                 JobSlug = Slugify.GenerateSlug(command.JobSlug),
                 JobMetaTag = command.JobMetaTag,
@@ -118,7 +124,7 @@ namespace Okapia.Application.Applications
             return job;
         }
 
-        private static Job MapJobPictures(IEnumerable<string> pictureUris, string title,
+        private static Job MapJobPictures(IReadOnlyCollection<string> pictureUris, string title,
             string description, string thumbUri, Job job)
         {
             var jobPictures = new List<JobPicture>();
@@ -133,6 +139,8 @@ namespace Okapia.Application.Applications
                     JobPicturThumbUrl = thumbUri,
                     JobPictureAlt = description
                 };
+                if (pictureUri == pictureUris.First())
+                    jobPicture.IsDefault = true;
                 jobPictures.Add(jobPicture);
             }
 

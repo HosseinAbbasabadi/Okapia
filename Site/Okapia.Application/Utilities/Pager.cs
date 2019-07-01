@@ -4,17 +4,18 @@ namespace Okapia.Application.Utilities
 {
     public static class Pager
     {
-        public static BaseSerachModel PreparePager(BaseSerachModel searchModel, int rc)
+        public static BaseSerachModel PreparePager(BaseSerachModel searchModel, int recordCount)
         {
-            if (rc % searchModel.PageSize == 0)
+            if (recordCount % searchModel.PageSize == 0)
             {
-                searchModel.PageCount = rc / searchModel.PageSize;
+                searchModel.PageCount = recordCount / searchModel.PageSize;
             }
             else
             {
-                searchModel.PageCount = (rc / searchModel.PageSize) + 1;
+                searchModel.PageCount = (recordCount / searchModel.PageSize) + 1;
             }
 
+            searchModel.RecordCount = recordCount;
             return searchModel;
         }
     }
