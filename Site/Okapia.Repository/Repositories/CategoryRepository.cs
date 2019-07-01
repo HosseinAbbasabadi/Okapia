@@ -44,7 +44,7 @@ namespace Okapia.Repository.Repositories
                 };
 
             if (!string.IsNullOrEmpty(searchModel.CategoryName))
-                query = query.Where(c => c.CategoryName == searchModel.CategoryName);
+                query = query.Where(c => c.CategoryName.Contains(searchModel.CategoryName));
             if (searchModel.CategoryParrentId != 0)
                 query = query.Where(c => c.CategoryParentId == searchModel.CategoryParrentId);
 

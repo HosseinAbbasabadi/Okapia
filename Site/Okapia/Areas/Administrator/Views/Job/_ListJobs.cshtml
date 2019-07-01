@@ -1,5 +1,4 @@
 ﻿@using Okapia.Domain.SeachModels
-@using Okapia.Domain.ViewModels.Job
 @model IEnumerable<Okapia.Domain.ViewModels.Job.JobViewModel>
 @{
   var searchModel = ViewData["searchModel"] as JobSearchModel;
@@ -24,7 +23,7 @@
                 }
                 @index
               </td>
-              <td>
+              <td>      
                 @Html.DisplayFor(modelItem => item.value.JobName)
               </td>
               <td>
@@ -41,6 +40,9 @@
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.JobMobile)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.JobCategory)
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.JobProvience)
@@ -86,6 +88,9 @@
             @Html.DisplayNameFor(model => model.JobMobile)
           </th>
           <th>
+            @Html.DisplayNameFor(model => model.JobCategory)
+          </th>
+          <th>
             @Html.DisplayNameFor(model => model.JobProvience)
           </th>
           <th>
@@ -106,11 +111,6 @@
       </div>
       <nav>
         <ul class="pagination">
-          <li>
-            <a href="#" aria-label="Previous">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
           @for (var i = 0; i < searchModel.PageCount; i++)
           {
             var routingSearchModel = new JobSearchModel
@@ -125,6 +125,7 @@
               JobCityId = searchModel.JobCityId,
               JobDistrictId = searchModel.JobDistrictId,
               JobNeighborhoodId = searchModel.JobNeighborhoodId,
+              JobCategoryId = searchModel.JobCategoryId,
               PageSize = 1,
               PageIndex = i
             };
@@ -142,11 +143,7 @@
             }
           }
 
-          <li>
-            <a href="#" aria-label="Next">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
+          
         </ul>
       </nav>
     </div>

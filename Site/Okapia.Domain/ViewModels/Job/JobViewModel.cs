@@ -20,6 +20,10 @@ namespace Okapia.Domain.ViewModels.Job
         [Display(Name = "شماره موبایل")]
         public string JobMobile { get; set; }
 
+        [Display(Name = "گروه شغل")]
+        public string JobCategory { get; set; }
+        public int JobCategoryId { get; set; }
+        
         [Display(Name = "استان")]
         public string JobProvience { get; set; }
         public int JobProvienceId { get; set; }

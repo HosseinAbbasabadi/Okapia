@@ -63,12 +63,7 @@
       </div>
       <nav>
         <ul class="pagination">
-          <li>
-            <a href="#" aria-label="Previous">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-          @for (var i = 0; i < searchModel.PageCount; i++)
+         @for (var i = 0; i < searchModel.PageCount; i++)
           {
             var routingSearchModel = new CategorySearchModel
             {
@@ -90,13 +85,7 @@
               </li>
             }
           }
-
-          <li>
-            <a href="#" aria-label="Next">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-        </ul>
+          </ul>
       </nav>
     </div>
   </div>

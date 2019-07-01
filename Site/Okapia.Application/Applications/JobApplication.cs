@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using Microsoft.AspNetCore.Hosting;
 using Okapia.Application.Commands.Job;
 using Okapia.Application.Contracts;
@@ -10,6 +11,7 @@ using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Job;
+using System.Drawing;
 
 namespace Okapia.Application.Applications
 {
@@ -74,7 +76,7 @@ namespace Okapia.Application.Applications
                 JobManagerFirstName = command.JobManagerFirstName,
                 JobManagerLastName = command.JobManagerLastName,
                 JobEmailAddress = command.JobEmailAddress,
-                //JobCategory = command.
+                JobCategory = command.JobCategoryId,
                 JobTel1 = command.JobTel1,
                 JobTel2 = command.JobTel2,
                 JobMobile1 = command.JobMobile1,

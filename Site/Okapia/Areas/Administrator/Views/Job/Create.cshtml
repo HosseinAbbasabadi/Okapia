@@ -5,7 +5,6 @@
 }
 
 <h1>فرم ایجاد شغل جدید</h1>
-
 <h4>برای ثبت فرم جدید فرم زیر را کامل کنید</h4>
 
 <hr/>
@@ -115,6 +114,15 @@
       <option value="0">منطقه مورد نظر را انتخاب کنید</option>
     </select>
     <span asp-validation-for="JobDistrictId" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="JobCategoryId" class="control-label"></label>
+    <select asp-for="JobCategoryId" asp-items="@Model.Categories" class="form-control">
+      <option value="0">گروه مربوط به شغل را انتخاب کنید</option>
+    </select>
+    <span asp-validation-for="JobCategoryId" class="text-danger"></span>
   </div>
 </div>
 <div class="col-md-4">
@@ -259,60 +267,6 @@
     <span asp-validation-for="CustomerIntroductionLimit" class="text-danger"></span>
   </div>
 </div>
-<div class="col-md-4">
-  <div class="form-group">
-    <div class="custom-file">
-      <label asp-for="Photo1" class="control-label"></label>
-      <input asp-for="Photo1" class="form-control custom-file-input" accept="image/*"/>
-    </div>
-    <span asp-validation-for="Photo1" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <div class="custom-file">
-      <label asp-for="Photo2" class="control-label"></label>
-      <input asp-for="Photo2" class="form-control custom-file-input" accept="image/*"/>
-    </div>
-    <span asp-validation-for="Photo2" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <div class="custom-file">
-      <label asp-for="Photo3" class="control-label"></label>
-      <input asp-for="Photo3" class="form-control custom-file-input" accept="image/*"/>
-    </div>
-    <span asp-validation-for="Photo3" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <div class="custom-file">
-      <label asp-for="Photo4" class="control-label"></label>
-      <input asp-for="Photo4" class="form-control custom-file-input" accept="image/*">
-    </div>
-    <span asp-validation-for="Photo4" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <div class="custom-file">
-      <label asp-for="Photo5" class="control-label"></label>
-      <input asp-for="Photo5" class="form-control custom-file-input" accept="image/*">
-    </div>
-    <span asp-validation-for="Photo5" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <div class="custom-file">
-      <label asp-for="Photo6" class="control-label"></label>
-      <input asp-for="Photo6" class="form-control custom-file-input" accept="image/*">
-    </div>
-    <span asp-validation-for="Photo6" class="text-danger"></span>
-  </div>
-</div>
 <div class="col-md-12">
   <div class="form-group form-check">
     <label class="form-check-label">
@@ -348,18 +302,108 @@
     <span asp-validation-for="TelegramUrl" class="text-danger"></span>
   </div>
 </div>
+  
+<table class="col-md-12 table table-bordered text-center">
+  <tr>
+    <td class="col-md-1">ردیف</td>
+    <td>فایل</td>
+    <td>پیش نمایش</td>
+    <td>حذف</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><input id="photo1" name="photo1" type="file" size="1" onchange="uploadFiles('photo1');PreviewImage('photo1', 'prevphoto1');" class="form-control custom-file-input" accept="image/*"/></td>
+    <td><img id="prevphoto1" src="~/defaultimage.png" alt="your image" with="100" height="100"/></td>
+    <td><button type="button" id="deletephoto1" onclick="deletePhoto('photo1')" class="btn btn-danger hidden">حذف</button></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><input id="photo2" name="photo2" type="file" size="1" onchange="uploadFiles('photo2');PreviewImage('photo2', 'prevphoto2');" class="form-control custom-file-input" accept="image/*" /></td>
+    <td><img id="prevphoto2" src="~/defaultimage.png" alt="your image" with="100" height="100" /></td>
+    <td><button type="button" id="deletephoto2" onclick="deletePhoto('photo2')" class="btn btn-danger hidden">حذف</button></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><input id="photo3" name="photo3" type="file" size="1" onchange="uploadFiles('photo3');PreviewImage('photo3', 'prevphoto3');" class="form-control custom-file-input" accept="image/*" /></td>
+    <td><img id="prevphoto3" src="~/defaultimage.png" alt="your image" with="100" height="100" /></td>
+    <td><button type="button" id="deletephoto3" onclick="deletePhoto('photo3')" class="btn btn-danger hidden">حذف</button></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><input id="photo4" name="photo4" type="file" size="1" onchange="uploadFiles('photo4');PreviewImage('photo4', 'prevphoto4');" class="form-control custom-file-input" accept="image/*" /></td>
+    <td><img id="prevphoto4" src="~/defaultimage.png" alt="your image" with="100" height="100" /></td>
+    <td><button type="button" id="deletephoto4" onclick="deletePhoto('photo4')" class="btn btn-danger hidden">حذف</button></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><input id="photo5" name="photo5" type="file" size="1" onchange="uploadFiles('photo5');PreviewImage('photo5', 'prevphoto5');" class="form-control custom-file-input" accept="image/*" /></td>
+    <td><img id="prevphoto5" src="~/defaultimage.png" alt="your image" with="100" height="100" /></td>
+    <td><button type="button" id="deletephoto5" onclick="deletePhoto('photo5')" class="btn btn-danger hidden">حذف</button></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><input id="photo6" name="photo6" type="file" size="1" onchange="uploadFiles('photo6');PreviewImage('photo6', 'prevphoto6');" class="form-control custom-file-input" accept="image/*" /></td>
+    <td><img id="prevphoto6" src="~/defaultimage.png" alt="your image" with="100" height="100" /></td>
+    <td><button type="button" id="deletephoto6" onclick="deletePhoto('photo6')" class="btn btn-danger hidden">حذف</button></td>
+  </tr>
+</table>
 
-<div class="col-md-6">
-  <div class="form-group">
-    <input type="submit" value="ثبت" class="btn btn-success btn-lg"/>
+  @*<div class="col-md-4">
+    <div class="form-group">
+      <div class="custom-file">
+        <label asp-for="Photo2" class="control-label"></label>
+        <input asp-for="Photo2" class="form-control custom-file-input" accept="image/*" />
+      </div>
+      <span asp-validation-for="Photo2" class="text-danger"></span>
+    </div>
   </div>
-</div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <div class="custom-file">
+        <label asp-for="Photo3" class="control-label"></label>
+        <input asp-for="Photo3" class="form-control custom-file-input" accept="image/*" />
+      </div>
+      <span asp-validation-for="Photo3" class="text-danger"></span>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <div class="custom-file">
+        <label asp-for="Photo4" class="control-label"></label>
+        <input asp-for="Photo4" class="form-control custom-file-input" accept="image/*">
+      </div>
+      <span asp-validation-for="Photo4" class="text-danger"></span>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <div class="custom-file">
+        <label asp-for="Photo5" class="control-label"></label>
+        <input asp-for="Photo5" class="form-control custom-file-input" accept="image/*">
+      </div>
+      <span asp-validation-for="Photo5" class="text-danger"></span>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <div class="custom-file">
+        <label asp-for="Photo6" class="control-label"></label>
+        <input asp-for="Photo6" class="form-control custom-file-input" accept="image/*">
+      </div>
+      <span asp-validation-for="Photo6" class="text-danger"></span>
+    </div>
+  </div>*@
+  <div class="col-md-12">
+    <div class="form-group">
+      <input type="submit" value="ثبت" class="btn btn-success btn-lg" />
+    </div>
+  </div>
 
-<div class="col-md-6">
-  <div class="form-group text-left">
-    <a class="text-info" asp-action="Index" asp-controller="Job" asp-area="Administrator">بازگشت به لیست</a>
+  <div class="col-md-12">
+    <div class="form-group text-left">
+      <a class="text-info" asp-action="Index" asp-controller="Job" asp-area="Administrator">بازگشت به لیست</a>
+    </div>
   </div>
-</div>
 </form>
 </div>
 </div>
@@ -401,4 +445,13 @@
   function string_to_slug(str) {
     document.getElementById("JobSlug").value = str;
   }
+
+  function PreviewImage(input, img) {
+    var oFReader = new FileReader();
+    oFReader.readAsDataURL(document.getElementById(input).files[0]);
+
+    oFReader.onload = function (oFREvent) {
+      document.getElementById(img).src = oFREvent.target.result;
+    };
+  };
 </script>

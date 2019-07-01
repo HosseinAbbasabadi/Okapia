@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
@@ -21,6 +19,8 @@ namespace Okapia.Repository.Repositories
         public List<JobViewModel> Search(JobSearchModel searchModel, out int recordCount)
         {
             var query = from job in _context.Jobs
+                join category in _context.Categories
+                    on job.JobCategory equals category.CategoryId
                 join province in _context.Provinces
                     on job.JobProvienceId equals province.Id
                 join city in _context.Cities
@@ -38,6 +38,8 @@ namespace Okapia.Repository.Repositories
                     JobContactTitile = job.JobContactTitile,
                     JobTel = job.JobTel1,
                     JobMobile = job.JobMobile1,
+                    JobCategoryId = job.JobCategory,
+                    JobCategory = category.CategoryName,
                     JobProvience = province.Name,
                     JobProvienceId = province.Id,
                     JobCity = city.Name,
@@ -55,20 +57,23 @@ namespace Okapia.Repository.Repositories
             return query.ToList();
         }
 
-        private static IQueryable<JobViewModel> MakeQueryConditions(JobSearchModel searchModel, IQueryable<JobViewModel> query)
+        private static IQueryable<JobViewModel> MakeQueryConditions(JobSearchModel searchModel,
+            IQueryable<JobViewModel> query)
         {
             if (!string.IsNullOrEmpty(searchModel.JobName))
-                query = query.Where(x => x.JobName == searchModel.JobName);
+                query = query.Where(x => x.JobName.Contains(searchModel.JobName));
             if (!string.IsNullOrEmpty(searchModel.JobContactTitile))
-                query = query.Where(x => x.JobContactTitile == searchModel.JobContactTitile);
+                query = query.Where(x => x.JobContactTitile.Contains(searchModel.JobContactTitile));
             if (!string.IsNullOrEmpty(searchModel.JobManagerFirstName))
-                query = query.Where(x => x.JobManagerFirstName == searchModel.JobManagerFirstName);
+                query = query.Where(x => x.JobManagerFirstName.Contains(searchModel.JobManagerFirstName));
             if (!string.IsNullOrEmpty(searchModel.JobManagerLastName))
-                query = query.Where(x => x.JobManagerLastName == searchModel.JobManagerLastName);
+                query = query.Where(x => x.JobManagerLastName.Contains(searchModel.JobManagerLastName));
             if (!string.IsNullOrEmpty(searchModel.JobTel))
                 query = query.Where(x => x.JobTel == searchModel.JobTel);
             if (!string.IsNullOrEmpty(searchModel.JobMobile))
                 query = query.Where(x => x.JobMobile == searchModel.JobMobile);
+            if (searchModel.JobCategoryId != 0)
+                query = query.Where(x => x.JobCategoryId == searchModel.JobCategoryId);
             if (searchModel.JobProvienceId != 0)
                 query = query.Where(x => x.JobProvienceId == searchModel.JobProvienceId);
             if (searchModel.JobCityId != 0)

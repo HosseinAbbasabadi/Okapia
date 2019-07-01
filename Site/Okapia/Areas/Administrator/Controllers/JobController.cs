@@ -7,9 +7,10 @@ using Okapia.Application.Commands.Job;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
+using Okapia.Domain.Contracts;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Job;
-using Okapia.Repository.Migrations;
+using System.Drawing.Printing;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
@@ -17,18 +18,20 @@ namespace Okapia.Areas.Administrator.Controllers
     public class JobController : Controller
     {
         private readonly IJobApplication _jobApplication;
+        private readonly ICategoryRepository _categoryRepository;
         private readonly ICityApplication _cityApplication;
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
 
 
         public JobController(IJobApplication jobApplication, ICityApplication cityApplication,
-            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication)
+            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication, ICategoryRepository categoryRepository)
         {
             _jobApplication = jobApplication;
             _cityApplication = cityApplication;
             _districtApplication = districtApplication;
             _neighborhoodApplication = neighborhoodApplication;
+            _categoryRepository = categoryRepository;
         }
 
         // GET: Shop
@@ -53,9 +56,10 @@ namespace Okapia.Areas.Administrator.Controllers
         //    return View("Index", jobIndex);
         //}
 
-        private static JobSearchModel ProvideJobSearchModel(JobSearchModel searchModel)
+        private JobSearchModel ProvideJobSearchModel(JobSearchModel searchModel)
         {
             searchModel.Proviences = new SelectList(Proviences(), "Id", "Name");
+            searchModel.Categories = new SelectList(_categoryRepository.GetCategories(), "CategoryId", "CategoryName");
             if (searchModel.PageSize == 0)
             {
                 searchModel.PageSize = 1;
@@ -83,7 +87,11 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: Shop/Create
         public ActionResult Create()
         {
-            var createModel = new CreateJob {Proviences = new SelectList(Proviences(), "Id", "Name")};
+            var createModel = new CreateJob
+            {
+                Proviences = new SelectList(Proviences(), "Id", "Name"),
+                Categories = new SelectList(_categoryRepository.GetCategories(), "CategoryId", "CategoryName")
+            };
             return View(createModel);
         }
 

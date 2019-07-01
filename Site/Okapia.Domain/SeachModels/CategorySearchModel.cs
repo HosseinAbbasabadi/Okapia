@@ -7,8 +7,8 @@ namespace Okapia.Domain.SeachModels
     {
         [Display(Name = "نام")]
         public string CategoryName { get; set; }
-        public int CategoryParrentId { get; set; }
         [Display(Name = "عنوان گروه مافوق")]
+        public int CategoryParrentId { get; set; }
         public SelectList Categories { get; set; }
     }
 }

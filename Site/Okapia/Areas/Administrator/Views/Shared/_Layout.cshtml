@@ -67,7 +67,7 @@
     </div>
   </div>
   <!-- END wrapper -->
-
+  <div class="loader"></div>
 
 
   <environment include="Development">
@@ -107,7 +107,16 @@
   <script>
     CKEDITOR.replace('editor1');
   </script>
+  <script src="~/js/aspnetcorefileuploading.js"></script>
+  <script>
+    $body = $("body");
 
+    $(document).on({
+      ajaxStart: function () { $body.addClass("loading"); },
+      ajaxStop: function () { $body.removeClass("loading"); }
+    });
+  </script>
   @RenderSection("Scripts", required: false)
+<div class="loader"></div>
 </body>
 </html>

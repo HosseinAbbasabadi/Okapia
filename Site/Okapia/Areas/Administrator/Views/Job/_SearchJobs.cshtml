@@ -54,9 +54,18 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
+              <label asp-for="JobCategoryId" class="control-label"></label>
+              <select asp-for="JobCategoryId" asp-items="@Model.Categories" class="form-control">
+                <option value="0">گروه مربوط به شغل را انتخاب کنید</option>
+              </select>
+              <span asp-validation-for="JobCategoryId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
               <label asp-for="JobProvienceId" class="control-label"></label>
               @*<input asp-for="JobProvienceId" class="form-control" />*@
-              <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control"></select>
+              <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control" id="provinceDropDown" onchange="getCityList()"></select>
               <span asp-validation-for="JobProvienceId" class="text-danger"></span>
             </div>
           </div>

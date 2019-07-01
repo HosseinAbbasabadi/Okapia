@@ -99,5 +99,6 @@ namespace Okapia.Application.Commands.Job
         [Display(Name = "عکس ششم")] public IFormFile Photo6 { get; set; }
         public IEnumerable<IFormFile> Photos { get; set; }
         public SelectList Proviences { get; set; }
+        public SelectList Categories { get; set; }
     }
 }

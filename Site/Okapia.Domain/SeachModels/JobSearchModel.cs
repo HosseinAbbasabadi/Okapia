@@ -17,6 +17,8 @@ namespace Okapia.Domain.SeachModels
         public string JobTel { get; set; }
         [Display(Name = "شماره موبایل")]
         public string JobMobile { get; set; }
+        [Display(Name = "گروه شغل")]
+        public int JobCategoryId { get; set; }
         [Display(Name = "استان")]
         public int JobProvienceId { get; set; }
         [Display(Name = "شهر")]
@@ -27,5 +29,6 @@ namespace Okapia.Domain.SeachModels
         public int JobNeighborhoodId { get; set; }
 
         public SelectList Proviences { get; set; }
+        public SelectList Categories { get; set; }
     }
 }
