@@ -1,6 +1,4 @@
-﻿using Okapia.Application.Commands.Job;
-
-namespace Okapia.Areas.Administrator.Models
+﻿namespace Okapia.Areas.Administrator.Models
 {
     public class JobPicture
     {

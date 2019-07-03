@@ -1,4 +1,4 @@
-﻿using Okapia.Application.Commands.Job;
+﻿using Okapia.Domain.Commands.Job;
 
 namespace Okapia.Areas.Administrator.Models
 {

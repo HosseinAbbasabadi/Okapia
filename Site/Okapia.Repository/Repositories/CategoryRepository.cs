@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Okapia.Domain.Commands.Category;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
@@ -14,6 +16,28 @@ namespace Okapia.Repository.Repositories
         public CategoryRepository(OkapiaContext context) : base(context)
         {
             _context = context;
+        }
+
+        public Category GetCategory(int id)
+        {
+            return _context.Categories.Where(x => x.CategoryId == id).AsNoTracking().ToList().First();
+        }
+
+        public EditCategory GetCategoryDetails(int id)
+        {
+            var category = _context.Categories.Where(x => x.CategoryId == id).Select(x => new EditCategory
+            {
+                CategoryId = x.CategoryId,
+                CategoryName = x.CategoryName,
+                CategoryMetaDesccription = x.CategoryMetaDesccription,
+                CategoryMetaTag = x.CategoryMetaTag,
+                CategoryPageTittle = x.CategoryPageTittle,
+                CategoryParentId = x.CategoryParentId,
+                CategorySeohead = x.CategorySeohead,
+                CategorySmallDescription = x.CategorySmallDescription,
+                NameImage = x.CategoryThumbPicUrl
+            }).ToList().First();
+            return category;
         }
 
         public List<CategoryViewModel> GetCategories()
@@ -40,7 +64,8 @@ namespace Okapia.Repository.Repositories
                     CategoryId = category.CategoryId,
                     CategoryName = category.CategoryName,
                     CategorySmallDescription = category.CategorySmallDescription,
-                    CategoryParentId = category.CategoryParentId
+                    CategoryParentId = category.CategoryParentId,
+                    Photo = category.CategoryThumbPicUrl
                 };
 
             if (!string.IsNullOrEmpty(searchModel.CategoryName))

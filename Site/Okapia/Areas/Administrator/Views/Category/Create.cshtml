@@ -1,4 +1,5 @@
-﻿@model Okapia.Application.Commands.Category.CreateCategory
+﻿@using Okapia.Domain.Commands.Category
+@model Okapia.Domain.Commands.Category.CreateCategory
 
 @{
   ViewData["Title"] = "Create";
@@ -15,9 +16,9 @@
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <div class="col-md-4">
   <div class="form-group">
-    <label asp-for="CatgoryName" class="control-label"></label>
-    <input asp-for="CatgoryName" class="form-control" onchange="string_to_slug(document.getElementById('JobName').value)"/>
-    <span asp-validation-for="CatgoryName" class="text-danger"></span>
+    <label asp-for="CategoryName" class="control-label"></label>
+    <input asp-for="CategoryName" class="form-control"/>
+    <span asp-validation-for="CategoryName" class="text-danger"></span>
   </div>
 </div>
 <div class="col-md-4">
@@ -65,15 +66,26 @@
     <span asp-validation-for="CategoryParentId" class="text-danger"></span>
   </div>
 </div>
-<div class="col-md-4">
-  <div class="form-group">
-    <div class="custom-file">
-      <label asp-for="Photo" class="control-label"></label>
-      <input asp-for="Photo" class="form-control custom-file-input" accept="image/*"/>
-    </div>
-    <span asp-validation-for="Photo" class="text-danger"></span>
-  </div>
-</div>
+  <table class="col-md-12 table table-bordered text-center">
+    <tr>
+      <td>فایل</td>
+      <td>پیش نمایش</td>
+      <td>حذف</td>
+    </tr>
+    <tr>
+        <td>
+          <input id="Image" name="Image" type="file" size="1" onchange="uploadFiles('Image', 0, 'category');PreviewImage('Image', 'prevImage');" class="form-control custom-file-input" accept="image/*"/>
+          <input asp-for="NameImage" id="nameImage" name="nameImage" type="hidden" size="1" value=""/>
+        </td>
+        <td>
+          <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
+        </td>
+        <td>
+          <button type="button" id="deleteImage" onclick="deletePhoto('Image', 'category')" class="btn btn-danger hidden">حذف</button>
+        </td>
+      </tr> 
+  </table>
+
 <div class="col-md-6">
   <div class="form-group">
     <input type="submit" value="ثبت" class="btn btn-success btn-lg"/>

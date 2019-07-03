@@ -1,0 +1,115 @@
+﻿@model Okapia.Domain.Commands.Category.EditCategory
+
+@{
+  ViewData["Title"] = "EditCategory";
+}
+
+<h1>فرم ایجاد گروه شغل جدید</h1>
+<h4>برای ثبت فرم جدید فرم زیر را کامل کنید</h4>
+<hr />
+<div class="row">
+  <div class="col-md-12">
+    <form asp-action="Edit" asp-controller="Category" asp-area="Administrator" asp-route-id="@Model.CategoryId" asp-route-redirectUrl="@ViewData["redirectUrl"]">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="CategoryName" class="control-label"></label>
+          <input asp-for="CategoryName" class="form-control" />
+          <span asp-validation-for="CategoryName" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="CategorySmallDescription" class="control-label"></label>
+          <input asp-for="CategorySmallDescription" class="form-control" />
+          <span asp-validation-for="CategorySmallDescription" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="CategoryMetaTag" class="control-label"></label>
+          <input asp-for="CategoryMetaTag" class="form-control" />
+          <span asp-validation-for="CategoryMetaTag" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="CategoryMetaDesccription" class="control-label"></label>
+          <input asp-for="CategoryMetaDesccription" class="form-control" />
+          <span asp-validation-for="CategoryMetaDesccription" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="CategorySeohead" class="control-label"></label>
+          <input asp-for="CategorySeohead" class="form-control" />
+          <span asp-validation-for="CategorySeohead" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="CategoryPageTittle" class="control-label"></label>
+          <input asp-for="CategoryPageTittle" class="form-control" />
+          <span asp-validation-for="CategoryPageTittle" class="text-danger"></span>
+        </div>
+      </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label asp-for="CategoryParentId" class="control-label"></label>
+            @*<input asp-for="JobProvienceId" class="form-control" />*@
+            <select asp-for="CategoryParentId" asp-items="@Model.Categories" class="form-control">
+              <option value="0">گروه مافوق را انتخاب کنید...</option>
+            </select>
+            <span asp-validation-for="CategoryParentId" class="text-danger"></span>
+          </div>
+      </div>
+      <table class="col-md-12 table table-bordered text-center">
+        <tr>
+          <td>فایل</td>
+          <td>پیش نمایش</td>
+          <td>حذف</td>
+        </tr>
+        <tr>
+          <td>
+            <input id="Image" name="Image" type="file" size="1" onchange="uploadFiles('Image', 0, 'category');PreviewImage('Image', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
+            <input asp-for="NameImage" id="nameImage" name="nameImage" type="hidden" size="1" value="@Model.NameImage" filename="@Model.NameImage"/>
+          </td>
+          <td>
+            @if (!string.IsNullOrEmpty(Model.NameImage))
+            {
+              <img id="prevImage" src="~/CategoryPhotos/Thumbs/@Model.NameImage" alt="your image" with="100" height="100" />
+            }
+            else
+            {
+              <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100" />
+            }
+          </td>
+          <td>
+            @if (!string.IsNullOrEmpty(Model.NameImage))
+            {
+              <button type="button" id="deleteImage" onclick="deletePhoto('Image', 'category')" class="btn btn-danger">حذف</button>
+            }
+            else
+            {
+              <button type="button" id="deleteImage" onclick="deletePhoto('Image', 'category')" class="btn btn-danger hidden">حذف</button>
+            }
+          </td>
+        </tr>
+      </table>
+      <div class="col-md-12">
+        <div class="form-group">
+          <input type="submit" value="اعمال تغییرات" class="btn btn-success btn-lg" />
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group text-left">
+          <a class="text-info" href="@ViewData["redirectUrl"]">بازگشت به لیست</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div>
+  <a asp-action="Index">Back to List</a>
+</div>

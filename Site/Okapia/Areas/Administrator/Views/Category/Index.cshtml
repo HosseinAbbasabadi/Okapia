@@ -10,5 +10,7 @@
   <a asp-action="Create" class="btn btn-success text-lg-center">ایجاد گروه مشاغل جدید</a>
 </h2>
 
+@*@await Component.InvokeAsync()*@
+
 @await Html.PartialAsync("~/Areas/Administrator/Views/Category/_SearchCategories.cshtml", Model.CategorySearchModel)
 @await Html.PartialAsync("~/Areas/Administrator/Views/Category/_ListCategories.cshtml", Model.CategoryViewModels)

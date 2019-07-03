@@ -1,4 +1,4 @@
-﻿namespace Okapia.Application.Commands.Job
+﻿namespace Okapia.Domain.Commands.Job
 {
     public class Provience
     {

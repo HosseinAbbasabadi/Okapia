@@ -3,10 +3,10 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Okapia.Application.Commands.Category;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
+using Okapia.Domain.Commands.Category;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Category;
 
@@ -71,12 +71,13 @@ namespace Okapia.Areas.Administrator.Controllers
         // POST: Category/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CreateCategory command)
         {
+            if (!ModelState.IsValid) return View(command);
+
             try
             {
-                // TODO: Add insert logic here
-
+                _categoryApplication.Create(command);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -86,21 +87,26 @@ namespace Okapia.Areas.Administrator.Controllers
         }
 
         // GET: Category/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
-            return View();
+            var category = _categoryApplication.GetCategoryDetails(id);
+            var data = _categoryApplication.GetCategories();
+            category.Categories = new SelectList(data, "CategoryId", "CategoryName");
+            ViewData["redirectUrl"] = redirectUrl;
+            return View(category);
         }
 
         // POST: Category/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, EditCategory command, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
+            if (!ModelState.IsValid) return View(command);
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                command.CategoryId = id;
+                _categoryApplication.Update(command);
+                return Redirect(redirectUrl);
             }
             catch
             {

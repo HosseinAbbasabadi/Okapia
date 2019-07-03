@@ -1,24 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Http;
+using System.Text;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Okapia.Application.Commands.Job
+namespace Okapia.Domain.ViewModels.Job
 {
-    public class CreateJob
+    public class JobDetailsViewModel : JobViewModel
     {
-        [Display(Name = "عنوان")] public string JobName { get; set; }
 
         [Display(Name = "توضیحات کوتاه")] public string JobSmallDescription { get; set; }
 
         [Display(Name = "توضیح کامل")] public string JobDescription { get; set; }
-        [Display(Name = "دسته بندی شغل")] public int JobCategoryId { get; set; }
-        
-        [Display(Name = "نام رابط")] public string JobContactTitile { get; set; }
-
-        [Display(Name = "نام مدیر")] public string JobManagerFirstName { get; set; }
-
-        [Display(Name = "نام خانوادگی مدیر")] public string JobManagerLastName { get; set; }
 
         [Display(Name = "آدرس ایمیل")] public string JobEmailAddress { get; set; }
 
@@ -30,9 +23,6 @@ namespace Okapia.Application.Commands.Job
 
         [Display(Name = "شماره موبایل ۲")] public string JobMobile2 { get; set; }
 
-        [Display(Name = "استان")] public int JobProvienceId { get; set; }
-        [Display(Name = "شهر")] public int JobCityId { get; set; }  
-        [Display(Name = "منطقه")] public int JobDistrictId { get; set; }
         [Display(Name = "محله")] public int JobneighborhoodId { get; set; }
 
         [Display(Name = "آدرس")] public string JobAddress { get; set; }
@@ -88,17 +78,7 @@ namespace Okapia.Application.Commands.Job
         [Display(Name = "آدرس اینستاگرام")] public string InstagramUrl { get; set; }
 
         [Display(Name = "آدرس تلگرام")] public string TelegramUrl { get; set; }
-
-        [Display(Name = "عکس پیشفرش")] public string NamePhoto1 { get; set; }
-
-        [Display(Name = "عکس دوم")] public string NamePhoto2 { get; set; }
-
-        [Display(Name = "عکس سوم")] public string NamePhoto3 { get; set; }
-
-        [Display(Name = "عکس چهارم")] public string NamePhoto4 { get; set; }
-        [Display(Name = "عکس پنجم")] public string NamePhoto5 { get; set; }
-        [Display(Name = "عکس ششم")] public string NamePhoto6 { get; set; }
-        public IReadOnlyCollection<string> Photos { get; set; }
+        public IEnumerable<string> Photos { get; set; }
         public SelectList Proviences { get; set; }
         public SelectList Categories { get; set; }
     }

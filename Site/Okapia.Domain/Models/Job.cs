@@ -48,7 +48,7 @@ namespace Okapia.Domain.Models
         public bool IsDeleted { get; set; }
         public int? RegisteringEmployerId { get; set; }
         public int CustomerIntroductionLimit { get; set; }
-        public bool? IsWebsite { get; set; }
+        public bool IsWebsite { get; set; }
         public string WebSiteUrl { get; set; }
         public string InstagramUrl { get; set; }
         public string TelegramUrl { get; set; }

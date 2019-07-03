@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Okapia.Application.Commands.Category
+namespace Okapia.Domain.Commands.Category
 {
     public class CreateCategory
     {
         [Display(Name = "نام")]
-        public string CatgoryName { get; set; }
+        public string CategoryName { get; set; }
         [Display(Name = "توضیحات کوتاه")]
         public string CategorySmallDescription { get; set; }
         [Display(Name = "متاتگ")]
@@ -26,6 +23,6 @@ namespace Okapia.Application.Commands.Category
         [Display(Name = "گروه مافوق")]
         public SelectList Categories { get; set; }
         [Display(Name = "عکس گروه")]
-        public IFormFile Photo { get; set; }
+        public string NameImage { get; set; }
     }
 }

@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Okapia.Application.Commands.Job;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
+using Okapia.Domain.Commands.Job;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Job;
+using Okapia.Domain.ViewModels.JobPicture;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
@@ -17,19 +19,19 @@ namespace Okapia.Areas.Administrator.Controllers
     public class JobController : Controller
     {
         private readonly IJobApplication _jobApplication;
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly ICategoryApplication _categoryApplication;
         private readonly ICityApplication _cityApplication;
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
 
         public JobController(IJobApplication jobApplication, ICityApplication cityApplication,
-            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication, ICategoryRepository categoryRepository)
+            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication, ICategoryApplication categoryApplication)
         {
             _jobApplication = jobApplication;
             _cityApplication = cityApplication;
             _districtApplication = districtApplication;
             _neighborhoodApplication = neighborhoodApplication;
-            _categoryRepository = categoryRepository;
+            _categoryApplication = categoryApplication;
         }
 
         // GET: Shop
@@ -63,7 +65,7 @@ namespace Okapia.Areas.Administrator.Controllers
         private JobSearchModel ProvideJobSearchModel(JobSearchModel searchModel)
         {
             searchModel.Proviences = new SelectList(Proviences(), "Id", "Name");
-            searchModel.Categories = new SelectList(_categoryRepository.GetCategories(), "CategoryId", "CategoryName");
+            searchModel.Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName");
             if (searchModel.PageSize == 0)
             {
                 searchModel.PageSize = 40;
@@ -81,7 +83,7 @@ namespace Okapia.Areas.Administrator.Controllers
             };
             return jobIndex;
         }
-        
+
         // GET: Shop/Details/5
         public ActionResult Details(int id)
         {
@@ -94,7 +96,7 @@ namespace Okapia.Areas.Administrator.Controllers
             var createModel = new CreateJob
             {
                 Proviences = new SelectList(Proviences(), "Id", "Name"),
-                Categories = new SelectList(_categoryRepository.GetCategories(), "CategoryId", "CategoryName")
+                Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName")
             };
             return View(createModel);
         }
@@ -129,8 +131,9 @@ namespace Okapia.Areas.Administrator.Controllers
                     command.NamePhoto5,
                     command.NamePhoto6
                 };
+                //var nullPhotos = photos.Where(x => x == null).ToList();
+                //nullPhotos.ForEach(x=> photos.Remove(x));
                 command.Photos = photos;
-
                 _jobApplication.Create(command);
                 return RedirectToAction(nameof(Index));
             }
@@ -141,21 +144,39 @@ namespace Okapia.Areas.Administrator.Controllers
         }
 
         // GET: Shop/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
-            return View();
+            var editJob = _jobApplication.GetJobDetails(id);
+            editJob.Proviences = new SelectList(Proviences(), "Id", "Name");
+            editJob.Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName");
+            ViewData["redirectUrl"] = redirectUrl;
+            return View(editJob);
         }
 
         // POST: Shop/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, EditJob command, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
+            if (!ModelState.IsValid) return View(command);
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                if (command.NamePhoto1 == null) return View(command);
+                var photos = new List<JobPictureViewModel>
+                {
+                    new JobPictureViewModel {Id = command.NamePhoto1Id, Name = command.NamePhoto1},
+                    new JobPictureViewModel {Id = command.NamePhoto2Id, Name = command.NamePhoto2},
+                    new JobPictureViewModel {Id = command.NamePhoto3Id, Name = command.NamePhoto3},
+                    new JobPictureViewModel {Id = command.NamePhoto4Id, Name = command.NamePhoto4},
+                    new JobPictureViewModel {Id = command.NamePhoto5Id, Name = command.NamePhoto5},
+                    new JobPictureViewModel {Id = command.NamePhoto6Id, Name = command.NamePhoto6},
+                };
+                //var nullPhotos = photos.Where(x => x == null).ToList();
+                //nullPhotos.ForEach(x=> photos.Remove(x));
+                command.JobId = id;
+                command.Photos = photos;
+                _jobApplication.Update(id, command);
+                return Redirect(redirectUrl);
             }
             catch
             {

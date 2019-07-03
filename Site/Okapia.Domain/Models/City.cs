@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Okapia.Domain.Models;
+﻿using System.Collections.Generic;
 
-namespace Okapia.Domain
+namespace Okapia.Domain.Models
 {
     public partial class City
     {

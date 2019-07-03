@@ -36,6 +36,8 @@ namespace Okapia.Configuration
             services.AddScoped<ICategoryApplication, CategoryApplication>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+            services.AddScoped<IJobPictureRepository, JobPictureRepository>();
+            
             services.AddDbContext<OkapiaContext>(options =>
             {
                 options.UseSqlServer(_configuration.GetConnectionString("OkapiaContext"));

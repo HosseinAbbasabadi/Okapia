@@ -1,5 +1,5 @@
-﻿@using Okapia.Domain.Commands.Job
-@model Okapia.Domain.Commands.Job.CreateJob
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model Okapia.Domain.Commands.Job.EditJob
 
 @{
   ViewData["Title"] = "Create";
@@ -11,7 +11,7 @@
 <hr/>
 <div class="row">
 <div class="col-md-12">
-<form asp-area="Administrator" asp-controller="Job" asp-action="Create">
+<form asp-area="Administrator" asp-controller="Job" asp-action="Edit" asp-route-id="@Model.JobId" asp-route-redirectUrl="@ViewData["redirectUrl"]">
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <div class="col-md-4">
   <div class="form-group">
@@ -93,7 +93,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobAddress" class="control-label"></label>
-    <input asp-for="JobAddress" class="form-control" />
+    <input asp-for="JobAddress" class="form-control"/>
     <span asp-validation-for="JobAddress" class="text-danger"></span>
   </div>
 </div>
@@ -110,7 +110,7 @@
   <div class="form-group">
     <label asp-for="JobCityId" class="control-label"></label>
     <select asp-for="JobCityId" class="form-control" id="cityDropDown" onchange="getDistrictList()">
-      <option value="0">شهر مورد نظر را انتخاب کنید</option>
+      <option value="@Model.JobCityId">@Model.JobCity</option>
     </select>
     <span asp-validation-for="JobCityId" class="text-danger"></span>
   </div>
@@ -119,7 +119,7 @@
   <div class="form-group">
     <label asp-for="JobDistrictId" class="control-label"></label>
     <select asp-for="JobDistrictId" class="form-control" id="districtDropDown" onchange="getNeighborhoodList()">
-      <option value="0">منطقه مورد نظر را انتخاب کنید</option>
+      <option value="@Model.JobDistrictId">@Model.JobDistrict</option>
     </select>
     <span asp-validation-for="JobDistrictId" class="text-danger"></span>
   </div>
@@ -128,7 +128,7 @@
   <div class="form-group">
     <label asp-for="JobneighborhoodId" class="control-label"></label>
     <select asp-for="JobneighborhoodId" class="form-control" id="neighborhoodDropDown">
-      <option value="0">محله مورد نظر را انتخاب کنید</option>
+      <option value="@Model.JobneighborhoodId">@Model.JobNeighborhood</option>
     </select>
     <span asp-validation-for="JobneighborhoodId" class="text-danger"></span>
   </div>
@@ -137,7 +137,7 @@
   <div class="form-group">
     <label asp-for="JobCategoryId" class="control-label"></label>
     <select asp-for="JobCategoryId" asp-items="@Model.Categories" class="form-control">
-      <option value="0">گروه مربوط به شغل را انتخاب کنید</option>
+      <option value="@Model.JobCategoryId">@Model.JobCategory</option>
     </select>
     <span asp-validation-for="JobCategoryId" class="text-danger"></span>
   </div>
@@ -310,6 +310,20 @@
     <span asp-validation-for="TelegramUrl" class="text-danger"></span>
   </div>
 </div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="IsDeleted" class="control-label"></label>
+    <input asp-for="IsDeleted" class="form-control"/>
+    <span asp-validation-for="IsDeleted" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="RedirectInstead301Url" class="control-label"></label>
+    <input asp-for="RedirectInstead301Url" class="form-control"/>
+    <span asp-validation-for="RedirectInstead301Url" class="text-danger"></span>
+  </div>
+</div>
 
 <table class="col-md-12 table table-bordered text-center">
   <tr>
@@ -318,38 +332,133 @@
     <td>پیش نمایش</td>
     <td>حذف</td>
   </tr>
-  @for (var i = 1; i <= 6; i++)
+  @*<tr>
+    <td>1</td>
+    <td>
+      <input id="photo1" name="photo1" type="file" size="1" onchange="uploadFiles('photo1');PreviewImage('photo1', 'prevphoto1');" class="form-control custom-file-input" accept="image/*" value="@Model.Photo1" />
+      <input asp-for="@Model.Photo1" id="namephoto1" name="namephoto1" type="hidden" size="1" value="@Model.Photo1" />
+    </td>
+    <td>
+      <img id="prevphoto1" src="~/JobPhotos/Thumbs/@Model.Photo1" alt="your image" with="100" height="100" />
+    </td>
+    <td>
+      <button type="button" id="deletephoto1" onclick="deletePhoto('photo1')" class="btn btn-danger" filename="@Model.Photo1">حذف</button>
+    </td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <input id="photo2" name="photo2" type="file" size="1" onchange="uploadFiles('photo2');PreviewImage('photo2', 'prevphoto2');" class="form-control custom-file-input" accept="image/*" value="@Model.Photo2" />
+      <input asp-for="@Model.Photo2" id="namephoto2" name="namephoto2" type="hidden" size="1" value="@Model.Photo2" />
+    </td>
+    <td>
+      <img id="prevphoto2" src="~/JobPhotos/Thumbs/@Model.Photo2" alt="your image" with="100" height="100" />
+    </td>
+    <td>
+      <button type="button" id="deletephoto2" onclick="deletePhoto('photo2')" class="btn btn-danger" filename="@Model.Photo2">حذف</button>
+    </td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <input id="photo3" name="photo3" type="file" size="1" onchange="uploadFiles('photo3');PreviewImage('photo3', 'prevphoto3');" class="form-control custom-file-input" accept="image/*" value="@Model.Photo3" />
+      <input asp-for="@Model.Photo3" id="namephoto3" name="namephoto3" type="hidden" size="1" value="@Model.Photo3" />
+    </td>
+    <td>
+      <img id="prevphoto3" src="~/JobPhotos/Thumbs/@Model.Photo3" alt="your image" with="100" height="100" />
+    </td>
+    <td>
+      <button type="button" id="deletephoto3" onclick="deletePhoto('photo3')" class="btn btn-danger" filename="@Model.Photo3">حذف</button>
+    </td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>
+      <input id="photo4" name="photo4" type="file" size="1" onchange="uploadFiles('photo4');PreviewImage('photo4', 'prevphoto4');" class="form-control custom-file-input" accept="image/*" value="@Model.Photo4" />
+      <input asp-for="@Model.Photo4" id="namephoto4" name="namephoto4" type="hidden" size="1" value="@Model.Photo4" />
+    </td>
+    <td>
+      <img id="prevphoto4" src="~/JobPhotos/Thumbs/@Model.Photo4" alt="your image" with="100" height="100" />
+    </td>
+    <td>
+      <button type="button" id="deletephoto4" onclick="deletePhoto('photo4')" class="btn btn-danger" filename="@Model.Photo4">حذف</button>
+    </td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>
+      <input id="photo5" name="photo5" type="file" size="1" onchange="uploadFiles('photo5');PreviewImage('photo5', 'prevphoto5');" class="form-control custom-file-input" accept="image/*" value="@Model.Photo5" />
+      <input asp-for="@Model.Photo5" id="namephoto5" name="namephoto5" type="hidden" size="1" value="@Model.Photo5" />
+    </td>
+    <td>
+      <img id="prevphoto5" src="~/JobPhotos/Thumbs/@Model.Photo5" alt="your image" with="100" height="100" />
+    </td>
+    <td>
+      <button type="button" id="deletephoto5" onclick="deletePhoto('photo5')" class="btn btn-danger" filename="@Model.Photo5">حذف</button>
+    </td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>
+      <input id="photo6" name="photo6" type="file" size="1" onchange="uploadFiles('photo6');PreviewImage('photo6', 'prevphoto6');" class="form-control custom-file-input" accept="image/*" value="@Model.Photo6" />
+      <input asp-for="@Model.Photo6" id="namephoto6" name="namephoto6" type="hidden" size="1" value="@Model.Photo6" />
+    </td>
+    <td>
+      <img id="prevphoto6" src="~/JobPhotos/Thumbs/@Model.Photo6" alt="your image" with="100" height="100" />
+    </td>
+    <td>
+      <button type="button" id="deletephoto6" onclick="deletePhoto('photo6')" class="btn btn-danger" filename="@Model.Photo6">حذف</button>
+    </td>
+  </tr>*@
+  @foreach (var photo in Model.Photos.Select((value, index) => new {index, value}))
   {
-    var inputId = "photo" + i;
-    var nameInputId = "name" + inputId;
-    var propertyInputId = "Name" + "Photo" + i;
+    var index = photo.index;
+    index += 1;
+    var inputId = "Photo" + index;
+    var propertyInputName = "name" + "Photo" + index;
+    var propertyInputId = "name" + "Photo" + index + "Id";
     var prevImageId = "prev" + inputId;
     var deleteBtnId = "delete" + inputId;
     <tr>
-      <td>@i</td>
+      <td>@index</td>
       <td>
-        <input id="@inputId" name="@inputId" type="file" size="1" onchange="uploadFiles('@inputId',0, 'job');PreviewImage('@inputId', '@prevImageId');" class="form-control custom-file-input" accept="image/*"/>
-        <input asp-for="'@propertyInputId'" id="@nameInputId" name="@nameInputId" type="hidden" size="1" value=""/>
+        <input id="@inputId" name="@inputId" type="file" size="1" onchange="uploadFiles('@inputId', '@photo.value.Id', 'job');PreviewImage('@inputId', '@prevImageId');" class="form-control custom-file-input" accept="image/*" value="@photo.value.Name"/>
+        <input asp-for="@propertyInputName" id="@propertyInputName" name="@propertyInputName" type="hidden" size="1" value="@photo.value.Name" filename="@photo.value.Name"/>
+        <input asp-for="@propertyInputId" id="@propertyInputId" name="@propertyInputId" type="hidden" size="1" value="@photo.value.Id"/>
       </td>
       <td>
-        <img id="@prevImageId" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
+        @if (!string.IsNullOrEmpty(photo.value.Name))
+        {
+          <img id="@prevImageId" src="~/JobPhotos/Thumbs/@photo.value.Name" alt="your image" with="100" height="100"/>
+        }
+        else
+        {
+          <img id="@prevImageId" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
+        }
       </td>
       <td>
-        <button type="button" id="@deleteBtnId" onclick="deletePhoto('@inputId', 'job')" class="btn btn-danger hidden">حذف</button>
+        @if (!string.IsNullOrEmpty(photo.value.Name))
+        {
+          <button type="button" id="@deleteBtnId" onclick="deletePhoto('@inputId', 'job')" class="btn btn-danger">حذف</button>
+        }
+        else
+        {
+          <button type="button" id="@deleteBtnId" onclick="deletePhoto('@inputId', 'job')" class="btn btn-danger hidden">حذف</button>
+        }
       </td>
-    </tr> 
+    </tr>
   }
- 
+
 </table>
 <div class="col-md-12">
   <div class="form-group">
-    <input type="submit" value="ثبت" class="btn btn-success btn-lg"/>
+    <input type="submit" value="اعمال تغییرات" class="btn btn-success btn-lg"/>
   </div>
 </div>
 
 <div class="col-md-12">
   <div class="form-group text-left">
-    <a class="text-info" asp-action="Index" asp-controller="Job" asp-area="Administrator">بازگشت به لیست</a>
+    <a class="text-info" href="@Context.Request.GetDisplayUrl()">بازگشت به لیست</a>
   </div>
 </div>
 </form>
@@ -397,4 +506,12 @@
     document.getElementById("JobSlug").value = str;
   }
 
+  function PreviewImage(input, img) {
+    var oFReader = new FileReader();
+    oFReader.readAsDataURL(document.getElementById(input).files[0]);
+
+    oFReader.onload = function(oFREvent) {
+      document.getElementById(img).src = oFREvent.target.result;
+    };
+  };
 </script>

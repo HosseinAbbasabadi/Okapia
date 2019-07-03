@@ -37,7 +37,8 @@ namespace Okapia.Repository.Repositories
 
         public List<T> Get(Expression<Func<T, bool>> predicate)
         {
-            return _context.Set<T>().Where(predicate).ToList();
+            var data =_context.Set<T>().Where(predicate).ToList();
+            return data;
         }
 
         public List<T> GetAll()

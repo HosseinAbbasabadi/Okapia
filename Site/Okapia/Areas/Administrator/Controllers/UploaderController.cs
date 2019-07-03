@@ -22,8 +22,9 @@ namespace Okapia.Areas.Administrator.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> Upload(IList<IFormFile> files)
+        public async Task<JsonResult> Upload(IList<IFormFile> files, [FromQuery(Name = "type")] string type)
         {
+            var containingFoler = DetectContainingFoler(type);
             var photo = files.First();
             if (!photo.FileName.IsValidFileName()) return Json(400);
             if (photo.Length > ThreeMegaBytes) return Json(401);
@@ -31,12 +32,12 @@ namespace Okapia.Areas.Administrator.Controllers
                 .Trim('"');
             var uniqueFileName = DateTime.Now.ToFileName() + "_" + filename;
             uniqueFileName = EnsureCorrectFilename(uniqueFileName);
-            using (var output = System.IO.File.Create(GetOriginalFilePath(uniqueFileName)))
+            using (var output = System.IO.File.Create(GetOriginalFilePath(uniqueFileName, containingFoler)))
             {
                 await photo.CopyToAsync(output);
             }
 
-            MagicImageTools(uniqueFileName);
+            MagicImageTools(uniqueFileName, containingFoler);
 
             return Json(uniqueFileName);
         }
@@ -49,28 +50,28 @@ namespace Okapia.Areas.Administrator.Controllers
             return filename;
         }
 
-        private string GetOriginalFilePath(string filename)
+        private string GetOriginalFilePath(string filename, string containingFoler)
         {
-            var path = _hostingEnvironment.WebRootPath + "\\JobPhotos\\";
+            var path = _hostingEnvironment.WebRootPath + "\\"+ containingFoler + "\\";
             //if (!Directory.Exists(path))
             //    Directory.CreateDirectory(path);
             return path + filename;
         }
 
-        private string GetThumbFilePath(string filename)
+        private string GetThumbFilePath(string filename, string containingFoler)
         {
-            var path = _hostingEnvironment.WebRootPath + "\\JobPhotos\\" + "Thumbs\\";
+            var path = _hostingEnvironment.WebRootPath + "\\" + containingFoler + "\\" + "Thumbs\\";
             //if (!Directory.Exists(path))
             //    Directory.CreateDirectory(path);
             return path + filename;
         }
 
-        public void MagicImageTools(string fileName)
+        public void MagicImageTools(string fileName, string containingFoler)
         {
-            var fileNameOnServer = GetOriginalFilePath(fileName);
+            var fileNameOnServer = GetOriginalFilePath(fileName, containingFoler);
             using (var image = new MagickImage(fileNameOnServer))
             {
-                var thumbFileNameOnServer = GetThumbFilePath(fileName);
+                var thumbFileNameOnServer = GetThumbFilePath(fileName, containingFoler);
                 var size = new MagickGeometry(200, 0);
                 image.Resize(size);
 
@@ -79,15 +80,26 @@ namespace Okapia.Areas.Administrator.Controllers
         }
 
         [HttpPost]
-        public JsonResult Delete(string id)
+        public JsonResult Delete(string id, [FromQuery(Name = "type")] string type)
         {
-            var filename = GetOriginalFilePath(id);
-            var thumb = GetThumbFilePath(id);
+            var containingFoler = DetectContainingFoler(type);
+            var filename = GetOriginalFilePath(id, containingFoler);
+            var thumb = GetThumbFilePath(id, containingFoler);
 
             if (!System.IO.File.Exists(filename) || !System.IO.File.Exists(thumb)) return Json(400);
             System.IO.File.Delete(filename);
             System.IO.File.Delete(thumb);
             return Json(200);
+        }
+
+        private static string DetectContainingFoler(string type)
+        {
+            string containingFoler = null;
+            if (type == "category")
+                containingFoler = "CategoryPhotos";
+            if (type == "job")
+                containingFoler = "JobPhotos";
+            return containingFoler;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using Okapia.Application.Contracts;
 using Okapia.Domain;
 using Okapia.Domain.Contracts;
+using Okapia.Domain.Models;
 using Okapia.Domain.ViewModels.City;
 
 namespace Okapia.Application.Applications
