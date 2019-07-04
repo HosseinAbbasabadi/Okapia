@@ -30,7 +30,8 @@ namespace Okapia.Application.Applications
                 CategorySeohead = command.CategorySeohead,
                 CategorySmallDescription = command.CategorySmallDescription,
                 CategoryThumbPicUrl = command.NameImage,
-                RegisteringEmployeeId = 1
+                RegisteringEmployeeId = 1,
+                IsDeleted = false
             };
             _categoryRepository.Create(category);
             _categoryRepository.SaveChanges();
@@ -53,8 +54,41 @@ namespace Okapia.Application.Applications
                     CategorySeohead = command.CategorySeohead,
                     CategorySmallDescription = command.CategorySmallDescription,
                     CategoryThumbPicUrl = command.NameImage,
-                    RegisteringEmployeeId = 1
+                    RegisteringEmployeeId = 1,
+                    IsDeleted = command.IsDeleted
                 };
+                _categoryRepository.Update(category);
+                _categoryRepository.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+        }
+
+        public void Delete(int id)
+        {
+            try
+            {
+                var category = _categoryRepository.GetCategory(id);
+                category.IsDeleted = true;
+                _categoryRepository.Update(category);
+                _categoryRepository.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+        }
+
+        public void Activate(int id)
+        {
+            try
+            {
+                var category = _categoryRepository.GetCategory(id);
+                category.IsDeleted = false;
                 _categoryRepository.Update(category);
                 _categoryRepository.SaveChanges();
             }

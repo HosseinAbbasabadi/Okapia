@@ -35,10 +35,14 @@ namespace Okapia.Repository.Repositories
             return _context.Find<T>(id);
         }
 
-        public List<T> Get(Expression<Func<T, bool>> predicate)
+        public List<T> Get(params Expression<Func<T, bool>>[] predicates)
         {
-            var data =_context.Set<T>().Where(predicate).ToList();
-            return data;
+            var query = _context.Set<T>().AsQueryable();
+            foreach (var predicate in predicates)
+            {
+                query = query.Where(predicate);
+            }
+            return query.ToList();
         }
 
         public List<T> GetAll()

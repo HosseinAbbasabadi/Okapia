@@ -1,0 +1,32 @@
+﻿@model Okapia.Areas.Administrator.Models.CityIndexViewModel
+@{
+  ViewData["Title"] = "Index";
+}
+
+
+<h1>صفحه مدیریت شهرها</h1>
+
+<h2>
+  <button onclick="openCreateCityModal()" class="btn btn-success text-lg-center">ایجاد شغل جدید</button>
+</h2>
+
+<div id="createCityDiv">
+
+</div>
+
+<script>
+  function openCreateCityModal() {
+    $.ajax({
+      url: '@Url.Action("Create", "City")',
+      type: "Get",
+      success: function(response) {
+        $("#createCityDiv").html(response);
+        $('#createCityModal').modal('toggle');
+      }
+    });
+  }
+</script>
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/City/_SearchCities.cshtml", Model.CitySearchModel)
+@await Html.PartialAsync("~/Areas/Administrator/Views/City/_ListCity.cshtml", Model.CityViewModeles)
+

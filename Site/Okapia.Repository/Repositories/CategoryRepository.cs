@@ -35,14 +35,15 @@ namespace Okapia.Repository.Repositories
                 CategoryParentId = x.CategoryParentId,
                 CategorySeohead = x.CategorySeohead,
                 CategorySmallDescription = x.CategorySmallDescription,
-                NameImage = x.CategoryThumbPicUrl
+                NameImage = x.CategoryThumbPicUrl,
+                IsDeleted = x.IsDeleted
             }).ToList().First();
             return category;
         }
 
         public List<CategoryViewModel> GetCategories()
         {
-            return _context.Categories.Select(x => new CategoryViewModel
+            return _context.Categories.Where(x => x.IsDeleted == false).Select(x => new CategoryViewModel
             {
                 CategoryId = x.CategoryId,
                 CategoryName = x.CategoryName
@@ -65,7 +66,8 @@ namespace Okapia.Repository.Repositories
                     CategoryName = category.CategoryName,
                     CategorySmallDescription = category.CategorySmallDescription,
                     CategoryParentId = category.CategoryParentId,
-                    Photo = category.CategoryThumbPicUrl
+                    Photo = category.CategoryThumbPicUrl,
+                    IsDeleted = category.IsDeleted
                 };
 
             if (!string.IsNullOrEmpty(searchModel.CategoryName))

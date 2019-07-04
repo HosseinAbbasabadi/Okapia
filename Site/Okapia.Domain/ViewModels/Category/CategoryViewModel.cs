@@ -13,5 +13,6 @@ namespace Okapia.Domain.ViewModels.Category
         public int CategoryParentId { get; set; }
         [Display(Name = "عنوان گروه مافوق")] public string CategoryParentName { get; set; }
         [Display(Name = "عکس")] public string Photo { get; set; }
+        [Display(Name = "آیا حذف شده است؟")] public bool IsDeleted { get; set; }
     }
 }

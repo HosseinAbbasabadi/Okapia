@@ -53,15 +53,22 @@
           <span asp-validation-for="CategoryPageTittle" class="text-danger"></span>
         </div>
       </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label asp-for="CategoryParentId" class="control-label"></label>
-            @*<input asp-for="JobProvienceId" class="form-control" />*@
-            <select asp-for="CategoryParentId" asp-items="@Model.Categories" class="form-control">
-              <option value="0">گروه مافوق را انتخاب کنید...</option>
-            </select>
-            <span asp-validation-for="CategoryParentId" class="text-danger"></span>
-          </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="CategoryParentId" class="control-label"></label>
+          @*<input asp-for="JobProvienceId" class="form-control" />*@
+          <select asp-for="CategoryParentId" asp-items="@Model.Categories" class="form-control">
+            <option value="0">گروه مافوق را انتخاب کنید...</option>
+          </select>
+          <span asp-validation-for="CategoryParentId" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="IsDeleted" class="control-label"></label>
+          <input asp-for="IsDeleted" class="form-control" />
+          <span asp-validation-for="IsDeleted" class="text-danger"></span>
+        </div>
       </div>
       <table class="col-md-12 table table-bordered text-center">
         <tr>
@@ -72,7 +79,7 @@
         <tr>
           <td>
             <input id="Image" name="Image" type="file" size="1" onchange="uploadFiles('Image', 0, 'category');PreviewImage('Image', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
-            <input asp-for="NameImage" id="nameImage" name="nameImage" type="hidden" size="1" value="@Model.NameImage" filename="@Model.NameImage"/>
+            <input asp-for="NameImage" id="nameImage" name="nameImage" type="hidden" size="1" value="@Model.NameImage" filename="@Model.NameImage" />
           </td>
           <td>
             @if (!string.IsNullOrEmpty(Model.NameImage))

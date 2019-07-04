@@ -65,14 +65,14 @@
             <div class="form-group">
               <label asp-for="JobProvienceId" class="control-label"></label>
               @*<input asp-for="JobProvienceId" class="form-control" />*@
-              <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control" id="provinceDropDown" onchange="getCityList()"></select>
+              <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control" id="provinceDropDown" onchange="getCityList('@Url.Action("GetCitiesByProvince", "Job")')"></select>
               <span asp-validation-for="JobProvienceId" class="text-danger"></span>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label asp-for="JobCityId" class="control-label"></label>
-              <select asp-for="JobCityId" class="form-control" id="cityDropDown" onchange="getDistrictList()">
+              <select asp-for="JobCityId" class="form-control" id="cityDropDown" onchange="getDistrictList('@Url.Action("GetDistrictsByCity", "Job")')">
                 <option value="0">شهر مورد نظر را انتخاب کنید</option>
               </select>
               <span asp-validation-for="JobCityId" class="text-danger"></span>
@@ -81,7 +81,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label asp-for="JobDistrictId" class="control-label"></label>
-              <select asp-for="JobDistrictId" class="form-control" id="districtDropDown" onchange="getNeighborhoodList()">
+              <select asp-for="JobDistrictId" class="form-control" id="districtDropDown" onchange="getNeighborhoodList('@Url.Action("GetNeighborhoodsByDistrict", "Job")')">
                 <option value="0">منطقه مورد نظر را انتخاب کنید</option>
               </select>
               <span asp-validation-for="JobDistrictId" class="text-danger"></span>
@@ -117,41 +117,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  function getList(sourceDropdown, action, distDropdown) {
-    var id = $(sourceDropdown).val();
-    $.ajax({
-      url: action + '/' + id,
-      type: 'Get',
-      //datatype: 'application/json',
-      contentType: 'application/json',
-      //data: JSON.stringify({
-      //  stateId: +stateId
-      //}),
-      success: function(result) {
-        $(distDropdown).html("");
-        $(distDropdown).append($('<option></option>').val(0).html('انتخاب کنید'));
-        $.each(result,
-          function(i, item) {
-            $(distDropdown).append($('<option></option>').val(item.id).html(item.name));
-          });
-      },
-      error: function() {
-        alert("خطا در ارتباط با سرور لطفا با مدیر سیتم تماس بگیرید.");
-      }
-    });
-  }
-
-  function getCityList() {
-    this.getList('#provinceDropDown', 'GetCitiesByProvince', '#cityDropDown');
-  }
-
-  function getDistrictList() {
-    this.getList('#cityDropDown', 'GetDistrictsByCity', '#districtDropDown');
-  }
-
-  function getNeighborhoodList() {
-    this.getList('#districtDropDown', 'GetNeighborhoodsByDistrict', '#neighborhoodDropDown');
-  }
-</script>

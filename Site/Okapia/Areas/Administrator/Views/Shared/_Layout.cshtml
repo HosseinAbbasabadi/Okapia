@@ -81,15 +81,10 @@
             crossorigin="anonymous"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-            crossorigin="anonymous"
-            integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
-    </script>
+    
   </environment>
   <script src="~/js/site.js" asp-append-version="true"></script>
-
+<script src="~/js/bootstrap.js"></script>
   <script>
     var resizefunc = [];
   </script>
@@ -108,14 +103,15 @@
     CKEDITOR.replace('editor1');
   </script>
   <script src="~/js/aspnetcorefileuploading.js"></script>
-  <script>
-    $body = $("body");
+  <script src="~/js/ajaxFunctions.js"></script>
+<script>
+  $body = $("body");
 
-    $(document).on({
-      ajaxStart: function () { $body.addClass("loading"); },
-      ajaxStop: function () { $body.removeClass("loading"); }
-    });
-  </script>
+  $(document).on({
+    ajaxStart: function () { $body.addClass("loading"); },
+    ajaxStop: function () { $body.removeClass("loading"); }
+  });
+</script>
   @RenderSection("Scripts", required: false)
 <div class="loader"></div>
 </body>

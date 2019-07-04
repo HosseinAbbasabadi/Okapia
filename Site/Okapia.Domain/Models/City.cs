@@ -2,7 +2,7 @@
 
 namespace Okapia.Domain.Models
 {
-    public partial class City
+    public class City
     {
         public City()
         {
@@ -10,9 +10,9 @@ namespace Okapia.Domain.Models
         }
 
         public int Id { get; set; }
-        public int? ProvinceId { get; set; }
+        public int ProvinceId { get; set; }
         public string Name { get; set; }
-
+        public bool IsDeleted { get; set; }
         public virtual Province Province { get; set; }
         public virtual ICollection<District> District { get; set; }
     }

@@ -14,5 +14,6 @@
         public int CategoryParentId { get; set; }
         public string Job { get; set; }
         public int RegisteringEmployeeId { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

@@ -114,22 +114,33 @@ namespace Okapia.Areas.Administrator.Controllers
             }
         }
 
-        // GET: Category/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //// GET: Category/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
-        // POST: Category/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+                _categoryApplication.Delete(id);
+                var referer = Request.Headers["Referer"].ToString();
+                return Redirect(referer);
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
-                return RedirectToAction(nameof(Index));
+        public ActionResult Activate(int id)
+        {
+            try
+            {
+                _categoryApplication.Activate(id);
+                var referer = Request.Headers["Referer"].ToString();
+                return Redirect(referer);
             }
             catch
             {

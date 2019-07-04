@@ -10,5 +10,6 @@ namespace Okapia.Domain.SeachModels
         [Display(Name = "عنوان گروه مافوق")]
         public int CategoryParrentId { get; set; }
         public SelectList Categories { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

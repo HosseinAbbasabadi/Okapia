@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
-using Okapia.Domain.Commands.Job;
-using Okapia.Domain.Contracts;
+using Okapia.Domain.Commands.Job;   
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Job;
 using Okapia.Domain.ViewModels.JobPicture;
@@ -64,7 +62,7 @@ namespace Okapia.Areas.Administrator.Controllers
 
         private JobSearchModel ProvideJobSearchModel(JobSearchModel searchModel)
         {
-            searchModel.Proviences = new SelectList(Proviences(), "Id", "Name");
+            searchModel.Proviences = new SelectList(Provinces.ToList(), "Id", "Name");
             searchModel.Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName");
             if (searchModel.PageSize == 0)
             {
@@ -95,22 +93,13 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             var createModel = new CreateJob
             {
-                Proviences = new SelectList(Proviences(), "Id", "Name"),
+                Proviences = new SelectList(Provinces.ToList(), "Id", "Name"),
                 Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName")
             };
             return View(createModel);
         }
 
-        private static IEnumerable<Provience> Proviences()
-        {
-            return new List<Provience>
-            {
-                new Provience(0, "استان مورد نظر را انتخاب کنید"),
-                new Provience(31, "البرز"),
-                new Provience(27, "قزوین"),
-                new Provience(16, "لرستان")
-            };
-        }
+        
 
         // POST: Shop/Create
         [HttpPost]
@@ -147,7 +136,7 @@ namespace Okapia.Areas.Administrator.Controllers
         public ActionResult Edit(int id, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
             var editJob = _jobApplication.GetJobDetails(id);
-            editJob.Proviences = new SelectList(Proviences(), "Id", "Name");
+            editJob.Proviences = new SelectList(Provinces.ToList(), "Id", "Name");
             editJob.Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName");
             ViewData["redirectUrl"] = redirectUrl;
             return View(editJob);

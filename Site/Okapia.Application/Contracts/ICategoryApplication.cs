@@ -9,6 +9,8 @@ namespace Okapia.Application.Contracts
     {
         void Create(CreateCategory command);
         void Update(EditCategory command);
+        void Delete(int id);
+        void Activate(int id);
         EditCategory GetCategoryDetails(int id);
         IEnumerable<CategoryViewModel> GetCategories();
         IEnumerable<CategoryViewModel> GetCategoriesForList(CategorySearchModel searchModel, out int recordCount);
