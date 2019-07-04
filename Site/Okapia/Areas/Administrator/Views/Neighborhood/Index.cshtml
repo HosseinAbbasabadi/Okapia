@@ -1,0 +1,31 @@
+﻿@model Okapia.Areas.Administrator.Models.NeighborhoodIndexViewModel
+@{
+  ViewData["Title"] = "Index";
+}
+
+
+<h1>صفحه مدیریت مناطق</h1>
+
+<h2>
+  <button onclick="openCreateNeighborhoodModal()" class="btn btn-success text-lg-center">ایجاد محله جدید</button>
+</h2>
+
+<div id="createNeighborhoodDiv">
+
+</div>
+
+<script>
+  function openCreateNeighborhoodModal() {
+    $.ajax({
+      url: '@Url.Action("Create", "Neighborhood")',
+      type: "Get",
+      success: function(response) {
+        $("#createNeighborhoodDiv").html(response);
+        $('#createNeighborhoodModal').modal('toggle');
+      }
+    });
+  }
+</script>
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/Neighborhood/_SearchNeighborhoods.cshtml", Model.NeighborhoodSearchModel)
+@await Html.PartialAsync("~/Areas/Administrator/Views/Neighborhood/_ListNeighborhoods.cshtml", Model.NeighborhoodViewModels)

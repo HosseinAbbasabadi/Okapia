@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Okapia.Application.Contracts;
 using Okapia.Areas.Administrator.Models;
+using Okapia.Domain.Contracts;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
     public class NotificationController : Controller
     {
+        public NotificationController()
+        {
+        }
+
         // GET: Notification
         public ActionResult Index()
         {

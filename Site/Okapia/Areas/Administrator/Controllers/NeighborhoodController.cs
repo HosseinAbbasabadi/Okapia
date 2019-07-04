@@ -1,26 +1,31 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
-using Okapia.Domain.Commands.City;
+using Okapia.Domain.Commands.District;
+using Okapia.Domain.Commands.Neighborhood;
 using Okapia.Domain.SeachModels;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
-    public class CityController : Controller
+    public class NeighborhoodController : Controller
     {
+        private readonly INeighborhoodApplication _neighborhoodApplication;
+        private readonly IDistrictApplication _districtApplication;
         private readonly ICityApplication _cityApplication;
 
-        public CityController(ICityApplication cityApplication)
+        public NeighborhoodController(ICityApplication cityApplication, IDistrictApplication districtApplication,
+            INeighborhoodApplication neighborhoodApplication)
         {
             _cityApplication = cityApplication;
+            _districtApplication = districtApplication;
+            _neighborhoodApplication = neighborhoodApplication;
         }
 
         // GET: City
-        public ActionResult Index(CitySearchModel searchModel)
+        public ActionResult Index(NeighborhoodSearchModel searchModel)
         {
             searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
             if (searchModel.PageSize == 0)
@@ -28,11 +33,16 @@ namespace Okapia.Areas.Administrator.Controllers
                 searchModel.PageSize = 80;
             }
 
-            var cities = _cityApplication.GetCitiesForList(searchModel, out var recordCount);
-            var cityIndex = new CityIndexViewModel {CitySearchModel = searchModel, CityViewModeles = cities};
+            var neighborhoods = _neighborhoodApplication.GetNeighborhoodsForList(searchModel, out var recordCount);
+            var neighborhoodINdex =
+                new NeighborhoodIndexViewModel
+                {
+                    NeighborhoodSearchModel = searchModel,
+                    NeighborhoodViewModels = neighborhoods
+                };
             Pager.PreparePager(searchModel, recordCount);
             ViewData["searchModel"] = searchModel;
-            return View(cityIndex);
+            return View(neighborhoodINdex);
         }
 
         // GET: City/Details/5
@@ -44,21 +54,21 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: City/Create
         public ActionResult Create()
         {
-            var createCity = new CreateCity
+            var createNeighborhood = new CreateNeighborhood
             {
-                Provinces = new SelectList(Provinces.ToList(), "Id", "Name")
+                Provinces = new SelectList(Provinces.ToList(), "Id", "Name"),
             };
-            return PartialView("_Create", createCity);
+            return PartialView("_Create", createNeighborhood);
         }
 
         // POST: City/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateCity command)
+        public ActionResult Create(CreateNeighborhood command)
         {
             try
             {
-                _cityApplication.Create(command);
+                _neighborhoodApplication.Create(command);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -70,19 +80,19 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: City/Edit/5
         public ActionResult Edit(int id)
         {
-            var city = _cityApplication.GetCityDetails(id);
-            city.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
-            return PartialView("_Edit", city);
+            var neighborhood = _neighborhoodApplication.GetNeighborhoodDetails(id);
+            neighborhood.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
+            return PartialView("_Edit", neighborhood);
         }
 
         // POST: City/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, EditCity command)
+        public ActionResult Edit(int id, EditNeighborhood command)
         {
             try
             {
-                _cityApplication.Update(command);
+                _neighborhoodApplication.Update(command);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -102,7 +112,7 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             try
             {
-                _cityApplication.Delete(id);
+                _neighborhoodApplication.Delete(id);
                 var referer = Request.Headers["Referer"].ToString();
                 return Redirect(referer);
             }
@@ -116,7 +126,7 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             try
             {
-                _cityApplication.Activate(id);
+                _neighborhoodApplication.Activate(id);
                 var referer = Request.Headers["Referer"].ToString();
                 return Redirect(referer);
             }
@@ -127,9 +137,9 @@ namespace Okapia.Areas.Administrator.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetCitiesByProvince(int id)
+        public JsonResult GetNeighborhoodsByDistrict(int id)
         {
-            var cities = _cityApplication.GetCitiesBy(id);
+            var cities = _neighborhoodApplication.GetNeighborhoodsBy(id);
             return new JsonResult(cities);
         }
     }

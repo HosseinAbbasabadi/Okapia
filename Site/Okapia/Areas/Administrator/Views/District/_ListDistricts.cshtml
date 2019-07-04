@@ -1,14 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
 @using Okapia.Domain.SeachModels
-@model IEnumerable<Okapia.Domain.ViewModels.City.CityViewModel>
+@model IEnumerable<Okapia.Domain.ViewModels.District.DistrictViewModel>
 @{
-  var searchModel = ViewData["searchModel"] as CitySearchModel;
+  var searchModel = ViewData["searchModel"] as DistrictSearchModel;
 }
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-border panel-primary">
       <div class="panel-heading">
-        <h2 class="panel-title">لیست شهرها</h2>
+        <h2 class="panel-title">لیست مناطق</h2>
       </div>
       <div class="panel-body">
         <table id="datatable" class="table table-striped table-bordered">
@@ -22,6 +22,9 @@
           </th>
           <th>
             @Html.DisplayNameFor(model => model.ProvinceName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CityName)
           </th>
           <th>
             عملیات
@@ -46,14 +49,17 @@
                 @Html.DisplayFor(modelItem => item.value.ProvinceName)
               </td>
               <td>
-                <a class="btn btn-sm btn-info" onclick="openEditCityModal('@item.value.Id')">ویرایش</a>
+                @Html.DisplayFor(modelItem => item.value.CityName)
+              </td>
+              <td>
+                <a class="btn btn-sm btn-info" onclick="openEditDistrictModal('@item.value.Id')">ویرایش</a>
                 @if (!item.value.IsDeleted)
                 {
-                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="City" asp-action="Delete" asp-route-id="@item.value.Id">حذف</a>
+                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="Neighborhood" asp-action="Delete" asp-route-id="@item.value.Id">حذف</a>
                 }
                 else
                 {
-                  <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="City" asp-action="Activate" asp-route-id="@item.value.Id">فعال سازی</a>
+                  <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Neighborhood" asp-action="Activate" asp-route-id="@item.value.Id">فعال سازی</a>
                 }
               </td>
             </tr>
@@ -65,10 +71,11 @@
         <ul class="pagination">
           @for (var i = 0; i < searchModel.PageCount; i++)
           {
-            var routingSearchModel = new CitySearchModel
+            var routingSearchModel = new DistrictSearchModel
             {
               Name = searchModel.Name,
               ProvinceId = searchModel.ProvinceId,
+              CityId = searchModel.CityId,
               IsDeleted = searchModel.IsDeleted,
               PageSize = 80,
               PageIndex = i
@@ -76,13 +83,13 @@
             if (searchModel.PageIndex == i)
             {
               <li class="active">
-                @Html.ActionLink((i + 1).ToString(), "Index", "City", routingSearchModel)
+                @Html.ActionLink((i + 1).ToString(), "Index", "District", routingSearchModel)
               </li>
             }
             else
             {
               <li>
-                @Html.ActionLink((i + 1).ToString(), "Index", "City", routingSearchModel)
+                @Html.ActionLink((i + 1).ToString(), "Index", "District", routingSearchModel)
               </li>
             }
           }
@@ -92,17 +99,17 @@
   </div>
 </div>
 
-<div id="editCityDiv">
+<div id="editNeighorhoodDiv">
 
 </div>
 <script>
-  function openEditCityModal(id) {
+  function openEditDistrictModal(id) {
     $.ajax({
-      url: '@Url.Action("Edit", "City")/'+id,
+      url: '@Url.Action("Edit", "District")/'+id,
       type: "Get",
       success: function(response) {
-        $("#editCityDiv").html(response);
-        $('#editCityModal').modal('toggle');
+        $("#editDistrictDiv").html(response);
+        $('#editDistrictModal').modal('toggle');
       }
     });
   }

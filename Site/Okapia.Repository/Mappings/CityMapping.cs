@@ -12,7 +12,7 @@ namespace Okapia.Repository.Mappings
             builder.ToTable("City");
             builder.Property(e => e.Id)
                 .HasColumnName("ID")
-                .ValueGeneratedNever();
+                .ValueGeneratedOnAdd();
 
             builder.Property(e => e.Name).HasMaxLength(255);
 

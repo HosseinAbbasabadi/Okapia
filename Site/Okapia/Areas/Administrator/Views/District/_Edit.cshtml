@@ -1,6 +1,6 @@
-﻿@model Okapia.Domain.Commands.City.EditCity
+﻿@model Okapia.Domain.Commands.District.EditDistrict
 
-<div id="editCityModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+<div id="editDistrictModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog" style="width: 55%;">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,7 +10,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
-            <form asp-action="Edit" asp-controller="City" asp-area="Administrator" method="post">
+            <form asp-action="Edit" asp-controller="District" asp-area="Administrator" method="post">
               <div asp-validation-summary="ModelOnly" class="text-danger"></div>
               <div class="col-md-4">
                 <div class="form-group">
@@ -22,7 +22,16 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="ProvinceId" class="control-label"></label>
-                  <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control">
+                  <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="provinceDropDown" onchange="getCityList('@Url.Action("GetCitiesByProvince", "City")')">
+                  </select>
+                  <span asp-validation-for="ProvinceId" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="CityId" class="control-label"></label>
+                  <select asp-for="CityId" asp-items="@Model.Cities" class="form-control">
+                    <option value="@Model.CityId">@Model.CityName</option>
                   </select>
                   <span asp-validation-for="ProvinceId" class="text-danger"></span>
                 </div>
@@ -34,7 +43,7 @@
                   <span asp-validation-for="IsDeleted" class="text-danger"></span>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <input type="submit" value="اعمال تغییرات" class="btn btn-success btn-lg" />
                 </div>

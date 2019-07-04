@@ -5,22 +5,25 @@ using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
 using Okapia.Domain.Commands.City;
+using Okapia.Domain.Commands.District;
 using Okapia.Domain.SeachModels;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
-    public class CityController : Controller
+    public class DistrictController : Controller
     {
+        private readonly IDistrictApplication _districtApplication;
         private readonly ICityApplication _cityApplication;
 
-        public CityController(ICityApplication cityApplication)
+        public DistrictController(ICityApplication cityApplication, IDistrictApplication districtApplication)
         {
             _cityApplication = cityApplication;
+            _districtApplication = districtApplication;
         }
 
         // GET: City
-        public ActionResult Index(CitySearchModel searchModel)
+        public ActionResult Index(DistrictSearchModel searchModel)
         {
             searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
             if (searchModel.PageSize == 0)
@@ -28,11 +31,12 @@ namespace Okapia.Areas.Administrator.Controllers
                 searchModel.PageSize = 80;
             }
 
-            var cities = _cityApplication.GetCitiesForList(searchModel, out var recordCount);
-            var cityIndex = new CityIndexViewModel {CitySearchModel = searchModel, CityViewModeles = cities};
+            var districts = _districtApplication.GetDistrictsForList(searchModel, out var recordCount);
+            var districtIndex =
+                new DistrictIndexViewModel {DistrictSearchModel = searchModel, DistrictIndexViewModels = districts};
             Pager.PreparePager(searchModel, recordCount);
             ViewData["searchModel"] = searchModel;
-            return View(cityIndex);
+            return View(districtIndex);
         }
 
         // GET: City/Details/5
@@ -44,21 +48,21 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: City/Create
         public ActionResult Create()
         {
-            var createCity = new CreateCity
+            var createDistrict = new CreateDistrict
             {
-                Provinces = new SelectList(Provinces.ToList(), "Id", "Name")
+                Provinces = new SelectList(Provinces.ToList(), "Id", "Name"),
             };
-            return PartialView("_Create", createCity);
+            return PartialView("_Create", createDistrict);
         }
 
         // POST: City/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateCity command)
+        public ActionResult Create(CreateDistrict command)
         {
             try
             {
-                _cityApplication.Create(command);
+                _districtApplication.Create(command);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -70,19 +74,19 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: City/Edit/5
         public ActionResult Edit(int id)
         {
-            var city = _cityApplication.GetCityDetails(id);
-            city.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
-            return PartialView("_Edit", city);
+            var district = _districtApplication.GetDistrictDitails(id);
+            district.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
+            return PartialView("_Edit", district);
         }
 
         // POST: City/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, EditCity command)
+        public ActionResult Edit(int id, EditDistrict command)
         {
             try
             {
-                _cityApplication.Update(command);
+                _districtApplication.Update(command);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -102,7 +106,7 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             try
             {
-                _cityApplication.Delete(id);
+                _districtApplication.Delete(id);
                 var referer = Request.Headers["Referer"].ToString();
                 return Redirect(referer);
             }
@@ -116,7 +120,7 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             try
             {
-                _cityApplication.Activate(id);
+                _districtApplication.Activate(id);
                 var referer = Request.Headers["Referer"].ToString();
                 return Redirect(referer);
             }
@@ -126,10 +130,11 @@ namespace Okapia.Areas.Administrator.Controllers
             }
         }
 
+
         [HttpGet]
-        public JsonResult GetCitiesByProvince(int id)
+        public JsonResult GetDistrictsByCity(int id)
         {
-            var cities = _cityApplication.GetCitiesBy(id);
+            var cities = _districtApplication.GetDistrictsBy(id);
             return new JsonResult(cities);
         }
     }

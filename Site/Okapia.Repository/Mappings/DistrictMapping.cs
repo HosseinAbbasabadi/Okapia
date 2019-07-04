@@ -13,7 +13,7 @@ namespace Okapia.Repository.Mappings
         public void Configure(EntityTypeBuilder<District> builder)
         {
             builder.ToTable("District");
-            builder.Property(e => e.Id).ValueGeneratedNever();
+            builder.Property(e => e.Id).ValueGeneratedOnAdd();
 
             builder.Property(e => e.Name)
                 .IsRequired()

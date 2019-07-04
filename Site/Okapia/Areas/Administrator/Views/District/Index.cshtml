@@ -1,0 +1,31 @@
+﻿@model Okapia.Areas.Administrator.Models.DistrictIndexViewModel
+@{
+  ViewData["Title"] = "Index";
+}
+
+
+<h1>صفحه مدیریت مناطق</h1>
+
+<h2>
+  <button onclick="openCreateDistrictModal()" class="btn btn-success text-lg-center">ایجاد منطقه جدید</button>
+</h2>
+
+<div id="createDistrictDiv">
+
+</div>
+
+<script>
+  function openCreateDistrictModal() {
+    $.ajax({
+      url: '@Url.Action("Create", "District")',
+      type: "Get",
+      success: function(response) {
+        $("#createDistrictDiv").html(response);
+        $('#createDistrictModal').modal('toggle');
+      }
+    });
+  }
+</script>
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/District/_SearchDistricts.cshtml", Model.DistrictSearchModel)
+@await Html.PartialAsync("~/Areas/Administrator/Views/District/_ListDistricts.cshtml", Model.DistrictIndexViewModels)

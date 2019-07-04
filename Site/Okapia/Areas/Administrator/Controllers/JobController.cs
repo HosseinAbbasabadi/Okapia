@@ -210,26 +210,5 @@ namespace Okapia.Areas.Administrator.Controllers
                 return View();
             }
         }
-
-        [HttpGet]
-        public JsonResult GetCitiesByProvince(int id)
-        {
-            var cities = _cityApplication.GetCitiesBy(id);
-            return new JsonResult(cities);
-        }
-
-        [HttpGet]
-        public JsonResult GetDistrictsByCity(int id)
-        {
-            var cities = _districtApplication.GetDistrictsBy(id);
-            return new JsonResult(cities);
-        }
-
-        [HttpGet]
-        public JsonResult GetNeighborhoodsByDistrict(int id)
-        {
-            var cities = _neighborhoodApplication.GetNeighborhoodsBy(id);
-            return new JsonResult(cities);
-        }
     }
 }

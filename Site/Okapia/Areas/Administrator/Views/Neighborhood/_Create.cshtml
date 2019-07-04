@@ -1,0 +1,64 @@
+﻿@model Okapia.Domain.Commands.Neighborhood.CreateNeighborhood
+
+<div id="createNeighborhoodModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog" style="width: 55%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="custom-width-modalLabel">ایجاد محله جدید</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <form asp-action="Create" asp-controller="Neighborhood" asp-area="Administrator" method="post">
+              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="Name" class="control-label"></label>
+                  <input asp-for="Name" class="form-control"/>
+                  <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="ProvinceId" class="control-label"></label>
+                  <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="provinceDropDown" onchange="getCityList('@Url.Action("GetCitiesByProvince", "City")')">
+                    <option value="0">استان را انتخاب کنید...</option>
+                  </select>
+                  <span asp-validation-for="ProvinceId" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="CityId" class="control-label"></label>
+                  <select asp-for="CityId" asp-items="@Model.Cities" class="form-control" id="cityDropDown" onchange="getDistrictList('@Url.Action("GetDistrictsByCity", "District")')">
+                    <option value="0">شهر را انتخاب کنید...</option>
+                  </select>
+                  <span asp-validation-for="CityId" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="DistrictId" class="control-label"></label>
+                  <select asp-for="DistrictId" asp-items="@Model.Districts" class="form-control" id="districtDropDown">
+                    <option value="0">شهر را انتخاب کنید...</option>
+                  </select>
+                  <span asp-validation-for="DistrictId" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="submit" value="ثبت" class="btn btn-success btn-lg"/>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      @*<div class="modal-footer">
+        <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal">انصراف</button>
+        <button type="button" class="btn btn-success waves-effect waves-light">Save changes</button>
+      </div>*@
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

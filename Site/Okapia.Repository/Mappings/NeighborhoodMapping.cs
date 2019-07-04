@@ -9,7 +9,7 @@ namespace Okapia.Repository.Mappings
         public void Configure(EntityTypeBuilder<Neighborhood> builder)
         {
             builder.ToTable("Neighborhood");
-            builder.Property(e => e.Id).ValueGeneratedNever();
+            builder.Property(e => e.Id).ValueGeneratedOnAdd();
 
             builder.Property(e => e.Name)
                 .IsRequired()
