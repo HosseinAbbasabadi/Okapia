@@ -59,8 +59,9 @@ namespace Okapia.Repository.Repositories
             if (searchModel.ProvinceId != 0)
                 query = query.Where(x => x.ProvinceId == searchModel.ProvinceId);
             query = query.Where(x => x.IsDeleted == searchModel.IsDeleted);
+
             recordCount = query.Count();
-            query = query.OrderByDescending(x => x.Id).Skip(searchModel.PageIndex * searchModel.PageSize)
+            query = query.OrderByDescending(x => x.ProvinceId).Skip(searchModel.PageIndex * searchModel.PageSize)
                 .Take(searchModel.PageSize);
             return query.ToList();
         }

@@ -30,6 +30,7 @@ namespace Okapia.Application.Applications
                     IsDeleted = false
                 };
                 _cityRepository.Create(city);
+                _cityRepository.SaveChanges();
             }
             catch (Exception exception)
             {
