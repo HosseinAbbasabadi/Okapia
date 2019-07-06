@@ -16,17 +16,9 @@
 
 <script>
   function openCreateCityModal() {
-    $.ajax({
-      url: '@Url.Action("Create", "City")',
-      type: "Get",
-      success: function(response) {
-        $("#createCityDiv").html(response);
-        $('#createCityModal').modal('toggle');
-      }
-    });
+    openModalWithData('@Url.Action("Create", "City")', 'createCityDiv', 'createCityModal');
   }
 </script>
 
 @await Html.PartialAsync("~/Areas/Administrator/Views/City/_SearchCities.cshtml", Model.CitySearchModel)
 @await Html.PartialAsync("~/Areas/Administrator/Views/City/_ListCity.cshtml", Model.CityViewModeles)
-

@@ -101,7 +101,7 @@
   <div class="form-group">
     <label asp-for="JobProvienceId" class="control-label"></label>
     @*<input asp-for="JobProvienceId" class="form-control" />*@
-    <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control" id="provinceDropDown" onchange="getCityList('@Url.Action("GetCitiesByProvince", "City")')"></select>
+    <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control" id="provinceDropDown" onchange="getCityList('provinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'cityDropDown')"></select>
     <span asp-validation-for="JobProvienceId" class="text-danger"></span>
   </div>
 </div>
@@ -109,7 +109,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobCityId" class="control-label"></label>
-    <select asp-for="JobCityId" class="form-control" id="cityDropDown" onchange="getDistrictList('@Url.Action("GetDistrictsByCity", "District")')">
+    <select asp-for="JobCityId" class="form-control" id="cityDropDown" onchange="getDistrictList('cityDropDown', '@Url.Action("GetDistrictsByCity", "District")', 'districtDropDown')">
       <option value="0">شهر مورد نظر را انتخاب کنید</option>
     </select>
     <span asp-validation-for="JobCityId" class="text-danger"></span>
@@ -118,7 +118,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobDistrictId" class="control-label"></label>
-    <select asp-for="JobDistrictId" class="form-control" id="districtDropDown" onchange="getNeighborhoodList('@Url.Action("GetNeighborhoodsByDistrict", "Neighborhood")')">
+    <select asp-for="JobDistrictId" class="form-control" id="districtDropDown" onchange="getNeighborhoodList('districtDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Neighborhood")', 'neighborhoodDropDown')">
       <option value="0">منطقه مورد نظر را انتخاب کنید</option>
     </select>
     <span asp-validation-for="JobDistrictId" class="text-danger"></span>

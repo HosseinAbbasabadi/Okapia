@@ -22,7 +22,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="ProvinceId" class="control-label"></label>
-                  <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="provinceDropDown" onchange="getCityList('@Url.Action("GetCitiesByProvince", "City")')">
+                  <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="editProvinceDropDown" onchange="getCityList('editProvinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'editCityDropDown')">
                   </select>
                   <span asp-validation-for="ProvinceId" class="text-danger"></span>
                 </div>
@@ -30,8 +30,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="CityId" class="control-label"></label>
-                  <select asp-for="CityId" asp-items="@Model.Cities" class="form-control" id="cityDropDown" onchange="getDistrictList('@Url.Action("GetDistrictsByCity", "District")')">
-                    <option value="@Model.CityId">@Model.CityName</option>
+                  <select asp-for="CityId" asp-items="@Model.Cities" class="form-control" id="editCityDropDown" onchange="getDistrictList('editCityDropDown', '@Url.Action("GetDistrictsByCity", "District")', 'editNeighborhoodDropDown')">
                   </select>
                   <span asp-validation-for="ProvinceId" class="text-danger"></span>
                 </div>
@@ -39,8 +38,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="DistrictId" class="control-label"></label>
-                  <select asp-for="DistrictId" asp-items="@Model.Districts" class="form-control">
-                    <option value="@Model.DistrictId">@Model.DistrictName</option>
+                  <select asp-for="DistrictId" asp-items="@Model.Districts" class="form-control" id="editNeighborhoodDropDown">
                   </select>
                   <span asp-validation-for="DistrictId" class="text-danger"></span>
                 </div>

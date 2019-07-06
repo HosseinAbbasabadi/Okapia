@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Okapia.Domain.Commands.District;
 using Okapia.Domain.SeachModels;
-using Okapia.Domain.ViewModels.City;
+using Okapia.Domain.ViewModels;
 using Okapia.Domain.ViewModels.District;
 
 namespace Okapia.Application.Contracts

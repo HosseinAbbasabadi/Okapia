@@ -36,6 +36,11 @@ namespace Okapia.Configuration
             services.AddScoped<ICategoryApplication, CategoryApplication>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+            services.AddScoped<IUserApplication, UserApplication>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<IAuthInfoRepository, AuthInfoRepository>();
+            
             services.AddScoped<IJobPictureRepository, JobPictureRepository>();
             
             services.AddDbContext<OkapiaContext>(options =>

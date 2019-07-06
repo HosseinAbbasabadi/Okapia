@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Http.Extensions
-@using Okapia.Domain.SeachModels
+﻿@using Okapia.Domain.SeachModels
 @model IEnumerable<Okapia.Domain.ViewModels.Neighborhood.NeighborhoodViewModel>
 @{
   var searchModel = ViewData["searchModel"] as NeighborhoodSearchModel;
@@ -111,13 +110,6 @@
 </div>
 <script>
   function openEditNeighborhoodModal(id) {
-    $.ajax({
-      url: '@Url.Action("Edit", "Neighborhood")/'+id,
-      type: "Get",
-      success: function(response) {
-        $("#editNeighborhoodDiv").html(response);
-        $('#editNeighborhoodModal').modal('toggle');
-      }
-    });
+    openModalWithData('@Url.Action("Edit", "Neighborhood")/' + id, 'editNeighborhoodDiv', 'editNeighborhoodModal');
   }
 </script>

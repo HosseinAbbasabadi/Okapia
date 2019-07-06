@@ -22,22 +22,22 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="ProvinceId" class="control-label"></label>
-                  <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="provinceDropDown" onchange="getCityList('@Url.Action("GetCitiesByProvince", "City")')">
+                  <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="createProvinceDropDown" onchange="getCityList('createProvinceDropDown','@Url.Action("GetCitiesByProvince", "City")', 'createCityDropDown')">
                     <option value="0">استان را انتخاب کنید...</option>
                   </select>
                   <span asp-validation-for="ProvinceId" class="text-danger"></span>
                 </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="CityId" class="control-label"></label>
-                  <select asp-for="CityId" asp-items="@Model.Cities" class="form-control" id="cityDropDown">
+                  <select asp-for="CityId" asp-items="@Model.Cities" class="form-control" id="createCityDropDown">
                     <option value="0">شهر را انتخاب کنید...</option>
                   </select>
                   <span asp-validation-for="CityId" class="text-danger"></span>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <input type="submit" value="ثبت" class="btn btn-success btn-lg"/>
                 </div>

@@ -14,9 +14,9 @@ namespace Okapia.Repository.Repositories
     {
         private readonly OkapiaContext _context;
 
-        public DistrictRepository(OkapiaContext context, OkapiaContext context1) : base(context)
+        public DistrictRepository(OkapiaContext context) : base(context)
         {
-            _context = context1;
+            _context = context;
         }
 
         public District GetDistrict(int id)

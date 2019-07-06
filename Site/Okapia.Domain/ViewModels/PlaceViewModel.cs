@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Okapia.Domain.ViewModels.City
+namespace Okapia.Domain.ViewModels
 {
     public class PlaceViewModel
     {

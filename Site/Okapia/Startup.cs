@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +33,10 @@ namespace Okapia
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddHttpContextAccessor();
-            services.AddMvc(options => options.EnableEndpointRouting = false)
+            services.AddMvc(options =>
+                {
+                    options.EnableEndpointRouting = false;
+                }).AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = true)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

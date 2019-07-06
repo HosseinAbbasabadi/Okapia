@@ -8,7 +8,7 @@ namespace Okapia.Repository.Mappings
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("User");
+            builder.ToTable("Users");
             builder.HasKey(e => e.UserId);
 
             builder.Property(e => e.UserAddress).HasMaxLength(500);

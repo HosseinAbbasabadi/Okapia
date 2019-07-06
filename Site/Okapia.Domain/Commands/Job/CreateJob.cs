@@ -6,14 +6,23 @@ namespace Okapia.Domain.Commands.Job
 {
     public class CreateJob
     {
-        [Display(Name = "عنوان")] public string JobName { get; set; }
+        [Display(Name = "عنوان")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string JobName { get; set; }
 
-        [Display(Name = "توضیحات کوتاه")] public string JobSmallDescription { get; set; }
+        [Display(Name = "توضیحات کوتاه")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string JobSmallDescription { get; set; }
 
         [Display(Name = "توضیح کامل")] public string JobDescription { get; set; }
-        [Display(Name = "دسته بندی شغل")] public int JobCategoryId { get; set; }
-        
-        [Display(Name = "نام رابط")] public string JobContactTitile { get; set; }
+
+        [Display(Name = "دسته بندی شغل")]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.CategoryRange)]
+        public int JobCategoryId { get; set; }
+
+        [Display(Name = "نام رابط")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string JobContactTitile { get; set; }
 
         [Display(Name = "نام مدیر")] public string JobManagerFirstName { get; set; }
 
@@ -21,23 +30,45 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "آدرس ایمیل")] public string JobEmailAddress { get; set; }
 
-        [Display(Name = "شماره تلفن ۱")] public string JobTel1 { get; set; }
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        [Display(Name = "شماره تلفن ۱")]
+        public string JobTel1 { get; set; }
 
         [Display(Name = "شماره تلفن ۲")] public string JobTel2 { get; set; }
 
-        [Display(Name = "شماره موبایل ۱")] public string JobMobile1 { get; set; }
+        [Display(Name = "شماره موبایل ۱")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string JobMobile1 { get; set; }
 
         [Display(Name = "شماره موبایل ۲")] public string JobMobile2 { get; set; }
 
-        [Display(Name = "استان")] public int JobProvienceId { get; set; }
-        [Display(Name = "شهر")] public int JobCityId { get; set; }  
-        [Display(Name = "منطقه")] public int JobDistrictId { get; set; }
-        [Display(Name = "محله")] public int JobneighborhoodId { get; set; }
+        [Display(Name = "استان")]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.ProvinceRange)]
+        public int JobProvienceId { get; set; }
 
-        [Display(Name = "آدرس")] public string JobAddress { get; set; }
+        [Display(Name = "شهر")]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.CityRange)]
+        public int JobCityId { get; set; }
 
-        [Display(Name = "نقشه روی Waze")] public string JobWazeMap { get; set; }
-        [Display(Name = "لینک Waze")] public string JobWazeLink { get; set; }
+        [Display(Name = "منطقه")]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.DistrictRange)]
+        public int JobDistrictId { get; set; }
+
+        [Display(Name = "محله")]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.NeighborhoodRange)]
+        public int JobneighborhoodId { get; set; }
+
+        [Display(Name = "آدرس")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string JobAddress { get; set; }
+
+        [Display(Name = "نقشه روی Waze")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string JobWazeMap { get; set; }
+
+        [Display(Name = "لینک Waze")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string JobWazeLink { get; set; }
 
         [Display(Name = "عنوان صفحه شغل")] public string JobPageTittle { get; set; }
 
@@ -67,7 +98,9 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "بازاریاب")] public int? MarketerId { get; set; }
 
-        [Display(Name = "شماره پوز")] public string JobPosNameNumber { get; set; }
+        [Display(Name = "شماره پوز")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string JobPosNameNumber { get; set; }
 
         [Display(Name = "شماره حساب صاحب شغل")]
         public string JobAccountNumber { get; set; }
@@ -88,7 +121,9 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "آدرس تلگرام")] public string TelegramUrl { get; set; }
 
-        [Display(Name = "عکس پیشفرش")] public string NamePhoto1 { get; set; }
+        [Display(Name = "عکس پیشفرش")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string NamePhoto1 { get; set; }
 
         [Display(Name = "عکس دوم")] public string NamePhoto2 { get; set; }
 

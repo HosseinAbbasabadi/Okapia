@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Domain.Commands.Neighborhood;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
+using Okapia.Domain.ViewModels;
 using Okapia.Domain.ViewModels.City;
 using Okapia.Domain.ViewModels.Neighborhood;
 
@@ -14,10 +16,14 @@ namespace Okapia.Application.Applications
     public class NeighborhoodApplication : INeighborhoodApplication
     {
         private readonly INeighborhoodRepository _neighborhoodRepository;
+        private readonly ICityApplication _cityApplication;
+        private readonly IDistrictApplication _districtApplication;
 
-        public NeighborhoodApplication(INeighborhoodRepository neighborhoodRepository)
+        public NeighborhoodApplication(INeighborhoodRepository neighborhoodRepository, ICityApplication cityApplication, IDistrictApplication districtApplication)
         {
             _neighborhoodRepository = neighborhoodRepository;
+            _cityApplication = cityApplication;
+            _districtApplication = districtApplication;
         }
 
         public void Create(CreateNeighborhood command)
@@ -86,7 +92,12 @@ namespace Okapia.Application.Applications
 
         public EditNeighborhood GetNeighborhoodDetails(int id)
         {
-            return _neighborhoodRepository.GetNeighborhoodDetails(id);
+            var neighborhood = _neighborhoodRepository.GetNeighborhoodDetails(id);
+            var cities = _cityApplication.GetCitiesBy(neighborhood.ProvinceId);
+            var districts = _districtApplication.GetDistrictsBy(neighborhood.CityId);
+            neighborhood.Cities = new SelectList(cities, "Id", "Name");
+            neighborhood.Districts = new SelectList(districts, "Id", "Name");
+            return neighborhood;
         }
 
         public List<PlaceViewModel> GetNeighborhoodsBy(int districtId)

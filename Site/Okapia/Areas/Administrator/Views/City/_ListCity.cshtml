@@ -97,13 +97,6 @@
 </div>
 <script>
   function openEditCityModal(id) {
-    $.ajax({
-      url: '@Url.Action("Edit", "City")/'+id,
-      type: "Get",
-      success: function(response) {
-        $("#editCityDiv").html(response);
-        $('#editCityModal').modal('toggle');
-      }
-    });
+    openModalWithData(`@Url.Action("Edit", "City")/${id}`, 'editCityDiv', 'editCityModal');
   }
 </script>

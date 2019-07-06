@@ -31,6 +31,7 @@ namespace Okapia.Repository
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Neighborhood> Neighborhoods { get; set; }
+        public DbSet<AuthInfo> AuthInfo { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

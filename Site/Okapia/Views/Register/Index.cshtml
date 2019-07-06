@@ -1,4 +1,5 @@
-﻿@model Okapia.Models.Customer
+﻿@using Okapia.Domain.Commands.User
+@model Okapia.Domain.Commands.User.CreateUser
 
 @{
     ViewData["Title"] = "Index";
@@ -12,7 +13,7 @@
 <hr />
 <div class="row">
     <div class="col-md-6">
-        <form asp-action="Index">
+        <form asp-action="Register" asp-controller="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>

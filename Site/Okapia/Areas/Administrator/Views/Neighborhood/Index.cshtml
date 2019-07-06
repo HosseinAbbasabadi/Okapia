@@ -16,14 +16,7 @@
 
 <script>
   function openCreateNeighborhoodModal() {
-    $.ajax({
-      url: '@Url.Action("Create", "Neighborhood")',
-      type: "Get",
-      success: function(response) {
-        $("#createNeighborhoodDiv").html(response);
-        $('#createNeighborhoodModal').modal('toggle');
-      }
-    });
+    openModalWithData('@Url.Action("Create", "Neighborhood")', 'createNeighborhoodDiv', 'createNeighborhoodModal');
   }
 </script>
 

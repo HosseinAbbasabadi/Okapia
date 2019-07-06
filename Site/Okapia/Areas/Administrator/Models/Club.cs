@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Okapia.Domain.Commands.User;
+using Okapia.Models;
 
 namespace Okapia.Areas.Administrator.Models
 {
@@ -22,6 +24,6 @@ namespace Okapia.Areas.Administrator.Models
 
         [Display(Name = "رمز عبور")]
         public string OwnerPassword { get; set; }
-        public List<Okapia.Models.Customer> Customers { get; set; }
+        public List<CreateUser> Customers { get; set; }
     }
 }

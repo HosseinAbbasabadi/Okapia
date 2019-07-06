@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Okapia.Application.Contracts;
+using Okapia.Domain.Commands.User;
 using Okapia.Helpers;
 using Okapia.Models;
 
@@ -9,10 +11,12 @@ namespace Okapia.Controllers
     public class RegisterController : Controller
     {
         private readonly IAuthHelper _authHelper;
+        private readonly IUserApplication _userApplication;
 
-        public RegisterController(IAuthHelper authHelper)
+        public RegisterController(IAuthHelper authHelper, IUserApplication userApplication)
         {
             _authHelper = authHelper;
+            _userApplication = userApplication;
         }
 
         // GET: /<controller>/
@@ -22,14 +26,15 @@ namespace Okapia.Controllers
         }
 
         [HttpPost]
-        public IActionResult SignUp([Bind("Name, Family, NationalCardNumber, PhoneNumber, Address, Card1, Card2, Card3")]Customer customer)
+        public IActionResult Register([Bind("Name, Family, NationalCardNumber, PhoneNumber, Address, Card1, Card2, Card3")]CreateUser createUser)
         {
+            _userApplication.RegisterUser(createUser);
             if (ModelState.IsValid)
             {
                 _authHelper.Signup();
                 return RedirectToAction("Index", "Home");
             }
-            return View("Index", customer);
+            return View("Index", createUser);
         }
 
     }

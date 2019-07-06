@@ -16,14 +16,7 @@
 
 <script>
   function openCreateDistrictModal() {
-    $.ajax({
-      url: '@Url.Action("Create", "District")',
-      type: "Get",
-      success: function(response) {
-        $("#createDistrictDiv").html(response);
-        $('#createDistrictModal').modal('toggle');
-      }
-    });
+    openModalWithData('@Url.Action("Create", "District")', 'createDistrictDiv', 'createDistrictModal');
   }
 </script>
 

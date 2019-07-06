@@ -99,18 +99,11 @@
   </div>
 </div>
 
-<div id="editNeighorhoodDiv">
+<div id="editDistrictDiv">
 
 </div>
 <script>
   function openEditDistrictModal(id) {
-    $.ajax({
-      url: '@Url.Action("Edit", "District")/'+id,
-      type: "Get",
-      success: function(response) {
-        $("#editDistrictDiv").html(response);
-        $('#editDistrictModal').modal('toggle');
-      }
-    });
+    openModalWithData(`@Url.Action("Edit", "District")/${id}`, 'editDistrictDiv', 'editDistrictModal');
   }
 </script>

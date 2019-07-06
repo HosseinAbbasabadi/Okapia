@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Domain.Commands.District;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
+using Okapia.Domain.ViewModels;
 using Okapia.Domain.ViewModels.City;
 using Okapia.Domain.ViewModels.District;
 
@@ -14,10 +16,12 @@ namespace Okapia.Application.Applications
     public class DistrictApplication : IDistrictApplication
     {
         private readonly IDistrictRepository _districtRepository;
+        private readonly ICityApplication _cityApplication;
 
-        public DistrictApplication(IDistrictRepository districtRepository)
+        public DistrictApplication(IDistrictRepository districtRepository, ICityApplication cityApplication)
         {
             _districtRepository = districtRepository;
+            _cityApplication = cityApplication;
         }
 
         public void Create(CreateDistrict command)
@@ -70,7 +74,10 @@ namespace Okapia.Application.Applications
 
         public EditDistrict GetDistrictDitails(int id)
         {
-            return _districtRepository.GetDistrictDetails(id);
+            var district = _districtRepository.GetDistrictDetails(id);
+            var cities = _cityApplication.GetCitiesBy(district.ProvinceId);
+            district.Cities = new SelectList(cities, "Id", "Name");
+            return district;
         }
 
         public List<PlaceViewModel> GetDistrictsBy(int cityId)

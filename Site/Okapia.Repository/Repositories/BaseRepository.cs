@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using Framework;
+using Microsoft.EntityFrameworkCore;
 
 namespace Okapia.Repository.Repositories
 {
@@ -17,7 +20,7 @@ namespace Okapia.Repository.Repositories
 
         public void Create(T entity)
         {
-            _context.Add(entity);
+            var t = _context.Add(entity);
         }
 
         public void Update(T entity)
@@ -42,6 +45,7 @@ namespace Okapia.Repository.Repositories
             {
                 query = query.Where(predicate);
             }
+
             return query.ToList();
         }
 
@@ -52,7 +56,8 @@ namespace Okapia.Repository.Repositories
 
         public long GetNextId(string sequenceName)
         {
-            //return _context.GetNextSequence(sequenceName);    
+            //var t = _context.Users.FromSql($"exec dbo.GetUserSeqNextValue").ToList();
+            //return 2;
             throw new NotImplementedException();
         }
 

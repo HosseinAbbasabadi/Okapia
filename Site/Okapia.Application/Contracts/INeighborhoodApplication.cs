@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Okapia.Domain.Commands.Neighborhood;
 using Okapia.Domain.SeachModels;
+using Okapia.Domain.ViewModels;
 using Okapia.Domain.ViewModels.City;
 using Okapia.Domain.ViewModels.Neighborhood;
 

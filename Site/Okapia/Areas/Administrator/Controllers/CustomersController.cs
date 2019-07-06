@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Okapia.Domain.Commands.User;
+using Okapia.Models;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
@@ -10,23 +12,23 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = new List<Okapia.Models.Customer>
+            var customers = new List<CreateUser>
             {
-                new Okapia.Models.Customer
+                new CreateUser
                 {
                     Name = "محمد",
                     Family = "نصیری",
                     NationalCardNumber = "00193010250",
                     PhoneNumber = "09126663344"
                 },
-                new Okapia.Models.Customer
+                new CreateUser
                 {
                     Name = "سعید",
                     Family = "روستایی",
                     NationalCardNumber = "0020604050",
                     PhoneNumber = "09126663694"
                 },
-                new Okapia.Models.Customer
+                new CreateUser
                 {
                     Name = "مهدی",
                     Family = "ثالث",

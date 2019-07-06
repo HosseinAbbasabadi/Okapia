@@ -56,15 +56,20 @@ namespace Okapia.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateCity command)
         {
-            try
+            if(ModelState.IsValid)
             {
-                _cityApplication.Create(command);
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _cityApplication.Create(command);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    return View();
+                }
             }
-            catch
-            {
-                return View();
-            }
+
+            return Json("ok");
         }
 
         // GET: City/Edit/5

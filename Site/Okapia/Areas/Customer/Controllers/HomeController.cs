@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Okapia.Domain.Commands.User;
+using Okapia.Models;
 
 namespace Okapia.Areas.Customer.Controllers
 {
@@ -12,7 +14,7 @@ namespace Okapia.Areas.Customer.Controllers
 
         public IActionResult EditCustomer()
         {
-            var customer = new Okapia.Models.Customer
+            var customer = new CreateUser
             {
                 NationalCardNumber = "0020304050",
                 PhoneNumber = "09102030400"

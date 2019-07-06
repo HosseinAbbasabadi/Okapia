@@ -81,14 +81,20 @@
             crossorigin="anonymous"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
     </script>
-    
+
   </environment>
   <script src="~/js/site.js" asp-append-version="true"></script>
-<script src="~/js/bootstrap.js"></script>
   <script>
     var resizefunc = [];
   </script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
 
+  @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
+  <script src="~/js/bootstrap.js"></script>
   <script src="~/assets/flot-chart/jquery.flot.js"></script>
 
   <script src="~/assets/flot-chart/jquery.flot.time.js"></script>
@@ -104,15 +110,15 @@
   </script>
   <script src="~/js/aspnetcorefileuploading.js"></script>
   <script src="~/js/ajaxFunctions.js"></script>
-<script>
-  $body = $("body");
+  <script>
+    $body = $("body");
 
-  $(document).on({
-    ajaxStart: function () { $body.addClass("loading"); },
-    ajaxStop: function () { $body.removeClass("loading"); }
-  });
-</script>
+    $(document).on({
+      ajaxStart: function () { $body.addClass("loading"); },
+      ajaxStop: function () { $body.removeClass("loading"); }
+    });
+  </script>
   @RenderSection("Scripts", required: false)
-<div class="loader"></div>
+  <div class="loader"></div>
 </body>
 </html>
