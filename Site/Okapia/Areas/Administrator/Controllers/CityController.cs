@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Net.Mime;
+using Framework;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
@@ -6,6 +8,7 @@ using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
 using Okapia.Domain.Commands.City;
 using Okapia.Domain.SeachModels;
+using Okapia.ViewComponents;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
@@ -53,23 +56,11 @@ namespace Okapia.Areas.Administrator.Controllers
 
         // POST: City/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateCity command)
+        //[ValidateAntiForgeryToken]
+        public JsonResult Create(CreateCity command)
         {
-            if(ModelState.IsValid)
-            {
-                try
-                {
-                    _cityApplication.Create(command);
-                    return RedirectToAction(nameof(Index));
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-
-            return Json("ok");
+            var result = _cityApplication.Create(command);
+            return Json(result);
         }
 
         // GET: City/Edit/5

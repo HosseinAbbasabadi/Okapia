@@ -10,7 +10,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
-            <form asp-action="Create" asp-controller="City" asp-area="Administrator" method="post">
+            <form id="createCityFrm" method="post">
               <div asp-validation-summary="ModelOnly" class="text-danger"></div>
               <div class="col-md-4">
                 <div class="form-group">
@@ -30,7 +30,7 @@
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <input type="submit" name="submit" value="ثبت" class="btn btn-success btn-lg"/>
+                  <input value="ثبت" class="btn btn-success btn-lg" onclick="createEntity('@Url.Action("Create", "City")', 'createCityFrm')" />
                 </div>
               </div>
             </form>

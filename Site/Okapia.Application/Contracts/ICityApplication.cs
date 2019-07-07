@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Framework;
 using Okapia.Domain.Commands.City;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.City;
@@ -7,7 +8,7 @@ namespace Okapia.Application.Contracts
 {
     public interface ICityApplication
     {
-        void Create(CreateCity command);
+        OperationResult Create(CreateCity command);
         void Delete(int id);
         void Activate(int id);
         void Update(EditCity command);

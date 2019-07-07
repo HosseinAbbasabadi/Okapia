@@ -49,6 +49,11 @@ namespace Okapia.Repository.Repositories
             return query.ToList();
         }
 
+        public bool IsDuplicated(params Expression<Func<T, bool>>[] predicates)
+        {
+            var enity = Get(predicates);
+            return enity.Count > 0;
+        }
         public List<T> GetAll()
         {
             return _context.Set<T>().ToList();

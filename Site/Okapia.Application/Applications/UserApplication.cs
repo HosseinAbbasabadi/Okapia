@@ -22,7 +22,7 @@ namespace Okapia.Application.Applications
 
         public OperationResult RegisterUser(CreateUser command)
         {
-            var operationResult = new OperationResult { Operation = "RegisterUser", OperationDate = DateTime.Now, TableName = "Users" };
+            var operationResult = new OperationResult("RegisterUser", "Users");
             try
             {
                 var user = new User

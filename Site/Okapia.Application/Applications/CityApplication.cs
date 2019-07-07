@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Framework;
 using Okapia.Application.Contracts;
+using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.City;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
@@ -19,10 +21,18 @@ namespace Okapia.Application.Applications
             _cityRepository = cityRepository;
         }
 
-        public void Create(CreateCity command)
+        public OperationResult Create(CreateCity command)
         {
+            var result = new OperationResult("City", "Create");
             try
             {
+                if (_cityRepository.IsDuplicated(x => x.Name == command.Name, x => x.ProvinceId == command.ProvinceId))
+                {
+                    result.Success = false;
+                    result.Message = ApplicationMessages.DuplicatedRecord;
+                    return result;
+                }
+
                 var city = new City
                 {
                     Name = command.Name,
@@ -31,11 +41,16 @@ namespace Okapia.Application.Applications
                 };
                 _cityRepository.Create(city);
                 _cityRepository.SaveChanges();
+                result.Success = true;
+                result.Message = ApplicationMessages.CreatedSuccessfully;
+                return result;
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-                throw;
+                result.Success = false;
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
             }
         }
 

@@ -13,7 +13,8 @@ using Okapia.Domain.ViewModels.Neighborhood;
 
 namespace Okapia.Application.Applications
 {
-    public class NeighborhoodApplication : INeighborhoodApplication
+    public class 
+        NeighborhoodApplication : INeighborhoodApplication
     {
         private readonly INeighborhoodRepository _neighborhoodRepository;
         private readonly ICityApplication _cityApplication;

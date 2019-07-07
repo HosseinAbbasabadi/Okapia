@@ -10,5 +10,12 @@ namespace Framework
         public string Operation { get; set; }
         public bool Success { get; set; }
         public string Message { get; set; }
+
+        public OperationResult(string tableName, string operation)
+        {
+            TableName = tableName;
+            Operation = operation;
+            OperationDate = DateTime.Now;
+        }
     }
 }

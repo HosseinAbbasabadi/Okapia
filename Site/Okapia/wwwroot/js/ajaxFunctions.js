@@ -67,3 +67,21 @@ function openModalWithData(url, containerName, modalName) {
     }
   });
 }
+
+function createEntity(url, formId) {
+  const sendingData = $(`#${formId}`).serialize();
+  $.post(url,
+    sendingData,
+    function(operationResult) {
+      if (operationResult.success) {
+        sendNotification('success', 'top right', "موفقیت", operationResult.message);
+        $(`#${formId}`).trigger("reset");
+      } else {
+        sendNotification('error', 'top right', "خطا", operationResult.message);
+      }
+    });
+}
+
+function sendNotification(status, place, title, body) {
+  $.Notification.autoHideNotify(status, place, title, body);
+}
