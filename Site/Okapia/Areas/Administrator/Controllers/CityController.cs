@@ -73,18 +73,11 @@ namespace Okapia.Areas.Administrator.Controllers
 
         // POST: City/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, EditCity command)
+        public JsonResult Edit(int id, EditCity command)
         {
-            try
-            {
-                _cityApplication.Update(command);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            command.Id = id;
+            var result = _cityApplication.Update(command);
+            return Json(result);
         }
 
         //// GET: City/Delete/5

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Framework;
 using Okapia.Domain.Commands.Neighborhood;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels;
@@ -9,8 +10,8 @@ namespace Okapia.Application.Contracts
 {
     public interface INeighborhoodApplication
     {
-        void Create(CreateNeighborhood command);
-        void Update(EditNeighborhood command);
+        OperationResult Create(CreateNeighborhood command);
+        OperationResult Update(EditNeighborhood command);
         void Delete(int id);
         void Activate(int id);
         EditNeighborhood GetNeighborhoodDetails(int id);

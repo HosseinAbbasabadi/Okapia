@@ -57,18 +57,10 @@ namespace Okapia.Areas.Administrator.Controllers
 
         // POST: City/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateDistrict command)
+        public JsonResult Create(CreateDistrict command)
         {
-            try
-            {
-                _districtApplication.Create(command);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var result = _districtApplication.Create(command);
+            return Json(result);
         }
 
         // GET: City/Edit/5
@@ -81,18 +73,11 @@ namespace Okapia.Areas.Administrator.Controllers
 
         // POST: City/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, EditDistrict command)
         {
-            try
-            {
-                _districtApplication.Update(command);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            command.Id = id;
+            var result = _districtApplication.Update(command);
+            return Json(result);
         }
 
         //// GET: City/Delete/5

@@ -10,7 +10,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
-            <form asp-action="Edit" asp-controller="Neighborhood" asp-area="Administrator" method="post">
+            <form id="editNeighborhoodFrm" method="post">
               <div asp-validation-summary="ModelOnly" class="text-danger"></div>
               <div class="col-md-4">
                 <div class="form-group">
@@ -52,7 +52,7 @@
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <input type="submit" value="اعمال تغییرات" class="btn btn-success btn-lg" />
+                  <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntity('@Url.Action("Edit", "Neighborhood")', 'editNeighborhoodFrm')"/>
                 </div>
               </div>
             </form>

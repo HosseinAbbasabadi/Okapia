@@ -28,7 +28,6 @@ namespace Okapia.Application.Applications
             {
                 if (_cityRepository.IsDuplicated(x => x.Name == command.Name, x => x.ProvinceId == command.ProvinceId))
                 {
-                    result.Success = false;
                     result.Message = ApplicationMessages.DuplicatedRecord;
                     return result;
                 }
@@ -42,13 +41,12 @@ namespace Okapia.Application.Applications
                 _cityRepository.Create(city);
                 _cityRepository.SaveChanges();
                 result.Success = true;
-                result.Message = ApplicationMessages.CreatedSuccessfully;
+                result.Message = ApplicationMessages.OperationSuccess;
                 return result;
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-                result.Success = false;
                 result.Message = ApplicationMessages.SystemFailure;
                 return result;
             }
@@ -86,8 +84,9 @@ namespace Okapia.Application.Applications
             }
         }
 
-        public void Update(EditCity command)
+        public OperationResult Update(EditCity command)
         {
+            var result = new OperationResult("City", "Update");
             try
             {
                 var city = new City
@@ -99,11 +98,15 @@ namespace Okapia.Application.Applications
                 };
                 _cityRepository.Update(city);
                 _cityRepository.SaveChanges();
+                result.Success = true;
+                result.Message = ApplicationMessages.OperationSuccess;
+                return result;
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-                throw;
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
             }
         }
 

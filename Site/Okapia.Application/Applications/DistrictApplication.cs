@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Framework;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
+using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.District;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
@@ -24,10 +26,17 @@ namespace Okapia.Application.Applications
             _cityApplication = cityApplication;
         }
 
-        public void Create(CreateDistrict command)
+        public OperationResult Create(CreateDistrict command)
         {
+            var result = new OperationResult("District", "Create");
             try
             {
+                if (_districtRepository.IsDuplicated(x => x.Name == command.Name, x => x.CityId == command.CityId))
+                {
+                    result.Message = ApplicationMessages.DuplicatedRecord;
+                    return result;
+                }
+
                 var district = new District
                 {
                     Name = command.Name,
@@ -36,24 +45,42 @@ namespace Okapia.Application.Applications
                 };
                 _districtRepository.Create(district);
                 _districtRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-                throw;
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
             }
         }
 
-        public void Update(EditDistrict command)
+        public OperationResult Update(EditDistrict command)
         {
-            var district = new District
+            var result = new OperationResult("District", "Update");
+            try
             {
-                Name = command.Name,
-                CityId = command.CityId,
-                IsDeleted = command.IsDeleted
-            };
-            _districtRepository.Update(district);
-            _districtRepository.SaveChanges();
+                var district = new District
+                {
+                    Id = command.Id,
+                    Name = command.Name,
+                    CityId = command.CityId,
+                    IsDeleted = command.IsDeleted
+                };
+                _districtRepository.Update(district);
+                _districtRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
         }
 
         public void Delete(int id)

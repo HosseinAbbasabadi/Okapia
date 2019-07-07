@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Framework;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
+using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.Neighborhood;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
@@ -13,49 +15,76 @@ using Okapia.Domain.ViewModels.Neighborhood;
 
 namespace Okapia.Application.Applications
 {
-    public class 
+    public class
         NeighborhoodApplication : INeighborhoodApplication
     {
         private readonly INeighborhoodRepository _neighborhoodRepository;
         private readonly ICityApplication _cityApplication;
         private readonly IDistrictApplication _districtApplication;
 
-        public NeighborhoodApplication(INeighborhoodRepository neighborhoodRepository, ICityApplication cityApplication, IDistrictApplication districtApplication)
+        public NeighborhoodApplication(INeighborhoodRepository neighborhoodRepository, ICityApplication cityApplication,
+            IDistrictApplication districtApplication)
         {
             _neighborhoodRepository = neighborhoodRepository;
             _cityApplication = cityApplication;
             _districtApplication = districtApplication;
         }
 
-        public void Create(CreateNeighborhood command)
+        public OperationResult Create(CreateNeighborhood command)
         {
-            var neighborhood = new Neighborhood
+            var result = new OperationResult("Neighborhood", "Create");
+            try
             {
-                Name = command.Name,
-                DistrictId = command.DistrictId,
-                IsDeleted = false
-            };
-            _neighborhoodRepository.Create(neighborhood);
-            _neighborhoodRepository.SaveChanges();
+                if (_neighborhoodRepository.IsDuplicated(x => x.Name == command.Name,
+                    x => x.DistrictId == command.CityId))
+                {
+                    result.Message = ApplicationMessages.DuplicatedRecord;
+                    return result;
+                }
+
+                var neighborhood = new Neighborhood
+                {
+                    Name = command.Name,
+                    DistrictId = command.DistrictId,
+                    IsDeleted = false
+                };
+                _neighborhoodRepository.Create(neighborhood);
+                _neighborhoodRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
         }
 
-        public void Update(EditNeighborhood command)
+        public OperationResult Update(EditNeighborhood command)
         {
+            var result = new OperationResult("Neighborhood", "Update");
             try
             {
                 var neighborhood = new Neighborhood
                 {
+                    Id = command.Id,
                     Name = command.Name,
                     DistrictId = command.DistrictId,
                     IsDeleted = command.IsDeleted
                 };
                 _neighborhoodRepository.Update(neighborhood);
                 _neighborhoodRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-                throw;
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
             }
         }
 

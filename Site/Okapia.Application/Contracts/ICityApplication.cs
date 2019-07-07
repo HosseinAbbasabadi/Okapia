@@ -11,7 +11,7 @@ namespace Okapia.Application.Contracts
         OperationResult Create(CreateCity command);
         void Delete(int id);
         void Activate(int id);
-        void Update(EditCity command);
+        OperationResult Update(EditCity command);
         EditCity GetCityDetails(int id);
         List<CityViewModel> GetCitiesForList(CitySearchModel searchModel, out int recordCount);
         List<CityViewModel> GetCitiesBy(int provintId);

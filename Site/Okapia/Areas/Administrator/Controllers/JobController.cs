@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
-using Okapia.Domain.Commands.Job;   
+using Okapia.Domain.Commands.Job;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Job;
 using Okapia.Domain.ViewModels.JobPicture;
@@ -23,7 +23,8 @@ namespace Okapia.Areas.Administrator.Controllers
         private readonly INeighborhoodApplication _neighborhoodApplication;
 
         public JobController(IJobApplication jobApplication, ICityApplication cityApplication,
-            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication, ICategoryApplication categoryApplication)
+            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication,
+            ICategoryApplication categoryApplication)
         {
             _jobApplication = jobApplication;
             _cityApplication = cityApplication;
@@ -99,7 +100,6 @@ namespace Okapia.Areas.Administrator.Controllers
             return View(createModel);
         }
 
-        
 
         // POST: Shop/Create
         [HttpPost]
@@ -144,33 +144,24 @@ namespace Okapia.Areas.Administrator.Controllers
 
         // POST: Shop/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, EditJob command, [FromQuery(Name = "redirectUrl")] string redirectUrl)
+        //[ValidateAntiForgeryToken]
+        public JsonResult Edit(int id, EditJob command)
         {
-            if (!ModelState.IsValid) return View(command);
-            try
+            var photos = new List<JobPictureViewModel>
             {
-                if (command.NamePhoto1 == null) return View(command);
-                var photos = new List<JobPictureViewModel>
-                {
-                    new JobPictureViewModel {Id = command.NamePhoto1Id, Name = command.NamePhoto1},
-                    new JobPictureViewModel {Id = command.NamePhoto2Id, Name = command.NamePhoto2},
-                    new JobPictureViewModel {Id = command.NamePhoto3Id, Name = command.NamePhoto3},
-                    new JobPictureViewModel {Id = command.NamePhoto4Id, Name = command.NamePhoto4},
-                    new JobPictureViewModel {Id = command.NamePhoto5Id, Name = command.NamePhoto5},
-                    new JobPictureViewModel {Id = command.NamePhoto6Id, Name = command.NamePhoto6},
-                };
-                //var nullPhotos = photos.Where(x => x == null).ToList();
-                //nullPhotos.ForEach(x=> photos.Remove(x));
-                command.JobId = id;
-                command.Photos = photos;
-                _jobApplication.Update(id, command);
-                return Redirect(redirectUrl);
-            }
-            catch
-            {
-                return View();
-            }
+                new JobPictureViewModel {Id = command.NamePhoto1Id, Name = command.NamePhoto1},
+                new JobPictureViewModel {Id = command.NamePhoto2Id, Name = command.NamePhoto2},
+                new JobPictureViewModel {Id = command.NamePhoto3Id, Name = command.NamePhoto3},
+                new JobPictureViewModel {Id = command.NamePhoto4Id, Name = command.NamePhoto4},
+                new JobPictureViewModel {Id = command.NamePhoto5Id, Name = command.NamePhoto5},
+                new JobPictureViewModel {Id = command.NamePhoto6Id, Name = command.NamePhoto6},
+            };
+            //var nullPhotos = photos.Where(x => x == null).ToList();
+            //nullPhotos.ForEach(x=> photos.Remove(x));
+            command.JobId = id;
+            command.Photos = photos;
+            var result = _jobApplication.Update(id, command);
+            return Json(result);
         }
 
         // GET: Shop/Delete/5

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Framework;
 using Okapia.Application.Contracts;
+using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.Category;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
@@ -37,12 +39,18 @@ namespace Okapia.Application.Applications
             _categoryRepository.SaveChanges();
         }
 
-        public void Update(EditCategory command)
+        public OperationResult Update(EditCategory command)
         {
+            var result = new OperationResult("Categories", "Update");
             try
             {
                 var checkingCategory = _categoryRepository.GetCategory(command.CategoryId);
-                if (checkingCategory == null) return;
+                if (checkingCategory == null)
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
                 var category = new Category
                 {
                     CategoryId = command.CategoryId,
@@ -59,12 +67,16 @@ namespace Okapia.Application.Applications
                 };
                 _categoryRepository.Update(category);
                 _categoryRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-                throw;
+                result.Message = ApplicationMessages.SystemFailure;
             }
+
+            return result;
         }
 
         public void Delete(int id)

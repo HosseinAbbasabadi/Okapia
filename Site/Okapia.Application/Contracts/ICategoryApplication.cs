@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Framework;
 using Okapia.Domain.Commands.Category;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Category;
@@ -8,7 +9,7 @@ namespace Okapia.Application.Contracts
     public interface ICategoryApplication
     {
         void Create(CreateCategory command);
-        void Update(EditCategory command);
+        OperationResult Update(EditCategory command);
         void Delete(int id);
         void Activate(int id);
         EditCategory GetCategoryDetails(int id);

@@ -15,6 +15,7 @@ namespace Framework
         {
             TableName = tableName;
             Operation = operation;
+            Success = false;
             OperationDate = DateTime.Now;
         }
     }

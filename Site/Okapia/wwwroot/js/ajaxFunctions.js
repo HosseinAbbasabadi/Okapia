@@ -11,7 +11,6 @@
     success: function(result) {
       $(distDropdown).html("");
       $(distDropdown).append($('<option></option>').val(0).html('انتخاب کنید'));
-      debugger;
       $.each(result,
         function(i, item) {
           $(distDropdown).append($('<option></option>').val(item.id).html(item.name));
@@ -69,17 +68,52 @@ function openModalWithData(url, containerName, modalName) {
 }
 
 function createEntity(url, formId) {
+  if ($("#" + formId).valid() === true) {
+    const sendingData = $(`#${formId}`).serialize();
+    $.post(url,
+      sendingData,
+      function (operationResult) {
+        debugger;
+        if (operationResult.success) {
+          sendNotification('success', 'top right', "موفقیت", operationResult.message);
+          $(`#${formId}`).trigger("reset");
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      });
+  }
+}
+
+function updateEntity(url, formId) {
   const sendingData = $(`#${formId}`).serialize();
-  $.post(url,
-    sendingData,
-    function(operationResult) {
-      if (operationResult.success) {
-        sendNotification('success', 'top right', "موفقیت", operationResult.message);
-        $(`#${formId}`).trigger("reset");
-      } else {
-        sendNotification('error', 'top right', "خطا", operationResult.message);
-      }
-    });
+  if ($("#" + formId).valid() === true) {
+    $.post(url,
+      sendingData,
+      function(operationResult) {
+        if (operationResult.success) {
+          sendNotification('success', 'top right', "موفقیت", operationResult.message);
+          location.reload();
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      });
+  }
+}
+
+function updateEntityPage(url, formId, redirectUrl) {
+  const sendingData = $(`#${formId}`).serialize();
+  if ($("#" + formId).valid() === true) {
+    $.post(url,
+      sendingData,
+      function(operationResult) {
+        if (operationResult.success) {
+          sendNotification('success', 'top right', "موفقیت", operationResult.message);
+          location.replace(redirectUrl);
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      });
+  }
 }
 
 function sendNotification(status, place, title, body) {

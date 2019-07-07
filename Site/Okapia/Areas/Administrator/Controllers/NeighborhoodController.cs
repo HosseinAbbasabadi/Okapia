@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
-using Okapia.Domain.Commands.District;
 using Okapia.Domain.Commands.Neighborhood;
 using Okapia.Domain.SeachModels;
 
@@ -66,15 +65,8 @@ namespace Okapia.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateNeighborhood command)
         {
-            try
-            {
-                _neighborhoodApplication.Create(command);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var result = _neighborhoodApplication.Create(command);
+            return Json(result);
         }
 
         // GET: City/Edit/5
@@ -90,22 +82,10 @@ namespace Okapia.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, EditNeighborhood command)
         {
-            try
-            {
-                _neighborhoodApplication.Update(command);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            command.Id = id;
+            var result = _neighborhoodApplication.Update(command);
+            return Json(result);
         }
-
-        //// GET: City/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
 
         // POST: City/Delete/5
         public ActionResult Delete(int id)

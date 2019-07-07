@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Framework;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.Job;
@@ -73,24 +74,34 @@ namespace Okapia.Application.Applications
             }
         }
 
-        public void Update(int id, EditJob command)
+        public OperationResult Update(int id, EditJob command)
         {
+            var result = new OperationResult("Jobs", "Update");
             try
             {
                 var checkingJob = _jobRepository.GetJob(id);
-                if (checkingJob == null) return;
-                if (string.IsNullOrEmpty(command.Photos.First().Name)) return;
+                if (checkingJob == null)
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
+                ;
                 var jobWithoutPictures = MapEditJobToJob(command, command.Photos);
                 var job = MapJobPicturesForUpdate(command.Photos, command.JobName, command.JobSmallDescription, "",
                     jobWithoutPictures);
                 _jobRepository.Update(job);
                 _jobRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-                throw;
+                result.Message = ApplicationMessages.SystemFailure;
             }
+
+            return result;
         }
 
         public EditJob GetJobDetails(int id)

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;  
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
@@ -63,7 +63,10 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: Category/Create
         public ActionResult Create()
         {
-            var createModel = new CreateCategory {Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName")};
+            var createModel = new CreateCategory
+            {
+                Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName")
+            };
             return View(createModel);
         }
 
@@ -97,20 +100,12 @@ namespace Okapia.Areas.Administrator.Controllers
 
         // POST: Category/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, EditCategory command, [FromQuery(Name = "redirectUrl")] string redirectUrl)
+        //[ValidateAntiForgeryToken]
+        public JsonResult Edit(int id, EditCategory command)
         {
-            if (!ModelState.IsValid) return View(command);
-            try
-            {
-                command.CategoryId = id;
-                _categoryApplication.Update(command);
-                return Redirect(redirectUrl);
-            }
-            catch
-            {
-                return View();
-            }
+            command.CategoryId = id;
+            var result = _categoryApplication.Update(command);
+            return Json(result);
         }
 
         //// GET: Category/Delete/5

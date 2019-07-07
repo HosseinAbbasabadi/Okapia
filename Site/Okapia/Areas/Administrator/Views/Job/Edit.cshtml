@@ -11,7 +11,8 @@
 <hr/>
 <div class="row">
 <div class="col-md-12">
-<form asp-area="Administrator" asp-controller="Job" asp-action="Edit" asp-route-id="@Model.JobId" asp-route-redirectUrl="@ViewData["redirectUrl"]">
+@*<form asp-area="Administrator" asp-controller="Job" asp-action="Edit" asp-route-id="@Model.JobId" asp-route-redirectUrl="@ViewData["redirectUrl"]">*@
+<form method="post" id="editJobFrm">
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <div class="col-md-4">
   <div class="form-group">
@@ -452,7 +453,8 @@
 </table>
 <div class="col-md-12">
   <div class="form-group">
-    <input type="submit" value="اعمال تغییرات" class="btn btn-success btn-lg"/>
+    @*<input type="submit" value="اعمال تغییرات" class="btn btn-success btn-lg"/>*@
+    <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Job")', 'editJobFrm', '@ViewData["redirectUrl"]')"/>
   </div>
 </div>
 
