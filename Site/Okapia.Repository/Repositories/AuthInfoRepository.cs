@@ -5,10 +5,8 @@ namespace Okapia.Repository.Repositories
 {
     public class AuthInfoRepository : BaseRepository<long,AuthInfo>, IAuthInfoRepository
     {
-        private readonly OkapiaContext _context;
-        public AuthInfoRepository(OkapiaContext context, OkapiaContext context1) : base(context)
+        public AuthInfoRepository(OkapiaContext context) : base(context)
         {
-            _context = context1;
         }
     }
 }

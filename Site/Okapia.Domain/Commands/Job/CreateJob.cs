@@ -28,19 +28,31 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "نام خانوادگی مدیر")] public string JobManagerLastName { get; set; }
 
-        [Display(Name = "آدرس ایمیل")] public string JobEmailAddress { get; set; }
+        [Display(Name = "آدرس ایمیل")]
+        [EmailAddress(ErrorMessage = "فرمت اطلاعات وارد شده ایمیل نیست")]
+        public string JobEmailAddress { get; set; }
 
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         [Display(Name = "شماره تلفن ۱")]
+        [MaxLength(10, ErrorMessage = "شماره تلفن نمی تواند بیش از ۱۰ رقم باشد")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid Number")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobTel1 { get; set; }
 
-        [Display(Name = "شماره تلفن ۲")] public string JobTel2 { get; set; }
+        [Display(Name = "شماره تلفن ۲")]
+        [MaxLength(10, ErrorMessage = "شماره تلفن نمی تواند بیش از ۱۰ رقم باشد")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid Number")]
+        public string JobTel2 { get; set; }
 
         [Display(Name = "شماره موبایل ۱")]
+        [MaxLength(10, ErrorMessage = "شماره تلفن نمی تواند بیش از ۱۰ رقم باشد")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid Number")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobMobile1 { get; set; }
 
-        [Display(Name = "شماره موبایل ۲")] public string JobMobile2 { get; set; }
+        [Display(Name = "شماره موبایل ۲")]
+        [MaxLength(10, ErrorMessage = "شماره تلفن نمی تواند بیش از ۱۰ رقم باشد")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid Number")]
+        public string JobMobile2 { get; set; }
 
         [Display(Name = "استان")]
         [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.ProvinceRange)]
@@ -70,13 +82,18 @@ namespace Okapia.Domain.Commands.Job
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobWazeLink { get; set; }
 
-        [Display(Name = "عنوان صفحه شغل")] public string JobPageTittle { get; set; }
+        [Display(Name = "عنوان صفحه شغل(Page Title)")]
+        public string JobPageTittle { get; set; }
 
         [Display(Name = "اسلاگ")] public string JobSlug { get; set; }
 
-        [Display(Name = "متاتگ")] public string JobMetaTag { get; set; }
+        [MaxLength(50, ErrorMessage = "متاتگ نمی تواند بیش از 80 کاراکتر باشد")]
+        [Display(Name = "متاتگ(Meta Tag)")]
+        public string JobMetaTag { get; set; }
 
-        [Display(Name = "توضیحات")] public string JobMetaDesccription { get; set; }
+        [MaxLength(120, ErrorMessage = "Meta Description نمیتواند بیش از 120 کاراکتر باشد")]
+        [Display(Name = "توضیحات(Meta Description)")]
+        public string JobMetaDesccription { get; set; }
 
         [Display(Name = "اطلاعات هد سثو")] public string JobSeohead { get; set; }
 
@@ -115,7 +132,9 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "آیا وبسایت است")] public bool IsWebsite { get; set; }
 
-        [Display(Name = "آدرس وبسایت")] public string WebsiteUrl { get; set; }
+        [Url(ErrorMessage = "فرمت اطلاعات وارد شده Url نیست")]
+        [Display(Name = "آدرس وبسایت")]
+        public string WebsiteUrl { get; set; }
 
         [Display(Name = "آدرس اینستاگرام")] public string InstagramUrl { get; set; }
 

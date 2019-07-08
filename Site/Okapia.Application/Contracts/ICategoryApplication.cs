@@ -8,7 +8,7 @@ namespace Okapia.Application.Contracts
 {
     public interface ICategoryApplication
     {
-        void Create(CreateCategory command);
+        OperationResult Create(CreateCategory command);
         OperationResult Update(EditCategory command);
         void Delete(int id);
         void Activate(int id);

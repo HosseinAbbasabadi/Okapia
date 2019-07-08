@@ -1,18 +1,17 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Okapia.Models
+namespace Okapia.Domain.Commands.User
 {
     public class Login
     {
-        [Required]
         [StringLength(10)]
         [Display(Name = "نام کاربری")]
+        [Required(ErrorMessage = ValidationMessages.Required)]
         public string Username { get; set; }
 
-        [Required]
-        [StringLength(11)]
+        [StringLength(12)]
         [Display(Name = "کلمه رمز")]
+        [Required(ErrorMessage = ValidationMessages.Required)]
         public string Password { get; set; }
     }
 }

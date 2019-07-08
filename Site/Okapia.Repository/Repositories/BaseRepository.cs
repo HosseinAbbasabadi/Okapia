@@ -15,6 +15,17 @@ namespace Okapia.Repository.Repositories
             _context = context;
         }
 
+        public bool Exists(params Expression<Func<T, bool>>[] predicates)
+        {
+            var query = _context.Set<T>().AsQueryable();
+            foreach (var predicate in predicates)
+            {
+                query = query.Where(predicate);
+            }
+
+            return query.Any();
+        }
+
         public void Create(T entity)
         {
             var t = _context.Add(entity);

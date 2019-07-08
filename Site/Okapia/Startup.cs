@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Okapia.Application.Applications;
+using Okapia.Application.Contracts;
 using Okapia.Configuration;
 using Okapia.Helpers;
 
@@ -24,15 +28,22 @@ namespace Okapia
         {
             var bootstrapper = new Bootstrapper(Configuration);
             bootstrapper.Wireup(services);
+
             //TODO: should be moved to bootstrapper
             services.AddSingleton<IAuthHelper, AuthHelper>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
+
             services.AddHttpContextAccessor();
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/User/Login");
             services.AddMvc(options =>
                 {
                     options.EnableEndpointRouting = false;
@@ -58,6 +69,7 @@ namespace Okapia
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

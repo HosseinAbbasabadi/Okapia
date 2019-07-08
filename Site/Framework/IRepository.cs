@@ -10,6 +10,7 @@ namespace Framework
         List<T> GetAll();
         List<T> Get(params Expression<Func<T, bool>>[] predicate);
         bool IsDuplicated(params Expression<Func<T, bool>>[] predicates);
+        bool Exists(params Expression<Func<T, bool>>[] predicates);
         void Create(T entity);
         void Update(T entity);
         void Delete(T entity);

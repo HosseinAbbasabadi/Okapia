@@ -54,12 +54,6 @@ namespace Okapia.Areas.Administrator.Controllers
             return searchModel;
         }
 
-        // GET: Category/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Category/Create
         public ActionResult Create()
         {
@@ -72,20 +66,10 @@ namespace Okapia.Areas.Administrator.Controllers
 
         // POST: Category/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateCategory command)
+        public JsonResult Create(CreateCategory command)
         {
-            if (!ModelState.IsValid) return View(command);
-
-            try
-            {
-                _categoryApplication.Create(command);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var result = _categoryApplication.Create(command);
+            return Json(result);
         }
 
         // GET: Category/Edit/5
@@ -116,30 +100,16 @@ namespace Okapia.Areas.Administrator.Controllers
 
         public ActionResult Delete(int id)
         {
-            try
-            {
-                _categoryApplication.Delete(id);
-                var referer = Request.Headers["Referer"].ToString();
-                return Redirect(referer);
-            }
-            catch
-            {
-                return View();
-            }
+            _categoryApplication.Delete(id);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
         }
 
         public ActionResult Activate(int id)
         {
-            try
-            {
-                _categoryApplication.Activate(id);
-                var referer = Request.Headers["Referer"].ToString();
-                return Redirect(referer);
-            }
-            catch
-            {
-                return View();
-            }
+            _categoryApplication.Activate(id);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
         }
     }
 }

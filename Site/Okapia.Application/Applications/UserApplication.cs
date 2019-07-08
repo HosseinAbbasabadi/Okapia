@@ -1,23 +1,48 @@
 ﻿using System;
+using System.Linq;
 using Framework;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Internal;
 using Okapia.Application.Contracts;
+using Okapia.Application.Utilities;
 using Okapia.Domain;
 using Okapia.Domain.Commands.User;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
+using Okapia.Domain.ViewModels.User;
 
 namespace Okapia.Application.Applications
 {
     public class UserApplication : IUserApplication
     {
+        private readonly IAuthHelper _authHelper;
         private readonly IUserRepository _userRepository;
         private readonly IAuthInfoRepository _authInfoRepository;
 
-        public UserApplication(IUserRepository userRepository, IAuthInfoRepository authInfoRepository)
+        public UserApplication(IUserRepository userRepository, IAuthInfoRepository authInfoRepository,
+            IAuthHelper authHelper)
         {
             _userRepository = userRepository;
             _authInfoRepository = authInfoRepository;
+            _authHelper = authHelper;
+        }
+
+        public OperationResult LoginUser(Login login)
+        {
+            var result = new OperationResult("AuthInfo", "Login");
+            var auth = _authInfoRepository.Get(x => x.Username == login.Username, x => x.Password == login.Password)
+                .FirstOrDefault();
+            if (auth != null)
+            {
+                var user = _userRepository.Get(auth.ReferenceRecordId);
+                _authHelper.Signin(user.UserFirstName, auth.Username, auth.RoleId);
+                result.Success = true;
+                result.Message = ApplicationMessages.OperationSuccess;
+                return result;
+            }
+
+            result.Message = ApplicationMessages.UserNotExists;
+            return result;
         }
 
         public OperationResult RegisterUser(CreateUser command)
@@ -25,6 +50,12 @@ namespace Okapia.Application.Applications
             var operationResult = new OperationResult("RegisterUser", "Users");
             try
             {
+                if (_authInfoRepository.IsDuplicated(x => x.Username == command.NationalCardNumber))
+                {
+                    operationResult.Message = ApplicationMessages.DuplicatedUser;
+                    return operationResult;
+                }
+
                 var user = new User
                 {
                     UserFirstName = command.Name,
@@ -52,6 +83,7 @@ namespace Okapia.Application.Applications
                 };
                 _authInfoRepository.Create(authInfo);
                 _authInfoRepository.SaveChanges();
+                _authHelper.Signin(command.Name, command.NationalCardNumber, 1);
                 operationResult.Success = true;
                 operationResult.RecordId = user.UserId;
                 operationResult.Message = "succeded";
@@ -63,6 +95,16 @@ namespace Okapia.Application.Applications
                 return operationResult;
                 throw;
             }
+        }
+
+        public void LogoutUser()
+        {
+            _authHelper.Signout();
+        }
+
+        public UserInfoViewModel GetUserInfo()
+        {
+            return _authHelper.GetUserInfo();
         }
     }
 }

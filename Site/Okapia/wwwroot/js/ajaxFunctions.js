@@ -73,10 +73,41 @@ function createEntity(url, formId) {
     $.post(url,
       sendingData,
       function (operationResult) {
-        debugger;
         if (operationResult.success) {
           sendNotification('success', 'top right', "موفقیت", operationResult.message);
           $(`#${formId}`).trigger("reset");
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      });
+  }
+}
+
+function createEntityPost(url, formId) {
+  if ($("#" + formId).valid() === true) {
+    const sendingData = $(`#${formId}`).serialize();
+    $.post(url,
+      sendingData,
+      function (operationResult) {
+        if (operationResult.success) {
+          sendNotification('success', 'top right', "موفقیت", operationResult.message);
+          location.reload();
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      });
+  }
+}
+
+function createUser(url, formId, redirectUrl) {
+  if ($("#" + formId).valid() === true) {
+    const sendingData = $(`#${formId}`).serialize();
+    $.post(url,
+      sendingData,
+      function (operationResult) {
+        if (operationResult.success) {
+          sendNotification('success', 'top right', "موفقیت", operationResult.message);
+          location.replace(redirectUrl);
         } else {
           sendNotification('error', 'top right', "خطا", operationResult.message);
         }

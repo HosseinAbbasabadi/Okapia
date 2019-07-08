@@ -1,5 +1,7 @@
-﻿@{
-  var auth = ViewData["Auth"] as Auth;
+﻿@using Okapia.Application.Utilities
+@using Okapia.Domain.ViewModels.User
+@{
+  var auth = ViewData["Auth"] as UserInfoViewModel;
 }
 
 <div id="wrapper">

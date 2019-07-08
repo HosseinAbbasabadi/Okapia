@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -18,18 +17,10 @@ namespace Okapia.Areas.Administrator.Controllers
     {
         private readonly IJobApplication _jobApplication;
         private readonly ICategoryApplication _categoryApplication;
-        private readonly ICityApplication _cityApplication;
-        private readonly IDistrictApplication _districtApplication;
-        private readonly INeighborhoodApplication _neighborhoodApplication;
 
-        public JobController(IJobApplication jobApplication, ICityApplication cityApplication,
-            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication,
-            ICategoryApplication categoryApplication)
+        public JobController(IJobApplication jobApplication, ICategoryApplication categoryApplication)
         {
             _jobApplication = jobApplication;
-            _cityApplication = cityApplication;
-            _districtApplication = districtApplication;
-            _neighborhoodApplication = neighborhoodApplication;
             _categoryApplication = categoryApplication;
         }
 
@@ -100,36 +91,22 @@ namespace Okapia.Areas.Administrator.Controllers
             return View(createModel);
         }
 
-
         // POST: Shop/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateJob command)
+        public JsonResult Create(CreateJob command)
         {
-            //TODO: return appropiated message by viewdata
-            if (!ModelState.IsValid) return View(command);
-            try
+            var photos = new List<string>
             {
-                if (command.NamePhoto1 == null) return View(command);
-                var photos = new List<string>
-                {
-                    command.NamePhoto1,
-                    command.NamePhoto2,
-                    command.NamePhoto3,
-                    command.NamePhoto4,
-                    command.NamePhoto5,
-                    command.NamePhoto6
-                };
-                //var nullPhotos = photos.Where(x => x == null).ToList();
-                //nullPhotos.ForEach(x=> photos.Remove(x));
-                command.Photos = photos;
-                _jobApplication.Create(command);
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception exception)
-            {
-                return View();
-            }
+                command.NamePhoto1,
+                command.NamePhoto2,
+                command.NamePhoto3,
+                command.NamePhoto4,
+                command.NamePhoto5,
+                command.NamePhoto6
+            };
+            command.Photos = photos;
+            var result = _jobApplication.Create(command);
+            return Json(result);
         }
 
         // GET: Shop/Edit/5
@@ -200,6 +177,12 @@ namespace Okapia.Areas.Administrator.Controllers
             {
                 return View();
             }
+        }
+
+        public JsonResult CheckSlugDuplication(string id)
+        {
+            var result = _jobApplication.CheckJobSlugDuplication(id);
+            return Json(result);
         }
     }
 }

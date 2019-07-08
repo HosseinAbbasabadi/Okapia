@@ -22,16 +22,37 @@ namespace Okapia.Application.Applications
             _jobRepository = jobRepository;
         }
 
-        public void Create(CreateJob command)
+        public OperationResult Create(CreateJob command)
         {
+            var result = new OperationResult("Jobs", "Create");
             try
             {
-                if (string.IsNullOrEmpty(command.Photos.First())) return;
+                if (_jobRepository.Exists(x => x.JobSlug == command.JobSlug))
+                {
+                    result.Message = ApplicationMessages.DuplicatedJobSlug;
+                    return result;
+                }
+
+                if (_jobRepository.Exists(x => x.JobName == command.JobName, x => x.JobCategory == command.JobCategoryId, x=>x.JobProvienceId==command.JobProvienceId, x => x.JobCityId == command.JobCityId, x => x.JobDistrictId == command.JobDistrictId))
+                {
+                    result.Message = ApplicationMessages.DuplicatedRecord;
+                    return result;
+                }
+
+                if (string.IsNullOrEmpty(command.Photos.First()))
+                {
+                    result.Message = ApplicationMessages.PictureIsRequired;
+                    return result;
+                }
+
                 var jobWithoutPictures = MapCreateJobToJob(command, command.Photos);
                 var job = MapJobPictures(command.Photos, command.JobName, command.JobSmallDescription, "",
                     jobWithoutPictures);
                 _jobRepository.Create(job);
                 _jobRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
             }
             catch (Exception exception)
             {
@@ -277,6 +298,29 @@ namespace Okapia.Application.Applications
         public List<JobViewModel> GetJobsForList(JobSearchModel searchModel, out int recordCount)
         {
             return _jobRepository.Search(searchModel, out recordCount);
+        }
+
+        public OperationResult CheckJobSlugDuplication(string slug)
+        {
+            var result = new OperationResult("Jobs", "CheckJobSlugDuplication");
+            try
+            {
+                var slugified = Slugify.GenerateSlug(slug);
+                if (_jobRepository.Exists(x => x.JobSlug == slugified))
+                {
+                    result.Message = ApplicationMessages.DuplicatedJobSlug;
+                    return result;
+                }
+
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
         }
     }
 }

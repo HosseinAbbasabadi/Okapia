@@ -454,13 +454,8 @@
 <div class="col-md-12">
   <div class="form-group">
     @*<input type="submit" value="اعمال تغییرات" class="btn btn-success btn-lg"/>*@
-    <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Job")', 'editJobFrm', '@ViewData["redirectUrl"]')"/>
-  </div>
-</div>
-
-<div class="col-md-12">
-  <div class="form-group text-left">
-    <a class="text-info" href="@Context.Request.GetDisplayUrl()">بازگشت به لیست</a>
+    <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Job")', 'editJobFrm', '@ViewData["redirectUrl"]')" />
+    <a class="btn btn-warning btn-lg" href="@ViewData["redirectUrl"]">بازگشت به لیست</a>
   </div>
 </div>
 </form>

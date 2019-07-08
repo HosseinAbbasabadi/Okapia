@@ -20,23 +20,42 @@ namespace Okapia.Application.Applications
             _categoryRepository = categoryRepository;
         }
 
-        public void Create(CreateCategory command)
+        public OperationResult Create(CreateCategory command)
         {
-            var category = new Category
+            var result = new OperationResult("Categories", "Create");
+            try
             {
-                CategoryName = command.CategoryName,
-                CategoryMetaDesccription = command.CategoryMetaDesccription,
-                CategoryMetaTag = command.CategoryMetaTag,
-                CategoryPageTittle = command.CategoryPageTittle,
-                CategoryParentId = command.CategoryParentId,
-                CategorySeohead = command.CategorySeohead,
-                CategorySmallDescription = command.CategorySmallDescription,
-                CategoryThumbPicUrl = command.NameImage,
-                RegisteringEmployeeId = 1,
-                IsDeleted = false
-            };
-            _categoryRepository.Create(category);
-            _categoryRepository.SaveChanges();
+                if (_categoryRepository.Exists(x => x.CategoryName == command.CategoryName))
+                {
+                    result.Message = ApplicationMessages.DuplicatedCategoryName;
+                    return result;
+                }
+
+                var category = new Category
+                {
+                    CategoryName = command.CategoryName,
+                    CategoryMetaDesccription = command.CategoryMetaDesccription,
+                    CategoryMetaTag = command.CategoryMetaTag,
+                    CategoryPageTittle = command.CategoryPageTittle,
+                    CategoryParentId = command.CategoryParentId,
+                    CategorySeohead = command.CategorySeohead,
+                    CategorySmallDescription = command.CategorySmallDescription,
+                    CategoryThumbPicUrl = command.NameImage,
+                    RegisteringEmployeeId = 1,
+                    IsDeleted = false
+                };
+                _categoryRepository.Create(category);
+                _categoryRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
         }
 
         public OperationResult Update(EditCategory command)

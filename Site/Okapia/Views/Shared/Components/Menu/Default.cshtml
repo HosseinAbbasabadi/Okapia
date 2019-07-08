@@ -1,4 +1,6 @@
-﻿@model Auth
+﻿@using Okapia.Application.Utilities
+@using Okapia.Domain.ViewModels.User
+@model Okapia.Domain.ViewModels.User.UserInfoViewModel
 
 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
   <div class="container">
@@ -45,43 +47,40 @@
         @if (!Model.IsAuthorized)
         {
           <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">ورود مشتریان</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">ورود</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="AdminSignIn">ورود مشاغل</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">ثبت نام</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Register">ثبت نام</a>
           </li>
         }
         else
         {
-          if (Model.Role == "Administrator")
+          if (Model.Role == 4)
           {
             <li class="nav-item">
-              <a class="nav-link text-primary" asp-area="Administrator" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
+              <a class="nav-link text-primary" asp-area="Administrator" asp-controller="Home" asp-action="Index">@Model.Name خوش آمدید</a>
             </li>
           }
-          if (Model.Role == "Job")
+          if (Model.Role == 2)
           {
             <li class="nav-item">
-              <a class="nav-link text-primary" asp-area="Job" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
+              <a class="nav-link text-primary" asp-area="Job" asp-controller="Home" asp-action="Index">@Model.Name خوش آمدید</a>
             </li>
           }
-          if (Model.Role == "Customer")
+          if (Model.Role == 1)
           {
             <li class="nav-item">
-              <a class="nav-link text-primary" asp-area="Customer" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
+              <a class="nav-link text-primary" asp-area="Customer" asp-controller="Home" asp-action="Index">@Model.Name خوش آمدید</a>
             </li>
           }
-          if (Model.Role == "Club")
+          if (Model.Role == 3)
           {
             <li class="nav-item">
-              <a class="nav-link text-primary" asp-area="Club" asp-controller="Home" asp-action="Index">@Model.Username خوش آمدید</a>
+              <a class="nav-link text-primary" asp-area="Club" asp-controller="Home" asp-action="Index">@Model.Name خوش آمدید</a>
             </li>
           }
           <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="SignOut">خروج</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Logout">خروج</a>
           </li>
         }
 

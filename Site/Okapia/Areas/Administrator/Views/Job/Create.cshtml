@@ -11,12 +11,12 @@
 <hr/>
 <div class="row">
 <div class="col-md-12">
-<form asp-area="Administrator" asp-controller="Job" asp-action="Create">
+<form method="post" id="createJobFrm">
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobName" class="control-label"></label>
-    <input asp-for="JobName" class="form-control" onchange="string_to_slug(document.getElementById('JobName').value)"/>
+    <input asp-for="JobName" class="form-control" onchange="makeSlug()"/>
     <span asp-validation-for="JobName" class="text-danger"></span>
   </div>
 </div>
@@ -93,7 +93,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobAddress" class="control-label"></label>
-    <input asp-for="JobAddress" class="form-control" />
+    <input asp-for="JobAddress" class="form-control"/>
     <span asp-validation-for="JobAddress" class="text-danger"></span>
   </div>
 </div>
@@ -166,21 +166,21 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobSlug" class="control-label"></label>
-    <input asp-for="JobSlug" class="form-control"/>
+    <input asp-for="JobSlug" class="form-control" onchange="checkSlugDuplication(document.getElementById('JobSlug').value)"/>
     <span asp-validation-for="JobSlug" class="text-danger"></span>
   </div>
 </div>
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobMetaTag" class="control-label"></label>
-    <input asp-for="JobMetaTag" class="form-control"/>
+    <textarea asp-for="JobMetaTag" class="form-control" rows="5"></textarea>
     <span asp-validation-for="JobMetaTag" class="text-danger"></span>
   </div>
 </div>
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobMetaDesccription" class="control-label"></label>
-    <input asp-for="JobMetaDesccription" class="form-control"/>
+    <textarea asp-for="JobMetaDesccription" class="form-control" rows="5"></textarea>
     <span asp-validation-for="JobMetaDesccription" class="text-danger"></span>
   </div>
 </div>
@@ -194,7 +194,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobCanonicalAddress" class="control-label"></label>
-    <input asp-for="JobCanonicalAddress" class="form-control"/>
+    <textarea asp-for="JobCanonicalAddress" class="form-control" row="5"></textarea>
     <span asp-validation-for="JobCanonicalAddress" class="text-danger"></span>
   </div>
 </div>
@@ -328,7 +328,7 @@
     <tr>
       <td>@i</td>
       <td>
-        <input id="@inputId" name="@inputId" type="file" size="1" onchange="uploadFiles('@inputId',0, 'job');PreviewImage('@inputId', '@prevImageId');" class="form-control custom-file-input" accept="image/*"/>
+        <input id="@inputId" name="@inputId" type="file" size="1" onchange="uploadFiles('@inputId', 0, 'job');PreviewImage('@inputId', '@prevImageId');" class="form-control custom-file-input" accept="image/*"/>
         <input asp-for="'@propertyInputId'" id="@nameInputId" name="@nameInputId" type="hidden" size="1" value=""/>
       </td>
       <td>
@@ -337,21 +337,56 @@
       <td>
         <button type="button" id="@deleteBtnId" onclick="deletePhoto('@inputId', 'job')" class="btn btn-danger hidden">حذف</button>
       </td>
-    </tr> 
+    </tr>
   }
- 
+
 </table>
 <div class="col-md-12">
   <div class="form-group">
-    <input type="submit" value="ثبت" class="btn btn-success btn-lg"/>
+    <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntity('@Url.Action("Create", "Job")', 'createJobFrm')"/>
+    <a class="btn btn-warning btn-lg" asp-action="Index" asp-controller="Job" asp-area="Administrator">بازگشت به لیست</a>
   </div>
 </div>
 
-<div class="col-md-12">
-  <div class="form-group text-left">
-    <a class="text-info" asp-action="Index" asp-controller="Job" asp-area="Administrator">بازگشت به لیست</a>
-  </div>
-</div>
 </form>
 </div>
 </div>
+<script>
+  function checkSlugDuplication(id) {
+    @*$.ajax({
+      url: '@Url.Action("CheckSlugDuplication", "Job")' + '/' + id,
+      type: 'Get',
+      contentType: 'application/json',
+      success: function (operationResult) {
+
+      },
+      error: function () {
+        sendNotification('success', 'top right', "موفقیت", operationResult.message);
+      }
+    });*@
+
+    $.get({
+      url: '@Url.Action("CheckSlugDuplication", "Job")' + '/' + id,
+      success: function(operationResult) {
+        if (operationResult.success) {
+
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      }
+    });
+  }
+
+  var slug = function(str) {
+    var $slug = '';
+    const trimmed = $.trim(str);
+    $slug = trimmed.replace(/[^a-z0-9-آ-ی-]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+    return $slug.toLowerCase();
+  }
+
+  function makeSlug() {
+    const takedata = $('#JobName').val();
+    $('#JobSlug').val(slug(takedata));
+    checkSlugDuplication(document.getElementById('JobSlug').value);
+  };
+</script>
