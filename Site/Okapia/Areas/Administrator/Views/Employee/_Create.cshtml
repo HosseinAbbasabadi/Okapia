@@ -1,0 +1,54 @@
+﻿@model Okapia.Domain.Commands.Employee.CreateEmployee
+
+<div id="createEmployeeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog" style="width: 55%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="custom-width-modalLabel">ایجاد محله جدید</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <form id="createEmployeeFrm" method="post">
+              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="EmployeeFirstName" class="control-label"></label>
+                  <input asp-for="EmployeeFirstName" class="form-control"/>
+                  <span asp-validation-for="EmployeeFirstName" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="EmployeeLastName" class="control-label"></label>
+                  <input asp-for="EmployeeLastName" class="form-control"/>
+                  <span asp-validation-for="EmployeeLastName" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="EmployeeUsername" class="control-label"></label>
+                  <input asp-for="EmployeeUsername" class="form-control"/>
+                  <span asp-validation-for="EmployeeUsername" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="EmployeePassword" class="control-label"></label>
+                  <input asp-for="EmployeePassword" class="form-control"/>
+                  <span asp-validation-for="EmployeePassword" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityWithListFeed('@Url.Action("Create", "Employee")', 'createEmployeeFrm', '@Url.Action("ListContent", "Employee")', 'listEmployeeDiv')"/>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

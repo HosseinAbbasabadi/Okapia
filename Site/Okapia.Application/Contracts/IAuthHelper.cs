@@ -5,8 +5,8 @@ namespace Okapia.Application.Contracts
 {
     public interface IAuthHelper
     {
-        void Signin(string name, string userName, int role);
+        void Signin(UserInfoViewModel userInfo);
         void Signout();
-        UserInfoViewModel GetUserInfo();
+        UserInfoViewModel GetCurrnetUserInfo();
     }
 }

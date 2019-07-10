@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Framework;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.Job;
@@ -16,10 +17,20 @@ namespace Okapia.Application.Applications
     public class JobApplication : IJobApplication
     {
         private readonly IJobRepository _jobRepository;
-
-        public JobApplication(IJobRepository jobRepository)
+        private readonly IAuthInfoRepository _authInfoRepository;
+        private readonly IAuthHelper _authHelper;
+        private readonly ICityApplication _cityApplication;
+        private readonly IDistrictApplication _districtApplication;
+        private readonly INeighborhoodApplication _neighborhoodApplication;
+        
+        public JobApplication(IJobRepository jobRepository, IAuthInfoRepository authInfoRepository, IAuthHelper authHelper, ICityApplication cityApplication, IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication)
         {
             _jobRepository = jobRepository;
+            _authInfoRepository = authInfoRepository;
+            _authHelper = authHelper;
+            _cityApplication = cityApplication;
+            _districtApplication = districtApplication;
+            _neighborhoodApplication = neighborhoodApplication;
         }
 
         public OperationResult Create(CreateJob command)
@@ -33,23 +44,41 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
-                if (_jobRepository.Exists(x => x.JobName == command.JobName, x => x.JobCategory == command.JobCategoryId, x=>x.JobProvienceId==command.JobProvienceId, x => x.JobCityId == command.JobCityId, x => x.JobDistrictId == command.JobDistrictId))
+                if (_jobRepository.Exists(x => x.JobName == command.JobName,
+                    x => x.JobCategory == command.JobCategoryId, x => x.JobProvienceId == command.JobProvienceId,
+                    x => x.JobCityId == command.JobCityId, x => x.JobDistrictId == command.JobDistrictId))
                 {
                     result.Message = ApplicationMessages.DuplicatedRecord;
                     return result;
                 }
 
-                if (string.IsNullOrEmpty(command.Photos.First()))
+                if (_authInfoRepository.Exists(x => x.Username == command.Username,
+                    x => x.RoleId == Constants.Roles.Job.Id))
+                {
+                    result.Message = ApplicationMessages.DuplicatedJob;
+                    return result;
+                }
+
+                if (string.IsNullOrEmpty(command.Photos.First().Name))
                 {
                     result.Message = ApplicationMessages.PictureIsRequired;
                     return result;
                 }
 
-                var jobWithoutPictures = MapCreateJobToJob(command, command.Photos);
-                var job = MapJobPictures(command.Photos, command.JobName, command.JobSmallDescription, "",
-                    jobWithoutPictures);
+                var jobWithoutPictures = MapCreateJobToJob(command);
+                var job = MapJobPictures(command.Photos, jobWithoutPictures);
                 _jobRepository.Create(job);
                 _jobRepository.SaveChanges();
+                var authInfo = new AuthInfo
+                {
+                    Username = command.Username.ToLower(),
+                    Password = command.Password,
+                    IsDeleted = false,
+                    RoleId = Constants.Roles.Job.Id,
+                    ReferenceRecordId = job.JobId
+                };
+                _authInfoRepository.Create(authInfo);
+                _authInfoRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
                 return result;
@@ -65,10 +94,12 @@ namespace Okapia.Application.Applications
         {
             try
             {
+                var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(id, Constants.Roles.Job.Id);
+                authInfo.IsDeleted = true;
                 var job = _jobRepository.Get(x => x.JobId == id).First();
-                job.IsDeleted = true;
                 job.JobRemoved301InsteadUrl = redirect301Url;
                 _jobRepository.Update(job);
+                _authInfoRepository.Update(authInfo);
                 _jobRepository.SaveChanges();
             }
             catch (Exception exception)
@@ -82,10 +113,12 @@ namespace Okapia.Application.Applications
         {
             try
             {
+                var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(id, Constants.Roles.Job.Id);
+                authInfo.IsDeleted = false;
                 var job = _jobRepository.Get(x => x.JobId == id).First();
-                job.IsDeleted = false;
                 job.JobRemoved301InsteadUrl = null;
                 _jobRepository.Update(job);
+                _authInfoRepository.Update(authInfo);
                 _jobRepository.SaveChanges();
             }
             catch (Exception exception)
@@ -107,10 +140,8 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
-                ;
-                var jobWithoutPictures = MapEditJobToJob(command, command.Photos);
-                var job = MapJobPicturesForUpdate(command.Photos, command.JobName, command.JobSmallDescription, "",
-                    jobWithoutPictures);
+                var jobWithoutPictures = MapEditJobToJob(command);
+                var job = MapJobPicturesForUpdate(command.Photos, jobWithoutPictures);
                 _jobRepository.Update(job);
                 _jobRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
@@ -129,7 +160,11 @@ namespace Okapia.Application.Applications
         {
             try
             {
-                return _jobRepository.GetJobDetails(id);
+                var jobDetails =  _jobRepository.GetJobDetails(id, Constants.Roles.Job.Id);
+                jobDetails.Citeies = new SelectList(_cityApplication.GetCitiesBy(jobDetails.JobProvienceId), "Id", "Name");
+                jobDetails.Districts = new SelectList(_districtApplication.GetDistrictsBy(jobDetails.JobCityId), "Id", "Name");
+                jobDetails.Neighborhoods = new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(jobDetails.JobDistrictId), "Id", "Name");
+                return jobDetails;
             }
             catch (Exception exception)
             {
@@ -138,7 +173,7 @@ namespace Okapia.Application.Applications
             }
         }
 
-        private static Job MapCreateJobToJob(CreateJob command, IEnumerable<string> photoNames)
+        private Job MapCreateJobToJob(CreateJob command)
         {
             var job = new Job
             {
@@ -180,8 +215,7 @@ namespace Okapia.Application.Applications
                 JobAccountNumber = command.JobAccountNumber,
                 JobShowOrderIncategory = command.JobShowOrderIncategory,
                 ShowInHomePage = command.ShowInHomePage,
-                IsDeleted = false,
-                RegisteringEmployerId = 1, //currentUser
+                RegisteringEmployerId = _authHelper.GetCurrnetUserInfo().UserId,
                 CustomerIntroductionLimit = command.CustomerIntroductionLimit,
                 IsWebsite = command.IsWebsite,
                 WebSiteUrl = command.WebsiteUrl,
@@ -191,7 +225,7 @@ namespace Okapia.Application.Applications
             return job;
         }
 
-        private static Job MapEditJobToJob(EditJob command, IEnumerable<JobPictureViewModel> photos)
+        private Job MapEditJobToJob(EditJob command)
         {
             var job = new Job
             {
@@ -233,35 +267,33 @@ namespace Okapia.Application.Applications
                 JobAccountNumber = command.JobAccountNumber,
                 JobShowOrderIncategory = command.JobShowOrderIncategory,
                 ShowInHomePage = command.ShowInHomePage,
-                RegisteringEmployerId = 1, //currentUser
+                RegisteringEmployerId = _authHelper.GetCurrnetUserInfo().UserId,
                 CustomerIntroductionLimit = command.CustomerIntroductionLimit,
                 IsWebsite = command.IsWebsite,
                 WebSiteUrl = command.WebsiteUrl,
                 InstagramUrl = command.InstagramUrl,
                 TelegramUrl = command.TelegramUrl,
                 JobId = command.JobId,
-                IsDeleted = command.IsDeleted,
                 JobRemoved301InsteadUrl = command.RedirectInstead301Url
             };
             return job;
         }
 
-        private static Job MapJobPictures(IReadOnlyCollection<string> pictureUris, string title,
-            string description, string thumbUri, Job job)
+        private static Job MapJobPictures(IReadOnlyCollection<JobPictureViewModel> jobPictureViewModels, Job job)
         {
             var jobPictures = new List<JobPicture>();
-            foreach (var pictureUri in pictureUris)
+            foreach (var jobPictureViewModel in jobPictureViewModels)
             {
                 var jobPicture = new JobPicture
                 {
-                    JobPictureTitle = title,
-                    JobPictureSmallDescription = description,
+                    JobPictureTitle = jobPictureViewModel.Title,
+                    JobPictureSmallDescription = jobPictureViewModel.Description,
                     Job = job,
-                    JobPictureUrl = pictureUri,
-                    JobPicturThumbUrl = thumbUri,
-                    JobPictureAlt = description
+                    JobPictureUrl = jobPictureViewModel.Name,
+                    JobPicturThumbUrl = jobPictureViewModel.Name,
+                    JobPictureAlt = jobPictureViewModel.Description
                 };
-                if (pictureUri == pictureUris.First())
+                if (jobPictureViewModel == jobPictureViewModels.First())
                     jobPicture.IsDefault = true;
                 jobPictures.Add(jobPicture);
             }
@@ -270,8 +302,7 @@ namespace Okapia.Application.Applications
             return job;
         }
 
-        private static Job MapJobPicturesForUpdate(IReadOnlyCollection<JobPictureViewModel> pictures, string title,
-            string description, string thumbUri, Job job)
+        private static Job MapJobPicturesForUpdate(IReadOnlyCollection<JobPictureViewModel> pictures, Job job)
         {
             var jobPictures = new List<JobPicture>();
             foreach (var picture in pictures)
@@ -279,12 +310,12 @@ namespace Okapia.Application.Applications
                 var jobPicture = new JobPicture
                 {
                     JobPictureId = picture.Id,
-                    JobPictureTitle = title,
-                    JobPictureSmallDescription = description,
-                    Job = job,
+                    JobPictureTitle = picture.Title,
+                    JobPictureSmallDescription = picture.Description,
                     JobPictureUrl = picture.Name,
-                    JobPicturThumbUrl = thumbUri,
-                    JobPictureAlt = description
+                    JobPicturThumbUrl = picture.Name,
+                    JobPictureAlt = picture.Alt,
+                    Job = job
                 };
                 if (picture.Name == pictures.First().Name)
                     jobPicture.IsDefault = true;
@@ -297,7 +328,7 @@ namespace Okapia.Application.Applications
 
         public List<JobViewModel> GetJobsForList(JobSearchModel searchModel, out int recordCount)
         {
-            return _jobRepository.Search(searchModel, out recordCount);
+            return _jobRepository.Search(searchModel, Constants.Roles.Job.Id, out recordCount);
         }
 
         public OperationResult CheckJobSlugDuplication(string slug)

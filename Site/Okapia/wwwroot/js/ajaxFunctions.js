@@ -72,7 +72,7 @@ function createEntity(url, formId) {
     const sendingData = $(`#${formId}`).serialize();
     $.post(url,
       sendingData,
-      function (operationResult) {
+      function(operationResult) {
         if (operationResult.success) {
           sendNotification('success', 'top right', "موفقیت", operationResult.message);
           $(`#${formId}`).trigger("reset");
@@ -83,70 +83,102 @@ function createEntity(url, formId) {
   }
 }
 
+function createEntityWithListFeed(url, formId, listUrl, listDivId) {
+  if ($("#" + formId).valid() === true) {
+    const sendingData = $(`#${formId}`).serialize();
+    $.post(url,
+      sendingData,
+      function(operationResult) {
+        if (operationResult.success) {
+          sendNotification('success', 'top right', "موفقیت", operationResult.message);
+          $(`#${formId}`).trigger("reset");
+          $.ajax({
+            url: listUrl,
+            type: "Get",
+            success: function(response) {
+              const container = document.getElementById(listDivId);
+              $("#" + listDivId).empty();
+              container.insertAdjacentHTML("beforeend", response);
+            }
+          });
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      });
+  }
+}
+
 function createEntityPost(url, formId) {
   if ($("#" + formId).valid() === true) {
+    for (instance in CKEDITOR.instances) {
+      CKEDITOR.instances[instance].updateElement();
+    }
     const sendingData = $(`#${formId}`).serialize();
-    $.post(url,
-      sendingData,
-      function (operationResult) {
-        if (operationResult.success) {
-          sendNotification('success', 'top right', "موفقیت", operationResult.message);
-          location.reload();
-        } else {
-          sendNotification('error', 'top right', "خطا", operationResult.message);
-        }
-      });
+      $.post(url,
+        sendingData,
+        function(operationResult) {
+          if (operationResult.success) {
+            sendNotification('success', 'top right', "موفقیت", operationResult.message);
+            location.reload();
+          } else {
+            sendNotification('error', 'top right', "خطا", operationResult.message);
+          }
+        });
+    }
   }
-}
 
-function createUser(url, formId, redirectUrl) {
-  if ($("#" + formId).valid() === true) {
+  function createUser(url, formId, redirectUrl) {
+    if ($("#" + formId).valid() === true) {
+      const sendingData = $(`#${formId}`).serialize();
+      $.post(url,
+        sendingData,
+        function(operationResult) {
+          if (operationResult.success) {
+            sendNotification('success', 'top right', "موفقیت", operationResult.message);
+            location.replace(redirectUrl);
+          } else {
+            sendNotification('error', 'top right', "خطا", operationResult.message);
+          }
+        });
+    }
+  }
+
+  function updateEntity(url, formId) {
     const sendingData = $(`#${formId}`).serialize();
-    $.post(url,
-      sendingData,
-      function (operationResult) {
-        if (operationResult.success) {
-          sendNotification('success', 'top right', "موفقیت", operationResult.message);
-          location.replace(redirectUrl);
-        } else {
-          sendNotification('error', 'top right', "خطا", operationResult.message);
-        }
-      });
+    if ($("#" + formId).valid() === true) {
+      $.post(url,
+        sendingData,
+        function(operationResult) {
+          if (operationResult.success) {
+            sendNotification('success', 'top right', "موفقیت", operationResult.message);
+            location.reload();
+          } else {
+            sendNotification('error', 'top right', "خطا", operationResult.message);
+          }
+        });
+    }
   }
-}
-
-function updateEntity(url, formId) {
-  const sendingData = $(`#${formId}`).serialize();
-  if ($("#" + formId).valid() === true) {
-    $.post(url,
-      sendingData,
-      function(operationResult) {
-        if (operationResult.success) {
-          sendNotification('success', 'top right', "موفقیت", operationResult.message);
-          location.reload();
-        } else {
-          sendNotification('error', 'top right', "خطا", operationResult.message);
-        }
-      });
-  }
-}
 
 function updateEntityPage(url, formId, redirectUrl) {
-  const sendingData = $(`#${formId}`).serialize();
-  if ($("#" + formId).valid() === true) {
-    $.post(url,
-      sendingData,
-      function(operationResult) {
-        if (operationResult.success) {
-          sendNotification('success', 'top right', "موفقیت", operationResult.message);
-          location.replace(redirectUrl);
-        } else {
-          sendNotification('error', 'top right', "خطا", operationResult.message);
-        }
-      });
+  for (instance in CKEDITOR.instances) {
+    CKEDITOR.instances[instance].updateElement();
   }
-}
+    const sendingData = $(`#${formId}`).serialize();
+  debugger;
+    if ($("#" + formId).valid() === true) {
+      $.post(url,
+        sendingData,
+        function(operationResult) {
+          if (operationResult.success) {
+            sendNotification('success', 'top right', "موفقیت", operationResult.message);
+            location.replace(redirectUrl);
+          } else {
+            sendNotification('error', 'top right', "خطا", operationResult.message);
+          }
+        });
+    }
+  }
 
-function sendNotification(status, place, title, body) {
-  $.Notification.autoHideNotify(status, place, title, body);
-}
+  function sendNotification(status, place, title, body) {
+    $.Notification.autoHideNotify(status, place, title, body);
+  }

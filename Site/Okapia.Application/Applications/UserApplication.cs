@@ -35,7 +35,8 @@ namespace Okapia.Application.Applications
             if (auth != null)
             {
                 var user = _userRepository.Get(auth.ReferenceRecordId);
-                _authHelper.Signin(user.UserFirstName, auth.Username, auth.RoleId);
+                var userInfo = new UserInfoViewModel(auth.Id, user.UserFirstName, auth.Username, auth.RoleId);
+                _authHelper.Signin(userInfo);
                 result.Success = true;
                 result.Message = ApplicationMessages.OperationSuccess;
                 return result;
@@ -79,11 +80,12 @@ namespace Okapia.Application.Applications
                     Username = user.UserNationalCode,
                     Password = user.UserPhoneNumber,
                     ReferenceRecordId = user.UserId,
-                    RoleId = 1
+                    RoleId = Constants.Roles.User.Id
                 };
                 _authInfoRepository.Create(authInfo);
                 _authInfoRepository.SaveChanges();
-                _authHelper.Signin(command.Name, command.NationalCardNumber, 1);
+                var userInfo = new UserInfoViewModel(authInfo.Id, command.Name, authInfo.Username, Constants.Roles.User.Id);
+                _authHelper.Signin(userInfo);
                 operationResult.Success = true;
                 operationResult.RecordId = user.UserId;
                 operationResult.Message = "succeded";
@@ -104,7 +106,7 @@ namespace Okapia.Application.Applications
 
         public UserInfoViewModel GetUserInfo()
         {
-            return _authHelper.GetUserInfo();
+            return _authHelper.GetCurrnetUserInfo();
         }
     }
 }

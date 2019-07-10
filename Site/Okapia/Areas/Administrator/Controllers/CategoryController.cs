@@ -29,7 +29,7 @@ namespace Okapia.Areas.Administrator.Controllers
                 searchModel.PageSize = 20;
             }
 
-            var categories = _categoryApplication.GetCategoriesForList(searchModel, out int recordCount).ToList();
+            var categories = _categoryApplication.Search(searchModel, out int recordCount).ToList();
             var categorySearchModel = ProvideCategorySearchModel(searchModel, categories);
             var categoryIndex = ProviceCategoryIndex(categorySearchModel, categories);
             Pager.PreparePager(categorySearchModel, recordCount);

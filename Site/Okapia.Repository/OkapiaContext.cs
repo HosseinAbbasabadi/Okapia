@@ -32,6 +32,7 @@ namespace Okapia.Repository
         public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Neighborhood> Neighborhoods { get; set; }
         public DbSet<AuthInfo> AuthInfo { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -50,6 +51,7 @@ namespace Okapia.Repository
             // user mapping
             modelBuilder.ApplyConfiguration(new UserMapping());
             modelBuilder.ApplyConfiguration(new GroupMapping());
+            modelBuilder.ApplyConfiguration(new EmployeeMapping());
 
             // modal mapping
             modelBuilder.ApplyConfiguration(new ModalMapping());

@@ -8,5 +8,6 @@
         public int RoleId { get; set; }
         public long ReferenceRecordId { get; set; }
         public string RefereshToken { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

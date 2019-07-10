@@ -14,6 +14,6 @@ namespace Okapia.Application.Contracts
         void Activate(int id);
         EditCategory GetCategoryDetails(int id);
         IEnumerable<CategoryViewModel> GetCategories();
-        IEnumerable<CategoryViewModel> GetCategoriesForList(CategorySearchModel searchModel, out int recordCount);
+        IEnumerable<CategoryViewModel> Search(CategorySearchModel searchModel, out int recordCount);
     }
 }

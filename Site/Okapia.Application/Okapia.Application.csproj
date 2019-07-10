@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Okapia.Domain\Okapia.Domain.csproj" />
+    <ProjectReference Include="..\Okapia.Repository\Okapia.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>

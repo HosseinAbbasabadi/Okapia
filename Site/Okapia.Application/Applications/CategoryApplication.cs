@@ -140,7 +140,7 @@ namespace Okapia.Application.Applications
             return _categoryRepository.GetCategories();
         }
 
-        public IEnumerable<CategoryViewModel> GetCategoriesForList(CategorySearchModel searchModel, out int recordCount)
+        public IEnumerable<CategoryViewModel> Search(CategorySearchModel searchModel, out int recordCount)
         {
             return _categoryRepository.Search(searchModel, out recordCount);
         }

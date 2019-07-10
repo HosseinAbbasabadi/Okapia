@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Domain.ViewModels.JobPicture;
 
 namespace Okapia.Domain.Commands.Job
@@ -16,13 +17,9 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "آدرس صفحه جایگزین در صورت حذف")]
         public string RedirectInstead301Url { get; set; }
-
-        public int NamePhoto1Id { get; set; }
-        public int NamePhoto2Id { get; set; }
-        public int NamePhoto3Id { get; set; }
-        public int NamePhoto4Id { get; set; }
-        public int NamePhoto5Id { get; set; }
-        public int NamePhoto6Id { get; set; }
         public new List<JobPictureViewModel> Photos { get; set; }
+        public SelectList Citeies { get; set; }
+        public SelectList Districts { get; set; }
+        public SelectList Neighborhoods { get; set; }
     }
 }

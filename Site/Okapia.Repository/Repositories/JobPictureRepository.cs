@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 
@@ -16,7 +17,7 @@ namespace Okapia.Repository.Repositories
 
         public List<JobPicture> GetJobPicturesByJob(int id)
         {
-            return _context.JobPicture.Where(x => x.JobId == id).ToList();
+            return _context.JobPicture.Where(x => x.JobId == id).AsNoTracking().ToList();
         }
     }
 }

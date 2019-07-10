@@ -1,0 +1,116 @@
+﻿@using Okapia.Domain.SeachModels
+@model IEnumerable<Okapia.Domain.ViewModels.Employee.EmployeeViewModel>
+@{
+  var searchModel = ViewData["searchModel"] as EmployeeSearchModel;
+}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">لیست کارمندان</h2>
+      </div>
+      <div class="panel-body">
+        <table id="datatable" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>
+                ردیف
+              </th>
+              <th>
+                @Html.DisplayNameFor(model => model.EmployeeFirstName)
+              </th>
+              <th>
+                @Html.DisplayNameFor(model => model.EmployeeLastName)
+              </th>
+              <th>
+                @Html.DisplayNameFor(model => model.EmployeeUsername)
+              </th>
+              <th>
+                @Html.DisplayNameFor(model => model.EmployeeCreationDate)
+              </th>
+              <th>
+                عملیات
+              </th>
+
+          </thead>
+          <tbody>
+            @foreach (var item in Model.Select((value, index) => new { index, value }))
+            {
+              <tr>
+                <td>
+                  @{
+                    var index = item.index;
+                    index += 1;
+                  }
+                  @index
+                </td>
+                <td>
+                  @Html.DisplayFor(modelItem => item.value.EmployeeFirstName)
+                </td>
+                <td>
+                  @Html.DisplayFor(modelItem => item.value.EmployeeLastName)
+                </td>
+                <td>
+                  @Html.DisplayFor(modelItem => item.value.EmployeeUsername)
+                </td>
+                <td>
+                  @Html.DisplayFor(modelItem => item.value.EmployeeCreationDate)
+                </td>
+                <td>
+                  <a class="btn btn-sm btn-info" onclick="openEditEmployeeModal('@item.value.EmployeeId')">ویرایش</a>
+                  @if (!item.value.EmployeeIsDeleted)
+                  {
+                    <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="Employee" asp-action="Delete" asp-route-id="@item.value.EmployeeId">حذف</a>
+                  }
+                  else
+                  {
+                    <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Employee" asp-action="Activate" asp-route-id="@item.value.EmployeeId">فعال سازی</a>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <nav>
+        <ul class="pagination">
+          @for (var i = 0; i < searchModel.PageCount; i++)
+          {
+            var routingSearchModel = new EmployeeSearchModel
+            {
+              EmployeeFirstName = searchModel.EmployeeFirstName,
+              EmployeeLastName = searchModel.EmployeeLastName,
+              EmployeeUsername = searchModel.EmployeeUsername,
+              EmployeeIsDeleted = searchModel.EmployeeIsDeleted,
+              PageSize = 20,
+              PageIndex = i
+            };
+            if (searchModel.PageIndex == i)
+            {
+              <li class="active">
+                @Html.ActionLink((i + 1).ToString(), "Index", "Employee", routingSearchModel)
+              </li>
+            }
+            else
+            {
+              <li>
+                @Html.ActionLink((i + 1).ToString(), "Index", "Employee", routingSearchModel)
+              </li>
+            }
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div id="editEmployeeDiv">
+
+</div>
+
+<script>
+  function openEditEmployeeModal(id) {
+    openModalWithData(`@Url.Action("Edit", "Employee")/${id}`, 'editEmployeeDiv', 'editEmployeeModal');
+  }
+</script>

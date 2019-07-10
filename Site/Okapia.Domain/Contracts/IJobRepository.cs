@@ -10,7 +10,7 @@ namespace Okapia.Domain.Contracts
     public interface IJobRepository : IRepository<int, Job>
     {
         Job GetJob(int id);
-        EditJob GetJobDetails(int id);
-        List<JobViewModel> Search(JobSearchModel searchModel, out int recordCount);
+        EditJob GetJobDetails(int id, int roleId);
+        List<JobViewModel> Search(JobSearchModel searchModel, int roleId, out int recordCount);
     }
 }

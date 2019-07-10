@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Okapia.Application.Contracts;
-using Okapia.Helpers;
 
 namespace Okapia.Areas.Customer.ViewComponents
 {
@@ -15,7 +14,7 @@ namespace Okapia.Areas.Customer.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            ViewData["Auth"] = _authHelper.GetUserInfo();
+            ViewData["Auth"] = _authHelper.GetCurrnetUserInfo();
             return View("Default");
         }
     }

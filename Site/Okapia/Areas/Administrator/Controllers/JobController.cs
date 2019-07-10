@@ -95,18 +95,66 @@ namespace Okapia.Areas.Administrator.Controllers
         [HttpPost]
         public JsonResult Create(CreateJob command)
         {
-            var photos = new List<string>
-            {
-                command.NamePhoto1,
-                command.NamePhoto2,
-                command.NamePhoto3,
-                command.NamePhoto4,
-                command.NamePhoto5,
-                command.NamePhoto6
-            };
+            var photos = MapToJobPictureViewModel(command);
             command.Photos = photos;
             var result = _jobApplication.Create(command);
             return Json(result);
+        }
+
+        private static List<JobPictureViewModel> MapToJobPictureViewModel(CreateJob command)
+        {
+            var photos = new List<JobPictureViewModel>
+            {
+                new JobPictureViewModel
+                {
+                    Id = command.NamePhoto1Id,
+                    Name = command.NamePhoto1,
+                    Title = command.TitlePhoto1,
+                    Description = command.DescPhoto1,
+                    Alt = command.AltPhoto1
+                },
+                new JobPictureViewModel
+                {
+                    Id = command.NamePhoto2Id,
+                    Name = command.NamePhoto2,
+                    Title = command.TitlePhoto2,
+                    Description = command.DescPhoto2,
+                    Alt = command.AltPhoto2
+                },
+                new JobPictureViewModel
+                {
+                    Id = command.NamePhoto3Id,
+                    Name = command.NamePhoto3,
+                    Title = command.TitlePhoto3,
+                    Description = command.DescPhoto3,
+                    Alt = command.AltPhoto3
+                },
+                new JobPictureViewModel
+                {
+                    Id = command.NamePhoto4Id,
+                    Name = command.NamePhoto4,
+                    Title = command.TitlePhoto4,
+                    Description = command.DescPhoto4,
+                    Alt = command.AltPhoto4
+                },
+                new JobPictureViewModel
+                {
+                    Id = command.NamePhoto5Id,
+                    Name = command.NamePhoto5,
+                    Title = command.TitlePhoto5,
+                    Description = command.DescPhoto5,
+                    Alt = command.AltPhoto5
+                },
+                new JobPictureViewModel
+                {
+                    Id = command.NamePhoto6Id,
+                    Name = command.NamePhoto6,
+                    Title = command.TitlePhoto6,
+                    Description = command.DescPhoto6,
+                    Alt = command.AltPhoto6
+                }
+            };
+            return photos;
         }
 
         // GET: Shop/Edit/5
@@ -124,18 +172,8 @@ namespace Okapia.Areas.Administrator.Controllers
         //[ValidateAntiForgeryToken]
         public JsonResult Edit(int id, EditJob command)
         {
-            var photos = new List<JobPictureViewModel>
-            {
-                new JobPictureViewModel {Id = command.NamePhoto1Id, Name = command.NamePhoto1},
-                new JobPictureViewModel {Id = command.NamePhoto2Id, Name = command.NamePhoto2},
-                new JobPictureViewModel {Id = command.NamePhoto3Id, Name = command.NamePhoto3},
-                new JobPictureViewModel {Id = command.NamePhoto4Id, Name = command.NamePhoto4},
-                new JobPictureViewModel {Id = command.NamePhoto5Id, Name = command.NamePhoto5},
-                new JobPictureViewModel {Id = command.NamePhoto6Id, Name = command.NamePhoto6},
-            };
-            //var nullPhotos = photos.Where(x => x == null).ToList();
-            //nullPhotos.ForEach(x=> photos.Remove(x));
             command.JobId = id;
+            var photos = MapToJobPictureViewModel(command);
             command.Photos = photos;
             var result = _jobApplication.Update(id, command);
             return Json(result);

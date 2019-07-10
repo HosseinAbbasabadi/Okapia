@@ -39,10 +39,14 @@ namespace Okapia.Configuration
             services.AddScoped<IUserApplication, UserApplication>();
             services.AddScoped<IUserRepository, UserRepository>();
 
+            services.AddScoped<IEmployeeApplication, EmployeeApplication>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
             services.AddScoped<IAuthInfoRepository, AuthInfoRepository>();
-            
+
             services.AddScoped<IJobPictureRepository, JobPictureRepository>();
-            
+
+
             services.AddDbContext<OkapiaContext>(options =>
             {
                 options.UseSqlServer(_configuration.GetConnectionString("OkapiaContext"));

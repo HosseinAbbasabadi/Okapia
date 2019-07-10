@@ -32,21 +32,20 @@ namespace Okapia.Domain.Models
         public string JobSeohead { get; set; }
         public string JobCanonicalAddress { get; set; }
         public string JobContractNumber { get; set; }
-        public double? JobBenefitPercentForEndCustomer { get; set; }
-        public double? JobBenefitPercentForCompany { get; set; }
+        public double JobBenefitPercentForEndCustomer { get; set; }
+        public double JobBenefitPercentForCompany { get; set; }
         public string JobRemoved301InsteadUrl { get; set; }
-        public double? JobDiscountPercentForCustomer { get; set; }
-        public double? JobDiscountPercentForCompnay { get; set; }
-        public double? JobDiscountPercentForSabaMehrDiscount { get; set; }
-        public double? JobBefitPercentForIntroducingEndCustomer { get; set; }
-        public double? MarketerPercentForRegisteringShop { get; set; }
-        public int? MarketerId { get; set; }
+        public double JobDiscountPercentForCustomer { get; set; }
+        public double JobDiscountPercentForCompnay { get; set; }
+        public double JobDiscountPercentForSabaMehrDiscount { get; set; }
+        public double JobBefitPercentForIntroducingEndCustomer { get; set; }
+        public double MarketerPercentForRegisteringShop { get; set; }
+        public int MarketerId { get; set; }
         public string JobPosNameNumber { get; set; }
         public string JobAccountNumber { get; set; }
-        public int? JobShowOrderIncategory { get; set; }
+        public int JobShowOrderIncategory { get; set; }
         public bool ShowInHomePage { get; set; }
-        public bool IsDeleted { get; set; }
-        public int? RegisteringEmployerId { get; set; }
+        public long RegisteringEmployerId { get; set; }
         public int CustomerIntroductionLimit { get; set; }
         public bool IsWebsite { get; set; }
         public string WebSiteUrl { get; set; }

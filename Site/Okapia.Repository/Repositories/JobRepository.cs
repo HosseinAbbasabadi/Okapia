@@ -23,12 +23,14 @@ namespace Okapia.Repository.Repositories
 
         public Job GetJob(int id)
         {
-            return _context.Jobs.Where(x => x.JobId == id).AsNoTracking().ToList().First();
+            return _context.Jobs.Where(x => x.JobId == id).AsNoTracking().ToList().FirstOrDefault();
         }
 
-        public EditJob GetJobDetails(int id)
+        public EditJob GetJobDetails(int id, int roleId)
         {
             var query = from job in _context.Jobs
+                join authInfo in _context.AuthInfo.Where(x => x.RoleId == roleId)
+                    on job.JobId equals authInfo.ReferenceRecordId
                 join category in _context.Categories
                     on job.JobCategory equals category.CategoryId
                 join province in _context.Provinces
@@ -50,7 +52,7 @@ namespace Okapia.Repository.Repositories
                     JobTel1 = job.JobTel1,
                     JobMobile1 = job.JobMobile1,
                     JobCategoryId = job.JobCategory,
-                    IsDeleted = job.IsDeleted,
+                    IsDeleted = authInfo.IsDeleted,
                     JobCategory = category.CategoryName,
                     JobProvience = province.Name,
                     JobProvienceId = province.Id,
@@ -93,41 +95,27 @@ namespace Okapia.Repository.Repositories
                     RedirectInstead301Url = job.JobRemoved301InsteadUrl
                 };
 
-            var jobDetails = query.ToList().First();
+            var jobDetails = query.FirstOrDefault();
 
-            var jobPictures = _jobPictureRepository.GetJobPicturesByJob(id).Select(x => new
+            var jobPictures = _jobPictureRepository.GetJobPicturesByJob(id).Select(x => new JobPictureViewModel
             {
                 Id = x.JobPictureId,
-                Name = x.JobPictureUrl
-                //IsDefault = x.IsDefault
+                Name = x.JobPictureUrl,
+                Description = x.JobPictureSmallDescription,
+                Alt = x.JobPictureAlt,
+                Title = x.JobPictureTitle,
+                IsDefault = x.IsDefault
             }).ToList();
-            var photos = new List<JobPictureViewModel>();
-            jobPictures.ForEach(x =>
-            {
-                var photo = new JobPictureViewModel() {Id = x.Id, Name = x.Name};
-                photos.Add(photo);
-            });
-            //jobPictures.IndexOf(string);
-            //jobDetails.Photo1 = jobPictures[0].Name;
-            //if(jobPictures)
-            //if (!string.IsNullOrEmpty(jobPictures[2].Name))
-            //    jobDetails.Photo2 = jobPictures[2].Name;
-            //if (!string.IsNullOrEmpty(jobPictures[3].Name))
-            //    jobDetails.Photo3 = jobPictures[3].Name;
-            //if (!string.IsNullOrEmpty(jobPictures[4].Name))
-            //    jobDetails.Photo4 = jobPictures[4].Name;
-            //if (!string.IsNullOrEmpty(jobPictures[5].Name))
-            //    jobDetails.Photo5 = jobPictures[5].Name;
-            //if (!string.IsNullOrEmpty(jobPictures[6].Name))
-            //    jobDetails.Photo6 = jobPictures[6].Name;
-
-            jobDetails.Photos = photos;
+            
+            jobDetails.Photos = jobPictures;
             return jobDetails;
         }
 
-        public List<JobViewModel> Search(JobSearchModel searchModel, out int recordCount)
+        public List<JobViewModel> Search(JobSearchModel searchModel, int roleId, out int recordCount)
         {
             var query = from job in _context.Jobs
+                join authInfo in _context.AuthInfo.Where(x => x.RoleId == roleId)
+                    on job.JobId equals authInfo.ReferenceRecordId
                 join category in _context.Categories
                     on job.JobCategory equals category.CategoryId
                 join province in _context.Provinces
@@ -151,7 +139,7 @@ namespace Okapia.Repository.Repositories
                     JobTel = job.JobTel1,
                     JobMobile = job.JobMobile1,
                     JobCategoryId = job.JobCategory,
-                    IsDeleted = job.IsDeleted,
+                    IsDeleted = authInfo.IsDeleted,
                     JobCategory = category.CategoryName,
                     JobProvience = province.Name,
                     JobProvienceId = province.Id,

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Okapia.Domain.ViewModels.JobPicture;
 
 namespace Okapia.Domain.Commands.Job
 {
@@ -20,6 +21,14 @@ namespace Okapia.Domain.Commands.Job
         [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.CategoryRange)]
         public int JobCategoryId { get; set; }
 
+        [Display(Name = "نام کاربری")]
+        [Required(ErrorMessage = ValidationMessages.Required)]
+        public string Username { get; set; }
+
+        [Display(Name = "کلمه رمز")]
+        [Required(ErrorMessage = ValidationMessages.Required)]
+        public string Password { get; set; }
+
         [Display(Name = "نام رابط")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobContactTitile { get; set; }
@@ -34,24 +43,24 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "شماره تلفن ۱")]
         [MaxLength(10, ErrorMessage = "شماره تلفن نمی تواند بیش از ۱۰ رقم باشد")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid Number")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "لطفا یک شماره معتبر وارد کنید")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobTel1 { get; set; }
 
         [Display(Name = "شماره تلفن ۲")]
         [MaxLength(10, ErrorMessage = "شماره تلفن نمی تواند بیش از ۱۰ رقم باشد")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid Number")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "لطفا یک شماره معتبر وارد کنید")]
         public string JobTel2 { get; set; }
 
         [Display(Name = "شماره موبایل ۱")]
         [MaxLength(10, ErrorMessage = "شماره تلفن نمی تواند بیش از ۱۰ رقم باشد")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid Number")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "لطفا یک شماره معتبر وارد کنید")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobMobile1 { get; set; }
 
         [Display(Name = "شماره موبایل ۲")]
         [MaxLength(10, ErrorMessage = "شماره تلفن نمی تواند بیش از ۱۰ رقم باشد")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "Please enter valid Number")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "لطفا یک شماره معتبر وارد کنید")]
         public string JobMobile2 { get; set; }
 
         [Display(Name = "استان")]
@@ -101,19 +110,19 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "شماره قرارداد")] public string JobContractNumber { get; set; }
 
-        [Display(Name = "درصد سود معرف")] public double? JobBenefitPercentForEndCustomer { get; set; }
+        [Display(Name = "درصد سود معرف")] public double JobBenefitPercentForEndCustomer { get; set; }
 
-        [Display(Name = "درصد سود شرکت")] public double? JobBenefitPercentForCompany { get; set; }
+        [Display(Name = "درصد سود شرکت")] public double JobBenefitPercentForCompany { get; set; }
 
         [Display(Name = "درصد تخفیف به مشتری")]
-        public double? JobDiscountPercentForCustomer { get; set; }
+        public double JobDiscountPercentForCustomer { get; set; }
 
         [Display(Name = "درصد سود معرف از این شغل")]
-        public double? JobBefitPercentForIntroducingEndCustomer { get; set; }
+        public double JobBefitPercentForIntroducingEndCustomer { get; set; }
 
-        [Display(Name = "درصد سود فروشگاه")] public double? MarketerPercentForRegisteringShop { get; set; }
+        [Display(Name = "درصد سود فروشگاه")] public double MarketerPercentForRegisteringShop { get; set; }
 
-        [Display(Name = "بازاریاب")] public int? MarketerId { get; set; }
+        [Display(Name = "بازاریاب")] public int MarketerId { get; set; }
 
         [Display(Name = "شماره پوز")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
@@ -123,7 +132,7 @@ namespace Okapia.Domain.Commands.Job
         public string JobAccountNumber { get; set; }
 
         [Display(Name = "ترتیب نمایش در لیست رده")]
-        public int? JobShowOrderIncategory { get; set; }
+        public int JobShowOrderIncategory { get; set; }
 
         [Display(Name = "نمایش در صفحه اصلی")] public bool ShowInHomePage { get; set; }
 
@@ -140,18 +149,43 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "آدرس تلگرام")] public string TelegramUrl { get; set; }
 
+
+        public int NamePhoto1Id { get; set; }
+        public int NamePhoto2Id { get; set; }
+        public int NamePhoto3Id { get; set; }
+        public int NamePhoto4Id { get; set; }
+        public int NamePhoto5Id { get; set; }
+        public int NamePhoto6Id { get; set; }
+
         [Display(Name = "عکس پیشفرش")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string NamePhoto1 { get; set; }
+        public string TitlePhoto1 { get; set; }
+        public string DescPhoto1 { get; set; }
+        public string AltPhoto1 { get; set; }
+
 
         [Display(Name = "عکس دوم")] public string NamePhoto2 { get; set; }
-
+        public string TitlePhoto2 { get; set; }
+        public string DescPhoto2 { get; set; }
+        public string AltPhoto2 { get; set; }
         [Display(Name = "عکس سوم")] public string NamePhoto3 { get; set; }
-
+        public string TitlePhoto3 { get; set; }
+        public string DescPhoto3 { get; set; }
+        public string AltPhoto3 { get; set; }
         [Display(Name = "عکس چهارم")] public string NamePhoto4 { get; set; }
+        public string TitlePhoto4 { get; set; }
+        public string DescPhoto4 { get; set; }
+        public string AltPhoto4 { get; set; }
         [Display(Name = "عکس پنجم")] public string NamePhoto5 { get; set; }
+        public string TitlePhoto5 { get; set; }
+        public string DescPhoto5 { get; set; }
+        public string AltPhoto5 { get; set; }
         [Display(Name = "عکس ششم")] public string NamePhoto6 { get; set; }
-        public IReadOnlyCollection<string> Photos { get; set; }
+        public string TitlePhoto6 { get; set; }
+        public string DescPhoto6 { get; set; }
+        public string AltPhoto6 { get; set; }
+        public IReadOnlyCollection<JobPictureViewModel> Photos { get; set; }
         public SelectList Proviences { get; set; }
         public SelectList Categories { get; set; }
     }
