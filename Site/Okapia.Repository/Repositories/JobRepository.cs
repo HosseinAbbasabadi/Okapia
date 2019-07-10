@@ -53,6 +53,7 @@ namespace Okapia.Repository.Repositories
                     JobMobile1 = job.JobMobile1,
                     JobCategoryId = job.JobCategory,
                     IsDeleted = authInfo.IsDeleted,
+                    Username = authInfo.Username,
                     JobCategory = category.CategoryName,
                     JobProvience = province.Name,
                     JobProvienceId = province.Id,

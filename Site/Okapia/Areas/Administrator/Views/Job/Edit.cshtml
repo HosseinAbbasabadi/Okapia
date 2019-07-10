@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Http.Extensions
-@model Okapia.Domain.Commands.Job.EditJob
+﻿@model Okapia.Domain.Commands.Job.EditJob
 
 @{
   ViewData["Title"] = "Create";
@@ -17,7 +16,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobName" class="control-label"></label>
-    <input asp-for="JobName" class="form-control" onchange="makeSlug('JobName','JobSlug','@Url.Action("CheckSlugDuplication", "Job")')"/>
+    <input asp-for="JobName" class="form-control" onchange="makeSlug('JobName', 'JobSlug', '@Url.Action("CheckSlugDuplication", "Job")')"/>
     <span asp-validation-for="JobName" class="text-danger"></span>
   </div>
 </div>
@@ -33,6 +32,13 @@
     <label asp-for="JobDescription" class="control-label"></label>
     <textarea name="JobDescription" asp-for="JobDescription" class="form-control"></textarea>
     <span asp-validation-for="JobDescription" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="Username" class="control-label"></label>
+    <input asp-for="Username" class="form-control"/>
+    <span asp-validation-for="Username" class="text-danger"></span>
   </div>
 </div>
 <div class="col-md-4">
@@ -345,59 +351,59 @@
     var titlePhoto = "TitlePhoto" + index;
     var descPhoto = "Desc" + inputId;
     var altPhoto = "Alt" + inputId;
-  <tr>
-    <td>@index</td>
-    <td>
-      <input id="@inputId" name="@inputId" type="file" size="1" onchange="uploadFiles('@inputId', '@photo.value.Id', 'job');PreviewImage('@inputId', '@prevImageId');" class="form-control custom-file-input" accept="image/*" value="@photo.value.Name" />
-      <input asp-for="@propertyInputName" id="@propertyInputName" name="@propertyInputName" type="hidden" size="1" value="@photo.value.Name" filename="@photo.value.Name" />
-      <input asp-for="@propertyInputId" id="@propertyInputId" name="@propertyInputId" type="hidden" size="1" value="@photo.value.Id" />
-    </td>
-    <td>
-      <div class="form-group">
-        <input asp-for="@titlePhoto" id="@titlePhoto" name="@titlePhoto" class="form-control" value="@photo.value.Title" />
-        <span asp-validation-for="@titlePhoto" class="text-danger"></span>
-      </div>
-    </td>
-    <td>
-      <div class="form-group">
-        <input asp-for="@descPhoto" id="@descPhoto" name="@descPhoto" class="form-control" value="@photo.value.Description" />
-        <span asp-validation-for="@descPhoto" class="text-danger"></span>
-      </div>
-    </td>
-    <td>
-      <div class="form-group">
-        <input asp-for="@altPhoto" id="@altPhoto" name="@altPhoto" class="form-control" value="@photo.value.Alt" />
-        <span asp-validation-for="@altPhoto" class="text-danger"></span>
-      </div>
-    </td>
-    <td>
-      @if (!string.IsNullOrEmpty(photo.value.Name))
-      {
-        <img id="@prevImageId" src="~/JobPhotos/Thumbs/@photo.value.Name" alt="your image" with="100" height="100" />
-      }
-      else
-      {
-        <img id="@prevImageId" src="~/defaultimage.png" alt="your image" with="100" height="100" />
-      }
-    </td>
-    <td>
-      @if (!string.IsNullOrEmpty(photo.value.Name))
-      {
-        <button type="button" id="@deleteBtnId" onclick="deletePhoto('@inputId', 'job')" class="btn btn-danger">حذف</button>
-      }
-      else
-      {
-        <button type="button" id="@deleteBtnId" onclick="deletePhoto('@inputId', 'job')" class="btn btn-danger hidden">حذف</button>
-      }
-    </td>
-  </tr>
+    <tr>
+      <td>@index</td>
+      <td>
+        <input id="@inputId" name="@inputId" type="file" size="1" onchange="uploadFiles('@inputId', '@photo.value.Id', 'job');PreviewImage('@inputId', '@prevImageId');" class="form-control custom-file-input" accept="image/*" value="@photo.value.Name"/>
+        <input asp-for="@propertyInputName" id="@propertyInputName" name="@propertyInputName" type="hidden" size="1" value="@photo.value.Name" filename="@photo.value.Name"/>
+        <input asp-for="@propertyInputId" id="@propertyInputId" name="@propertyInputId" type="hidden" size="1" value="@photo.value.Id"/>
+      </td>
+      <td>
+        <div class="form-group">
+          <input asp-for="@titlePhoto" id="@titlePhoto" name="@titlePhoto" class="form-control" value="@photo.value.Title"/>
+          <span asp-validation-for="@titlePhoto" class="text-danger"></span>
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input asp-for="@descPhoto" id="@descPhoto" name="@descPhoto" class="form-control" value="@photo.value.Description"/>
+          <span asp-validation-for="@descPhoto" class="text-danger"></span>
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input asp-for="@altPhoto" id="@altPhoto" name="@altPhoto" class="form-control" value="@photo.value.Alt"/>
+          <span asp-validation-for="@altPhoto" class="text-danger"></span>
+        </div>
+      </td>
+      <td>
+        @if (!string.IsNullOrEmpty(photo.value.Name))
+        {
+          <img id="@prevImageId" src="~/JobPhotos/Thumbs/@photo.value.Name" alt="your image" with="100" height="100"/>
+        }
+        else
+        {
+          <img id="@prevImageId" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
+        }
+      </td>
+      <td>
+        @if (!string.IsNullOrEmpty(photo.value.Name))
+        {
+          <button type="button" id="@deleteBtnId" onclick="deletePhoto('@inputId', 'job')" class="btn btn-danger">حذف</button>
+        }
+        else
+        {
+          <button type="button" id="@deleteBtnId" onclick="deletePhoto('@inputId', 'job')" class="btn btn-danger hidden">حذف</button>
+        }
+      </td>
+    </tr>
   }
 
 </table>
 <div class="col-md-12">
   <div class="form-group">
     @*<input type="submit" value="اعمال تغییرات" class="btn btn-success btn-lg"/>*@
-    <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Job")', 'editJobFrm', '@ViewData["redirectUrl"]')" />
+    <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Job")', 'editJobFrm', '@ViewData["redirectUrl"]')"/>
     <a class="btn btn-warning btn-lg" href="@ViewData["redirectUrl"]">بازگشت به لیست</a>
   </div>
 </div>

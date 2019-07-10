@@ -12,5 +12,10 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             return View();
         }
+
+        public ActionResult ChnagePassword()
+        {
+            return PartialView("");
+        }
     }
 }

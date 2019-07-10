@@ -143,7 +143,11 @@ namespace Okapia.Application.Applications
 
                 var jobWithoutPictures = MapEditJobToJob(command);
                 var job = MapJobPicturesForUpdate(command.Photos, jobWithoutPictures);
+                var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(job.JobId, Constants.Roles.Job.Id);
+                authInfo.Username = command.Username.ToLower();
+                authInfo.IsDeleted = command.IsDeleted;
                 _jobRepository.Update(job);
+                _authInfoRepository.Update(authInfo);
                 _jobRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

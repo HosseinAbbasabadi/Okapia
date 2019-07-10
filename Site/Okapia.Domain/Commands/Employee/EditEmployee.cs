@@ -6,7 +6,7 @@ namespace Okapia.Domain.Commands.Employee
     {
         public int EmployeeId { get; set; }
 
-        [Display(Name = "آیا حذف شده است؟")]
+        [Display(Name = "آیا حذف شود؟")]
         public bool EmployeeIsDeleted { get; set; }
     }
 }
