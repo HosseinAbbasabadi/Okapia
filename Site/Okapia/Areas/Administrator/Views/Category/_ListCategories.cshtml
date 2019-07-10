@@ -28,12 +28,6 @@
             @Html.DisplayNameFor(model => model.CategorySmallDescription)
           </th>
           <th>
-            @Html.DisplayNameFor(model => model.CategoryParentName)
-          </th>
-          <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-          </th>
-          <th>
             عملیات
           </th>
 
@@ -57,12 +51,6 @@
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.CategorySmallDescription)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.CategoryParentName)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.IsDeleted)
               </td>
               <td>
                 <a class="btn btn-sm btn-info" asp-area="Administrator" asp-controller="Category" asp-action="Edit" asp-route-id="@item.value.CategoryId" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>

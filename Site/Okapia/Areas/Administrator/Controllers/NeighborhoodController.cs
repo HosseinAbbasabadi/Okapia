@@ -12,14 +12,9 @@ namespace Okapia.Areas.Administrator.Controllers
     public class NeighborhoodController : Controller
     {
         private readonly INeighborhoodApplication _neighborhoodApplication;
-        private readonly IDistrictApplication _districtApplication;
-        private readonly ICityApplication _cityApplication;
 
-        public NeighborhoodController(ICityApplication cityApplication, IDistrictApplication districtApplication,
-            INeighborhoodApplication neighborhoodApplication)
+        public NeighborhoodController(INeighborhoodApplication neighborhoodApplication)
         {
-            _cityApplication = cityApplication;
-            _districtApplication = districtApplication;
             _neighborhoodApplication = neighborhoodApplication;
         }
 
@@ -45,9 +40,18 @@ namespace Okapia.Areas.Administrator.Controllers
         }
 
         // GET: City/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(NeighborhoodSearchModel searchModel)
         {
-            return View();
+            searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
+            if (searchModel.PageSize == 0)
+            {
+                searchModel.PageSize = 80;
+            }
+
+            var neighborhoods = _neighborhoodApplication.GetNeighborhoodsForList(searchModel, out var recordCount);
+            Pager.PreparePager(searchModel, recordCount);
+            ViewData["searchModel"] = searchModel;
+            return PartialView("_ListNeighborhoods", neighborhoods);
         }
 
         // GET: City/Create

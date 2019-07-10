@@ -14,10 +14,12 @@ namespace Okapia.Application.Applications
     public class CategoryApplication : ICategoryApplication
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IAuthHelper _authHelper;
 
-        public CategoryApplication(ICategoryRepository categoryRepository)
+        public CategoryApplication(ICategoryRepository categoryRepository, IAuthHelper authHelper)
         {
             _categoryRepository = categoryRepository;
+            _authHelper = authHelper;
         }
 
         public OperationResult Create(CreateCategory command)
@@ -35,13 +37,17 @@ namespace Okapia.Application.Applications
                 {
                     CategoryName = command.CategoryName,
                     CategoryMetaDesccription = command.CategoryMetaDesccription,
+                    CategorySlug = command.CategorySlug,
                     CategoryMetaTag = command.CategoryMetaTag,
                     CategoryPageTittle = command.CategoryPageTittle,
                     CategoryParentId = command.CategoryParentId,
                     CategorySeohead = command.CategorySeohead,
                     CategorySmallDescription = command.CategorySmallDescription,
                     CategoryThumbPicUrl = command.NameImage,
-                    RegisteringEmployeeId = 1,
+                    CategoryPicTitle = command.TitleImage,
+                    CategoryPicAlt = command.AltImage,
+                    CategoryPicDescription = command.DescImage,
+                    RegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().UserId,
                     IsDeleted = false
                 };
                 _categoryRepository.Create(category);
@@ -73,15 +79,19 @@ namespace Okapia.Application.Applications
                 var category = new Category
                 {
                     CategoryId = command.CategoryId,
-                    CategoryMetaDesccription = command.CategoryMetaDesccription,
-                    CategoryMetaTag = command.CategoryMetaTag,
                     CategoryName = command.CategoryName,
+                    CategoryMetaDesccription = command.CategoryMetaDesccription,
+                    CategorySlug = command.CategorySlug,
+                    CategoryMetaTag = command.CategoryMetaTag,
                     CategoryPageTittle = command.CategoryPageTittle,
                     CategoryParentId = command.CategoryParentId,
                     CategorySeohead = command.CategorySeohead,
                     CategorySmallDescription = command.CategorySmallDescription,
                     CategoryThumbPicUrl = command.NameImage,
-                    RegisteringEmployeeId = 1,
+                    CategoryPicTitle = command.TitleImage,
+                    CategoryPicAlt = command.AltImage,
+                    CategoryPicDescription = command.DescImage,
+                    RegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().UserId,
                     IsDeleted = command.IsDeleted
                 };
                 _categoryRepository.Update(category);
@@ -143,6 +153,29 @@ namespace Okapia.Application.Applications
         public IEnumerable<CategoryViewModel> Search(CategorySearchModel searchModel, out int recordCount)
         {
             return _categoryRepository.Search(searchModel, out recordCount);
+        }
+
+        public OperationResult CheckSlugDuplication(string slug)
+        {
+            var result = new OperationResult("Categories", "CheckJobSlugDuplication");
+            try
+            {
+                var slugified = Slugify.GenerateSlug(slug);
+                if (_categoryRepository.Exists(x => x.CategorySlug == slugified))
+                {
+                    result.Message = ApplicationMessages.DuplicatedSlug;
+                    return result;
+                }
+
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
         }
     }
 }

@@ -31,17 +31,24 @@ namespace Okapia.Areas.Administrator.Controllers
                 searchModel.PageSize = 80;
             }
 
-            var cities = _cityApplication.GetCitiesForList(searchModel, out var recordCount);
+            var cities = _cityApplication.Search(searchModel, out var recordCount);
             var cityIndex = new CityIndexViewModel {CitySearchModel = searchModel, CityViewModeles = cities};
             Pager.PreparePager(searchModel, recordCount);
             ViewData["searchModel"] = searchModel;
             return View(cityIndex);
         }
 
-        // GET: City/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ListContent(CitySearchModel searchModel)
         {
-            return View();
+            if (searchModel.PageSize == 0)
+            {
+                searchModel.PageSize = 80;
+            }
+
+            var cities = _cityApplication.Search(searchModel, out int recordCount);
+            Pager.PreparePager(searchModel, recordCount);
+            ViewData["searchModel"] = searchModel;
+            return PartialView("_ListCity", cities);
         }
 
         // GET: City/Create

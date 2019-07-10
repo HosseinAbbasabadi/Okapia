@@ -53,6 +53,7 @@ namespace Okapia.Areas.Administrator.Controllers
                 searchModel.PageSize = 20;
             }
             var employees = _employeeApplication.Search(searchModel, out int recordCount).ToList();
+            Pager.PreparePager(searchModel, recordCount);
             ViewData["searchModel"] = searchModel;
             return PartialView("_ListEmployees", employees);
         }

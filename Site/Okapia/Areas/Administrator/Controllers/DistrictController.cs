@@ -14,11 +14,9 @@ namespace Okapia.Areas.Administrator.Controllers
     public class DistrictController : Controller
     {
         private readonly IDistrictApplication _districtApplication;
-        private readonly ICityApplication _cityApplication;
 
-        public DistrictController(ICityApplication cityApplication, IDistrictApplication districtApplication)
+        public DistrictController(IDistrictApplication districtApplication)
         {
-            _cityApplication = cityApplication;
             _districtApplication = districtApplication;
         }
 
@@ -31,7 +29,7 @@ namespace Okapia.Areas.Administrator.Controllers
                 searchModel.PageSize = 80;
             }
 
-            var districts = _districtApplication.GetDistrictsForList(searchModel, out var recordCount);
+            var districts = _districtApplication.Search(searchModel, out var recordCount);
             var districtIndex =
                 new DistrictIndexViewModel {DistrictSearchModel = searchModel, DistrictIndexViewModels = districts};
             Pager.PreparePager(searchModel, recordCount);
@@ -39,10 +37,18 @@ namespace Okapia.Areas.Administrator.Controllers
             return View(districtIndex);
         }
 
-        // GET: City/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ListContent(DistrictSearchModel searchModel)
         {
-            return View();
+            searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
+            if (searchModel.PageSize == 0)
+            {
+                searchModel.PageSize = 80;
+            }
+
+            var districts = _districtApplication.Search(searchModel, out var recordCount);
+            Pager.PreparePager(searchModel, recordCount);
+            ViewData["searchModel"] = searchModel;
+            return PartialView("_ListDistricts", districts);
         }
 
         // GET: City/Create

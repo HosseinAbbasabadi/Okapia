@@ -16,7 +16,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobName" class="control-label"></label>
-    <input asp-for="JobName" class="form-control" onchange="makeSlug()"/>
+    <input asp-for="JobName" class="form-control" onchange="makeSlug('JobName','JobSlug','@Url.Action("CheckSlugDuplication", "Job")')"/>
     <span asp-validation-for="JobName" class="text-danger"></span>
   </div>
 </div>
@@ -329,10 +329,10 @@
   <tr>
     <td class="col-md-1">ردیف</td>
     <td>فایل</td>
-    <td>پیش نمایش</td>
     <td>عنوان عکس</td>
     <td>Alt</td>
     <td>توضیحات</td>
+    <td>پیش نمایش</td>
     <td>حذف</td>
   </tr>
   @for (var i = 1; i <= 6; i++)
@@ -389,30 +389,3 @@
 </form>
 </div>
 </div>
-<script>
-  function checkSlugDuplication(id) {
-    $.get({
-      url: '@Url.Action("CheckSlugDuplication", "Job")' + '/' + id,
-      success: function(operationResult) {
-        if (operationResult.success) {
-
-        } else {
-          sendNotification('error', 'top right', "خطا", operationResult.message);
-        }
-      }
-    });
-  }
-
-  var slug = function(str) {
-    var $slug = '';
-    const trimmed = $.trim(str);
-    $slug = trimmed.replace(/[^a-z0-9-آ-ی-]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-    return $slug.toLowerCase();
-  }
-
-  function makeSlug() {
-    const takedata = $('#JobName').val();
-    $('#JobSlug').val(slug(takedata));
-    checkSlugDuplication(document.getElementById('JobSlug').value);
-  };
-</script>

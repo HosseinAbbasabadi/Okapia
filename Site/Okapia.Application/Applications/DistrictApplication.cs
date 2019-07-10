@@ -113,7 +113,7 @@ namespace Okapia.Application.Applications
             return MapDistricts(districts);
         }
 
-        public List<DistrictViewModel> GetDistrictsForList(DistrictSearchModel searchModel, out int recordCount)
+        public List<DistrictViewModel> Search(DistrictSearchModel searchModel, out int recordCount)
         {
             return _districtRepository.Search(searchModel, out recordCount);
         }

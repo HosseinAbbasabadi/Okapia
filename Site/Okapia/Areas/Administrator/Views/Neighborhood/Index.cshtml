@@ -21,4 +21,7 @@
 </script>
 
 @await Html.PartialAsync("~/Areas/Administrator/Views/Neighborhood/_SearchNeighborhoods.cshtml", Model.NeighborhoodSearchModel)
-@await Html.PartialAsync("~/Areas/Administrator/Views/Neighborhood/_ListNeighborhoods.cshtml", Model.NeighborhoodViewModels)
+
+<div id="listNeighborhoodDiv">
+  @await Html.PartialAsync("~/Areas/Administrator/Views/Neighborhood/_ListNeighborhoods.cshtml", Model.NeighborhoodViewModels)
+</div>

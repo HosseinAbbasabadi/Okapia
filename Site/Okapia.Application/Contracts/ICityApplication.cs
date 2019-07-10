@@ -13,7 +13,7 @@ namespace Okapia.Application.Contracts
         void Activate(int id);
         OperationResult Update(EditCity command);
         EditCity GetCityDetails(int id);
-        List<CityViewModel> GetCitiesForList(CitySearchModel searchModel, out int recordCount);
+        List<CityViewModel> Search(CitySearchModel searchModel, out int recordCount);
         List<CityViewModel> GetCitiesBy(int provintId);
     }
 }

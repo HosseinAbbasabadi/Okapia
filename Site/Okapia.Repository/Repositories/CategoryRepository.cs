@@ -36,6 +36,10 @@ namespace Okapia.Repository.Repositories
                 CategorySeohead = x.CategorySeohead,
                 CategorySmallDescription = x.CategorySmallDescription,
                 NameImage = x.CategoryThumbPicUrl,
+                CategorySlug = x.CategorySlug,
+                TitleImage = x.CategoryPicTitle,
+                AltImage = x.CategoryPicAlt,
+                DescImage = x.CategoryPicDescription,
                 IsDeleted = x.IsDeleted
             }).ToList().First();
             return category;
@@ -52,13 +56,6 @@ namespace Okapia.Repository.Repositories
 
         public List<CategoryViewModel> Search(CategorySearchModel searchModel, out int recordCount)
         {
-            //var query = _context.Categories.Select(x => new CategoryViewModel
-            //{
-            //    CategoryId = x.CategoryId,
-            //    CategoryName = x.CategoryName,
-            //    CategorySmallDescription = x.CategorySmallDescription,
-            //    CategoryParentId = x.CategoryParentId
-            //});
             var query = from category in _context.Categories
                 select new CategoryViewModel
                 {
@@ -74,6 +71,7 @@ namespace Okapia.Repository.Repositories
                 query = query.Where(c => c.CategoryName.Contains(searchModel.CategoryName));
             if (searchModel.CategoryParrentId != 0)
                 query = query.Where(c => c.CategoryParentId == searchModel.CategoryParrentId);
+            query = query.Where(c => c.IsDeleted == searchModel.IsDeleted);
 
             recordCount = query.Count();
             var result = query.OrderByDescending(x => x.CategoryId).Skip(searchModel.PageIndex * searchModel.PageSize)

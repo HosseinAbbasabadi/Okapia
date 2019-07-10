@@ -17,7 +17,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="CategoryName" class="control-label"></label>
-    <input asp-for="CategoryName" class="form-control"/>
+    <input asp-for="CategoryName" class="form-control" onchange="makeSlug('CategoryName', 'CategorySlug', '@Url.Action("CheckSlugDuplication", "Category")')"/>
     <span asp-validation-for="CategoryName" class="text-danger"></span>
   </div>
 </div>
@@ -26,6 +26,13 @@
     <label asp-for="CategorySmallDescription" class="control-label"></label>
     <input asp-for="CategorySmallDescription" class="form-control"/>
     <span asp-validation-for="CategorySmallDescription" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="CategorySlug" class="control-label"></label>
+    <input asp-for="CategorySlug" class="form-control" onchange="checkSlugDuplication('@Url.Action("CheckSlugDuplication", "Category")', 'CategorySlug')"/>
+    <span asp-validation-for="CategorySlug" class="text-danger"></span>
   </div>
 </div>
 <div class="col-md-4">
@@ -69,14 +76,35 @@
   <table class="col-md-12 table table-bordered text-center">
     <tr>
       <td>فایل</td>
+      <td>عنوان عکس</td>
+      <td>Alt</td>
+      <td>توضیحات</td>
       <td>پیش نمایش</td>
       <td>حذف</td>
     </tr>
     <tr>
-        <td>
-          <input id="Image" name="Image" type="file" size="1" onchange="uploadFiles('Image', 0, 'category');PreviewImage('Image', 'prevImage');" class="form-control custom-file-input" accept="image/*"/>
-          <input asp-for="NameImage" id="nameImage" name="nameImage" type="hidden" size="1" value=""/>
-        </td>
+      <td>
+        <input id="Image" name="Image" type="file" size="1" onchange="uploadFiles('Image', 0, 'category');PreviewImage('Image', 'prevImage');" class="form-control custom-file-input" accept="image/*"/>
+        <input asp-for="NameImage" id="nameImage" name="nameImage" type="hidden" size="1" value=""/>
+      </td>
+      <td>
+        <div class="form-group">
+          <input asp-for="TitleImage" class="form-control" />
+          <span asp-validation-for="TitleImage" class="text-danger"></span>
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input asp-for="AltImage" class="form-control" />
+          <span asp-validation-for="AltImage" class="text-danger"></span>
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input asp-for="DescImage" class="form-control" />
+          <span asp-validation-for="DescImage" class="text-danger"></span>
+        </div>
+      </td>
         <td>
           <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
         </td>
@@ -88,7 +116,7 @@
 
   <div class="col-md-6">
     <div class="form-group">
-      <input type="submit" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityPost('@Url.Action("Create", "Category")' ,'createCategoryFrm')" />
+      <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityPost('@Url.Action("Create", "Category")' ,'createCategoryFrm')" />
       <a class="btn btn-warning btn-lg" asp-action="Index" asp-controller="Category" asp-area="Administrator">بازگشت به لیست</a>
     </div>
   </div>

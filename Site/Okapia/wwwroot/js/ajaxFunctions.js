@@ -164,7 +164,6 @@ function updateEntityPage(url, formId, redirectUrl) {
     CKEDITOR.instances[instance].updateElement();
   }
     const sendingData = $(`#${formId}`).serialize();
-  debugger;
     if ($("#" + formId).valid() === true) {
       $.post(url,
         sendingData,
@@ -181,4 +180,29 @@ function updateEntityPage(url, formId, redirectUrl) {
 
   function sendNotification(status, place, title, body) {
     $.Notification.autoHideNotify(status, place, title, body);
-  }
+}
+
+function checkSlugDuplication(url, dist) {
+  const id = document.getElementById(dist).value;
+  $.get({
+    url: url + '/' + id,
+    success: function (operationResult) {
+      if (!operationResult.success){
+        sendNotification('error', 'top right', "خطا", operationResult.message);
+      }
+    }
+  });
+}
+
+var slug = function (str) {
+  var $slug = '';
+  const trimmed = $.trim(str);
+  $slug = trimmed.replace(/[^a-z0-9-آ-ی-]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  return $slug.toLowerCase();
+}
+
+function makeSlug(source, dist, url) {
+  const takedata = $('#'+source).val();
+  $('#'+dist).val(slug(takedata));
+  checkSlugDuplication(url, dist);
+};

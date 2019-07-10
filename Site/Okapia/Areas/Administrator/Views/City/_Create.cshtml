@@ -30,17 +30,13 @@
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntity('@Url.Action("Create", "City")', 'createCityFrm')" />
+                  <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityWithListFeed('@Url.Action("Create", "City")', 'createCityFrm', '@Url.Action("ListContent", "City")', 'listCityDiv')"/>
                 </div>
               </div>
             </form>
           </div>
         </div>
       </div>
-      @*<div class="modal-footer">
-        <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal">انصراف</button>
-        <button type="button" class="btn btn-success waves-effect waves-light">Save changes</button>
-      </div>*@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

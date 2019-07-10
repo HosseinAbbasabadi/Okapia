@@ -39,7 +39,7 @@
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <input  type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntity('@Url.Action("Create", "District")', 'createDistrictFrm')"/>
+                  <input  type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityWithListFeed('@Url.Action("Create", "District")', 'createDistrictFrm', '@Url.Action("ListContent","District")', 'listDistrictDiv')"/>
                 </div>
               </div>
             </form>

@@ -40,7 +40,7 @@ namespace Okapia.Application.Applications
             {
                 if (_jobRepository.Exists(x => x.JobSlug == command.JobSlug))
                 {
-                    result.Message = ApplicationMessages.DuplicatedJobSlug;
+                    result.Message = ApplicationMessages.DuplicatedSlug;
                     return result;
                 }
 
@@ -86,7 +86,8 @@ namespace Okapia.Application.Applications
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-                throw;
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
             }
         }
 
@@ -339,7 +340,7 @@ namespace Okapia.Application.Applications
                 var slugified = Slugify.GenerateSlug(slug);
                 if (_jobRepository.Exists(x => x.JobSlug == slugified))
                 {
-                    result.Message = ApplicationMessages.DuplicatedJobSlug;
+                    result.Message = ApplicationMessages.DuplicatedSlug;
                     return result;
                 }
 

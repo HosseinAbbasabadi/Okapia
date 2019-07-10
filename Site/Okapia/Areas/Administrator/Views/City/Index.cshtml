@@ -21,4 +21,7 @@
 </script>
 
 @await Html.PartialAsync("~/Areas/Administrator/Views/City/_SearchCities.cshtml", Model.CitySearchModel)
-@await Html.PartialAsync("~/Areas/Administrator/Views/City/_ListCity.cshtml", Model.CityViewModeles)
+
+<div id="listCityDiv">
+  @await Html.PartialAsync("~/Areas/Administrator/Views/City/_ListCity.cshtml", Model.CityViewModeles)
+</div>

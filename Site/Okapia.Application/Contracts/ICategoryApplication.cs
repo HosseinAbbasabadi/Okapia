@@ -15,5 +15,6 @@ namespace Okapia.Application.Contracts
         EditCategory GetCategoryDetails(int id);
         IEnumerable<CategoryViewModel> GetCategories();
         IEnumerable<CategoryViewModel> Search(CategorySearchModel searchModel, out int recordCount);
+        OperationResult CheckSlugDuplication(string slug);
     }
 }

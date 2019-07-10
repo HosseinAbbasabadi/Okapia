@@ -9,7 +9,7 @@
         public const string DuplicatedUser = "کاربر با این کدملی قبلا ثبت نام شده است";
         public const string DuplicatedJob = "نام کاربری برای این شغل تکراری است";
         public const string UserNotExists = "نام کاربری یا کلمه رمز اشتباه است. لطفا دوباره تلاش کنید";
-        public const string DuplicatedJobSlug = "اسلاگ نمی تواند تکراری باشد";
+        public const string DuplicatedSlug = "اسلاگ نمی تواند تکراری باشد";
         public const string DuplicatedJobName = "نام شغل نمی تواند تکراری باشد";
         public const string DuplicatedEmployee = "کارمند دیگری با این نام کاربری ثبت شده است";
         public const string PictureIsRequired = "ایجاد یک عکس برای شغل اجراری است. لطفا عکس اول را پر کنید";

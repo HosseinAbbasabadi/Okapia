@@ -74,12 +74,6 @@ namespace Okapia.Areas.Administrator.Controllers
             return jobIndex;
         }
 
-        // GET: Shop/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Shop/Create
         public ActionResult Create()
         {
@@ -179,42 +173,22 @@ namespace Okapia.Areas.Administrator.Controllers
             return Json(result);
         }
 
-        // GET: Shop/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: Shop/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
-            {
-                var redirect301Url = collection["301Redirect"].ToString();
-                _jobApplication.Delete(id, redirect301Url);
-                var referer = Request.Headers["Referer"].ToString();
-                return Redirect(referer);
-            }
-            catch
-            {
-                return View();
-            }
+            var redirect301Url = collection["301Redirect"].ToString();
+            _jobApplication.Delete(id, redirect301Url);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
         }
 
         public ActionResult Activate(int id)
         {
-            try
-            {
-                _jobApplication.Activate(id);
-                var referer = Request.Headers["Referer"].ToString();
-                return Redirect(referer);
-            }
-            catch
-            {
-                return View();
-            }
+            _jobApplication.Activate(id);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
         }
 
         public JsonResult CheckSlugDuplication(string id)

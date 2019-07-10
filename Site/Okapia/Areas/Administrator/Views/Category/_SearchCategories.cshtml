@@ -26,13 +26,17 @@
               <span asp-validation-for="CategoryParrentId" class="text-danger"></span>
             </div>
           </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="IsDeleted" class="control-label"></label>
+              <input asp-for="IsDeleted" class="form-control"/>
+              <span asp-validation-for="IsDeleted" class="text-danger"></span>
+            </div>
+          </div>
           <div class="col-md-12">
             <div class="form-group">
               <input type="submit" value="جستجو" class="btn btn-primary"/>
-            </div>
-            <hr />
-            <div class="form-group">
-              <a asp-area="Administrator" asp-controller="Category" asp-action="Index" class="btn btn-warning">پاکسازی فرم جستجو</a>
+              <a asp-area="Administrator" asp-controller="Category" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
             </div>
           </div>
         </form>
@@ -40,40 +44,3 @@
     </div>
   </div>
 </div>
-
-@*<script>
-  function getList(sourceDropdown, action, distDropdown) {
-    var id = $(sourceDropdown).val();
-    $.ajax({
-      url: action + '/' + id,
-      type: 'Get',
-      //datatype: 'application/json',
-      contentType: 'application/json',
-      //data: JSON.stringify({
-      //  stateId: +stateId
-      //}),
-      success: function(result) {
-        $(distDropdown).html("");
-        $.each(result,
-          function(i, item) {
-            $(distDropdown).append($('<option></option>').val(item.id).html(item.name));
-          });
-      },
-      error: function() {
-        alert("خطا در ارتباط با سرور لطفا با مدیر سیتم تماس بگیرید.");
-      }
-    });
-  }
-
-  function getCityList() {
-    this.getList('#provinceDropDown', 'GetCitiesByProvince', '#cityDropDown');
-  }
-
-  function getDistrictList() {
-    this.getList('#cityDropDown', 'GetDistrictsByCity', '#districtDropDown');
-  }
-
-  function getNeighborhoodList() {
-    this.getList('#districtDropDown', 'GetNeighborhoodsByDistrict', '#neighborhoodDropDown');
-  }
-</script>*@

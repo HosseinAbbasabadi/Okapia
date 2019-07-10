@@ -15,6 +15,6 @@ namespace Okapia.Application.Contracts
         void Activate(int id);
         EditDistrict GetDistrictDitails(int id);
         List<PlaceViewModel> GetDistrictsBy(int cityId);
-        List<DistrictViewModel> GetDistrictsForList(DistrictSearchModel searchModel, out int recordCount);
+        List<DistrictViewModel> Search(DistrictSearchModel searchModel, out int recordCount);
     }
 }

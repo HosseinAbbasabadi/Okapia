@@ -123,7 +123,7 @@ namespace Okapia.Application.Applications
             }
         }
 
-        public List<CityViewModel> GetCitiesForList(CitySearchModel searchModel, out int recordCount)
+        public List<CityViewModel> Search(CitySearchModel searchModel, out int recordCount)
         {
             return _cityRepository.Search(searchModel, out recordCount);
         }

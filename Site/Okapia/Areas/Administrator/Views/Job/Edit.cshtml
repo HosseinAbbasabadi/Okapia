@@ -17,7 +17,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobName" class="control-label"></label>
-    <input asp-for="JobName" class="form-control" onchange="string_to_slug(document.getElementById('JobName').value)"/>
+    <input asp-for="JobName" class="form-control" onchange="makeSlug('JobName','JobSlug','@Url.Action("CheckSlugDuplication", "Job")')"/>
     <span asp-validation-for="JobName" class="text-danger"></span>
   </div>
 </div>
@@ -164,7 +164,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobSlug" class="control-label"></label>
-    <input asp-for="JobSlug" class="form-control"/>
+    <input asp-for="JobSlug" class="form-control" onchange="checkSlugDuplication('@Url.Action("CheckSlugDuplication", "Job")', 'JobSlug')"/>
     <span asp-validation-for="JobSlug" class="text-danger"></span>
   </div>
 </div>
@@ -327,10 +327,10 @@
   <tr>
     <td class="col-md-1">ردیف</td>
     <td>فایل</td>
-    <td>پیش نمایش</td>
     <td>عنوان عکس</td>
     <td>Alt</td>
     <td>توضیحات</td>
+    <td>پیش نمایش</td>
     <td>حذف</td>
   </tr>
   @foreach (var photo in Model.Photos.Select((value, index) => new {index, value}))

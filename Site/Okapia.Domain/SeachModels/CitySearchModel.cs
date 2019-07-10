@@ -9,7 +9,7 @@ namespace Okapia.Domain.SeachModels
         public string Name { get; set; }
         [Display(Name = "استان")]
         public int ProvinceId { get; set; }
-        [Display(Name = "آیا حذف شده است؟")]
+        [Display(Name = "جستجو در حذف شده ها")]
         public bool IsDeleted { get; set; }
         public SelectList Provinces { get; set; }
     }
