@@ -4,7 +4,6 @@ using Framework;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Domain;
-using Okapia.Domain.Commands;
 using Okapia.Domain.Commands.Employee;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;

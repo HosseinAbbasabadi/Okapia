@@ -33,6 +33,7 @@ namespace Okapia.Repository
         public virtual DbSet<Neighborhood> Neighborhoods { get; set; }
         public DbSet<AuthInfo> AuthInfo { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Controller> Controllers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

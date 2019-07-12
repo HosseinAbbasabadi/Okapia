@@ -2,10 +2,10 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
-using Okapia.Application.Utilities;
 using Okapia.Domain;
 using Okapia.Domain.Commands.Employee;
 using Okapia.Domain.Contracts;
+using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Employee;
 

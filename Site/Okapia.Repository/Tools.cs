@@ -4,7 +4,7 @@ using System.Linq;
 //using System.Drawing.Drawing2D;
 //using HtmlAgilityPack;
 
-namespace Okapia.Application.Utilities
+namespace Okapia.Repository
 {
     public enum DateConvertType
     {

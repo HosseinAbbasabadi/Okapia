@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Okapia.Domain.Commands.Employee
 {
@@ -19,5 +21,8 @@ namespace Okapia.Domain.Commands.Employee
         [Display(Name = "کلمه رمز")]
         [Required(ErrorMessage = ValidationMessages.Required)]
         public string EmployeePassword { get; set; }
+
+        public List<string> SelectedControllers { get; set; }
+        public List<SelectListItem> AvailableControllers { get; set; }
     }
 }

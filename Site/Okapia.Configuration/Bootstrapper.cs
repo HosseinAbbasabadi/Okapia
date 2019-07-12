@@ -45,6 +45,9 @@ namespace Okapia.Configuration
             services.AddScoped<IAuthInfoApplication, AuthInfoApplication>();
             services.AddScoped<IAuthInfoRepository, AuthInfoRepository>();
 
+            services.AddScoped<IControllerApplication, ControllerApplication>();
+            services.AddScoped<IControllerRepository, ControllerRepository>();
+
             services.AddScoped<IJobPictureRepository, JobPictureRepository>();
 
 

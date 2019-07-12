@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.Domain", "Okapia.Dom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.Configuration", "Okapia.Configuration\Okapia.Configuration.csproj", "{4E15D2C3-E079-4C84-99BE-AE4EA81EF5DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{BEB5DFE8-8CBF-43F8-BF2E-36116946EF7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework", "Framework\Framework.csproj", "{BEB5DFE8-8CBF-43F8-BF2E-36116946EF7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -16,11 +16,14 @@ namespace Okapia.Areas.Administrator.Controllers
     {
         private readonly IEmployeeApplication _employeeApplication;
         private readonly IAuthInfoApplication _authInfoApplication;
+        private readonly IControllerApplication _controllerApplication;
 
-        public EmployeeController(IEmployeeApplication employeeApplication, IAuthInfoApplication authInfoApplication)
+        public EmployeeController(IEmployeeApplication employeeApplication, IAuthInfoApplication authInfoApplication,
+            IControllerApplication controllerApplication)
         {
             _employeeApplication = employeeApplication;
             _authInfoApplication = authInfoApplication;
+            _controllerApplication = controllerApplication;
         }
 
         // GET: Category
@@ -55,6 +58,7 @@ namespace Okapia.Areas.Administrator.Controllers
             {
                 searchModel.PageSize = 20;
             }
+
             var employees = _employeeApplication.Search(searchModel, out int recordCount).ToList();
             Pager.PreparePager(searchModel, recordCount);
             ViewData["searchModel"] = searchModel;
@@ -64,7 +68,11 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: Category/Create
         public ActionResult Create()
         {
-            var createModel = new CreateEmployee();
+            var createModel = new CreateEmployee
+            {
+                SelectedControllers = new List<string>(){"1"},
+                AvailableControllers = _controllerApplication.GetControllers()
+            };
             return PartialView("_Create", createModel);
         }
 
@@ -81,7 +89,7 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             var employee = _employeeApplication.GetEmployeeDetails(id);
             ViewData["redirectUrl"] = redirectUrl;
-            return PartialView("_Edit",employee);
+            return PartialView("_Edit", employee);
         }
 
         // POST: Category/Edit/5

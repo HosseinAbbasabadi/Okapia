@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using Okapia.Application.Utilities;
+using Okapia.Repository;
 
 namespace Okapia.Areas.Administrator.Controllers
 {

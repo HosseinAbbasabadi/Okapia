@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Framework;
 using Okapia.Domain.Commands.Employee;
+using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Employee;
 

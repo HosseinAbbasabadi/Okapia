@@ -13,64 +13,64 @@
       <div class="panel-body">
         <table id="datatable" class="table table-striped table-bordered">
           <thead>
-            <tr>
-              <th>
-                ردیف
-              </th>
-              <th>
-                @Html.DisplayNameFor(model => model.EmployeeFirstName)
-              </th>
-              <th>
-                @Html.DisplayNameFor(model => model.EmployeeLastName)
-              </th>
-              <th>
-                @Html.DisplayNameFor(model => model.EmployeeUsername)
-              </th>
-              <th>
-                @Html.DisplayNameFor(model => model.EmployeeCreationDate)
-              </th>
-              <th>
-                عملیات
-              </th>
+          <tr>
+          <th>
+            ردیف
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.EmployeeFirstName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.EmployeeLastName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.EmployeeUsername)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.EmployeeCreationDate)
+          </th>
+          <th>
+            عملیات
+          </th>
 
           </thead>
           <tbody>
-            @foreach (var item in Model.Select((value, index) => new { index, value }))
-            {
-              <tr>
-                <td>
-                  @{
-                    var index = item.index;
-                    index += 1;
-                  }
-                  @index
-                </td>
-                <td>
-                  @Html.DisplayFor(modelItem => item.value.EmployeeFirstName)
-                </td>
-                <td>
-                  @Html.DisplayFor(modelItem => item.value.EmployeeLastName)
-                </td>
-                <td>
-                  @Html.DisplayFor(modelItem => item.value.EmployeeUsername)
-                </td>
-                <td>
-                  @Html.DisplayFor(modelItem => item.value.EmployeeCreationDate)
-                </td>
-                <td>
-                  <a class="btn btn-sm btn-info" onclick="openEditEmployeeModal('@item.value.EmployeeId')">ویرایش</a>
-                  @if (!item.value.EmployeeIsDeleted)
-                  {
-                    <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="Employee" asp-action="Delete" asp-route-id="@item.value.EmployeeId">حذف</a>
-                  }
-                  else
-                  {
-                    <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Employee" asp-action="Activate" asp-route-id="@item.value.EmployeeId">فعال سازی</a>
-                  }
-                  <a class="btn btn-sm btn-inverse" onclick="openChangePasswordModal('@ViewData["employeeId"]')">تغییر رمز</a>
-                </td>
-              </tr>
-            }
+          @foreach (var item in Model.Select((value, index) => new {index, value}))
+          {
+            <tr>
+              <td>
+                @{
+                  var index = item.index;
+                  index += 1;
+                }
+                @index
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.EmployeeFirstName)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.EmployeeLastName)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.EmployeeUsername)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.EmployeeCreationDate)
+              </td>
+              <td>
+                <a class="btn btn-sm btn-info" onclick="openEditEmployeeModal('@item.value.EmployeeId')">ویرایش</a>
+                @if (!item.value.EmployeeIsDeleted)
+                {
+                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="Employee" asp-action="Delete" asp-route-id="@item.value.EmployeeId">حذف</a>
+                }
+                else
+                {
+                  <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Employee" asp-action="Activate" asp-route-id="@item.value.EmployeeId">فعال سازی</a>
+                }
+                <a class="btn btn-sm btn-inverse" onclick="openChangePasswordModal('@ViewData["employeeId"]')">تغییر رمز</a>
+              </td>
+            </tr>
+          }
           </tbody>
         </table>
       </div>

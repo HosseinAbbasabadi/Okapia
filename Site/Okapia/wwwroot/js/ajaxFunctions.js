@@ -86,6 +86,7 @@ function createEntity(url, formId) {
 function createEntityWithListFeed(url, formId, listUrl, listDivId) {
   if ($("#" + formId).valid() === true) {
     const sendingData = $(`#${formId}`).serialize();
+    debugger;
     $.post(url,
       sendingData,
       function(operationResult) {

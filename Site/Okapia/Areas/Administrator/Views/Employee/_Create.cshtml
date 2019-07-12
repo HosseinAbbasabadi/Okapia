@@ -40,6 +40,24 @@
                   <span asp-validation-for="EmployeePassword" class="text-danger"></span>
                 </div>
               </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label"><strong>دسترسی های کارمند</strong></label>
+                  @foreach (var item in Model.AvailableControllers)
+                  {
+                    <div class="">
+                      <label>
+                        <input type="checkbox"
+                               class=""
+                               name="SelectedControllers"
+                               value="@item.Value"
+                               @if (Model.SelectedControllers.Contains(item.Value)) { <text> checked </text>  } /> @item.Text
+                            </label>
+                          </div>
+                        }
+                </div>
+
+              </div>
               <div class="col-md-12">
                 <div class="form-group">
                   <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityWithListFeed('@Url.Action("Create", "Employee")', 'createEmployeeFrm', '@Url.Action("ListContent", "Employee")', 'listEmployeeDiv')"/>
@@ -51,4 +69,7 @@
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
+  <script>
+
+  </script>
 </div><!-- /.modal -->
