@@ -11,7 +11,7 @@ using Okapia.Domain.ViewModels.Employee;
 
 namespace Okapia.Repository.Repositories
 {
-    public class EmployeeRepository : BaseRepository<int, Employee>, IEmployeeRepository
+    public class EmployeeRepository : BaseRepository<long, Employee>, IEmployeeRepository
     {
         private readonly OkapiaContext _context;
 
@@ -20,12 +20,17 @@ namespace Okapia.Repository.Repositories
             _context = context;
         }
 
-        public Employee GetEmployee(int id)
+        public Employee GetEmployee(long id)
         {
             return _context.Employees.Where(x => x.EmployeeId == id).AsNoTracking().First();
         }
 
-        public EditEmployee GetEmployeeDetails(int id, int roleId)
+        public Employee GetEmployeeWithAuthInfo(long id)
+        {
+            return _context.Employees.Include(x => x.AuthInfo).FirstOrDefault(x => x.EmployeeId == id);
+        }
+
+        public EditEmployee GetEmployeeDetails(long id, int roleId)
         {
             var query = from employee in _context.Employees
                 join authInfo in _context.AuthInfo.Where(x => x.RoleId == roleId)

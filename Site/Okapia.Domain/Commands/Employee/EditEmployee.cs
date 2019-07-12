@@ -4,7 +4,7 @@ namespace Okapia.Domain.Commands.Employee
 {
     public class EditEmployee : CreateEmployee
     {
-        public int EmployeeId { get; set; }
+        public long EmployeeId { get; set; }
 
         [Display(Name = "آیا حذف شود؟")]
         public bool EmployeeIsDeleted { get; set; }

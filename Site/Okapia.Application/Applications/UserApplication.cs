@@ -15,15 +15,13 @@ namespace Okapia.Application.Applications
         private readonly IAuthHelper _authHelper;
         private readonly IUserRepository _userRepository;
         private readonly IAuthInfoRepository _authInfoRepository;
-        private readonly IJobRepository _jobRepository;
 
         public UserApplication(IUserRepository userRepository, IAuthInfoRepository authInfoRepository,
-            IAuthHelper authHelper, IJobRepository jobRepository)
+            IAuthHelper authHelper)
         {
             _userRepository = userRepository;
             _authInfoRepository = authInfoRepository;
             _authHelper = authHelper;
-            _jobRepository = jobRepository;
         }
 
         public OperationResult LoginUser(Login login)
@@ -56,6 +54,15 @@ namespace Okapia.Application.Applications
                     return operationResult;
                 }
 
+                var authInfo = new AuthInfo
+                {
+                    Username = command.NationalCardNumber,
+                    Password = command.PhoneNumber,
+                    //ReferenceRecordId = user.UserId,
+                    RoleId = Constants.Roles.User.Id,
+                    IsDeleted = false
+                };
+
                 var user = new User
                 {
                     UserFirstName = command.Name,
@@ -70,20 +77,14 @@ namespace Okapia.Application.Applications
                     UserPostalCode = command.Postalcode,
                     UserRegistrationDate = DateTime.Now,
                     UserIsActivated = true,
-                    UserCustomerIntroductionLimit = 200
+                    UserCustomerIntroductionLimit = 200,
+                    AuthInfo = authInfo
                 };
                 _userRepository.Create(user);
                 _userRepository.SaveChanges();
-                var authInfo = new AuthInfo
-                {
-                    Username = user.UserNationalCode,
-                    Password = user.UserPhoneNumber,
-                    ReferenceRecordId = user.UserId,
-                    RoleId = Constants.Roles.User.Id,
-                    IsDeleted = false
-                };
-                _authInfoRepository.Create(authInfo);
-                _authInfoRepository.SaveChanges();
+               
+                //_authInfoRepository.Create(authInfo);
+                //_authInfoRepository.SaveChanges();
                 var userInfo = new UserInfoViewModel(authInfo.Id, command.Name, authInfo.Username,
                     Constants.Roles.User.Id);
                 _authHelper.Signin(userInfo);

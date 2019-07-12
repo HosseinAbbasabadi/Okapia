@@ -21,6 +21,11 @@ namespace Okapia.Repository.Mappings
             builder.Property(e => e.EmployeeLastName)
                 .IsRequired()
                 .HasMaxLength(50);
+
+            builder.HasMany(x => x.EmployeeControllers).WithOne(x => x.Employee).HasForeignKey(x => x.EmployeeId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder.HasOne(x => x.AuthInfo).WithOne(x => x.Employee).HasForeignKey<AuthInfo>(x => x.ReferenceRecordId);
         }
     }
 }

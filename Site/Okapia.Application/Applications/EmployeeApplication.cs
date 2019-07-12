@@ -36,24 +36,38 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
-                var employee = new Employee
+                var employeeControllers = new List<EmployeeController>();
+                command.SelectedControllers.ForEach(controllerId =>
                 {
-                    EmployeeFirstName = command.EmployeeFirstName,
-                    EmployeeLastName = command.EmployeeLastName,
-                    EmployeeCreationDate = DateTime.Now
-                };
-                _employeeRepository.Create(employee);
-                _employeeRepository.SaveChanges();
+                    employeeControllers.Add(new EmployeeController
+                    {
+                        ControllerId = int.Parse(controllerId)
+                    });
+                });
+
                 var authInfo = new AuthInfo
                 {
                     Username = command.EmployeeUsername.ToLower(),
                     Password = command.EmployeePassword,
-                    ReferenceRecordId = employee.EmployeeId,
+                    //ReferenceRecordId = employee.EmployeeId,
                     RoleId = Constants.Roles.Employee.Id,
                     IsDeleted = false
                 };
-                _authInfoRepository.Create(authInfo);
-                _authInfoRepository.SaveChanges();
+
+                var employee = new Employee
+                {
+                    EmployeeFirstName = command.EmployeeFirstName,
+                    EmployeeLastName = command.EmployeeLastName,
+                    EmployeeCreationDate = DateTime.Now,
+                    EmployeeControllers = employeeControllers,
+                    AuthInfo = authInfo
+                };
+
+                _employeeRepository.Create(employee);
+                _employeeRepository.SaveChanges();
+
+                //_authInfoRepository.Create(authInfo);
+                //_authInfoRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
                 return result;
@@ -83,7 +97,8 @@ namespace Okapia.Application.Applications
                 employee.EmployeeFirstName = command.EmployeeFirstName;
                 employee.EmployeeLastName = command.EmployeeLastName;
 
-                var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(command.EmployeeId, Constants.Roles.Employee.Id);
+                var authInfo =
+                    _authInfoRepository.GetAuthInfoByReferenceRecord(command.EmployeeId, Constants.Roles.Employee.Id);
                 authInfo.Username = command.EmployeeUsername;
                 authInfo.IsDeleted = command.EmployeeIsDeleted;
 
@@ -104,6 +119,7 @@ namespace Okapia.Application.Applications
 
         public void Delete(int id)
         {
+            var employee = _employeeRepository.GetEmployeeWithAuthInfo(id);
             var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(id, Constants.Roles.Employee.Id);
             authInfo.IsDeleted = true;
             _authInfoRepository.Update(authInfo);
@@ -138,7 +154,7 @@ namespace Okapia.Application.Applications
         //    var result = new OperationResult("AuthInfo", "ChangePassword");
         //    try
         //    {
-                
+
         //    }
         //    catch (Exception exception)
         //    {

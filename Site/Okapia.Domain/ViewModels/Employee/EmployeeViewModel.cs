@@ -5,7 +5,7 @@ namespace Okapia.Domain.ViewModels.Employee
 {
     public class EmployeeViewModel
     {
-        public int EmployeeId { get; set; }
+        public long EmployeeId { get; set; }
 
         [Display(Name = "نام")]
         public string EmployeeFirstName { get; set; }

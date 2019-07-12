@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Okapia.Domain.Models
 {
-    public partial class Employee
+    public class Employee
     {
-        public int EmployeeId { get; set; }
+        public long EmployeeId { get; set; }
         public string EmployeeFirstName { get; set; }
         public string EmployeeLastName { get; set; }
         public DateTime EmployeeCreationDate { get; set; }
+        public List<EmployeeController> EmployeeControllers { get; set; }
+        public AuthInfo AuthInfo { get; set; }
     }
 }

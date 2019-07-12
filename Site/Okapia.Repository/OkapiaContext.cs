@@ -34,6 +34,7 @@ namespace Okapia.Repository
         public DbSet<AuthInfo> AuthInfo { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Controller> Controllers { get; set; }
+        public DbSet<EmployeeController> EmployeeControllers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -62,6 +63,10 @@ namespace Okapia.Repository
             modelBuilder.ApplyConfiguration(new CityMapping());
             modelBuilder.ApplyConfiguration(new DistrictMapping());
             modelBuilder.ApplyConfiguration(new NeighborhoodMapping());
+
+            modelBuilder.ApplyConfiguration(new EmployeeControllerMapping());
+            modelBuilder.ApplyConfiguration(new AuthInfoMapping());
+
             OnModelCreatingPartial(modelBuilder);
         }
 
