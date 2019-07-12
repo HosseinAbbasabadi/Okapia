@@ -35,11 +35,11 @@ function uploadFiles(inputId, fileid, type) {
       success: function(data) {
 
         if (data === 400)
-          alert("فایل نامعتبر است. لطفا دوباره تلاش کنید");
+          sendNotification("error", "top-right", "خطا", "فایل نامعتبر است. لطفا دوباره تلاش کنید");
         if (data === 401)
-          alert("حجم عکس باید کمتر از ۳ مگابایت باشد");
+          sendNotification("error", "top-right", "خطا", "حجم عکس باید کمتر از ۳ مگابایت باشد");
         else {
-          alert("عکس با موفقیت بارگذاری شد");
+          sendNotification("success", "top-right", "موفیت","عکس با موفقیت بارگذاری شد")
           showDeleteBtn(inputId, data, fileid);
         }
       }
@@ -47,11 +47,13 @@ function uploadFiles(inputId, fileid, type) {
   );
 }
 
-function deletePhoto(inputId, type) {
+function deletePhoto(inputId, type, titlePhoto, altPhoto, descPhoto) {
   const filename = $('#name' + inputId).attr("filename");
   $('#name' + inputId).attr('filename', null);
   $('#name' + inputId).attr('fileid', null);
-  debugger
+  $('#' + titlePhoto).val(null);
+  $('#' + altPhoto).val(null);
+  $('#' + descPhoto).val(null);
   $.ajax(
     {
       url: "/Uploader/Delete/"+filename+"?type="+type,
@@ -67,7 +69,7 @@ function deletePhoto(inputId, type) {
           $('#name' + inputId).attr('value', '');
         }
         if (data === 400)
-          alert("خطایی رخ داده است لطفا دوباره تلاش کنید");
+          sendNotification("error", "top-right", "خطا", "فایل نامعتبر است. لطفا دوباره تلاش کنید");
       }
     }
   );

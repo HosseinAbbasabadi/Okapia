@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using Framework;
-using Okapia.Domain.Commands.Category;
+using Okapia.Domain.Commands;
 using Okapia.Domain.Commands.Employee;
 using Okapia.Domain.SeachModels;
-using Okapia.Domain.ViewModels;
-using Okapia.Domain.ViewModels.Category;
 using Okapia.Domain.ViewModels.Employee;
 
 namespace Okapia.Application.Contracts
@@ -18,5 +16,6 @@ namespace Okapia.Application.Contracts
         EditEmployee GetEmployeeDetails(int id);
         IEnumerable<EmployeeViewModel> GetEmployees();
         IEnumerable<EmployeeViewModel> Search(EmployeeSearchModel searchModel, out int recordCount);
+        //OperationResult ChangePassword(ChangePassword command);
     }
 }

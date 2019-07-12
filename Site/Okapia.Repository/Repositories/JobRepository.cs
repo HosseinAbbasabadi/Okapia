@@ -137,8 +137,6 @@ namespace Okapia.Repository.Repositories
                     JobManagerFirstName = job.JobManagerFirstName,
                     JobManagerLastName = job.JobManagerLastName,
                     JobContactTitile = job.JobContactTitile,
-                    JobTel = job.JobTel1,
-                    JobMobile = job.JobMobile1,
                     JobCategoryId = job.JobCategory,
                     IsDeleted = authInfo.IsDeleted,
                     JobCategory = category.CategoryName,

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
+using Okapia.Domain.Commands;
 using Okapia.Domain.Commands.Employee;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Employee;
@@ -14,10 +15,12 @@ namespace Okapia.Areas.Administrator.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeApplication _employeeApplication;
+        private readonly IAuthInfoApplication _authInfoApplication;
 
-        public EmployeeController(IEmployeeApplication employeeApplication)
+        public EmployeeController(IEmployeeApplication employeeApplication, IAuthInfoApplication authInfoApplication)
         {
             _employeeApplication = employeeApplication;
+            _authInfoApplication = authInfoApplication;
         }
 
         // GET: Category
@@ -109,6 +112,14 @@ namespace Okapia.Areas.Administrator.Controllers
             _employeeApplication.Activate(id);
             var referer = Request.Headers["Referer"].ToString();
             return Redirect(referer);
+        }
+
+        [HttpPost]
+        public JsonResult ChangePassword(long id, ChangePassword command)
+        {
+            command.RoleId = Constants.Roles.Employee.Id;
+            var result = _authInfoApplication.ChangePassword(command);
+            return Json(result);
         }
     }
 }

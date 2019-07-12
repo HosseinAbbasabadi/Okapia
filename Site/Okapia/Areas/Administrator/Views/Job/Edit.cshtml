@@ -4,8 +4,7 @@
   ViewData["Title"] = "Create";
 }
 
-<h1>فرم ایجاد شغل جدید</h1>
-<h4>برای ثبت فرم جدید فرم زیر را کامل کنید</h4>
+<h1>فرم اطلاح شغل @Model.JobName</h1>
 
 <hr/>
 <div class="row">
@@ -389,7 +388,7 @@
       <td>
         @if (!string.IsNullOrEmpty(photo.value.Name))
         {
-          <button type="button" id="@deleteBtnId" onclick="deletePhoto('@inputId', 'job')" class="btn btn-danger">حذف</button>
+          <button type="button" id="@deleteBtnId" onclick="deletePhoto('@inputId', 'job', '@titlePhoto', '@altPhoto', '@descPhoto')" class="btn btn-danger">حذف</button>
         }
         else
         {

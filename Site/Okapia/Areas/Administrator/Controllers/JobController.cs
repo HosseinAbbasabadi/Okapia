@@ -176,12 +176,11 @@ namespace Okapia.Areas.Administrator.Controllers
         // POST: Shop/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public JsonResult Delete(int id, IFormCollection collection)
         {
             var redirect301Url = collection["301Redirect"].ToString();
-            _jobApplication.Delete(id, redirect301Url);
-            var referer = Request.Headers["Referer"].ToString();
-            return Redirect(referer);
+            var result = _jobApplication.Delete(id, redirect301Url);
+            return Json(result);
         }
 
         public ActionResult Activate(int id)

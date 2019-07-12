@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Okapia.Domain.Commands;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
@@ -13,9 +12,11 @@ namespace Okapia.Areas.Administrator.Controllers
             return View();
         }
 
-        public ActionResult ChnagePassword()
+        public ActionResult ChnagePassword(long id)
         {
-            return PartialView("");
+            var model = new ChangePassword();
+            ViewData["employeeId"] = id;
+            return PartialView("_ChangePassword", model);
         }
     }
 }

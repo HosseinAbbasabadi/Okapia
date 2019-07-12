@@ -4,6 +4,7 @@ using Framework;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Domain;
+using Okapia.Domain.Commands;
 using Okapia.Domain.Commands.Employee;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
@@ -132,5 +133,20 @@ namespace Okapia.Application.Applications
         {
             return _employeeRepository.Search(searchModel, Constants.Roles.Employee.Id, out recordCount);
         }
+
+        //public OperationResult ChangePassword(ChangePassword command)
+        //{
+        //    var result = new OperationResult("AuthInfo", "ChangePassword");
+        //    try
+        //    {
+                
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        Console.WriteLine(exception);
+        //        result.Message = ApplicationMessages.SystemFailure;
+        //        return result;
+        //    }
+        //}
     }
 }

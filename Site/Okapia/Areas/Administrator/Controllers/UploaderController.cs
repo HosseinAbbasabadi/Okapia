@@ -86,7 +86,7 @@ namespace Okapia.Areas.Administrator.Controllers
             var filename = GetOriginalFilePath(id, containingFoler);
             var thumb = GetThumbFilePath(id, containingFoler);
 
-            if (!System.IO.File.Exists(filename) || !System.IO.File.Exists(thumb)) return Json(400);
+            if (!System.IO.File.Exists(filename) || !System.IO.File.Exists(thumb)) return Json(200);
             System.IO.File.Delete(filename);
             System.IO.File.Delete(thumb);
             return Json(200);

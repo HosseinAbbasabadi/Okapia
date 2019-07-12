@@ -17,7 +17,7 @@ namespace Okapia.Domain.ViewModels.Employee
         public string EmployeeUsername { get; set; }
 
         [Display(Name = "تاریخ ایجاد")]
-        public DateTime EmployeeCreationDate { get; set; }
+        public string EmployeeCreationDate { get; set; }
 
         [Display(Name = "آیا حذف شده است؟")]
         public bool EmployeeIsDeleted { get; set; }       

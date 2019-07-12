@@ -22,8 +22,10 @@ namespace Okapia.Application.Applications
         private readonly ICityApplication _cityApplication;
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
-        
-        public JobApplication(IJobRepository jobRepository, IAuthInfoRepository authInfoRepository, IAuthHelper authHelper, ICityApplication cityApplication, IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication)
+
+        public JobApplication(IJobRepository jobRepository, IAuthInfoRepository authInfoRepository,
+            IAuthHelper authHelper, ICityApplication cityApplication, IDistrictApplication districtApplication,
+            INeighborhoodApplication neighborhoodApplication)
         {
             _jobRepository = jobRepository;
             _authInfoRepository = authInfoRepository;
@@ -91,10 +93,17 @@ namespace Okapia.Application.Applications
             }
         }
 
-        public void Delete(int id, string redirect301Url)
+        public OperationResult Delete(int id, string redirect301Url)
         {
+            var result = new OperationResult("Jobs", "Delete");
             try
             {
+                if (!Uri.IsWellFormedUriString(redirect301Url, UriKind.Absolute))
+                {
+                    result.Message = ApplicationMessages.WrongRulFormat;
+                    return result;
+                }
+
                 var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(id, Constants.Roles.Job.Id);
                 authInfo.IsDeleted = true;
                 var job = _jobRepository.Get(x => x.JobId == id).First();
@@ -102,11 +111,15 @@ namespace Okapia.Application.Applications
                 _jobRepository.Update(job);
                 _authInfoRepository.Update(authInfo);
                 _jobRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
-                throw;
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
             }
         }
 
@@ -141,6 +154,12 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
+                if (string.IsNullOrEmpty(command.Photos.First().Name))
+                {
+                    result.Message = ApplicationMessages.PictureIsRequired;
+                    return result;
+                }
+
                 var jobWithoutPictures = MapEditJobToJob(command);
                 var job = MapJobPicturesForUpdate(command.Photos, jobWithoutPictures);
                 var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(job.JobId, Constants.Roles.Job.Id);
@@ -165,10 +184,13 @@ namespace Okapia.Application.Applications
         {
             try
             {
-                var jobDetails =  _jobRepository.GetJobDetails(id, Constants.Roles.Job.Id);
-                jobDetails.Citeies = new SelectList(_cityApplication.GetCitiesBy(jobDetails.JobProvienceId), "Id", "Name");
-                jobDetails.Districts = new SelectList(_districtApplication.GetDistrictsBy(jobDetails.JobCityId), "Id", "Name");
-                jobDetails.Neighborhoods = new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(jobDetails.JobDistrictId), "Id", "Name");
+                var jobDetails = _jobRepository.GetJobDetails(id, Constants.Roles.Job.Id);
+                jobDetails.Citeies =
+                    new SelectList(_cityApplication.GetCitiesBy(jobDetails.JobProvienceId), "Id", "Name");
+                jobDetails.Districts =
+                    new SelectList(_districtApplication.GetDistrictsBy(jobDetails.JobCityId), "Id", "Name");
+                jobDetails.Neighborhoods =
+                    new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(jobDetails.JobDistrictId), "Id", "Name");
                 return jobDetails;
             }
             catch (Exception exception)
@@ -320,12 +342,14 @@ namespace Okapia.Application.Applications
                     JobPictureUrl = picture.Name,
                     JobPicturThumbUrl = picture.Name,
                     JobPictureAlt = picture.Alt,
-                    Job = job
+                    Job = job,
+                    IsDefault = false
                 };
-                if (picture.Name == pictures.First().Name)
-                    jobPicture.IsDefault = true;
+
                 jobPictures.Add(jobPicture);
             }
+
+            jobPictures.First().IsDefault = true;
 
             job.JobPictures = jobPictures;
             return job;

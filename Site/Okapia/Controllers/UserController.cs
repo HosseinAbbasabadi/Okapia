@@ -1,10 +1,6 @@
-﻿using System;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Okapia.Application.Contracts;
 using Okapia.Domain.Commands.User;
-using Okapia.Domain.ViewModels.User;
-using Okapia.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -62,6 +58,11 @@ namespace Okapia.Controllers
         {
             _userApplication.LogoutUser();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult AccessDenied()
+        {
+            return View("~/Views/Home/Index.cshtml");
         }
     }
 }

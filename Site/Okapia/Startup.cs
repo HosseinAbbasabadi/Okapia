@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,10 +37,15 @@ namespace Okapia
             });
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
+                    {
+                        o.LoginPath = new PathString("/User/Login");
+                        o.LogoutPath = new PathString("/User/Logout");
+                        o.AccessDeniedPath= new PathString("/User/AccessDenied");
+                    });
 
             services.AddHttpContextAccessor();
-            services.ConfigureApplicationCookie(options => options.LoginPath = "/User/Login");
+            //services.ConfigureApplicationCookie(options => options.LoginPath = new PathString("User/Login"));
             services.AddMvc(options =>
                 {
                     options.EnableEndpointRouting = false;

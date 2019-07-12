@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Framework;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore.Internal;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
-using Okapia.Domain;
 using Okapia.Domain.Commands.User;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
@@ -18,24 +15,26 @@ namespace Okapia.Application.Applications
         private readonly IAuthHelper _authHelper;
         private readonly IUserRepository _userRepository;
         private readonly IAuthInfoRepository _authInfoRepository;
+        private readonly IJobRepository _jobRepository;
 
         public UserApplication(IUserRepository userRepository, IAuthInfoRepository authInfoRepository,
-            IAuthHelper authHelper)
+            IAuthHelper authHelper, IJobRepository jobRepository)
         {
             _userRepository = userRepository;
             _authInfoRepository = authInfoRepository;
             _authHelper = authHelper;
+            _jobRepository = jobRepository;
         }
 
         public OperationResult LoginUser(Login login)
         {
             var result = new OperationResult("AuthInfo", "Login");
-            var auth = _authInfoRepository.Get(x => x.Username == login.Username, x => x.Password == login.Password)
+            var auth = _authInfoRepository.Get(x => x.Username == login.Username, x => x.Password == login.Password,
+                    x => x.IsDeleted == false)
                 .FirstOrDefault();
             if (auth != null)
             {
-                var user = _userRepository.Get(auth.ReferenceRecordId);
-                var userInfo = new UserInfoViewModel(auth.Id, user.UserFirstName, auth.Username, auth.RoleId);
+                var userInfo = new UserInfoViewModel(auth.Id, auth.Username, auth.Username, auth.RoleId);
                 _authHelper.Signin(userInfo);
                 result.Success = true;
                 result.Message = ApplicationMessages.OperationSuccess;
@@ -80,11 +79,13 @@ namespace Okapia.Application.Applications
                     Username = user.UserNationalCode,
                     Password = user.UserPhoneNumber,
                     ReferenceRecordId = user.UserId,
-                    RoleId = Constants.Roles.User.Id
+                    RoleId = Constants.Roles.User.Id,
+                    IsDeleted = false
                 };
                 _authInfoRepository.Create(authInfo);
                 _authInfoRepository.SaveChanges();
-                var userInfo = new UserInfoViewModel(authInfo.Id, command.Name, authInfo.Username, Constants.Roles.User.Id);
+                var userInfo = new UserInfoViewModel(authInfo.Id, command.Name, authInfo.Username,
+                    Constants.Roles.User.Id);
                 _authHelper.Signin(userInfo);
                 operationResult.Success = true;
                 operationResult.RecordId = user.UserId;

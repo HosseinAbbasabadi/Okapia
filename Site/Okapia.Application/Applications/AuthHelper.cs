@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Okapia.Application.Contracts;
-using Okapia.Application.Utilities;
 using Okapia.Domain.ViewModels.User;
 
 namespace Okapia.Application.Applications

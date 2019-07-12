@@ -34,12 +34,6 @@
             @Html.DisplayNameFor(model => model.JobManagerLastName)
           </th>
           <th>
-            @Html.DisplayNameFor(model => model.JobTel)
-          </th>
-          <th>
-            @Html.DisplayNameFor(model => model.JobMobile)
-          </th>
-          <th>
             @Html.DisplayNameFor(model => model.JobCategory)
           </th>
           <th>
@@ -72,7 +66,7 @@
                 @index
               </td>
               <td>
-                <img src="~/JobPhotos/Thumbs/@item.value.JobPicture" with="100" height="100" />
+                <img src="~/JobPhotos/Thumbs/@item.value.JobPicture" with="100" height="100"/>
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.JobName)
@@ -85,12 +79,6 @@
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.JobManagerLastName)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.JobTel)
-              </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.JobMobile)
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.JobCategory)
@@ -108,16 +96,16 @@
                 @Html.DisplayFor(modelItem => item.value.JobNeighborhood)
               </td>
               <td>
-                <a class="btn btn-sm btn-info" asp-area="Administrator" asp-controller="Job" asp-action="Edit" asp-route-id="@item.value.JobId" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a> |
+                <a id="editJob-@item.value.JobId" class="btn btn-sm btn-info" asp-area="Administrator" asp-controller="Job" asp-action="Edit" asp-route-id="@item.value.JobId" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>
                 @if (!item.value.IsDeleted)
                 {
-                  <a id="deleteJob-@item.value.JobId" class="btn btn-sm btn-danger" onclick="showDeleteForm('@item.value.JobId')">حذف</a>
+                  <a id="deleteJob-@item.value.JobId" class="btn btn-sm btn-danger" onclick="showDeleteForm('@item.value.JobId', 'editJob-@item.value.JobId', 'deleteJob-@item.value.JobId')">حذف</a>
                   <br/>
                   <br/>
                   <form id="deleteForm-@item.value.JobId" class="hidden" asp-route-id="@item.value.JobId" asp-area="Administrator" asp-controller="Job" asp-action="Delete" method="post">
                     <input type="text" id="301Redirect" name="301Redirect" class="form-control" placeholder="صفحه جایگزین 301 redirect"/>
-                    <button type="submit" class="btn btn-sm btn-danger">حذف</button>
-                    <button type="button" class="btn btn-sm btn-warning" onclick="hideDeleteForm('@item.value.JobId')">انصراف</button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="createEntityPost('@Url.Action("Delete", "Job")/@item.value.JobId', 'deleteForm-@item.value.JobId')">حذف</button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="hideDeleteForm('@item.value.JobId', 'editJob-@item.value.JobId', 'deleteJob-@item.value.JobId')">انصراف</button>
                   </form>
                 }
                 else
@@ -180,83 +168,16 @@
 </div>
 
 <script>
-  //function deleteJob(jobId) {
-  //  const redirectUrl = $('#301Redirec-' + jobId).val();
-  //    $.ajax({
-  //      url: action + '/' + id,
-  //      type: 'Get',
-  //      //datatype: 'application/json',
-  //      contentType: 'application/json',
-  //      //data: JSON.stringify({
-  //      //  stateId: +stateId
-  //      //}),
-  //      success: function(result) {
-  //        $(distDropdown).html("");
-  //        $.each(result,
-  //          function(i, item) {
-  //            $(distDropdown).append($('<option></option>').val(item.id).html(item.name));
-  //          });
-  //      },
-  //      error: function() {
-  //        alert("خطا در ارتباط با سرور لطفا با مدیر سیتم تماس بگیرید.");
-  //      }
-  //    });
-  //  debugger;
-  //}
 
-  function showDeleteForm(id) {
+  function showDeleteForm(id, edit, delet) {
     $('#deleteForm-' + id).removeClass('hidden');
+    $('#' + edit).addClass('hidden');
+    $('#' + delet).addClass('hidden');
   }
 
-  function hideDeleteForm(id) {
+  function hideDeleteForm(id, edit, delet) {
     $('#deleteForm-' + id).addClass('hidden');
+    $('#' + edit).removeClass('hidden');
+    $('#' + delet).removeClass('hidden');
   }
-
-  //function getList(sourceDropdown, action, distDropdown) {
-  //  var id = $(sourceDropdown).val();
-  //  $.ajax({
-  //    url: action + '/' + id,
-  //    type: 'Get',
-  //    //datatype: 'application/json',
-  //    contentType: 'application/json',
-  //    //data: JSON.stringify({
-  //    //  stateId: +stateId
-  //    //}),
-  //    success: function(result) {
-  //      $(distDropdown).html("");
-  //      $.each(result,
-  //        function(i, item) {
-  //          $(distDropdown).append($('<option></option>').val(item.id).html(item.name));
-  //        });
-  //    },
-  //    error: function() {
-  //      alert("خطا در ارتباط با سرور لطفا با مدیر سیتم تماس بگیرید.");
-  //    }
-  //  });
-  //}
-
-  //function getCityList() {
-  //  this.getList('#provinceDropDown', 'GetCitiesByProvince', '#cityDropDown');
-  //}
-
-  //function getDistrictList() {
-  //  this.getList('#cityDropDown', 'GetDistrictsByCity', '#districtDropDown');
-  //}
-
-  //function getNeighborhoodList() {
-  //  this.getList('#districtDropDown', 'GetNeighborhoodsByDistrict', '#neighborhoodDropDown');
-  //}
-
-  //function string_to_slug(str) {
-  //  document.getElementById("JobSlug").value = str;
-  //}
-
-  //function PreviewImage(input, img) {
-  //  var oFReader = new FileReader();
-  //  oFReader.readAsDataURL(document.getElementById(input).files[0]);
-
-  //  oFReader.onload = function(oFREvent) {
-  //    document.getElementById(img).src = oFREvent.target.result;
-  //  };
-  //};
 </script>

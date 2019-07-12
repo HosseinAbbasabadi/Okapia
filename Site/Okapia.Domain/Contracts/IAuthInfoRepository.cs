@@ -5,6 +5,7 @@ namespace Okapia.Domain.Contracts
 {
     public interface IAuthInfoRepository : IRepository<long, AuthInfo>
     {
-        AuthInfo GetAuthInfoByReferenceRecord(int id, int roleId);
+        AuthInfo GetAuthInfoByReferenceRecord(long id, int roleId);
+        AuthInfo GetChnagePasswordInfo(long id);
     }
 }
