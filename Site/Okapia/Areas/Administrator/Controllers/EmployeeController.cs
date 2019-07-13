@@ -8,10 +8,12 @@ using Okapia.Domain.Commands;
 using Okapia.Domain.Commands.Employee;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Employee;
+using Okapia.Helpers;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
+    [ServiceFilter(typeof(AuthorizeFilter))]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeApplication _employeeApplication;
@@ -70,7 +72,7 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             var createModel = new CreateEmployee
             {
-                SelectedControllers = new List<string>(){"1"},
+                SelectedControllers = new List<string> {"1"},
                 AvailableControllers = _controllerApplication.GetControllers()
             };
             return PartialView("_Create", createModel);

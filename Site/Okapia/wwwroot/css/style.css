@@ -3385,3 +3385,9 @@ div.dataTables_info {
     width: 1170px;
   }
 }
+
+.access-tick {
+    width: 17px;
+    height: 17px;
+    margin: 4px 5px !important;
+}

@@ -8,6 +8,7 @@ using Okapia.Domain.Commands.Employee;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
+using Okapia.Domain.ViewModels;
 using Okapia.Domain.ViewModels.Employee;
 
 namespace Okapia.Application.Applications
@@ -16,11 +17,15 @@ namespace Okapia.Application.Applications
     {
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IAuthInfoRepository _authInfoRepository;
+        private readonly IControllerApplication _controllerApplication;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public EmployeeApplication(IEmployeeRepository employeeRepository, IAuthInfoRepository authInfoRepository)
+        public EmployeeApplication(IEmployeeRepository employeeRepository, IAuthInfoRepository authInfoRepository, IControllerApplication controllerApplication, IPasswordHasher passwordHasher)
         {
             _employeeRepository = employeeRepository;
             _authInfoRepository = authInfoRepository;
+            _controllerApplication = controllerApplication;
+            _passwordHasher = passwordHasher;
         }
 
         public OperationResult Create(CreateEmployee command)
@@ -36,20 +41,14 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
-                var employeeControllers = new List<EmployeeController>();
-                command.SelectedControllers.ForEach(controllerId =>
-                {
-                    employeeControllers.Add(new EmployeeController
-                    {
-                        ControllerId = int.Parse(controllerId)
-                    });
-                });
+                var employeeControllers = MapEmployeeControllersForCreate(command.SelectedControllers);
+
+                var hashedPassword = _passwordHasher.Hash(command.EmployeePassword);
 
                 var authInfo = new AuthInfo
                 {
                     Username = command.EmployeeUsername.ToLower(),
-                    Password = command.EmployeePassword,
-                    //ReferenceRecordId = employee.EmployeeId,
+                    Password = hashedPassword,
                     RoleId = Constants.Roles.Employee.Id,
                     IsDeleted = false
                 };
@@ -66,8 +65,6 @@ namespace Okapia.Application.Applications
                 _employeeRepository.Create(employee);
                 _employeeRepository.SaveChanges();
 
-                //_authInfoRepository.Create(authInfo);
-                //_authInfoRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
                 return result;
@@ -80,6 +77,19 @@ namespace Okapia.Application.Applications
             }
         }
 
+        private static List<EmployeeController> MapEmployeeControllersForCreate(List<string> selectedControllers)
+        {
+            var employeeControllers = new List<EmployeeController>();
+            selectedControllers.ForEach(model =>
+            {
+                employeeControllers.Add(new EmployeeController
+                {
+                    ControllerId = int.Parse(model)
+                });
+            });
+            return employeeControllers;
+        }
+      
         public OperationResult Update(EditEmployee command)
         {
             var result = new OperationResult("Employee", "Update");
@@ -96,14 +106,11 @@ namespace Okapia.Application.Applications
                 employee.EmployeeId = command.EmployeeId;
                 employee.EmployeeFirstName = command.EmployeeFirstName;
                 employee.EmployeeLastName = command.EmployeeLastName;
+                employee.AuthInfo.Username = command.EmployeeUsername;
+                employee.AuthInfo.IsDeleted = command.EmployeeIsDeleted;
+                employee.EmployeeControllers = MapEmployeeControllersForCreate(command.SelectedControllers);
 
-                var authInfo =
-                    _authInfoRepository.GetAuthInfoByReferenceRecord(command.EmployeeId, Constants.Roles.Employee.Id);
-                authInfo.Username = command.EmployeeUsername;
-                authInfo.IsDeleted = command.EmployeeIsDeleted;
-
-                _employeeRepository.Update(employee);
-                _authInfoRepository.Update(authInfo);
+                _employeeRepository.Attach(employee);
                 _employeeRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -115,6 +122,20 @@ namespace Okapia.Application.Applications
                 result.Message = ApplicationMessages.SystemFailure;
                 return result;
             }
+        }
+
+        private static List<EmployeeController> MapEmployeeControllersForUpdate(List<EmployeeControllerViewModel> selectedControllers)
+        {
+            var employeeControllers = new List<EmployeeController>();
+            selectedControllers.ForEach(model =>
+            {
+                employeeControllers.Add(new EmployeeController
+                {
+                    Id = model.Id,
+                    ControllerId = int.Parse(model.ControllerId)
+                });
+            });
+            return employeeControllers;
         }
 
         public void Delete(int id)
@@ -136,7 +157,9 @@ namespace Okapia.Application.Applications
 
         public EditEmployee GetEmployeeDetails(int id)
         {
-            return _employeeRepository.GetEmployeeDetails(id, Constants.Roles.Employee.Id);
+            var employee = _employeeRepository.GetEmployeeDetails(id, Constants.Roles.Employee.Id);
+            employee.AvailableControllers = _controllerApplication.GetControllers();
+            return employee;
         }
 
         public IEnumerable<EmployeeViewModel> GetEmployees()

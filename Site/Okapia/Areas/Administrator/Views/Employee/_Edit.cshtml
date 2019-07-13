@@ -15,34 +15,56 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="EmployeeFirstName" class="control-label"></label>
-                  <input asp-for="EmployeeFirstName" class="form-control" />
+                  <input asp-for="EmployeeFirstName" class="form-control"/>
                   <span asp-validation-for="EmployeeFirstName" class="text-danger"></span>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="EmployeeLastName" class="control-label"></label>
-                  <input asp-for="EmployeeLastName" class="form-control" />
+                  <input asp-for="EmployeeLastName" class="form-control"/>
                   <span asp-validation-for="EmployeeLastName" class="text-danger"></span>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="EmployeeUsername" class="control-label"></label>
-                  <input asp-for="EmployeeUsername" class="form-control" />
+                  <input asp-for="EmployeeUsername" class="form-control"/>
                   <span asp-validation-for="EmployeeUsername" class="text-danger"></span>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="EmployeeIsDeleted" class="control-label"></label>
-                  <input asp-for="EmployeeIsDeleted" class="form-control" />
+                  <input asp-for="EmployeeIsDeleted" class="form-control"/>
                   <span asp-validation-for="EmployeeIsDeleted" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="control-label">
+                    <strong>دسترسی های کارمند:</strong>
+                  </label>
+                  @foreach (var item in Model.AvailableControllers)
+                  {
+                    <div class="">
+                      <label>
+                        @if (Model.ExistingControllers.Any(x => x.ControllerId == item.Value))
+                        {
+                          <input type="checkbox" class="access-tick" name="SelectedControllers" value="@item.Value" checked/>@item.Text
+                        }
+                        else
+                        {
+                          <input type="checkbox" class="access-tick" name="SelectedControllers" value="@item.Value" />@item.Text
+                        }
+                      </label>
+                    </div>
+                  }
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntity('@Url.Action("Edit", "Employee")', 'editEmployeeFrm', '@ViewData["redirectUrl"]')" />
+                  <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntity('@Url.Action("Edit", "Employee")', 'editEmployeeFrm', '@ViewData["redirectUrl"]')"/>
                 </div>
               </div>
             </form>

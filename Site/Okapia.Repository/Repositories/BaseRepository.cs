@@ -28,12 +28,17 @@ namespace Okapia.Repository.Repositories
 
         public void Create(T entity)
         {
-            var t = _context.Add(entity);
+            _context.Add(entity);
         }
 
         public void Update(T entity)
         {
             _context.Update(entity);
+        }
+
+        public void Attach(T entity)
+        {
+            _context.Attach(entity);
         }
 
         public void Delete(T entity)

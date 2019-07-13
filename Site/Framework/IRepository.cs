@@ -13,9 +13,9 @@ namespace Framework
         bool Exists(params Expression<Func<T, bool>>[] predicates);
         void Create(T entity);
         void Update(T entity);
+        void Attach(T entity);
         void Delete(T entity);
         long GetNextId(string sequenceName);
         void SaveChanges();
     }
-
 }

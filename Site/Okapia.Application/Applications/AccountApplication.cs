@@ -10,40 +10,49 @@ using Okapia.Domain.ViewModels.User;
 
 namespace Okapia.Application.Applications
 {
-    public class UserApplication : IUserApplication
+    public class AccountApplication : IAccountApplication
     {
         private readonly IAuthHelper _authHelper;
         private readonly IUserRepository _userRepository;
         private readonly IAuthInfoRepository _authInfoRepository;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public UserApplication(IUserRepository userRepository, IAuthInfoRepository authInfoRepository,
-            IAuthHelper authHelper)
+        public AccountApplication(IUserRepository userRepository, IAuthInfoRepository authInfoRepository,
+            IAuthHelper authHelper, IPasswordHasher passwordHasher)
         {
             _userRepository = userRepository;
             _authInfoRepository = authInfoRepository;
             _authHelper = authHelper;
+            _passwordHasher = passwordHasher;
         }
 
-        public OperationResult LoginUser(Login login)
+        public OperationResult Login(Login login)
         {
             var result = new OperationResult("AuthInfo", "Login");
-            var auth = _authInfoRepository.Get(x => x.Username == login.Username, x => x.Password == login.Password,
-                    x => x.IsDeleted == false)
+            var auth = _authInfoRepository.Get(x => x.Username == login.Username, x => x.IsDeleted == false)
                 .FirstOrDefault();
-            if (auth != null)
+            if (auth == null)
             {
-                var userInfo = new UserInfoViewModel(auth.Id, auth.Username, auth.Username, auth.RoleId);
-                _authHelper.Signin(userInfo);
-                result.Success = true;
-                result.Message = ApplicationMessages.OperationSuccess;
+                result.Message = ApplicationMessages.UserNotExists;
                 return result;
             }
 
-            result.Message = ApplicationMessages.UserNotExists;
+            var verified = _passwordHasher.Check(auth.Password, login.Password);
+            if (!verified.Verified)
+            {
+                result.Message = ApplicationMessages.IncorrectPassword;
+                return result;
+            }
+
+            var userInfo = new UserInfoViewModel(auth.Id, auth.ReferenceRecordId, auth.Username, auth.Username,
+                auth.RoleId);
+            _authHelper.Signin(userInfo);
+            result.Success = true;
+            result.Message = ApplicationMessages.OperationSuccess;
             return result;
         }
 
-        public OperationResult RegisterUser(CreateUser command)
+        public OperationResult Register(CreateUser command)
         {
             var operationResult = new OperationResult("RegisterUser", "Users");
             try
@@ -54,10 +63,12 @@ namespace Okapia.Application.Applications
                     return operationResult;
                 }
 
+                var hashedPassword = _passwordHasher.Hash(command.PhoneNumber);
+
                 var authInfo = new AuthInfo
                 {
                     Username = command.NationalCardNumber,
-                    Password = command.PhoneNumber,
+                    Password = hashedPassword,
                     //ReferenceRecordId = user.UserId,
                     RoleId = Constants.Roles.User.Id,
                     IsDeleted = false
@@ -82,10 +93,8 @@ namespace Okapia.Application.Applications
                 };
                 _userRepository.Create(user);
                 _userRepository.SaveChanges();
-               
-                //_authInfoRepository.Create(authInfo);
-                //_authInfoRepository.SaveChanges();
-                var userInfo = new UserInfoViewModel(authInfo.Id, command.Name, authInfo.Username,
+
+                var userInfo = new UserInfoViewModel(authInfo.Id, user.UserId, user.UserFirstName, authInfo.Username,
                     Constants.Roles.User.Id);
                 _authHelper.Signin(userInfo);
                 operationResult.Success = true;
@@ -96,8 +105,8 @@ namespace Okapia.Application.Applications
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
+                operationResult.Message = ApplicationMessages.SystemFailure;
                 return operationResult;
-                throw;
             }
         }
 
@@ -106,7 +115,7 @@ namespace Okapia.Application.Applications
             _authHelper.Signout();
         }
 
-        public UserInfoViewModel GetUserInfo()
+        public UserInfoViewModel GetAccountInfo()
         {
             return _authHelper.GetCurrnetUserInfo();
         }

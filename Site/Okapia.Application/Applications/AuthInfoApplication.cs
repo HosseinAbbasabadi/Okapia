@@ -16,11 +16,6 @@ namespace Okapia.Application.Applications
             _authInfoRepository = authInfoRepository;
         }
 
-        public void Register()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public OperationResult ChangePassword(ChangePassword command)
         {
             var result = new OperationResult("AuthInfo", "ChangePassword");
@@ -28,7 +23,7 @@ namespace Okapia.Application.Applications
             {
                 var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(command.ReferenceRecordId, command.RoleId);
                 authInfo.Password = command.NewPassword;
-                _authInfoRepository.Create(authInfo);
+                _authInfoRepository.Update(authInfo);
                 _authInfoRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Okapia.Domain.ViewModels;
 
 namespace Okapia.Domain.Commands.Employee
 {
@@ -8,5 +10,7 @@ namespace Okapia.Domain.Commands.Employee
 
         [Display(Name = "آیا حذف شود؟")]
         public bool EmployeeIsDeleted { get; set; }
+        public List<EmployeeControllerViewModel> ExistingControllers { get; set; }
+
     }
 }

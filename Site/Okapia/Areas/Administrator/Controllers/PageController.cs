@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Okapia.Areas.Administrator.Models;
+using Okapia.Helpers;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
+    [ServiceFilter(typeof(AuthorizeFilter))]
     public class PageController : Controller
     {
         // GET: Page

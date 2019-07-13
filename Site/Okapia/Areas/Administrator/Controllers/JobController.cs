@@ -9,10 +9,12 @@ using Okapia.Domain.Commands.Job;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Job;
 using Okapia.Domain.ViewModels.JobPicture;
+using Okapia.Helpers;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
+    [ServiceFilter(typeof(AuthorizeFilter))]
     public class JobController : Controller
     {
         private readonly IJobApplication _jobApplication;

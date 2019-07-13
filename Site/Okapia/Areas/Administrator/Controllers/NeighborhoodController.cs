@@ -5,10 +5,12 @@ using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
 using Okapia.Domain.Commands.Neighborhood;
 using Okapia.Domain.SeachModels;
+using Okapia.Helpers;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
+    [ServiceFilter(typeof(AuthorizeFilter))]
     public class NeighborhoodController : Controller
     {
         private readonly INeighborhoodApplication _neighborhoodApplication;

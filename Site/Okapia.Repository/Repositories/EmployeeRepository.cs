@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using Okapia.Domain;
 using Okapia.Domain.Commands.Employee;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
+using Okapia.Domain.ViewModels;
 using Okapia.Domain.ViewModels.Employee;
 
 namespace Okapia.Repository.Repositories
@@ -22,7 +21,8 @@ namespace Okapia.Repository.Repositories
 
         public Employee GetEmployee(long id)
         {
-            return _context.Employees.Where(x => x.EmployeeId == id).AsNoTracking().First();
+            return _context.Employees.Where(x => x.EmployeeId == id).Include(x => x.AuthInfo)
+                .Include(x => x.EmployeeControllers).First();
         }
 
         public Employee GetEmployeeWithAuthInfo(long id)
@@ -32,7 +32,8 @@ namespace Okapia.Repository.Repositories
 
         public EditEmployee GetEmployeeDetails(long id, int roleId)
         {
-            var query = from employee in _context.Employees
+            var q = _context.Employees.Include(x => x.EmployeeControllers).AsQueryable();
+            var query = from employee in q
                 join authInfo in _context.AuthInfo.Where(x => x.RoleId == roleId)
                     on employee.EmployeeId equals authInfo.ReferenceRecordId
                 where employee.EmployeeId == id
@@ -42,9 +43,25 @@ namespace Okapia.Repository.Repositories
                     EmployeeFirstName = employee.EmployeeFirstName,
                     EmployeeIsDeleted = authInfo.IsDeleted,
                     EmployeeLastName = employee.EmployeeLastName,
-                    EmployeeUsername = authInfo.Username
+                    EmployeeUsername = authInfo.Username,
+                    ExistingControllers = MapEmployeeControllers(employee.EmployeeControllers.ToList())
                 };
             return query.First();
+        }
+
+        private static List<EmployeeControllerViewModel> MapEmployeeControllers(
+            List<EmployeeController> employeeControllers)
+        {
+            var result = new List<EmployeeControllerViewModel>();
+            employeeControllers.ForEach(x =>
+            {
+                result.Add(new EmployeeControllerViewModel()
+                {
+                    Id = x.Id,
+                    ControllerId = x.ControllerId.ToString()
+                });
+            });
+            return result;
         }
 
         public List<EmployeeViewModel> Search(EmployeeSearchModel searchModel, int roleId, out int recordCount)

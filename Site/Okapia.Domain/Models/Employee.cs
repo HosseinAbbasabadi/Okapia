@@ -9,7 +9,7 @@ namespace Okapia.Domain.Models
         public string EmployeeFirstName { get; set; }
         public string EmployeeLastName { get; set; }
         public DateTime EmployeeCreationDate { get; set; }
-        public List<EmployeeController> EmployeeControllers { get; set; }
+        public ICollection<EmployeeController> EmployeeControllers { get; set; }
         public AuthInfo AuthInfo { get; set; }
     }
 }

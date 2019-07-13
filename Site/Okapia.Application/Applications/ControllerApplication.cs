@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Domain.Contracts;
@@ -17,7 +18,7 @@ namespace Okapia.Application.Applications
 
         public List<SelectListItem> GetControllers()
         {
-            var controllers = _controllerRepository.GetAll();
+            var controllers = _controllerRepository.GetAll().OrderBy(x=>x.Id).ToList();
             var items = new List<SelectListItem>();
             controllers.ForEach(x =>
             {

@@ -57,6 +57,7 @@ function openModalWithData(url, containerName, modalName) {
     success: function(response) {
       //$("#createCityDiv").html(response);
       //$('#createCityModal').modal('toggle');
+      $("#" + containerName).empty();
       const container = document.getElementById(containerName);
       container.insertAdjacentHTML("beforeend", response);
       const forms = container.getElementsByTagName("form");
@@ -86,7 +87,6 @@ function createEntity(url, formId) {
 function createEntityWithListFeed(url, formId, listUrl, listDivId) {
   if ($("#" + formId).valid() === true) {
     const sendingData = $(`#${formId}`).serialize();
-    debugger;
     $.post(url,
       sendingData,
       function(operationResult) {

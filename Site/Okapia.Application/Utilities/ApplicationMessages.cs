@@ -8,7 +8,9 @@
         public const string EntityNotExists = "اطلاعات درخواست شده یافت نشد. لطفا پس از بروزرسانی صفحه دوباره تلاش کنید";
         public const string DuplicatedUser = "کاربر با این کدملی قبلا ثبت نام شده است";
         public const string DuplicatedJob = "نام کاربری برای این شغل تکراری است";
-        public const string UserNotExists = "نام کاربری یا کلمه رمز اشتباه است. لطفا دوباره تلاش کنید";
+        public const string UserNotExists = "نام کاربری اشتباه است. لطفا دوباره تلاش کنید";
+        public const string IncorrectPassword = "کلمه رمز اشتباه است. لطفا دوباره تلاش کنید";
+
         public const string DuplicatedSlug = "اسلاگ نمی تواند تکراری باشد";
         public const string DuplicatedJobName = "نام شغل نمی تواند تکراری باشد";
         public const string DuplicatedEmployee = "کارمند دیگری با این نام کاربری ثبت شده است";

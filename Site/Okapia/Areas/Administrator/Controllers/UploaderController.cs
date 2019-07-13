@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using Okapia.Application.Utilities;
+using Okapia.Helpers;
 using Okapia.Repository;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
+    [ServiceFilter(typeof(AuthorizeFilter))]
     public class UploaderController : Controller
     {
         private readonly IHostingEnvironment _hostingEnvironment;

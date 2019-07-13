@@ -8,10 +8,12 @@ using Okapia.Areas.Administrator.Models;
 using Okapia.Domain.Commands.Category;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Category;
+using Okapia.Helpers;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
+    [ServiceFilter(typeof(AuthorizeFilter))]
     public class CategoryController : Controller
     {
         private readonly ICategoryApplication _categoryApplication;

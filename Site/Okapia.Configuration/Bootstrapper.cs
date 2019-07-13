@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Framework;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Okapia.Application.Applications;
@@ -36,7 +37,7 @@ namespace Okapia.Configuration
             services.AddScoped<ICategoryApplication, CategoryApplication>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
 
-            services.AddScoped<IUserApplication, UserApplication>();
+            services.AddScoped<IAccountApplication, AccountApplication>();
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<IEmployeeApplication, EmployeeApplication>();
@@ -47,6 +48,10 @@ namespace Okapia.Configuration
 
             services.AddScoped<IControllerApplication, ControllerApplication>();
             services.AddScoped<IControllerRepository, ControllerRepository>();
+
+            services.AddSingleton<IAuthHelper, AuthHelper>();
+
+            services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
             services.AddScoped<IJobPictureRepository, JobPictureRepository>();
 

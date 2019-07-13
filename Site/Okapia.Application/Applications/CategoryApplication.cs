@@ -47,7 +47,7 @@ namespace Okapia.Application.Applications
                     CategoryPicTitle = command.TitleImage,
                     CategoryPicAlt = command.AltImage,
                     CategoryPicDescription = command.DescImage,
-                    RegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().UserId,
+                    RegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId,
                     IsDeleted = false
                 };
                 _categoryRepository.Create(category);
@@ -91,7 +91,7 @@ namespace Okapia.Application.Applications
                     CategoryPicTitle = command.TitleImage,
                     CategoryPicAlt = command.AltImage,
                     CategoryPicDescription = command.DescImage,
-                    RegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().UserId,
+                    RegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId,
                     IsDeleted = command.IsDeleted
                 };
                 _categoryRepository.Update(category);

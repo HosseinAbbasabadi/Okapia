@@ -19,3 +19,4 @@ namespace Okapia.Application.Contracts
         //OperationResult ChangePassword(ChangePassword command);
     }
 }
+    

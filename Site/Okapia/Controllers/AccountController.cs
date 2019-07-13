@@ -6,13 +6,13 @@ using Okapia.Domain.Commands.User;
 
 namespace Okapia.Controllers
 {
-    public class UserController : Controller
+    public class AccountController : Controller
     {
-        private readonly IUserApplication _userApplication;
+        private readonly IAccountApplication _accountApplication;
 
-        public UserController(IUserApplication userApplication)
+        public AccountController(IAccountApplication accountApplication)
         {
-            _userApplication = userApplication;
+            _accountApplication = accountApplication;
         }
 
         public ActionResult Register()
@@ -26,7 +26,7 @@ namespace Okapia.Controllers
         public ActionResult Register(CreateUser createUser)
         {
             if (!ModelState.IsValid) return View("Register", createUser);
-            var result = _userApplication.RegisterUser(createUser);
+            var result = _accountApplication.Register(createUser);
             if (result.Success)
                 return RedirectToAction("Index", "Home");
             ViewData["errorMessage"] = result.Message;
@@ -44,7 +44,7 @@ namespace Okapia.Controllers
         public ActionResult Login(Login login)
         {
             if (!ModelState.IsValid) return View("Login", login);
-            var result = _userApplication.LoginUser(login);
+            var result = _accountApplication.Login(login);
             if(result.Success)
                 return RedirectToAction("Index", "Home");
             else
@@ -56,7 +56,7 @@ namespace Okapia.Controllers
 
         public ActionResult Logout()
         {
-            _userApplication.LogoutUser();
+            _accountApplication.LogoutUser();
             return RedirectToAction("Index", "Home");
         }
 

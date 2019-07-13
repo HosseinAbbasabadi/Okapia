@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using System;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Okapia.Application.Applications;
 using Okapia.Application.Contracts;
 using Okapia.Configuration;
+using Okapia.Helpers;
 
 namespace Okapia
 {
@@ -25,9 +28,7 @@ namespace Okapia
         {
             var bootstrapper = new Bootstrapper(Configuration);
             bootstrapper.Wireup(services);
-
-            //TODO: should be moved to bootstrapper
-            services.AddSingleton<IAuthHelper, AuthHelper>();
+            services.AddScoped<AuthorizeFilter>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -38,18 +39,15 @@ namespace Okapia
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
-                    {
-                        o.LoginPath = new PathString("/User/Login");
-                        o.LogoutPath = new PathString("/User/Logout");
-                        o.AccessDeniedPath= new PathString("/User/AccessDenied");
-                    });
+                {
+                    o.LoginPath = new PathString("/User/Login");
+                    o.LogoutPath = new PathString("/User/Logout");
+                    o.AccessDeniedPath = new PathString("/User/AccessDenied");
+                });
 
             services.AddHttpContextAccessor();
-            //services.ConfigureApplicationCookie(options => options.LoginPath = new PathString("User/Login"));
-            services.AddMvc(options =>
-                {
-                    options.EnableEndpointRouting = false;
-                }).AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = true)
+            services.AddMvc(options => { options.EnableEndpointRouting = false; })
+                .AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = true)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -72,16 +70,23 @@ namespace Okapia
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-            app.UseMvc(routes =>
+            //app.UseAuthorizationMiddleware();
+
+            app.UseMvc(ConfigureRoutes());
+        }
+
+        private static Action<IRouteBuilder> ConfigureRoutes()
+        {
+            return routes =>
             {
                 routes.MapRoute(
-                    name: "customer_area",
-                    template: "{area}/{controller}/{action}/{id?}"
+                    "customer_area",
+                    "{area}/{controller}/{action}/{id?}"
                 );
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}");
+            };
         }
     }
 }

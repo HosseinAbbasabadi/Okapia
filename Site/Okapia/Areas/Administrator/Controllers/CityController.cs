@@ -1,18 +1,16 @@
-﻿using System.Net.Mime;
-using Framework;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
 using Okapia.Domain.Commands.City;
 using Okapia.Domain.SeachModels;
-using Okapia.ViewComponents;
+using Okapia.Helpers;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
+    [ServiceFilter(typeof(AuthorizeFilter))]
     public class CityController : Controller
     {
         private readonly ICityApplication _cityApplication;
