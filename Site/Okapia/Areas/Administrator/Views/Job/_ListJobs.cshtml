@@ -99,19 +99,21 @@
                 <a id="editJob-@item.value.JobId" class="btn btn-sm btn-info" asp-area="Administrator" asp-controller="Job" asp-action="Edit" asp-route-id="@item.value.JobId" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>
                 @if (!item.value.IsDeleted)
                 {
-                  <a id="deleteJob-@item.value.JobId" class="btn btn-sm btn-danger" onclick="showDeleteForm('@item.value.JobId', 'editJob-@item.value.JobId', 'deleteJob-@item.value.JobId')">حذف</a>
-                  <br/>
-                  <br/>
+                  <a id="deleteJob-@item.value.JobId" class="btn btn-sm btn-danger" onclick="showDeleteForm('@item.value.JobId', 'editJob-@item.value.JobId', 'deleteJob-@item.value.JobId', 'changePwd-@item.value.JobId')">حذف</a>
+                  <br />
+                  <br />
                   <form id="deleteForm-@item.value.JobId" class="hidden" asp-route-id="@item.value.JobId" asp-area="Administrator" asp-controller="Job" asp-action="Delete" method="post">
-                    <input type="text" id="301Redirect" name="301Redirect" class="form-control" placeholder="صفحه جایگزین 301 redirect"/>
+                    <input type="text" id="301Redirect" name="301Redirect" class="form-control" placeholder="صفحه جایگزین 301 redirect" />
                     <button type="button" class="btn btn-sm btn-danger" onclick="createEntityThenReferesh('@Url.Action("Delete", "Job")/@item.value.JobId', 'deleteForm-@item.value.JobId')">حذف</button>
-                    <button type="button" class="btn btn-sm btn-warning" onclick="hideDeleteForm('@item.value.JobId', 'editJob-@item.value.JobId', 'deleteJob-@item.value.JobId')">انصراف</button>
+                    <button type="button" class="btn btn-sm btn-warning" onclick="hideDeleteForm('@item.value.JobId', 'editJob-@item.value.JobId', 'deleteJob-@item.value.JobId', 'changePwd-@item.value.JobId')">انصراف</button>
                   </form>
                 }
                 else
                 {
                   <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Job" asp-action="Activate" asp-route-id="@item.value.JobId">فعال سازی</a>
                 }
+
+                <a id="changePwd-@item.value.JobId" class="btn btn-sm btn-inverse" onclick="openChangePasswordModal('@item.value.AccountId')">تغییر رمز</a>
               </td>
             </tr>
           }
@@ -167,17 +169,27 @@
   </div>
 </div>
 
+<div id="changePasswordDiv">
+
+</div>
+
 <script>
 
-  function showDeleteForm(id, edit, delet) {
+  function openChangePasswordModal(id) {
+    openModalWithData(`@Url.Action("ChnagePassword", "Home")/${id}`, 'changePasswordDiv', 'changePasswordModal');
+  }
+
+  function showDeleteForm(id, edit, delet, changePwd) {
     $('#deleteForm-' + id).removeClass('hidden');
     $('#' + edit).addClass('hidden');
     $('#' + delet).addClass('hidden');
+    $('#' + changePwd).addClass('hidden');
   }
 
-  function hideDeleteForm(id, edit, delet) {
+  function hideDeleteForm(id, edit, delet, changePwd) {
     $('#deleteForm-' + id).addClass('hidden');
     $('#' + edit).removeClass('hidden');
     $('#' + delet).removeClass('hidden');
+    $('#' + changePwd).removeClass('hidden');
   }
 </script>

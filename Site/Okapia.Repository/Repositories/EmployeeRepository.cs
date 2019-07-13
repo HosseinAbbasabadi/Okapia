@@ -76,7 +76,8 @@ namespace Okapia.Repository.Repositories
                     EmployeeLastName = employee.EmployeeLastName,
                     EmployeeUsername = account.Username,
                     EmployeeIsDeleted = account.IsDeleted,
-                    EmployeeCreationDate = employee.EmployeeCreationDate.ToFarsi()
+                    EmployeeCreationDate = employee.EmployeeCreationDate.ToFarsi(),
+                    AccountId = account.Id
                 };
             if (!string.IsNullOrEmpty(searchModel.EmployeeFirstName))
                 query = query.Where(x => x.EmployeeFirstName.Contains(searchModel.EmployeeFirstName));

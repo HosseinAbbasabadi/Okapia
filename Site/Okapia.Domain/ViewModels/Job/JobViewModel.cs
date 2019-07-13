@@ -45,5 +45,7 @@ namespace Okapia.Domain.ViewModels.Job
 
         [Display(Name = "حذف شده؟")]
         public bool IsDeleted { get; set; }
+
+        public long AccountId { get; set; }
     }
 }

@@ -1,15 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Okapia.Application.Contracts;
+using Okapia.Application.Utilities;
 using Okapia.Domain.Commands;
 using Okapia.Helpers;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
-    [ServiceFilter(typeof(AuthorizeFilter))]
     [Area("Administrator")]
-    //[CustomAuthorization(ControllerId = 11)]
+    [ServiceFilter(typeof(AuthorizeFilter))]
     public class HomeController : Controller
     {
-        // GET: /<controller>/
+        private readonly IAccountApplication _accountApplication;
+
+        public HomeController(IAccountApplication accountApplication)
+        {
+            _accountApplication = accountApplication;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -18,8 +25,16 @@ namespace Okapia.Areas.Administrator.Controllers
         public ActionResult ChnagePassword(long id)
         {
             var model = new ChangePassword();
-            ViewData["employeeId"] = id;
+            ViewData["accountId"] = id;
             return PartialView("_ChangePassword", model);
+        }
+
+        [HttpPost]
+        public JsonResult ChangePassword(long id, ChangePassword command)
+        {
+            command.AccountId = id;
+            var result = _accountApplication.ChangePassword(command);
+            return Json(result);
         }
     }
 }

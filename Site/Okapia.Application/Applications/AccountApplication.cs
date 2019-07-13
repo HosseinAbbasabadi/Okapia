@@ -133,7 +133,7 @@ namespace Okapia.Application.Applications
                 }
 
                 var hashedPassword = _passwordHasher.Hash(command.NewPassword);
-                var account = _accountRepository.GetAccountByReferenceRecord(command.ReferenceRecordId, command.RoleId);
+                var account = _accountRepository.GetAccount(command.AccountId);
                 account.Password = hashedPassword;
                 _accountRepository.Update(account);
                 _accountRepository.SaveChanges();

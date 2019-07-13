@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using Framework;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
+using Okapia.Domain.Commands;
 using Okapia.Domain.Commands.Job;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Job;
@@ -19,11 +21,14 @@ namespace Okapia.Areas.Administrator.Controllers
     {
         private readonly IJobApplication _jobApplication;
         private readonly ICategoryApplication _categoryApplication;
+        private readonly IAccountApplication _accountApplication;
 
-        public JobController(IJobApplication jobApplication, ICategoryApplication categoryApplication)
+        public JobController(IJobApplication jobApplication, ICategoryApplication categoryApplication,
+            IAccountApplication accountApplication)
         {
             _jobApplication = jobApplication;
             _categoryApplication = categoryApplication;
+            _accountApplication = accountApplication;
         }
 
         // GET: Shop
@@ -195,6 +200,14 @@ namespace Okapia.Areas.Administrator.Controllers
         public JsonResult CheckSlugDuplication(string id)
         {
             var result = _jobApplication.CheckJobSlugDuplication(id);
+            return Json(result);
+        }
+
+        public JsonResult ChangePassword(long id, ChangePassword command)
+        {
+            command.RoleId = Constants.Roles.Job.Id;
+            command.AccountId = id;
+            var result = _accountApplication.ChangePassword(command);
             return Json(result);
         }
     }

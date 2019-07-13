@@ -20,6 +20,8 @@ namespace Okapia.Domain.ViewModels.Employee
         public string EmployeeCreationDate { get; set; }
 
         [Display(Name = "آیا حذف شده است؟")]
-        public bool EmployeeIsDeleted { get; set; }       
+        public bool EmployeeIsDeleted { get; set; }
+
+        public long AccountId { get; set; }
     }
 }

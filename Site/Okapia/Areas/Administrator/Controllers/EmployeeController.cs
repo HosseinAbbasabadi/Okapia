@@ -127,7 +127,7 @@ namespace Okapia.Areas.Administrator.Controllers
         [HttpPost]
         public JsonResult ChangePassword(long id, ChangePassword command)
         {
-            command.ReferenceRecordId = id;
+            command.AccountId = id;
             command.RoleId = Constants.Roles.Employee.Id;
             var result = _accountApplication.ChangePassword(command);
             return Json(result);

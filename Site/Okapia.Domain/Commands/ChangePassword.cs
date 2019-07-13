@@ -16,7 +16,7 @@ namespace Okapia.Domain.Commands
         [Required(ErrorMessage = ValidationMessages.Required)]
         public string RepeatNewPassword { get; set; }
 
-        public long ReferenceRecordId { get; set; }
+        public long AccountId { get; set; }
         public int RoleId { get; set; }
     }
 }

@@ -144,6 +144,7 @@ namespace Okapia.Repository.Repositories
                     JobContactTitile = job.JobContactTitile,
                     JobCategoryId = job.JobCategory,
                     IsDeleted = account.IsDeleted,
+                    AccountId = account.Id,
                     JobCategory = category.CategoryName,
                     JobProvience = province.Name,
                     JobProvienceId = province.Id,

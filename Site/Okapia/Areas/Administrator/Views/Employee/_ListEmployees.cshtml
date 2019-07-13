@@ -67,7 +67,7 @@
                 {
                   <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Employee" asp-action="Activate" asp-route-id="@item.value.EmployeeId">فعال سازی</a>
                 }
-                <a class="btn btn-sm btn-inverse" onclick="openChangePasswordModal('@item.value.EmployeeId')">تغییر رمز</a>
+                <a class="btn btn-sm btn-inverse" onclick="openChangePasswordModal('@item.value.AccountId')">تغییر رمز</a>
               </td>
             </tr>
           }
