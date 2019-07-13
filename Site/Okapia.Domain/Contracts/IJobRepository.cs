@@ -7,10 +7,11 @@ using Okapia.Domain.ViewModels.Job;
 
 namespace Okapia.Domain.Contracts
 {
-    public interface IJobRepository : IRepository<int, Job>
+    public interface IJobRepository : IRepository<long, Job>
     {
-        Job GetJob(int id);
-        EditJob GetJobDetails(int id, int roleId);
+        Job GetJob(long id);
+        Job GetJobIncludingAccount(long id);
+        EditJob GetJobDetails(long id, int roleId);
         List<JobViewModel> Search(JobSearchModel searchModel, int roleId, out int recordCount);
     }
 }

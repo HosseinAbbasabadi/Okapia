@@ -7,7 +7,7 @@ namespace Okapia.Domain.Commands.Job
 {
     public class EditJob : CreateJob
     {
-        public int JobId { get; set; }
+        public long JobId { get; set; }
         [Display(Name = "آیا صفحه حذف شود؟")] public bool IsDeleted { get; set; }
         public string JobCategory { get; set; }
         public string JobProvience { get; set; }

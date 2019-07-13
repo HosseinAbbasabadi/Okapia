@@ -18,6 +18,6 @@ namespace Okapia.Domain.Models
         public int UserCustomerIntroductionLimit { get; set; }
         public DateTime UserRegistrationDate { get; set; }
         public bool UserIsActivated { get; set; }
-        public AuthInfo AuthInfo { get; set; }
+        public Account Account { get; set; }
     }
 }

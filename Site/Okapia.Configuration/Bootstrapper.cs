@@ -43,8 +43,8 @@ namespace Okapia.Configuration
             services.AddScoped<IEmployeeApplication, EmployeeApplication>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
-            services.AddScoped<IAuthInfoApplication, AuthInfoApplication>();
-            services.AddScoped<IAuthInfoRepository, AuthInfoRepository>();
+            services.AddScoped<IAccountApplication, AccountApplication>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
 
             services.AddScoped<IControllerApplication, ControllerApplication>();
             services.AddScoped<IControllerRepository, ControllerRepository>();

@@ -10,7 +10,7 @@ using Okapia.Domain.ViewModels.JobPicture;
 
 namespace Okapia.Repository.Repositories
 {
-    public class JobRepository : BaseRepository<int, Job>, IJobRepository
+    public class JobRepository : BaseRepository<long, Job>, IJobRepository
     {
         private readonly OkapiaContext _context;
         private readonly IJobPictureRepository _jobPictureRepository;
@@ -21,16 +21,21 @@ namespace Okapia.Repository.Repositories
             _jobPictureRepository = jobPictureRepository;
         }
 
-        public Job GetJob(int id)
+        public Job GetJob(long id)
         {
-            return _context.Jobs.Where(x => x.JobId == id).AsNoTracking().ToList().FirstOrDefault();
+            return _context.Jobs.Where(x => x.JobId == id).AsNoTracking().FirstOrDefault();
         }
 
-        public EditJob GetJobDetails(int id, int roleId)
+        public Job GetJobIncludingAccount(long id)
+        {
+            return _context.Jobs.Include(x => x.Account).FirstOrDefault(x => x.JobId == id);
+        }
+
+        public EditJob GetJobDetails(long id, int roleId)
         {
             var query = from job in _context.Jobs
-                join authInfo in _context.AuthInfo.Where(x => x.RoleId == roleId)
-                    on job.JobId equals authInfo.ReferenceRecordId
+                join account in _context.Accounts.Where(x => x.RoleId == roleId)
+                    on job.JobId equals account.ReferenceRecordId
                 join category in _context.Categories
                     on job.JobCategory equals category.CategoryId
                 join province in _context.Provinces
@@ -52,8 +57,8 @@ namespace Okapia.Repository.Repositories
                     JobTel1 = job.JobTel1,
                     JobMobile1 = job.JobMobile1,
                     JobCategoryId = job.JobCategory,
-                    IsDeleted = authInfo.IsDeleted,
-                    Username = authInfo.Username,
+                    IsDeleted = account.IsDeleted,
+                    Username = account.Username,
                     JobCategory = category.CategoryName,
                     JobProvience = province.Name,
                     JobProvienceId = province.Id,
@@ -115,8 +120,8 @@ namespace Okapia.Repository.Repositories
         public List<JobViewModel> Search(JobSearchModel searchModel, int roleId, out int recordCount)
         {
             var query = from job in _context.Jobs
-                join authInfo in _context.AuthInfo.Where(x => x.RoleId == roleId)
-                    on job.JobId equals authInfo.ReferenceRecordId
+                join account in _context.Accounts.Where(x => x.RoleId == roleId)
+                    on job.JobId equals account.ReferenceRecordId
                 join category in _context.Categories
                     on job.JobCategory equals category.CategoryId
                 join province in _context.Provinces
@@ -138,7 +143,7 @@ namespace Okapia.Repository.Repositories
                     JobManagerLastName = job.JobManagerLastName,
                     JobContactTitile = job.JobContactTitile,
                     JobCategoryId = job.JobCategory,
-                    IsDeleted = authInfo.IsDeleted,
+                    IsDeleted = account.IsDeleted,
                     JobCategory = category.CategoryName,
                     JobProvience = province.Name,
                     JobProvienceId = province.Id,

@@ -37,7 +37,7 @@ namespace Okapia.Repository.Mappings
 
             builder.Property(e => e.UserRegistrationDate).HasColumnType("datetime");
 
-            builder.HasOne(x => x.AuthInfo).WithOne(x => x.User).HasForeignKey<AuthInfo>(x => x.ReferenceRecordId);
+            builder.HasOne(x => x.Account).WithOne(x => x.User).HasForeignKey<Account>(x => x.ReferenceRecordId);
         }
     }
 }

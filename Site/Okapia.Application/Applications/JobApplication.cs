@@ -17,18 +17,18 @@ namespace Okapia.Application.Applications
     public class JobApplication : IJobApplication
     {
         private readonly IJobRepository _jobRepository;
-        private readonly IAuthInfoRepository _authInfoRepository;
+        private readonly IAccountRepository _accountRepository;
         private readonly IAuthHelper _authHelper;
         private readonly ICityApplication _cityApplication;
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
 
-        public JobApplication(IJobRepository jobRepository, IAuthInfoRepository authInfoRepository,
+        public JobApplication(IJobRepository jobRepository, IAccountRepository accountRepository,
             IAuthHelper authHelper, ICityApplication cityApplication, IDistrictApplication districtApplication,
             INeighborhoodApplication neighborhoodApplication)
         {
             _jobRepository = jobRepository;
-            _authInfoRepository = authInfoRepository;
+            _accountRepository = accountRepository;
             _authHelper = authHelper;
             _cityApplication = cityApplication;
             _districtApplication = districtApplication;
@@ -54,7 +54,7 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
-                if (_authInfoRepository.Exists(x => x.Username == command.Username,
+                if (_accountRepository.Exists(x => x.Username == command.Username,
                     x => x.RoleId == Constants.Roles.Job.Id))
                 {
                     result.Message = ApplicationMessages.DuplicatedJob;
@@ -71,7 +71,7 @@ namespace Okapia.Application.Applications
                 var job = MapJobPictures(command.Photos, jobWithoutPictures);
                 _jobRepository.Create(job);
                 _jobRepository.SaveChanges();
-                var authInfo = new AuthInfo
+                var authInfo = new Account
                 {
                     Username = command.Username.ToLower(),
                     Password = command.Password,
@@ -79,8 +79,8 @@ namespace Okapia.Application.Applications
                     RoleId = Constants.Roles.Job.Id,
                     ReferenceRecordId = job.JobId
                 };
-                _authInfoRepository.Create(authInfo);
-                _authInfoRepository.SaveChanges();
+                _accountRepository.Create(authInfo);
+                _accountRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
                 return result;
@@ -104,12 +104,10 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
-                var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(id, Constants.Roles.Job.Id);
-                authInfo.IsDeleted = true;
-                var job = _jobRepository.Get(x => x.JobId == id).First();
+                var job = _jobRepository.GetJobIncludingAccount(id);
+                job.Account.IsDeleted = true;
                 job.JobRemoved301InsteadUrl = redirect301Url;
-                _jobRepository.Update(job);
-                _authInfoRepository.Update(authInfo);
+                _jobRepository.Attach(job);
                 _jobRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -127,12 +125,10 @@ namespace Okapia.Application.Applications
         {
             try
             {
-                var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(id, Constants.Roles.Job.Id);
-                authInfo.IsDeleted = false;
-                var job = _jobRepository.Get(x => x.JobId == id).First();
+                var job = _jobRepository.GetJobIncludingAccount(id);
+                job.Account.IsDeleted = false;
                 job.JobRemoved301InsteadUrl = null;
-                _jobRepository.Update(job);
-                _authInfoRepository.Update(authInfo);
+                _jobRepository.Attach(job);
                 _jobRepository.SaveChanges();
             }
             catch (Exception exception)
@@ -147,6 +143,12 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("Jobs", "Update");
             try
             {
+                if (string.IsNullOrEmpty(command.Photos.First().Name))
+                {
+                    result.Message = ApplicationMessages.PictureIsRequired;
+                    return result;
+                }
+
                 var checkingJob = _jobRepository.GetJob(id);
                 if (checkingJob == null)
                 {
@@ -154,19 +156,13 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
-                if (string.IsNullOrEmpty(command.Photos.First().Name))
-                {
-                    result.Message = ApplicationMessages.PictureIsRequired;
-                    return result;
-                }
-
                 var jobWithoutPictures = MapEditJobToJob(command);
                 var job = MapJobPicturesForUpdate(command.Photos, jobWithoutPictures);
-                var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(job.JobId, Constants.Roles.Job.Id);
+                var authInfo = _accountRepository.GetAccountByReferenceRecord(job.JobId, Constants.Roles.Job.Id);
                 authInfo.Username = command.Username.ToLower();
                 authInfo.IsDeleted = command.IsDeleted;
                 _jobRepository.Update(job);
-                _authInfoRepository.Update(authInfo);
+                _accountRepository.Update(authInfo);
                 _jobRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -224,7 +220,7 @@ namespace Okapia.Application.Applications
                 JobWazeMap = command.JobWazeMap,
                 JobWazeLink = command.JobWazeLink,
                 JobPageTittle = command.JobPageTittle,
-                JobSlug = Slugify.GenerateSlug(command.JobSlug),
+                JobSlug = command.JobSlug.GenerateSlug(),
                 JobMetaTag = command.JobMetaTag,
                 JobMetaDesccription = command.JobMetaDesccription,
                 JobSeohead = command.JobSeohead,
@@ -276,7 +272,7 @@ namespace Okapia.Application.Applications
                 JobWazeMap = command.JobWazeMap,
                 JobWazeLink = command.JobWazeLink,
                 JobPageTittle = command.JobPageTittle,
-                JobSlug = Slugify.GenerateSlug(command.JobSlug),
+                JobSlug = command.JobSlug.GenerateSlug(),
                 JobMetaTag = command.JobMetaTag,
                 JobMetaDesccription = command.JobMetaDesccription,
                 JobSeohead = command.JobSeohead,
@@ -329,12 +325,9 @@ namespace Okapia.Application.Applications
             return job;
         }
 
-        private static Job MapJobPicturesForUpdate(IReadOnlyCollection<JobPictureViewModel> pictures, Job job)
+        private static Job MapJobPicturesForUpdate(IEnumerable<JobPictureViewModel> pictures, Job job)
         {
-            var jobPictures = new List<JobPicture>();
-            foreach (var picture in pictures)
-            {
-                var jobPicture = new JobPicture
+            var jobPictures = pictures.Select(picture => new JobPicture
                 {
                     JobPictureId = picture.Id,
                     JobPictureTitle = picture.Title,
@@ -344,10 +337,8 @@ namespace Okapia.Application.Applications
                     JobPictureAlt = picture.Alt,
                     Job = job,
                     IsDefault = false
-                };
-
-                jobPictures.Add(jobPicture);
-            }
+                })
+                .ToList();
 
             jobPictures.First().IsDefault = true;
 
@@ -365,7 +356,7 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("Jobs", "CheckJobSlugDuplication");
             try
             {
-                var slugified = Slugify.GenerateSlug(slug);
+                var slugified = slug.GenerateSlug();
                 if (_jobRepository.Exists(x => x.JobSlug == slugified))
                 {
                     result.Message = ApplicationMessages.DuplicatedSlug;

@@ -17,15 +17,15 @@ namespace Okapia.Areas.Administrator.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeApplication _employeeApplication;
-        private readonly IAuthInfoApplication _authInfoApplication;
         private readonly IControllerApplication _controllerApplication;
+        private readonly IAccountApplication _accountApplication;
 
-        public EmployeeController(IEmployeeApplication employeeApplication, IAuthInfoApplication authInfoApplication,
-            IControllerApplication controllerApplication)
+        public EmployeeController(IEmployeeApplication employeeApplication,
+            IControllerApplication controllerApplication, IAccountApplication accountApplication)
         {
             _employeeApplication = employeeApplication;
-            _authInfoApplication = authInfoApplication;
             _controllerApplication = controllerApplication;
+            _accountApplication = accountApplication;
         }
 
         // GET: Category
@@ -127,8 +127,9 @@ namespace Okapia.Areas.Administrator.Controllers
         [HttpPost]
         public JsonResult ChangePassword(long id, ChangePassword command)
         {
+            command.ReferenceRecordId = id;
             command.RoleId = Constants.Roles.Employee.Id;
-            var result = _authInfoApplication.ChangePassword(command);
+            var result = _accountApplication.ChangePassword(command);
             return Json(result);
         }
     }

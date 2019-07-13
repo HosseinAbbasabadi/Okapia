@@ -6,9 +6,9 @@ namespace Okapia.Repository.Repositories
     public class UserRepository : BaseRepository<long, User>, IUserRepository
     {
         private readonly OkapiaContext _context;
-        public UserRepository(OkapiaContext context, OkapiaContext context1) : base(context)
+        public UserRepository(OkapiaContext context) : base(context)
         {
-            _context = context1;
+            _context = context;
         }
     }
 }

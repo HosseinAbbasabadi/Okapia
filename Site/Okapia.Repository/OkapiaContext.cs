@@ -31,7 +31,7 @@ namespace Okapia.Repository
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<District> Districts { get; set; }
         public virtual DbSet<Neighborhood> Neighborhoods { get; set; }
-        public DbSet<AuthInfo> AuthInfo { get; set; }
+        public DbSet<Account> Accounts { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Controller> Controllers { get; set; }
         public DbSet<EmployeeController> EmployeeControllers { get; set; }
@@ -65,7 +65,7 @@ namespace Okapia.Repository
             modelBuilder.ApplyConfiguration(new NeighborhoodMapping());
 
             modelBuilder.ApplyConfiguration(new EmployeeControllerMapping());
-            modelBuilder.ApplyConfiguration(new AuthInfoMapping());
+            modelBuilder.ApplyConfiguration(new AccountMapping());
 
             OnModelCreatingPartial(modelBuilder);
         }

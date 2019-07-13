@@ -4,11 +4,11 @@ using Okapia.Domain.Models;
 
 namespace Okapia.Repository.Mappings
 {
-    public class AuthInfoMapping : IEntityTypeConfiguration<AuthInfo>
+    public class AccountMapping : IEntityTypeConfiguration<Account>
     {
-        public void Configure(EntityTypeBuilder<AuthInfo> builder)
+        public void Configure(EntityTypeBuilder<Account> builder)
         {
-            builder.ToTable("AuthInfo");
+            builder.ToTable("Accounts");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.ReferenceRecordId);
         }

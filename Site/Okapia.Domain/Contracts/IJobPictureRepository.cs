@@ -6,6 +6,6 @@ namespace Okapia.Domain.Contracts
 {
     public interface IJobPictureRepository : IRepository<int, JobPicture>
     {
-        List<JobPicture> GetJobPicturesByJob(int id);
+        List<JobPicture> GetJobPicturesByJob(long id);
     }
 }

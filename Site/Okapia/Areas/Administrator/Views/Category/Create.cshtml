@@ -116,7 +116,7 @@
 
   <div class="col-md-6">
     <div class="form-group">
-      <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityPost('@Url.Action("Create", "Category")' ,'createCategoryFrm')" />
+      <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityThenReferesh('@Url.Action("Create", "Category")' ,'createCategoryFrm')" />
       <a class="btn btn-warning btn-lg" asp-action="Index" asp-controller="Category" asp-area="Administrator">بازگشت به لیست</a>
     </div>
   </div>

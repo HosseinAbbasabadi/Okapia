@@ -17,5 +17,6 @@
         public const string PictureIsRequired = "ایجاد یک عکس برای شغل اجراری است. لطفا عکس اول را پر کنید";
         public const string DuplicatedCategoryName = "نام گروه شغل نمی تواند تکراری باشد";
         public const string WrongRulFormat = "فرمت آدرس وارد شده صحیح نیست";
+        public static string NotSamePassword = "کلمه رمز و تکرار آن با هم برابر نیستند. لطفا دوباره تلاش کنید";
     }
 }

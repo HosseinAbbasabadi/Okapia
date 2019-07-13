@@ -21,29 +21,29 @@ namespace Okapia.Repository.Repositories
 
         public Employee GetEmployee(long id)
         {
-            return _context.Employees.Where(x => x.EmployeeId == id).Include(x => x.AuthInfo)
+            return _context.Employees.Where(x => x.EmployeeId == id).Include(x => x.Account)
                 .Include(x => x.EmployeeControllers).First();
         }
 
-        public Employee GetEmployeeWithAuthInfo(long id)
+        public Employee GetEmployeeIncludingAccount(long id)
         {
-            return _context.Employees.Include(x => x.AuthInfo).FirstOrDefault(x => x.EmployeeId == id);
+            return _context.Employees.Include(x => x.Account).FirstOrDefault(x => x.EmployeeId == id);
         }
 
         public EditEmployee GetEmployeeDetails(long id, int roleId)
         {
             var q = _context.Employees.Include(x => x.EmployeeControllers).AsQueryable();
             var query = from employee in q
-                join authInfo in _context.AuthInfo.Where(x => x.RoleId == roleId)
-                    on employee.EmployeeId equals authInfo.ReferenceRecordId
+                join account in _context.Accounts.Where(x => x.RoleId == roleId)
+                    on employee.EmployeeId equals account.ReferenceRecordId
                 where employee.EmployeeId == id
                 select new EditEmployee
                 {
                     EmployeeId = employee.EmployeeId,
                     EmployeeFirstName = employee.EmployeeFirstName,
-                    EmployeeIsDeleted = authInfo.IsDeleted,
+                    EmployeeIsDeleted = account.IsDeleted,
                     EmployeeLastName = employee.EmployeeLastName,
-                    EmployeeUsername = authInfo.Username,
+                    EmployeeUsername = account.Username,
                     ExistingControllers = MapEmployeeControllers(employee.EmployeeControllers.ToList())
                 };
             return query.First();
@@ -67,15 +67,15 @@ namespace Okapia.Repository.Repositories
         public List<EmployeeViewModel> Search(EmployeeSearchModel searchModel, int roleId, out int recordCount)
         {
             var query = from employee in _context.Employees
-                join authInfo in _context.AuthInfo.Where(x => x.RoleId == roleId)
-                    on employee.EmployeeId equals authInfo.ReferenceRecordId
+                join account in _context.Accounts.Where(x => x.RoleId == roleId)
+                    on employee.EmployeeId equals account.ReferenceRecordId
                 select new EmployeeViewModel
                 {
                     EmployeeId = employee.EmployeeId,
                     EmployeeFirstName = employee.EmployeeFirstName,
                     EmployeeLastName = employee.EmployeeLastName,
-                    EmployeeUsername = authInfo.Username,
-                    EmployeeIsDeleted = authInfo.IsDeleted,
+                    EmployeeUsername = account.Username,
+                    EmployeeIsDeleted = account.IsDeleted,
                     EmployeeCreationDate = employee.EmployeeCreationDate.ToFarsi()
                 };
             if (!string.IsNullOrEmpty(searchModel.EmployeeFirstName))

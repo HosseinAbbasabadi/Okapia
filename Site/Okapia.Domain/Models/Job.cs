@@ -4,7 +4,7 @@ namespace Okapia.Domain.Models
 {
     public class Job
     {
-        public int JobId { get; set; }
+        public long JobId { get; set; }
         public string JobName { get; set; }
         public string JobSmallDescription { get; set; }
         public string JobDescription { get; set; }
@@ -52,5 +52,6 @@ namespace Okapia.Domain.Models
         public string InstagramUrl { get; set; }
         public string TelegramUrl { get; set; }
         public ICollection<JobPicture> JobPictures { get; set; }
+        public Account Account { get; set; }
     }
 }

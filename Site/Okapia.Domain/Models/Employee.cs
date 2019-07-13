@@ -10,6 +10,6 @@ namespace Okapia.Domain.Models
         public string EmployeeLastName { get; set; }
         public DateTime EmployeeCreationDate { get; set; }
         public ICollection<EmployeeController> EmployeeControllers { get; set; }
-        public AuthInfo AuthInfo { get; set; }
+        public Account Account { get; set; }
     }
 }

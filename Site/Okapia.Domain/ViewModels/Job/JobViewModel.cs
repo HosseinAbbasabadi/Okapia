@@ -4,7 +4,7 @@ namespace Okapia.Domain.ViewModels.Job
 {
     public class JobViewModel
     {
-        public int JobId { get; set; }
+        public long JobId { get; set; }
         [Display(Name = "عنوان")]
         public string JobName { get; set; }
         [Display(Name = "نام رابط")]

@@ -83,6 +83,8 @@ namespace Okapia.Repository.Mappings
 
             builder.HasMany(x => x.JobPictures)
                 .WithOne(x => x.Job).HasForeignKey(x => x.JobId).OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder.HasOne(x => x.Account).WithOne(x => x.Job).HasForeignKey<Account>(x => x.ReferenceRecordId);
         }
     }
 }

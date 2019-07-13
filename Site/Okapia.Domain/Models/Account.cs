@@ -1,6 +1,6 @@
 ﻿namespace Okapia.Domain.Models
 {
-    public class AuthInfo
+    public class Account
     {
         public long Id { get; set; }
         public string Username { get; set; }
@@ -11,5 +11,6 @@
         public bool IsDeleted { get; set; }
         public Employee Employee { get; set; }
         public User User { get; set; }
+        public Job Job { get; set; }
     }
 }

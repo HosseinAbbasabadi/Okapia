@@ -84,7 +84,7 @@ function createEntity(url, formId) {
   }
 }
 
-function createEntityWithListFeed(url, formId, listUrl, listDivId) {
+function createEntityThenFeedList(url, formId, listUrl, listDivId) {
   if ($("#" + formId).valid() === true) {
     const sendingData = $(`#${formId}`).serialize();
     $.post(url,
@@ -109,7 +109,7 @@ function createEntityWithListFeed(url, formId, listUrl, listDivId) {
   }
 }
 
-function createEntityPost(url, formId) {
+function createEntityThenReferesh(url, formId) {
   if ($("#" + formId).valid() === true) {
     for (instance in CKEDITOR.instances) {
       CKEDITOR.instances[instance].updateElement();

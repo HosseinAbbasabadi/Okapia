@@ -104,7 +104,7 @@
                   <br/>
                   <form id="deleteForm-@item.value.JobId" class="hidden" asp-route-id="@item.value.JobId" asp-area="Administrator" asp-controller="Job" asp-action="Delete" method="post">
                     <input type="text" id="301Redirect" name="301Redirect" class="form-control" placeholder="صفحه جایگزین 301 redirect"/>
-                    <button type="button" class="btn btn-sm btn-danger" onclick="createEntityPost('@Url.Action("Delete", "Job")/@item.value.JobId', 'deleteForm-@item.value.JobId')">حذف</button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="createEntityThenReferesh('@Url.Action("Delete", "Job")/@item.value.JobId', 'deleteForm-@item.value.JobId')">حذف</button>
                     <button type="button" class="btn btn-sm btn-warning" onclick="hideDeleteForm('@item.value.JobId', 'editJob-@item.value.JobId', 'deleteJob-@item.value.JobId')">انصراف</button>
                   </form>
                 }

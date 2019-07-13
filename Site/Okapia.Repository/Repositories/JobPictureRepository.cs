@@ -15,7 +15,7 @@ namespace Okapia.Repository.Repositories
             _context = context1;
         }
 
-        public List<JobPicture> GetJobPicturesByJob(int id)
+        public List<JobPicture> GetJobPicturesByJob(long id)
         {
             return _context.JobPicture.Where(x => x.JobId == id).AsNoTracking().ToList();
         }

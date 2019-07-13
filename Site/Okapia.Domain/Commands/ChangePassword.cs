@@ -4,9 +4,9 @@ namespace Okapia.Domain.Commands
 {
     public class ChangePassword
     {
-        [Display(Name = "کلمه رمز قدیمی")]
-        [Required(ErrorMessage = ValidationMessages.Required)]
-        public string OldPassword { get; set; }
+        //[Display(Name = "کلمه رمز قدیمی")]
+        //[Required(ErrorMessage = ValidationMessages.Required)]
+        //public string OldPassword { get; set; }
 
         [Display(Name = "کلمه رمز جدید")]
         [Required(ErrorMessage = ValidationMessages.Required)]

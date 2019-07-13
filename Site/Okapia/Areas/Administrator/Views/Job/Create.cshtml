@@ -381,7 +381,7 @@
 </table>
 <div class="col-md-12">
   <div class="form-group">
-    <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityPost('@Url.Action("Create", "Job")', 'createJobFrm')"/>
+    <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityThenReferesh('@Url.Action("Create", "Job")', 'createJobFrm')"/>
     <a class="btn btn-warning btn-lg" asp-action="Index" asp-controller="Job" asp-area="Administrator">بازگشت به لیست</a>
   </div>
 </div>

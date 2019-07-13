@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Framework;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
-using Okapia.Domain;
 using Okapia.Domain.Commands.Employee;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
@@ -16,14 +15,14 @@ namespace Okapia.Application.Applications
     public class EmployeeApplication : IEmployeeApplication
     {
         private readonly IEmployeeRepository _employeeRepository;
-        private readonly IAuthInfoRepository _authInfoRepository;
+        private readonly IAccountRepository _accountRepository;
         private readonly IControllerApplication _controllerApplication;
         private readonly IPasswordHasher _passwordHasher;
 
-        public EmployeeApplication(IEmployeeRepository employeeRepository, IAuthInfoRepository authInfoRepository, IControllerApplication controllerApplication, IPasswordHasher passwordHasher)
+        public EmployeeApplication(IEmployeeRepository employeeRepository, IAccountRepository accountRepository, IControllerApplication controllerApplication, IPasswordHasher passwordHasher)
         {
             _employeeRepository = employeeRepository;
-            _authInfoRepository = authInfoRepository;
+            _accountRepository = accountRepository;
             _controllerApplication = controllerApplication;
             _passwordHasher = passwordHasher;
         }
@@ -34,7 +33,7 @@ namespace Okapia.Application.Applications
             try
             {
                 //Used RoleId Just For Optimized Search :)
-                if (_authInfoRepository.Exists(x => x.Username == command.EmployeeUsername,
+                if (_accountRepository.Exists(x => x.Username == command.EmployeeUsername,
                     x => x.RoleId == Constants.Roles.Employee.Id))
                 {
                     result.Message = ApplicationMessages.DuplicatedEmployee;
@@ -45,7 +44,7 @@ namespace Okapia.Application.Applications
 
                 var hashedPassword = _passwordHasher.Hash(command.EmployeePassword);
 
-                var authInfo = new AuthInfo
+                var account = new Account
                 {
                     Username = command.EmployeeUsername.ToLower(),
                     Password = hashedPassword,
@@ -59,7 +58,7 @@ namespace Okapia.Application.Applications
                     EmployeeLastName = command.EmployeeLastName,
                     EmployeeCreationDate = DateTime.Now,
                     EmployeeControllers = employeeControllers,
-                    AuthInfo = authInfo
+                    Account = account
                 };
 
                 _employeeRepository.Create(employee);
@@ -106,8 +105,8 @@ namespace Okapia.Application.Applications
                 employee.EmployeeId = command.EmployeeId;
                 employee.EmployeeFirstName = command.EmployeeFirstName;
                 employee.EmployeeLastName = command.EmployeeLastName;
-                employee.AuthInfo.Username = command.EmployeeUsername;
-                employee.AuthInfo.IsDeleted = command.EmployeeIsDeleted;
+                employee.Account.Username = command.EmployeeUsername;
+                employee.Account.IsDeleted = command.EmployeeIsDeleted;
                 employee.EmployeeControllers = MapEmployeeControllersForCreate(command.SelectedControllers);
 
                 _employeeRepository.Attach(employee);
@@ -140,19 +139,18 @@ namespace Okapia.Application.Applications
 
         public void Delete(int id)
         {
-            var employee = _employeeRepository.GetEmployeeWithAuthInfo(id);
-            var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(id, Constants.Roles.Employee.Id);
-            authInfo.IsDeleted = true;
-            _authInfoRepository.Update(authInfo);
-            _authInfoRepository.SaveChanges();
+            var employee = _employeeRepository.GetEmployeeIncludingAccount(id);
+            employee.Account.IsDeleted = true;
+            _employeeRepository.Attach(employee);
+            _employeeRepository.SaveChanges();
         }
 
         public void Activate(int id)
         {
-            var authInfo = _authInfoRepository.GetAuthInfoByReferenceRecord(id, Constants.Roles.Employee.Id);
-            authInfo.IsDeleted = false;
-            _authInfoRepository.Update(authInfo);
-            _authInfoRepository.SaveChanges();
+            var employee = _employeeRepository.GetEmployeeIncludingAccount(id);
+            employee.Account.IsDeleted = false;
+            _employeeRepository.Attach(employee);
+            _employeeRepository.SaveChanges();
         }
 
         public EditEmployee GetEmployeeDetails(int id)
@@ -171,20 +169,5 @@ namespace Okapia.Application.Applications
         {
             return _employeeRepository.Search(searchModel, Constants.Roles.Employee.Id, out recordCount);
         }
-
-        //public OperationResult ChangePassword(ChangePassword command)
-        //{
-        //    var result = new OperationResult("AuthInfo", "ChangePassword");
-        //    try
-        //    {
-
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        Console.WriteLine(exception);
-        //        result.Message = ApplicationMessages.SystemFailure;
-        //        return result;
-        //    }
-        //}
     }
 }

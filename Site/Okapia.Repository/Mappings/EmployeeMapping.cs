@@ -25,7 +25,7 @@ namespace Okapia.Repository.Mappings
             builder.HasMany(x => x.EmployeeControllers).WithOne(x => x.Employee).HasForeignKey(x => x.EmployeeId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(x => x.AuthInfo).WithOne(x => x.Employee).HasForeignKey<AuthInfo>(x => x.ReferenceRecordId);
+            builder.HasOne(x => x.Account).WithOne(x => x.Employee).HasForeignKey<Account>(x => x.ReferenceRecordId);
         }
     }
 }
