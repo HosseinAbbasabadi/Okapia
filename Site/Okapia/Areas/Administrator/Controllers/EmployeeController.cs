@@ -33,7 +33,7 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             if (searchModel.PageSize == 0)
             {
-                searchModel.PageSize = 20;
+                searchModel.PageSize = 4;
             }
 
             var employees = _employeeApplication.Search(searchModel, out int recordCount).ToList();
@@ -94,7 +94,6 @@ namespace Okapia.Areas.Administrator.Controllers
             return PartialView("_Edit", employee);
         }
 
-        // POST: Category/Edit/5
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public JsonResult Edit(int id, EditEmployee command)
@@ -104,33 +103,18 @@ namespace Okapia.Areas.Administrator.Controllers
             return Json(result);
         }
 
-        //// GET: Category/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long id)
         {
-            _employeeApplication.Delete(id);
+            _accountApplication.Delete(id);
             var referer = Request.Headers["Referer"].ToString();
             return Redirect(referer);
         }
 
-        public ActionResult Activate(int id)
+        public ActionResult Activate(long id)
         {
-            _employeeApplication.Activate(id);
+            _accountApplication.Activate(id);
             var referer = Request.Headers["Referer"].ToString();
             return Redirect(referer);
-        }
-
-        [HttpPost]
-        public JsonResult ChangePassword(long id, ChangePassword command)
-        {
-            command.AccountId = id;
-            command.RoleId = Constants.Roles.Employee.Id;
-            var result = _accountApplication.ChangePassword(command);
-            return Json(result);
         }
     }
 }

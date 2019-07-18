@@ -1,0 +1,77 @@
+﻿@model Okapia.Domain.SeachModels.UserSearchModel
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">جستجو در کاربران</h2>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <form asp-action="Index" asp-controller="User" asp-area="Administrator" method="GET">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="UserFirstName" class="control-label"></label>
+                <input asp-for="UserFirstName" class="form-control" />
+                <span asp-validation-for="UserFirstName" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="UserLastName" class="control-label"></label>
+                <input asp-for="UserLastName" class="form-control" />
+                <span asp-validation-for="UserLastName" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="UserNationalCode" class="control-label"></label>
+                <input asp-for="UserNationalCode" class="form-control" />
+                <span asp-validation-for="UserNationalCode" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="UserPhoneNumber" class="control-label"></label>
+                <input asp-for="UserPhoneNumber" class="form-control" />
+                <span asp-validation-for="UserPhoneNumber" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="UserProvinceId" class="control-label"></label>
+                <select asp-for="UserProvinceId" asp-items="@Model.Provinces" class="form-control" id="searchProvinceDropDown" onchange="getCityList('searchProvinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'searchCityDropDown')">
+                  <option value="0">استان را انتخاب کنید...</option>
+                </select>
+                <span asp-validation-for="UserProvinceId" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="UserCityId" class="control-label"></label>
+                <select asp-for="UserCityId" class="form-control" id="searchCityDropDown">
+                  <option value="0">شهر را انتخاب کنید...</option>
+                </select>
+                <span asp-validation-for="UserCityId" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="IsDeleted" class="control-label"></label>
+                <input asp-for="IsDeleted" class="form-control" />
+                <span asp-validation-for="IsDeleted" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="submit" value="جستجو" class="btn btn-primary" />
+                <a asp-area="Administrator" asp-controller="User" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

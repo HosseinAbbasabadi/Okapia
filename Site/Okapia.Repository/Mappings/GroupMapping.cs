@@ -4,9 +4,9 @@ using Okapia.Domain.Models;
 
 namespace Okapia.Repository.Mappings
 {
-    public class GroupMapping : IEntityTypeConfiguration<Groups>
+    public class GroupMapping : IEntityTypeConfiguration<Group>
     {
-        public void Configure(EntityTypeBuilder<Groups> builder)
+        public void Configure(EntityTypeBuilder<Group> builder)
         {
             builder.ToTable("Group");
             builder.HasKey(e => e.GroupId);

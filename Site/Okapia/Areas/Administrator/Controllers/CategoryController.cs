@@ -31,12 +31,19 @@ namespace Okapia.Areas.Administrator.Controllers
                 searchModel.PageSize = 20;
             }
 
-            var categories = _categoryApplication.Search(searchModel, out int recordCount).ToList();
+            var categories = _categoryApplication.Search(searchModel, out var recordCount).ToList();
             var categorySearchModel = ProvideCategorySearchModel(searchModel, categories);
             var categoryIndex = ProviceCategoryIndex(categorySearchModel, categories);
             Pager.PreparePager(categorySearchModel, recordCount);
             ViewData["searchModel"] = categorySearchModel;
             return View(categoryIndex);
+        }
+
+        private CategorySearchModel ProvideCategorySearchModel(CategorySearchModel searchModel,
+            IEnumerable<CategoryViewModel> categories)
+        {
+            searchModel.Categories = new SelectList(categories, "CategoryId", "CategoryName");
+            return searchModel;
         }
 
         private static CategoryIndexViewModel ProviceCategoryIndex(CategorySearchModel categorySearchModel,
@@ -48,14 +55,7 @@ namespace Okapia.Areas.Administrator.Controllers
                 CategoryViewModels = categories
             };
         }
-
-        private CategorySearchModel ProvideCategorySearchModel(CategorySearchModel searchModel,
-            IEnumerable<CategoryViewModel> categories)
-        {
-            searchModel.Categories = new SelectList(categories, "CategoryId", "CategoryName");
-            return searchModel;
-        }
-
+        
         // GET: Category/Create
         public ActionResult Create()
         {

@@ -7,7 +7,6 @@ using Okapia.Domain.Commands.Employee;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
-using Okapia.Domain.ViewModels;
 using Okapia.Domain.ViewModels.Employee;
 
 namespace Okapia.Application.Applications
@@ -121,36 +120,6 @@ namespace Okapia.Application.Applications
                 result.Message = ApplicationMessages.SystemFailure;
                 return result;
             }
-        }
-
-        private static List<EmployeeController> MapEmployeeControllersForUpdate(List<EmployeeControllerViewModel> selectedControllers)
-        {
-            var employeeControllers = new List<EmployeeController>();
-            selectedControllers.ForEach(model =>
-            {
-                employeeControllers.Add(new EmployeeController
-                {
-                    Id = model.Id,
-                    ControllerId = int.Parse(model.ControllerId)
-                });
-            });
-            return employeeControllers;
-        }
-
-        public void Delete(int id)
-        {
-            var employee = _employeeRepository.GetEmployeeIncludingAccount(id);
-            employee.Account.IsDeleted = true;
-            _employeeRepository.Attach(employee);
-            _employeeRepository.SaveChanges();
-        }
-
-        public void Activate(int id)
-        {
-            var employee = _employeeRepository.GetEmployeeIncludingAccount(id);
-            employee.Account.IsDeleted = false;
-            _employeeRepository.Attach(employee);
-            _employeeRepository.SaveChanges();
         }
 
         public EditEmployee GetEmployeeDetails(int id)

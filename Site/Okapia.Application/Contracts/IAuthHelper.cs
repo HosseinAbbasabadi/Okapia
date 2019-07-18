@@ -1,12 +1,12 @@
 ﻿using Okapia.Application.Utilities;
-using Okapia.Domain.ViewModels.User;
+using Okapia.Domain.ViewModels;
 
 namespace Okapia.Application.Contracts
 {
     public interface IAuthHelper
     {
-        void Signin(UserInfoViewModel userInfo);
+        void Signin(AccountViewModel account);
         void Signout();
-        UserInfoViewModel GetCurrnetUserInfo();
+        AccountViewModel GetCurrnetUserInfo();
     }
 }

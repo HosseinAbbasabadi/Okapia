@@ -38,6 +38,8 @@ namespace Okapia.Configuration
             services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             services.AddScoped<IAccountApplication, AccountApplication>();
+
+            services.AddScoped<IUserApplication, UserApplication>();
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<IEmployeeApplication, EmployeeApplication>();
@@ -48,6 +50,9 @@ namespace Okapia.Configuration
 
             services.AddScoped<IControllerApplication, ControllerApplication>();
             services.AddScoped<IControllerRepository, ControllerRepository>();
+
+            services.AddScoped<IGroupApplication, GroupApplication>();
+            services.AddScoped<IGroupRepository, GroupRepository>();
 
             services.AddSingleton<IAuthHelper, AuthHelper>();
 

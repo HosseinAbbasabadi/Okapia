@@ -7,7 +7,7 @@ using Okapia.Domain.Commands;
 using Okapia.Domain.Commands.User;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
-using Okapia.Domain.ViewModels.User;
+using Okapia.Domain.ViewModels;
 
 namespace Okapia.Application.Applications
 {
@@ -45,7 +45,8 @@ namespace Okapia.Application.Applications
                 return result;
             }
 
-            var userInfo = new UserInfoViewModel(account.Id, account.ReferenceRecordId, account.Username, account.Username,
+            var userInfo = new AccountViewModel(account.Id, account.ReferenceRecordId, account.Username,
+                account.Username,
                 account.RoleId);
             _authHelper.Signin(userInfo);
             result.Success = true;
@@ -81,8 +82,8 @@ namespace Okapia.Application.Applications
                     UserLastName = command.Family,
                     UserAddress = command.Address,
                     UserEmail = command.Email,
-                    UserCity = command.City,
-                    UserProvince = command.Province,
+                    UserCityId = command.City,
+                    UserProvinceId = command.Province,
                     UserBirthDate = DateTime.Now,
                     UserNationalCode = command.NationalCardNumber,
                     UserPhoneNumber = command.PhoneNumber,
@@ -95,7 +96,7 @@ namespace Okapia.Application.Applications
                 _userRepository.Create(user);
                 _userRepository.SaveChanges();
 
-                var userInfo = new UserInfoViewModel(account.Id, user.UserId, user.UserFirstName, account.Username,
+                var userInfo = new AccountViewModel(account.Id, user.UserId, user.UserFirstName, account.Username,
                     Constants.Roles.User.Id);
                 _authHelper.Signin(userInfo);
                 operationResult.Success = true;
@@ -116,7 +117,61 @@ namespace Okapia.Application.Applications
             _authHelper.Signout();
         }
 
-        public UserInfoViewModel GetAccountInfo()
+        public OperationResult Delete(long id)
+        {
+            var result = new OperationResult("Account", "Delete");
+            try
+            {
+                var account = _accountRepository.GetAccount(id);
+                if (account == null)
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
+                account.IsDeleted = true;
+                _accountRepository.Update(account);
+                _accountRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
+        }
+
+        public OperationResult Activate(long id)
+        {
+            var result = new OperationResult("Account", "Delete");
+            try
+            {
+                var account = _accountRepository.GetAccount(id);
+                if (account == null)
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
+                account.IsDeleted = false;
+                _accountRepository.Update(account);
+                _accountRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
+        }
+
+        public AccountViewModel GetAccountInfo()
         {
             return _authHelper.GetCurrnetUserInfo();
         }

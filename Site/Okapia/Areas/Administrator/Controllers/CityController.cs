@@ -94,30 +94,16 @@ namespace Okapia.Areas.Administrator.Controllers
         // POST: City/Delete/5
         public ActionResult Delete(int id)
         {
-            try
-            {
-                _cityApplication.Delete(id);
-                var referer = Request.Headers["Referer"].ToString();
-                return Redirect(referer);
-            }
-            catch
-            {
-                return View();
-            }
+            _cityApplication.Delete(id);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
         }
 
         public ActionResult Activate(int id)
         {
-            try
-            {
-                _cityApplication.Activate(id);
-                var referer = Request.Headers["Referer"].ToString();
-                return Redirect(referer);
-            }
-            catch
-            {
-                return View();
-            }
+            _cityApplication.Activate(id);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
         }
 
         [HttpGet]

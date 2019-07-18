@@ -1,0 +1,135 @@
+﻿
+@using Okapia.Domain.SeachModels
+@model IEnumerable<Okapia.Domain.ViewModels.User.UserViewModel>
+@{
+  var searchModel = ViewData["searchModel"] as UserSearchModel;
+}
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">لیست کاربران</h2>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>
+              @Html.DisplayNameFor(model => model.UserFullName)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.UserNationalCode)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.UserPhoneNumber)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.UserProvince)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.UserCity)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.UserEmail)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+              عملیات
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          @foreach (var item in Model)
+          {
+            <tr>
+              <td>
+                @Html.DisplayFor(modelItem => item.UserFullName)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.UserNationalCode)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.UserPhoneNumber)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.UserProvince)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.UserCity)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+              </td>
+              <td>
+                <a class="btn btn-sm btn-info" onclick="openUserDetailsModal('@item.UserId')">جزییات</a>
+                @if (!item.IsDeleted)
+                {
+                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="User" asp-action="Delete" asp-route-id="@item.AccountId">حذف</a>
+                }
+                else
+                {
+                  <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="User" asp-action="Activate" asp-route-id="@item.AccountId">فعال سازی</a>
+                }
+                <a class="btn btn-sm btn-inverse" onclick="openChangePasswordModal('@item.AccountId')">تغییر کلمه رمز</a>
+              </td>
+            </tr>
+          }
+          </tbody>
+        </table>
+        <nav>
+          <ul class="pagination">
+            @for (var i = 0; i < searchModel.PageCount; i++)
+            {
+              var routingSearchModel = new UserSearchModel
+              {
+                UserFirstName = searchModel.UserFirstName,
+                UserLastName = searchModel.UserLastName,
+                UserNationalCode = searchModel.UserNationalCode,
+                UserCityId = searchModel.UserCityId,
+                UserProvinceId = searchModel.UserProvinceId,
+                UserPhoneNumber = searchModel.UserPhoneNumber,
+                PageSize = 20,
+                PageIndex = i
+              };
+              if (searchModel.PageIndex == i)
+              {
+                <li class="active">
+                  @Html.ActionLink((i + 1).ToString(), "Index", "User", routingSearchModel)
+                </li>
+              }
+              else
+              {
+                <li>
+                  @Html.ActionLink((i + 1).ToString(), "Index", "User", routingSearchModel)
+                </li>
+              }
+            }
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="userDetailsDiv">
+  
+</div>
+
+<div id="changePasswordDiv">
+
+</div>
+
+<script>
+  function openUserDetailsModal(id) {
+    openModalWithData(`@Url.Action("Details", "User")/${id}`, 'userDetailsDiv', 'userDetailsModal');
+  }
+
+  function openChangePasswordModal(id) {
+    openModalWithData(`@Url.Action("ChnagePassword", "Home")/${id}`, 'changePasswordDiv', 'changePasswordModal');
+  }
+</script>

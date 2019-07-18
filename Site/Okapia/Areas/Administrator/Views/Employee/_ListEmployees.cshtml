@@ -8,7 +8,7 @@
   <div class="col-md-12">
     <div class="panel panel-border panel-primary">
       <div class="panel-heading">
-        <h2 class="panel-title">لیست کارمندان</h2>
+        <h2 class="panel-title">لیست مشتریان</h2>
       </div>
       <div class="panel-body">
         <table id="datatable" class="table table-striped table-bordered">
@@ -61,11 +61,11 @@
                 <a class="btn btn-sm btn-info" onclick="openEditEmployeeModal('@item.value.EmployeeId')">ویرایش</a>
                 @if (!item.value.EmployeeIsDeleted)
                 {
-                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="Employee" asp-action="Delete" asp-route-id="@item.value.EmployeeId">حذف</a>
+                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="Employee" asp-action="Delete" asp-route-id="@item.value.AccountId">حذف</a>
                 }
                 else
                 {
-                  <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Employee" asp-action="Activate" asp-route-id="@item.value.EmployeeId">فعال سازی</a>
+                  <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Employee" asp-action="Activate" asp-route-id="@item.value.AccountId">فعال سازی</a>
                 }
                 <a class="btn btn-sm btn-inverse" onclick="openChangePasswordModal('@item.value.AccountId')">تغییر رمز</a>
               </td>
@@ -84,7 +84,7 @@
               EmployeeLastName = searchModel.EmployeeLastName,
               EmployeeUsername = searchModel.EmployeeUsername,
               EmployeeIsDeleted = searchModel.EmployeeIsDeleted,
-              PageSize = 20,
+              PageSize = 4,
               PageIndex = i
             };
             if (searchModel.PageIndex == i)

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Okapia.Application.Contracts;
-using Okapia.Domain.ViewModels.User;
+using Okapia.Domain.ViewModels;
 
 namespace Okapia.Application.Applications
 {
@@ -24,27 +24,27 @@ namespace Okapia.Application.Applications
             _contextAccessor.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
-        public UserInfoViewModel GetCurrnetUserInfo()
+        public AccountViewModel GetCurrnetUserInfo()
         {
-            if (_contextAccessor.HttpContext.User.Claims.FirstOrDefault() == null) return new UserInfoViewModel();
+            if (_contextAccessor.HttpContext.User.Claims.FirstOrDefault() == null) return new AccountViewModel();
             var claims = _contextAccessor.HttpContext.User.Claims.ToList();
             var userId = long.Parse(claims.First(x => x.Type == "UserId").Value);
             var referenceRecordId = long.Parse(claims.First(x => x.Type == "ReferenceRecordId").Value);
             var name = claims.First(x => x.Type == ClaimTypes.Name).Value;
             var username = claims.First(x => x.Type == "Username").Value;
             var role = int.Parse(claims.First(x => x.Type == ClaimTypes.Role).Value);
-            return new UserInfoViewModel(userId, referenceRecordId, name, username, role);
+            return new AccountViewModel(userId, referenceRecordId, name, username, role);
         }
 
-        public void Signin(UserInfoViewModel userInfo)
+        public void Signin(AccountViewModel account)
         {
             var claims = new List<Claim>
             {
-                new Claim("UserId", userInfo.AuthUserId.ToString()),
-                new Claim("ReferenceRecordId", userInfo.ReferenceRecordId.ToString()),
-                new Claim("Username", userInfo.Username),
-                new Claim(ClaimTypes.Name, userInfo.Name),
-                new Claim(ClaimTypes.Role, userInfo.Role.ToString())
+                new Claim("UserId", account.AuthUserId.ToString()),
+                new Claim("ReferenceRecordId", account.ReferenceRecordId.ToString()),
+                new Claim("Username", account.Username),
+                new Claim(ClaimTypes.Name, account.Name),
+                new Claim(ClaimTypes.Role, account.Role.ToString())
             };
 
             var claimsIdentity = new ClaimsIdentity(

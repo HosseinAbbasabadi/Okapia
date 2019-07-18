@@ -1,0 +1,43 @@
+﻿@model Okapia.Domain.SeachModels.GroupSearchModel
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">جستجو در گروه های کاربری</h2>
+      </div>
+      <div class="panel-body">
+        <form asp-action="Index" asp-controller="Group" asp-area="Administrator" method="GET">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="Name" class="control-label"></label>
+              <input asp-for="Name" class="form-control" />
+              <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="Description" class="control-label"></label>
+              <input asp-for="Description" class="form-control" />
+              <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="IsDeleted" class="control-label"></label>
+              <input asp-for="IsDeleted" class="form-control" />
+              <span asp-validation-for="IsDeleted" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="submit" value="جستجو" class="btn btn-primary" />
+              <a asp-area="Administrator" asp-controller="Group" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

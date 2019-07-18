@@ -1,7 +1,7 @@
 ﻿using Framework;
 using Okapia.Domain.Commands;
 using Okapia.Domain.Commands.User;
-using Okapia.Domain.ViewModels.User;
+using Okapia.Domain.ViewModels;
 
 namespace Okapia.Application.Contracts
 {
@@ -10,7 +10,9 @@ namespace Okapia.Application.Contracts
         OperationResult Login(Login login);
         OperationResult Register(CreateUser command);
         void LogoutUser();
-        UserInfoViewModel GetAccountInfo();
+        OperationResult Delete(long id);
+        OperationResult Activate(long id);
+        AccountViewModel GetAccountInfo();
         OperationResult ChangePassword(ChangePassword command);
     }
 }

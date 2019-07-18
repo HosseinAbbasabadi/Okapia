@@ -4,9 +4,9 @@ using Okapia.Domain.Models;
 
 namespace Okapia.Repository.Mappings
 {
-    public class ModalMapping : IEntityTypeConfiguration<Modals>
+    public class ModalMapping : IEntityTypeConfiguration<Modal>
     {
-        public void Configure(EntityTypeBuilder<Modals> builder)
+        public void Configure(EntityTypeBuilder<Modal> builder)
         {
             builder.ToTable("Modal");
             builder.HasKey(e => e.ModalId);

@@ -17,7 +17,7 @@ namespace Okapia.Application.Utilities
             new Controller(7, "Neighborhood", "مدیریت محله ها", 1),
             new Controller(8, "Club", "مدیریت باشگاه مشتریان", 1),
             new Controller(9, "Page", "مدیریت صفحات", 1),
-            new Controller(10, "Home", "صفحه اصلی", 1)
+            new Controller(11, "Home", "صفحه اصلی", 1)
         };
     }
 

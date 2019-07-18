@@ -100,7 +100,7 @@ namespace Okapia.Application.Applications
             {
                 if (!Uri.IsWellFormedUriString(redirect301Url, UriKind.Absolute))
                 {
-                    result.Message = ApplicationMessages.WrongRulFormat;
+                    result.Message = ApplicationMessages.WrongUrlFormat;
                     return result;
                 }
 

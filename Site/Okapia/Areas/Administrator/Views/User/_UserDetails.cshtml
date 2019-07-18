@@ -1,0 +1,119 @@
+﻿@model Okapia.Domain.ViewModels.User.UserViewModel
+<div id="userDetailsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog" style="width: 55%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="custom-width-modalLabel">ویرایش کارمند - @Model.UserFullName</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div>
+              <dl class="dl-horizontal">
+                <div class="dddt">
+                  <dt>
+                    @Html.DisplayNameFor(model => model.UserFullName):
+                  </dt>
+                  <dd>
+                    @Html.DisplayFor(model => model.UserFullName)
+                  </dd>
+                </div>
+                <div class="dddt">
+                  <dt>
+                    @Html.DisplayNameFor(model => model.UserNationalCode):
+                  </dt>
+                  <dd>
+                    @Html.DisplayFor(model => model.UserNationalCode)
+                  </dd>
+                </div>
+                <div class="dddt">
+                  <dt>
+                    @Html.DisplayNameFor(model => model.UserPhoneNumber):
+                  </dt>
+                  <dd>
+                    @Html.DisplayFor(model => model.UserPhoneNumber)
+                  </dd>
+                </div>
+                <div class="dddt">
+                  <dt>
+                    @Html.DisplayNameFor(model => model.UserProvince):
+                  </dt>
+                  <dd>
+                    @Html.DisplayFor(model => model.UserProvince)
+                  </dd>
+                </div>
+                <div class="dddt">
+                  <dt>
+                    @Html.DisplayNameFor(model => model.UserCity):
+                  </dt>
+                  <dd>
+                    @Html.DisplayFor(model => model.UserCity)
+                  </dd>
+                </div>
+                <div class="dddt">
+                  <dt>
+                    @Html.DisplayNameFor(model => model.UserAddress):
+                  </dt>
+                  <dd>
+                    @Html.DisplayFor(model => model.UserAddress)
+                  </dd>
+                </div>
+                <div class="dddt">
+                  <dt>
+                    @Html.DisplayNameFor(model => model.UserPostalCode):
+                  </dt>
+                  <dd>
+                    @Html.DisplayFor(model => model.UserPostalCode)
+                  </dd>
+                </div>
+                <div class="dddt">
+                  <dt>
+                    @Html.DisplayNameFor(model => model.UserEmail):
+                  </dt>
+                  <dd>
+                    @Html.DisplayFor(model => model.UserEmail)
+                  </dd>
+                </div>
+                <div class="dddt">
+                  <dt>
+                    @Html.DisplayNameFor(model => model.UserBirthDate):
+                  </dt>
+                  <dd>
+                    @Html.DisplayFor(model => model.UserBirthDate)
+                  </dd>
+                </div>
+                <div class="dddt">
+                  <dt>
+                    @Html.DisplayNameFor(model => model.UserRegistrationDate):
+                  </dt>
+                  <dd>
+                    @Html.DisplayFor(model => model.UserRegistrationDate)
+                  </dd>
+                </div>
+                <div class="dddt">
+                  <dt>
+                    @Html.DisplayNameFor(model => model.UserName):
+                  </dt>
+                  <dd>
+                    @Html.DisplayFor(model => model.UserName)
+                  </dd>
+                </div>
+                <div class="dddt">
+                  <dt>
+                    @Html.DisplayNameFor(model => model.IsDeleted):
+                  </dt>
+                  <dd>
+                    @Html.DisplayFor(model => model.IsDeleted)
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">بستن</button>
+    </div>
+  </div>
+</div>

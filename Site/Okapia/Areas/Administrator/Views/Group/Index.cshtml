@@ -1,0 +1,27 @@
+﻿@model Okapia.Areas.Administrator.Models.GroupIndexViewModel
+@{
+  ViewData["Title"] = "Index";
+}
+
+
+<h1>صفحه مدیریت گروه های کاربری</h1>
+
+<h2>
+  <button onclick="openCreateGroupModal()" class="btn btn-success text-lg-center">ایجاد گروه کاربری جدید</button>
+</h2>
+
+<div id="createGroupDiv">
+
+</div>
+
+<script>
+  function openCreateGroupModal() {
+    openModalWithData('@Url.Action("Create", "Group")', 'createGroupDiv', 'createGroupModal');
+  }
+</script>
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/Group/_SearchGroups.cshtml", Model.GroupSearchModel)
+
+<div id="listGroupDiv">
+  @await Html.PartialAsync("~/Areas/Administrator/Views/Group/_ListGroups.cshtml", Model.GroupViewModels)
+</div>

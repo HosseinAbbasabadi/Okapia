@@ -1,0 +1,9 @@
+﻿@using Okapia.Domain.Commands.User
+@model Okapia.Areas.Administrator.Models.UserIndexViewModel
+
+@{
+  ViewData["Title"] = "صفحه مدیریت مشتریان";
+}
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/User/_SearchUsers.cshtml", Model.UserSearchModel)
+@await Html.PartialAsync("~/Areas/Administrator/Views/User/_ListUsers.cshtml", Model.UserViewModels)

@@ -1,6 +1,6 @@
-﻿@using Okapia.Domain.ViewModels.User
+﻿@using Okapia.Domain.ViewModels
 @{
-  var auth = ViewData["Auth"] as UserInfoViewModel;
+  var auth = ViewData["Auth"] as AccountViewModel;
 }
 
 <div id="wrapper">
@@ -47,12 +47,18 @@
               <i class="md md-home"></i><span> ناحیه کاربری </span>
             </a>
           </li>*@
-          @*<li>
-            <a asp-action="Index" asp-controller="Customers" asp-area="Administrator" class="waves-effect">
+          <li>
+            <a asp-action="Index" asp-controller="User" asp-area="Administrator" class="waves-effect">
               <i class="md md-home"></i>
               <span>مدیریت مشتریان</span>
             </a>
-          </li>*@
+          </li>
+          <li>
+            <a asp-action="Index" asp-controller="Group" asp-area="Administrator" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>مدیریت گروه مشتریان</span>
+            </a>
+          </li>
           <li>
             <a asp-action="Index" asp-controller="Employee" asp-area="Administrator" class="waves-effect">
               <i class="md md-home"></i>
