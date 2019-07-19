@@ -20,6 +20,11 @@ namespace Okapia.Application.Applications
             _groupRepository = groupRepository;
         }
 
+        public List<GroupViewModel> GetGroups()
+        {
+            return _groupRepository.GetGroups();
+        }
+
         public OperationResult Create(CreateGroup command)
         {
             var result = new OperationResult("Group", "Create");

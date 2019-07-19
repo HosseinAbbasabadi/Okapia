@@ -3410,3 +3410,7 @@ dl {
     padding: 10px;
     margin: 10px;
 }
+
+.direct-ltr {
+    direction: ltr;
+}

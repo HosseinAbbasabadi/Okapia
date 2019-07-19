@@ -7,7 +7,7 @@
         public string JobPictureSmallDescription { get; set; }
         public string JobPictureAlt { get; set; }
         public string JobPicturThumbUrl { get; set; }
-        public string JobPictureUrl { get; set; }
+        public string JobPictureName { get; set; }
         public bool IsDefault { get; set; }
         public int? JobPictureSortOrder { get; set; }
         public long JobId { get; set; }

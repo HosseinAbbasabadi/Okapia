@@ -25,7 +25,7 @@ namespace Okapia.Repository.Mappings
 
             builder.Property(e => e.ModalStartDate).HasColumnType("datetime");
 
-            builder.Property(e => e.ModalTtitle)
+            builder.Property(e => e.ModalTitle)
                 .IsRequired()
                 .HasMaxLength(100);
 

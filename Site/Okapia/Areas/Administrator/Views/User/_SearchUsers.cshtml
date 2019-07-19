@@ -1,10 +1,12 @@
 ﻿@model Okapia.Domain.SeachModels.UserSearchModel
-
+@{
+  var userIds = ViewData["userIds"] as List<long>;
+}
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-border panel-primary">
       <div class="panel-heading">
-        <h2 class="panel-title">جستجو در کاربران</h2>
+        <h2 class="panel-title">جستجو در مشتریان</h2>
       </div>
       <div class="panel-body">
         <div class="col-md-12">
@@ -13,28 +15,35 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label asp-for="UserFirstName" class="control-label"></label>
-                <input asp-for="UserFirstName" class="form-control" />
+                <input asp-for="UserFirstName" class="form-control"/>
                 <span asp-validation-for="UserFirstName" class="text-danger"></span>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label asp-for="UserLastName" class="control-label"></label>
-                <input asp-for="UserLastName" class="form-control" />
+                <input asp-for="UserLastName" class="form-control"/>
                 <span asp-validation-for="UserLastName" class="text-danger"></span>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label asp-for="UserNationalCode" class="control-label"></label>
-                <input asp-for="UserNationalCode" class="form-control" />
+                <input asp-for="UserNationalCode" class="form-control"/>
                 <span asp-validation-for="UserNationalCode" class="text-danger"></span>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control"/>
+                <span asp-validation-for="Username" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
                 <label asp-for="UserPhoneNumber" class="control-label"></label>
-                <input asp-for="UserPhoneNumber" class="form-control" />
+                <input asp-for="UserPhoneNumber" class="form-control"/>
                 <span asp-validation-for="UserPhoneNumber" class="text-danger"></span>
               </div>
             </div>
@@ -50,7 +59,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label asp-for="UserCityId" class="control-label"></label>
-                <select asp-for="UserCityId" class="form-control" id="searchCityDropDown">
+                <select asp-for="UserCityId" class="form-control" id="searchCityDropDown" onchange="getCityList('searchCityDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'searchDistrictDropDown')">
                   <option value="0">شهر را انتخاب کنید...</option>
                 </select>
                 <span asp-validation-for="UserCityId" class="text-danger"></span>
@@ -58,14 +67,32 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
+                <label asp-for="UserDistrictId" class="control-label"></label>
+                <select asp-for="UserDistrictId" class="form-control" id="searchDistrictDropDown" onchange="getCityList('searchDistrictDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'searchNeighborhoodDropDown')">
+                  <option value="0">منطقه را انتخاب کنید...</option>
+                </select>
+                <span asp-validation-for="UserDistrictId" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="UserNeighborhoodId" class="control-label"></label>
+                <select asp-for="UserNeighborhoodId" class="form-control" id="searchNeighborhoodDropDown">
+                  <option value="0">محله را انتخاب کنید...</option>
+                </select>
+                <span asp-validation-for="UserNeighborhoodId" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
                 <label asp-for="IsDeleted" class="control-label"></label>
-                <input asp-for="IsDeleted" class="form-control" />
+                <input asp-for="IsDeleted" class="form-control"/>
                 <span asp-validation-for="IsDeleted" class="text-danger"></span>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <input type="submit" value="جستجو" class="btn btn-primary" />
+                <input type="submit" value="جستجو" class="btn btn-primary"/>
                 <a asp-area="Administrator" asp-controller="User" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
               </div>
             </div>

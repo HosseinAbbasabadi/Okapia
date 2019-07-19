@@ -23,8 +23,8 @@ namespace Okapia.Repository.Mappings
 
             builder.Property(e => e.JobPictureTitle).HasMaxLength(100);
 
-            builder.Property(e => e.JobPictureUrl)
-                .HasColumnName("JobPictureURL")
+            builder.Property(e => e.JobPictureName)
+                .HasColumnName("JobPictureName")
                 .HasMaxLength(400);
 
             builder.HasOne(d => d.Job)

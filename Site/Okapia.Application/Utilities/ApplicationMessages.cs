@@ -17,5 +17,6 @@
         public const string DuplicatedCategoryName = "نام گروه شغل نمی تواند تکراری باشد";
         public const string WrongUrlFormat = "فرمت آدرس وارد شده صحیح نیست";
         public static string NotSamePassword = "کلمه رمز و تکرار آن با هم برابر نیستند. لطفا دوباره تلاش کنید";
+        public static string StartEndDateIsRequired = "تاریخ شروع و پایان اجراری است";
     }
 }

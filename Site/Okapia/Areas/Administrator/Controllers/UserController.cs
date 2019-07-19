@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
+using Okapia.Domain.Commands.User;
 using Okapia.Domain.SeachModels;
 using Okapia.Helpers;
 
@@ -14,11 +16,14 @@ namespace Okapia.Areas.Administrator.Controllers
     {
         private readonly IUserApplication _userApplication;
         private readonly IAccountApplication _accountApplication;
+        private readonly IGroupApplication _groupApplication;
 
-        public UserController(IUserApplication userApplication, IAccountApplication accountApplication)
+        public UserController(IUserApplication userApplication, IAccountApplication accountApplication,
+            IGroupApplication groupApplication)
         {
             _userApplication = userApplication;
             _accountApplication = accountApplication;
+            _groupApplication = groupApplication;
         }
 
         public ActionResult Index(UserSearchModel searchModel)
@@ -30,7 +35,7 @@ namespace Okapia.Areas.Administrator.Controllers
 
             var users = _userApplication.Search(searchModel, out var recordCount);
             searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
-            var userIndexViewModel = new UserIndexViewModel()
+            var userIndexViewModel = new UserIndexViewModel
             {
                 UserSearchModel = searchModel,
                 UserViewModels = users
@@ -40,11 +45,51 @@ namespace Okapia.Areas.Administrator.Controllers
             return View(userIndexViewModel);
         }
 
-        // GET: User/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ListContent(UserSearchModel searchModel)
         {
-            var user = _userApplication.GetUserDetails(id, Constants.Roles.User.Id);
-            return PartialView("_UserDetails", user);
+            if (searchModel.PageSize == 0)
+            {
+                searchModel.PageSize = 20;
+            }
+
+            var users = _userApplication.Search(searchModel, out var recordCount);
+            searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
+            Pager.PreparePager(searchModel, recordCount);
+            ViewData["searchModel"] = searchModel;
+            return View("_ListUsers", users);
+        }
+
+        public ActionResult Create()
+        {
+            var createUser = new CreateUser
+            {
+                Provinces = new SelectList(Provinces.ToList(), "Id", "Name")
+            };
+            return View("Create", createUser);
+        }
+
+        [HttpPost]
+        public JsonResult Create(CreateUser command)
+        {
+            var result = _userApplication.Create(command);
+            return Json(result);
+        }
+
+        public ActionResult Edit(long id, [FromQuery(Name = "redirectUrl")] string redirectUrl)
+        {
+            var userDetails = _userApplication.GetUserDetails(id);
+            userDetails.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
+            ViewData["redirectUrl"] = redirectUrl;
+            return View("Edit", userDetails);
+        }
+
+
+        [HttpPost]
+        public JsonResult Edit(long id, EditUser command)
+        {
+            command.Id = id;
+            var result = _userApplication.Edit(command);
+            return Json(result);
         }
 
         public ActionResult Delete(int id)
@@ -59,6 +104,11 @@ namespace Okapia.Areas.Administrator.Controllers
             _accountApplication.Activate(id);
             var referer = Request.Headers["Referer"].ToString();
             return Redirect(referer);
+        }
+
+        public JsonResult SendToGroup(long id, UserSearchModel searchModel)
+        {
+            return Json("ok");
         }
     }
 }

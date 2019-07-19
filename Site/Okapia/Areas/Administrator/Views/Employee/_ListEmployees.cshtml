@@ -120,6 +120,8 @@
   }
 
   function openChangePasswordModal(id) {
-    openModalWithData(`@Url.Action("ChnagePassword", "Home")/${id}`, 'changePasswordDiv', 'changePasswordModal');
+    openModalWithData(`@Url.Action("ChnagePassword", "Account", new {area = ""})/${id}`,
+      'changePasswordDiv',
+      'changePasswordModal');
   }
 </script>

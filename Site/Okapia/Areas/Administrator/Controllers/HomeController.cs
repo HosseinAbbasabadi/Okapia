@@ -21,20 +21,5 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             return View();
         }
-
-        public ActionResult ChnagePassword(long id)
-        {
-            var model = new ChangePassword();
-            ViewData["accountId"] = id;
-            return PartialView("_ChangePassword", model);
-        }
-
-        [HttpPost]
-        public JsonResult ChangePassword(long id, ChangePassword command)
-        {
-            command.AccountId = id;
-            var result = _accountApplication.ChangePassword(command);
-            return Json(result);
-        }
     }
 }

@@ -27,6 +27,7 @@ namespace Okapia.Repository
         public virtual DbSet<PageCategory> PageCategory { get; set; }
         public virtual DbSet<PageComments> PageComments { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserCard> UserCards { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<District> Districts { get; set; }
@@ -52,6 +53,7 @@ namespace Okapia.Repository
 
             // user mapping
             modelBuilder.ApplyConfiguration(new UserMapping());
+            modelBuilder.ApplyConfiguration(new UserCardMapping());
             modelBuilder.ApplyConfiguration(new GroupMapping());
             modelBuilder.ApplyConfiguration(new EmployeeMapping());
 

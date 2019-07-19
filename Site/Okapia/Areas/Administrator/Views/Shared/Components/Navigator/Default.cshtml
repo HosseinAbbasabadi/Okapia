@@ -43,10 +43,10 @@
       <div id="sidebar-menu">
         <ul>
           @*<li>
-            <a asp-action="Index" asp-controller="Home" asp-area="Administrator">
-              <i class="md md-home"></i><span> ناحیه کاربری </span>
-            </a>
-          </li>*@
+      <a asp-action="Index" asp-controller="Home" asp-area="Administrator">
+        <i class="md md-home"></i><span> ناحیه کاربری </span>
+      </a>
+    </li>*@
           <li>
             <a asp-action="Index" asp-controller="User" asp-area="Administrator" class="waves-effect">
               <i class="md md-home"></i>
@@ -60,17 +60,23 @@
             </a>
           </li>
           <li>
+            <a asp-action="Index" asp-controller="Modal" asp-area="Administrator" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>مدیریت اعلانات</span>
+            </a>
+          </li>
+          <li>
             <a asp-action="Index" asp-controller="Employee" asp-area="Administrator" class="waves-effect">
               <i class="md md-home"></i>
               <span>مدیریت کارمندان</span>
             </a>
           </li>
           @*<li>
-            <a asp-action="Index" asp-controller="Club" asp-area="Administrator" class="waves-effect">
-              <i class="md md-home"></i>
-              <span> مدیریت باشگاه مشتریان </span>
-            </a>
-          </li>*@
+      <a asp-action="Index" asp-controller="Club" asp-area="Administrator" class="waves-effect">
+        <i class="md md-home"></i>
+        <span> مدیریت باشگاه مشتریان </span>
+      </a>
+    </li>*@
           <li>
             <a asp-action="Index" asp-controller="Job" asp-area="Administrator" class="waves-effect">
               <i class="md md-home"></i>
@@ -84,40 +90,40 @@
             </a>
           </li>
           @*<li>
-            <a href="#" class="waves-effect">
-              <i class="md md-home"></i>
-              <span>گزارشات مدیریت</span>
-            </a>
-            <ul class="list-unstyled">
-              <li><a href="#">نمونه گزارشات مدیریت۱</a></li>
-              <li><a href="#">نمونه گزارشات مدیریت۲</a></li>
-              <li><a href="#">نمونه گزارشات مدیریت۳</a></li>
-            </ul>
-          </li>*@
+      <a href="#" class="waves-effect">
+        <i class="md md-home"></i>
+        <span>گزارشات مدیریت</span>
+      </a>
+      <ul class="list-unstyled">
+        <li><a href="#">نمونه گزارشات مدیریت۱</a></li>
+        <li><a href="#">نمونه گزارشات مدیریت۲</a></li>
+        <li><a href="#">نمونه گزارشات مدیریت۳</a></li>
+      </ul>
+    </li>*@
           @*<li>
-            <a href="#" class="waves-effect">
-              <i class="md md-home"></i>
-              <span>گزارشات باشگاه مشتریان</span>
-            </a>
-            <ul class="list-unstyled">
-              <li><a href="#">اعضای باشگاه مشتریان</a></li>
-              <li><a href="#">تراکنش های باشگاه</a></li>
-              <li><a href="#">خرید اعضای باشگاه مشتریان</a></li>
-              <li><a href="#">تخفیف دریافتی اعضای باشگاه</a></li>
-            </ul>
-          </li>*@
+      <a href="#" class="waves-effect">
+        <i class="md md-home"></i>
+        <span>گزارشات باشگاه مشتریان</span>
+      </a>
+      <ul class="list-unstyled">
+        <li><a href="#">اعضای باشگاه مشتریان</a></li>
+        <li><a href="#">تراکنش های باشگاه</a></li>
+        <li><a href="#">خرید اعضای باشگاه مشتریان</a></li>
+        <li><a href="#">تخفیف دریافتی اعضای باشگاه</a></li>
+      </ul>
+    </li>*@
           @*<li>
-            <a href="#" class="waves-effect">
-              <i class="md md-home"></i>
-              <span>مدیریت صفحه ساز</span>
-            </a>
-            <ul class="list-unstyled">
-              <li><a asp-action="Index" asp-controller="Page" asp-area="Administrator">مدیریت صفحات</a></li>
-              <li><a href="#">رده بندی صفحات</a></li>
-              <li><a href="#">مدیریت کامنت ها</a></li>
-              <li><a asp-action="Index" asp-controller="Notification" asp-area="Administrator">مدیریت اعلانات</a></li>
-            </ul>
-          </li>*@
+      <a href="#" class="waves-effect">
+        <i class="md md-home"></i>
+        <span>مدیریت صفحه ساز</span>
+      </a>
+      <ul class="list-unstyled">
+        <li><a asp-action="Index" asp-controller="Page" asp-area="Administrator">مدیریت صفحات</a></li>
+        <li><a href="#">رده بندی صفحات</a></li>
+        <li><a href="#">مدیریت کامنت ها</a></li>
+        <li><a asp-action="Index" asp-controller="Notification" asp-area="Administrator">مدیریت اعلانات</a></li>
+      </ul>
+    </li>*@
           <li>
             <a class="waves-effect">
               <i class="md md-home"></i>
@@ -129,12 +135,18 @@
               <li><a asp-action="Index" asp-controller="Neighborhood" asp-area="Administrator">محله</a></li>
             </ul>
           </li>
-          @*<li>
-            <a href="task-list.html" class="waves-effect">
+          <li>
+            <a asp-action="Logout" asp-controller="Account" asp-area="" class="waves-effect">
               <i class="md md-home"></i>
-              <span> تنظیمات سایت </span>
+              <span>خروج</span>
             </a>
-          </li>*@
+          </li>
+          @*<li>
+      <a href="task-list.html" class="waves-effect">
+        <i class="md md-home"></i>
+        <span> تنظیمات سایت </span>
+      </a>
+    </li>*@
         </ul>
       </div>
       <div class="clearfix"></div>

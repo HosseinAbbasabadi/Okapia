@@ -22,10 +22,11 @@ namespace Okapia.Application.Applications
         private readonly ICityApplication _cityApplication;
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
+        private readonly IJobPictureRepository _jobPictureRepository;
 
         public JobApplication(IJobRepository jobRepository, IAccountRepository accountRepository,
             IAuthHelper authHelper, ICityApplication cityApplication, IDistrictApplication districtApplication,
-            INeighborhoodApplication neighborhoodApplication)
+            INeighborhoodApplication neighborhoodApplication, IJobPictureRepository jobPictureRepository)
         {
             _jobRepository = jobRepository;
             _accountRepository = accountRepository;
@@ -33,6 +34,7 @@ namespace Okapia.Application.Applications
             _cityApplication = cityApplication;
             _districtApplication = districtApplication;
             _neighborhoodApplication = neighborhoodApplication;
+            _jobPictureRepository = jobPictureRepository;
         }
 
         public OperationResult Create(CreateJob command)
@@ -178,22 +180,14 @@ namespace Okapia.Application.Applications
 
         public EditJob GetJobDetails(int id)
         {
-            try
-            {
-                var jobDetails = _jobRepository.GetJobDetails(id, Constants.Roles.Job.Id);
-                jobDetails.Citeies =
-                    new SelectList(_cityApplication.GetCitiesBy(jobDetails.JobProvienceId), "Id", "Name");
-                jobDetails.Districts =
-                    new SelectList(_districtApplication.GetDistrictsBy(jobDetails.JobCityId), "Id", "Name");
-                jobDetails.Neighborhoods =
-                    new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(jobDetails.JobDistrictId), "Id", "Name");
-                return jobDetails;
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-                throw;
-            }
+            var jobDetails = _jobRepository.GetJobDetails(id, Constants.Roles.Job.Id);
+            jobDetails.Citeies =
+                new SelectList(_cityApplication.GetCitiesBy(jobDetails.JobProvienceId), "Id", "Name");
+            jobDetails.Districts =
+                new SelectList(_districtApplication.GetDistrictsBy(jobDetails.JobCityId), "Id", "Name");
+            jobDetails.Neighborhoods =
+                new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(jobDetails.JobDistrictId), "Id", "Name");
+            return jobDetails;
         }
 
         private Job MapCreateJobToJob(CreateJob command)
@@ -231,7 +225,7 @@ namespace Okapia.Application.Applications
                 JobDiscountPercentForCustomer = command.JobDiscountPercentForCustomer,
                 //JobDiscountPercentForCompnay = command.disc,
                 //JobDiscountPercentForSabaMehrDiscount = 
-                //JobBefitPercentForIntroducingEndCustomer = command.benefitfor
+                JobBefitPercentForIntroducingEndCustomer = command.JobBefitPercentForIntroducingEndCustomer,
                 MarketerPercentForRegisteringShop = command.MarketerPercentForRegisteringShop,
                 MarketerId = command.MarketerId,
                 JobPosNameNumber = command.JobPosNameNumber,
@@ -283,7 +277,7 @@ namespace Okapia.Application.Applications
                 JobDiscountPercentForCustomer = command.JobDiscountPercentForCustomer,
                 //JobDiscountPercentForCompnay = command.disc,
                 //JobDiscountPercentForSabaMehrDiscount = 
-                //JobBefitPercentForIntroducingEndCustomer = command.benefitfor
+                JobBefitPercentForIntroducingEndCustomer = command.JobBefitPercentForIntroducingEndCustomer,
                 MarketerPercentForRegisteringShop = command.MarketerPercentForRegisteringShop,
                 MarketerId = command.MarketerId,
                 JobPosNameNumber = command.JobPosNameNumber,
@@ -312,7 +306,7 @@ namespace Okapia.Application.Applications
                     JobPictureTitle = jobPictureViewModel.Title,
                     JobPictureSmallDescription = jobPictureViewModel.Description,
                     Job = job,
-                    JobPictureUrl = jobPictureViewModel.Name,
+                    JobPictureName = jobPictureViewModel.Name,
                     JobPicturThumbUrl = jobPictureViewModel.Name,
                     JobPictureAlt = jobPictureViewModel.Description
                 };
@@ -325,18 +319,22 @@ namespace Okapia.Application.Applications
             return job;
         }
 
-        private static Job MapJobPicturesForUpdate(IEnumerable<JobPictureViewModel> pictures, Job job)
+        private Job MapJobPicturesForUpdate(IEnumerable<JobPictureViewModel> pictures, Job job)
         {
-            var jobPictures = pictures.Select(picture => new JobPicture
+            var jobPictures = pictures.Select(picture =>
                 {
-                    JobPictureId = picture.Id,
-                    JobPictureTitle = picture.Title,
-                    JobPictureSmallDescription = picture.Description,
-                    JobPictureUrl = picture.Name,
-                    JobPicturThumbUrl = picture.Name,
-                    JobPictureAlt = picture.Alt,
-                    Job = job,
-                    IsDefault = false
+                    var jobPicture = new JobPicture
+                    {
+                        JobPictureId = picture.Id,
+                        JobPictureTitle = picture.Title,
+                        JobPictureSmallDescription = picture.Description,
+                        JobPictureName = picture.Name,
+                        JobPicturThumbUrl = picture.Name,
+                        JobPictureAlt = picture.Alt,
+                        Job = job,
+                        IsDefault = false
+                    };
+                    return jobPicture;
                 })
                 .ToList();
 

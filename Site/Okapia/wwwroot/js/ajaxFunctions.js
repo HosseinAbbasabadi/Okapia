@@ -115,87 +115,104 @@ function createEntityThenReferesh(url, formId) {
       CKEDITOR.instances[instance].updateElement();
     }
     const sendingData = $(`#${formId}`).serialize();
-      $.post(url,
-        sendingData,
-        function(operationResult) {
-          if (operationResult.success) {
-            sendNotification('success', 'top right', "موفقیت", operationResult.message);
-            location.reload();
-          } else {
-            sendNotification('error', 'top right', "خطا", operationResult.message);
-          }
-        });
-    }
+    $.post(url,
+      sendingData,
+      function(operationResult) {
+        if (operationResult.success) {
+          sendNotification('success', 'top right', "موفقیت", operationResult.message);
+          location.reload();
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      });
   }
+}
 
-  function createUser(url, formId, redirectUrl) {
-    if ($("#" + formId).valid() === true) {
-      const sendingData = $(`#${formId}`).serialize();
-      $.post(url,
-        sendingData,
-        function(operationResult) {
-          if (operationResult.success) {
-            sendNotification('success', 'top right', "موفقیت", operationResult.message);
-            location.replace(redirectUrl);
-          } else {
-            sendNotification('error', 'top right', "خطا", operationResult.message);
-          }
-        });
-    }
+function createEntityWithBodyThenReferesh(url, body) {
+  for (instance in CKEDITOR.instances) {
+    CKEDITOR.instances[instance].updateElement();
   }
+  debugger;
+  $.post(url,
+      body,
+    function(operationResult) {
+      if (operationResult.success) {
+        sendNotification('success', 'top right', "موفقیت", operationResult.message);
+        location.reload();
+      } else {
+        sendNotification('error', 'top right', "خطا", operationResult.message);
+      }
+    });
+}
 
-  function updateEntity(url, formId) {
+function createUser(url, formId, redirectUrl) {
+  if ($("#" + formId).valid() === true) {
     const sendingData = $(`#${formId}`).serialize();
-    if ($("#" + formId).valid() === true) {
-      $.post(url,
-        sendingData,
-        function(operationResult) {
-          if (operationResult.success) {
-            sendNotification('success', 'top right', "موفقیت", operationResult.message);
-            location.reload();
-          } else {
-            sendNotification('error', 'top right', "خطا", operationResult.message);
-          }
-        });
-    }
+    $.post(url,
+      sendingData,
+      function(operationResult) {
+        if (operationResult.success) {
+          sendNotification('success', 'top right', "موفقیت", operationResult.message);
+          location.replace(redirectUrl);
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      });
   }
+}
+
+function updateEntity(url, formId) {
+  const sendingData = $(`#${formId}`).serialize();
+  if ($("#" + formId).valid() === true) {
+    $.post(url,
+      sendingData,
+      function(operationResult) {
+        if (operationResult.success) {
+          sendNotification('success', 'top right', "موفقیت", operationResult.message);
+          location.reload();
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      });
+  }
+}
 
 function updateEntityPage(url, formId, redirectUrl) {
   for (instance in CKEDITOR.instances) {
     CKEDITOR.instances[instance].updateElement();
   }
-    const sendingData = $(`#${formId}`).serialize();
-    if ($("#" + formId).valid() === true) {
-      $.post(url,
-        sendingData,
-        function(operationResult) {
-          if (operationResult.success) {
-            sendNotification('success', 'top right', "موفقیت", operationResult.message);
-            location.replace(redirectUrl);
-          } else {
-            sendNotification('error', 'top right', "خطا", operationResult.message);
-          }
-        });
-    }
+  const sendingData = $(`#${formId}`).serialize();
+  if ($("#" + formId).valid() === true) {
+    $.post(url,
+      sendingData,
+      function(operationResult) {
+        if (operationResult.success) {
+          sendNotification('success', 'top right', "موفقیت", operationResult.message);
+          location.replace(redirectUrl);
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      });
   }
+}
 
-  function sendNotification(status, place, title, body) {
-    $.Notification.autoHideNotify(status, place, title, body);
+function sendNotification(status, place, title, body) {
+  $.Notification.autoHideNotify(status, place, title, body);
 }
 
 function checkSlugDuplication(url, dist) {
   const id = document.getElementById(dist).value;
   $.get({
     url: url + '/' + id,
-    success: function (operationResult) {
-      if (!operationResult.success){
+    success: function(operationResult) {
+      if (!operationResult.success) {
         sendNotification('error', 'top right', "خطا", operationResult.message);
       }
     }
   });
 }
 
-var slug = function (str) {
+var slug = function(str) {
   var $slug = '';
   const trimmed = $.trim(str);
   $slug = trimmed.replace(/[^a-z0-9-آ-ی-]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
@@ -203,7 +220,7 @@ var slug = function (str) {
 }
 
 function makeSlug(source, dist, url) {
-  const takedata = $('#'+source).val();
-  $('#'+dist).val(slug(takedata));
+  const takedata = $('#' + source).val();
+  $('#' + dist).val(slug(takedata));
   checkSlugDuplication(url, dist);
 };

@@ -97,6 +97,7 @@
               </td>
               <td>
                 <a id="editJob-@item.value.JobId" class="btn btn-sm btn-info" asp-area="Administrator" asp-controller="Job" asp-action="Edit" asp-route-id="@item.value.JobId" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>
+                <a id="changePwd-@item.value.JobId" class="btn btn-sm btn-inverse" onclick="openChangePasswordModal('@item.value.AccountId')">تغییر رمز</a>
                 @if (!item.value.IsDeleted)
                 {
                   <a id="deleteJob-@item.value.JobId" class="btn btn-sm btn-danger" onclick="showDeleteForm('@item.value.JobId', 'editJob-@item.value.JobId', 'deleteJob-@item.value.JobId', 'changePwd-@item.value.JobId')">حذف</a>
@@ -112,8 +113,6 @@
                 {
                   <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Job" asp-action="Activate" asp-route-id="@item.value.JobId">فعال سازی</a>
                 }
-
-                <a id="changePwd-@item.value.JobId" class="btn btn-sm btn-inverse" onclick="openChangePasswordModal('@item.value.AccountId')">تغییر رمز</a>
               </td>
             </tr>
           }
@@ -176,7 +175,7 @@
 <script>
 
   function openChangePasswordModal(id) {
-    openModalWithData(`@Url.Action("ChnagePassword", "Home")/${id}`, 'changePasswordDiv', 'changePasswordModal');
+    openModalWithData(`@Url.Action("ChnagePassword", "Account", new { area = "" })/${id}`, 'changePasswordDiv', 'changePasswordModal');
   }
 
   function showDeleteForm(id, edit, delet, changePwd) {

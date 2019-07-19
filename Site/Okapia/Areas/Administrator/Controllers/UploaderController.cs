@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Framework;
 using ImageMagick;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,7 +14,7 @@ using Okapia.Repository;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
-    [ServiceFilter(typeof(AuthorizeFilter))]
+    //[ServiceFilter(typeof(AuthorizeFilter))]
     public class UploaderController : Controller
     {
         private readonly IHostingEnvironment _hostingEnvironment;
@@ -102,6 +103,8 @@ namespace Okapia.Areas.Administrator.Controllers
                 containingFoler = "CategoryPhotos";
             if (type == "job")
                 containingFoler = "JobPhotos";
+            if (type == "Modal")
+                containingFoler = "ModalPhotos";
             return containingFoler;
         }
     }

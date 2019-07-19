@@ -23,14 +23,15 @@ namespace Okapia.Helpers
             var roles = Constants.Roles;
             if (!context.HttpContext.User.Identity.IsAuthenticated)
             {
-                context.Result = new ViewResult
-                {
-                    ViewName = "~/Views/User/Login"
-                };
+                context.HttpContext.Response.Redirect("/Administrator/User/Login");
+                //context.Result = new ViewResult
+                //{
+                //    ViewName = "~/Views/User/Login"
+                //};
             }
 
             var controller = context.RouteData.Values["Controller"].ToString();
-            var controllerId = Constants.Controllers.First(x => x.Name == controller).Id;
+            var controllerId = _okapiaContext.Controllers.First(x => x.Name == controller).Id;
             var userInfo = _authHelper.GetCurrnetUserInfo();
             var authId = userInfo.AuthUserId;
             var employeeId = userInfo.ReferenceRecordId;
@@ -40,20 +41,22 @@ namespace Okapia.Helpers
 
             if (roleId == roles.User.Id || roleId == roles.Job.Id || roleId == roles.Club.Id)
             {
-                context.Result = new ViewResult
-                {
-                    ViewName = "AccessDenied"
-                };
+                context.HttpContext.Response.Redirect("/Account/AccessDenied");
+                //context.Result = new ViewResult
+                //{
+                //    ViewName = "AccessDenied"
+                //};
             }
 
             var employeeControllers =
                 _okapiaContext.EmployeeControllers.Where(x => x.EmployeeId == employeeId).ToList();
             if (employeeControllers.All(x => x.ControllerId != controllerId))
             {
-                context.Result = new ViewResult
-                {
-                    ViewName = "AccessDenied"
-                };
+                context.HttpContext.Response.Redirect("/Account/AccessDenied");
+                //context.Result = new ViewResult
+                //{
+                //    ViewName = "AccessDenied"
+                //};
             }
 
             base.OnActionExecuting(context);

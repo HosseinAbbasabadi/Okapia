@@ -106,7 +106,7 @@ namespace Okapia.Repository.Repositories
             var jobPictures = _jobPictureRepository.GetJobPicturesByJob(id).Select(x => new JobPictureViewModel
             {
                 Id = x.JobPictureId,
-                Name = x.JobPictureUrl,
+                Name = x.JobPictureName,
                 Description = x.JobPictureSmallDescription,
                 Alt = x.JobPictureAlt,
                 Title = x.JobPictureTitle,
@@ -154,7 +154,7 @@ namespace Okapia.Repository.Repositories
                     JobDistrictId = district.Id,
                     JobNeighborhood = neighborhood.Name,
                     JobNeighborhoodId = neighborhood.Id,
-                    JobPicture = picture.JobPictureUrl
+                    JobPicture = picture.JobPictureName
                 };
 
 

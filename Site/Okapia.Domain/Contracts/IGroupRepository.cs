@@ -9,6 +9,7 @@ namespace Okapia.Domain.Contracts
 {
     public interface IGroupRepository : IRepository<int, Group>
     {
+        List<GroupViewModel> GetGroups();
         Group GetGroup(int id);
         EditGroup GetGroupForDetails(int id);
         List<GroupViewModel> Search(GroupSearchModel searchModel, out int recordCount);

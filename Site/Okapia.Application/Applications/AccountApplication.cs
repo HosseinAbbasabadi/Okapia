@@ -49,8 +49,10 @@ namespace Okapia.Application.Applications
                 account.Username,
                 account.RoleId);
             _authHelper.Signin(userInfo);
-            result.Success = true;
+
             result.Message = ApplicationMessages.OperationSuccess;
+            result.RecordId = account.RoleId;
+            result.Success = true;
             return result;
         }
 
@@ -82,8 +84,8 @@ namespace Okapia.Application.Applications
                     UserLastName = command.Family,
                     UserAddress = command.Address,
                     UserEmail = command.Email,
-                    UserCityId = command.City,
-                    UserProvinceId = command.Province,
+                    UserCityId = command.CityId,
+                    UserProvinceId = command.ProvinceId,
                     UserBirthDate = DateTime.Now,
                     UserNationalCode = command.NationalCardNumber,
                     UserPhoneNumber = command.PhoneNumber,

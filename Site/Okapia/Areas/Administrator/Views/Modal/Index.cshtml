@@ -1,0 +1,16 @@
+﻿@model Okapia.Areas.Administrator.Models.ModalIndexViewModel
+
+@{
+  ViewData["Title"] = "Index";
+}
+
+<h1>صفحه مدیریت اعلانات</h1>
+
+<h2>
+  <a asp-action="Create" class="btn btn-success text-lg-center">ایجاد اعلانیه جدید</a>
+</h2>
+
+@*@await Component.InvokeAsync()*@
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/Modal/_SearchModals.cshtml", Model.ModalSearchModel)
+@await Html.PartialAsync("~/Areas/Administrator/Views/Modal/_ListModals.cshtml", Model.ModalViewModels)

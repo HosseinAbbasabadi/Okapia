@@ -12,6 +12,8 @@ namespace Okapia.Domain.Models
         public string UserPhoneNumber { get; set; }
         public int UserProvinceId { get; set; }
         public int UserCityId { get; set; }
+        public int UserDistrictId { get; set; }
+        public int UserNeighborhoodId { get; set; }
         public string UserAddress { get; set; }
         public string UserPostalCode { get; set; }
         public string UserEmail { get; set; }
@@ -21,5 +23,6 @@ namespace Okapia.Domain.Models
         public bool UserIsActivated { get; set; }
         public Account Account { get; set; }
         public ICollection<UserGroup> UserGroups { get; set; }
+        public IList<UserCard> UserCards { get; set; }
     }
 }

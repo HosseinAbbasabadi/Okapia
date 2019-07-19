@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Framework;
 using Microsoft.EntityFrameworkCore;
 using Okapia.Domain.Commands.Employee;
 using Okapia.Domain.Contracts;

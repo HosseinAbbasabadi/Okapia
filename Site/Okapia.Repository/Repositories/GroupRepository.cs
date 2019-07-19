@@ -18,6 +18,15 @@ namespace Okapia.Repository.Repositories
             _context = context;
         }
 
+        public List<GroupViewModel> GetGroups()
+        {
+            return _context.Groups.Where(x => x.IsDeleted == false).Select(group => new GroupViewModel
+            {
+                Id = group.GroupId,
+                Name = group.GroupName
+            }).ToList();
+        }
+
         public Group GetGroup(int id)
         {
             return _context.Groups.AsNoTracking().FirstOrDefault(x => x.GroupId == id);
@@ -31,7 +40,6 @@ namespace Okapia.Repository.Repositories
                 Name = group.GroupName,
                 Description = group.GroupDescription,
                 IsDeleted = group.IsDeleted
-
             }).FirstOrDefault(x => x.Id == id);
         }
 

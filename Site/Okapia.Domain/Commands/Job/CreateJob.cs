@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Framework;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Domain.ViewModels.JobPicture;
 
@@ -7,6 +8,11 @@ namespace Okapia.Domain.Commands.Job
 {
     public class CreateJob
     {
+        private string _password;
+        private string _jobContractNumber;
+        private string _jobPosNameNumber;
+        private string _jobAccountNumber;
+
         [Display(Name = "عنوان")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobName { get; set; }
@@ -27,7 +33,11 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "کلمه رمز")]
         [Required(ErrorMessage = ValidationMessages.Required)]
-        public string Password { get; set; }
+        public string Password
+        {
+            get => _password;
+            set => _password = value.ToEnglishNumber();
+        }
 
         [Display(Name = "نام رابط")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
@@ -38,29 +48,29 @@ namespace Okapia.Domain.Commands.Job
         [Display(Name = "نام خانوادگی مدیر")] public string JobManagerLastName { get; set; }
 
         [Display(Name = "آدرس ایمیل")]
-        [EmailAddress(ErrorMessage = "فرمت اطلاعات وارد شده ایمیل نیست")]
+        [EmailAddress(ErrorMessage = ValidationMessages.Email)]
         public string JobEmailAddress { get; set; }
 
         [Display(Name = "شماره تلفن ۱")]
-        [MaxLength(10, ErrorMessage = "شماره تلفن نمی تواند بیش از ۱۰ رقم باشد")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "لطفا یک شماره معتبر وارد کنید")]
+        [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobTel1 { get; set; }
 
         [Display(Name = "شماره تلفن ۲")]
-        [MaxLength(10, ErrorMessage = "شماره تلفن نمی تواند بیش از ۱۰ رقم باشد")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "لطفا یک شماره معتبر وارد کنید")]
+        [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
         public string JobTel2 { get; set; }
 
         [Display(Name = "شماره موبایل ۱")]
-        [MaxLength(10, ErrorMessage = "شماره تلفن نمی تواند بیش از ۱۰ رقم باشد")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "لطفا یک شماره معتبر وارد کنید")]
+        [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobMobile1 { get; set; }
 
         [Display(Name = "شماره موبایل ۲")]
-        [MaxLength(10, ErrorMessage = "شماره تلفن نمی تواند بیش از ۱۰ رقم باشد")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "لطفا یک شماره معتبر وارد کنید")]
+        [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
         public string JobMobile2 { get; set; }
 
         [Display(Name = "استان")]
@@ -108,7 +118,12 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "آدرس کانونیکال")] public string JobCanonicalAddress { get; set; }
 
-        [Display(Name = "شماره قرارداد")] public string JobContractNumber { get; set; }
+        [Display(Name = "شماره قرارداد")]
+        public string JobContractNumber
+        {
+            get => _jobContractNumber;
+            set => _jobContractNumber = value.ToEnglishNumber();
+        }
 
         [Display(Name = "درصد سود معرف")] public double JobBenefitPercentForEndCustomer { get; set; }
 
@@ -126,10 +141,18 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "شماره پوز")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
-        public string JobPosNameNumber { get; set; }
+        public string JobPosNameNumber
+        {
+            get => _jobPosNameNumber;
+            set => _jobPosNameNumber = value.ToEnglishNumber();
+        }
 
         [Display(Name = "شماره حساب صاحب شغل")]
-        public string JobAccountNumber { get; set; }
+        public string JobAccountNumber
+        {
+            get => _jobAccountNumber;
+            set => _jobAccountNumber = value.ToEnglishNumber();
+        }
 
         [Display(Name = "ترتیب نمایش در لیست رده")]
         public int JobShowOrderIncategory { get; set; }
@@ -141,7 +164,7 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "آیا وبسایت است")] public bool IsWebsite { get; set; }
 
-        [Url(ErrorMessage = "فرمت اطلاعات وارد شده Url نیست")]
+        [Url(ErrorMessage = ValidationMessages.Url)]
         [Display(Name = "آدرس وبسایت")]
         public string WebsiteUrl { get; set; }
 
@@ -160,6 +183,7 @@ namespace Okapia.Domain.Commands.Job
         [Display(Name = "عکس پیشفرش")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string NamePhoto1 { get; set; }
+
         public string TitlePhoto1 { get; set; }
         public string DescPhoto1 { get; set; }
         public string AltPhoto1 { get; set; }

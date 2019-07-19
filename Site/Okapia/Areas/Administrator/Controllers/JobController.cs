@@ -202,13 +202,5 @@ namespace Okapia.Areas.Administrator.Controllers
             var result = _jobApplication.CheckJobSlugDuplication(id);
             return Json(result);
         }
-
-        public JsonResult ChangePassword(long id, ChangePassword command)
-        {
-            command.RoleId = Constants.Roles.Job.Id;
-            command.AccountId = id;
-            var result = _accountApplication.ChangePassword(command);
-            return Json(result);
-        }
     }
 }

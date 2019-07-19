@@ -4,7 +4,7 @@ using System.Linq;
 //using System.Drawing.Drawing2D;
 //using HtmlAgilityPack;
 
-namespace Okapia.Repository
+namespace Framework
 {
     public enum DateConvertType
     {
@@ -242,26 +242,26 @@ namespace Okapia.Repository
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public static string GenerateSlug(this string phrase)
-        {
-            // string str = phrase.RemoveAccent().ToLower();
-            // // invalid chars           
-            //// Remove #
-            // // convert multiple spaces into one space   
-            // str = Regex.Replace(str, @"\s+", " ").Trim();
-            // // cut and trim 
-            // str = str.Substring(0, str.Length <= 45 ? str.Length : 45).Trim();
-            // str = Regex.Replace(str, @"\s", "-"); // hyphens   
-            // return str;
-            var randText = RandomString(5);
-            var str = phrase; //phrase.RemoveAccent().ToLower();
-            str = System.Text.RegularExpressions.Regex.Replace(str,
-                @"[^a-z0-9\s-\u0600-\u06FF\uFB8A\u067E\u0686\u06AF]", ""); // Remove all non valid chars          
-            str = System.Text.RegularExpressions.Regex.Replace(str, @"\s+", " ")
-                .Trim(); // convert multiple spaces into one space  
-            str = System.Text.RegularExpressions.Regex.Replace(str, @"\s", "-"); // //Replace spaces by dashes
-            return (string.IsNullOrEmpty(str) ? randText : str);
-        }
+        //public static string GenerateSlug(this string phrase)
+        //{
+        //    // string str = phrase.RemoveAccent().ToLower();
+        //    // // invalid chars           
+        //    //// Remove #
+        //    // // convert multiple spaces into one space   
+        //    // str = Regex.Replace(str, @"\s+", " ").Trim();
+        //    // // cut and trim 
+        //    // str = str.Substring(0, str.Length <= 45 ? str.Length : 45).Trim();
+        //    // str = Regex.Replace(str, @"\s", "-"); // hyphens   
+        //    // return str;
+        //    var randText = RandomString(5);
+        //    var str = phrase; //phrase.RemoveAccent().ToLower();
+        //    str = System.Text.RegularExpressions.Regex.Replace(str,
+        //        @"[^a-z0-9\s-\u0600-\u06FF\uFB8A\u067E\u0686\u06AF]", ""); // Remove all non valid chars          
+        //    str = System.Text.RegularExpressions.Regex.Replace(str, @"\s+", " ")
+        //        .Trim(); // convert multiple spaces into one space  
+        //    str = System.Text.RegularExpressions.Regex.Replace(str, @"\s", "-"); // //Replace spaces by dashes
+        //    return (string.IsNullOrEmpty(str) ? randText : str);
+        //}
 
         public static bool ValidateUrlXss(string inputParameter)
         {
@@ -394,10 +394,12 @@ namespace Okapia.Repository
 
         public static string ToEnglishNumber(this string strNum)
         {
+            if (string.IsNullOrEmpty(strNum)) return null;
             var chash = strNum;
             for (var i = 0; i < 10; i++)
                 chash = chash.Replace(pn[i], en[i]);
             return chash;
+
         }
 
         public static string ToPersianNumber(this int intNum)
@@ -427,6 +429,16 @@ namespace Okapia.Repository
                 return null;
             var c = new System.Globalization.PersianCalendar();
             return c.ToDateTime(year, month, day, 0, 0, 0, 0);
+        }
+
+        public static DateTime ToGeorgianDateTime(this string persianDate)
+        {
+            persianDate = persianDate.ToEnglishNumber();
+            var year = Convert.ToInt32(persianDate.Substring(0, 4));
+            var month = Convert.ToInt32(persianDate.Substring(5, 2));
+            var day = Convert.ToInt32(persianDate.Substring(8, 2));
+            var georgianDateTime = new DateTime(year, month, day, new System.Globalization.PersianCalendar());
+            return georgianDateTime;
         }
     }
 }

@@ -85,12 +85,6 @@ namespace Okapia.Areas.Administrator.Controllers
             return Json(result);
         }
 
-        //// GET: City/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
         // POST: City/Delete/5
         public ActionResult Delete(int id)
         {

@@ -1,9 +1,17 @@
-﻿@using Okapia.Domain.Commands.User
-@model Okapia.Areas.Administrator.Models.UserIndexViewModel
+﻿@model Okapia.Areas.Administrator.Models.UserIndexViewModel
 
 @{
   ViewData["Title"] = "صفحه مدیریت مشتریان";
 }
 
+<h1>صفحه مدیریت مشتریان</h1>
+
+<h2>
+  <a class="btn btn-success text-lg-center" asp-action="Create" asp-controller="User" asp-area="Administrator">ایجاد مشتری جدید</a>
+</h2>
+
 @await Html.PartialAsync("~/Areas/Administrator/Views/User/_SearchUsers.cshtml", Model.UserSearchModel)
-@await Html.PartialAsync("~/Areas/Administrator/Views/User/_ListUsers.cshtml", Model.UserViewModels)
+
+<div id="createUserDiv">
+  @await Html.PartialAsync("~/Areas/Administrator/Views/User/_ListUsers.cshtml", Model.UserViewModels)
+</div>
