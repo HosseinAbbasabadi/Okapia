@@ -57,6 +57,9 @@ namespace Okapia.Configuration
             services.AddScoped<IModalApplication, ModalApplication>();
             services.AddScoped<IModalRepository, ModalRepository>();
 
+            services.AddScoped<IJobRequestApplication, JobRequestApplication>();
+            services.AddScoped<IJobRequestRepository, JobRequestRepository>();
+
             services.AddSingleton<IAuthHelper, AuthHelper>();
 
             services.AddSingleton<IPasswordHasher, PasswordHasher>();

@@ -11,8 +11,6 @@ namespace Okapia.Repository.Repositories
 {
     public class NeighborhoodRepository : BaseRepository<int, Neighborhood>, INeighborhoodRepository
     {
-        private readonly OkapiaContext _context;
-
         public NeighborhoodRepository(OkapiaContext context, OkapiaContext context1) : base(context)
         {
             _context = context1;

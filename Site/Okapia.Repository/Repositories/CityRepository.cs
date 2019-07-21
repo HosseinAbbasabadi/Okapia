@@ -11,8 +11,6 @@ namespace Okapia.Repository.Repositories
 {
     public class CityRepository : BaseRepository<int, City>, ICityRepository
     {
-        private readonly OkapiaContext _context;
-
         public CityRepository(OkapiaContext context) : base(context)
         {
             _context = context;

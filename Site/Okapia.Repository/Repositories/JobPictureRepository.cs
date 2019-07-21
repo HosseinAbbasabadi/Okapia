@@ -8,8 +8,6 @@ namespace Okapia.Repository.Repositories
 {
     public class JobPictureRepository : BaseRepository<int, JobPicture>, IJobPictureRepository
     {
-        private readonly OkapiaContext _context;
-
         public JobPictureRepository(OkapiaContext context, OkapiaContext context1) : base(context)
         {
             _context = context1;

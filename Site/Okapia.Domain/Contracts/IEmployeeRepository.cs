@@ -11,7 +11,7 @@ namespace Okapia.Domain.Contracts
     {
         Employee GetEmployee(long id);
         Employee GetEmployeeIncludingAccount(long id);
-        EditEmployee GetEmployeeDetails(long id, int roleId);
-        List<EmployeeViewModel> Search(EmployeeSearchModel searchModel, int roleId, out int recordCount);
+        EditEmployee GetEmployeeDetails(long id);
+        List<EmployeeViewModel> Search(EmployeeSearchModel searchModel, out int recordCount);
     }
 }

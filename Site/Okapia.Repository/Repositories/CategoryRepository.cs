@@ -11,8 +11,6 @@ namespace Okapia.Repository.Repositories
 {
     public class CategoryRepository : BaseRepository<int, Category>, ICategoryRepository
     {
-        private readonly OkapiaContext _context;
-
         public CategoryRepository(OkapiaContext context) : base(context)
         {
             _context = context;

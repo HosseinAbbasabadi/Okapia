@@ -180,7 +180,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobSlug" class="control-label"></label>
-    <input asp-for="JobSlug" class="form-control" onchange="checkSlugDuplication(document.getElementById('JobSlug').value)"/>
+    <input asp-for="JobSlug" class="form-control" onblur="checkSlugDuplication('@Url.Action("CheckSlugDuplication", "Job")', 'JobSlug')"/>
     <span asp-validation-for="JobSlug" class="text-danger"></span>
   </div>
 </div>

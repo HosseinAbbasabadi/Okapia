@@ -1,45 +1,65 @@
-﻿@model Okapia.Models.Agency
+﻿@model Okapia.Domain.Commands.RequestJob.CreateJobRequest
 
 @{
-    ViewData["Title"] = "درخواست نمایندگی و عضویت در سیستم اکاپیا";
+  ViewData["Title"] = "درخواست نمایندگی و عضویت در سیستم اکاپیا";
 }
 
 <h1>درخواست نمایندگی و عضویت در سیستم اکاپیا</h1>
 
 <h4>برای ثبت درخواست فرم زیر را کامل کنید:</h4>
-<hr />
+<hr/>
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Agency">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="ثبت درخواست" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+  <div class="col-md-4">
+    <form asp-action="Agency">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="ContactTitle" class="control-label"></label>
+        <input asp-for="ContactTitle" class="form-control"/>
+        <span asp-validation-for="ContactTitle" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="ProvinceId" class="control-label"></label>
+        <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="searchProvinceDropDown" onchange="getCityList('searchProvinceDropDown', '@Url.Action("GetCitiesByProvince", "City", new {area = "Administrator"})', 'searchCityDropDown')">
+          <option value="0">استان را انتخاب کنید...</option>
+        </select>
+        <span asp-validation-for="ProvinceId" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="CityId" class="control-label"></label>
+        <select asp-for="CityId" class="form-control" id="searchCityDropDown">
+          <option value="0">شهر را انتخاب کنید...</option>
+        </select>
+        <span asp-validation-for="CityId" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="Tel" class="control-label"></label>
+        <input asp-for="Tel" class="form-control"/>
+        <span asp-validation-for="Tel" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="Mobile" class="control-label"></label>
+        <input asp-for="Mobile" class="form-control"/>
+        <span asp-validation-for="Mobile" class="text-danger"></span>
+      </div>
+
+      <div class="form-group">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control"/>
+        <span asp-validation-for="Address" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control"/>
+        <span asp-validation-for="Description" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="ثبت درخواست" class="btn btn-primary"/>
+      </div>
+    </form>
+  </div>
 </div>
-
-@*<div>
-    <a asp-action="Index">Back to List</a>
-</div>*@
-

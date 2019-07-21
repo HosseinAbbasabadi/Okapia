@@ -7,8 +7,6 @@ namespace Okapia.Repository.Repositories
 {
     public class AccountRepository : BaseRepository<long, Account>, IAccountRepository
     {
-        private readonly OkapiaContext _context;
-
         public AccountRepository(OkapiaContext context) : base(context)
         {
             _context = context;

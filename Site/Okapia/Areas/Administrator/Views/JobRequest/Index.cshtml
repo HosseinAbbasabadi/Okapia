@@ -1,0 +1,28 @@
+﻿@model Okapia.Areas.Administrator.Models.JobRequestIndexViewModel
+
+@{
+  ViewData["Title"] = "Index";
+}
+
+<h1>صفحه مدیریت درخواست های شغلی</h1>
+
+
+@*<h2>
+  <button onclick="openCreateEmployeeModal()" class="btn btn-success text-lg-center">ایجاد کارمند جدید</button>
+</h2>*@
+
+@*<div id="createEmployeeDiv">
+
+</div>*@
+
+@*<script>
+  function openCreateEmployeeModal() {
+    openModalWithData('@Url.Action("Create", "Employee")', 'createEmployeeDiv', 'createEmployeeModal');
+  }
+</script>*@
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/JobRequest/_SearchRequests.cshtml", Model.JobRequestSearchModel)
+@await Html.PartialAsync("~/Areas/Administrator/Views/JobRequest/_ListRequests.cshtml", Model.JobRequestViewModels)
+
+@*<div id="listEmployeeDiv">
+</div>*@

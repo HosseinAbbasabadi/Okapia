@@ -11,6 +11,8 @@ namespace Okapia.Repository.Mappings
             builder.ToTable("Users");
             builder.HasKey(e => e.UserId);
 
+            builder.Property(x => x.UserId).HasDefaultValueSql("NEXT VALUE FOR AccountReferenceIdSeq");
+
             builder.Property(e => e.UserAddress).HasMaxLength(500);
 
             builder.Property(e => e.UserBirthDate).HasColumnType("datetime");

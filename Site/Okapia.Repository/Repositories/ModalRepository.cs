@@ -7,15 +7,12 @@ using Okapia.Domain.Commands.Modal;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
-using Okapia.Domain.ViewModels;
 using Okapia.Domain.ViewModels.Modal;
 
 namespace Okapia.Repository.Repositories
 {
     public class ModalRepository : BaseRepository<int, Modal>, IModalRepository
     {
-        private readonly OkapiaContext _context;
-
         public ModalRepository(OkapiaContext context) : base(context)
         {
             _context = context;

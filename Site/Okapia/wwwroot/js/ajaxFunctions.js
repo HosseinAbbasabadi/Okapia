@@ -134,7 +134,7 @@ function createEntityWithBodyThenReferesh(url, body) {
   }
   debugger;
   $.post(url,
-      body,
+    body,
     function(operationResult) {
       if (operationResult.success) {
         sendNotification('success', 'top right', "موفقیت", operationResult.message);
@@ -201,7 +201,8 @@ function sendNotification(status, place, title, body) {
 }
 
 function checkSlugDuplication(url, dist) {
-  const id = document.getElementById(dist).value;
+  const slug = $('#' + dist).val();
+  const id = slug(slug);
   $.get({
     url: url + '/' + id,
     success: function(operationResult) {

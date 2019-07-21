@@ -8,7 +8,7 @@ namespace Okapia.Repository.Repositories
 {
     public class BaseRepository<TKey, T> : IRepository<TKey, T> where T : class
     {
-        private readonly OkapiaContext _context;
+        public OkapiaContext _context;
 
         public BaseRepository(OkapiaContext context)
         {

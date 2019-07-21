@@ -11,8 +11,6 @@ namespace Okapia.Repository.Repositories
 {
     public class GroupRepository : BaseRepository<int, Group>, IGroupRepository
     {
-        private readonly OkapiaContext _context;
-
         public GroupRepository(OkapiaContext context) : base(context)
         {
             _context = context;

@@ -14,7 +14,7 @@ namespace Okapia.Domain.Commands.User
 
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = ValidationMessages.Required)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Username
         {
             get => _username;

@@ -53,24 +53,24 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "شماره تلفن ۱")]
         [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobTel1 { get; set; }
 
         [Display(Name = "شماره تلفن ۲")]
         [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string JobTel2 { get; set; }
 
         [Display(Name = "شماره موبایل ۱")]
         [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobMobile1 { get; set; }
 
         [Display(Name = "شماره موبایل ۲")]
         [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string JobMobile2 { get; set; }
 
         [Display(Name = "استان")]
@@ -125,17 +125,27 @@ namespace Okapia.Domain.Commands.Job
             set => _jobContractNumber = value.ToEnglishNumber();
         }
 
-        [Display(Name = "درصد سود معرف")] public double JobBenefitPercentForEndCustomer { get; set; }
+        [Display(Name = "درصد سود معرف")]
+        //[RegularExpression(@"(^\d+\.\d{0,2}$)", ErrorMessage = ValidationMessages.ValidNumber)]
+        //[Range(0, 9999999999999999.99, ErrorMessage = ValidationMessages.ValidNumber)]
+        [Range(0, 99.99, ErrorMessage = ValidationMessages.ValidNumber)]
+        public double JobBenefitPercentForEndCustomer { get; set; }
 
-        [Display(Name = "درصد سود شرکت")] public double JobBenefitPercentForCompany { get; set; }
+        [Display(Name = "درصد سود شرکت")]
+        [Range(0, 99.99, ErrorMessage = ValidationMessages.ValidNumber)]
+        public double JobBenefitPercentForCompany { get; set; }
 
         [Display(Name = "درصد تخفیف به مشتری")]
+        [Range(0, 99.99, ErrorMessage = ValidationMessages.ValidNumber)]
         public double JobDiscountPercentForCustomer { get; set; }
 
         [Display(Name = "درصد سود معرف از این شغل")]
+        [Range(0, 99.99, ErrorMessage = ValidationMessages.ValidNumber)]
         public double JobBefitPercentForIntroducingEndCustomer { get; set; }
 
-        [Display(Name = "درصد سود فروشگاه")] public double MarketerPercentForRegisteringShop { get; set; }
+        [Display(Name = "درصد سود فروشگاه")]
+        [Range(0, 99.99, ErrorMessage = ValidationMessages.ValidNumber)]
+        public double MarketerPercentForRegisteringShop { get; set; }
 
         [Display(Name = "بازاریاب")] public int MarketerId { get; set; }
 

@@ -28,7 +28,7 @@ namespace Okapia.Domain.Commands.User
         [Display(Name = "کد ملی")]
         [StringLength(10, ErrorMessage = ValidationMessages.NationalCodeStringLength)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string NationalCardNumber
         {
             get => _nationalCardNumber;
@@ -38,7 +38,7 @@ namespace Okapia.Domain.Commands.User
         [Display(Name = "شماره موبایل")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string PhoneNumber
         {
             get => _phoneNumber;
@@ -66,7 +66,7 @@ namespace Okapia.Domain.Commands.User
         public string Address { get; set; }
 
         [Display(Name = "کد پستی")]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Postalcode
         {
             get => _postalcode;
@@ -84,7 +84,7 @@ namespace Okapia.Domain.Commands.User
         [Display(Name = "شماره کارت اول")]
         [MaxLength(16, ErrorMessage = ValidationMessages.CardStringLength)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card1
         {
             get => _card1;
@@ -93,7 +93,7 @@ namespace Okapia.Domain.Commands.User
 
         [Display(Name = "شماره کارت دوم")]
         [MaxLength(16, ErrorMessage = ValidationMessages.CardStringLength)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card2
         {
             get => _card2;
@@ -102,7 +102,7 @@ namespace Okapia.Domain.Commands.User
 
         [Display(Name = "شماره کارت سوم")]
         [MaxLength(16, ErrorMessage = ValidationMessages.CardStringLength)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card3
         {
             get => _card3;
@@ -111,7 +111,7 @@ namespace Okapia.Domain.Commands.User
 
         [Display(Name = "شماره کارت چهارم")]
         [MaxLength(16, ErrorMessage = ValidationMessages.CardStringLength)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card4
         {
             get => _card4;
@@ -120,7 +120,7 @@ namespace Okapia.Domain.Commands.User
 
         [Display(Name = "شماره کارت پنچم")]
         [MaxLength(16, ErrorMessage = ValidationMessages.CardStringLength)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card5
         {
             get => _card5;
@@ -129,7 +129,7 @@ namespace Okapia.Domain.Commands.User
 
         [Display(Name = "شماره کارت ششم")]
         [MaxLength(16, ErrorMessage = ValidationMessages.CardStringLength)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidPhoneNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card6
         {
             get => _card6;

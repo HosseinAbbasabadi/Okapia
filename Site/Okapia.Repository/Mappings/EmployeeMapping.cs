@@ -11,6 +11,7 @@ namespace Okapia.Repository.Mappings
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
             builder.HasKey(e => e.EmployeeId);
+            builder.Property(x => x.EmployeeId).HasDefaultValueSql("NEXT VALUE FOR AccountReferenceIdSeq");
 
             builder.Property(e => e.EmployeeCreationDate).HasColumnType("datetime");
 

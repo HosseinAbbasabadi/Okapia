@@ -22,11 +22,11 @@ namespace Okapia.Application.Applications
         private readonly ICityApplication _cityApplication;
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
-        private readonly IJobPictureRepository _jobPictureRepository;
+        private readonly IPasswordHasher _passwordHasher;
 
         public JobApplication(IJobRepository jobRepository, IAccountRepository accountRepository,
             IAuthHelper authHelper, ICityApplication cityApplication, IDistrictApplication districtApplication,
-            INeighborhoodApplication neighborhoodApplication, IJobPictureRepository jobPictureRepository)
+            INeighborhoodApplication neighborhoodApplication, IPasswordHasher passwordHasher)
         {
             _jobRepository = jobRepository;
             _accountRepository = accountRepository;
@@ -34,7 +34,7 @@ namespace Okapia.Application.Applications
             _cityApplication = cityApplication;
             _districtApplication = districtApplication;
             _neighborhoodApplication = neighborhoodApplication;
-            _jobPictureRepository = jobPictureRepository;
+            _passwordHasher = passwordHasher;
         }
 
         public OperationResult Create(CreateJob command)
@@ -71,18 +71,28 @@ namespace Okapia.Application.Applications
 
                 var jobWithoutPictures = MapCreateJobToJob(command);
                 var job = MapJobPictures(command.Photos, jobWithoutPictures);
-                _jobRepository.Create(job);
-                _jobRepository.SaveChanges();
-                var authInfo = new Account
+                var hashedPassword = _passwordHasher.Hash(command.Password);
+                var account = new Account
                 {
                     Username = command.Username.ToLower(),
-                    Password = command.Password,
+                    Password = hashedPassword,
                     IsDeleted = false,
                     RoleId = Constants.Roles.Job.Id,
-                    ReferenceRecordId = job.JobId
+                    //ReferenceRecordId = job.JobId
                 };
-                _accountRepository.Create(authInfo);
-                _accountRepository.SaveChanges();
+                job.Account = account;
+                _jobRepository.Create(job);
+                _jobRepository.SaveChanges();
+                //var account = new Account
+                //{
+                //    Username = command.Username.ToLower(),
+                //    Password = hashedPassword,
+                //    IsDeleted = false,
+                //    RoleId = Constants.Roles.Job.Id,
+                //    ReferenceRecordId = job.JobId
+                //};
+                //_accountRepository.Create(account);
+                //_accountRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
                 return result;
@@ -180,7 +190,7 @@ namespace Okapia.Application.Applications
 
         public EditJob GetJobDetails(int id)
         {
-            var jobDetails = _jobRepository.GetJobDetails(id, Constants.Roles.Job.Id);
+            var jobDetails = _jobRepository.GetJobDetails(id);
             jobDetails.Citeies =
                 new SelectList(_cityApplication.GetCitiesBy(jobDetails.JobProvienceId), "Id", "Name");
             jobDetails.Districts =
@@ -346,7 +356,7 @@ namespace Okapia.Application.Applications
 
         public List<JobViewModel> GetJobsForList(JobSearchModel searchModel, out int recordCount)
         {
-            return _jobRepository.Search(searchModel, Constants.Roles.Job.Id, out recordCount);
+            return _jobRepository.Search(searchModel, out recordCount);
         }
 
         public OperationResult CheckJobSlugDuplication(string slug)

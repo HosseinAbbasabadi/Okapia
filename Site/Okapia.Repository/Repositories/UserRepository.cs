@@ -14,14 +14,12 @@ namespace Okapia.Repository.Repositories
 {
     public class UserRepository : BaseRepository<long, User>, IUserRepository
     {
-        private readonly OkapiaContext _context;
-
         public UserRepository(OkapiaContext context) : base(context)
         {
             _context = context;
         }
 
-       public User GetUser(long id)
+        public User GetUser(long id)
         {
             return _context.Users.Include(x => x.Account).Include(x => x.UserCards).AsNoTracking()
                 .FirstOrDefault(x => x.UserId == id);
@@ -71,9 +69,9 @@ namespace Okapia.Repository.Repositories
             return result;
         }
 
-        public List<UserViewModel> Search(UserSearchModel searchModel, int roleId, out int recordCount)
+        public List<UserViewModel> Search(UserSearchModel searchModel, out int recordCount)
         {
-            var q = _context.Users.Include(x => x.Account).Where(x => x.Account.RoleId == roleId).AsQueryable();
+            var q = _context.Users.Include(x => x.Account).AsQueryable();
             var query = from user in q
                 join province in _context.Provinces
                     on user.UserProvinceId equals province.Id

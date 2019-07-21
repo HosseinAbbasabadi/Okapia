@@ -13,6 +13,6 @@
         public const string Url = "فرمت اطلاعات وارد شده Url نیست";
         public const string Email = "فرمت اطلاعات وارد شده ایمیل نیست";
         public const string PhoneNumberLenght = "شماره تلفن نمی تواند بیش از ۱۱ رقم باشد";
-        public const string ValidPhoneNumber = "لطفا یک شماره معتبر وارد کنید";
+        public const string ValidNumber = "لطفا یک شماره معتبر وارد کنید";
     }
 }

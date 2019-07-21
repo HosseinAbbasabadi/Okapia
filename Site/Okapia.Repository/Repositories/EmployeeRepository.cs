@@ -13,8 +13,6 @@ namespace Okapia.Repository.Repositories
 {
     public class EmployeeRepository : BaseRepository<long, Employee>, IEmployeeRepository
     {
-        private readonly OkapiaContext _context;
-
         public EmployeeRepository(OkapiaContext context) : base(context)
         {
             _context = context;
@@ -31,11 +29,11 @@ namespace Okapia.Repository.Repositories
             return _context.Employees.Include(x => x.Account).FirstOrDefault(x => x.EmployeeId == id);
         }
 
-        public EditEmployee GetEmployeeDetails(long id, int roleId)
+        public EditEmployee GetEmployeeDetails(long id)
         {
             var q = _context.Employees.Include(x => x.EmployeeControllers).AsQueryable();
             var query = from employee in q
-                join account in _context.Accounts.Where(x => x.RoleId == roleId)
+                join account in _context.Accounts
                     on employee.EmployeeId equals account.ReferenceRecordId
                 where employee.EmployeeId == id
                 select new EditEmployee
@@ -65,10 +63,10 @@ namespace Okapia.Repository.Repositories
             return result;
         }
 
-        public List<EmployeeViewModel> Search(EmployeeSearchModel searchModel, int roleId, out int recordCount)
+        public List<EmployeeViewModel> Search(EmployeeSearchModel searchModel, out int recordCount)
         {
             var query = from employee in _context.Employees
-                join account in _context.Accounts.Where(x => x.RoleId == roleId)
+                join account in _context.Accounts
                     on employee.EmployeeId equals account.ReferenceRecordId
                 select new EmployeeViewModel
                 {

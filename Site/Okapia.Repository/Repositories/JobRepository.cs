@@ -12,7 +12,6 @@ namespace Okapia.Repository.Repositories
 {
     public class JobRepository : BaseRepository<long, Job>, IJobRepository
     {
-        private readonly OkapiaContext _context;
         private readonly IJobPictureRepository _jobPictureRepository;
 
         public JobRepository(OkapiaContext context, IJobPictureRepository jobPictureRepository) : base(context)
@@ -31,10 +30,10 @@ namespace Okapia.Repository.Repositories
             return _context.Jobs.Include(x => x.Account).FirstOrDefault(x => x.JobId == id);
         }
 
-        public EditJob GetJobDetails(long id, int roleId)
+        public EditJob GetJobDetails(long id)
         {
             var query = from job in _context.Jobs
-                join account in _context.Accounts.Where(x => x.RoleId == roleId)
+                join account in _context.Accounts
                     on job.JobId equals account.ReferenceRecordId
                 join category in _context.Categories
                     on job.JobCategory equals category.CategoryId
@@ -117,10 +116,10 @@ namespace Okapia.Repository.Repositories
             return jobDetails;
         }
 
-        public List<JobViewModel> Search(JobSearchModel searchModel, int roleId, out int recordCount)
+        public List<JobViewModel> Search(JobSearchModel searchModel, out int recordCount)
         {
             var query = from job in _context.Jobs
-                join account in _context.Accounts.Where(x => x.RoleId == roleId)
+                join account in _context.Accounts
                     on job.JobId equals account.ReferenceRecordId
                 join category in _context.Categories
                     on job.JobCategory equals category.CategoryId

@@ -36,6 +36,7 @@ namespace Okapia.Repository
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Controller> Controllers { get; set; }
         public DbSet<EmployeeController> EmployeeControllers { get; set; }
+        public DbSet<JobRequest> JobRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -78,8 +79,8 @@ namespace Okapia.Repository
 
         public void OnModelCreatingPartial(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasSequence<int>("JobSeq", schema: "shared")
-                .StartsAt(1)
+            modelBuilder.HasSequence<long>("AccountReferenceIdSeq")
+                .StartsAt(3000)
                 .IncrementsBy(1);
             base.OnModelCreating(modelBuilder);
         }

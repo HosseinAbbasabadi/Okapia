@@ -176,7 +176,7 @@ namespace Okapia.Application.Applications
 
         public List<UserViewModel> Search(UserSearchModel searchModel, out int recordCount)
         {
-            return _userRepository.Search(searchModel, Constants.Roles.User.Id, out recordCount);
+            return _userRepository.Search(searchModel, out recordCount);
         }
     }
 }

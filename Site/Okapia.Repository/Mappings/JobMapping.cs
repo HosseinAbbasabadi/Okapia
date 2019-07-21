@@ -12,6 +12,8 @@ namespace Okapia.Repository.Mappings
 
             builder.HasKey(e => e.JobId);
 
+            builder.Property(x => x.JobId).HasDefaultValueSql("NEXT VALUE FOR AccountReferenceIdSeq");
+
             builder.Property(e => e.JobId).HasColumnName("JobID");
 
             builder.Property(e => e.InstagramUrl).HasMaxLength(200);

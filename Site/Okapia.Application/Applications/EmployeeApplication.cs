@@ -18,7 +18,8 @@ namespace Okapia.Application.Applications
         private readonly IControllerApplication _controllerApplication;
         private readonly IPasswordHasher _passwordHasher;
 
-        public EmployeeApplication(IEmployeeRepository employeeRepository, IAccountRepository accountRepository, IControllerApplication controllerApplication, IPasswordHasher passwordHasher)
+        public EmployeeApplication(IEmployeeRepository employeeRepository, IAccountRepository accountRepository,
+            IControllerApplication controllerApplication, IPasswordHasher passwordHasher)
         {
             _employeeRepository = employeeRepository;
             _accountRepository = accountRepository;
@@ -87,7 +88,7 @@ namespace Okapia.Application.Applications
             });
             return employeeControllers;
         }
-      
+
         public OperationResult Update(EditEmployee command)
         {
             var result = new OperationResult("Employee", "Update");
@@ -124,7 +125,7 @@ namespace Okapia.Application.Applications
 
         public EditEmployee GetEmployeeDetails(int id)
         {
-            var employee = _employeeRepository.GetEmployeeDetails(id, Constants.Roles.Employee.Id);
+            var employee = _employeeRepository.GetEmployeeDetails(id);
             employee.AvailableControllers = _controllerApplication.GetControllers();
             return employee;
         }
@@ -136,7 +137,7 @@ namespace Okapia.Application.Applications
 
         public IEnumerable<EmployeeViewModel> Search(EmployeeSearchModel searchModel, out int recordCount)
         {
-            return _employeeRepository.Search(searchModel, Constants.Roles.Employee.Id, out recordCount);
+            return _employeeRepository.Search(searchModel, out recordCount);
         }
     }
 }
