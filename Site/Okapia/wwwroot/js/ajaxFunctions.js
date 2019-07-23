@@ -84,6 +84,19 @@ function createEntity(url, formId) {
   }
 }
 
+function createEntityWithBodyThenFeedList(url, body, listUrl, listDivId) {
+  $.post(url,
+    body,
+    function(operationResult) {
+      if (operationResult.success) {
+        sendNotification('success', 'top right', "موفقیت", operationResult.message);
+        feedList(listUrl, listDivId);
+      } else {
+        sendNotification('error', 'top right', "خطا", operationResult.message);
+      }
+    });
+}
+
 function createEntityThenFeedList(url, formId, listUrl, listDivId) {
   if ($("#" + formId).valid() === true) {
     const sendingData = $(`#${formId}`).serialize();
@@ -93,20 +106,24 @@ function createEntityThenFeedList(url, formId, listUrl, listDivId) {
         if (operationResult.success) {
           sendNotification('success', 'top right', "موفقیت", operationResult.message);
           $(`#${formId}`).trigger("reset");
-          $.ajax({
-            url: listUrl,
-            type: "Get",
-            success: function(response) {
-              const container = document.getElementById(listDivId);
-              $("#" + listDivId).empty();
-              container.insertAdjacentHTML("beforeend", response);
-            }
-          });
+          feedList(listUrl, listDivId);
         } else {
           sendNotification('error', 'top right', "خطا", operationResult.message);
         }
       });
   }
+}
+
+function feedList(listUrl, listDivId) {
+  $.ajax({
+    url: listUrl,
+    type: "Get",
+    success: function(response) {
+      const container = document.getElementById(listDivId);
+      $("#" + listDivId).empty();
+      container.insertAdjacentHTML("beforeend", response);
+    }
+  });
 }
 
 function createEntityThenReferesh(url, formId) {
@@ -200,9 +217,16 @@ function sendNotification(status, place, title, body) {
   $.Notification.autoHideNotify(status, place, title, body);
 }
 
+var convertToSlug = function (str) {
+  var $slug = '';
+  const trimmed = $.trim(str);
+  $slug = trimmed.replace(/[^a-z0-9-آ-ی-]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  return $slug.toLowerCase();
+}
+
 function checkSlugDuplication(url, dist) {
   const slug = $('#' + dist).val();
-  const id = slug(slug);
+  const id = convertToSlug(slug);
   $.get({
     url: url + '/' + id,
     success: function(operationResult) {
@@ -213,15 +237,8 @@ function checkSlugDuplication(url, dist) {
   });
 }
 
-var slug = function(str) {
-  var $slug = '';
-  const trimmed = $.trim(str);
-  $slug = trimmed.replace(/[^a-z0-9-آ-ی-]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-  return $slug.toLowerCase();
-}
-
 function makeSlug(source, dist, url) {
   const takedata = $('#' + source).val();
-  $('#' + dist).val(slug(takedata));
+  $('#' + dist).val(convertToSlug(takedata));
   checkSlugDuplication(url, dist);
 };

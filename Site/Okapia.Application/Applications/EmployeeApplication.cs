@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Framework;
+using Microsoft.EntityFrameworkCore.Internal;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.Employee;
@@ -8,6 +9,7 @@ using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Employee;
+using Okapia.Domain.ViewModels.EmployeeController;
 
 namespace Okapia.Application.Applications
 {
@@ -17,14 +19,17 @@ namespace Okapia.Application.Applications
         private readonly IAccountRepository _accountRepository;
         private readonly IControllerApplication _controllerApplication;
         private readonly IPasswordHasher _passwordHasher;
+        private readonly IControllerRepository _controllerRepository;
 
         public EmployeeApplication(IEmployeeRepository employeeRepository, IAccountRepository accountRepository,
-            IControllerApplication controllerApplication, IPasswordHasher passwordHasher)
+            IControllerApplication controllerApplication, IPasswordHasher passwordHasher,
+            IControllerRepository controllerRepository)
         {
             _employeeRepository = employeeRepository;
             _accountRepository = accountRepository;
             _controllerApplication = controllerApplication;
             _passwordHasher = passwordHasher;
+            _controllerRepository = controllerRepository;
         }
 
         public OperationResult Create(CreateEmployee command)
@@ -133,6 +138,30 @@ namespace Okapia.Application.Applications
         public IEnumerable<EmployeeViewModel> GetEmployees()
         {
             throw new NotImplementedException();
+        }
+
+        public List<AccessControllerViewModel> GetEmployeeAccessControllers(long id)
+        {
+            var employee = _employeeRepository.GetEmployeeWithControllers(id);
+            var availableControllers = _controllerRepository.GetAll();
+            var result = new List<AccessControllerViewModel>();
+            foreach (var employeeEmployeeController in employee.EmployeeControllers)
+            {
+                foreach (var availableController in availableControllers)
+                {
+                    if (availableController.Id == employeeEmployeeController.ControllerId)
+                    {
+                        result.Add(new AccessControllerViewModel()
+                        {
+                            ControllerId = employeeEmployeeController.ControllerId,
+                            ControllerName = availableController.Name,
+                            ControllerPersianName = availableController.PersianName
+                        });
+                    }
+                }
+            }
+
+            return result;
         }
 
         public IEnumerable<EmployeeViewModel> Search(EmployeeSearchModel searchModel, out int recordCount)

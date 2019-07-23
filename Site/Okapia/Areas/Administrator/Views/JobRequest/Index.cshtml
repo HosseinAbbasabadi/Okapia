@@ -22,7 +22,7 @@
 </script>*@
 
 @await Html.PartialAsync("~/Areas/Administrator/Views/JobRequest/_SearchRequests.cshtml", Model.JobRequestSearchModel)
-@await Html.PartialAsync("~/Areas/Administrator/Views/JobRequest/_ListRequests.cshtml", Model.JobRequestViewModels)
 
-@*<div id="listEmployeeDiv">
-</div>*@
+<div id="listRequestsDiv">
+  @await Html.PartialAsync("~/Areas/Administrator/Views/JobRequest/_ListRequests.cshtml", Model.JobRequestViewModels)
+</div>

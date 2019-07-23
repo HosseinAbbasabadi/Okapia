@@ -60,6 +60,9 @@ namespace Okapia.Configuration
             services.AddScoped<IJobRequestApplication, JobRequestApplication>();
             services.AddScoped<IJobRequestRepository, JobRequestRepository>();
 
+            services.AddScoped<IMarketerApplication, MarketerApplication>();
+            services.AddScoped<IMarketerRepository, MarketerRepository>();
+
             services.AddSingleton<IAuthHelper, AuthHelper>();
 
             services.AddSingleton<IPasswordHasher, PasswordHasher>();

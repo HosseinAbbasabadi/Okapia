@@ -7,8 +7,6 @@ namespace Okapia.Domain.Commands.User
 {
     public class CreateUser
     {
-        private string _nationalCardNumber;
-        private string _phoneNumber;
         private string _postalcode;
         private string _card1;
         private string _card2;
@@ -29,21 +27,13 @@ namespace Okapia.Domain.Commands.User
         [StringLength(10, ErrorMessage = ValidationMessages.NationalCodeStringLength)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
-        public string NationalCardNumber
-        {
-            get => _nationalCardNumber;
-            set => _nationalCardNumber = value.ToEnglishNumber();
-        }
+        public string NationalCardNumber { get; set; }
 
         [Display(Name = "شماره موبایل")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
-        public string PhoneNumber
-        {
-            get => _phoneNumber;
-            set => _phoneNumber = value.ToEnglishNumber();
-        }
+        public string PhoneNumber { get; set; }
 
         [Display(Name = "استان")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]

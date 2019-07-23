@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Okapia.Domain.Commands.RequestJob
+namespace Okapia.Domain.Commands.JobRequest
 {
     public class CreateJobRequest
     {
@@ -32,11 +32,11 @@ namespace Okapia.Domain.Commands.RequestJob
         [Display(Name = "توضیحات")] public string Description { get; set; }
 
         [Display(Name = "استان")]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.ProvinceRange)]
         public int ProvinceId { get; set; }
 
         [Display(Name = "شهر")]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.ProvinceRange)]
         public int CityId { get; set; }
 
         public SelectList Provinces { get; set; }

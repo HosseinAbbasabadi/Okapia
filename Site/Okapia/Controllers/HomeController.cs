@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Areas.Administrator.Controllers;
-using Okapia.Domain.Commands.RequestJob;
+using Okapia.Domain.Commands.JobRequest;
 using Okapia.Models;
 
 namespace Okapia.Controllers

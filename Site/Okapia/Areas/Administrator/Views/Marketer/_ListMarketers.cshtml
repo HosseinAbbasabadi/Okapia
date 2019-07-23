@@ -1,0 +1,137 @@
+﻿@using Okapia.Domain.SeachModels
+@model IEnumerable<Okapia.Domain.ViewModels.Marketer.MarketerViewModel>
+@{
+  var searchModel = ViewData["searchModel"] as MarketerSearchModel;
+}
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">لیست بازاریابان</h2>
+      </div>
+      <div class="panel-body">
+        <table id="datatable" class="table table-striped table-bordered">
+          <thead>
+          <tr>
+          <th>
+            ردیف
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.MarketerFullName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.MarketerNationalCode)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.MarketerMobile)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.MarketerProvince)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.MarketerCity)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.MarketerDistrict)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.MarketerNeighborhood)
+          </th>
+          <th>
+            عملیات
+          </th>
+
+          </thead>
+          <tbody>
+          @foreach (var item in Model.Select((value, index) => new {index, value}))
+          {
+            <tr>
+              <td>
+                @{
+                  var index = item.index;
+                  index += 1;
+                }
+                @index
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.MarketerFullName)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.MarketerNationalCode)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.MarketerMobile)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.MarketerProvince)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.MarketerCity)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.MarketerDistrict)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.MarketerNeighborhood)
+              </td>
+              <td>
+                <a class="btn btn-sm btn-info" onclick="openEditMarketerModal('@item.value.MarketerId')">ویرایش</a>
+                @if (!item.value.MarketerIsDeleted)
+                {
+                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="Marketer" asp-action="Delete" asp-route-id="@item.value.MarketerId">حذف</a>
+                }
+                else
+                {
+                  <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Marketer" asp-action="Activate" asp-route-id="@item.value.MarketerId">فعال سازی</a>
+                }
+              </td>
+            </tr>
+          }
+          </tbody>
+        </table>
+      </div>
+      <nav>
+        <ul class="pagination">
+          @for (var i = 0; i < searchModel.PageCount; i++)
+          {
+            var routingSearchModel = new MarketerSearchModel
+            {
+              MarketerFirstName = searchModel.MarketerFirstName,
+              MarketerLastName = searchModel.MarketerLastName,
+              MarketerNationalCode = searchModel.MarketerNationalCode,
+              MarketerMobile = searchModel.MarketerMobile,
+              MarketerProvinceId = searchModel.MarketerProvinceId,
+              MarketerCityId = searchModel.MarketerCityId,
+              MarketerDistrictId = searchModel.MarketerDistrictId,
+              MarketerNeighborhoodId = searchModel.MarketerNeighborhoodId,
+              MarketerIsDeleted = searchModel.MarketerIsDeleted,
+              PageSize = 40,
+              PageIndex = i
+            };
+            if (searchModel.PageIndex == i)
+            {
+              <li class="active">
+                @Html.ActionLink((i + 1).ToString(), "Index", "Marketer", routingSearchModel)
+              </li>
+            }
+            else
+            {
+              <li>
+                @Html.ActionLink((i + 1).ToString(), "Index", "Marketer", routingSearchModel)
+              </li>
+            }
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div id="editMarketerDiv">
+
+</div>
+<script>
+  function openEditMarketerModal(id) {
+    openModalWithData(`@Url.Action("Edit", "Marketer")/${id}`, 'editMarketerDiv', 'editMarketerModal');
+  }
+</script>

@@ -10,6 +10,7 @@ namespace Okapia.Repository.Mappings
         {
             builder.ToTable("JobRequests");
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.TrackingNumber).HasDefaultValueSql("NEXT VALUE FOR TrackingNumberSeq");
         }
     }
 }

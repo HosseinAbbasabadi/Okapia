@@ -8,6 +8,7 @@ using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels;
 using Okapia.Domain.ViewModels.Employee;
+using Okapia.Domain.ViewModels.EmployeeController;
 
 namespace Okapia.Repository.Repositories
 {
@@ -46,6 +47,11 @@ namespace Okapia.Repository.Repositories
                     ExistingControllers = MapEmployeeControllers(employee.EmployeeControllers.ToList())
                 };
             return query.First();
+        }
+
+        public Employee GetEmployeeWithControllers(long id)
+        {
+            return _context.Employees.Include(x => x.EmployeeControllers).FirstOrDefault(x => x.EmployeeId == id);
         }
 
         private static List<EmployeeControllerViewModel> MapEmployeeControllers(

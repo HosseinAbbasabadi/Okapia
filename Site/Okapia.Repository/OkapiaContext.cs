@@ -37,6 +37,7 @@ namespace Okapia.Repository
         public DbSet<Controller> Controllers { get; set; }
         public DbSet<EmployeeController> EmployeeControllers { get; set; }
         public DbSet<JobRequest> JobRequests { get; set; }
+        public DbSet<Marketer> Marketers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,6 +46,7 @@ namespace Okapia.Repository
             modelBuilder.ApplyConfiguration(new JobMapping());
             modelBuilder.ApplyConfiguration(new JobPictureMapping());
             modelBuilder.ApplyConfiguration(new JobRelationMapping());
+            modelBuilder.ApplyConfiguration(new JobRequestMapping());
 
             // page mapping
             modelBuilder.ApplyConfiguration(new PageMapping());
@@ -69,6 +71,7 @@ namespace Okapia.Repository
 
             modelBuilder.ApplyConfiguration(new EmployeeControllerMapping());
             modelBuilder.ApplyConfiguration(new AccountMapping());
+            modelBuilder.ApplyConfiguration(new MarketerMapping());
 
             OnModelCreatingPartial(modelBuilder);
         }
@@ -81,6 +84,9 @@ namespace Okapia.Repository
         {
             modelBuilder.HasSequence<long>("AccountReferenceIdSeq")
                 .StartsAt(3000)
+                .IncrementsBy(1);
+            modelBuilder.HasSequence<long>("TrackingNumberSeq")
+                .StartsAt(2000)
                 .IncrementsBy(1);
             base.OnModelCreating(modelBuilder);
         }

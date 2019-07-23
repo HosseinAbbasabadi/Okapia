@@ -1,0 +1,95 @@
+﻿@model Okapia.Domain.Commands.Marketer.EditMarketer
+
+<div id="editMarketerModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog" style="width: 55%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="custom-width-modalLabel">اصلاح بازاریاب @Model.MarketerFirstName</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <form id="editMarketerFrm" method="post">
+              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="MarketerFirstName" class="control-label"></label>
+                  <input asp-for="MarketerFirstName" class="form-control" />
+                  <span asp-validation-for="MarketerFirstName" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="MarketerLastName" class="control-label"></label>
+                  <input asp-for="MarketerLastName" class="form-control" />
+                  <span asp-validation-for="MarketerLastName" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="MarketerNationalCode" class="control-label"></label>
+                  <input asp-for="MarketerNationalCode" class="form-control" />
+                  <span asp-validation-for="MarketerNationalCode" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="MarketerMobile" class="control-label"></label>
+                  <input asp-for="MarketerMobile" class="form-control" />
+                  <span asp-validation-for="MarketerMobile" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="MarketerProvinceId" class="control-label"></label>
+                  <select asp-for="MarketerProvinceId" asp-items="@Model.Provinces" class="form-control" id="provinceDropDown" onchange="getCityList('provinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'cityDropDown')"></select>
+                  <span asp-validation-for="MarketerProvinceId" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="MarketerCityId" class="control-label"></label>
+                  <select asp-for="MarketerCityId" asp-items="@Model.Cities" class="form-control" id="cityDropDown" onchange="getDistrictList('cityDropDown', '@Url.Action("GetDistrictsByCity", "District")', 'districtDropDown')">
+                    <option value="0">شهر مورد نظر را انتخاب کنید</option>
+                  </select>
+                  <span asp-validation-for="MarketerCityId" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="MarketerDistrictId" class="control-label"></label>
+                  <select asp-for="MarketerDistrictId" asp-items="@Model.Districts" class="form-control" id="districtDropDown" onchange="getNeighborhoodList('districtDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Neighborhood")', 'neighborhoodDropDown')">
+                    <option value="0">منطقه مورد نظر را انتخاب کنید</option>
+                  </select>
+                  <span asp-validation-for="MarketerDistrictId" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="MarketerNeighborhoodId" class="control-label"></label>
+                  <select asp-for="MarketerNeighborhoodId" asp-items="@Model.Neighborhoods" class="form-control" id="neighborhoodDropDown">
+                    <option value="0">محله مورد نظر را انتخاب کنید</option>
+                  </select>
+                  <span asp-validation-for="MarketerNeighborhoodId" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="MarketerIsDeleted" class="control-label"></label>
+                  <input asp-for="MarketerIsDeleted" class="form-control" />
+                  <span asp-validation-for="MarketerIsDeleted" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntity('@Url.Action("Edit", "Marketer")', 'editMarketerFrm', 'editMarketerModal')" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Framework;
+using Microsoft.EntityFrameworkCore;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
@@ -11,6 +13,11 @@ namespace Okapia.Repository.Repositories
     {
         public JobRequestRepository(OkapiaContext context) : base(context)
         {
+        }
+
+        public JobRequest GetJobRequest(long id)
+        {
+            return _context.JobRequests.AsNoTracking().FirstOrDefault(x => x.Id == id);
         }
 
         public List<JobRequestViewModel> Search(JobRequestSearchModel searchModel, out int recordCount)
@@ -32,7 +39,8 @@ namespace Okapia.Repository.Repositories
                     CityId = jobRequest.CityId,
                     City = city.Name,
                     ProvinceId = jobRequest.ProvinceId,
-                    Province = province.Name
+                    Province = province.Name,
+                    CreationDate = jobRequest.CreationDate.ToFarsi()
                 };
 
             if (!string.IsNullOrEmpty(searchModel.Name))
@@ -45,8 +53,8 @@ namespace Okapia.Repository.Repositories
                 query = query.Where(x => x.CityId == searchModel.CityId);
             if (searchModel.TrackingNumber != 0)
                 query = query.Where(x => x.TrackingNumber == searchModel.TrackingNumber);
-            if (searchModel.Condition != 0)
-                query = query.Where(x => x.Status == searchModel.Condition);
+            if (searchModel.SelectedStatus != 0)
+                query = query.Where(x => x.Status == searchModel.SelectedStatus);
 
             query = query.OrderByDescending(x => x.Id).Skip(searchModel.PageSize * searchModel.PageIndex)
                 .Take(searchModel.PageSize);

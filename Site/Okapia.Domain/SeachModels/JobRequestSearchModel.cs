@@ -9,8 +9,12 @@ namespace Okapia.Domain.SeachModels
         [Display(Name = "نام رابط")] public string ContactTitle { get; set; }
         [Display(Name = "استان")] public int ProvinceId { get; set; }
         [Display(Name = "شهر")] public int CityId { get; set; }
-        [Display(Name = "وضعیت")] public int Condition { get; set; }
-        [Display(Name = "شماره پیگیری")] public long TrackingNumber { get; set; }
+        [Display(Name = "وضعیت")] public int SelectedStatus { get; set; }
+
+        [Display(Name = "شماره پیگیری")]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        public long TrackingNumber { get; set; }
+
         public SelectList Provinces { get; set; }
     }
 }

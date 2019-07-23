@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Okapia.Domain.Commands.RequestJob
+namespace Okapia.Domain.Commands.JobRequest
 {
     public class EditJobRequest : CreateJobRequest
     {

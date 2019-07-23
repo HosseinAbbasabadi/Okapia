@@ -1,4 +1,5 @@
-﻿@model Okapia.Domain.SeachModels.JobRequestSearchModel
+﻿@using Okapia.Application.Utilities
+@model Okapia.Domain.SeachModels.JobRequestSearchModel
 <hr/>
 <div class="row">
   <div class="col-md-12">
@@ -25,9 +26,16 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
+              <label asp-for="TrackingNumber" class="control-label"></label>
+              <input asp-for="TrackingNumber" class="form-control"/>
+              <span asp-validation-for="TrackingNumber" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
               <label asp-for="ProvinceId" class="control-label"></label>
               <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="searchProvinceDropDown" onchange="getCityList('searchProvinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'searchCityDropDown')">
-                <option value="">استان را انتخاب کنید...</option>
+                <option value="0">استان را انتخاب کنید...</option>
               </select>
               <span asp-validation-for="ProvinceId" class="text-danger"></span>
             </div>
@@ -35,10 +43,29 @@
           <div class="col-md-4">
             <div class="form-group">
               <label asp-for="CityId" class="control-label"></label>
-              <select asp-for="CityId" class="form-control" id="searchCityDropDown" onchange="getCityList('searchCityDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'searchDistrictDropDown')">
-                <option value="">شهر را انتخاب کنید...</option>
+              <select asp-for="CityId" class="form-control" id="searchCityDropDown">
+                <option value="0">شهر را انتخاب کنید...</option>
               </select>
               <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label asp-for="SelectedStatus" class="control-label"></label>
+              <br>
+              <div class="radio radio-info radio-inline">
+                <input asp-for="SelectedStatus" id="all" type="radio" value="0">
+                <label for="all"> همه </label>
+              </div>
+              @foreach (var status in Constants.Statuses.ToList())
+              {
+                var radioId = "SelecteStatus" + status.Id;
+                <div class="radio radio-info radio-inline">
+                  <input asp-for="SelectedStatus" id="@radioId" type="radio" value="@status.Id">
+                  <label for="@radioId"> @status.Name </label>
+                </div>
+              }
+              <span asp-validation-for="SelectedStatus" class="text-danger"></span>
             </div>
           </div>
           <div class="col-md-12">

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
+using Okapia.Domain.Commands.Job;
+using Okapia.Domain.Commands.JobRequest;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.RequestJob;
 
@@ -14,10 +15,12 @@ namespace Okapia.Areas.Administrator.Controllers
     public class JobRequestController : Controller
     {
         private readonly IJobRequestApplication _jobRequestApplication;
+        private readonly ICategoryApplication _categoryApplication;
 
-        public JobRequestController(IJobRequestApplication jobRequestApplication)
+        public JobRequestController(IJobRequestApplication jobRequestApplication, ICategoryApplication categoryApplication)
         {
             _jobRequestApplication = jobRequestApplication;
+            _categoryApplication = categoryApplication;
         }
 
         public ActionResult Index(JobRequestSearchModel searchModel)
@@ -46,79 +49,53 @@ namespace Okapia.Areas.Administrator.Controllers
             };
         }
 
-        // GET: RequestJob/Details/5
+        public ActionResult ListContent(JobRequestSearchModel searchModel)
+        {
+            if (searchModel.PageSize == 0)
+            {
+                searchModel.PageSize = 40;
+            }
+
+            var jobRequests = _jobRequestApplication.Search(searchModel, out var recordCount);
+            Pager.PreparePager(searchModel, recordCount);
+            ViewData["searchModel"] = searchModel;
+            return PartialView("_ListRequests", jobRequests);
+        }
+
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: RequestJob/Create
-        public ActionResult Create()
+        public JsonResult ChangeStatus(ChangeStatus command)
         {
-            return View();
+            var result = _jobRequestApplication.ChangeStatus(command);
+            return Json(result);
         }
 
-        // POST: RequestJob/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult RegisterJobRequestToJob(long id)
         {
-            try
+            var jobRequest = _jobRequestApplication.GetJobRequest(id);
+            var changeStatus = new ChangeStatus
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+                Id = id,
+                Status = Constants.Statuses.Registered.Id
+            };
+            var createJob = new CreateJob
             {
-                return View();
-            }
-        }
-
-        // GET: RequestJob/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: RequestJob/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: RequestJob/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: RequestJob/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                JobName = jobRequest.Name,
+                JobContactTitile = jobRequest.ContactTitle,
+                JobAddress = jobRequest.Address,
+                JobMobile1 = jobRequest.Mobile,
+                JobTel1 = jobRequest.Tel,
+                JobProvienceId = jobRequest.ProvinceId,
+                JobCityId = jobRequest.CityId,
+                JobDescription = jobRequest.Description,
+                Proviences = new SelectList(Provinces.ToList(), "Id", "Name"),
+                JobRequestId = id,
+                Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName")
+            };
+            return View("~/Areas/Administrator/Views/Job/Create.cshtml", createJob);
         }
     }
 }

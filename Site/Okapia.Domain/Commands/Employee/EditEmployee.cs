@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Okapia.Domain.ViewModels;
+using Okapia.Domain.ViewModels.EmployeeController;
 
 namespace Okapia.Domain.Commands.Employee
 {

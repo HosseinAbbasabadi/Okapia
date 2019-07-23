@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Okapia.Domain.ViewModels;
 
 namespace Okapia.Domain.Commands.Employee
 {

@@ -23,10 +23,11 @@ namespace Okapia.Application.Applications
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
         private readonly IPasswordHasher _passwordHasher;
+        private readonly IJobRequestRepository _jobRequestRepository;
 
         public JobApplication(IJobRepository jobRepository, IAccountRepository accountRepository,
             IAuthHelper authHelper, ICityApplication cityApplication, IDistrictApplication districtApplication,
-            INeighborhoodApplication neighborhoodApplication, IPasswordHasher passwordHasher)
+            INeighborhoodApplication neighborhoodApplication, IPasswordHasher passwordHasher, IJobRequestRepository jobRequestRepository)
         {
             _jobRepository = jobRepository;
             _accountRepository = accountRepository;
@@ -35,6 +36,7 @@ namespace Okapia.Application.Applications
             _districtApplication = districtApplication;
             _neighborhoodApplication = neighborhoodApplication;
             _passwordHasher = passwordHasher;
+            _jobRequestRepository = jobRequestRepository;
         }
 
         public OperationResult Create(CreateJob command)
@@ -69,6 +71,16 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
+                if (command.JobRequestId != 0)
+                {
+
+                    var jobRequest = _jobRequestRepository.GetJobRequest(command.JobRequestId);
+                    jobRequest.Status = Constants.Statuses.Registered.Id;
+                    jobRequest.LastModificationDate = DateTime.Now;
+                    jobRequest.LastModificationEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId;
+                    _jobRequestRepository.Update(jobRequest);
+                }
+
                 var jobWithoutPictures = MapCreateJobToJob(command);
                 var job = MapJobPictures(command.Photos, jobWithoutPictures);
                 var hashedPassword = _passwordHasher.Hash(command.Password);
@@ -78,21 +90,10 @@ namespace Okapia.Application.Applications
                     Password = hashedPassword,
                     IsDeleted = false,
                     RoleId = Constants.Roles.Job.Id,
-                    //ReferenceRecordId = job.JobId
                 };
                 job.Account = account;
                 _jobRepository.Create(job);
                 _jobRepository.SaveChanges();
-                //var account = new Account
-                //{
-                //    Username = command.Username.ToLower(),
-                //    Password = hashedPassword,
-                //    IsDeleted = false,
-                //    RoleId = Constants.Roles.Job.Id,
-                //    ReferenceRecordId = job.JobId
-                //};
-                //_accountRepository.Create(account);
-                //_accountRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
                 return result;

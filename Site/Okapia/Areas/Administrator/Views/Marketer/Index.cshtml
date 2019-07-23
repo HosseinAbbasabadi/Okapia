@@ -1,0 +1,27 @@
+﻿@model Okapia.Areas.Administrator.Models.MarketerIndexViewModel
+@{
+  ViewData["Title"] = "Index";
+}
+
+
+<h1>صفحه مدیریت بازاریابان</h1>
+
+<h2>
+  <button onclick="openCreateMarketerModal()" class="btn btn-success text-lg-center">ایجاد بازاریاب جدید</button>
+</h2>
+
+<div id="createMarketerDiv">
+
+</div>
+
+<script>
+  function openCreateMarketerModal() {
+    openModalWithData('@Url.Action("Create", "Marketer")', 'createMarketerDiv', 'createMarketerModal');
+  }
+</script>
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/Marketer/_SearchMarketers.cshtml", Model.MarketerSearchModel)
+
+<div id="listMarketerDiv">
+  @await Html.PartialAsync("~/Areas/Administrator/Views/Marketer/_ListMarketers.cshtml", Model.MarketerViewModels)
+</div>

@@ -13,6 +13,7 @@
 <div class="col-md-12">
 <form method="post" id="createJobFrm">
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input asp-for="JobRequestId" type="hidden" class="form-control"/>
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobName" class="control-label"></label>

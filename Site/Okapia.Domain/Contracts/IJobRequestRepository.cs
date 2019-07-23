@@ -8,6 +8,7 @@ namespace Okapia.Domain.Contracts
 {
     public interface IJobRequestRepository : IRepository<long, JobRequest>
     {
+        JobRequest GetJobRequest(long id);
         List<JobRequestViewModel> Search(JobRequestSearchModel searchModel, out int recordCount);
     }
 }

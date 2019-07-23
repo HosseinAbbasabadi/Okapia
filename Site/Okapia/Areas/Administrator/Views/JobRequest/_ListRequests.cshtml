@@ -1,4 +1,5 @@
-﻿@using Okapia.Domain.SeachModels
+﻿@using Okapia.Application.Utilities
+@using Okapia.Domain.SeachModels
 @model IEnumerable<Okapia.Domain.ViewModels.RequestJob.JobRequestViewModel>
 @{
   var searchModel = ViewData["searchModel"] as JobRequestSearchModel;
@@ -36,10 +37,13 @@
             @Html.DisplayNameFor(model => model.City)
           </th>
           <th>
-            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayNameFor(model => model.CreationDate)
           </th>
           <th>
             @Html.DisplayNameFor(model => model.TrackingNumber)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Status)
           </th>
           <th>
             عملیات
@@ -67,29 +71,59 @@
                 @Html.DisplayFor(modelItem => item.value.Mobile)
               </td>
               <td>
+                @Html.DisplayFor(modelItem => item.value.Tel)
+              </td>
+              <td>
                 @Html.DisplayFor(modelItem => item.value.Province)
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.City)
               </td>
               <td>
-                @Html.DisplayFor(modelItem => item.value.Status)
+                @Html.DisplayFor(modelItem => item.value.CreationDate)
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.TrackingNumber)
               </td>
-              <td>
-                @*<a class="btn btn-sm btn-info" onclick="openEditEmployeeModal('@item.value.EmployeeId')">ویرایش</a>
-                @if (!item.value.EmployeeIsDeleted)
-                {
-                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="Employee" asp-action="Delete" asp-route-id="@item.value.AccountId">حذف</a>
-                }
-                else
-                {
-                  <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Employee" asp-action="Activate" asp-route-id="@item.value.AccountId">فعال سازی</a>
-                }
-                <a class="btn btn-sm btn-inverse" onclick="openChangePasswordModal('@item.value.AccountId')">تغییر رمز</a>*@
-              </td>
+              @if (item.value.Status == 1)
+              {
+                <td class="text-primary">
+                  درخواست جدید
+                </td>
+                <td>
+                  @*<a href="@Url.Action("ChangeStatus", "JobRequest", new ChangeStatus {Id = item.value.Id, Status = Statuses.Tracking})" class="btn btn-sm btn-purple">درحال پیگیری</a>*@
+                  <a class="btn btn-sm btn-warning" onclick="changeStatus({ Id: '@item.value.Id', Status: '@Constants.Statuses.Tracking.Id' })">درحال پیگیری</a>
+                  <a class="btn btn-sm btn-danger" onclick="changeStatus({ Id: '@item.value.Id', Status: '@Constants.Statuses.Denied.Id' })">رد درخواست</a>
+                </td>
+              }
+              @if (item.value.Status == 2)
+              {
+                <td class="text-primary">
+                  درحال پیگیری
+                </td>
+                <td>
+                  <a class="btn btn-sm btn-success" asp-action="RegisterJobRequestToJob" asp-route-id="@item.value.Id">ثبت در مشاغل</a>
+                  <a class="btn btn-sm btn-danger" onclick="changeStatus({ Id: '@item.value.Id', Status: '@Constants.Statuses.Denied.Id' })">رد درخواست</a>
+                </td>
+              }
+              @if (item.value.Status == 3)
+              {
+                <td class="text-primary">
+                  ثبت شده در مشاغل
+                </td>
+                <td>
+
+                </td>
+              }
+              @if (item.value.Status == 4)
+              {
+                <td class="text-danger">
+                  درخواست رد شده
+                </td>
+                <td>
+                  <a class="btn btn-sm btn-purple" onclick="changeStatus({ Id: '@item.value.Id', Status: '@Constants.Statuses.Requested.Id' })">فعال سازی مجدد</a>
+                </td>
+              }
             </tr>
           }
           </tbody>
@@ -104,9 +138,9 @@
               Name = searchModel.Name,
               ContactTitle = searchModel.ContactTitle,
               CityId = searchModel.CityId,
-              ProvinceId= searchModel.ProvinceId,
+              ProvinceId = searchModel.ProvinceId,
               TrackingNumber = searchModel.TrackingNumber,
-              Condition = searchModel.Condition,
+              SelectedStatus = searchModel.SelectedStatus,
               PageSize = 40,
               PageIndex = i
             };
@@ -128,3 +162,14 @@
     </div>
   </div>
 </div>
+
+<script>
+
+  function changeStatus(statusCommand) {
+    createEntityWithBodyThenFeedList('@Url.Action("ChangeStatus", "JobRequest")',
+      statusCommand,
+      '@Url.Action("ListContent", "JobRequest")',
+      'listRequestsDiv');
+  }
+
+</script>
