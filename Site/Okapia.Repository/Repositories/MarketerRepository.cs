@@ -63,6 +63,7 @@ namespace Okapia.Repository.Repositories
                     MarketerDistrict = district.Name,
                     MarketerNeighborhoodId = marketer.MarketerNeighborhoodId,
                     MarketerNeighborhood = neighborhood.Name,
+                    MarketerIsDeleted = marketer.MarketerIsDeleted
                 };
 
             if (!string.IsNullOrEmpty(searchModel.MarketerFirstName))

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Framework;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
@@ -36,6 +37,12 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("Marketers", "Create");
             try
             {
+                if (!command.MarketerNationalCode.IsValidNationalCode())
+                {
+                    result.Message = ApplicationMessages.InvalidNationalCode;
+                    return result;
+                }
+
                 if (_marketerRepository.IsDuplicated(x => x.MarketerNationalCode == command.MarketerNationalCode))
                 {
                     result.Message = ApplicationMessages.DuplicatedRecord;
@@ -76,7 +83,78 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("Marketers", "Edit");
             try
             {
+                if (!_marketerRepository.Exists(x => x.MarketerId == command.MarketerId))
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
 
+                var marketer = _marketerRepository.GetMarketer(command.MarketerId);
+                marketer.MarketerFirstName = command.MarketerFirstName;
+                marketer.MarketerLastName = command.MarketerLastName;
+                marketer.MarketerNationalCode = command.MarketerNationalCode;
+                marketer.MarketerMobile = command.MarketerMobile;
+                marketer.MarketerProvinceId = command.MarketerProvinceId;
+                marketer.MarketerCityId = command.MarketerCityId;
+                marketer.MarketerDistrictId = command.MarketerDistrictId;
+                marketer.MarketerNeighborhoodId = command.MarketerNeighborhoodId;
+                marketer.MarketerIsDeleted = command.MarketerIsDeleted;
+                _marketerRepository.Update(marketer);
+                _marketerRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
+        }
+
+        public OperationResult Delete(long id)
+        {
+            var result = new OperationResult("Marketer", "Delete");
+            try
+            {
+                if (!_marketerRepository.Exists(x => x.MarketerId == id))
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
+                var marketer = _marketerRepository.GetMarketer(id);
+                marketer.MarketerIsDeleted = true;
+                _marketerRepository.Update(marketer);
+                _marketerRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
+        }
+
+        public OperationResult Activate(long id)
+        {
+            var result = new OperationResult("Marketer", "Delete");
+            try
+            {
+                if (!_marketerRepository.Exists(x => x.MarketerId == id))
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
+                var marketer = _marketerRepository.GetMarketer(id);
+                marketer.MarketerIsDeleted = false;
+                _marketerRepository.Update(marketer);
+                _marketerRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
                 return result;
@@ -91,14 +169,23 @@ namespace Okapia.Application.Applications
 
         public EditMarketer GetMarketerDetails(long id)
         {
-            var editMarketer = _marketerRepository.GetMarketerDetails(id);
-            var cities = _cityApplication.GetCitiesBy(editMarketer.MarketerProvinceId);
-            var districts = _districtApplication.GetDistrictsBy(editMarketer.MarketerCityId);
-            var neighborhoods = _neighborhoodApplication.GetNeighborhoodsBy(editMarketer.MarketerDistrictId);
-            editMarketer.Cities = new SelectList(cities, "Id", "Name");
-            editMarketer.Districts = new SelectList(districts, "Id", "Name");
-            editMarketer.Neighborhoods=new SelectList(neighborhoods, "Id", "Name");
-            return editMarketer;
+            var marketerDetails = _marketerRepository.GetMarketerDetails(id);
+            var cities = _cityApplication.GetCitiesBy(marketerDetails.MarketerProvinceId);
+            var districts = _districtApplication.GetDistrictsBy(marketerDetails.MarketerCityId);
+            var neighborhoods = _neighborhoodApplication.GetNeighborhoodsBy(marketerDetails.MarketerDistrictId);
+            marketerDetails.Cities = new SelectList(cities, "Id", "Name");
+            marketerDetails.Districts = new SelectList(districts, "Id", "Name");
+            marketerDetails.Neighborhoods = new SelectList(neighborhoods, "Id", "Name");
+            return marketerDetails;
+        }
+
+        public List<MarketerViewModel> GetMarketers()
+        {
+            return _marketerRepository.Get(x => x.MarketerIsDeleted == false).Select(x => new MarketerViewModel
+            {
+                MarketerId = x.MarketerId,
+                MarketerFullName = x.MarketerFirstName + " " + x.MarketerLastName
+            }).ToList();
         }
 
         public List<MarketerViewModel> Search(MarketerSearchModel searchModel, out int recordCount)

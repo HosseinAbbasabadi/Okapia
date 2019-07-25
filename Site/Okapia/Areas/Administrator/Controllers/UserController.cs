@@ -11,7 +11,7 @@ using Okapia.Helpers;
 namespace Okapia.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
-    //[ServiceFilter(typeof(AuthorizeFilter))]
+    [ServiceFilter(typeof(AuthorizeFilter))]
     public class UserController : Controller
     {
         private readonly IUserApplication _userApplication;
@@ -106,9 +106,20 @@ namespace Okapia.Areas.Administrator.Controllers
             return Redirect(referer);
         }
 
-        public JsonResult SendToGroup(long id, UserSearchModel searchModel)
+        public ActionResult SendToGroup()
         {
-            return Json("ok");
+            var sendToGroup = new SendToGroup
+            {
+                Groups = new SelectList(_groupApplication.GetGroups(), "Id", "Name")
+            };
+            return PartialView("_SendToGroup", sendToGroup);
+        }
+
+        [HttpPost]
+        public JsonResult SendToGroup(int id, UserSearchModel searchModel)
+        {
+            var result = _groupApplication.AddUsersToGroup(id, searchModel);
+            return Json(result);
         }
     }
 }

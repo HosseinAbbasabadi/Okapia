@@ -15,23 +15,35 @@ namespace Okapia.Domain.Commands.User
         private string _card5;
         private string _card6;
 
-        [Display(Name = "نام")]
+        [Display(Name = "نام فارسی")]
+        [RegularExpression(@"^[\u0600-\u06FF|^ ]+$", ErrorMessage = ValidationMessages.PersianText)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string Name { get; set; }
 
-        [Display(Name = "نام خانوادگی")]
+        [Display(Name = "نام خانوادگی فارسی")]
+        [RegularExpression(@"^[\u0600-\u06FF|^ ]+$", ErrorMessage = ValidationMessages.PersianText)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string Family { get; set; }
 
+        [Display(Name = "نام انگلیسی")]
+        [RegularExpression(@"^[A-Za-z|^ ]+$", ErrorMessage = ValidationMessages.EnghlishText)]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string NameEn { get; set; }
+
+        [Display(Name = "نام خانوادگی انگلیسی")]
+        [RegularExpression(@"^[A-Za-z|^ ]+$", ErrorMessage = ValidationMessages.EnghlishText)]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string FamilyEn { get; set; }
+
         [Display(Name = "کد ملی")]
-        [StringLength(10, ErrorMessage = ValidationMessages.NationalCodeStringLength)]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = ValidationMessages.NationalCodeStringLength)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string NationalCardNumber { get; set; }
 
         [Display(Name = "شماره موبایل")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
-        [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string PhoneNumber { get; set; }
 
@@ -72,9 +84,9 @@ namespace Okapia.Domain.Commands.User
         public DateTime BirthDateG { get; set; }
 
         [Display(Name = "شماره کارت اول")]
-        [MaxLength(16, ErrorMessage = ValidationMessages.CardStringLength)]
+        [StringLength(19, MinimumLength = 19, ErrorMessage = ValidationMessages.CardStringLength)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        [RegularExpression("([0-9]|^-+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card1
         {
             get => _card1;
@@ -82,7 +94,7 @@ namespace Okapia.Domain.Commands.User
         }
 
         [Display(Name = "شماره کارت دوم")]
-        [MaxLength(16, ErrorMessage = ValidationMessages.CardStringLength)]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = ValidationMessages.CardStringLength)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card2
         {
@@ -91,7 +103,7 @@ namespace Okapia.Domain.Commands.User
         }
 
         [Display(Name = "شماره کارت سوم")]
-        [MaxLength(16, ErrorMessage = ValidationMessages.CardStringLength)]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = ValidationMessages.CardStringLength)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card3
         {
@@ -100,7 +112,7 @@ namespace Okapia.Domain.Commands.User
         }
 
         [Display(Name = "شماره کارت چهارم")]
-        [MaxLength(16, ErrorMessage = ValidationMessages.CardStringLength)]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = ValidationMessages.CardStringLength)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card4
         {
@@ -109,7 +121,7 @@ namespace Okapia.Domain.Commands.User
         }
 
         [Display(Name = "شماره کارت پنچم")]
-        [MaxLength(16, ErrorMessage = ValidationMessages.CardStringLength)]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = ValidationMessages.CardStringLength)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card5
         {
@@ -118,7 +130,7 @@ namespace Okapia.Domain.Commands.User
         }
 
         [Display(Name = "شماره کارت ششم")]
-        [MaxLength(16, ErrorMessage = ValidationMessages.CardStringLength)]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = ValidationMessages.CardStringLength)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card6
         {

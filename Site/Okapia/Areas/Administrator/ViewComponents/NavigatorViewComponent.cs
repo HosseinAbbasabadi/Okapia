@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Okapia.Application.Contracts;
+using Okapia.Domain.ViewModels.EmployeeController;
 
 namespace Okapia.Areas.Administrator.ViewComponents
 {
@@ -14,9 +17,11 @@ namespace Okapia.Areas.Administrator.ViewComponents
             _authHelper = authHelper;
         }
 
-        public IViewComponentResult Invoke()
+        public ViewViewComponentResult Invoke()
         {
-            var employeeId = _authHelper.GetCurrnetUserInfo().ReferenceRecordId;
+            var currentUserinfo = _authHelper.GetCurrnetUserInfo();
+            if (!currentUserinfo.IsAuthorized) return View("DefaultN", new List<AccessControllerViewModel>());
+            var employeeId = currentUserinfo.ReferenceRecordId;
             var accessControllers = _employeeApplication.GetEmployeeAccessControllers(employeeId);
             ViewData["Auth"] = _authHelper.GetCurrnetUserInfo();
             return View("DefaultN", accessControllers);

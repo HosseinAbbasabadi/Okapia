@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Framework;
+using Microsoft.EntityFrameworkCore;
 
 namespace Okapia.Repository.Repositories
 {

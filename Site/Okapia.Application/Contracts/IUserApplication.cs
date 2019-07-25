@@ -10,6 +10,7 @@ namespace Okapia.Application.Contracts
     {
         OperationResult Create(CreateUser command);
         OperationResult Edit(EditUser command);
+        //OperationResult SendUsersToGroup(long id, UserSearchModel searchModel);
         EditUser GetUserDetails(long id);
         List<UserViewModel> Search(UserSearchModel searchModel, out int recordCount);
     }

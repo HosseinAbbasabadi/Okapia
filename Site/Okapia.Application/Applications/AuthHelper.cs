@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -26,7 +27,11 @@ namespace Okapia.Application.Applications
 
         public AccountViewModel GetCurrnetUserInfo()
         {
-            if (_contextAccessor.HttpContext.User.Claims.FirstOrDefault() == null) return new AccountViewModel();
+            if (_contextAccessor.HttpContext.User.Claims.FirstOrDefault() == null)
+            {
+                return new AccountViewModel();
+            }
+
             var claims = _contextAccessor.HttpContext.User.Claims.ToList();
             var userId = long.Parse(claims.First(x => x.Type == "UserId").Value);
             var referenceRecordId = long.Parse(claims.First(x => x.Type == "ReferenceRecordId").Value);

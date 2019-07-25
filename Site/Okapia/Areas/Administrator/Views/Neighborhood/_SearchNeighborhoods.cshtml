@@ -20,7 +20,6 @@
             <div class="form-group">
               <label asp-for="ProvinceId" class="control-label"></label>
               <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="searchProvinceDropDown" onchange="getCityList('searchProvinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'searchCityDropDown')">
-                <option value="0">استان را انتخاب کنید...</option>
               </select>
               <span asp-validation-for="ProvinceId" class="text-danger"></span>
             </div>
@@ -29,7 +28,6 @@
             <div class="form-group">
               <label asp-for="CityId" class="control-label"></label>
               <select asp-for="CityId" asp-items="@Model.Cities" class="form-control" id="searchCityDropDown" onchange="getDistrictList('searchCityDropDown', '@Url.Action("GetDistrictsByCity", "District")', 'searchDistrictDropDown')">
-                <option value="0">استان را انتخاب کنید...</option>
               </select>
               <span asp-validation-for="CityId" class="text-danger"></span>
             </div>
@@ -38,7 +36,6 @@
             <div class="form-group">
               <label asp-for="DistrictId" class="control-label"></label>
               <select asp-for="DistrictId" asp-items="@Model.Districts" class="form-control" id="searchDistrictDropDown">
-                <option value="0">استان را انتخاب کنید...</option>
               </select>
               <span asp-validation-for="DistrictId" class="text-danger"></span>
             </div>

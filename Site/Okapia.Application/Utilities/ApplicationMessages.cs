@@ -18,5 +18,6 @@
         public const string WrongUrlFormat = "فرمت آدرس وارد شده صحیح نیست";
         public static string NotSamePassword = "کلمه رمز و تکرار آن با هم برابر نیستند. لطفا دوباره تلاش کنید";
         public static string StartEndDateIsRequired = "تاریخ شروع و پایان اجراری است";
+        public static string InvalidNationalCode = "کدملی وارد شده صحیح نیست";
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 //using System.Drawing.Drawing2D;
 //using HtmlAgilityPack;
@@ -42,6 +43,40 @@ namespace Framework
                     rt += t;
 
             return rt;
+        }
+
+        public static bool IsValidNationalCode(this string nationalCode)
+        {
+            if (nationalCode.Length != 10)
+                throw new Exception("طول کد ملی باید ده کاراکتر باشد");
+
+            var regex = new Regex(@"\d{10}");
+            if (!regex.IsMatch(nationalCode))
+                throw new Exception("کد ملی تشکیل شده از ده رقم عددی می‌باشد؛ لطفا کد ملی را صحیح وارد نمایید");
+
+            var allDigitEqual = new[]
+            {
+                "0000000000", "1111111111", "2222222222", "3333333333", "4444444444", "5555555555", "6666666666",
+                "7777777777", "8888888888", "9999999999"
+            };
+            if (allDigitEqual.Contains(nationalCode)) return false;
+
+            var chArray = nationalCode.ToCharArray();
+            var num0 = Convert.ToInt32(chArray[0].ToString()) * 10;
+            var num2 = Convert.ToInt32(chArray[1].ToString()) * 9;
+            var num3 = Convert.ToInt32(chArray[2].ToString()) * 8;
+            var num4 = Convert.ToInt32(chArray[3].ToString()) * 7;
+            var num5 = Convert.ToInt32(chArray[4].ToString()) * 6;
+            var num6 = Convert.ToInt32(chArray[5].ToString()) * 5;
+            var num7 = Convert.ToInt32(chArray[6].ToString()) * 4;
+            var num8 = Convert.ToInt32(chArray[7].ToString()) * 3;
+            var num9 = Convert.ToInt32(chArray[8].ToString()) * 2;
+            var a = Convert.ToInt32(chArray[9].ToString());
+
+            var b = (((((((num0 + num2) + num3) + num4) + num5) + num6) + num7) + num8) + num9;
+            var c = b % 11;
+
+            return (((c < 2) && (a == c)) || ((c >= 2) && ((11 - c) == a)));
         }
 
         //public static Image FixedSize(Image imgPhoto, int Width, int Height, bool needToFill)
@@ -299,146 +334,5 @@ namespace Framework
 
         //    //return !Regex.IsMatch(System.Web.HttpUtility.UrlDecode(inputParameter), pattren.ToString(), RegexOptions.IgnoreCase | RegexOptions.Compiled);
         //}
-    }
-
-    public static class Date
-    {
-        public static string[] MonthNames =
-            {"فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"};
-
-        public static string[] DayNames = {"شنبه", "یکشنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه"};
-        public static string[] DayNamesG = {"یکشنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه", "شنبه"};
-
-
-        public static string ToFarsi(this DateTime? date)
-        {
-            try
-            {
-                return date?.ToFarsi();
-            }
-            catch (Exception)
-            {
-                return "";
-            }
-        }
-
-        public static string ToFarsi(this DateTime date)
-        {
-            if (date != new DateTime())
-            {
-                var pc = new System.Globalization.PersianCalendar();
-                return $"{pc.GetYear(date)}/{pc.GetMonth(date):00}/{pc.GetDayOfMonth(date):00}";
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public static string GetTime(this DateTime date)
-        {
-            return $"_{date.Hour:00}_{date.Minute:00}_{date.Second:00}";
-        }
-
-        public static string ToFarsiFull(this DateTime date)
-        {
-            var pc = new System.Globalization.PersianCalendar();
-            return
-                $"{pc.GetYear(date)}/{pc.GetMonth(date):00}/{pc.GetDayOfMonth(date):00} {date.Hour:00}:{date.Minute:00}:{date.Second:00}";
-        }
-
-        public static string ToFarsi(this DateTime date, DateConvertType converDate)
-        {
-            var pc = new System.Globalization.PersianCalendar();
-            if (converDate == DateConvertType.Short)
-                return $"{pc.GetYear(date)}/{pc.GetMonth(date):00}/{pc.GetDayOfMonth(date):00}";
-            return
-                $"{DayNamesG[(int) pc.GetDayOfWeek(date)]} {pc.GetDayOfMonth(date)} {MonthNames[pc.GetMonth(date) - 1]} {pc.GetYear(date)}";
-        }
-
-        public static string ToFarsi(this DateTime date, DateConvertType converDate, DateAndTimeConvertType dateTime)
-        {
-            var pc = new System.Globalization.PersianCalendar();
-
-            switch (dateTime)
-            {
-                case DateAndTimeConvertType.Date:
-                    if (converDate == DateConvertType.Short)
-                        return
-                            $"{pc.GetYear(date)}/{pc.GetMonth(date):00}/{pc.GetDayOfMonth(date):00}";
-                    else
-                        return
-                            $"{DayNamesG[(int) pc.GetDayOfWeek(date)]} {pc.GetDayOfMonth(date)} {MonthNames[pc.GetMonth(date)]} {pc.GetYear(date)}";
-
-
-                case DateAndTimeConvertType.Time:
-                    if (converDate == DateConvertType.Short)
-                        return date.TimeOfDay.ToString();
-                    else
-                        return string.Format("ساعت {4}:{5} {6}", date.TimeOfDay.Hours, date.TimeOfDay.Minutes,
-                            date.TimeOfDay.TotalHours > 12 ? "عصر" : "صبح");
-                case DateAndTimeConvertType.Both:
-                    if (converDate == DateConvertType.Short)
-                        return
-                            $"{pc.GetYear(date)}/{pc.GetMonth(date):00}/{pc.GetDayOfMonth(date):00} {date.TimeOfDay.ToString()}";
-                    else
-                        return
-                            $"{DayNamesG[(int) pc.GetDayOfWeek(date)]} {pc.GetDayOfMonth(date)} {MonthNames[pc.GetMonth(date)]} {pc.GetYear(date)} ساعت {date.TimeOfDay.Hours}:{date.TimeOfDay.Minutes} {(date.TimeOfDay.TotalHours > 12 ? "عصر" : "صبح")}";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(dateTime), dateTime, null);
-            }
-        }
-
-        private static readonly string[] pn = {"۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"};
-        private static readonly string[] en = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-
-        public static string ToEnglishNumber(this string strNum)
-        {
-            if (string.IsNullOrEmpty(strNum)) return null;
-            var chash = strNum;
-            for (var i = 0; i < 10; i++)
-                chash = chash.Replace(pn[i], en[i]);
-            return chash;
-
-        }
-
-        public static string ToPersianNumber(this int intNum)
-        {
-            var chash = intNum.ToString();
-            for (var i = 0; i < 10; i++)
-                chash = chash.Replace(en[i], pn[i]);
-            return chash;
-        }
-
-        public static DateTime? FromFarsiDate(this string InDate)
-        {
-            if (string.IsNullOrEmpty(InDate))
-                return null;
-
-            var splited = InDate.Split('/');
-            if (splited.Length < 3)
-                return null;
-
-            if (!int.TryParse(splited[0].ToEnglishNumber(), out var year))
-                return null;
-
-            if (!int.TryParse(splited[1].ToEnglishNumber(), out var month))
-                return null;
-
-            if (!int.TryParse(splited[2].ToEnglishNumber(), out var day))
-                return null;
-            var c = new System.Globalization.PersianCalendar();
-            return c.ToDateTime(year, month, day, 0, 0, 0, 0);
-        }
-
-        public static DateTime ToGeorgianDateTime(this string persianDate)
-        {
-            persianDate = persianDate.ToEnglishNumber();
-            var year = Convert.ToInt32(persianDate.Substring(0, 4));
-            var month = Convert.ToInt32(persianDate.Substring(5, 2));
-            var day = Convert.ToInt32(persianDate.Substring(8, 2));
-            var georgianDateTime = new DateTime(year, month, day, new System.Globalization.PersianCalendar());
-            return georgianDateTime;
-        }
     }
 }

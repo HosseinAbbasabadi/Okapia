@@ -26,6 +26,20 @@
       </div>
       <div class="col-md-4">
         <div class="form-group">
+          <label asp-for="NameEn" class="control-label"></label>
+          <input asp-for="NameEn" class="form-control" />
+          <span asp-validation-for="NameEn" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="FamilyEn" class="control-label"></label>
+          <input asp-for="FamilyEn" class="form-control" />
+          <span asp-validation-for="FamilyEn" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
           <label asp-for="NationalCardNumber" class="control-label"></label>
           <input asp-for="NationalCardNumber" class="form-control direct-ltr" />
           <span asp-validation-for="NationalCardNumber" class="text-danger"></span>
@@ -60,7 +74,6 @@
         <div class="form-group">
           <label asp-for="ProvinceId" class="control-label"></label>
           <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="CreateProvinceDropDown" onchange="getCityList('CreateProvinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'createCityDropDown')">
-            <option value="0">استان را انتخاب کنید...</option>
           </select>
           <span asp-validation-for="ProvinceId" class="text-danger"></span>
         </div>

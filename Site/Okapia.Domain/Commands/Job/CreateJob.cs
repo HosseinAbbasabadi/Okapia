@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using Framework;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Okapia.Domain.Commands.JobRequest;
 using Okapia.Domain.ViewModels.JobPicture;
 
 namespace Okapia.Domain.Commands.Job
@@ -224,5 +223,6 @@ namespace Okapia.Domain.Commands.Job
         public IReadOnlyCollection<JobPictureViewModel> Photos { get; set; }
         public SelectList Proviences { get; set; }
         public SelectList Categories { get; set; }
+        public SelectList Marketers { get; set; }
     }
 }

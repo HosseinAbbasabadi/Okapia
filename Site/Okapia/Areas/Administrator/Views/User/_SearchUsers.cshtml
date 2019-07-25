@@ -10,7 +10,7 @@
       </div>
       <div class="panel-body">
         <div class="col-md-12">
-          <form asp-action="Index" asp-controller="User" asp-area="Administrator" method="GET">
+          <form asp-action="Index" asp-controller="User" asp-area="Administrator" method="GET" id="searchUsersFrm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="col-md-4">
               <div class="form-group">
@@ -51,7 +51,6 @@
               <div class="form-group">
                 <label asp-for="UserProvinceId" class="control-label"></label>
                 <select asp-for="UserProvinceId" asp-items="@Model.Provinces" class="form-control" id="searchProvinceDropDown" onchange="getCityList('searchProvinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'searchCityDropDown')">
-                  <option value="0">استان را انتخاب کنید...</option>
                 </select>
                 <span asp-validation-for="UserProvinceId" class="text-danger"></span>
               </div>
@@ -92,8 +91,9 @@
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <input type="submit" value="جستجو" class="btn btn-primary"/>
+                <input type="submit" value="جستجو" class="btn btn-primary" />
                 <a asp-area="Administrator" asp-controller="User" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
+                <a class="btn btn-purple" onclick="openSendToGroupModal()">انتقال به گروه</a>
               </div>
             </div>
           </form>
@@ -101,4 +101,12 @@
       </div>
     </div>
   </div>
+  <div id="sendToGroupDiv">
+
+  </div>
 </div>
+<script>
+  function openSendToGroupModal() {
+    openModalWithData(`@Url.Action("SendToGroup", "User")`, 'sendToGroupDiv', 'sendToGroupModal');
+  }
+</script>

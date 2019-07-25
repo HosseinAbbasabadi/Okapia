@@ -21,14 +21,14 @@ namespace Okapia.Areas.Administrator.Controllers
     {
         private readonly IJobApplication _jobApplication;
         private readonly ICategoryApplication _categoryApplication;
-        private readonly IAccountApplication _accountApplication;
+        private readonly IMarketerApplication _marketerApplication;
 
         public JobController(IJobApplication jobApplication, ICategoryApplication categoryApplication,
-            IAccountApplication accountApplication)
+            IAccountApplication accountApplication, IMarketerApplication marketerApplication)
         {
             _jobApplication = jobApplication;
             _categoryApplication = categoryApplication;
-            _accountApplication = accountApplication;
+            _marketerApplication = marketerApplication;
         }
 
         // GET: Shop
@@ -87,7 +87,8 @@ namespace Okapia.Areas.Administrator.Controllers
             var createModel = new CreateJob
             {
                 Proviences = new SelectList(Provinces.ToList(), "Id", "Name"),
-                Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName")
+                Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName"),
+                Marketers = new SelectList(_marketerApplication.GetMarketers(), "MarketerId", "MarketerFullName")
             };
             return View(createModel);
         }

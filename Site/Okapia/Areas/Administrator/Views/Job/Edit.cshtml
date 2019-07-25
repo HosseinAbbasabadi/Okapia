@@ -106,7 +106,6 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobProvienceId" class="control-label"></label>
-    @*<input asp-for="JobProvienceId" class="form-control" />*@
     <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control" id="provinceDropDown" onchange="getCityList('provinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'cityDropDown')"></select>
     <span asp-validation-for="JobProvienceId" class="text-danger"></span>
   </div>
@@ -246,7 +245,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="MarketerId" class="control-label"></label>
-    <input asp-for="MarketerId" class="form-control"/>
+    <select asp-for="MarketerId" asp-items="@Model.Marketers" class="form-control"></select>
     <span asp-validation-for="MarketerId" class="text-danger"></span>
   </div>
 </div>
@@ -352,8 +351,8 @@
     <tr>
       <td>@index</td>
       <td>
-        <input id="@inputId" name="@inputId" type="file" size="1" onchange="uploadFile('@inputId', '@propertyInputName', '@deleteBtnId', 'job');PreviewImage('@inputId', '@prevImageId');" class="form-control custom-file-input" accept="image/*" value="@photo.value.Name" />
-        <input asp-for="@propertyInputId" id="@propertyInputId" name="@propertyInputId" type="hidden" size="1" value="@photo.value.Id" />
+        <input id="@inputId" name="@inputId" type="file" size="1" onchange="uploadFile('@inputId', '@propertyInputName', '@deleteBtnId', 'job');PreviewImage('@inputId', '@prevImageId');" class="form-control custom-file-input" accept="image/*" value="@photo.value.Name"/>
+        <input asp-for="@propertyInputId" id="@propertyInputId" name="@propertyInputId" type="hidden" size="1" value="@photo.value.Id"/>
       </td>
       <td>
         <div class="form-group">
@@ -374,11 +373,11 @@
         </div>
       </td>
 
-      @if(string.IsNullOrEmpty(photo.value.Name))
+      @if (string.IsNullOrEmpty(photo.value.Name))
       {
         <td>
           <img id="@prevImageId" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
-          <input asp-for="@propertyInputName" id="@propertyInputName" name="@propertyInputName" type="hidden" size="1" value="" />
+          <input asp-for="@propertyInputName" id="@propertyInputName" name="@propertyInputName" type="hidden" size="1" value=""/>
         </td>
         <td>
           <button type="button" id="@deleteBtnId" onclick="deletePhoto('@propertyInputName', '@prevImageId', '@deleteBtnId', '@titleImage', '@altImage', '@descImage', 'job')" class="btn btn-danger hidden">حذف</button>
@@ -388,7 +387,7 @@
       {
         <td>
           <img id="@prevImageId" src="~/JobPhotos/Thumbs/@photo.value.Name" alt="your image" with="100" height="100"/>
-          <input asp-for="@propertyInputName" id="@propertyInputName" name="@propertyInputName" type="hidden" size="1" value="@photo.value.Name" />
+          <input asp-for="@propertyInputName" id="@propertyInputName" name="@propertyInputName" type="hidden" size="1" value="@photo.value.Name"/>
         </td>
         <td>
           <button type="button" id="@deleteBtnId" onclick="deletePhoto('@propertyInputName', '@prevImageId', '@deleteBtnId', '@titleImage', '@altImage', '@descImage', 'job')" class="btn btn-danger">حذف</button>

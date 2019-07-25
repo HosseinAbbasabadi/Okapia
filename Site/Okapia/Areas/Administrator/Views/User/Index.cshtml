@@ -12,6 +12,6 @@
 
 @await Html.PartialAsync("~/Areas/Administrator/Views/User/_SearchUsers.cshtml", Model.UserSearchModel)
 
-<div id="createUserDiv">
+<div id="listUsersDiv">
   @await Html.PartialAsync("~/Areas/Administrator/Views/User/_ListUsers.cshtml", Model.UserViewModels)
 </div>

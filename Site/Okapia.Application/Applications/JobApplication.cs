@@ -24,10 +24,12 @@ namespace Okapia.Application.Applications
         private readonly INeighborhoodApplication _neighborhoodApplication;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IJobRequestRepository _jobRequestRepository;
+        private readonly IMarketerApplication _marketerApplication;
 
         public JobApplication(IJobRepository jobRepository, IAccountRepository accountRepository,
             IAuthHelper authHelper, ICityApplication cityApplication, IDistrictApplication districtApplication,
-            INeighborhoodApplication neighborhoodApplication, IPasswordHasher passwordHasher, IJobRequestRepository jobRequestRepository)
+            INeighborhoodApplication neighborhoodApplication, IPasswordHasher passwordHasher,
+            IJobRequestRepository jobRequestRepository, IMarketerApplication marketerApplication)
         {
             _jobRepository = jobRepository;
             _accountRepository = accountRepository;
@@ -37,6 +39,7 @@ namespace Okapia.Application.Applications
             _neighborhoodApplication = neighborhoodApplication;
             _passwordHasher = passwordHasher;
             _jobRequestRepository = jobRequestRepository;
+            _marketerApplication = marketerApplication;
         }
 
         public OperationResult Create(CreateJob command)
@@ -73,7 +76,6 @@ namespace Okapia.Application.Applications
 
                 if (command.JobRequestId != 0)
                 {
-
                     var jobRequest = _jobRequestRepository.GetJobRequest(command.JobRequestId);
                     jobRequest.Status = Constants.Statuses.Registered.Id;
                     jobRequest.LastModificationDate = DateTime.Now;
@@ -198,6 +200,7 @@ namespace Okapia.Application.Applications
                 new SelectList(_districtApplication.GetDistrictsBy(jobDetails.JobCityId), "Id", "Name");
             jobDetails.Neighborhoods =
                 new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(jobDetails.JobDistrictId), "Id", "Name");
+            jobDetails.Marketers = new SelectList(_marketerApplication.GetMarketers(), "MarketerId", "MarketerFullName");
             return jobDetails;
         }
 

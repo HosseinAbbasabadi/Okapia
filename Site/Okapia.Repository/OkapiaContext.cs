@@ -38,6 +38,7 @@ namespace Okapia.Repository
         public DbSet<EmployeeController> EmployeeControllers { get; set; }
         public DbSet<JobRequest> JobRequests { get; set; }
         public DbSet<Marketer> Marketers { get; set; }
+        //public DbSet<UserGroup> UserGroups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -59,6 +60,7 @@ namespace Okapia.Repository
             modelBuilder.ApplyConfiguration(new UserCardMapping());
             modelBuilder.ApplyConfiguration(new GroupMapping());
             modelBuilder.ApplyConfiguration(new EmployeeMapping());
+            modelBuilder.ApplyConfiguration(new UserGroupMapping());
 
             // modal mapping
             modelBuilder.ApplyConfiguration(new ModalMapping());

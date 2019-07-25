@@ -9,7 +9,6 @@ using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.User;
-using Okapia.Repository;
 
 namespace Okapia.Application.Applications
 {
@@ -21,9 +20,12 @@ namespace Okapia.Application.Applications
         private readonly ICityApplication _cityApplication;
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
+        private readonly IGroupRepository _groupRepository;
 
         public UserApplication(IUserRepository userRepository, IPasswordHasher passwordHasher,
-            IAccountRepository accountRepository, ICityApplication cityApplication, IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication)
+            IAccountRepository accountRepository, ICityApplication cityApplication,
+            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication,
+            IGroupRepository groupRepository)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
@@ -31,6 +33,7 @@ namespace Okapia.Application.Applications
             _cityApplication = cityApplication;
             _districtApplication = districtApplication;
             _neighborhoodApplication = neighborhoodApplication;
+            _groupRepository = groupRepository;
         }
 
         public OperationResult Create(CreateUser command)
@@ -38,6 +41,12 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("User", "Create");
             try
             {
+                if (!command.NationalCardNumber.IsValidNationalCode())
+                {
+                    result.Message = ApplicationMessages.InvalidNationalCode;
+                    return result;
+                }
+
                 if (_accountRepository.IsDuplicated(x => x.Username == command.NationalCardNumber))
                 {
                     result.Message = ApplicationMessages.DuplicatedUser;
@@ -84,6 +93,8 @@ namespace Okapia.Application.Applications
                 {
                     UserFirstName = command.Name,
                     UserLastName = command.Family,
+                    UserFirstNameEn = command.NameEn,
+                    UserLastNameEn = command.FamilyEn,
                     UserAddress = command.Address,
                     UserEmail = command.Email,
                     UserCityId = command.CityId,
@@ -129,6 +140,8 @@ namespace Okapia.Application.Applications
 
                 user.UserFirstName = command.Name;
                 user.UserLastName = command.Family;
+                user.UserFirstNameEn = command.NameEn;
+                user.UserLastNameEn = command.FamilyEn;
                 user.UserAddress = command.Address;
                 user.UserEmail = command.Email;
                 user.UserCityId = command.CityId;
@@ -162,10 +175,38 @@ namespace Okapia.Application.Applications
             }
         }
 
+        public OperationResult SendUsersToGroup(int id, UserSearchModel searchModel)
+        {
+            var result = new OperationResult("Users", "SendUsersToGroup");
+            try
+            {
+                //if (!_userRepository.Exists(x => x.UserId == id))
+                //{
+                //    result.Message = ApplicationMessages.EntityNotExists;
+                //    return result;
+                //}
+
+                //searchModel.PageSize = int.MaxValue;
+                //var users = Search(searchModel, out var recordCount);
+                //var group = _groupRepository.GetGroup(id);
+                //group.UserGroups = MapUsersToUserGroups(id, users);
+                
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
+        }
+
         public EditUser GetUserDetails(long id)
         {
             var user = _userRepository.GetUserDetails(id);
-            user.Cities=
+            user.Cities =
                 new SelectList(_cityApplication.GetCitiesBy(user.ProvinceId), "Id", "Name");
             user.Districts =
                 new SelectList(_districtApplication.GetDistrictsBy(user.CityId), "Id", "Name");

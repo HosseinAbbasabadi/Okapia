@@ -31,7 +31,7 @@ namespace Okapia.Controllers
             if (!ModelState.IsValid) return View("Register", createUser);
             var result = _accountApplication.Register(createUser);
             if (result.Success)
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
             ViewData["errorMessage"] = result.Message;
             return View(createUser);
         }

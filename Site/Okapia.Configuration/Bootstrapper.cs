@@ -65,6 +65,8 @@ namespace Okapia.Configuration
 
             services.AddSingleton<IAuthHelper, AuthHelper>();
 
+            services.AddScoped<IUserGroupRepository, UserGroupRepository>();
+
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
             services.AddScoped<IJobPictureRepository, JobPictureRepository>();
@@ -73,6 +75,7 @@ namespace Okapia.Configuration
             services.AddDbContext<OkapiaContext>(options =>
             {
                 options.UseSqlServer(_configuration.GetConnectionString("OkapiaContext"));
+                options.EnableSensitiveDataLogging(true);
             });
         }
     }

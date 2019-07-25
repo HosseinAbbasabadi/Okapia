@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Framework;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Internal;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
@@ -20,16 +21,18 @@ namespace Okapia.Application.Applications
         private readonly IControllerApplication _controllerApplication;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IControllerRepository _controllerRepository;
+        private readonly IHttpContextAccessor _contextAccessor;
 
         public EmployeeApplication(IEmployeeRepository employeeRepository, IAccountRepository accountRepository,
             IControllerApplication controllerApplication, IPasswordHasher passwordHasher,
-            IControllerRepository controllerRepository)
+            IControllerRepository controllerRepository, IHttpContextAccessor contextAccessor)
         {
             _employeeRepository = employeeRepository;
             _accountRepository = accountRepository;
             _controllerApplication = controllerApplication;
             _passwordHasher = passwordHasher;
             _controllerRepository = controllerRepository;
+            _contextAccessor = contextAccessor;
         }
 
         public OperationResult Create(CreateEmployee command)

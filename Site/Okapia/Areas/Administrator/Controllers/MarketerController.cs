@@ -51,7 +51,7 @@ namespace Okapia.Areas.Administrator.Controllers
             ViewData["searchModel"] = searchModel;
             return PartialView("_ListMarketers", marketers);
         }
-        
+
         // GET: Marketer/Create
         public ActionResult Create()
         {
@@ -74,53 +74,34 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: Marketer/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var marketerDetails = _marketerApplication.GetMarketerDetails(id);
+            marketerDetails.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
+            return PartialView("_Edit", marketerDetails);
         }
 
-        // POST: Marketer/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        //[ValidateAntiForgeryToken]
+        public JsonResult Edit(int id, EditMarketer command)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            command.MarketerId = id;
+            var result = _marketerApplication.Edit(command);
+            return Json(result);
         }
 
-        // GET: Marketer/Delete/5
+        //[ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Marketer/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var result = _marketerApplication.Delete(id);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
         }
 
 
-        public JsonResult Activate(long id)
+        public ActionResult Activate(long id)
         {
-            return Json("");
+            var result = _marketerApplication.Activate(id);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
         }
     }
 }

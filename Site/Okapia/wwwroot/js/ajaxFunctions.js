@@ -1,5 +1,6 @@
 ﻿function getList(sourceDropdown, action, distDropdown) {
   var id = $(sourceDropdown).val();
+  debugger;
   $.ajax({
     url: action + '/' + id,
     type: 'Get',

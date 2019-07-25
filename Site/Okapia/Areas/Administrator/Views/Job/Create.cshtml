@@ -258,7 +258,9 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="MarketerId" class="control-label"></label>
-    <input asp-for="MarketerId" class="form-control"/>
+    <select asp-for="MarketerId" asp-items="@Model.Marketers" class="form-control">
+      <option value="0">بازاریاب مورد نظر را انتخاب کنید</option>
+    </select>
     <span asp-validation-for="MarketerId" class="text-danger"></span>
   </div>
 </div>

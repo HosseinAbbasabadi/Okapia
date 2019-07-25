@@ -40,9 +40,9 @@ namespace Okapia
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
                 {
-                    o.LoginPath = new PathString("/User/Login");
-                    o.LogoutPath = new PathString("/User/Logout");
-                    o.AccessDeniedPath = new PathString("/User/AccessDenied");
+                    o.LoginPath = new PathString("/Account/Login");
+                    o.LogoutPath = new PathString("/Account/Logout");
+                    o.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
 
             services.AddHttpContextAccessor();
@@ -71,7 +71,7 @@ namespace Okapia
 
             app.UseAuthentication();
             //app.UseAuthorizationMiddleware();
-
+            //app.UseAccessControlMiddleware();
             app.UseMvc(ConfigureRoutes());
         }
 

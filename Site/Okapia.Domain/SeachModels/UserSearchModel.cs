@@ -13,7 +13,7 @@ namespace Okapia.Domain.SeachModels
         public string UserNationalCode { get; set; }
         [Display(Name = "نام کاربری")]
         public string Username { get; set; }
-        [Display(Name = "تلفن")]
+        [Display(Name = "موبایل")]
         public string UserPhoneNumber { get; set; }
         [Display(Name = "استان")]
         public int UserProvinceId { get; set; }

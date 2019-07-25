@@ -32,6 +32,8 @@ namespace Okapia.Repository.Repositories
                 Id = user.UserId,
                 Name = user.UserFirstName,
                 Family = user.UserLastName,
+                NameEn = user.UserFirstNameEn,
+                FamilyEn = user.UserLastNameEn,
                 Username = user.Account.Username,
                 NationalCardNumber = user.UserNationalCode,
                 PhoneNumber = user.UserPhoneNumber,
@@ -52,6 +54,39 @@ namespace Okapia.Repository.Repositories
                 Card6 = user.UserCards[5].CardNumber
             }).AsQueryable();
             return query.FirstOrDefault(x => x.Id == id);
+        }
+
+        public void Detach(long id)
+        {
+            var local = _context.Users.Local.FirstOrDefault(x => x.UserId == id);
+            if (local == null) return;
+            _context.Entry(local).State = EntityState.Detached;
+        }
+
+        public List<User> Search(UserSearchModel searchModel)
+        {
+            var query = _context.Users.Include(x => x.Account).AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchModel.UserFirstName))
+                query = query.Where(x => x.UserFirstName.Contains(searchModel.UserFirstName));
+            if (!string.IsNullOrEmpty(searchModel.UserLastName))
+                query = query.Where(x => x.UserLastName.Contains(searchModel.UserLastName));
+            if (!string.IsNullOrEmpty(searchModel.Username))
+                query = query.Where(x => x.Account.Username.Contains(searchModel.Username));
+            if (!string.IsNullOrEmpty(searchModel.UserNationalCode))
+                query = query.Where(x => x.UserNationalCode.Contains(searchModel.UserNationalCode));
+            if (!string.IsNullOrEmpty(searchModel.UserPhoneNumber))
+                query = query.Where(x => x.UserPhoneNumber.Contains(searchModel.UserPhoneNumber));
+            if (searchModel.UserProvinceId != 0)
+                query = query.Where(x => x.UserProvinceId == searchModel.UserProvinceId);
+            if (searchModel.UserCityId != 0)
+                query = query.Where(x => x.UserProvinceId == searchModel.UserProvinceId);
+            if (searchModel.UserDistrictId != 0)
+                query = query.Where(x => x.UserDistrictId == searchModel.UserDistrictId);
+            if (searchModel.UserNeighborhoodId != 0)
+                query = query.Where(x => x.UserNeighborhoodId == searchModel.UserNeighborhoodId);
+            query = query.Where(x => x.Account.IsDeleted == searchModel.IsDeleted);
+            return query.ToList();
         }
 
         public List<UserCardViewModel> MapUserCards(IEnumerable<UserCard> userCards)
@@ -115,7 +150,8 @@ namespace Okapia.Repository.Repositories
             if (searchModel.UserNeighborhoodId != 0)
                 query = query.Where(x => x.UserNeighborhoodId == searchModel.UserNeighborhoodId);
             query = query.Where(x => x.IsDeleted == searchModel.IsDeleted);
-            query = query.OrderByDescending(x => x.UserId).Skip(searchModel.PageIndex * searchModel.PageSize)
+            query = query.AsNoTracking().OrderByDescending(x => x.UserId)
+                .Skip(searchModel.PageIndex * searchModel.PageSize)
                 .Take(searchModel.PageSize);
 
             recordCount = query.Count();

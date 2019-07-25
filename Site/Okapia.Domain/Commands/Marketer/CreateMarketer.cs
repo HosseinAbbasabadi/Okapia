@@ -14,14 +14,14 @@ namespace Okapia.Domain.Commands.Marketer
         public string MarketerLastName { get; set; }
 
         [Display(Name = "کد ملی")]
-        [StringLength(10, ErrorMessage = ValidationMessages.NationalCodeStringLength)]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = ValidationMessages.NationalCodeStringLength)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string MarketerNationalCode { get; set; }
 
         [Display(Name = "شماره موبایل")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
-        [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string MarketerMobile { get; set; }
 
