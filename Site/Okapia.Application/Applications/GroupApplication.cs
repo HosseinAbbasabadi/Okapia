@@ -17,14 +17,11 @@ namespace Okapia.Application.Applications
     {
         private readonly IGroupRepository _groupRepository;
         private readonly IUserRepository _userRepository;
-        private readonly IUserGroupRepository _userGroupRepository;
 
-        public GroupApplication(IGroupRepository groupRepository, IUserRepository userRepository,
-            IUserGroupRepository userGroupRepository)
+        public GroupApplication(IGroupRepository groupRepository, IUserRepository userRepository)
         {
             _groupRepository = groupRepository;
             _userRepository = userRepository;
-            _userGroupRepository = userGroupRepository;
         }
 
         public List<GroupViewModel> GetGroups()
@@ -79,7 +76,7 @@ namespace Okapia.Application.Applications
                 group.GroupName = command.Name;
                 group.GroupDescription = command.Description;
                 group.IsDeleted = command.IsDeleted;
-                _groupRepository.Update(group);
+                //_groupRepository.Update(group);
                 _groupRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -106,7 +103,7 @@ namespace Okapia.Application.Applications
                 }
 
                 group.IsDeleted = true;
-                _groupRepository.Update(group);
+                //_groupRepository.Update(group);
                 _groupRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -136,14 +133,27 @@ namespace Okapia.Application.Applications
                 var group = _groupRepository.GetGroup(id);
                 var userGroups = MapUsersToUserGroups(group, users);
                 group.UserGroups = userGroups;
-                //users.ForEach(x =>
-                //{
-                //    _userRepository.Detach(x.UserId);
-                //    _userGroupRepository.Detach(group.GroupId, x.UserId);
-                //});
-                //_groupRepository.Detach(id);
-                //_groupRepository.Attach(group);
-                _groupRepository.Update(group);
+                //_groupRepository.Update(group);
+                _groupRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
+        }
+
+        public OperationResult ClearGroup(int id)
+        {
+            var result = new OperationResult("Groups", "Clear");
+            try
+            {
+                var group = _groupRepository.GetGroup(id);
+                group.UserGroups.Clear();
                 _groupRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -196,7 +206,7 @@ namespace Okapia.Application.Applications
                 }
 
                 group.IsDeleted = false;
-                _groupRepository.Update(group);
+                //_groupRepository.Update(group);
                 _groupRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

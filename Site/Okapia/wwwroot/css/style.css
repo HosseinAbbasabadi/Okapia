@@ -3405,12 +3405,6 @@ dl {
     padding: 10px;
 }
 
-.dddt {
-    border-bottom: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
-}
-
 .direct-ltr {
     direction: ltr;
 }

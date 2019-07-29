@@ -39,7 +39,7 @@
               @Html.DisplayNameFor(model => model.UserEmail)
             </th>
             <th>
-              @Html.DisplayNameFor(model => model.UserName)
+              @Html.DisplayNameFor(model => model.Username)
             </th>
             <th>
               عملیات
@@ -69,7 +69,7 @@
                 @Html.DisplayFor(modelItem => item.UserEmail)
               </td>
               <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+                @Html.DisplayFor(modelItem => item.Username)
               </td>
               <td>
                 <a class="btn btn-sm btn-warning" asp-area="Administrator" asp-controller="User" asp-action="Edit" asp-route-id="@item.UserId" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>

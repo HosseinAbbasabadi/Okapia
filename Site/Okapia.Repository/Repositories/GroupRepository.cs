@@ -27,7 +27,7 @@ namespace Okapia.Repository.Repositories
 
         public Group GetGroup(int id)
         {
-            return _context.Groups.Include(x => x.UserGroups).AsNoTracking().FirstOrDefault(x => x.GroupId == id);
+            return _context.Groups.Include(x => x.UserGroups).FirstOrDefault(x => x.GroupId == id);
         }
 
         public EditGroup GetGroupForDetails(int id)
@@ -41,21 +41,15 @@ namespace Okapia.Repository.Repositories
             }).FirstOrDefault(x => x.Id == id);
         }
 
-        public void Detach(int id)
-        {
-            var local = _context.Groups.Local.FirstOrDefault(x => x.GroupId == id);
-            if (local == null) return;
-            _context.Entry(local).State = EntityState.Detached;
-        }
-
         public List<GroupViewModel> Search(GroupSearchModel searchModel, out int recordCount)
         {
-            var query = _context.Groups.Select(group => new GroupViewModel
+            var query = _context.Groups.Include(x=>x.UserGroups).Select(group => new GroupViewModel
             {
                 Id = group.GroupId,
                 Name = group.GroupName,
                 Description = group.GroupDescription,
-                IsDeleted = group.IsDeleted
+                IsDeleted = group.IsDeleted,
+                UsersCount = group.UserGroups.Count
             });
             if (!string.IsNullOrEmpty(searchModel.Name))
                 query = query.Where(x => x.Name.Contains(searchModel.Name));

@@ -18,7 +18,7 @@ namespace Okapia.Repository.Repositories
 
         public Neighborhood GetNeighborhood(int id)
         {
-            return _context.Neighborhoods.Where(x => x.Id == id).AsNoTracking().First();
+            return _context.Neighborhoods.First(x => x.Id == id);
         }
 
         public EditNeighborhood GetNeighborhoodDetails(int id)

@@ -80,7 +80,7 @@ namespace Okapia.Application.Applications
                     jobRequest.Status = Constants.Statuses.Registered.Id;
                     jobRequest.LastModificationDate = DateTime.Now;
                     jobRequest.LastModificationEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId;
-                    _jobRequestRepository.Update(jobRequest);
+                    //_jobRequestRepository.Update(jobRequest);
                 }
 
                 var jobWithoutPictures = MapCreateJobToJob(command);

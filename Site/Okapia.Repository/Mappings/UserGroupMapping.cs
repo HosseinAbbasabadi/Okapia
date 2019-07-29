@@ -10,8 +10,8 @@ namespace Okapia.Repository.Mappings
         {
             builder.ToTable("UserGroups");
             builder.HasKey(bc => new {bc.UserId, bc.GroupId});
-            builder.HasOne(x => x.User).WithMany(x => x.UserGroups).HasForeignKey(x => x.UserId);
-            builder.HasOne(x => x.Group).WithMany(x => x.UserGroups).HasForeignKey(x => x.GroupId);
+            builder.HasOne(x => x.User).WithMany(x => x.UserGroups).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.Group).WithMany(x => x.UserGroups).HasForeignKey(x => x.GroupId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

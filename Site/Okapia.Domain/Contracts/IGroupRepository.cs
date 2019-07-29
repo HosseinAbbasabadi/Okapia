@@ -12,7 +12,6 @@ namespace Okapia.Domain.Contracts
         List<GroupViewModel> GetGroups();
         Group GetGroup(int id);
         EditGroup GetGroupForDetails(int id);
-        void Detach(int id);
         List<GroupViewModel> Search(GroupSearchModel searchModel, out int recordCount);
     }
 }

@@ -12,6 +12,7 @@ namespace Okapia.Application.Contracts
         OperationResult Edit(EditUser command);
         //OperationResult SendUsersToGroup(long id, UserSearchModel searchModel);
         EditUser GetUserDetails(long id);
+        UserDetailsViewModel GetUserInfo(long id);
         List<UserViewModel> Search(UserSearchModel searchModel, out int recordCount);
     }
 }

@@ -94,7 +94,6 @@ namespace Okapia.Application.Applications
             {
                 var neighborhood = _neighborhoodRepository.GetNeighborhood(id);
                 neighborhood.IsDeleted = true;
-                _neighborhoodRepository.Update(neighborhood);
                 _neighborhoodRepository.SaveChanges();
             }
             catch (Exception exception)
@@ -110,7 +109,6 @@ namespace Okapia.Application.Applications
             {
                 var neighborhood = _neighborhoodRepository.GetNeighborhood(id);
                 neighborhood.IsDeleted = false;
-                _neighborhoodRepository.Update(neighborhood);
                 _neighborhoodRepository.SaveChanges();
             }
             catch (Exception exception)

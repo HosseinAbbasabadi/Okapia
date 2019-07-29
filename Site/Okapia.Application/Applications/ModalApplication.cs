@@ -124,7 +124,6 @@ namespace Okapia.Application.Applications
             {
                 var modal = _modalRepository.GetModal(id);
                 modal.IsDeleted = true;
-                _modalRepository.Update(modal);
                 _modalRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -145,7 +144,6 @@ namespace Okapia.Application.Applications
             {
                 var modal = _modalRepository.GetModal(id);
                 modal.IsDeleted = false;
-                _modalRepository.Update(modal);
                 _modalRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

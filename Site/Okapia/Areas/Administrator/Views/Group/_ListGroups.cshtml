@@ -24,6 +24,9 @@
             @Html.DisplayNameFor(model => model.Description)
           </th>
           <th>
+            @Html.DisplayNameFor(model => model.UsersCount)
+          </th>
+          <th>
             عملیات
           </th>
 
@@ -46,6 +49,9 @@
                 @Html.DisplayFor(modelItem => item.value.Description)
               </td>
               <td>
+                @Html.DisplayFor(modelItem => item.value.UsersCount)
+              </td>
+              <td>
                 <a class="btn btn-sm btn-info" onclick="openEditCityModal('@item.value.Id')">ویرایش</a>
                 @if (!item.value.IsDeleted)
                 {
@@ -55,6 +61,7 @@
                 {
                   <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Group" asp-action="Activate" asp-route-id="@item.value.Id">فعال سازی</a>
                 }
+                <a class="btn btn-sm btn-purple" asp-area="Administrator" asp-controller="Group" asp-action="Clear" asp-route-id="@item.value.Id">حذف اعضا</a>
               </td>
             </tr>
           }

@@ -17,7 +17,7 @@ namespace Okapia.Repository.Repositories
 
         public JobRequest GetJobRequest(long id)
         {
-            return _context.JobRequests.AsNoTracking().FirstOrDefault(x => x.Id == id);
+            return _context.JobRequests.FirstOrDefault(x => x.Id == id);
         }
 
         public List<JobRequestViewModel> Search(JobRequestSearchModel searchModel, out int recordCount)

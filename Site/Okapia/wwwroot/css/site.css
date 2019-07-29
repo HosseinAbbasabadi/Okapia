@@ -127,3 +127,17 @@ body.loading .loader {
 .close {
     float: left !important;
 }
+
+.detail-name {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.detail-for {
+    
+    font-size: 18px;
+}
+
+.detail-name span {
+    font-weight: normal;
+}

@@ -14,6 +14,7 @@ namespace Okapia.Application.Contracts
         OperationResult Edit(EditGroup command);
         OperationResult Delete(int id);
         OperationResult AddUsersToGroup(int id, UserSearchModel searchModel);
+        OperationResult ClearGroup(int id);
         OperationResult Activate(int id);
         EditGroup GetGroupForDetails(int id);
         List<GroupViewModel> Search(GroupSearchModel searchModel, out int recordCount);

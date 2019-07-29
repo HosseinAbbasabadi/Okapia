@@ -18,7 +18,7 @@ namespace Okapia.Repository.Repositories
 
         public City GetCity(int id)
         {
-            return _context.Cities.Where(x => x.Id == id).AsNoTracking().ToList().First();
+            return _context.Cities.Where(x => x.Id == id).ToList().First();
         }
 
         public EditCity GetCityDetails(int id)

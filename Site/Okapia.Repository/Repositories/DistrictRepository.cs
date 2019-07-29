@@ -19,7 +19,7 @@ namespace Okapia.Repository.Repositories
 
         public District GetDistrict(int id)
         {
-            return _context.Districts.Where(x => x.Id == id).AsNoTracking().First();
+            return _context.Districts.First(x => x.Id == id);
         }
 
         public EditDistrict GetDistrictDetails(int id)

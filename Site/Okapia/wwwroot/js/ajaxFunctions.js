@@ -78,6 +78,7 @@ function createEntity(url, formId) {
         if (operationResult.success) {
           sendNotification('success', 'top right', "موفقیت", operationResult.message);
           $(`#${formId}`).trigger("reset");
+          location.reload();
         } else {
           sendNotification('error', 'top right', "خطا", operationResult.message);
         }

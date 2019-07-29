@@ -11,5 +11,7 @@ namespace Okapia.Domain.ViewModels.Group
         public string Description { get; set; }
         [Display(Name = "حذف شده")]
         public bool IsDeleted { get; set; }
+        [Display(Name = "تعداد اعضای گروه")]
+        public int UsersCount { get; set; }
     }
 }

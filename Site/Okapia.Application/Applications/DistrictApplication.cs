@@ -87,7 +87,6 @@ namespace Okapia.Application.Applications
         {
             var district = _districtRepository.GetDistrict(id);
             district.IsDeleted = true;
-            _districtRepository.Update(district);
             _districtRepository.SaveChanges();
         }
 
@@ -95,7 +94,6 @@ namespace Okapia.Application.Applications
         {
             var district = _districtRepository.GetDistrict(id);
             district.IsDeleted = false;
-            _districtRepository.Update(district);
             _districtRepository.SaveChanges();
         }
 

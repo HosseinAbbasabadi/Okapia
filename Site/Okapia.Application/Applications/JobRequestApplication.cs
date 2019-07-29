@@ -64,7 +64,6 @@ namespace Okapia.Application.Applications
                 jobRequest.Status = command.Status;
                 jobRequest.LastModificationDate = DateTime.Now;
                 jobRequest.LastModificationEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId;
-                _jobRequestRepository.Update(jobRequest);
                 _jobRequestRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

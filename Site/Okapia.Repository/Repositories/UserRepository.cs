@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Framework;
 using Microsoft.EntityFrameworkCore;
@@ -21,8 +20,61 @@ namespace Okapia.Repository.Repositories
 
         public User GetUser(long id)
         {
-            return _context.Users.Include(x => x.Account).Include(x => x.UserCards).AsNoTracking()
-                .FirstOrDefault(x => x.UserId == id);
+            return _context.Users.Include(x => x.Account).Include(x => x.UserCards).FirstOrDefault(x => x.UserId == id);
+        }
+
+        public UserDetailsViewModel GetUserInfo(long id)
+        {
+            var q = _context.Users.Include(x => x.Account).AsQueryable();
+            var query = from user in q
+                join province in _context.Provinces
+                    on user.UserProvinceId equals province.Id
+                join city in _context.Cities
+                    on user.UserCityId equals city.Id
+                join district in _context.Districts
+                    on user.UserDistrictId equals district.Id
+                join neighborhood in _context.Neighborhoods
+                    on user.UserNeighborhoodId equals neighborhood.Id
+                select new UserDetailsViewModel
+                {
+                    UserId = user.UserId,
+                    Name = user.UserFirstName,
+                    Family = user.UserLastName,
+                    NameEn = user.UserFirstNameEn,
+                    FamilyEn = user.UserLastNameEn,
+                    UserEmail = user.UserEmail,
+                    Username = user.Account.Username,
+                    UserAddress = user.UserAddress,
+                    UserNationalCode = user.UserNationalCode,
+                    UserBirthDate = user.UserBirthDate.ToFarsi(),
+                    AccountId = user.Account.Id,
+                    UserRegistrationDate = user.UserRegistrationDate.ToFarsi(),
+                    UserProvince = province.Name,
+                    District = district.Name,
+                    UserCity = city.Name,
+                    Neighborhood = neighborhood.Name,
+                    UserPhoneNumber = user.UserPhoneNumber,
+                    UserPostalCode = user.UserPostalCode,
+                    Card1 = user.UserCards[0].CardNumber,
+                    Card2 = user.UserCards[1].CardNumber,
+                    Card3 = user.UserCards[2].CardNumber,
+                    Card4 = user.UserCards[3].CardNumber,
+                    Card5 = user.UserCards[4].CardNumber,
+                    Card6 = user.UserCards[5].CardNumber,
+                    Card7 = user.UserCards[6].CardNumber,
+                    Card8 = user.UserCards[7].CardNumber,
+                    Card9 = user.UserCards[8].CardNumber,
+                    Card10 = user.UserCards[9].CardNumber
+                };
+
+            return query.FirstOrDefault(x => x.UserId == id);
+        }
+
+        private UserDetailsViewModel MapToUserViewModel(User user)
+        {
+            return new UserDetailsViewModel
+            {
+            };
         }
 
         public EditUser GetUserDetails(long id)
@@ -51,16 +103,13 @@ namespace Okapia.Repository.Repositories
                 Card3 = user.UserCards[2].CardNumber,
                 Card4 = user.UserCards[3].CardNumber,
                 Card5 = user.UserCards[4].CardNumber,
-                Card6 = user.UserCards[5].CardNumber
+                Card6 = user.UserCards[5].CardNumber,
+                Card7 = user.UserCards[6].CardNumber,
+                Card8 = user.UserCards[7].CardNumber,
+                Card9 = user.UserCards[8].CardNumber,
+                Card10 = user.UserCards[9].CardNumber
             }).AsQueryable();
             return query.FirstOrDefault(x => x.Id == id);
-        }
-
-        public void Detach(long id)
-        {
-            var local = _context.Users.Local.FirstOrDefault(x => x.UserId == id);
-            if (local == null) return;
-            _context.Entry(local).State = EntityState.Detached;
         }
 
         public List<User> Search(UserSearchModel searchModel)
@@ -126,7 +175,6 @@ namespace Okapia.Repository.Repositories
                     UserDistrictId = user.UserDistrictId,
                     UserNeighborhoodId = user.UserNeighborhoodId,
                     UserEmail = user.UserEmail,
-                    UserName = user.Account.Username,
                     AccountId = user.Account.Id,
                     IsDeleted = user.Account.IsDeleted
                 };
@@ -150,7 +198,7 @@ namespace Okapia.Repository.Repositories
             if (searchModel.UserNeighborhoodId != 0)
                 query = query.Where(x => x.UserNeighborhoodId == searchModel.UserNeighborhoodId);
             query = query.Where(x => x.IsDeleted == searchModel.IsDeleted);
-            query = query.AsNoTracking().OrderByDescending(x => x.UserId)
+            query = query.OrderByDescending(x => x.UserId)
                 .Skip(searchModel.PageIndex * searchModel.PageSize)
                 .Take(searchModel.PageSize);
 

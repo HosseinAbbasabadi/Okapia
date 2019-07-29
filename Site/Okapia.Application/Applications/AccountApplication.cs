@@ -10,7 +10,8 @@ using Okapia.Domain.ViewModels;
 
 namespace Okapia.Application.Applications
 {
-    public class AccountApplication : IAccountApplication
+    public class
+        AccountApplication : IAccountApplication
     {
         private readonly IAuthHelper _authHelper;
         private readonly IUserRepository _userRepository;
@@ -62,48 +63,9 @@ namespace Okapia.Application.Applications
             var operationResult = new OperationResult("RegisterUser", "Users");
             try
             {
-                //if (_accountRepository.IsDuplicated(x => x.Username == command.NationalCardNumber))
-                //{
-                //    operationResult.Message = ApplicationMessages.DuplicatedUser;
-                //    return operationResult;
-                //}
-
-                //var hashedPassword = _passwordHasher.Hash(command.PhoneNumber);
-
-                //var account = new Account
-                //{
-                //    Username = command.NationalCardNumber,
-                //    Password = hashedPassword,
-                //    //ReferenceRecordId = user.UserId,
-                //    RoleId = Constants.Roles.User.Id,
-                //    IsDeleted = false
-                //};
-
-                //var user = new User
-                //{
-                //    UserFirstName = command.Name,
-                //    UserLastName = command.Family,
-                //    UserAddress = command.Address,
-                //    UserEmail = command.Email,
-                //    UserCityId = command.CityId,
-                //    UserProvinceId = command.ProvinceId,
-                //    UserBirthDate = DateTime.Now,
-                //    UserNationalCode = command.NationalCardNumber,
-                //    UserPhoneNumber = command.PhoneNumber,
-                //    UserPostalCode = command.Postalcode,
-                //    UserRegistrationDate = DateTime.Now,
-                //    UserIsActivated = true,
-                //    UserCustomerIntroductionLimit = 200,
-                //    Account = account
-                //};
-                //_userRepository.Create(user);
-                //_userRepository.SaveChanges();
                 var result = _userApplication.Create(command);
                 if (result.Success == false)
                     return result;
-                //var userInfo = new AccountViewModel(account.Id, user.UserId, user.UserFirstName, account.Username,
-                //    Constants.Roles.User.Id);
-                //_authHelper.Signin(userInfo);
                 operationResult.Success = true;
                 operationResult.Message = "succeded";
                 return operationResult;

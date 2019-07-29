@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
+using Okapia.Areas.Administrator.Controllers;
 using Okapia.Domain.Commands;
 using Okapia.Domain.Commands.User;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Okapia.Controllers
 {
@@ -20,7 +20,10 @@ namespace Okapia.Controllers
 
         public ActionResult Register()
         {
-            var createUser = new CreateUser();
+            var createUser = new CreateUser
+            {
+                Provinces = new SelectList(Provinces.ToList(), "Id", "Name")
+            };
             return View(createUser);
         }
 
@@ -51,13 +54,13 @@ namespace Okapia.Controllers
             if (result.Success)
             {
                 if (result.RecordId == 5 || result.RecordId == 4)
-                    return RedirectToAction("Index", "Home", new { area = "Administrator" });
+                    return RedirectToAction("Index", "Home", new {area = "Administrator"});
                 if (result.RecordId == 3)
-                    return RedirectToAction("Index", "Home", new { area = "Club" });
+                    return RedirectToAction("Index", "Home", new {area = "Club"});
                 if (result.RecordId == 2)
-                    return RedirectToAction("Index", "Home", new { area = "Job" });
+                    return RedirectToAction("Index", "Home", new {area = "Job"});
                 if (result.RecordId == 1)
-                    return RedirectToAction("Index", "Home", new { area = "Customer" });
+                    return RedirectToAction("Index", "Home", new {area = "Customer"});
             }
 
             ViewData["errorMessage"] = result.Message;

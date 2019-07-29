@@ -6,6 +6,5 @@ namespace Okapia.Domain.Contracts
 {
     public interface IUserGroupRepository
     {
-        void Detach(int groupId, long userId);
     }
 }

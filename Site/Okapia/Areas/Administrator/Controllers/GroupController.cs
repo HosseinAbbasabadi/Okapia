@@ -90,5 +90,12 @@ namespace Okapia.Areas.Administrator.Controllers
             var referer = Request.Headers["Referer"].ToString();
             return Redirect(referer);
         }
+
+        public ActionResult Clear(int id)
+        {
+            var result = _groupApplication.ClearGroup(id);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
+        }
     }
 }

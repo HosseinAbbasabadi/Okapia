@@ -38,14 +38,19 @@
             </a>
           </div>
 
-          <p class="text-muted m-0">@auth?.Role</p>
+          <p class="text-muted m-0">@Constants.Roles.ToList().FirstOrDefault(x => x.Id == auth?.Role)?.Name</p>
         </div>
       </div>
       <!--- Divider -->
       <div id="sidebar-menu">
         <ul>
           <li>
-            <a asp-action="EditCustomer" asp-controller="Home" asp-area="Customer">
+            <a asp-action="Index" asp-controller="Home" asp-area="Customer">
+              <i class="md md-home"></i><span> صفحه اصلی </span>
+            </a>
+          </li>
+          <li>
+            <a asp-action="Index" asp-controller="UserInfo" asp-area="Customer">
               <i class="md md-home"></i><span> اطلاعات کاربری </span>
             </a>
           </li>
@@ -88,6 +93,12 @@
                 <a href="#">کل سود به ازای شخص معرفی شده</a>
               </li>
             </ul>
+          </li>
+          <li>
+            <a asp-action="Logout" asp-controller="Account" asp-area="" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>خروج</span>
+            </a>
           </li>
         </ul>
       </div>

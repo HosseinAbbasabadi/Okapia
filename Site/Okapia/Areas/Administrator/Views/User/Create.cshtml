@@ -173,13 +173,25 @@
 </div>
 <script>
   function makeCardNumber(inputId) {
-    var value = $(`#${inputId}`).val();
-    debugger 
-    const seg1 = value.substring(0, 4);
-    const seg2 = value.substring(4, 8);
-    const seg3 = value.substring(8, 12);
-    const seg4 = value.substring(12, 16);
-    const result = `${seg1}-${seg2}-${seg3}-${seg4}`;
-    $(`#${inputId}`).val(result);
+    //const value = $(`#${inputId}`).val();
+    //if (value.length === 4) {
+    //  $(`#${inputId}`).val(`${value}-`);
+    //}
+    //if (value.length === 9) {
+    //  $(`#${inputId}`).val(`${value}-`);
+    //}
+    //if (value.length === 14) {
+    //  $(`#${inputId}`).val(`${value}-`);
+    //}
+    //if (value.length === 19) {
+    //  $(`#${inputId}`).val(`${value}-`);
+    //}
+    
+    //const seg1 = value.substring(0, 4);
+    //const seg2 = value.substring(4, 8);
+    //const seg3 = value.substring(8, 12);
+    //const seg4 = value.substring(12, 16);
+    //const result = `${seg1}-${seg2}-${seg3}-${seg4}`;
+    //$(`#${inputId}`).val(result);
   }
 </script>

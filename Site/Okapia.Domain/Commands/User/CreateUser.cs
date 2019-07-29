@@ -14,6 +14,10 @@ namespace Okapia.Domain.Commands.User
         private string _card4;
         private string _card5;
         private string _card6;
+        private string _card7;
+        private string _card8;
+        private string _card9;
+        private string _card10;
 
         [Display(Name = "نام فارسی")]
         [RegularExpression(@"^[\u0600-\u06FF|^ ]+$", ErrorMessage = ValidationMessages.PersianText)]
@@ -136,6 +140,42 @@ namespace Okapia.Domain.Commands.User
         {
             get => _card6;
             set => _card6 = value.ToEnglishNumber();
+        }
+
+        [Display(Name = "شماره کارت هفتم")]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = ValidationMessages.CardStringLength)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        public string Card7
+        {
+            get => _card7;
+            set => _card7 = value.ToEnglishNumber();
+        }
+
+        [Display(Name = "شماره کارت هشتم")]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = ValidationMessages.CardStringLength)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        public string Card8
+        {
+            get => _card8;
+            set => _card8 = value.ToEnglishNumber();
+        }
+
+        [Display(Name = "شماره کارت نهم")]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = ValidationMessages.CardStringLength)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        public string Card9
+        {
+            get => _card9;
+            set => _card9 = value.ToEnglishNumber();
+        }
+
+        [Display(Name = "شماره کارت دهم")]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = ValidationMessages.CardStringLength)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        public string Card10
+        {
+            get => _card10;
+            set => _card10 = value.ToEnglishNumber();
         }
 
         public SelectList Provinces { get; set; }

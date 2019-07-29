@@ -58,7 +58,6 @@ namespace Okapia.Application.Applications
             {
                 var city = _cityRepository.GetCity(id);
                 city.IsDeleted = true;
-                _cityRepository.Update(city);
                 _cityRepository.SaveChanges();
             }
             catch (Exception exception)
@@ -74,7 +73,6 @@ namespace Okapia.Application.Applications
             {
                 var city = _cityRepository.GetCity(id);
                 city.IsDeleted = false;
-                _cityRepository.Update(city);
                 _cityRepository.SaveChanges();
             }
             catch (Exception exception)

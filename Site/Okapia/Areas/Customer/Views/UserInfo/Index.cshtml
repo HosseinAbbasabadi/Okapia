@@ -1,0 +1,203 @@
+﻿@model Okapia.Domain.ViewModels.User.UserDetailsViewModel
+
+@{
+  ViewData["Title"] = "View";
+  //Layout = "_Layout";
+}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">اطلاعات کاربری</h2>
+      </div>
+      <hr/>
+      <div class="panel-body">
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Name):
+            <span>@Html.DisplayFor(model => model.Name)</span>
+          </div>
+        </div>
+
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Family):
+            <span>@Html.DisplayFor(model => model.Family)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.NameEn):
+            <span>@Html.DisplayFor(model => model.NameEn)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.FamilyEn):
+            <span>@Html.DisplayFor(model => model.FamilyEn)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Username):
+            <span>@Html.DisplayFor(model => model.Username)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.UserNationalCode):
+            <span>@Html.DisplayFor(model => model.UserNationalCode)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.UserPhoneNumber):
+            <span>@Html.DisplayFor(model => model.UserPhoneNumber)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.UserProvince):
+            <span>@Html.DisplayFor(model => model.UserProvince)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.UserCity):
+            <span>@Html.DisplayFor(model => model.UserCity)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.District):
+            <span>@Html.DisplayFor(model => model.District)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Neighborhood):
+            <span>@Html.DisplayFor(model => model.Neighborhood)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.UserAddress):
+            <span>@Html.DisplayFor(model => model.UserAddress)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.UserPostalCode):
+            <span>@Html.DisplayFor(model => model.UserPostalCode)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.UserEmail):
+            <span>@Html.DisplayFor(model => model.UserEmail)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.UserBirthDate):
+            <span>@Html.DisplayFor(model => model.UserBirthDate)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.UserRegistrationDate):
+            <span>@Html.DisplayFor(model => model.UserRegistrationDate)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Username):
+            <span>@Html.DisplayFor(model => model.Username)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Card1):
+            <span>@Html.DisplayFor(model => model.Card1)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Card2):
+            <span>@Html.DisplayFor(model => model.Card2)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Card3):
+            <span>@Html.DisplayFor(model => model.Card3)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Card4):
+            <span>@Html.DisplayFor(model => model.Card4)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Card5):
+            <span>@Html.DisplayFor(model => model.Card5)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Card6):
+            <span>@Html.DisplayFor(model => model.Card6)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Card7):
+            <span>@Html.DisplayFor(model => model.Card7)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Card8):
+            <span>@Html.DisplayFor(model => model.Card8)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Card9):
+            <span>@Html.DisplayFor(model => model.Card9)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Card10):
+            <span>@Html.DisplayFor(model => model.Card10)</span>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <a class="btn btn-sm btn-info">ویرایش</a>
+            <a class="btn btn-sm btn-inverse" onclick="openChangePasswordModal('@Model.AccountId')">تغییر کلمه رمز</a>
+          </div>
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="changePasswordDiv">
+
+</div>
+
+<script>
+
+  function openChangePasswordModal(id) {
+    openModalWithData(`@Url.Action("ChnagePassword", "Account", new {area = ""})/${id}`,
+      'changePasswordDiv',
+      'changePasswordModal');
+  }
+</script>

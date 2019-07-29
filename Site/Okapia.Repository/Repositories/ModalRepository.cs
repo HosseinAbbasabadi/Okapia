@@ -20,7 +20,7 @@ namespace Okapia.Repository.Repositories
 
         public Modal GetModal(int id)
         {
-            return _context.Modals.AsNoTracking().FirstOrDefault(x => x.ModalId == id);
+            return _context.Modals.FirstOrDefault(x => x.ModalId == id);
         }
 
         public EditModal GetModalDetails(int id)

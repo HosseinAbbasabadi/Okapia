@@ -20,7 +20,6 @@ namespace Okapia.Application.Applications
         private readonly ICityApplication _cityApplication;
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
-        private readonly IGroupRepository _groupRepository;
 
         public UserApplication(IUserRepository userRepository, IPasswordHasher passwordHasher,
             IAccountRepository accountRepository, ICityApplication cityApplication,
@@ -33,7 +32,6 @@ namespace Okapia.Application.Applications
             _cityApplication = cityApplication;
             _districtApplication = districtApplication;
             _neighborhoodApplication = neighborhoodApplication;
-            _groupRepository = groupRepository;
         }
 
         public OperationResult Create(CreateUser command)
@@ -131,12 +129,11 @@ namespace Okapia.Application.Applications
             try
             {
                 var user = _userRepository.GetUser(command.Id);
-                var userAccount = user.Account;
                 command.BirthDateG = command.BirthDate.ToGeorgianDateTime();
 
-                userAccount.Username = command.Username;
-                userAccount.IsDeleted = command.IsDeleted;
-                userAccount.RoleId = Constants.Roles.User.Id;
+                user.Account.Username = command.Username;
+                user.Account.IsDeleted = command.IsDeleted;
+                user.Account.RoleId = Constants.Roles.User.Id;
 
                 user.UserFirstName = command.Name;
                 user.UserLastName = command.Family;
@@ -161,7 +158,6 @@ namespace Okapia.Application.Applications
                 user.UserCards[3].CardNumber = command.Card4;
                 user.UserCards[4].CardNumber = command.Card5;
                 user.UserCards[5].CardNumber = command.Card6;
-                _userRepository.Update(user);
                 _userRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -190,7 +186,7 @@ namespace Okapia.Application.Applications
                 //var users = Search(searchModel, out var recordCount);
                 //var group = _groupRepository.GetGroup(id);
                 //group.UserGroups = MapUsersToUserGroups(id, users);
-                
+
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
                 return result;
@@ -213,6 +209,11 @@ namespace Okapia.Application.Applications
             user.Neighborhoods =
                 new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(user.DistrictId), "Id", "Name");
             return user;
+        }
+
+        public UserDetailsViewModel GetUserInfo(long id)
+        {
+            return _userRepository.GetUserInfo(id);
         }
 
         public List<UserViewModel> Search(UserSearchModel searchModel, out int recordCount)

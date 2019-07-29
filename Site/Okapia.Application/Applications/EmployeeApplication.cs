@@ -116,8 +116,6 @@ namespace Okapia.Application.Applications
                 employee.Account.Username = command.EmployeeUsername;
                 employee.Account.IsDeleted = command.EmployeeIsDeleted;
                 employee.EmployeeControllers = MapEmployeeControllersForCreate(command.SelectedControllers);
-
-                _employeeRepository.Attach(employee);
                 _employeeRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

@@ -20,7 +20,6 @@ namespace Okapia.Domain.ViewModels.User
         [Display(Name = "ایمیل")] public string UserEmail { get; set; }
         [Display(Name = "تاریخ تولد")] public string UserBirthDate { get; set; }
         [Display(Name = "تاریخ ثبت نام")] public string UserRegistrationDate { get; set; }
-        [Display(Name = "نام کاربری")] public string UserName { get; set; }
         public long AccountId { get; set; }
         public bool IsDeleted { get; set; }
     }
