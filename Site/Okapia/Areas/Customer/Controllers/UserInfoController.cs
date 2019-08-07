@@ -1,10 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
+using Okapia.Areas.Administrator.Controllers;
+using Okapia.Domain.Commands.User;
 
 namespace Okapia.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Authorize(Roles = "1")]
     public class UserInfoController : Controller
     {
         private readonly IUserApplication _userApplication;
@@ -53,27 +58,23 @@ namespace Okapia.Areas.Customer.Controllers
             }
         }
 
-        // GET: UserInfo/Edit/5
-        public ActionResult Edit(int id)
+
+        public ActionResult Edit(long id, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
-            return View();
+            var userDetails = _userApplication.GetUserDetails(id);
+            userDetails.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
+            ViewData["redirectUrl"] = redirectUrl;
+            return View("Edit", userDetails);
         }
 
         // POST: UserInfo/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public JsonResult Edit(long id, EditUser command)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            command.Id = id;
+            var result = _userApplication.EditByUser(command);
+            return Json(result);
         }
 
         // GET: UserInfo/Delete/5

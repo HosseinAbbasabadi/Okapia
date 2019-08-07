@@ -1,6 +1,5 @@
 ﻿function getList(sourceDropdown, action, distDropdown) {
   var id = $(sourceDropdown).val();
-  debugger;
   $.ajax({
     url: action + '/' + id,
     type: 'Get',
@@ -52,6 +51,11 @@ function string_to_slug(str) {
 }
 
 function openModalWithData(url, containerName, modalName) {
+  jQuery(document).ready(function () {
+    jQuery(".select2").select2({
+      width: '100%'
+    });
+  });
   $.ajax({
     url: url,
     type: "Get",
@@ -151,7 +155,6 @@ function createEntityWithBodyThenReferesh(url, body) {
   for (instance in CKEDITOR.instances) {
     CKEDITOR.instances[instance].updateElement();
   }
-  debugger;
   $.post(url,
     body,
     function(operationResult) {

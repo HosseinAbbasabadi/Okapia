@@ -1,3 +1,10 @@
+/**
+* Theme: Montran Admin Template
+* Author: Coderthemes
+* Module/App: Main Js
+*/
+
+
 !function($) {
     "use strict";
 
@@ -209,27 +216,27 @@ function($) {
     },
     
      //on doc load
-    // MoltranApp.prototype.onDocReady = function(e) {
-    //   FastClick.attach(document.body);
-    //   resizefunc.push("initscrolls");
-    //   resizefunc.push("changeptype");
+    MoltranApp.prototype.onDocReady = function(e) {
+      FastClick.attach(document.body);
+      resizefunc.push("initscrolls");
+      resizefunc.push("changeptype");
 
-    //   $('.animate-number').each(function(){
-    //     $(this).animateNumbers($(this).attr("data-value"), true, parseInt($(this).attr("data-duration"))); 
-    //   });
+      $('.animate-number').each(function(){
+        $(this).animateNumbers($(this).attr("data-value"), true, parseInt($(this).attr("data-duration"))); 
+      });
     
-    //   //RUN RESIZE ITEMS
-    //   $(window).resize(debounce(resizeitems,100));
-    //   $("body").trigger("resize");
+      //RUN RESIZE ITEMS
+      $(window).resize(debounce(resizeitems,100));
+      $("body").trigger("resize");
 
-    //   // right side-bar toggle
-    //   $('.right-bar-toggle').on('click', function(e){
-    //       e.preventDefault();
-    //       $('#wrapper').toggleClass('right-bar-enabled');
-    //   }); 
+      // right side-bar toggle
+      $('.right-bar-toggle').on('click', function(e){
+          e.preventDefault();
+          $('#wrapper').toggleClass('right-bar-enabled');
+      }); 
 
       
-    // },
+    },
     //initilizing 
     MoltranApp.prototype.init = function() {
         var $this = this;
@@ -346,7 +353,6 @@ function initscrolls(){
       });
   }
 }
-
 function toggle_slimscroll(item){
     if($("#wrapper").hasClass("enlarged")){
       $(item).css("overflow","inherit").parent().css("overflow","inherit");
@@ -356,3 +362,13 @@ function toggle_slimscroll(item){
       $(item). siblings(".slimScrollBar").css("visibility","visible");
     }
 }
+
+var wow = new WOW(
+  {
+    boxClass: 'wow', // animated element css class (default is wow)
+    animateClass: 'animated', // animation css class (default is animated)
+    offset: 50, // distance to the element when triggering the animation (default is 0)
+    mobile: false        // trigger animations on mobile devices (true is default)
+  }
+);
+wow.init();

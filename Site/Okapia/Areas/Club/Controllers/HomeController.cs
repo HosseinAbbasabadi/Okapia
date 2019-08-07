@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Okapia.Areas.Club.Controllers
 {
     [Area("Club")]
+    [Authorize(Roles = "3")]
     public class HomeController : Controller
     {
         // GET: /<controller>/

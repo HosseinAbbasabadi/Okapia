@@ -63,6 +63,12 @@ namespace Okapia.Configuration
             services.AddScoped<IMarketerApplication, MarketerApplication>();
             services.AddScoped<IMarketerRepository, MarketerRepository>();
 
+            services.AddScoped<IPageApplication, PageApplication>();
+            services.AddScoped<IPageRepository, PageRepository>();
+
+            services.AddScoped<IPageCategoryApplication, PageCategoryApplication>();
+            services.AddScoped<IPageCategoryRepository, PageCategoryRepository>();
+
             services.AddSingleton<IAuthHelper, AuthHelper>();
 
             services.AddScoped<IUserGroupRepository, UserGroupRepository>();

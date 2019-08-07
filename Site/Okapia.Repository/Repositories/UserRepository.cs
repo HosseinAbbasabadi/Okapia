@@ -8,6 +8,7 @@ using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels;
 using Okapia.Domain.ViewModels.User;
+using Z.EntityFramework.Plus;
 
 namespace Okapia.Repository.Repositories
 {
@@ -176,7 +177,8 @@ namespace Okapia.Repository.Repositories
                     UserNeighborhoodId = user.UserNeighborhoodId,
                     UserEmail = user.UserEmail,
                     AccountId = user.Account.Id,
-                    IsDeleted = user.Account.IsDeleted
+                    IsDeleted = user.Account.IsDeleted,
+                    UserGroups = user.UserGroups.ToList()
                 };
 
             if (!string.IsNullOrEmpty(searchModel.UserFirstName))
@@ -197,12 +199,16 @@ namespace Okapia.Repository.Repositories
                 query = query.Where(x => x.UserDistrictId == searchModel.UserDistrictId);
             if (searchModel.UserNeighborhoodId != 0)
                 query = query.Where(x => x.UserNeighborhoodId == searchModel.UserNeighborhoodId);
+            //if (searchModel.UserGroupId != 0)
+            //    query = query.Where(x => x.UserGroups.Where(t => t.GroupId == searchModel.UserGroupId));
             query = query.Where(x => x.IsDeleted == searchModel.IsDeleted);
+
+            recordCount = query.Count();
+
             query = query.OrderByDescending(x => x.UserId)
                 .Skip(searchModel.PageIndex * searchModel.PageSize)
                 .Take(searchModel.PageSize);
 
-            recordCount = query.Count();
             return query.ToList();
         }
     }

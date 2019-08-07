@@ -9,8 +9,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using Okapia.Application.Utilities;
-using Okapia.Helpers;
-using Okapia.Repository;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
@@ -105,6 +103,8 @@ namespace Okapia.Areas.Administrator.Controllers
                 containingFoler = "JobPhotos";
             if (type == "Modal")
                 containingFoler = "ModalPhotos";
+            if (type == "pageCategory")
+                containingFoler = "PageCategoryPhotos";
             return containingFoler;
         }
     }

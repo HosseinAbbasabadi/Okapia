@@ -19,27 +19,30 @@ namespace Okapia.Application.Applications
         private readonly IJobRepository _jobRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IAuthHelper _authHelper;
-        private readonly ICityApplication _cityApplication;
-        private readonly IDistrictApplication _districtApplication;
-        private readonly INeighborhoodApplication _neighborhoodApplication;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IJobRequestRepository _jobRequestRepository;
         private readonly IMarketerApplication _marketerApplication;
+        private readonly ICategoryApplication _categoryApplication;
+        private readonly ICityRepository _cityRepository;
+        private readonly IDistrictRepository _districtRepository;
+        private readonly INeighborhoodRepository _neighborhoodRepository;
 
         public JobApplication(IJobRepository jobRepository, IAccountRepository accountRepository,
-            IAuthHelper authHelper, ICityApplication cityApplication, IDistrictApplication districtApplication,
-            INeighborhoodApplication neighborhoodApplication, IPasswordHasher passwordHasher,
-            IJobRequestRepository jobRequestRepository, IMarketerApplication marketerApplication)
+            IAuthHelper authHelper, IPasswordHasher passwordHasher, IJobRequestRepository jobRequestRepository,
+            IMarketerApplication marketerApplication,
+            ICategoryApplication categoryApplication, ICityRepository cityRepository,
+            IDistrictRepository districtRepository, INeighborhoodRepository neighborhoodRepository)
         {
             _jobRepository = jobRepository;
             _accountRepository = accountRepository;
             _authHelper = authHelper;
-            _cityApplication = cityApplication;
-            _districtApplication = districtApplication;
-            _neighborhoodApplication = neighborhoodApplication;
             _passwordHasher = passwordHasher;
             _jobRequestRepository = jobRequestRepository;
             _marketerApplication = marketerApplication;
+            _categoryApplication = categoryApplication;
+            _cityRepository = cityRepository;
+            _districtRepository = districtRepository;
+            _neighborhoodRepository = neighborhoodRepository;
         }
 
         public OperationResult Create(CreateJob command)
@@ -195,12 +198,15 @@ namespace Okapia.Application.Applications
         {
             var jobDetails = _jobRepository.GetJobDetails(id);
             jobDetails.Citeies =
-                new SelectList(_cityApplication.GetCitiesBy(jobDetails.JobProvienceId), "Id", "Name");
+                new SelectList(_cityRepository.Get(x => x.ProvinceId == jobDetails.JobProvienceId), "Id", "Name");
             jobDetails.Districts =
-                new SelectList(_districtApplication.GetDistrictsBy(jobDetails.JobCityId), "Id", "Name");
+                new SelectList(_districtRepository.Get(x => x.CityId == jobDetails.JobCityId), "Id", "Name");
             jobDetails.Neighborhoods =
-                new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(jobDetails.JobDistrictId), "Id", "Name");
-            jobDetails.Marketers = new SelectList(_marketerApplication.GetMarketers(), "MarketerId", "MarketerFullName");
+                new SelectList(_neighborhoodRepository.Get(x => x.DistrictId == jobDetails.JobDistrictId), "Id",
+                    "Name");
+            jobDetails.Marketers =
+                new SelectList(_marketerApplication.GetMarketers(), "MarketerId", "MarketerFullName");
+            jobDetails.Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName");
             return jobDetails;
         }
 
@@ -210,7 +216,8 @@ namespace Okapia.Application.Applications
             {
                 JobName = command.JobName,
                 JobSmallDescription = command.JobSmallDescription,
-                JobDescription = command.JobDescription,
+                JobFeatures = command.JobFeatures,
+                JobDescription = command.Content,
                 JobContactTitile = command.JobContactTitile,
                 JobManagerFirstName = command.JobManagerFirstName,
                 JobManagerLastName = command.JobManagerLastName,
@@ -262,7 +269,8 @@ namespace Okapia.Application.Applications
             {
                 JobName = command.JobName,
                 JobSmallDescription = command.JobSmallDescription,
-                JobDescription = command.JobDescription,
+                JobFeatures = command.JobFeatures,
+                JobDescription = command.Content,
                 JobContactTitile = command.JobContactTitile,
                 JobManagerFirstName = command.JobManagerFirstName,
                 JobManagerLastName = command.JobManagerLastName,

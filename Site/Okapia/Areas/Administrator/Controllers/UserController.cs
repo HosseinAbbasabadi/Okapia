@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
@@ -35,6 +36,7 @@ namespace Okapia.Areas.Administrator.Controllers
 
             var users = _userApplication.Search(searchModel, out var recordCount);
             searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
+            searchModel.Groups = new SelectList(_groupApplication.GetGroups(), "Id", "Name");
             var userIndexViewModel = new UserIndexViewModel
             {
                 UserSearchModel = searchModel,
@@ -54,6 +56,7 @@ namespace Okapia.Areas.Administrator.Controllers
 
             var users = _userApplication.Search(searchModel, out var recordCount);
             searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
+            searchModel.Groups = new SelectList(_groupApplication.GetGroups(), "Id", "Name");
             Pager.PreparePager(searchModel, recordCount);
             ViewData["searchModel"] = searchModel;
             return View("_ListUsers", users);

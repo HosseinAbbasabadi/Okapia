@@ -20,6 +20,7 @@ namespace Okapia.Controllers
 
         public ActionResult Register()
         {
+            if (_authHelper.GetCurrnetUserInfo().IsAuthorized) return RedirectToAction("Index", "Home");
             var createUser = new CreateUser
             {
                 Provinces = new SelectList(Provinces.ToList(), "Id", "Name")
@@ -41,6 +42,7 @@ namespace Okapia.Controllers
 
         public ActionResult Login()
         {
+            if (_authHelper.GetCurrnetUserInfo().IsAuthorized) return RedirectToAction("Index", "Home");
             var login = new Login();
             return View(login);
         }

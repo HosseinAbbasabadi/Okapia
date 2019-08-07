@@ -1,0 +1,208 @@
+﻿@model Okapia.Domain.Commands.User.EditUser
+@{
+  ViewData["Title"] = "Create";
+}
+
+<h1>فرم ویرایش مشتری - @Model.Name @Model.Family</h1>
+
+<hr/>
+<div class="row">
+  <div class="col-md-12">
+    <form id="editUserFrm" method="post">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      @*<div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Name" class="control-label"></label>
+          <input asp-for="Name" class="form-control"/>
+          <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Family" class="control-label"></label>
+          <input asp-for="Family" class="form-control"/>
+          <span asp-validation-for="Family" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="NameEn" class="control-label"></label>
+          <input asp-for="NameEn" class="form-control"/>
+          <span asp-validation-for="NameEn" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="FamilyEn" class="control-label"></label>
+          <input asp-for="FamilyEn" class="form-control"/>
+          <span asp-validation-for="FamilyEn" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="NationalCardNumber" class="control-label"></label>
+          <input asp-for="NationalCardNumber" class="form-control direct-ltr"/>
+          <span asp-validation-for="NationalCardNumber" class="text-danger"></span>
+        </div>
+      </div>*@
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Username" class="control-label"></label>
+          <input asp-for="Username" class="form-control direct-ltr"/>
+          <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="BirthDate" class="control-label"></label>
+          <div class="input-group">
+            <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="left">
+              <span class="fa fa-calendar"></span>
+            </div>
+            <input asp-for="BirthDate" type="text" class="form-control" id="fromDate1" placeholder="تاریخ تولد" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PhoneNumber" class="control-label"></label>
+          <input asp-for="PhoneNumber" class="form-control direct-ltr"/>
+          <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="ProvinceId" class="control-label"></label>
+          <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="CreateProvinceDropDown" onchange="getCityList('CreateProvinceDropDown', '@Url.Action("GetCitiesByProvince", "Home", new {area = ""})', 'createCityDropDown')">
+          </select>
+          <span asp-validation-for="ProvinceId" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="CityId" class="control-label"></label>
+          <select asp-for="CityId" asp-items="@Model.Cities" class="form-control" id="createCityDropDown" onchange="getDistrictList('createCityDropDown', '@Url.Action("GetDistrictsByCity", "Home", new {area = ""})', 'createDistrictDropDown')">
+            <option value="0">شهر را انتخاب کنید...</option>
+          </select>
+          <span asp-validation-for="CityId" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="DistrictId" class="control-label"></label>
+          <select asp-for="DistrictId" asp-items="@Model.Districts" class="form-control" id="createDistrictDropDown" onchange="getDistrictList('createDistrictDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Home", new {area = ""})', 'createNeighborhoodDropDown')">
+            <option value="0">شهر را انتخاب کنید...</option>
+          </select>
+          <span asp-validation-for="DistrictId" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="NeighborhoodId" class="control-label"></label>
+          <select asp-for="NeighborhoodId" asp-items="@Model.Neighborhoods" class="form-control" id="createNeighborhoodDropDown">
+            <option value="0">شهر را انتخاب کنید...</option>
+          </select>
+          <span asp-validation-for="NeighborhoodId" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Address" class="control-label"></label>
+          <input asp-for="Address" class="form-control"/>
+          <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Postalcode" class="control-label"></label>
+          <input asp-for="Postalcode" class="form-control direct-ltr"/>
+          <span asp-validation-for="Postalcode" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Email" class="control-label"></label>
+          <input asp-for="Email" class="form-control direct-ltr"/>
+          <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Card1" class="control-label"></label>
+          <input asp-for="Card1" class="form-control direct-ltr"/>
+          <span asp-validation-for="Card1" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Card2" class="control-label"></label>
+          <input asp-for="Card2" class="form-control direct-ltr"/>
+          <span asp-validation-for="Card2" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Card3" class="control-label"></label>
+          <input asp-for="Card3" class="form-control direct-ltr"/>
+          <span asp-validation-for="Card3" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Card4" class="control-label"></label>
+          <input asp-for="Card4" class="form-control direct-ltr"/>
+          <span asp-validation-for="Card4" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Card5" class="control-label"></label>
+          <input asp-for="Card5" class="form-control direct-ltr"/>
+          <span asp-validation-for="Card5" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Card6" class="control-label"></label>
+          <input asp-for="Card6" class="form-control direct-ltr"/>
+          <span asp-validation-for="Card6" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Card7" class="control-label"></label>
+          <input asp-for="Card7" class="form-control direct-ltr"/>
+          <span asp-validation-for="Card7" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Card8" class="control-label"></label>
+          <input asp-for="Card8" class="form-control direct-ltr"/>
+          <span asp-validation-for="Card8" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Card9" class="control-label"></label>
+          <input asp-for="Card9" class="form-control direct-ltr"/>
+          <span asp-validation-for="Card9" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Card10" class="control-label"></label>
+          <input asp-for="Card10" class="form-control direct-ltr"/>
+          <span asp-validation-for="Card10" class="text-danger"></span>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="form-group">
+          <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntity('@Url.Action("Edit", "UserInfo")', 'editUserFrm')"/>
+          <a class="btn btn-warning btn-lg" href="@ViewData["redirectUrl"]">بازگشت به لیست</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

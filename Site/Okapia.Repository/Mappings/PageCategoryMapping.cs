@@ -13,7 +13,6 @@ namespace Okapia.Repository.Mappings
 
             builder.Property(e => e.PageCanonicalAddress).HasMaxLength(300);
 
-            builder.Property(e => e.PageCategoryLinkToolTip).HasMaxLength(100);
 
             builder.Property(e => e.PageCategoryMetaDesccription).HasMaxLength(200);
 
@@ -25,7 +24,7 @@ namespace Okapia.Repository.Mappings
 
             builder.Property(e => e.PageCategoryParentId).HasColumnName("PageCategoryParentID");
 
-            builder.Property(e => e.PageCategoryRegisterDate).HasColumnType("datetime");
+            builder.Property(e => e.PageCategoryRegistrationDate).HasColumnType("datetime");
 
             builder.Property(e => e.PageCategoryRemoved301InsteadUrl)
                 .HasColumnName("PageCategoryRemoved301InsteadURL")
@@ -41,10 +40,6 @@ namespace Okapia.Repository.Mappings
 
             builder.Property(e => e.PageCategorySmallPictutreAlt).HasMaxLength(400);
 
-            builder.HasOne(d => d.PageCategoryParent)
-                .WithMany(p => p.InversePageCategoryParent)
-                .HasForeignKey(d => d.PageCategoryParentId)
-                .HasConstraintName("FK_PageCategory_PageCategory");
         }
     }
 }

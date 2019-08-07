@@ -40,14 +40,14 @@
           <div class="col-md-4">
             <div class="form-group">
               <label asp-for="MarketerProvinceId" class="control-label"></label>
-              <select asp-for="MarketerProvinceId" asp-items="@Model.Provinces" class="form-control" id="provinceDropDown" onchange="getCityList('provinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'cityDropDown')"></select>
+              <select asp-for="MarketerProvinceId" asp-items="@Model.Provinces" class="select2" id="provinceDropDown" onchange="getCityList('provinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'cityDropDown')"></select>
               <span asp-validation-for="MarketerProvinceId" class="text-danger"></span>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label asp-for="MarketerCityId" class="control-label"></label>
-              <select asp-for="MarketerCityId" class="form-control" id="cityDropDown" onchange="getDistrictList('cityDropDown', '@Url.Action("GetDistrictsByCity", "District")', 'districtDropDown')">
+              <select asp-for="MarketerCityId" class="select2" id="cityDropDown" onchange="getDistrictList('cityDropDown', '@Url.Action("GetDistrictsByCity", "District")', 'districtDropDown')">
                 <option value="0">شهر مورد نظر را انتخاب کنید</option>
               </select>
               <span asp-validation-for="MarketerCityId" class="text-danger"></span>
@@ -56,7 +56,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label asp-for="MarketerDistrictId" class="control-label"></label>
-              <select asp-for="MarketerDistrictId" class="form-control" id="districtDropDown" onchange="getNeighborhoodList('districtDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Neighborhood")', 'neighborhoodDropDown')">
+              <select asp-for="MarketerDistrictId" class="select2" id="districtDropDown" onchange="getNeighborhoodList('districtDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Neighborhood")', 'neighborhoodDropDown')">
                 <option value="0">منطقه مورد نظر را انتخاب کنید</option>
               </select>
               <span asp-validation-for="MarketerDistrictId" class="text-danger"></span>
@@ -65,7 +65,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label asp-for="MarketerNeighborhoodId" class="control-label"></label>
-              <select asp-for="MarketerNeighborhoodId" class="form-control" id="neighborhoodDropDown">
+              <select asp-for="MarketerNeighborhoodId" class="select2" id="neighborhoodDropDown">
                 <option value="0">محله مورد نظر را انتخاب کنید</option>
               </select>
               <span asp-validation-for="MarketerNeighborhoodId" class="text-danger"></span>

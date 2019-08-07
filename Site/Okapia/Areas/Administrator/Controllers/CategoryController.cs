@@ -55,7 +55,7 @@ namespace Okapia.Areas.Administrator.Controllers
                 CategoryViewModels = categories
             };
         }
-        
+
         // GET: Category/Create
         public ActionResult Create()
         {
@@ -78,13 +78,12 @@ namespace Okapia.Areas.Administrator.Controllers
         public ActionResult Edit(int id, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
             var category = _categoryApplication.GetCategoryDetails(id);
-            var data = _categoryApplication.GetCategories();
-            category.Categories = new SelectList(data, "CategoryId", "CategoryName");
+            var categories = _categoryApplication.GetCategories().Where(x => x.CategoryId != id);
+            category.Categories = new SelectList(categories, "CategoryId", "CategoryName");
             ViewData["redirectUrl"] = redirectUrl;
             return View(category);
         }
 
-        // POST: Category/Edit/5
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public JsonResult Edit(int id, EditCategory command)
@@ -93,12 +92,6 @@ namespace Okapia.Areas.Administrator.Controllers
             var result = _categoryApplication.Update(command);
             return Json(result);
         }
-
-        //// GET: Category/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
 
         public ActionResult Delete(int id)
         {

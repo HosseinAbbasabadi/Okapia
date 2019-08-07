@@ -12,6 +12,7 @@ namespace Okapia.Domain.Commands.Category
         [Display(Name = "توضیحات کوتاه")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string CategorySmallDescription { get; set; }
+
         [Display(Name = "اسلاگ")] public string CategorySlug { get; set; }
         [Display(Name = "متاتگ")] public string CategoryMetaTag { get; set; }
         [Display(Name = "توضیحات متا")] public string CategoryMetaDesccription { get; set; }

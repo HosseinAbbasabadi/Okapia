@@ -23,6 +23,7 @@ namespace Okapia.Domain.Models
         public int UserCustomerIntroductionLimit { get; set; }
         public DateTime UserRegistrationDate { get; set; }
         public bool UserIsActivated { get; set; }
+        public long IntroducedBy { get; set; }
         public Account Account { get; set; }
         public ICollection<UserGroup> UserGroups { get; set; }
         public IList<UserCard> UserCards { get; set; }

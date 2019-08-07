@@ -8,7 +8,7 @@
   <div class="col-md-12">
     <div class="panel panel-border panel-primary">
       <div class="panel-heading">
-        <h2 class="panel-title">لیست مشتریان</h2>
+        <h2 class="panel-title">لیست کارمندان</h2>
       </div>
       <div class="panel-body">
         <table id="datatable" class="table table-striped table-bordered">
@@ -22,6 +22,12 @@
           </th>
           <th>
             @Html.DisplayNameFor(model => model.EmployeeLastName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.EmployeeNationalCode)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.EmployeeMobile)
           </th>
           <th>
             @Html.DisplayNameFor(model => model.EmployeeUsername)
@@ -52,6 +58,12 @@
                 @Html.DisplayFor(modelItem => item.value.EmployeeLastName)
               </td>
               <td>
+                @Html.DisplayFor(modelItem => item.value.EmployeeNationalCode)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.EmployeeMobile)
+              </td>
+              <td>
                 @Html.DisplayFor(modelItem => item.value.EmployeeUsername)
               </td>
               <td>
@@ -73,6 +85,11 @@
           }
           </tbody>
         </table>
+        <div class="row">
+          <div class="col-md-12">
+            تعداد کل رکوردها: @searchModel.RecordCount
+          </div>
+        </div>
       </div>
       <nav>
         <ul class="pagination">
@@ -82,6 +99,7 @@
             {
               EmployeeFirstName = searchModel.EmployeeFirstName,
               EmployeeLastName = searchModel.EmployeeLastName,
+              EmployeeNationalCode = searchModel.EmployeeNationalCode,
               EmployeeUsername = searchModel.EmployeeUsername,
               EmployeeIsDeleted = searchModel.EmployeeIsDeleted,
               PageSize = 4,

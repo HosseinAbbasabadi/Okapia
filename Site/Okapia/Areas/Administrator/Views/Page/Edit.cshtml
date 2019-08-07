@@ -1,0 +1,111 @@
+﻿@model Okapia.Domain.Commands.Page.EditPage
+
+@{
+  ViewData["Title"] = "ویرایش صفحه";
+}
+
+<h1>ویرایش صفحه @Model.PageTittle</h1>
+<hr/>
+<div class="row">
+  <div class="col-md-12">
+    <form method="post" id="editPageFrm">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageTittle" class="control-label"></label>
+          <input asp-for="PageTittle" class="form-control"/>
+          <span asp-validation-for="PageTittle" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageCategoryId" class="control-label"></label>
+          <select asp-for="PageCategoryId" asp-items="@Model.PageCategories" class="sellect2">
+            <option value="0">گروه را انتخاب کنید...</option>
+          </select>
+          <span asp-validation-for="PageCategoryId" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageSlug" class="control-label"></label>
+          <input asp-for="PageSlug" class="form-control"/>
+          <span asp-validation-for="PageSlug" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageMetaTag" class="control-label"></label>
+          <input asp-for="PageMetaTag" class="form-control direct-ltr"/>
+          <span asp-validation-for="PageMetaTag" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageMetaDesccription" class="control-label"></label>
+          <input asp-for="PageMetaDesccription" class="form-control direct-ltr"/>
+          <span asp-validation-for="PageMetaDesccription" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageSeohead" class="control-label"></label>
+          <input asp-for="PageSeohead" class="form-control direct-ltr"/>
+          <span asp-validation-for="PageSeohead" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageCanonicalAddress" class="control-label"></label>
+          <input asp-for="PageCanonicalAddress" class="form-control direct-ltr"/>
+          <span asp-validation-for="PageCanonicalAddress" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageSmallDescription" class="control-label"></label>
+          <textarea asp-for="PageSmallDescription" class="form-control direct-ltr"></textarea>
+          <span asp-validation-for="PageSmallDescription" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PagePublishDate" class="control-label"></label>
+          <div class="input-group">
+            <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="left">
+              <span class="fa fa-calendar"></span>
+            </div>
+            <input asp-for="PagePublishDate" type="text" class="form-control" id="fromDate1" placeholder="از تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageIsDeleted" class="control-label"></label>
+          <input asp-for="PageIsDeleted" class="form-control direct-ltr"/>
+          <span asp-validation-for="PageIsDeleted" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageRemoved301InsteadUrl" class="control-label"></label>
+          <input asp-for="PageRemoved301InsteadUrl" class="form-control direct-ltr"/>
+          <span asp-validation-for="PageRemoved301InsteadUrl" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label asp-for="Content" class="control-label"></label>
+          <textarea name="Content" asp-for="Content" class="form-control"></textarea>
+          <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Page")', 'editPageFrm', '@ViewData["redirectUrl"]')"/>
+          <a class="btn btn-warning btn-lg" href="@ViewData["redirectUrl"]">بازگشت به لیست</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

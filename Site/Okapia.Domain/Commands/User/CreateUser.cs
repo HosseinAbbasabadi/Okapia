@@ -48,23 +48,23 @@ namespace Okapia.Domain.Commands.User
         [Display(Name = "شماره موبایل")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         [StringLength(11, MinimumLength = 11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        [RegularExpression("^09[0-3][0-9]{8}$", ErrorMessage = ValidationMessages.ValidNumber)]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "استان")]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.ProvinceRange)]
         public int ProvinceId { get; set; }
 
         [Display(Name = "شهر")]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.CityRange)]
         public int CityId { get; set; }
 
         [Display(Name = "منطقه")]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.DistrictRange)]
         public int DistrictId { get; set; }
 
         [Display(Name = "محله")]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.NeighborhoodRange)]
         public int NeighborhoodId { get; set; }
 
         [Display(Name = "آدرس")]
@@ -88,9 +88,9 @@ namespace Okapia.Domain.Commands.User
         public DateTime BirthDateG { get; set; }
 
         [Display(Name = "شماره کارت اول")]
-        [StringLength(19, MinimumLength = 19, ErrorMessage = ValidationMessages.CardStringLength)]
+        [StringLength(16, MinimumLength = 16, ErrorMessage = ValidationMessages.CardStringLength)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
-        [RegularExpression("([0-9]|^-+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Card1
         {
             get => _card1;

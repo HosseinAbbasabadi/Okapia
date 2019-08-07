@@ -11,10 +11,11 @@ namespace Okapia.Domain.ViewModels.Job
         public string JobContactTitile { get; set; }
 
         [Display(Name = "نام مدیر")]
-        public string JobManagerFirstName { get; set; }
+        public string JobManagerFullname { get; set; }
 
-        [Display(Name = "نام خانوادگی مدیر")]
+        public string JobManagerFirstName { get; set; }
         public string JobManagerLastName { get; set; }
+
         [Display(Name = "شماره تلفن")]
         public string JobTel { get; set; }
         [Display(Name = "شماره موبایل")]

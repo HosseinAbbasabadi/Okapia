@@ -7,6 +7,7 @@ namespace Okapia.Domain.Models
         public long JobId { get; set; }
         public string JobName { get; set; }
         public string JobSmallDescription { get; set; }
+        public string JobFeatures { get; set; }
         public string JobDescription { get; set; }
         public string JobContactTitile { get; set; }
         public string JobManagerFirstName { get; set; }

@@ -8,46 +8,17 @@ namespace Okapia.Repository.Mappings
     {
         public void Configure(EntityTypeBuilder<Page> builder)
         {
-            builder.ToTable("Page");
-            builder.Property(e => e.PageId).HasColumnName("PageID");
+            builder.ToTable("Pages");
 
-            builder.Property(e => e.PageCanonicalAddress).HasMaxLength(300);
+            builder.HasKey(x => x.PageId);
 
-            builder.Property(e => e.PageCategoryId).HasColumnName("PageCategoryID");
-
-            builder.Property(e => e.PageMetaDesccription).HasMaxLength(200);
-
-            builder.Property(e => e.PageMetaTag).HasMaxLength(200);
-
-            builder.Property(e => e.PageRegisteringEmployeeId).HasColumnName("PageRegisteringEmployeeID");
-
-            builder.Property(e => e.PageRegistrationDate)
-                .HasColumnType("datetime")
-                .HasDefaultValueSql("(getdate())");
-
-            builder.Property(e => e.PageRemoved301InsteadUrl)
-                .HasColumnName("PageRemoved301InsteadURL")
-                .HasMaxLength(200);
-
-            builder.Property(e => e.PageSeohead)
-                .HasColumnName("PageSEOHead")
-                .HasMaxLength(400);
-
-            builder.Property(e => e.PageSlug)
-                .IsRequired()
-                .HasMaxLength(200);
-
-            builder.Property(e => e.PageSmallDescription).HasMaxLength(2000);
-
-            builder.Property(e => e.PageTittle)
-                .IsRequired()
-                .HasMaxLength(400);
+            builder.HasMany(x => x.PageComments).WithOne(x => x.Page).HasForeignKey(x => x.PageId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(d => d.PageCategory)
-                .WithMany(p => p.Page)
+                .WithMany(p => p.Pages)
                 .HasForeignKey(d => d.PageCategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Page_PageCategory");
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

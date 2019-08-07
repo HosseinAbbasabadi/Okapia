@@ -1,5 +1,4 @@
 ﻿@model List<Okapia.Domain.ViewModels.EmployeeController.AccessControllerViewModel>
-@using Microsoft.AspNetCore.WebSockets.Internal
 @using Okapia.Domain.ViewModels
 @using Constants = Okapia.Application.Utilities.Constants
 @{
@@ -17,13 +16,6 @@
       </a>
     </div>
   </div>
-  <div class="topbar-left pull-right">
-    <div class="text-center">
-      <a asp-action="Index" asp-controller="Home" asp-area="" class="logo">
-        <i class="md md-terrain"></i><span> بازگشت به سایت </span>
-      </a>
-    </div>
-  </div>
   <!-- Button mobile view to collapse sidebar menu -->
   <div class="navbar navbar-default" role="navigation">
   </div>
@@ -31,36 +23,67 @@
 <!-- Top Bar End -->
 <!-- ========== Left Sidebar Start ========== -->
 <div class="left side-menu">
-  <div class="sidebar-inner slimscrollleft">
-    <div class="user-details">
-      <div class="user-info">
-        <div class="dropdown">
-          <a asp-action="Index" asp-controller="Home" asp-area="Administrator" class="dropdown-toggle" aria-expanded="false">
-            @auth?.Username
-          </a>
-        </div>
-        <p class="text-muted m-0">@Constants.Roles.ToList().FirstOrDefault(x => x.Id == auth?.Role)?.Name</p>
-      </div>
+<div class="sidebar-inner slimscrollleft">
+<div class="user-details">
+  <div class="user-info">
+    <div class="dropdown">
+      <a asp-action="Index" asp-controller="Home" asp-area="Administrator" class="dropdown-toggle" aria-expanded="false">
+        @auth?.Username
+      </a>
     </div>
-    <!--- Divider -->
-    <div id="sidebar-menu">
-      <ul>
-        @*<li>
+    <p class="text-muted m-0">@Constants.Roles.ToList().FirstOrDefault(x => x.Id == auth?.Role)?.Name</p>
+  </div>
+</div>
+<!--- Divider -->
+<div id="sidebar-menu">
+  <ul>
+    @*<li>
       <a asp-action="Index" asp-controller="Home" asp-area="Administrator">
         <i class="md md-home"></i><span> ناحیه کاربری </span>
       </a>
     </li>*@
+    <li>
+      <a class="waves-effect">
+        <i class="fa fa-suitcase fa-2x"></i>
+        <span>مشاغل</span>
+      </a>
+      <ul class="list-unstyled">
+        @if (Model.Any(x => x.ControllerName == "Job"))
+        {
+          <li>
+            <a asp-action="Index" asp-controller="Job" asp-area="Administrator" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>مدیریت مشاغل</span>
+            </a>
+          </li>
+        }
+        @if (Model.Any(x => x.ControllerName == "Category"))
+        {
+          <li>
+            <a asp-action="Index" asp-controller="Category" asp-area="Administrator" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>مدیریت گروه های مشاغل</span>
+            </a>
+          </li>
+        }
+        @if (Model.Any(x => x.ControllerName == "JobRequest"))
+        {
+          <li>
+            <a asp-action="Index" asp-controller="Comment" asp-area="Administrator" class="waves-effect">
+              <i class="md md-home"></i>
+              <span>مدیریت درخواست های شغلی</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </li>
 
-        @*@foreach (var controller in Model)
-    {
-      <li>
-        <a asp-action="Index" asp-controller="@co" asp-area="Administrator" class="waves-effect">
-          <i class="md md-home"></i>
-          <span>@controller.ControllerPersianName</span>
-        </a>
-      </li>
-    }*@
-
+    <li>
+      <a class="waves-effect">
+        <i class="fa fa-user-plus fa-2x"></i>
+        <span>کاربران</span>
+      </a>
+      <ul class="list-unstyled">
         @if (Model.Any(x => x.ControllerName == "User"))
         {
           <li>
@@ -88,6 +111,15 @@
             </a>
           </li>
         }
+      </ul>
+    </li>
+
+    <li>
+      <a class="waves-effect">
+        <i class="fa fa-users fa-2x"></i>
+        <span>اعضا</span>
+      </a>
+      <ul>
         @if (Model.Any(x => x.ControllerName == "Employee"))
         {
           <li>
@@ -106,40 +138,19 @@
             </a>
           </li>
         }
-          @*<li>
+      </ul>
+    </li>
+
+
+    @*<li>
       <a asp-action="Index" asp-controller="Club" asp-area="Administrator" class="waves-effect">
         <i class="md md-home"></i>
         <span> مدیریت باشگاه مشتریان </span>
       </a>
     </li>*@
-        @if (Model.Any(x => x.ControllerName == "Job"))
-        {
-          <li>
-            <a asp-action="Index" asp-controller="Job" asp-area="Administrator" class="waves-effect">
-              <i class="md md-home"></i>
-              <span>مدیریت مشاغل</span>
-            </a>
-          </li>
-        }
-        @if (Model.Any(x => x.ControllerName == "Category"))
-        {
-          <li>
-            <a asp-action="Index" asp-controller="Category" asp-area="Administrator" class="waves-effect">
-              <i class="md md-home"></i>
-              <span>مدیریت گروه های مشاغل</span>
-            </a>
-          </li>
-        }
-        @if (Model.Any(x => x.ControllerName == "JobRequest"))
-        {
-          <li>
-            <a asp-action="Index" asp-controller="JobRequest" asp-area="Administrator" class="waves-effect">
-              <i class="md md-home"></i>
-              <span>مدیریت درخواست های شغلی</span>
-            </a>
-          </li>
-        }
-          @*<li>
+
+
+    @*<li>
       <a href="#" class="waves-effect">
         <i class="md md-home"></i>
         <span>گزارشات مدیریت</span>
@@ -150,7 +161,7 @@
         <li><a href="#">نمونه گزارشات مدیریت۳</a></li>
       </ul>
     </li>*@
-          @*<li>
+    @*<li>
       <a href="#" class="waves-effect">
         <i class="md md-home"></i>
         <span>گزارشات باشگاه مشتریان</span>
@@ -162,50 +173,67 @@
         <li><a href="#">تخفیف دریافتی اعضای باشگاه</a></li>
       </ul>
     </li>*@
-          @*<li>
-      <a href="#" class="waves-effect">
-        <i class="md md-home"></i>
+    <li>
+      <a class="waves-effect">
+        <i class="fa fa-pagelines"></i>
         <span>مدیریت صفحه ساز</span>
       </a>
       <ul class="list-unstyled">
-        <li><a asp-action="Index" asp-controller="Page" asp-area="Administrator">مدیریت صفحات</a></li>
-        <li><a href="#">رده بندی صفحات</a></li>
-        <li><a href="#">مدیریت کامنت ها</a></li>
-        <li><a asp-action="Index" asp-controller="Notification" asp-area="Administrator">مدیریت اعلانات</a></li>
+        @if (Model.Any(x => x.ControllerName == "Page"))
+        {
+          <li>
+            <a asp-action="Index" asp-controller="Page" asp-area="Administrator">مدیریت صفحات</a>
+          </li>
+        }
+        @if (Model.Any(x => x.ControllerName == "PageCategory"))
+        {
+          <li>
+            <a asp-action="Index" asp-controller="PageCategory" asp-area="Administrator"> مدیریت رده بندی صفحات</a>
+          </li>
+        }
+        <li>
+          <a href="#">مدیریت کامنت ها</a>
+        </li>
       </ul>
-    </li>*@
+    </li>
+    <li>
+      <a class="waves-effect">
+        <i class="fa fa-info-circle fa-2x"></i>
+        <span>مدیریت اطلاعات پایه</span>
+      </a>
+      <ul class="list-unstyled">
         <li>
-          <a class="waves-effect">
-            <i class="md md-home"></i>
-            <span>مدیریت اطلاعات پایه</span>
-          </a>
-          <ul class="list-unstyled">
-            <li>
-              <a asp-action="Index" asp-controller="City" asp-area="Administrator">شهر</a>
-            </li>
-            <li>
-              <a asp-action="Index" asp-controller="District" asp-area="Administrator">مناطق</a>
-            </li>
-            <li>
-              <a asp-action="Index" asp-controller="Neighborhood" asp-area="Administrator">محله</a>
-            </li>
-          </ul>
+          <a asp-action="Index" asp-controller="City" asp-area="Administrator">شهر</a>
         </li>
         <li>
-          <a asp-action="Logout" asp-controller="Account" asp-area="" class="waves-effect">
-            <i class="md md-home"></i>
-            <span>خروج</span>
-          </a>
+          <a asp-action="Index" asp-controller="District" asp-area="Administrator">مناطق</a>
         </li>
-        @*<li>
+        <li>
+          <a asp-action="Index" asp-controller="Neighborhood" asp-area="Administrator">محله</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a asp-action="Index" asp-controller="Home" asp-area="" class="waves-effect">
+        <i class="fa fa-home"></i>
+        <span>بازگشت به سایت</span>
+      </a>
+    </li>
+    <li>
+      <a asp-action="Logout" asp-controller="Account" asp-area="" class="waves-effect">
+        <i class="fa fa-sign-out"></i>
+        <span>خروج</span>
+      </a>
+    </li>
+    @*<li>
       <a href="task-list.html" class="waves-effect">
         <i class="md md-home"></i>
         <span> تنظیمات سایت </span>
       </a>
     </li>*@
-      </ul>
-    </div>
-    <div class="clearfix"></div>
-  </div>
+  </ul>
+</div>
+<div class="clearfix"></div>
+</div>
 </div>
 </div>

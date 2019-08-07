@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Framework;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore.Internal;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.Employee;
@@ -21,7 +20,6 @@ namespace Okapia.Application.Applications
         private readonly IControllerApplication _controllerApplication;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IControllerRepository _controllerRepository;
-        private readonly IHttpContextAccessor _contextAccessor;
 
         public EmployeeApplication(IEmployeeRepository employeeRepository, IAccountRepository accountRepository,
             IControllerApplication controllerApplication, IPasswordHasher passwordHasher,
@@ -32,7 +30,6 @@ namespace Okapia.Application.Applications
             _controllerApplication = controllerApplication;
             _passwordHasher = passwordHasher;
             _controllerRepository = controllerRepository;
-            _contextAccessor = contextAccessor;
         }
 
         public OperationResult Create(CreateEmployee command)
@@ -40,11 +37,22 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("Employees", "Create");
             try
             {
-                //Used RoleId Just For Optimized Search :)
+                if (!command.EmployeeNationalCode.IsValidNationalCode())
+                {
+                    result.Message = ApplicationMessages.InvalidNationalCode;
+                    return result;
+                }
+
                 if (_accountRepository.Exists(x => x.Username == command.EmployeeUsername,
                     x => x.RoleId == Constants.Roles.Employee.Id))
                 {
                     result.Message = ApplicationMessages.DuplicatedEmployee;
+                    return result;
+                }
+
+                if (_employeeRepository.IsDuplicated(x => x.EmployeeNationalCode == command.EmployeeNationalCode))
+                {
+                    result.Message = ApplicationMessages.DuplicatedNationalCode;
                     return result;
                 }
 
@@ -64,6 +72,8 @@ namespace Okapia.Application.Applications
                 {
                     EmployeeFirstName = command.EmployeeFirstName,
                     EmployeeLastName = command.EmployeeLastName,
+                    EmployeeNationalCode = command.EmployeeNationalCode,
+                    EmployeeMobile = command.EmployeeMobile,
                     EmployeeCreationDate = DateTime.Now,
                     EmployeeControllers = employeeControllers,
                     Account = account
@@ -113,6 +123,8 @@ namespace Okapia.Application.Applications
                 employee.EmployeeId = command.EmployeeId;
                 employee.EmployeeFirstName = command.EmployeeFirstName;
                 employee.EmployeeLastName = command.EmployeeLastName;
+                employee.EmployeeNationalCode = command.EmployeeNationalCode;
+                employee.EmployeeMobile = command.EmployeeMobile;
                 employee.Account.Username = command.EmployeeUsername;
                 employee.Account.IsDeleted = command.EmployeeIsDeleted;
                 employee.EmployeeControllers = MapEmployeeControllersForCreate(command.SelectedControllers);
@@ -138,7 +150,7 @@ namespace Okapia.Application.Applications
 
         public IEnumerable<EmployeeViewModel> GetEmployees()
         {
-            throw new NotImplementedException();
+            return _employeeRepository.GetEmployees();
         }
 
         public List<AccessControllerViewModel> GetEmployeeAccessControllers(long id)

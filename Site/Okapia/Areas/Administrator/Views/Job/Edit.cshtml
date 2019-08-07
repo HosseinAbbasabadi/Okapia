@@ -1,10 +1,10 @@
 ﻿@model Okapia.Domain.Commands.Job.EditJob
 
 @{
-  ViewData["Title"] = "Create";
+  ViewData["Title"] = "ویرایش شغل";
 }
 
-<h1>فرم اطلاح شغل @Model.JobName</h1>
+<h1>فرم ویرایش شغل @Model.JobName</h1>
 
 <hr/>
 <div class="row">
@@ -26,11 +26,18 @@
     <span asp-validation-for="JobSmallDescription" class="text-danger"></span>
   </div>
 </div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="JobFeatures" class="control-label"></label>
+    <input asp-for="JobFeatures" class="form-control"/>
+    <span asp-validation-for="JobFeatures" class="text-danger"></span>
+  </div>
+</div>
 <div class="col-md-12">
   <div class="form-group">
-    <label asp-for="JobDescription" class="control-label"></label>
-    <textarea name="JobDescription" asp-for="JobDescription" class="form-control"></textarea>
-    <span asp-validation-for="JobDescription" class="text-danger"></span>
+    <label asp-for="Content" class="control-label"></label>
+    <textarea name="Content" asp-for="Content" class="form-control"></textarea>
+    <span asp-validation-for="Content" class="text-danger"></span>
   </div>
 </div>
 <div class="col-md-4">
@@ -98,15 +105,8 @@
 </div>
 <div class="col-md-4">
   <div class="form-group">
-    <label asp-for="JobAddress" class="control-label"></label>
-    <input asp-for="JobAddress" class="form-control"/>
-    <span asp-validation-for="JobAddress" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
     <label asp-for="JobProvienceId" class="control-label"></label>
-    <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="form-control" id="provinceDropDown" onchange="getCityList('provinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'cityDropDown')"></select>
+    <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="select2" id="provinceDropDown" onchange="getCityList('provinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'cityDropDown')"></select>
     <span asp-validation-for="JobProvienceId" class="text-danger"></span>
   </div>
 </div>
@@ -114,7 +114,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobCityId" class="control-label"></label>
-    <select asp-for="JobCityId" asp-items="@Model.Citeies" class="form-control" id="cityDropDown" onchange="getDistrictList('cityDropDown', '@Url.Action("GetDistrictsByCity", "District")', 'districtDropDown')">
+    <select asp-for="JobCityId" asp-items="@Model.Citeies" class="select2" id="cityDropDown" onchange="getDistrictList('cityDropDown', '@Url.Action("GetDistrictsByCity", "District")', 'districtDropDown')">
     </select>
     <span asp-validation-for="JobCityId" class="text-danger"></span>
   </div>
@@ -122,7 +122,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobDistrictId" class="control-label"></label>
-    <select asp-for="JobDistrictId" asp-items="@Model.Districts" class="form-control" id="districtDropDown" onchange="getNeighborhoodList('districtDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Neighborhood")', 'neighborhoodDropDown')">
+    <select asp-for="JobDistrictId" asp-items="@Model.Districts" class="select2" id="districtDropDown" onchange="getNeighborhoodList('districtDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Neighborhood")', 'neighborhoodDropDown')">
     </select>
     <span asp-validation-for="JobDistrictId" class="text-danger"></span>
   </div>
@@ -130,15 +130,22 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="JobneighborhoodId" class="control-label"></label>
-    <select asp-for="JobneighborhoodId" asp-items="@Model.Neighborhoods" class="form-control" id="neighborhoodDropDown">
+    <select asp-for="JobneighborhoodId" asp-items="@Model.Neighborhoods" class="select2" id="neighborhoodDropDown">
     </select>
     <span asp-validation-for="JobneighborhoodId" class="text-danger"></span>
   </div>
 </div>
 <div class="col-md-4">
   <div class="form-group">
+    <label asp-for="JobAddress" class="control-label"></label>
+    <input asp-for="JobAddress" class="form-control" />
+    <span asp-validation-for="JobAddress" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
     <label asp-for="JobCategoryId" class="control-label"></label>
-    <select asp-for="JobCategoryId" asp-items="@Model.Categories" class="form-control">
+    <select asp-for="JobCategoryId" asp-items="@Model.Categories" class="select2">
       <option value="@Model.JobCategoryId">@Model.JobCategory</option>
     </select>
     <span asp-validation-for="JobCategoryId" class="text-danger"></span>
@@ -245,7 +252,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="MarketerId" class="control-label"></label>
-    <select asp-for="MarketerId" asp-items="@Model.Marketers" class="form-control"></select>
+    <select asp-for="MarketerId" asp-items="@Model.Marketers" class="select2"></select>
     <span asp-validation-for="MarketerId" class="text-danger"></span>
   </div>
 </div>

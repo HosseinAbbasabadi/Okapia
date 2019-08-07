@@ -20,7 +20,7 @@ namespace Okapia.Domain.Commands.JobRequest
         [Display(Name = "شماره موبایل")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        [RegularExpression("^09[0-3][0-9]{8}$", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Mobile { get; set; }
 
         [Display(Name = "شماره تفلن ثابت")]
@@ -36,7 +36,7 @@ namespace Okapia.Domain.Commands.JobRequest
         public int ProvinceId { get; set; }
 
         [Display(Name = "شهر")]
-        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.ProvinceRange)]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.CityRange)]
         public int CityId { get; set; }
 
         public SelectList Provinces { get; set; }

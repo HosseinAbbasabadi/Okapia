@@ -1,10 +1,10 @@
 ﻿@model Okapia.Domain.Commands.Category.EditCategory
 
 @{
-  ViewData["Title"] = "EditCategory";
+  ViewData["Title"] = "ویرایش گروه شغل";
 }
 
-<h1>ویرایش گروه شغل</h1>
+<h1>ویرایش گروه شغل - @Model.CategoryName</h1>
 <hr/>
 <div class="row">
   <div class="col-md-12">
@@ -62,7 +62,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="CategoryParentId" class="control-label"></label>
-          <select asp-for="CategoryParentId" asp-items="@Model.Categories" class="form-control">
+          <select asp-for="CategoryParentId" asp-items="@Model.Categories" class="select2">
             <option value="0">گروه مافوق را انتخاب کنید...</option>
           </select>
           <span asp-validation-for="CategoryParentId" class="text-danger"></span>

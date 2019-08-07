@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Framework;
-using Microsoft.EntityFrameworkCore;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
@@ -55,10 +54,11 @@ namespace Okapia.Repository.Repositories
                 query = query.Where(x => x.TrackingNumber == searchModel.TrackingNumber);
             if (searchModel.SelectedStatus != 0)
                 query = query.Where(x => x.Status == searchModel.SelectedStatus);
+            recordCount = query.Count();
 
             query = query.OrderByDescending(x => x.Id).Skip(searchModel.PageSize * searchModel.PageIndex)
                 .Take(searchModel.PageSize);
-            recordCount = query.Count();
+
             return query.ToList();
         }
     }

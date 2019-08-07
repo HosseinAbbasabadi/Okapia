@@ -1,0 +1,99 @@
+﻿@using Okapia.Domain.SeachModels
+@model Okapia.Domain.SeachModels.PageSearchModel
+<hr/>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">جستجو در صفحات</h2>
+      </div>
+      <div class="panel-body">
+        <form asp-action="Index" asp-controller="Page" method="GET">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageTittle" class="control-label"></label>
+              <input asp-for="PageTittle" class="form-control"/>
+              <span asp-validation-for="PageTittle" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryId" class="control-label"></label>
+              <select asp-for="PageCategoryId" asp-items="@Model.Categories" class="select2">
+                <option value="0">گروه را انتخاب کنید...</option>
+              </select>
+              <span asp-validation-for="PageCategoryId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageRegisteringEmployeeId" class="control-label"></label>
+              <select class="select2" asp-for="PageRegisteringEmployeeId" asp-items="@Model.Employees" >
+                <option value="0">گروه را انتخاب کنید...</option>
+              </select>
+              <span asp-validation-for="PageRegisteringEmployeeId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageFromRegistrationDate" class="control-label"></label>
+              <div class="input-group">
+                <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="left">
+                  <span class="fa fa-calendar"></span>
+                </div>
+                <input asp-for="PageFromRegistrationDate" type="text" class="form-control" id="fromDate1" placeholder="از تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageToRegistrationDate" class="control-label"></label>
+              <div class="input-group">
+                <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="false" data-placement="left">
+                  <span class="fa fa-calendar"></span>
+                </div>
+                <input asp-for="PageToRegistrationDate" type="text" class="form-control" id="toDate1" placeholder="تا تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="false" data-placement="right" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageFromPublishDate" class="control-label"></label>
+              <div class="input-group">
+                <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="left">
+                  <span class="fa fa-calendar"></span>
+                </div>
+                <input asp-for="PageFromPublishDate" type="text" class="form-control" id="fromDate1" placeholder="از تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageToPublishDate" class="control-label"></label>
+              <div class="input-group">
+                <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="false" data-placement="left">
+                  <span class="fa fa-calendar"></span>
+                </div>
+                <input asp-for="PageToPublishDate" type="text" class="form-control" id="toDate1" placeholder="تا تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="false" data-placement="right" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageIsDeleted" class="control-label"></label>
+              <input asp-for="PageIsDeleted" class="form-control"/>
+              <span asp-validation-for="PageIsDeleted" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="submit" value="جستجو" class="btn btn-primary"/>
+              <a asp-area="Administrator" asp-controller="Page" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

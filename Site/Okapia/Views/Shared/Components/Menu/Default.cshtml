@@ -1,90 +1,214 @@
-﻿@using Okapia.Application.Utilities
-@using Okapia.Domain.ViewModels
-@model Okapia.Domain.ViewModels.AccountViewModel
+﻿@model Okapia.Domain.ViewModels.AccountViewModel
 
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-  <div class="container">
-    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Okapia</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-      <ul class="navbar-nav flex-grow-1">
-        <li class="nav-item">
-          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">خانه</a>
-        </li>
-        <li class="dropdown nav-item">
-          <a href="#" class="dropdown-toggle nav-link text-dark" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> مراکز فروشگاهی <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li class="dropdown-menu-li">
-              <a href="#" class="text-dark">کرج</a>
-            </li>
-            <li class="dropdown-menu-li">
-              <a href="#" class="text-dark">لرستان</a>
-            </li>
-            <li class="dropdown-menu-li">
-              <a href="#" class="text-dark">ارومیه</a>
-            </li>
-            @*<li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>*@
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Agency">درخواست نمایندگی</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">درباره اُکاپیا</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">قوانین</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="http://eghamatyab.com/" target="_blank">گردشگری</a>
-        </li>
-        @if (!Model.IsAuthorized)
-        {
-          <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">ورود</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">ثبت نام</a>
-          </li>
-        }
-        else
-        {
-          if (Model.Role == 4 || Model.Role == 5)
-          {
-            <li class="nav-item">
-              <a class="nav-link text-primary" asp-area="Administrator" asp-controller="Home" asp-action="Index">@Model.Name خوش آمدید</a>
-            </li>
-          }
-          if (Model.Role == 2)
-          {
-            <li class="nav-item">
-              <a class="nav-link text-primary" asp-area="Job" asp-controller="Home" asp-action="Index">@Model.Name خوش آمدید</a>
-            </li>
-          }
-          if (Model.Role == 1)
-          {
-            <li class="nav-item">
-              <a class="nav-link text-primary" asp-area="Customer" asp-controller="Home" asp-action="Index">@Model.Name خوش آمدید</a>
-            </li>
-          }
-          if (Model.Role == 3)
-          {
-            <li class="nav-item">
-              <a class="nav-link text-primary" asp-area="Club" asp-controller="Home" asp-action="Index">@Model.Name خوش آمدید</a>
-            </li>
-          }
-          <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">خروج</a>
-          </li>
-        }
-
-      </ul>
+<div class="container sticky-hiden">
+  <div class="row rtl">
+    <div class="col-12 col-md-8 text-right d-flex align-items-center">
+      <form class="form-bundle" action="/tehran/search">
+        <div class="clearfix">
+          <i class="icon fa fa-search"></i>
+          <input id="search__input" name="q" type="text" autocomplete="off"
+                 placeholder="محصول,دسته یا برند ..." class="invisible-input" value="">
+          <button class="submit">جستجو</button>
+        </div>
+      </form>
     </div>
+    <div class="d-none d-md-block col-md-4">
+      <a href="/"><img src="~/assets/images/logo.png" class="logo d-inline-block align-top" alt=""></a>
+    </div>
+  </div>
+</div>
+<nav class="navbar sticky-top navbar-expand-lg main-menu">
+  <div class="container rtl">
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="menu-toggle"></span>
+    </button>
+    <a href="/" class="d-md-none float-right"><img src="~/assets/images/logo.png" class="logo d-inline-block align-top" alt=""></a>
+
+    <div class="row megamenu collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="container">
+        <ul class="items">
+          <li>
+            <a asp-controller="Home" asp-action="Index" asp-area="">
+              صفحه نخست
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              وبلاگ
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="icon-Home-Appliances icon-ml"></i>
+              لوازم خانگی
+            </a>
+            <ul class="menu-hover">
+              <li class="row">
+                <ul class="list">
+                  <li><a href="#">خوشبو کننده</a></li>
+                  <li><a href="#">دکوری</a></li>
+                  <li><a href="#">شستشو و نظافت</a></li>
+                  <li><a href="#">ظروف</a></li>
+                  <li><a href="#">گجت آشپزخانه</a></li>
+                  <li><a href="#">لوازم برقی</a></li>
+                  <li><a href="#">لوازم کاربردی خانگی</a></li>
+                </ul>
+              </li>
+              <div class="mega-side">
+                <img src="https://cdn.goldtag.net/frontend/assets/v1/desktop/build/images/tmp/home.jpg"
+                     class="image-megamenu">
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <i class="icon-Entertainment icon-ml"></i>
+              ورزشی و سرگرمی
+            </a>
+            <ul class="menu-hover">
+              <li class="row">
+                <ul class="list">
+                  <li><a href="">اسباب بازی</a></li>
+                  <li><a href="">پوشاک ورزشی</a></li>
+                  <li><a href="">کفش ورزشی</a></li>
+                  <li><a href="">گجت سرگرمی</a></li>
+                  <li><a href="">لوازم ورزشی</a></li>
+                </ul>
+              </li>
+              <div class="mega-side">
+                <img src="https://cdn.goldtag.net/frontend/assets/v1/desktop/build/images/tmp/sport.jpg"
+                     class="image-megamenu">
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="/category/کالای+دیجیتال">
+              <i class="icon-Digital icon-ml"></i>
+              کالای دیجیتال
+            </a>
+            <ul class="menu-hover">
+              <li class="row">
+                <ul class="list">
+                  <li><a href="#">صوتی و تصویری</a></li>
+                  <li><a href="#">کامپیوتر و لوازم جانبی</a> </li>
+                  <li><a href="#">گجت کالای دیجیتال</a></li>
+                  <li><a href="#">لوازم بهداشتی شخصی</a></li>
+                  <li><a href="#">لوازم جانبی موبایل</a></li>
+                  <li><a href="#">لوازم خودرو</a></li>
+                </ul>
+              </li>
+              <div class="mega-side">
+                <img src="https://cdn.goldtag.net/frontend/assets/v1/desktop/build/images/tmp/digital.jpg"
+                     class="image-megamenu">
+
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="/category/پوشاک">
+              <i class="icon-Clothing icon-ml"></i>
+              پوشاک
+            </a>
+            <ul class="menu-hover">
+              <li class="row">
+                <ul class="list">
+                  <li><a href="#">پوشاک زنانه</a></li>
+                  <li><a href="#">پوشاک مردانه</a></li>
+                  <li><a href="#">ساعت</a></li>
+                  <li><a href="#">شال و روسری</a></li>
+                  <li><a href="#">عینک</a></li>
+                  <li><a href="#">کفش</a></li>
+                  <li><a href="#">کیف</a></li>
+                  <li><a href="#">لباس کودک</a></li>
+                </ul>
+              </li>
+              <div class="mega-side">
+                <img src="https://cdn.goldtag.net/frontend/assets/v1/desktop/build/images/tmp/cloth.jpg"
+                     class="image-megamenu">
+              </div>
+            </ul>
+          </li>
+          <li>
+            <a href="/category/لوازم+شخصی">
+              <i class="icon-Products icon-ml"></i>
+              لوازم شخصی
+            </a>
+            <ul class="menu-hover">
+              <li class="row">
+                <ul class="list">
+                  <li><a href="#">ابزارآلات</a></li>
+                  <li><a href="#">زیورآلات</a></li>
+                  <li><a href="#">عطر و ادکلن</a></li>
+                  <li><a href="#">فندک و جاسوئیچی</a></li>
+                  <li><a href="#">گجت شخصی</a></li>
+                  <li>
+                    <a href="#">لوازم آرایشی و بهداشتی</a>
+                  </li>
+                  <li><a href="#">لوازم التحریر</a></li>
+                  <li><a href="#">لوازم بهداشتی مردانه</a></li>
+                </ul>
+              </li>
+              <div class="mega-side">
+                <img src="https://cdn.goldtag.net/frontend/assets/v1/desktop/build/images/tmp/personal.jpg"
+                     class="image-megamenu">
+
+              </div>
+            </ul>
+          </li>
+
+          
+          @if (!Model.IsAuthorized)
+          {
+            <li class="float-left">
+              <div class="login-btn">
+                <a asp-controller="Account" asp-action="Login">
+                  <i class="icon-signin icon-ml"></i>ورود
+                </a>
+              </div>
+            </li>
+            <li class="float-left">
+              <div class="login-btn">
+                <a asp-controller="Account" asp-action="Register">
+                  <i class="icon-signup icon-ml"></i>ثبت نام  
+                </a>
+              </div>
+            </li>
+          }
+          else
+          {
+            if (Model.Role == 4 || Model.Role == 5)
+            {
+              <li class="nav-item float-left">
+                <a class="nav-link" asp-area="Administrator" asp-controller="Home" asp-action="Index">@Model.Name خوش آمدید</a>
+              </li>
+            }
+            if (Model.Role == 2)
+            {
+              <li class="nav-item float-left">
+                <a class="nav-link" asp-area="Job" asp-controller="Home" asp-action="Index">@Model.Name خوش آمدید</a>
+              </li>
+            }
+            if (Model.Role == 1)
+            {
+              <li class="nav-item float-left">
+                <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">@Model.Name خوش آمدید</a>
+              </li>
+            }
+            if (Model.Role == 3)
+            {
+              <li class="nav-item float-left">
+                <a class="nav-link" asp-area="Club" asp-controller="Home" asp-action="Index">@Model.Name خوش آمدید</a>
+              </li>
+            }
+            <li class="nav-item float-left">
+              <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">خروج</a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
   </div>
 </nav>

@@ -10,8 +10,6 @@ namespace Okapia.Domain.Commands.Job
     {
         private string _password;
         private string _jobContractNumber;
-        private string _jobPosNameNumber;
-        private string _jobAccountNumber;
 
         [Display(Name = "عنوان")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
@@ -21,7 +19,10 @@ namespace Okapia.Domain.Commands.Job
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobSmallDescription { get; set; }
 
-        [Display(Name = "توضیح کامل")] public string JobDescription { get; set; }
+        [Display(Name = "ویژگی های شغل")]
+        public string JobFeatures { get; set; }
+
+        [Display(Name = "توضیح کامل")] public string Content { get; set; }
 
         [Display(Name = "دسته بندی شغل")]
         [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.CategoryRange)]
@@ -29,6 +30,7 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = ValidationMessages.Required)]
+        [RegularExpression(@"^[A-Za-z0-9|^ ]+$", ErrorMessage = ValidationMessages.EnghlishText)]
         public string Username { get; set; }
 
         [Display(Name = "کلمه رمز")]
@@ -64,13 +66,13 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "شماره موبایل ۱")]
         [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        [RegularExpression("^09[0-3][0-9]{8}$", ErrorMessage = ValidationMessages.ValidNumber)]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobMobile1 { get; set; }
 
         [Display(Name = "شماره موبایل ۲")]
         [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        [RegularExpression("^09[0-3][0-9]{8}$", ErrorMessage = ValidationMessages.ValidNumber)]
         public string JobMobile2 { get; set; }
 
         [Display(Name = "استان")]
@@ -106,12 +108,12 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "اسلاگ")] public string JobSlug { get; set; }
 
-        [MaxLength(50, ErrorMessage = "متاتگ نمی تواند بیش از 80 کاراکتر باشد")]
         [Display(Name = "متاتگ(Meta Tag)")]
+        [MaxLength(50, ErrorMessage = "متاتگ نمی تواند بیش از 80 کاراکتر باشد")]
         public string JobMetaTag { get; set; }
 
-        [MaxLength(120, ErrorMessage = "Meta Description نمیتواند بیش از 120 کاراکتر باشد")]
         [Display(Name = "توضیحات(Meta Description)")]
+        [MaxLength(120, ErrorMessage = "Meta Description نمیتواند بیش از 120 کاراکتر باشد")]
         public string JobMetaDesccription { get; set; }
 
         [Display(Name = "اطلاعات هد سثو")] public string JobSeohead { get; set; }
@@ -126,8 +128,6 @@ namespace Okapia.Domain.Commands.Job
         }
 
         [Display(Name = "درصد سود معرف")]
-        //[RegularExpression(@"(^\d+\.\d{0,2}$)", ErrorMessage = ValidationMessages.ValidNumber)]
-        //[Range(0, 9999999999999999.99, ErrorMessage = ValidationMessages.ValidNumber)]
         [Range(0, 99.99, ErrorMessage = ValidationMessages.ValidNumber)]
         public double JobBenefitPercentForEndCustomer { get; set; }
 
@@ -151,25 +151,22 @@ namespace Okapia.Domain.Commands.Job
 
         [Display(Name = "شماره پوز")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
-        public string JobPosNameNumber
-        {
-            get => _jobPosNameNumber;
-            set => _jobPosNameNumber = value.ToEnglishNumber();
-        }
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        public string JobPosNameNumber { get; set; }
 
         [Display(Name = "شماره حساب صاحب شغل")]
-        public string JobAccountNumber
-        {
-            get => _jobAccountNumber;
-            set => _jobAccountNumber = value.ToEnglishNumber();
-        }
+        [StringLength(16, MinimumLength = 16, ErrorMessage = ValidationMessages.CardStringLength)]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        public string JobAccountNumber { get; set; }
 
         [Display(Name = "ترتیب نمایش در لیست رده")]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public int JobShowOrderIncategory { get; set; }
 
         [Display(Name = "نمایش در صفحه اصلی")] public bool ShowInHomePage { get; set; }
 
         [Display(Name = "محدودیت در تعداد معرفی اعضا")]
+        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public int CustomerIntroductionLimit { get; set; }
 
         [Display(Name = "آیا وبسایت است")] public bool IsWebsite { get; set; }

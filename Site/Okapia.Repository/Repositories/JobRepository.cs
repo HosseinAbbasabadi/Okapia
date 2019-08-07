@@ -35,16 +35,16 @@ namespace Okapia.Repository.Repositories
             var query = from job in _context.Jobs
                 join account in _context.Accounts
                     on job.JobId equals account.ReferenceRecordId
-                join category in _context.Categories
-                    on job.JobCategory equals category.CategoryId
-                join province in _context.Provinces
-                    on job.JobProvienceId equals province.Id
-                join city in _context.Cities
-                    on job.JobCityId equals city.Id
-                join district in _context.Districts
-                    on job.JobDistrictId equals district.Id
-                join neighborhood in _context.Neighborhoods
-                    on job.JobNeighborhoodId equals neighborhood.Id
+                //join category in _context.Categories
+                //    on job.JobCategory equals category.CategoryId
+                //join province in _context.Provinces
+                //    on job.JobProvienceId equals province.Id
+                //join city in _context.Cities
+                //    on job.JobCityId equals city.Id
+                //join district in _context.Districts
+                //    on job.JobDistrictId equals district.Id
+                //join neighborhood in _context.Neighborhoods
+                //    on job.JobNeighborhoodId equals neighborhood.Id
                 where job.JobId == id
                 select new EditJob
                 {
@@ -55,18 +55,18 @@ namespace Okapia.Repository.Repositories
                     JobContactTitile = job.JobContactTitile,
                     JobTel1 = job.JobTel1,
                     JobMobile1 = job.JobMobile1,
-                    JobCategoryId = job.JobCategory,
                     IsDeleted = account.IsDeleted,
                     Username = account.Username,
-                    JobCategory = category.CategoryName,
-                    JobProvience = province.Name,
-                    JobProvienceId = province.Id,
-                    JobCity = city.Name,
-                    JobCityId = city.Id,
-                    JobDistrict = district.Name,
-                    JobDistrictId = district.Id,
-                    JobNeighborhood = neighborhood.Name,
-                    JobneighborhoodId = neighborhood.Id,
+                    JobCategoryId = job.JobCategory,
+                    //JobCategory = category.CategoryName,
+                    //JobProvience = province.Name,
+                    JobProvienceId = job.JobProvienceId,
+                    //JobCity = city.Name,
+                    JobCityId = job.JobCityId,
+                    //JobDistrict = district.Name,
+                    JobDistrictId = job.JobDistrictId,
+                    //JobNeighborhood = neighborhood.Name,
+                    JobneighborhoodId = job.JobNeighborhoodId,
                     JobAddress = job.JobAddress,
                     JobAccountNumber = job.JobAccountNumber,
                     CustomerIntroductionLimit = job.CustomerIntroductionLimit,
@@ -78,7 +78,7 @@ namespace Okapia.Repository.Repositories
                     JobBenefitPercentForEndCustomer = job.JobBenefitPercentForEndCustomer,
                     JobCanonicalAddress = job.JobCanonicalAddress,
                     JobContractNumber = job.JobContractNumber,
-                    JobDescription = job.JobDescription,
+                    Content = job.JobDescription,
                     JobDiscountPercentForCustomer = job.JobDiscountPercentForCustomer,
                     JobEmailAddress = job.JobEmailAddress,
                     JobMetaDesccription = job.JobMetaDesccription,
@@ -97,7 +97,8 @@ namespace Okapia.Repository.Repositories
                     MarketerPercentForRegisteringShop = job.MarketerPercentForRegisteringShop,
                     ShowInHomePage = job.ShowInHomePage,
                     WebsiteUrl = job.WebSiteUrl,
-                    RedirectInstead301Url = job.JobRemoved301InsteadUrl
+                    RedirectInstead301Url = job.JobRemoved301InsteadUrl,
+                    JobFeatures = job.JobFeatures
                 };
 
             var jobDetails = query.FirstOrDefault();
@@ -140,6 +141,7 @@ namespace Okapia.Repository.Repositories
                     JobName = job.JobName,
                     JobManagerFirstName = job.JobManagerFirstName,
                     JobManagerLastName = job.JobManagerLastName,
+                    JobManagerFullname = job.JobManagerFirstName + " " + job.JobManagerLastName,
                     JobContactTitile = job.JobContactTitile,
                     JobCategoryId = job.JobCategory,
                     IsDeleted = account.IsDeleted,

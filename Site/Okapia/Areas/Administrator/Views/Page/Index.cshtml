@@ -1,114 +1,16 @@
-﻿@model IEnumerable<Okapia.Areas.Administrator.Models.Page>
+﻿@model Okapia.Areas.Administrator.Models.PageIndexViewModel
 
 @{
-    ViewData["Title"] = "Index";
+  ViewData["Title"] = "مدیریت صفحات";
 }
 
-<h1>مدیریت صفحات</h1>
+<h1>صفحه مدیریت صفحات</h1>
 
-<h3>
-  <a asp-action="Create">ایجاد صفحه جدید</a>
-</h3>
+<h2>
+  <a asp-action="Create" class="btn btn-success text-lg-center">ایجاد صفحه جدید</a>
+</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PageId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageCategoryId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageTittle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageSlug)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageMetaTag)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageMetaDesccription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageSeohead)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageCanonicalAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageIsDeleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageRemoved301InsteadUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageSmallDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageContent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageRegisteringEmployeeId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageRegistrationDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageCategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageTittle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageSlug)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageMetaTag)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageMetaDesccription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageSeohead)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageCanonicalAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageIsDeleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageRemoved301InsteadUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageSmallDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageContent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageRegisteringEmployeeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PageRegistrationDate)
-            </td>
-            <td>
-                @Html.ActionLink("ویرایش", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("جزییات", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("حذف", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+@*@await Component.InvokeAsync()*@
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/Page/_SearchPages.cshtml", Model.PageSearchModel)
+@await Html.PartialAsync("~/Areas/Administrator/Views/Page/_ListPages.cshtml", Model.PageViewModels)

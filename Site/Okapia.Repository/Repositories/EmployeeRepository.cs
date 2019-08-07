@@ -41,6 +41,8 @@ namespace Okapia.Repository.Repositories
                 {
                     EmployeeId = employee.EmployeeId,
                     EmployeeFirstName = employee.EmployeeFirstName,
+                    EmployeeNationalCode = employee.EmployeeNationalCode,
+                    EmployeeMobile = employee.EmployeeMobile,
                     EmployeeIsDeleted = account.IsDeleted,
                     EmployeeLastName = employee.EmployeeLastName,
                     EmployeeUsername = account.Username,
@@ -52,6 +54,16 @@ namespace Okapia.Repository.Repositories
         public Employee GetEmployeeWithControllers(long id)
         {
             return _context.Employees.Include(x => x.EmployeeControllers).FirstOrDefault(x => x.EmployeeId == id);
+        }
+
+        public List<EmployeeViewModel> GetEmployees()
+        {
+            return _context.Employees.Include(x => x.Account).Where(x => x.Account.IsDeleted == false).Select(x =>
+                new EmployeeViewModel
+                {
+                    EmployeeId = x.EmployeeId,
+                    EmployeeFullname = x.EmployeeFirstName + " " + x.EmployeeLastName
+                }).ToList();
         }
 
         private static List<EmployeeControllerViewModel> MapEmployeeControllers(
@@ -79,6 +91,8 @@ namespace Okapia.Repository.Repositories
                     EmployeeId = employee.EmployeeId,
                     EmployeeFirstName = employee.EmployeeFirstName,
                     EmployeeLastName = employee.EmployeeLastName,
+                    EmployeeNationalCode = employee.EmployeeNationalCode,
+                    EmployeeMobile = employee.EmployeeMobile,
                     EmployeeUsername = account.Username,
                     EmployeeIsDeleted = account.IsDeleted,
                     EmployeeCreationDate = employee.EmployeeCreationDate.ToFarsi(),
@@ -88,6 +102,8 @@ namespace Okapia.Repository.Repositories
                 query = query.Where(x => x.EmployeeFirstName.Contains(searchModel.EmployeeFirstName));
             if (!string.IsNullOrEmpty(searchModel.EmployeeLastName))
                 query = query.Where(x => x.EmployeeLastName.Contains(searchModel.EmployeeLastName));
+            if (!string.IsNullOrEmpty(searchModel.EmployeeNationalCode))
+                query = query.Where(x => x.EmployeeNationalCode.Contains(searchModel.EmployeeNationalCode));
             if (!string.IsNullOrEmpty(searchModel.EmployeeUsername))
                 query = query.Where(x => x.EmployeeUsername.Contains(searchModel.EmployeeUsername));
             query = query.Where(x => x.EmployeeIsDeleted == searchModel.EmployeeIsDeleted);

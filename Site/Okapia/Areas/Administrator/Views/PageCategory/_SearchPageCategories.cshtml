@@ -1,0 +1,55 @@
+﻿@using Okapia.Domain.SeachModels
+@model Okapia.Domain.SeachModels.PageCategorySearchModel
+<hr/>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">جستجو در رده بندی صفحات</h2>
+      </div>
+      <div class="panel-body">
+        <form asp-action="Index" asp-controller="PageCategory" method="GET">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryName" class="control-label"></label>
+              <input asp-for="PageCategoryName" class="form-control"/>
+              <span asp-validation-for="PageCategoryName" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryParentId" class="control-label"></label>
+              <select asp-for="PageCategoryParentId" asp-items="@Model.Categories" class="form-control">
+                <option value="0">رده مافوق را انتخاب کنید...</option>
+              </select>
+              <span asp-validation-for="PageCategoryParentId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryRegisteringEmployeId" class="control-label"></label>
+              <select asp-for="PageCategoryRegisteringEmployeId" asp-items="@Model.Employees" class="form-control">
+                <option value="0">رده مافوق را انتخاب کنید...</option>
+              </select>
+              <span asp-validation-for="PageCategoryRegisteringEmployeId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryIsDeleted" class="control-label"></label>
+              <input asp-for="PageCategoryIsDeleted" class="form-control"/>
+              <span asp-validation-for="PageCategoryIsDeleted" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="submit" value="جستجو" class="btn btn-primary"/>
+              <a asp-area="Administrator" asp-controller="PageCategory" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

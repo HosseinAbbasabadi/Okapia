@@ -2,7 +2,7 @@
 @model Okapia.Domain.Commands.Modal.CreateModal
 
 @{
-  ViewData["Title"] = "Create";
+  ViewData["Title"] = "ایجاد اعلانیه جدید";
 }
 
 <h1>فرم ایجاد اعلانیه</h1>
@@ -60,7 +60,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="GroupId" class="control-label"></label>
-          <select asp-for="GroupId" asp-items="@Model.Groups" class="form-control">
+          <select asp-for="GroupId" asp-items="@Model.Groups" class="select2">
             <option value="0">گروه را انتخاب کنید...</option>
           </select>
           <span asp-validation-for="GroupId" class="text-danger"></span>

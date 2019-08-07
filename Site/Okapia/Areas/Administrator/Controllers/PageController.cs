@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Okapia.Application.Contracts;
+using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
+using Okapia.Domain.Commands.Page;
+using Okapia.Domain.SeachModels;
 using Okapia.Helpers;
 
 namespace Okapia.Areas.Administrator.Controllers
@@ -10,86 +13,94 @@ namespace Okapia.Areas.Administrator.Controllers
     [ServiceFilter(typeof(AuthorizeFilter))]
     public class PageController : Controller
     {
-        // GET: Page
-        public ActionResult Index()
+        private readonly IPageApplication _pageApplication;
+        private readonly IEmployeeApplication _employeeApplication;
+        private readonly IPageCategoryApplication _pageCategoryApplication;
+
+        public PageController(IPageApplication pageApplication, IPageCategoryApplication pageCategoryApplication,
+            IEmployeeApplication employeeApplication)
         {
-            var pages = new List<Page>();
-            return View(pages);
+            _pageApplication = pageApplication;
+            _pageCategoryApplication = pageCategoryApplication;
+            _employeeApplication = employeeApplication;
         }
 
-        // GET: Page/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Index(PageSearchModel searchModel)
         {
-            return View();
+            if (searchModel.PageSize == 0)
+            {
+                searchModel.PageSize = 20;
+            }
+
+            var pages = _pageApplication.Search(searchModel, out var recordCount);
+            searchModel.Categories = new SelectList(_pageCategoryApplication.GetPageCategories(), "PageCategoryId",
+                "PageCategoryName");
+            searchModel.Employees =
+                new SelectList(_employeeApplication.GetEmployees(), "EmployeeId", "EmployeeFullname");
+            var pageIndexViewModel = new PageIndexViewModel
+            {
+                PageSearchModel = searchModel,
+                PageViewModels = pages
+            };
+            Pager.PreparePager(searchModel, recordCount);
+            ViewData["searchModel"] = searchModel;
+            return View(pageIndexViewModel);
         }
 
-        // GET: Page/Create
         public ActionResult Create()
         {
-            return View();
+            var createPage = new CreatePage
+            {
+                PageCategories = new SelectList(_pageCategoryApplication.GetPageCategories(), "PageCategoryId",
+                    "PageCategoryName"),
+                Employees = new SelectList(_employeeApplication.GetEmployees(), "EmployeeId", "EmployeeFullname")
+            };
+            return View(createPage);
         }
 
-        // POST: Page/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        //[ValidateAntiForgeryToken]
+        public JsonResult Create(CreatePage command)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var result = _pageApplication.Create(command);
+            return Json(result);
         }
 
         // GET: Page/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
-            return View();
+            var pageDetails = _pageApplication.GetPageDetails(id);
+            pageDetails.PageCategories = new SelectList(_pageCategoryApplication.GetPageCategories(), "PageCategoryId",
+                "PageCategoryName");
+            pageDetails.Employees =
+                new SelectList(_employeeApplication.GetEmployees(), "EmployeeId", "EmployeeFullname");
+            ViewData["redirectUrl"] = redirectUrl;
+            return View(pageDetails);
         }
 
         // POST: Page/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        //[ValidateAntiForgeryToken]
+        public JsonResult Edit(long id, EditPage command)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            command.PageId = id;
+            var result = _pageApplication.Edit(command);
+            return Json(result);
         }
 
         // GET: Page/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long id)
         {
-            return View();
+            var result = _pageApplication.Delete(id);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
         }
 
-        // POST: Page/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Activate(long id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var result = _pageApplication.Activate(id);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
         }
     }
 }

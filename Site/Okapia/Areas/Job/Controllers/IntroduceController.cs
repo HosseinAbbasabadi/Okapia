@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Okapia.Areas.Job.Controllers
 {
     [Area("Job")]
+    [Authorize(Roles = "2")]
     public class IntroduceController : Controller
     {
         // GET: Introduce

@@ -9,7 +9,11 @@ namespace Okapia.Application.Contracts
     public interface IUserApplication
     {
         OperationResult Create(CreateUser command);
+        OperationResult Introduce(CreateUser command);
         OperationResult Edit(EditUser command);
+
+        OperationResult EditByUser(EditUser command);
+
         //OperationResult SendUsersToGroup(long id, UserSearchModel searchModel);
         EditUser GetUserDetails(long id);
         UserDetailsViewModel GetUserInfo(long id);

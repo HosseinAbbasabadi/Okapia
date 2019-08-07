@@ -49,8 +49,17 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
+                <label asp-for="UserGroupId" class="control-label"></label>
+                <select asp-for="UserGroupId" asp-items="@Model.Groups" class="select2">
+                  <option value="0">گروه را انتخاب کنید...</option>
+                </select>
+                <span asp-validation-for="UserProvinceId" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
                 <label asp-for="UserProvinceId" class="control-label"></label>
-                <select asp-for="UserProvinceId" asp-items="@Model.Provinces" class="form-control" id="searchProvinceDropDown" onchange="getCityList('searchProvinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'searchCityDropDown')">
+                <select asp-for="UserProvinceId" asp-items="@Model.Provinces" class="select2" id="searchProvinceDropDown" onchange="getCityList('searchProvinceDropDown', '@Url.Action("GetCitiesByProvince", "Home", new {area = ""})', 'searchCityDropDown')">
                 </select>
                 <span asp-validation-for="UserProvinceId" class="text-danger"></span>
               </div>
@@ -58,7 +67,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label asp-for="UserCityId" class="control-label"></label>
-                <select asp-for="UserCityId" class="form-control" id="searchCityDropDown" onchange="getCityList('searchCityDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'searchDistrictDropDown')">
+                <select asp-for="UserCityId" class="select2" id="searchCityDropDown" onchange="getCityList('searchCityDropDown', '@Url.Action("GetDistrictsByCity", "Home", new {area = ""})', 'searchDistrictDropDown')">
                   <option value="0">شهر را انتخاب کنید...</option>
                 </select>
                 <span asp-validation-for="UserCityId" class="text-danger"></span>
@@ -67,7 +76,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label asp-for="UserDistrictId" class="control-label"></label>
-                <select asp-for="UserDistrictId" class="form-control" id="searchDistrictDropDown" onchange="getCityList('searchDistrictDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'searchNeighborhoodDropDown')">
+                <select asp-for="UserDistrictId" class="select2" id="searchDistrictDropDown" onchange="getCityList('searchDistrictDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Home", new {area = ""})', 'searchNeighborhoodDropDown')">
                   <option value="0">منطقه را انتخاب کنید...</option>
                 </select>
                 <span asp-validation-for="UserDistrictId" class="text-danger"></span>
@@ -76,7 +85,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label asp-for="UserNeighborhoodId" class="control-label"></label>
-                <select asp-for="UserNeighborhoodId" class="form-control" id="searchNeighborhoodDropDown">
+                <select asp-for="UserNeighborhoodId" class="select2" id="searchNeighborhoodDropDown">
                   <option value="0">محله را انتخاب کنید...</option>
                 </select>
                 <span asp-validation-for="UserNeighborhoodId" class="text-danger"></span>
@@ -91,7 +100,7 @@
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <input type="submit" value="جستجو" class="btn btn-primary" />
+                <input type="submit" value="جستجو" class="btn btn-primary"/>
                 <a asp-area="Administrator" asp-controller="User" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
                 <a class="btn btn-purple" onclick="openSendToGroupModal()">انتقال به گروه</a>
               </div>

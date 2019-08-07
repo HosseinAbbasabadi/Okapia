@@ -2,7 +2,7 @@
 @model Okapia.Domain.Commands.Category.CreateCategory
 
 @{
-  ViewData["Title"] = "Create";
+  ViewData["Title"] = "ایجاد گروه شغل جدید";
 }
 
 <h1>فرم ایجاد گروه شغل</h1>
@@ -66,7 +66,7 @@
 <div class="col-md-4">
   <div class="form-group">
     <label asp-for="CategoryParentId" class="control-label"></label>
-    <select asp-for="CategoryParentId" asp-items="@Model.Categories" class="form-control">
+    <select class="select2" asp-for="CategoryParentId" asp-items="@Model.Categories">
       <option value="0">گروه مافوق را انتخاب کنید...</option>
     </select>
     <span asp-validation-for="CategoryParentId" class="text-danger"></span>

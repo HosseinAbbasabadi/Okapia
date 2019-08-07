@@ -38,7 +38,7 @@ namespace Okapia.Repository.Mappings
             builder.Property(e => e.UserPostalCode).HasMaxLength(20);
 
             builder.Property(e => e.UserRegistrationDate).HasColumnType("datetime");
-
+            builder.Property(x => x.IntroducedBy);
             builder.HasOne(x => x.Account).WithOne(x => x.User).HasForeignKey<Account>(x => x.ReferenceRecordId);
 
             builder.HasMany(x => x.UserCards).WithOne(x => x.User).HasForeignKey(x => x.UserId)

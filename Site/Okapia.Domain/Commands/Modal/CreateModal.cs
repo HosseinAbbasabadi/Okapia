@@ -26,7 +26,7 @@ namespace Okapia.Domain.Commands.Modal
         public DateTime EndDateG { get; set; }
 
         [Display(Name = "گروه")]
-        [Required(ErrorMessage = ValidationMessages.Required)]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.GroupRange)]
         public int GroupId { get; set; }
 
         [Display(Name = "لنیک صفحه")]

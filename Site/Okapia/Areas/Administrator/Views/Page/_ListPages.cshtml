@@ -1,0 +1,128 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@using Okapia.Domain.SeachModels
+@model IEnumerable<Okapia.Domain.ViewModels.Page.PageViewModel>
+@{
+  var searchModel = ViewData["searchModel"] as PageSearchModel;
+}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">لیست صفحات</h2>
+      </div>
+      <div class="panel-body">
+        <table id="datatable" class="table table-striped table-bordered">
+          <thead>
+          <tr>
+          <th>
+            ردیف
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.PageTittle)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.PageCategory)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.PageRegisteringEmployee)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.PageRegistrationDate)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.PagePublishDate)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.PageCommentsCount)
+          </th>
+          <th>
+            عملیات
+          </th>
+
+          </thead>
+          <tbody>
+          @foreach (var item in Model.Select((value, index) => new { index, value }))
+          {
+            <tr>
+              <td>
+                @{
+                  var index = item.index;
+                  index += 1;
+                }
+                @index
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.PageTittle)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.PageCategory)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.PageRegisteringEmployee)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.PageRegistrationDate)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.PagePublishDate)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.PageCommentsCount)
+              </td>
+              <td>
+                <a class="btn btn-sm btn-info" asp-area="Administrator" asp-controller="Page" asp-action="Edit" asp-route-id="@item.value.PageId" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>
+                @if (!item.value.PageIsDeleted)
+                {
+                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="Page" asp-action="Delete" asp-route-id="@item.value.PageId">حذف</a>
+                }
+                else
+                {
+                  <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="Page" asp-action="Activate" asp-route-id="@item.value.PageId">فعال سازی</a>
+                }
+              </td>
+            </tr>
+          }
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-md-12">
+            تعداد کل رکوردها: @searchModel.RecordCount
+          </div>
+        </div>
+      </div>
+      <nav>
+        <ul class="pagination">
+          @for (var i = 0; i < searchModel.PageCount; i++)
+          {
+            var routingSearchModel = new PageSearchModel
+            {
+              PageTittle = searchModel.PageTittle,
+              PageCategoryId = searchModel.PageCategoryId,
+              PageRegisteringEmployeeId = searchModel.PageRegisteringEmployeeId,
+              PageFromRegistrationDate = searchModel.PageFromRegistrationDate,
+              PageToRegistrationDate = searchModel.PageToRegistrationDate,
+              PageFromPublishDate = searchModel.PageFromPublishDate,
+              PageToPublishDate = searchModel.PageToPublishDate,
+              PageIsDeleted = searchModel.PageIsDeleted,
+              PageSize = 20,
+              PageIndex = i
+            };
+            if (searchModel.PageIndex == i)
+            {
+              <li class="active">
+                @Html.ActionLink((i + 1).ToString(), "Index", "Page", routingSearchModel)
+              </li>
+            }
+            else
+            {
+              <li>
+                @Html.ActionLink((i + 1).ToString(), "Index", "Page", routingSearchModel)
+              </li>
+            }
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

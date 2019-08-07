@@ -120,8 +120,7 @@ namespace Okapia.Areas.Administrator.Controllers
                 return View();
             }
         }
-
-
+        
         [HttpGet]
         public JsonResult GetDistrictsByCity(int id)
         {

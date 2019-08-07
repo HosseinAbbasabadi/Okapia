@@ -1,0 +1,118 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@using Okapia.Domain.SeachModels
+@model IEnumerable<Okapia.Domain.ViewModels.PageCategory.PageCategoryViewModel>
+@{
+  var searchModel = ViewData["searchModel"] as PageCategorySearchModel;
+}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">لیست رده بندی صفحات</h2>
+      </div>
+      <div class="panel-body">
+        <table id="datatable" class="table table-striped table-bordered">
+          <thead>
+          <tr>
+          <th>
+            ردیف
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Photo)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.PageCategoryName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.PageCategoryParent)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.PageCategoryRegisteringEmploye)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.PageCount)
+          </th>
+          <th>
+            عملیات
+          </th>
+
+          </thead>
+          <tbody>
+          @foreach (var item in Model.Select((value, index) => new { index, value }))
+          {
+            <tr>
+              <td>
+                @{
+                  var index = item.index;
+                  index += 1;
+                }
+                @index
+              </td>
+              <td>
+                <img src="~/PageCategoryPhotos/Thumbs/@item.value.Photo" with="100" height="100" />
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.PageCategoryName)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.PageCategoryParent)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.PageCategoryRegisteringEmploye)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.PageCount)
+              </td>
+              <td>
+                <a class="btn btn-sm btn-info" asp-area="Administrator" asp-controller="PageCategory" asp-action="Edit" asp-route-id="@item.value.PageCategoryId" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>
+                @if (!item.value.PageCategoryIsDeleted)
+                {
+                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="PageCategory" asp-action="Delete" asp-route-id="@item.value.PageCategoryId">حذف</a>
+                }
+                else
+                {
+                  <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="PageCategory" asp-action="Activate" asp-route-id="@item.value.PageCategoryId">فعال سازی</a>
+                }
+              </td>
+            </tr>
+          }
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-md-12">
+            تعداد کل رکوردها: @searchModel.RecordCount
+          </div>
+        </div>
+      </div>
+      <nav>
+        <ul class="pagination">
+          @for (var i = 0; i < searchModel.PageCount; i++)
+          {
+            var routingSearchModel = new PageCategorySearchModel
+            {
+              PageCategoryName = searchModel.PageCategoryName,
+              PageCategoryParentId = searchModel.PageCategoryParentId,
+              PageCategoryIsDeleted = searchModel.PageCategoryIsDeleted,
+              PageCategoryRegisteringEmployeId = searchModel.PageCategoryRegisteringEmployeId,
+              PageSize = 20,
+              PageIndex = i
+            };
+            if (searchModel.PageIndex == i)
+            {
+              <li class="active">
+                @Html.ActionLink((i + 1).ToString(), "Index", "PageCategory", routingSearchModel)
+              </li>
+            }
+            else
+            {
+              <li>
+                @Html.ActionLink((i + 1).ToString(), "Index", "PageCategory", routingSearchModel)
+              </li>
+            }
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

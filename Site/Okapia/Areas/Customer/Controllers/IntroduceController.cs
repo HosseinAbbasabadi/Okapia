@@ -1,15 +1,29 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Okapia.Application.Contracts;
+using Okapia.Domain.Commands.User;
 
 namespace Okapia.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Authorize(Roles = "1")]
     public class IntroduceController : Controller
     {
+        private readonly IUserApplication _userApplication;
+        private readonly IAuthHelper _authHelper;
+
+        public IntroduceController(IUserApplication userApplication, IAuthHelper authHelper)
+        {
+            _userApplication = userApplication;
+            _authHelper = authHelper;
+        }
+
         // GET: Introduce
         public ActionResult Index()
         {
-            return View();
+            var createUser = new CreateUser();
+            return View(createUser);
         }
 
         // GET: Introduce/Details/5
@@ -26,19 +40,11 @@ namespace Okapia.Areas.Customer.Controllers
 
         // POST: Introduce/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        //[ValidateAntiForgeryToken]
+        public JsonResult Create(CreateUser command)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var result = _userApplication.Introduce(command);
+            return Json(result);
         }
 
         // GET: Introduce/Edit/5

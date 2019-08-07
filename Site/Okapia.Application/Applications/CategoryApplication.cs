@@ -160,7 +160,7 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("Categories", "CheckJobSlugDuplication");
             try
             {
-                var slugified = Slugify.GenerateSlug(slug);
+                var slugified = slug.GenerateSlug();
                 if (_categoryRepository.Exists(x => x.CategorySlug == slugified))
                 {
                     result.Message = ApplicationMessages.DuplicatedSlug;

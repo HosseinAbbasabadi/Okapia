@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Okapia.Domain.Models;
 
 namespace Okapia.Domain.ViewModels.User
 {
@@ -22,5 +24,6 @@ namespace Okapia.Domain.ViewModels.User
         [Display(Name = "تاریخ ثبت نام")] public string UserRegistrationDate { get; set; }
         public long AccountId { get; set; }
         public bool IsDeleted { get; set; }
+        public List<UserGroup> UserGroups { get; set; }
     }
 }

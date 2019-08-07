@@ -6,7 +6,8 @@
         public const string OperationSuccess = "اطلاعات با موفقیت ثبت شد";
         public const string SystemFailure = "خطایی رخ داده است لطفا با مدیر سیستم تماس بگیرید";
         public const string EntityNotExists = "اطلاعات درخواست شده یافت نشد. لطفا پس از بروزرسانی صفحه دوباره تلاش کنید";
-        public const string DuplicatedUser = "کاربر با این کدملی قبلا ثبت نام شده است";
+        public const string DuplicatedUser = "نام کاربری تکراری است. لطفا نام کاربری جدید انتخاب کنید";
+        public const string DuplicatedNationalCode = "کاربر با این کدملی قبلا ثبت نام شده است";
         public const string DuplicatedJob = "نام کاربری برای این شغل تکراری است";
         public const string UserNotExists = "نام کاربری اشتباه است. لطفا دوباره تلاش کنید";
         public const string IncorrectPassword = "کلمه رمز اشتباه است. لطفا دوباره تلاش کنید";
@@ -19,5 +20,6 @@
         public static string NotSamePassword = "کلمه رمز و تکرار آن با هم برابر نیستند. لطفا دوباره تلاش کنید";
         public static string StartEndDateIsRequired = "تاریخ شروع و پایان اجراری است";
         public static string InvalidNationalCode = "کدملی وارد شده صحیح نیست";
+        public static string IntroducingLimitation = "اعضای معرفی شده از حد مجاز بالاتر رفته است. لطفا با مدیر سیستم تماس بگیرید";
     }
 }

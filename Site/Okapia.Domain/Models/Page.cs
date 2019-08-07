@@ -3,14 +3,9 @@ using System.Collections.Generic;
 
 namespace Okapia.Domain.Models
 {
-    public partial class Page
+    public class Page
     {
-        public Page()
-        {
-            PageComments = new HashSet<PageComments>();
-        }
-
-        public int PageId { get; set; }
+        public long PageId { get; set; }
         public int PageCategoryId { get; set; }
         public string PageTittle { get; set; }
         public string PageSlug { get; set; }
@@ -18,14 +13,15 @@ namespace Okapia.Domain.Models
         public string PageMetaDesccription { get; set; }
         public string PageSeohead { get; set; }
         public string PageCanonicalAddress { get; set; }
-        public bool? PageIsDeleted { get; set; }
+        public bool PageIsDeleted { get; set; }
         public string PageRemoved301InsteadUrl { get; set; }
         public string PageSmallDescription { get; set; }
         public string PageContent { get; set; }
-        public int PageRegisteringEmployeeId { get; set; }
+        public long PageRegisteringEmployeeId { get; set; }
         public DateTime PageRegistrationDate { get; set; }
-
-        public virtual PageCategory PageCategory { get; set; }
-        public virtual ICollection<PageComments> PageComments { get; set; }
+        public DateTime PagePublishDate { get; set; }
+        
+        public PageCategory PageCategory { get; set; }
+        public ICollection<Comments> PageComments { get; set; }
     }
 }

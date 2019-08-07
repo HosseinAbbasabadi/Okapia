@@ -1,4 +1,5 @@
-﻿@model Okapia.Domain.ViewModels.User.UserDetailsViewModel
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model Okapia.Domain.ViewModels.User.UserDetailsViewModel
 
 @{
   ViewData["Title"] = "View";
@@ -178,12 +179,10 @@
         </div>
         <div class="col-md-12">
           <div class="form-group">
-            <a class="btn btn-sm btn-info">ویرایش</a>
-            <a class="btn btn-sm btn-inverse" onclick="openChangePasswordModal('@Model.AccountId')">تغییر کلمه رمز</a>
+            <a class="btn btn-lg btn-info" asp-action="Edit" asp-controller="UserInfo" asp-area="Customer" asp-route-id="@Model.UserId" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>
+            <a class="btn btn-lg btn-inverse" onclick="openChangePasswordModal('@Model.AccountId')">تغییر کلمه رمز</a>
           </div>
         </div>
-      </div>
-      <div>
       </div>
     </div>
   </div>

@@ -1,42 +1,721 @@
 ﻿@{
   ViewData["Title"] = "Home Page";
 }
-@await Component.InvokeAsync("Notification")
-<div class="jumbotron">
-  <h1>خوش آمدید</h1>
-  <p>اسلایدشو محصولات در این قسمت قرار خواهد گرفت. توضیحاتی مربوط به صفحه اصلی سایت تخفیف اَکاپیا</p>
-  <p><a class="btn btn-primary btn-lg" href="#" role="button">درباره ما</a></p>
-</div>
 
-<div class="row">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="images/image.svg" spellcheckalt="Generic placeholder thumbnail" width="100%">
-      <div class="caption">
-        <h3>نمونه شغل</h3>
-        <p class="text-justify">توضیحات مربوط به شغل در این قسمت قرار خواهد گرفت. توضیحات مربوط به شغل در این قسمت قرار خواهد گرفت. توضیحات مربوط به شغل در این قسمت قرار خواهد گرفت. </p>
-        <p><a href="#" class="btn btn-primary" role="button">اطلاعات بیشتر</a>
+<div class="preloader">
+  <img src="/assets/images/logo.png" alt="">
+</div>
+@*<section class="hero-area owl-carousel">
+    <div class="single-hero dark-overlay" style="background: url('assets/images/hero-3.jpg') no-repeat;">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="hero-sub">
+              <div class="table-cell">
+                <div class="hero-left">
+                  <h1>تخفیف تا مرز 50%<br>با اوکاپیا</h1>
+                  <p>ساده ترین روش تخفیف برای شما</p>
+                  <a href="apply.html" class="bttn-mid btn-fill">کارت خود را بگیرید</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="single-hero dark-overlay" style="background: url('assets/images/hero-6.jpg') no-repeat;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
+            <div class="hero-sub">
+              <div class="table-cell">
+                <div class="hero-box">
+                  <h1>یک کارت هوشمند</h1>
+                  <p>با کارت خود پرداخت کنید ، تخفیف بگیرید ، بدون ارائه کارت یا کد تخفیف</p>
+                  <a href="platinum-card.html" class="bttn-mid btn-fill">بیشتر بدانید</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="single-hero dark-overlay" style="background: url('assets/images/hero-2.jpg') no-repeat;">
+      <div class="hero-sub">
+        <div class="table-cell">
+          <div class="hero-normal">
+            <p>یک پیشنهاد عالی برای شما</p>
+            <h1>کالا و خدمات خود را ارائه کنید <br>در کنار اوکاپیا</h1>
+            <a href="become-partner.html" class="bttn-mid btn-fill">همکار ما شوید</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>*@
+<!--/Hero Area-->
+
+<section class="hero-area owl-carousel">
+  <div class="single-hero dark-overlay" style="background: url('assets/images/hero-3.jpg') no-repeat;">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="hero-sub">
+            <div class="table-cell">
+              <div class="hero-left">
+                <h1>تخفیف تا مرز 50%<br>با اوکاپیا</h1>
+                <p>ساده ترین روش تخفیف برای شما</p>
+                <a href="apply.html" class="bttn-mid btn-fill">کارت خود را بگیرید</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="images/image.svg" spellcheckalt="Generic placeholder thumbnail" width="100%">
-      <div class="caption">
-        <h3>نمونه شغل</h3>
-        <p class="text-justify">توضیحات مربوط به شغل در این قسمت قرار خواهد گرفت. توضیحات مربوط به شغل در این قسمت قرار خواهد گرفت. توضیحات مربوط به شغل در این قسمت قرار خواهد گرفت. </p>
-        <p><a href="#" class="btn btn-primary" role="button">اطلاعات بیشتر</a>
+  <div class="single-hero dark-overlay" style="background: url('assets/images/hero-6.jpg') no-repeat;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
+          <div class="hero-sub">
+            <div class="table-cell">
+              <div class="hero-box">
+                <h1>یک کارت هوشمند</h1>
+                <p>با کارت خود پرداخت کنید ، تخفیف بگیرید ، بدون ارائه کارت یا کد تخفیف</p>
+                <a href="platinum-card.html" class="bttn-mid btn-fill">بیشتر بدانید</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="images/image.svg" spellcheckalt="Generic placeholder thumbnail" width="100%">
-      <div class="caption">
-        <h3>نمونه شغل</h3>
-        <p class="text-justify">توضیحات مربوط به شغل در این قسمت قرار خواهد گرفت. توضیحات مربوط به شغل در این قسمت قرار خواهد گرفت. توضیحات مربوط به شغل در این قسمت قرار خواهد گرفت. </p>
-        <p><a href="#" class="btn btn-primary" role="button">اطلاعات بیشتر</a>
+  <div class="single-hero dark-overlay" style="background: url('assets/images/hero-2.jpg') no-repeat;">
+    <div class="hero-sub">
+      <div class="table-cell">
+        <div class="hero-normal">
+          <p>یک پیشنهاد عالی برای شما</p>
+          <h1>کالا و خدمات خود را ارائه کنید <br>در کنار اوکاپیا</h1>
+          <a href="become-partner.html" class="bttn-mid btn-fill">همکار ما شوید</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Choose Card-->
+<section class="choose-card section-padding-2">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 centered">
+        <div class="section-title wow fadeInUp" data-wow-delay="0.3s">
+          <h2>اوکاپیا خرید ارزان ، درآمد مادام</h2>
+          <p>همه کارت های عضو شبکه شتاب</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+        <div class="single-card">
+          <img src="/assets/images/cards/platinum.png" alt="">
+          <div class="card-titles">
+            <h3>
+              <a href="platinum-card.html">بانک پارسیان</a>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="single-card">
+          <img src="/assets/images/cards/gold.png" alt="">
+          <div class="card-titles">
+            <h3>
+              <a href="gold-card.html">بانک ملی</a>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+        <div class="single-card">
+          <img src="/assets/images/cards/thank-you.png" alt="">
+          <div class="card-titles">
+            <h3>
+              <a href="thank-you-card.html">بانک مسکن</a>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+        <div class="single-card">
+          <img src="/assets/images/cards/gift.png" alt="">
+          <div class="card-titles">
+            <h3>
+              <a href="gift-card.html">بانک ملت</a>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/Choose Card-->
+<!--Award Area-->
+<section class="award-area section-padding-2 dark-overlay"
+         style="background: url(/assets/images/award.jpg) no-repeat fixed">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-4 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="single-award bootom-after">
+          <!-- <i class="pe-7s-medal"></i> -->
+          <i class="icon-signup icon-ml"></i>
+          <h3>عضویت رایگان</h3>
+          <p>بدون پرداخت هیچ مبلغی از امکانات اوکاپیا استفاده کنید</p>
+        </div>
+      </div>
+      <div class="col-xl-4">
+        <div class="single-award bootom-before wow fadeInUp" data-wow-delay="0.4s">
+          <!-- <i class="pe-7s-cup"></i> -->
+          <i class="fas fa-credit-card"></i>
+          <h3>خرید ارزان</h3>
+          <p>با کارت خود خرید کنید ، تخفیف بگیرید</p>
+        </div>
+      </div>
+      <div class="col-xl-4 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="single-award">
+          <!-- <i class="pe-7s-coffee"></i> -->
+          <i class="fas fa-dollar-sign"></i>
+          <h3>درآمد مادام</h3>
+          <p>با معرفی دوستان خود درآمد کسب کنید</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/Award Area-->
+<!--Our Partners-->
+<!-- <section class="our-partners section-padding gray-bg">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 centered wow fadeInUp" data-wow-delay="0.3s">
+        <div class="section-title">
+          <h2>Our Top Partners</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 mb-60 wow fadeInUp" data-wow-delay="0.4s">
+        <div class="partners-logo owl-carousel">
+          <img src="~/assets/images/partners/1.png" alt="">
+          <img src="~/assets/images/partners/2.png" alt="">
+          <img src="~/assets/images/partners/3.png" alt="">
+          <img src="~/assets/images/partners/4.png" alt="">
+          <img src="~/assets/images/partners/5.png" alt="">
+        </div>
+      </div>
+      <div class="col centered wow fadeInUp" data-wow-delay="0.5s">
+        <a href="partners.html" class="bttn-small btn-fill">Find all partners</a>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!--/Our Partners-->
+<!--Card Features Area-->
+<section class="card-features-area section-padding-2">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 centered wow fadeInUp" data-wow-delay="0.3s">
+        <div class="section-title">
+          <h2>مراکز منتخب</h2>
+          <p>برخی از مراکز سرویس دهی منتخب</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card-features-content">
+          <div class="card-features-img order-sm-1 order-1 wow fadeInLeft" data-wow-delay="0.4s"
+               style="background: url(/assets/images/blog/1.jpg) no-repeat">
+          </div>
+          <div class="card-content cl-white order-sm-2 order-2 wow fadeInRight" data-wow-delay="0.4s">
+            <h3>روایتی متفاوت از شروع جنگ جهانی سوم در مجموعه اتاق فرار انیگما</h3>
+            <p>
+              یکی از هیجان انگیزترین بازی های این روزها بازی گروهی و مهیج اتاق فرار است. شما می توانید
+              دقایقی کاملا متفاوت و همراه با هیجان را در اتاق فرار تجربه کنید. یکی از بهترین اتاق
+              فرارهای تهران اتاق فرار انیگما برج میلاد است که تنوع بسیاری در داستان ها و ژانرهای اتاق
+              فرار دارد. این پیشنهاد ویژه اوکاپیا مخصوص اوکاپیایی های عزیزی است که به هیجان و بازی
+              علاقه دارند.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card-features-content">
+          <div class="card-content cl-white order-sm-1 order-2 wow fadeInLeft" data-wow-delay="0.5s">
+            <h3>تابستون کوتاهه! تور یکروزه قلعه رودخان و مرداب سروان </h3>
+            <p>
+              گیلان گردی در تابستان یکی از تفریحات لذت بخش است. به این دلیل که این فصل گیلان خوش و آب و
+              هواست. اگر می خواهید از هوای گرم تابستانی فرار کنید می‌توانید با تور یک روزه قلعه رودخان
+              و مرداب سروان همراه شوید. قلعه رودخان قلعه‌ای تاریخی در دل گیلان است. این دژ مستحکم که
+              در قلب جنگل‌های گیلان قرار گرفته، سال‌هاست که به یک جاذبه گردشگری در گیلان تبدیل شده.
+              علاوه بر این می‌توانید از مرداب سروان هم دیدن کنید که طبیعتی بکر و هیجان انگیز است.
+            </p>
+          </div>
+          <div class="card-features-img order-sm-2 order-1 wow fadeInRight" data-wow-delay="0.5s"
+               style="background: url('/assets/images/blog/2.jpg') no-repeat">
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card-features-content">
+          <div class="card-features-img order-sm-1 order-1 wow fadeInLeft" data-wow-delay="0.4s"
+               style="background: url(/assets/images/blog/3.jpg) no-repeat">
+          </div>
+          <div class="card-content cl-white order-sm-2 order-2 wow fadeInRight" data-wow-delay="0.4s">
+            <h3>خدمات زیبایی در سالن رویای شاپرک </h3>
+            <p>
+              اوکاپیایی های عزیز بالاخره بعد از درخواست های بالای شما عزیزان اوکاپیا و سالن رویای شاپرک
+              همکاری جدیدی را آغاز کردند و از این به بعد برای خدمات زیبایی شما با هزینه ای اقتصادی
+              برنامه ویژه ای تدارک دیده اند. اوکاپیایی های عزیز، دوستان ما در سالن رویای شاپرک بی
+              صبرانه منتظر شما هستند تا خدماتی بینظیر در زمینه زیبایی را به شما ارائه دهند. برای
+              مشاهده لیست خدمات روی دکمه مشاهده کوپن کلیک نمایید
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card-features-content">
+          <div class="card-content cl-white order-sm-1 order-2 wow fadeInLeft" data-wow-delay="0.5s">
+            <h3>بوفه مجلل صبحانه در هتل پرشین پلازا</h3>
+            <p>
+              صبحانه یکی از وعده های غذایی است که اگر در کنار عزیزان و در فضایی باشکوه با کیفیتی بالا
+              ارائه شود، دلچسب تر خواهد شد. هتل پرشین پلازا بر پایه سال ها تجربه و به کار بردن مواد
+              تهیه شده به صورت روزانه، یکی از هتل های بی‌نظیر در ارائه خدمات به خصوص بوفه صبحانه است
+              که برای مشتریان خود خاطره ای خوش را رقم می‌زند. اوکاپیایی های عزیز می‌توانند از بوفه
+              صبحانه این هتل با تخفیفی استثنایی بهره ببرند.
+            </p>
+          </div>
+          <div class="card-features-img order-sm-2 order-1 wow fadeInRight" data-wow-delay="0.5s"
+               style="background: url(/assets/images/blog/4.jpg) no-repeat">
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card-features-content">
+          <div class="card-features-img order-sm-1 order-1 wow fadeInLeft" data-wow-delay="0.4s"
+               style="background: url(/assets/images/blog/5.jpg) no-repeat">
+          </div>
+          <div class="card-content cl-white order-sm-2 order-2 wow fadeInRight" data-wow-delay="0.4s">
+            <h3>پکیج تک نفره ویژه در رستوران اجاق باشی</h3>
+            <p>
+              رستوراناجاق باشی شعبه شهرک غرب رستورانی معروف، شناخته شده و تنها رستوران سلف كباب بر روی
+              هر ميز است یعنی خودتون بپزید، خودتون بخورید. پیشنهاد ما برای کسانی که از غذا خوردن لذت
+              می برند و خواستار چشیدن طعم واقعی گوشت مغان هستند. رستوران اجاق باشی با مدیریت جدید و
+              پکیج های ویژه آماده پذیرایی از شما اوکاپیایی های عزیز است تا تجربه ای بی نظیر و خوشمزه
+              را برای شما رقم بزند.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card-features-content">
+          <div class="card-content cl-white order-sm-1 order-2 wow fadeInLeft" data-wow-delay="0.5s">
+            <h3>استخر روباز بلوط ولنجک ویژه تمامی ایام هفته</h3>
+            <p>
+              در گرمای تابستان شنا کردن به سیستم بدن برای خنک ماندن در طول روز کمک می کند، استخر روباز
+              بلوط ولنجک با مساحتی در حدود ۱۰۰۰ متر و امکانات ویژه خود یکی از بهترین استخر های روباز
+              تهران است. شما می توانید در این استخر تهران از امکانات ویژه آن مانند حمام آفتاب، رستوران
+              و ... استفاده کنید. همچنین استخر بلوط ولنجک دارای محیطی تمیز وکاملا بهداشتی است که لذت
+              شنا دراین استخر را دو چندان می کند.
+            </p>
+          </div>
+          <div class="card-features-img order-sm-2 order-1 wow fadeInRight" data-wow-delay="0.5s"
+               style="background: url(/assets/images/blog/6.jpg) no-repeat">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/Card Features Area-->
+<!--Counter Area-->
+<section class="counter-area section-padding-2 dark-overlay"
+         style="background: url(/assets/images/counter.jpg) no-repeat fixed">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="single-counter">
+          <!-- <i class="pe-7s-credit"></i> -->
+          <i class="fas fa-store"></i>
+          <h3><span class="count">1500</span>+</h3>
+          <p>شعبه سرویس دهی</p>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+        <div class="single-counter active">
+          <!-- <i class="pe-7s-coffee"></i> -->
+          <i class="fas fa-user-tie"></i>
+          <h3>
+            <span class="count">1259</span>
+          </h3>
+          <p>کاربران اوکاپیا</p>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="single-counter">
+          <!-- <i class="pe-7s-medal"></i> -->
+          <i class="fas fa-money-bill-alt"></i>
+          <h3>
+            <span class="count">1284</span>
+          </h3>
+          <p>تراکنش های انجام شده</p>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+        <div class="single-counter">
+          <!-- <i class="pe-7s-stopwatch"></i> -->
+          <i class="far fa-hourglass"></i>
+          <h3>
+            <span class="count">786</span>
+          </h3>
+          <p>روز از آغاز</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/Counter Area-->
+<!--Features Area-->
+<section class="features-area section-padding-2 gray-bg">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 centered wow fadeInUp" data-wow-delay="0.3s">
+        <div class="section-title">
+          <h2>چطور از اوکاپیا استفاده کنم ؟</h2>
+          <p>استفاده از اوکاپیا بسیار ساده است</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
+        <div class="single-feature">
+          <div class="single-feature-img one">
+            <img src="~/assets/images/icons/1.png" alt="">
+          </div>
+          <h4>کارت خود را ثبت کنید</h4>
+          <p>کار را با ثبت نام رایگان و ثبت کارت خود شروع کنید</p>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="single-feature">
+          <div class="single-feature-img two">
+            <img src="~/assets/images/icons/2.png" alt="">
+          </div>
+          <h4>دوستان خود را معرفی کنید</h4>
+          <p>با معرفی کردن دوستان خود میتوانید کسب درآمد مادام داشته باشید</p>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.6s">
+        <div class="single-feature">
+          <div class="single-feature-img three">
+            <img src="~/assets/images/icons/3.png" alt="">
+          </div>
+          <h4>هر چه میخواهید بخرید</h4>
+          <p>
+            با خرید از مراکز اوکاپیا میتوانید بدون ارائه بن یا کد تخفیف ، فقط از طریق پرداخت با کارت ثبت
+            شده ، تخفیف بگیرید
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/Features Area-->
+<!--Promo Area-->
+<div class="promo-area wow flipInX" data-wow-delay="0.5s">
+  <div class="container">
+    <div class="row ">
+      <div class="col-xl-12 col-lg-12 col-md-12">
+        <div class="promo-content centered wow fadeInUp" data-wow-delay="0.7s">
+          <a href="apply.html" class="bttn-mid btn-fill">کارت خود را سفارش دهید</a>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<!--Promo Area-->
+<!--Pricing Table-->
+<!-- <section class="pricing-table section-padding-2">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 centered wow fadeInUp" data-wow-delay="0.3s">
+        <div class="section-title">
+          <h2>Pricing Plan</h2>
+          <p>This are best partners for our company</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+        <div class="single-pricing-table">
+          <div class="pricing-batch">
+            <i class="pe-7s-ribbon"></i>
+          </div>
+          <h3>Basic</h3>
+          <h4><span>$</span>25 <span>/ Monthy</span></h4>
+          <ul>
+            <li>Shop 10% Anywhere</li>
+            <li>Unlimited Shopping</li>
+            <li>World wide Supported</li>
+            <li>24/7 Customer Service</li>
+          </ul>
+          <a href="apply.html" class="bttn-mid btn-fill">Order now</a>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="single-pricing-table">
+          <div class="pricing-featured">Featured</div>
+          <div class="pricing-batch">
+            <i class="pe-7s-coffee"></i>
+          </div>
+          <h3>Advanced</h3>
+          <h4><span>$</span>49 <span>/ Monthy</span></h4>
+          <ul>
+            <li>Shop 10% Anywhere</li>
+            <li>Unlimited Shopping</li>
+            <li>World wide Supported</li>
+            <li>24/7 Customer Service</li>
+          </ul>
+          <a href="apply.html" class="bttn-mid btn-fill">Order now</a>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+        <div class="single-pricing-table">
+          <div class="pricing-batch">
+            <i class="pe-7s-box2"></i>
+          </div>
+          <h3>Pro</h3>
+          <h4><span>$</span>75 <span>/ Monthy</span></h4>
+          <ul>
+            <li>Shop 10% Anywhere</li>
+            <li>Unlimited Shopping</li>
+            <li>World wide Supported</li>
+            <li>24/7 Customer Service</li>
+          </ul>
+          <a href="apply.html" class="bttn-mid btn-fill">Order now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!--/Pricing Table-->
+<!--Parallax Area-->
+<!-- <section class="parallax-area dark-overlay section-padding" style="background: url('~/assets/images/parallax.jpg') no-repeat fixed">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 centered wow fadeInUp" data-wow-delay="0.3s">
+        <div class="newsletter-form">
+          <form action="#">
+            <input type="email" placeholder="Your Email Address" required>
+            <button type="submit">Subscribe now</button>
+          </form>
+          <p><i class="fa fa-info-circle"></i>we will never send you spam</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!--/Parallax Area-->
+<!--Team Area-->
+<!-- <section class="team-area section-padding-2">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 centered wow fadeInUp" data-wow-delay="0.3s">
+        <div class="section-title">
+          <h2>Expert Team</h2>
+          <p>Our Expert Team are always available to help you</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+        <div class="single-team">
+          <div class="single-team-img">
+            <img src="~/assets/images/team/1.jpg" alt="">
+          </div>
+          <div class="team-meta">
+            <h3>Ridoy Rajoan</h3>
+            <h5>Founder & CEO</h5>
+            <a href="#" class="twitter"><i class="fa fa-twitter"></i>ridyrajoan</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="single-team">
+          <div class="single-team-img">
+            <img src="~/assets/images/team/2.jpg" alt="">
+          </div>
+          <div class="team-meta">
+            <h3>Sonya Lindsey</h3>
+            <h5>Lead Designer</h5>
+            <a href="#" class="medium"><i class="fa fa-medium"></i>sonyalindsey</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+        <div class="single-team">
+          <div class="single-team-img">
+            <img src="~/assets/images/team/3.jpg" alt="">
+          </div>
+          <div class="team-meta">
+            <h3>Christie Banks</h3>
+            <h5>Marketing Manager</h5>
+            <a href="#" class="instagram"><i class="fa fa-instagram"></i>christiebanks</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+        <div class="single-team">
+          <div class="single-team-img">
+            <img src="~/assets/images/team/4.jpg" alt="">
+          </div>
+          <div class="team-meta">
+            <h3>Chris Bell</h3>
+            <h5>Project Manager</h5>
+            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i>chrisbell</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!--/Team Area-->
+<!--App Area-->
+<!-- <section class="app-area section-padding-2 dark-overlay" style="background: url('~/assets/images/app.jpg') no-repeat fixed">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 centered wow fadeInUp" data-wow-delay="0.3s">
+        <div class="section-title cl-white">
+          <h2>Get Our App</h2>
+          <p>Here's our own app to manage the card</p>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 centered wow fadeInUp" data-wow-delay="0.4s">
+        <div class="app-block">
+          <a href="#" class="bttn-mid btn-fill"><i class="fa fa-play"></i>Play Store</a>
+          <a href="#" class="bttn-mid btn-fill"><i class="fa fa-apple"></i>App Store</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!--/App Area-->
+<!--Blog Area-->
+<section class="blog-area section-padding-2">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 centered wow fadeInUp" data-wow-delay="0.3s">
+        <div class="section-title">
+          <h2>آخرین نوشته ها</h2>
+          <p>آخرین اخبار و آموزش ها را بخوانید</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
+        <div class="single-blog-block">
+          <div class="single-blog-block-img">
+            <img src="assets/images/blog/blog-1.jpg" alt="">
+            <a href="blog-details.html">
+              <i class="fa fa-expand"></i>
+            </a>
+          </div>
+          <div class="single-blog-block-content">
+            <div class="blog-meta">
+              <h3>
+                <a href="blog-details.html">چطور کارت خود را سفارش دهیم ؟</a>
+              </h3>
+              <div class="blog-text">
+                <p>
+                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                  گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="single-blog-block">
+          <div class="single-blog-block-img">
+            <img src="~/assets/images/blog/blog-2.jpg" alt="">
+            <a href="blog-details.html">
+              <i class="fa fa-expand"></i>
+            </a>
+          </div>
+          <div class="single-blog-block-content">
+            <div class="blog-meta">
+              <h3>
+                <a href="blog-details.html">نخفیفات جدید در راه است</a>
+              </h3>
+              <div class="blog-text">
+                <p>
+                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                  گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.6s">
+        <div class="single-blog-block">
+          <div class="single-blog-block-img">
+            <img src="~/assets/images/blog/blog-3.jpg" alt="">
+            <a href="blog-details.html">
+              <i class="fa fa-expand"></i>
+            </a>
+          </div>
+          <div class="single-blog-block-content">
+            <div class="blog-meta">
+              <h3>
+                <a href="blog-details.html">از کجا خرید کنم ؟</a>
+              </h3>
+              <div class="blog-text">
+                <p>
+                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                  گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.7s">
+        <div class="single-blog-block">
+          <div class="single-blog-block-img">
+            <img src="~/assets/images/blog/blog-4.jpg" alt="">
+            <a href="blog-details.html">
+              <i class="fa fa-expand"></i>
+            </a>
+          </div>
+          <div class="single-blog-block-content">
+            <div class="blog-meta">
+              <h3>
+                <a href="blog-details.html">دوستان خود را معرفی کنید و درآمد داشته باشید</a>
+              </h3>
+
+              <div class="blog-text">
+                <p>
+                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                  گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

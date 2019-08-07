@@ -1,0 +1,14 @@
+﻿@model Okapia.Areas.Administrator.Models.PageCategoryIndexViewModel
+
+@{
+  ViewData["Title"] = "مدیریت رده بندی ها";
+}
+
+<h1>صفحه مدیریت رده بندی صفحات</h1>
+
+<h2>
+  <a asp-action="Create" class="btn btn-success text-lg-center">ایجاد رده جدید</a>
+</h2>
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/PageCategory/_SearchPageCategories.cshtml", Model.PageCategorySearchModel)
+@await Html.PartialAsync("~/Areas/Administrator/Views/PageCategory/_ListPageCategories.cshtml", Model.PageCategoryViewModels)

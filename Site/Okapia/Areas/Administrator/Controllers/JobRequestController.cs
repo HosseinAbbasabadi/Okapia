@@ -90,7 +90,7 @@ namespace Okapia.Areas.Administrator.Controllers
                 JobTel1 = jobRequest.Tel,
                 JobProvienceId = jobRequest.ProvinceId,
                 JobCityId = jobRequest.CityId,
-                JobDescription = jobRequest.Description,
+                Content = jobRequest.Description,
                 Proviences = new SelectList(Provinces.ToList(), "Id", "Name"),
                 JobRequestId = id,
                 Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName")

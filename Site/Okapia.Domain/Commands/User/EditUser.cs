@@ -6,7 +6,6 @@ namespace Okapia.Domain.Commands.User
 {
     public class EditUser : CreateUser
     {
-        private string _username;
         public long Id { get; set; }
         public SelectList Cities { get; set; }
         public SelectList Districts { get; set; }
@@ -14,12 +13,8 @@ namespace Okapia.Domain.Commands.User
 
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = ValidationMessages.Required)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
-        public string Username
-        {
-            get => _username;
-            set => _username = value.ToEnglishNumber();
-        }
+        [RegularExpression(@"^[a-zA-Z0-9]*$", ErrorMessage = ValidationMessages.EnghlishText)]
+        public string Username { get; set; }
 
         [Display(Name = "آیا حذف شود؟")] public bool IsDeleted { get; set; }
     }

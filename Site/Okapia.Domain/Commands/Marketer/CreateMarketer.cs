@@ -22,24 +22,23 @@ namespace Okapia.Domain.Commands.Marketer
         [Display(Name = "شماره موبایل")]
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         [StringLength(11, MinimumLength = 11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
-        [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
+        [RegularExpression("^09[0-3][0-9]{8}$", ErrorMessage = ValidationMessages.ValidNumber)]
         public string MarketerMobile { get; set; }
 
         [Display(Name = "استان")]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.ProvinceRange)]
         public int MarketerProvinceId { get; set; }
 
         [Display(Name = "شهر")]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
-
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.CityRange)]
         public int MarketerCityId { get; set; }
 
         [Display(Name = "منطقه")]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.DistrictRange)]
         public int MarketerDistrictId { get; set; }
 
         [Display(Name = "محله")]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.NeighborhoodRange)]
         public int MarketerNeighborhoodId { get; set; }
 
         public SelectList Provinces { get; set; }

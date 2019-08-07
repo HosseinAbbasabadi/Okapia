@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Okapia.Domain;
 using Okapia.Domain.Models;
 using Okapia.Repository.Mappings;
 
@@ -25,7 +24,7 @@ namespace Okapia.Repository
         public virtual DbSet<Modal> Modals { get; set; }
         public virtual DbSet<Page> Page { get; set; }
         public virtual DbSet<PageCategory> PageCategory { get; set; }
-        public virtual DbSet<PageComments> PageComments { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserCard> UserCards { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }
@@ -52,7 +51,7 @@ namespace Okapia.Repository
             // page mapping
             modelBuilder.ApplyConfiguration(new PageMapping());
             modelBuilder.ApplyConfiguration(new PageCategoryMapping());
-            modelBuilder.ApplyConfiguration(new PageCommentMapping());
+            modelBuilder.ApplyConfiguration(new CommentMapping());
             modelBuilder.ApplyConfiguration(new CategoryMapping());
 
             // user mapping

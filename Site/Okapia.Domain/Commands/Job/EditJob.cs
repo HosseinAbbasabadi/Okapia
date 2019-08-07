@@ -16,7 +16,9 @@ namespace Okapia.Domain.Commands.Job
         public string JobNeighborhood { get; set; }
 
         [Display(Name = "آدرس صفحه جایگزین در صورت حذف")]
+        [Url(ErrorMessage = ValidationMessages.Url)]
         public string RedirectInstead301Url { get; set; }
+
         public new List<JobPictureViewModel> Photos { get; set; }
         public SelectList Citeies { get; set; }
         public SelectList Districts { get; set; }

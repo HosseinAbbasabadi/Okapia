@@ -13,6 +13,7 @@ namespace Okapia.Domain.Contracts
         Employee GetEmployeeIncludingAccount(long id);
         EditEmployee GetEmployeeDetails(long id);
         Employee GetEmployeeWithControllers(long id);
+        List<EmployeeViewModel> GetEmployees();
         List<EmployeeViewModel> Search(EmployeeSearchModel searchModel, out int recordCount);
     }
 }

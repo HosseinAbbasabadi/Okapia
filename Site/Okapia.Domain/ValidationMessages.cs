@@ -8,6 +8,9 @@
         public const string DistrictRange = "لطفا منطقه را انتخاب کنید";
         public const string NeighborhoodRange = "لطفا محله را انتخاب کنید";
         public const string CategoryRange = "لطفا دسته بندی شغل را انتخاب کنید";
+        public const string GroupRange = "لطفا گروه را انتخاب کنید";
+        public const string PageCategoryRange = "لطفا رده صفحه را انتخاب کنید";
+        public const string PageCategoryParentRange = "لطفا رده مافوق را انتخاب کنید";
         public const string NationalCodeStringLength = "طول کد ملی ۱۰ رقم است";
         public const string CardStringLength = "طول شماره کارت ۱۶ رقم است";
         public const string Url = "فرمت اطلاعات وارد شده Url نیست";

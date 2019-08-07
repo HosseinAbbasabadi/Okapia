@@ -1,0 +1,80 @@
+﻿@using Okapia.Application.Utilities
+@model Okapia.Domain.SeachModels.JobRequestSearchModel
+<hr/>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">جستجو در درخواست های شغلی</h2>
+      </div>
+      <div class="panel-body">
+        <form asp-action="Index" asp-controller="Comment" method="GET">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="Name" class="control-label"></label>
+              <input asp-for="Name" class="form-control"/>
+              <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="ContactTitle" class="control-label"></label>
+              <input asp-for="ContactTitle" class="form-control"/>
+              <span asp-validation-for="ContactTitle" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="TrackingNumber" class="control-label"></label>
+              <input asp-for="TrackingNumber" class="form-control"/>
+              <span asp-validation-for="TrackingNumber" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="ProvinceId" class="control-label"></label>
+              <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="select2" id="searchProvinceDropDown" onchange="getCityList('searchProvinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'searchCityDropDown')">
+              </select>
+              <span asp-validation-for="ProvinceId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="CityId" class="control-label"></label>
+              <select asp-for="CityId" class="select2" id="searchCityDropDown">
+                <option value="0">شهر را انتخاب کنید...</option>
+              </select>
+              <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label asp-for="SelectedStatus" class="control-label"></label>
+              <br>
+              <div class="radio radio-info radio-inline">
+                <input asp-for="SelectedStatus" id="all" type="radio" value="0">
+                <label for="all"> همه </label>
+              </div>
+              @foreach (var status in Constants.Statuses.ToList())
+              {
+                var radioId = "SelecteStatus" + status.Id;
+                <div class="radio radio-info radio-inline">
+                  <input asp-for="SelectedStatus" id="@radioId" type="radio" value="@status.Id">
+                  <label for="@radioId"> @status.Name </label>
+                </div>
+              }
+              <span asp-validation-for="SelectedStatus" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="submit" value="جستجو" class="btn btn-primary"/>
+              <a asp-area="Administrator" asp-controller="Comment" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

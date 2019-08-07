@@ -1,96 +1,143 @@
-﻿@model Okapia.Areas.Administrator.Models.Page
+﻿@model Okapia.Domain.Commands.Page.CreatePage
 
 @{
-    ViewData["Title"] = "Create";
+  ViewData["Title"] = "ایجاد صفحه جدید";
 }
 
 <h1>فرم ایجاد صفحه جدید</h1>
 
-<h4>برای ایجاد صفحه جدید فرم زیر را کامل کنید</h4>
-<hr />
+<h4>برای ثبت صفحه جدید فرم زیر را کامل کنید</h4>
+
+<hr/>
 <div class="row">
-    <div class="col-md-12">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="PageId" class="control-label"></label>
-                <input asp-for="PageId" class="form-control" />
-                <span asp-validation-for="PageId" class="text-danger"></span>
+  <div class="col-md-12">
+    <form method="post" id="createPageFrm">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageTittle" class="control-label"></label>
+          <input asp-for="PageTittle" class="form-control" />
+          <span asp-validation-for="PageTittle" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageCategoryId" class="control-label"></label>
+          <select asp-for="PageCategoryId" asp-items="@Model.PageCategories" class="select2">
+            <option value="0">گروه را انتخاب کنید...</option>
+          </select>
+          <span asp-validation-for="PageCategoryId" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageSlug" class="control-label"></label>
+          <input asp-for="PageSlug" class="form-control" />
+          <span asp-validation-for="PageSlug" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageMetaTag" class="control-label"></label>
+          <input asp-for="PageMetaTag" class="form-control direct-ltr" />
+          <span asp-validation-for="PageMetaTag" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageMetaDesccription" class="control-label"></label>
+          <input asp-for="PageMetaDesccription" class="form-control direct-ltr" />
+          <span asp-validation-for="PageMetaDesccription" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageSeohead" class="control-label"></label>
+          <input asp-for="PageSeohead" class="form-control direct-ltr" />
+          <span asp-validation-for="PageSeohead" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageCanonicalAddress" class="control-label"></label>
+          <input asp-for="PageCanonicalAddress" class="form-control direct-ltr" />
+          <span asp-validation-for="PageCanonicalAddress" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PageSmallDescription" class="control-label"></label>
+          <textarea asp-for="PageSmallDescription" class="form-control direct-ltr"></textarea>
+          <span asp-validation-for="PageSmallDescription" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="PagePublishDate" class="control-label"></label>
+          <div class="input-group">
+            <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="left">
+              <span class="fa fa-calendar"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PageCategoryId" class="control-label"></label>
-                <input asp-for="PageCategoryId" class="form-control" />
-                <span asp-validation-for="PageCategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PageTittle" class="control-label"></label>
-                <input asp-for="PageTittle" class="form-control" />
-                <span asp-validation-for="PageTittle" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PageSlug" class="control-label"></label>
-                <input asp-for="PageSlug" class="form-control" />
-                <span asp-validation-for="PageSlug" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PageMetaTag" class="control-label"></label>
-                <input asp-for="PageMetaTag" class="form-control" />
-                <span asp-validation-for="PageMetaTag" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PageMetaDesccription" class="control-label"></label>
-                <input asp-for="PageMetaDesccription" class="form-control" />
-                <span asp-validation-for="PageMetaDesccription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PageSeohead" class="control-label"></label>
-                <input asp-for="PageSeohead" class="form-control" />
-                <span asp-validation-for="PageSeohead" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PageCanonicalAddress" class="control-label"></label>
-                <input asp-for="PageCanonicalAddress" class="form-control" />
-                <span asp-validation-for="PageCanonicalAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PageIsDeleted" class="control-label"></label>
-                <input asp-for="PageIsDeleted" class="form-control" />
-                <span asp-validation-for="PageIsDeleted" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PageRemoved301InsteadUrl" class="control-label"></label>
-                <input asp-for="PageRemoved301InsteadUrl" class="form-control" />
-                <span asp-validation-for="PageRemoved301InsteadUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PageSmallDescription" class="control-label"></label>
-                <input asp-for="PageSmallDescription" class="form-control" />
-                <span asp-validation-for="PageSmallDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PageContent" class="control-label"></label>
-                <textarea name="editor1" asp-for="PageContent" class="form-control"></textarea>
-                <span asp-validation-for="PageContent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PageRegisteringEmployeeId" class="control-label"></label>
-                <input asp-for="PageRegisteringEmployeeId" class="form-control" />
-                <span asp-validation-for="PageRegisteringEmployeeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PageRegistrationDate" class="control-label"></label>
-                <input asp-for="PageRegistrationDate" class="form-control" />
-                <span asp-validation-for="PageRegistrationDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="ایجاد" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+            <input asp-for="PagePublishDate" type="text" class="form-control" id="fromDate1" placeholder="از تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right" />
+          </div>
+        </div>
+      </div> 
+      <div class="col-md-12">
+        <div class="form-group">
+          <label asp-for="Content" class="control-label"></label>
+          <textarea name="Content" asp-for="Content" class="form-control"></textarea>
+          <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+      </div>
 
-<div>
-    <a asp-action="Index">بازگشت به لیست صفحات</a>
-</div>
 
- 
+      @*<table class="col-md-12 table table-bordered text-center">
+      <tr>
+        <td>فایل</td>
+        <td>عنوان عکس</td>
+        <td>Alt</td>
+        <td>توضیحات</td>
+        <td>پیش نمایش</td>
+        <td>حذف</td>
+      </tr>
+      <tr>
+        <td>
+          <input id="modalPicture" name="modalPicture" type="file" size="1" onchange="uploadFile('modalPicture', 'PicName', 'deleteImage', 'Modal');PreviewImage('modalPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*"/>
+          <input asp-for="PicName" type="hidden" size="1" value=""/>
+        </td>
+        <td>
+          <div class="form-group">
+            <input asp-for="PicTitle" class="form-control"/>
+            <span asp-validation-for="PicTitle" class="text-danger"></span>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <input asp-for="PicAlt" class="form-control"/>
+            <span asp-validation-for="PicAlt" class="text-danger"></span>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <input asp-for="PicDescription" class="form-control"/>
+            <span asp-validation-for="PicDescription" class="text-danger"></span>
+          </div>
+        </td>
+        <td>
+          <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
+        </td>
+        <td>
+          <button type="button" id="deleteImage" onclick="deletePhoto('PicName', 'prevImage', 'deleteImage','PicTitle', 'PicAlt', 'PicDescription', 'Modal')" class="btn btn-danger hidden">حذف</button>
+        </td>
+      </tr>
+    </table>*@
+
+      <div class="col-md-12">
+        <div class="form-group">
+          <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityThenReferesh('@Url.Action("Create", "Page")', 'createPageFrm')" />
+          <a class="btn btn-warning btn-lg" asp-action="Index" asp-controller="Page" asp-area="Administrator">بازگشت به لیست</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

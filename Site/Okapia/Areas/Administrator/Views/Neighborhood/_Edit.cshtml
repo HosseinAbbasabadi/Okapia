@@ -5,7 +5,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title" id="custom-width-modalLabel">محله شهر @Model.Name</h4>
+        <h4 class="modal-title" id="custom-width-modalLabel">ویرایش محله @Model.Name</h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -22,7 +22,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="ProvinceId" class="control-label"></label>
-                  <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="editProvinceDropDown" onchange="getCityList('editProvinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'editCityDropDown')">
+                  <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="select2" id="editProvinceDropDown" onchange="getCityList('editProvinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'editCityDropDown')">
                   </select>
                   <span asp-validation-for="ProvinceId" class="text-danger"></span>
                 </div>
@@ -30,7 +30,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="CityId" class="control-label"></label>
-                  <select asp-for="CityId" asp-items="@Model.Cities" class="form-control" id="editCityDropDown" onchange="getDistrictList('editCityDropDown', '@Url.Action("GetDistrictsByCity", "District")', 'editNeighborhoodDropDown')">
+                  <select asp-for="CityId" asp-items="@Model.Cities" class="select2" id="editCityDropDown" onchange="getDistrictList('editCityDropDown', '@Url.Action("GetDistrictsByCity", "District")', 'editNeighborhoodDropDown')">
                   </select>
                   <span asp-validation-for="ProvinceId" class="text-danger"></span>
                 </div>
@@ -38,7 +38,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label asp-for="DistrictId" class="control-label"></label>
-                  <select asp-for="DistrictId" asp-items="@Model.Districts" class="form-control" id="editNeighborhoodDropDown">
+                  <select asp-for="DistrictId" asp-items="@Model.Districts" class="select2" id="editNeighborhoodDropDown">
                   </select>
                   <span asp-validation-for="DistrictId" class="text-danger"></span>
                 </div>
