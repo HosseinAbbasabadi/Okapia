@@ -14,13 +14,13 @@ namespace Okapia.Repository.Repositories
 
         public Account GetAccount(long id)
         {
-            return _context.Accounts.AsNoTracking().FirstOrDefault(x => x.Id == id);
+            return _context.Accounts.FirstOrDefault(x => x.Id == id);
         }
 
         public Account GetAccountByReferenceRecord(long id, int roleId)
         {
-            return _context.Accounts.Where(x => x.ReferenceRecordId == id).Where(x => x.RoleId == roleId).AsNoTracking()
-                .First();
+            return _context.Accounts.Where(x => x.ReferenceRecordId == id)
+                .FirstOrDefault(x => x.RoleId == roleId);
         }
 
         public Account GetChnagePasswordInfo(long id)

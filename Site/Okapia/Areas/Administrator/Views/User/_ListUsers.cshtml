@@ -1,5 +1,4 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
-@using Okapia.Domain.Commands.User
 @using Okapia.Domain.SeachModels
 @model IEnumerable<Okapia.Domain.ViewModels.User.UserViewModel>
 @{
@@ -75,7 +74,8 @@
                 <a class="btn btn-sm btn-warning" asp-area="Administrator" asp-controller="User" asp-action="Edit" asp-route-id="@item.UserId" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>
                 @if (!item.IsDeleted)
                 {
-                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="User" asp-action="Delete" asp-route-id="@item.AccountId">حذف</a>
+                  @*<a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="User" asp-action="Delete" asp-route-id="@item.AccountId">حذف</a>*@
+                  <a class="btn btn-sm btn-danger" onclick="deleteUser('@item.AccountId')">حذف</a>
                 }
                 else
                 {
@@ -141,5 +141,11 @@
     openModalWithData(`@Url.Action("ChnagePassword", "Account", new {area = ""})/${id}`,
       'changePasswordDiv',
       'changePasswordModal');
+  }
+
+  function deleteUser(id) {
+    if (confirm('کاربر دارای کارت فعال است. آیا از حذف کاربر اطمینان دارید؟')) {
+      createEntityWithBodyThenReferesh(`@Url.Action("Delete", "User")/${id}`, '');
+    }
   }
 </script>

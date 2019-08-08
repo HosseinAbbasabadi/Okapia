@@ -156,7 +156,7 @@ namespace Okapia.Application.Applications
             }
         }
 
-        public OperationResult Update(int id, EditJob command)
+        public OperationResult Update(EditJob command)
         {
             var result = new OperationResult("Jobs", "Update");
             try
@@ -167,8 +167,7 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
-                var checkingJob = _jobRepository.GetJob(id);
-                if (checkingJob == null)
+                if (!_jobRepository.Exists(x => x.JobId == command.JobId))
                 {
                     result.Message = ApplicationMessages.EntityNotExists;
                     return result;
@@ -176,11 +175,10 @@ namespace Okapia.Application.Applications
 
                 var jobWithoutPictures = MapEditJobToJob(command);
                 var job = MapJobPicturesForUpdate(command.Photos, jobWithoutPictures);
-                var authInfo = _accountRepository.GetAccountByReferenceRecord(job.JobId, Constants.Roles.Job.Id);
-                authInfo.Username = command.Username.ToLower();
-                authInfo.IsDeleted = command.IsDeleted;
+                var account = _accountRepository.GetAccountByReferenceRecord(job.JobId, Constants.Roles.Job.Id);
+                account.Username = command.Username.ToLower();
+                account.IsDeleted = command.IsDeleted;
                 _jobRepository.Update(job);
-                _accountRepository.Update(authInfo);
                 _jobRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

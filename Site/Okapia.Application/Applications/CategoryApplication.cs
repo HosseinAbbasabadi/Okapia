@@ -6,6 +6,7 @@ using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.Category;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
+using Okapia.Domain.QueryContracts;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Category;
 
@@ -13,13 +14,15 @@ namespace Okapia.Application.Applications
 {
     public class CategoryApplication : ICategoryApplication
     {
+        private readonly ICategoryQuery _categoryQuery;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IAuthHelper _authHelper;
 
-        public CategoryApplication(ICategoryRepository categoryRepository, IAuthHelper authHelper)
+        public CategoryApplication(ICategoryRepository categoryRepository, IAuthHelper authHelper, ICategoryQuery categoryQuery)
         {
             _categoryRepository = categoryRepository;
             _authHelper = authHelper;
+            _categoryQuery = categoryQuery;
         }
 
         public OperationResult Create(CreateCategory command)
@@ -173,6 +176,11 @@ namespace Okapia.Application.Applications
                 result.Message = ApplicationMessages.SystemFailure;
                 return result;
             }
+        }
+
+        public List<CategoryMenuViewModel> GetCategoriesForMenu()
+        {
+            return _categoryQuery.GetCategoriesForMenu();
         }
     }
 }

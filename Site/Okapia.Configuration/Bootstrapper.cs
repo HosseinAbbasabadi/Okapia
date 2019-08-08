@@ -5,7 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Okapia.Application.Applications;
 using Okapia.Application.Contracts;
 using Okapia.Domain.Contracts;
+using Okapia.Domain.QueryContracts;
 using Okapia.Repository;
+using Okapia.Repository.Query;
 using Okapia.Repository.Repositories;
 
 namespace Okapia.Configuration
@@ -36,6 +38,8 @@ namespace Okapia.Configuration
 
             services.AddScoped<ICategoryApplication, CategoryApplication>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+            services.AddScoped<ICategoryQuery, CategoryQuery>();
 
             services.AddScoped<IAccountApplication, AccountApplication>();
 
@@ -71,6 +75,8 @@ namespace Okapia.Configuration
 
             services.AddScoped<ICommentApplication, CommentApplication>();
             services.AddScoped<ICommentRepository, CommentRepository>();
+
+            services.AddScoped<IUserCardRepository, UserCardRepository>();
 
             services.AddSingleton<IAuthHelper, AuthHelper>();
 

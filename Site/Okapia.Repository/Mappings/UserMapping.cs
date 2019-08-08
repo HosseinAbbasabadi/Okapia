@@ -42,7 +42,7 @@ namespace Okapia.Repository.Mappings
             builder.HasOne(x => x.Account).WithOne(x => x.User).HasForeignKey<Account>(x => x.ReferenceRecordId);
 
             builder.HasMany(x => x.UserCards).WithOne(x => x.User).HasForeignKey(x => x.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

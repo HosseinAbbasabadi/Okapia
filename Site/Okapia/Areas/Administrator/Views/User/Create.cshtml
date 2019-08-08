@@ -193,7 +193,8 @@
       </div>
       <div class="col-md-12">
         <div class="form-group">
-          <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityThenReferesh('@Url.Action("Create", "User")', 'createUserFrm')"/>
+          <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityThenReferesh('@Url.Action("Create", "User")', 'createUserFrm')" />
+          <a class="btn btn-warning btn-lg" asp-action="Index" asp-controller="User" asp-area="Administrator">بازگشت به لیست</a>
         </div>
       </div>
     </form>

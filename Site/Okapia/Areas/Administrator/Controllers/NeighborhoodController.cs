@@ -30,7 +30,7 @@ namespace Okapia.Areas.Administrator.Controllers
             }
 
             var neighborhoods = _neighborhoodApplication.GetNeighborhoodsForList(searchModel, out var recordCount);
-            var neighborhoodINdex =
+            var neighborhoodIndex =
                 new NeighborhoodIndexViewModel
                 {
                     NeighborhoodSearchModel = searchModel,
@@ -38,7 +38,21 @@ namespace Okapia.Areas.Administrator.Controllers
                 };
             Pager.PreparePager(searchModel, recordCount);
             ViewData["searchModel"] = searchModel;
-            return View(neighborhoodINdex);
+            return View(neighborhoodIndex);
+        }
+
+        public ActionResult ListContent(NeighborhoodSearchModel searchModel)
+        {
+            searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
+            if (searchModel.PageSize == 0)
+            {
+                searchModel.PageSize = 80;
+            }
+
+            var neighborhoods = _neighborhoodApplication.GetNeighborhoodsForList(searchModel, out var recordCount);
+            Pager.PreparePager(searchModel, recordCount);
+            ViewData["searchModel"] = searchModel;
+            return PartialView("_ListNeighborhoods",neighborhoods);
         }
 
         // GET: City/Details/5

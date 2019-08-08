@@ -177,7 +177,7 @@ namespace Okapia.Areas.Administrator.Controllers
             command.JobId = id;
             var photos = MapToJobPictureViewModel(command);
             command.Photos = photos;
-            var result = _jobApplication.Update(id, command);
+            var result = _jobApplication.Update(command);
             return Json(result);
         }
 

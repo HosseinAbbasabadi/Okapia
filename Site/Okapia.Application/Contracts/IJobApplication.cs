@@ -11,7 +11,7 @@ namespace Okapia.Application.Contracts
         OperationResult Create(CreateJob command);
         OperationResult Delete(int id, string redirect301Url);
         void Activate(int id);
-        OperationResult Update(int id, EditJob command);
+        OperationResult Update(EditJob command);
         EditJob GetJobDetails(int id);
         List<JobViewModel> GetJobsForList(JobSearchModel searchModel, out int recordCount);
         OperationResult CheckJobSlugDuplication(string slug);

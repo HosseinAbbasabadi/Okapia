@@ -1,4 +1,6 @@
-﻿namespace Okapia.Domain.Models
+﻿using System.Collections.Generic;
+
+namespace Okapia.Domain.Models
 {
     public class Category
     {
@@ -19,6 +21,7 @@
         public string Job { get; set; }
         public long RegisteringEmployeeId { get; set; }
         public bool IsDeleted { get; set; }
-        public Category ParentCategory { get; set; }
+        public Category Parent { get; set; }
+        public ICollection<Category> Childs { get; set; }
     }
 }

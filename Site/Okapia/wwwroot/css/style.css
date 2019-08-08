@@ -1224,7 +1224,8 @@ lesshat-selector {
   height: 70px;
   position: relative;
   z-index: 1;
-  width: 180px;
+  width: auto;
+    margin-right: 20px;
 }
 .logo h1 {
   margin: 0px auto;
@@ -1409,8 +1410,9 @@ body.fixed-left .side-menu.left {
 }
 #sidebar-menu > ul > li > a {
   display: block;
-  color: #444;
+  color: #000;
   padding: 15px 25px;
+    font-weight: bolder;
 }
 #sidebar-menu > ul > li > a > span {
   vertical-align: middle;

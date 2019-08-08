@@ -8,11 +8,10 @@ using Okapia.Domain.ViewModels.Category;
 
 namespace Okapia.Repository.Repositories
 {
-    public class CategoryRepository : BaseRepository<int, Category>, BaseViewRepository<int, Category>, ICategoryRepository
+    public class CategoryRepository : BaseRepository<int, Category>, ICategoryRepository
     {
-        public CategoryRepository(OkapiaContext context, OkapiaViewContext viewContext) : base(context)
+        public CategoryRepository(OkapiaContext context) : base(context)
         {
-            this._
             _context = context;
         }
 
@@ -74,12 +73,6 @@ namespace Okapia.Repository.Repositories
             recordCount = query.Count();
             var result = query.OrderByDescending(x => x.CategoryId).Skip(searchModel.PageIndex * searchModel.PageSize)
                 .Take(searchModel.PageSize);
-
-            //foreach (var category in result)
-            //{
-            //    var parrentCategoryName = query.First(x => x.CategoryId == category.CategoryParentId).CategoryName;
-            //    category.CategoryParentName = parrentCategoryName;
-            //}
 
             return result.ToList();
         }

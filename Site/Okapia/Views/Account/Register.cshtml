@@ -101,7 +101,17 @@
             <input asp-for="Email" class="form-control"/>
             <span asp-validation-for="Email" class="text-danger"></span>
           </div>
-          <div class="single-field">
+          <div id="bankCards">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="Card1" class="control-label"></label>
+                <input asp-for="Card1" class="form-control direct-ltr"/>
+                <button type="button" class="btn btn-primary" onclick="dynamicCard()">افزودن کارت</button>
+                <span asp-validation-for="Card1" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+          @*<div class="single-field">
             <label asp-for="Card1" class="control-label"></label>
             <input asp-for="Card1" class="form-control"/>
             <span asp-validation-for="Card1" class="text-danger"></span>
@@ -130,7 +140,7 @@
             <label asp-for="Card6" class="control-label"></label>
             <input asp-for="Card6" class="form-control"/>
             <span asp-validation-for="Card6" class="text-danger"></span>
-          </div>
+          </div>*@
           <h3 class="text-danger">@ViewData["errorMessage"]</h3>
           <div class="form-group">
             @*<input type="button" value="ثبت" class="btn btn-primary" onclick="createUser('@Url.Action("Register", "User")', 'createUserFrm', '@Url.Action("Index", "Home")')"/>*@

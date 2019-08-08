@@ -9,6 +9,8 @@
         public const string DuplicatedUser = "نام کاربری تکراری است. لطفا نام کاربری جدید انتخاب کنید";
         public const string DuplicatedNationalCode = "کاربر با این کدملی قبلا ثبت نام شده است";
         public const string DuplicatedJob = "نام کاربری برای این شغل تکراری است";
+        public const string DuplicatedListCard = "ورود کارت تکراری مجاز نمی باشد";
+        public const string DuplicatedDatabaseCard = "کارت قبلا در سیستم ثبت شده است";
         public const string UserNotExists = "نام کاربری اشتباه است. لطفا دوباره تلاش کنید";
         public const string IncorrectPassword = "کلمه رمز اشتباه است. لطفا دوباره تلاش کنید";
         public const string DuplicatedSlug = "اسلاگ نمی تواند تکراری باشد";

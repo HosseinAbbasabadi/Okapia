@@ -35,7 +35,10 @@ namespace Okapia.Repository.Mappings
 
             builder.Property(e => e.JobLinkTitle).HasMaxLength(100);
 
-            builder.Property(e => e.RegisteringEmployeeId).HasColumnName("RegisteringEmployeeId");  
+            builder.Property(e => e.RegisteringEmployeeId).HasColumnName("RegisteringEmployeeId");
+
+            builder.HasOne(x => x.Parent).WithMany(x => x.Childs).HasForeignKey(x => x.CategoryParentId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

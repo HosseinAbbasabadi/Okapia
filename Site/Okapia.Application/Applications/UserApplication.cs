@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Framework;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
@@ -21,10 +22,12 @@ namespace Okapia.Application.Applications
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
         private readonly IAuthHelper _authHelper;
+        private readonly IUserCardRepository _userCardRepository;
 
         public UserApplication(IUserRepository userRepository, IPasswordHasher passwordHasher,
             IAccountRepository accountRepository, ICityApplication cityApplication,
-            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication, IAuthHelper authHelper)
+            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication,
+            IAuthHelper authHelper, IUserCardRepository userCardRepository)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
@@ -33,6 +36,7 @@ namespace Okapia.Application.Applications
             _districtApplication = districtApplication;
             _neighborhoodApplication = neighborhoodApplication;
             _authHelper = authHelper;
+            _userCardRepository = userCardRepository;
         }
 
         public OperationResult Create(CreateUser command)
@@ -60,6 +64,20 @@ namespace Okapia.Application.Applications
 
                 var hashedPassword = _passwordHasher.Hash(command.PhoneNumber);
                 var userCards = MapCards(command);
+                if (userCards.Where(x => !string.IsNullOrEmpty(x.CardNumber)).GroupBy(x => x.CardNumber)
+                    .Any(x => x.Count() > 1))
+                {
+                    result.Message = ApplicationMessages.DuplicatedListCard;
+                    return result;
+                }
+
+                foreach (var userCard in userCards.Where(x => !string.IsNullOrEmpty(x.CardNumber)))
+                {
+                    if (!_userCardRepository.IsDuplicated(x => x.CardNumber == userCard.CardNumber)) continue;
+                    result.Message = ApplicationMessages.DuplicatedDatabaseCard;
+                    return result;
+                }
+
                 var account = new Account
                 {
                     Username = command.NationalCardNumber,
@@ -67,6 +85,7 @@ namespace Okapia.Application.Applications
                     IsDeleted = false,
                     RoleId = Constants.Roles.User.Id
                 };
+
                 command.BirthDateG = command.BirthDate.ToGeorgianDateTime();
                 var user = new User
                 {
@@ -91,6 +110,7 @@ namespace Okapia.Application.Applications
                     UserCards = userCards,
                     IntroducedBy = 0
                 };
+
                 _userRepository.Create(user);
                 _userRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
@@ -150,7 +170,7 @@ namespace Okapia.Application.Applications
                     CardNumber = command.Card10
                 }
             };
-            return userCards;
+            return userCards.OrderByDescending(x => x.CardNumber).ToList();
         }
 
         public OperationResult Introduce(CreateUser command)
@@ -186,6 +206,20 @@ namespace Okapia.Application.Applications
                 }
 
                 var userCards = MapCards(command);
+                if (userCards.Where(x => !string.IsNullOrEmpty(x.CardNumber)).GroupBy(x => x.CardNumber)
+                    .Any(x => x.Count() > 1))
+                {
+                    result.Message = ApplicationMessages.DuplicatedListCard;
+                    return result;
+                }
+
+                foreach (var userCard in userCards.Where(x => !string.IsNullOrEmpty(x.CardNumber)))
+                {
+                    if (!_userCardRepository.IsDuplicated(x => x.CardNumber == userCard.CardNumber)) continue;
+                    result.Message = ApplicationMessages.DuplicatedDatabaseCard;
+                    return result;
+                }
+
                 var hashedPassword = _passwordHasher.Hash(command.PhoneNumber);
                 var account = new Account
                 {
@@ -194,7 +228,7 @@ namespace Okapia.Application.Applications
                     IsDeleted = false,
                     RoleId = Constants.Roles.User.Id
                 };
-                
+
                 var user = new User
                 {
                     UserFirstName = command.Name,
@@ -229,7 +263,28 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("User", "Edit");
             try
             {
+                if (!_userRepository.Exists(x => x.UserId == command.Id))
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
                 var user = _userRepository.GetUser(command.Id);
+                var userCards = MapCards(command);
+                if (userCards.Where(x => !string.IsNullOrEmpty(x.CardNumber)).GroupBy(x => x.CardNumber)
+                    .Any(x => x.Count() > 1))
+                {
+                    result.Message = ApplicationMessages.DuplicatedListCard;
+                    return result;
+                }
+
+                foreach (var userCard in userCards.Where(x => !string.IsNullOrEmpty(x.CardNumber)))
+                {
+                    if (!_userCardRepository.IsDuplicated(x => x.CardNumber == userCard.CardNumber, x=>x.UserId != command.Id)) continue;
+                    result.Message = ApplicationMessages.DuplicatedDatabaseCard;
+                    return result;
+                }
+
                 command.BirthDateG = command.BirthDate.ToGeorgianDateTime();
 
                 user.Account.Username = command.Username;
@@ -253,6 +308,7 @@ namespace Okapia.Application.Applications
                 user.UserRegistrationDate = DateTime.Now;
                 user.UserIsActivated = true;
                 user.UserCustomerIntroductionLimit = 200;
+                //user.UserCards = userCards;
                 user.UserCards[0].CardNumber = command.Card1;
                 user.UserCards[1].CardNumber = command.Card2;
                 user.UserCards[2].CardNumber = command.Card3;
@@ -281,7 +337,28 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("User", "EditByUser");
             try
             {
+                if (!_userRepository.Exists(x => x.UserId == command.Id))
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
                 var user = _userRepository.GetUser(command.Id);
+                var userCards = MapCards(command);
+                if (userCards.Where(x => !string.IsNullOrEmpty(x.CardNumber)).GroupBy(x => x.CardNumber)
+                    .Any(x => x.Count() > 1))
+                {
+                    result.Message = ApplicationMessages.DuplicatedListCard;
+                    return result;
+                }
+
+                foreach (var userCard in userCards.Where(x => !string.IsNullOrEmpty(x.CardNumber)))
+                {
+                    if (!_userCardRepository.IsDuplicated(x => x.UserId != userCard.Id)) continue;
+                    result.Message = ApplicationMessages.DuplicatedDatabaseCard;
+                    return result;
+                }
+
                 command.BirthDateG = command.BirthDate.ToGeorgianDateTime();
 
                 user.Account.Username = command.Username;
@@ -294,16 +371,17 @@ namespace Okapia.Application.Applications
                 user.UserNeighborhoodId = command.NeighborhoodId;
                 user.UserBirthDate = command.BirthDateG;
                 user.UserPostalCode = command.Postalcode;
-                user.UserCards[0].CardNumber = command.Card1;
-                user.UserCards[1].CardNumber = command.Card2;
-                user.UserCards[2].CardNumber = command.Card3;
-                user.UserCards[3].CardNumber = command.Card4;
-                user.UserCards[4].CardNumber = command.Card5;
-                user.UserCards[5].CardNumber = command.Card6;
-                user.UserCards[6].CardNumber = command.Card7;
-                user.UserCards[7].CardNumber = command.Card8;
-                user.UserCards[8].CardNumber = command.Card9;
-                user.UserCards[9].CardNumber = command.Card10;
+                user.UserCards = userCards;
+                //user.UserCards[0].CardNumber = command.Card1;
+                //user.UserCards[1].CardNumber = command.Card2;
+                //user.UserCards[2].CardNumber = command.Card3;
+                //user.UserCards[3].CardNumber = command.Card4;
+                //user.UserCards[4].CardNumber = command.Card5;
+                //user.UserCards[5].CardNumber = command.Card6;
+                //user.UserCards[6].CardNumber = command.Card7;
+                //user.UserCards[7].CardNumber = command.Card8;
+                //user.UserCards[8].CardNumber = command.Card9;
+                //user.UserCards[9].CardNumber = command.Card10;
                 _userRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

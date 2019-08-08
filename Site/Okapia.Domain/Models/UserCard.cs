@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Okapia.Domain.Models
+﻿namespace Okapia.Domain.Models
 {
     public class UserCard
     {

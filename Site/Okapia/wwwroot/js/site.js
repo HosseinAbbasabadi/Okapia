@@ -1,6 +1,10 @@
 ﻿var count = 2;
 
 function dynamicCard() {
+  if (this.count === 11) {
+    alert("حد اکثر تعداد کارت ۱۰ عدد می باشد");
+    return;
+  };
   const division = document.createElement("DIV");
   division.innerHTML = dynamicCardBox(this.count);
   const prevCounter = this.count - 1;

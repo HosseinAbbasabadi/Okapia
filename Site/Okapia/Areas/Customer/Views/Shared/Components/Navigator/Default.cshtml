@@ -11,14 +11,7 @@
     <div class="topbar-left">
       <div class="text-center">
         <a href="index.html" class="logo">
-          <i class="md md-terrain"></i> <span> OKAPIA </span>
-        </a>
-      </div>
-    </div>
-    <div class="topbar-left pull-right">
-      <div class="text-center">
-        <a asp-action="Index" asp-controller="Home" asp-area="" class="logo">
-          <i class="md md-terrain"></i><span> بازگشت به سایت </span>
+          <i class="md md-terrain"></i> <span> @auth?.Username عزیز به اُکاپیا خوش آمدید </span>
         </a>
       </div>
     </div>
@@ -38,7 +31,7 @@
             </a>
           </div>
 
-          <p class="text-muted m-0">@Constants.Roles.ToList().FirstOrDefault(x => x.Id == auth?.Role)?.Name</p>
+          <p class="text-muted m-0">کاربر محترم اُکاپیا</p>
         </div>
       </div>
       <!--- Divider -->
@@ -51,12 +44,12 @@
           </li>
           <li>
             <a asp-action="Index" asp-controller="UserInfo" asp-area="Customer">
-              <i class="md md-home"></i><span> اطلاعات کاربری </span>
+              <i class="fa fa-info"></i><span> اطلاعات کاربری </span>
             </a>
           </li>
           <li>
             <a asp-action="Index" asp-controller="Introduce" asp-area="Customer" class="waves-effect">
-              <i class="md md-home"></i>
+              <i class="fa fa-user-plus"></i>
               <span>معرفی عضو</span>
             </a>
           </li>
@@ -95,13 +88,13 @@
             </ul>
           </li>
           <li>
-            <a asp-action="Index" asp-controller="Home" asp-area="" class="logo">
-              <i class="md md-terrain"></i><span> بازگشت به سایت </span>
+            <a asp-action="Index" asp-controller="Home" asp-area="" class="waves-effect">
+              <i class="fa fa-home"></i><span> بازگشت به سایت </span>
             </a>
           </li>
           <li>
             <a asp-action="Logout" asp-controller="Account" asp-area="" class="waves-effect">
-              <i class="md md-home"></i>
+              <i class="fa fa-sign-out"></i>
               <span>خروج</span>
             </a>
           </li>

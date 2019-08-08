@@ -88,15 +88,15 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("Account", "Delete");
             try
             {
-                var account = _accountRepository.GetAccount(id);
-                if (account == null)
+                if (!_accountRepository.Exists(x => x.Id == id))
                 {
                     result.Message = ApplicationMessages.EntityNotExists;
                     return result;
                 }
 
+                var account = _accountRepository.GetAccount(id);
+
                 account.IsDeleted = true;
-                _accountRepository.Update(account);
                 _accountRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -115,15 +115,14 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("Account", "Delete");
             try
             {
-                var account = _accountRepository.GetAccount(id);
-                if (account == null)
+                if (!_accountRepository.Exists(x => x.Id == id))
                 {
                     result.Message = ApplicationMessages.EntityNotExists;
                     return result;
                 }
+                var account = _accountRepository.GetAccount(id);
 
                 account.IsDeleted = false;
-                _accountRepository.Update(account);
                 _accountRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -156,7 +155,6 @@ namespace Okapia.Application.Applications
                 var hashedPassword = _passwordHasher.Hash(command.NewPassword);
                 var account = _accountRepository.GetAccount(command.AccountId);
                 account.Password = hashedPassword;
-                _accountRepository.Update(account);
                 _accountRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

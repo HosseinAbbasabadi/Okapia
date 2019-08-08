@@ -95,11 +95,11 @@ namespace Okapia.Areas.Administrator.Controllers
             return Json(result);
         }
 
-        public ActionResult Delete(int id)
+        public JsonResult Delete(int id)
         {
-            _accountApplication.Delete(id);
-            var referer = Request.Headers["Referer"].ToString();
-            return Redirect(referer);
+            var result = _accountApplication.Delete(id);
+            //var referer = Request.Headers["Referer"].ToString();
+            return Json(result);
         }
 
         public ActionResult Activate(long id)
