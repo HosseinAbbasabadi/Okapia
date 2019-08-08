@@ -17,7 +17,7 @@ namespace Okapia.Repository.Mappings
 
             builder.Property(e => e.CategoryPageTittle).HasMaxLength(400);
 
-            builder.Property(e => e.CategoryParentId).HasColumnName("CategoryParentID");
+            builder.Property(e => e.CategoryParentId).HasColumnName("CategoryParentId");
 
             builder.Property(e => e.CategorySeohead)
                 .HasColumnName("CategorySEOHead")
@@ -35,7 +35,7 @@ namespace Okapia.Repository.Mappings
 
             builder.Property(e => e.JobLinkTitle).HasMaxLength(100);
 
-            builder.Property(e => e.RegisteringEmployeeId).HasColumnName("RegisteringEmployeeID");
+            builder.Property(e => e.RegisteringEmployeeId).HasColumnName("RegisteringEmployeeId");  
         }
     }
 }

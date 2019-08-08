@@ -94,7 +94,6 @@ namespace Okapia.Application.Applications
                     RegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId,
                     IsDeleted = command.IsDeleted
                 };
-                _categoryRepository.Update(category);
                 _categoryRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -114,7 +113,6 @@ namespace Okapia.Application.Applications
             {
                 var category = _categoryRepository.GetCategory(id);
                 category.IsDeleted = true;
-                _categoryRepository.Update(category);
                 _categoryRepository.SaveChanges();
             }
             catch (Exception exception)
@@ -130,7 +128,6 @@ namespace Okapia.Application.Applications
             {
                 var category = _categoryRepository.GetCategory(id);
                 category.IsDeleted = false;
-                _categoryRepository.Update(category);
                 _categoryRepository.SaveChanges();
             }
             catch (Exception exception)

@@ -1,6 +1,7 @@
 ﻿@using Okapia.Application.Utilities
 @using Okapia.Domain.SeachModels
-@model IEnumerable<Okapia.Domain.ViewModels.RequestJob.JobRequestViewModel>
+@using Okapia.Domain.ViewModels.JobRequest
+@model IEnumerable<Okapia.Domain.ViewModels.JobRequest.JobRequestViewModel>
 @{
   var searchModel = ViewData["searchModel"] as JobRequestSearchModel;
 }
@@ -94,6 +95,7 @@
                   @*<a href="@Url.Action("ChangeStatus", "JobRequest", new ChangeStatus {Id = item.value.Id, Status = Statuses.Tracking})" class="btn btn-sm btn-purple">درحال پیگیری</a>*@
                   <a class="btn btn-sm btn-warning" onclick="changeStatus({ Id: '@item.value.Id', Status: '@Constants.Statuses.Tracking.Id' })">درحال پیگیری</a>
                   <a class="btn btn-sm btn-danger" onclick="changeStatus({ Id: '@item.value.Id', Status: '@Constants.Statuses.Denied.Id' })">رد درخواست</a>
+                  <a class="btn btn-sm btn-info" onclick="openJobRequestDetailsModal('@item.value.Id')">جزییات</a>
                 </td>
               }
               @if (item.value.Status == 2)
@@ -104,6 +106,7 @@
                 <td>
                   <a class="btn btn-sm btn-success" asp-action="RegisterJobRequestToJob" asp-route-id="@item.value.Id">ثبت در مشاغل</a>
                   <a class="btn btn-sm btn-danger" onclick="changeStatus({ Id: '@item.value.Id', Status: '@Constants.Statuses.Denied.Id' })">رد درخواست</a>
+                  <a class="btn btn-sm btn-info" onclick="openJobRequestDetailsModal('@item.value.Id')">جزییات</a>
                 </td>
               }
               @if (item.value.Status == 3)
@@ -112,7 +115,7 @@
                   ثبت شده در مشاغل
                 </td>
                 <td>
-
+                  <a class="btn btn-sm btn-info" onclick="openJobRequestDetailsModal('@item.value.Id')">جزییات</a>
                 </td>
               }
               @if (item.value.Status == 4)
@@ -122,6 +125,7 @@
                 </td>
                 <td>
                   <a class="btn btn-sm btn-purple" onclick="changeStatus({ Id: '@item.value.Id', Status: '@Constants.Statuses.Requested.Id' })">فعال سازی مجدد</a>
+                  <a class="btn btn-sm btn-info" onclick="openJobRequestDetailsModal('@item.value.Id')">جزییات</a>
                 </td>
               }
             </tr>
@@ -170,6 +174,10 @@
       statusCommand,
       '@Url.Action("ListContent", "JobRequest")',
       'listRequestsDiv');
+  }
+
+  function openJobRequestDetailsModal(id) {
+    openModalWithData(`@Url.Action("Details", "JobRequest")/${id}`, 'jobRequestDetails', 'jobRequestDetailsModal');
   }
 
 </script>

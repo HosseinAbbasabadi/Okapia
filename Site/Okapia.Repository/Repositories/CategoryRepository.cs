@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using Okapia.Domain.Commands.Category;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
@@ -9,16 +8,17 @@ using Okapia.Domain.ViewModels.Category;
 
 namespace Okapia.Repository.Repositories
 {
-    public class CategoryRepository : BaseRepository<int, Category>, ICategoryRepository
+    public class CategoryRepository : BaseRepository<int, Category>, BaseViewRepository<int, Category>, ICategoryRepository
     {
-        public CategoryRepository(OkapiaContext context) : base(context)
+        public CategoryRepository(OkapiaContext context, OkapiaViewContext viewContext) : base(context)
         {
+            this._
             _context = context;
         }
 
         public Category GetCategory(int id)
         {
-            return _context.Categories.Where(x => x.CategoryId == id).AsNoTracking().ToList().First();
+            return _context.Categories.First(x => x.CategoryId == id);
         }
 
         public EditCategory GetCategoryDetails(int id)

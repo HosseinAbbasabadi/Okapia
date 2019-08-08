@@ -7,7 +7,7 @@ using Okapia.Domain.Commands.JobRequest;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
-using Okapia.Domain.ViewModels.RequestJob;
+using Okapia.Domain.ViewModels.JobRequest;
 
 namespace Okapia.Application.Applications
 {
@@ -75,6 +75,16 @@ namespace Okapia.Application.Applications
                 result.Message = ApplicationMessages.SystemFailure;
                 return result;
             }
+        }
+
+        public JobRequestViewModel GetJobRequestDetails(long id)
+        {
+            return _jobRequestRepository.GetJobRequestDetails(id);
+        }
+
+        List<JobRequestViewModel> IJobRequestApplication.Search(JobRequestSearchModel searchModel, out int recordCount)
+        {
+            return Search(searchModel, out recordCount);
         }
 
         public List<JobRequestViewModel> Search(JobRequestSearchModel searchModel, out int recordCount)

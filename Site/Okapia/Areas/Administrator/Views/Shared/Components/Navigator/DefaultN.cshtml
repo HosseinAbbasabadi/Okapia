@@ -69,7 +69,7 @@
         @if (Model.Any(x => x.ControllerName == "JobRequest"))
         {
           <li>
-            <a asp-action="Index" asp-controller="Comment" asp-area="Administrator" class="waves-effect">
+            <a asp-action="Index" asp-controller="JobRequest" asp-area="Administrator" class="waves-effect">
               <i class="md md-home"></i>
               <span>مدیریت درخواست های شغلی</span>
             </a>
@@ -191,9 +191,12 @@
             <a asp-action="Index" asp-controller="PageCategory" asp-area="Administrator"> مدیریت رده بندی صفحات</a>
           </li>
         }
-        <li>
-          <a href="#">مدیریت کامنت ها</a>
-        </li>
+        @if (Model.Any(x => x.ControllerName == "Comment"))
+        {
+          <li>
+            <a asp-action="Index" asp-controller="Comment" asp-area="Administrator"> مدیریت کامنت ها</a>
+          </li>
+        }
       </ul>
     </li>
     <li>

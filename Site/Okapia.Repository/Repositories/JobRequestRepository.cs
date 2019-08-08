@@ -4,7 +4,7 @@ using Framework;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
-using Okapia.Domain.ViewModels.RequestJob;
+using Okapia.Domain.ViewModels.JobRequest;
 
 namespace Okapia.Repository.Repositories
 {
@@ -17,6 +17,33 @@ namespace Okapia.Repository.Repositories
         public JobRequest GetJobRequest(long id)
         {
             return _context.JobRequests.FirstOrDefault(x => x.Id == id);
+        }
+
+        public JobRequestViewModel GetJobRequestDetails(long id)
+        {
+            var query = from jobRequest in _context.JobRequests
+                join province in _context.Provinces
+                    on jobRequest.ProvinceId equals province.Id
+                join city in _context.Cities
+                    on jobRequest.CityId equals city.Id
+                select new JobRequestViewModel
+                {
+                    Id = jobRequest.Id,
+                    Name = jobRequest.Name,
+                    ContactTitle = jobRequest.ContactTitle,
+                    Tel = jobRequest.Tel,
+                    Mobile = jobRequest.Mobile,
+                    TrackingNumber = jobRequest.TrackingNumber,
+                    Status = jobRequest.Status,
+                    CityId = jobRequest.CityId,
+                    City = city.Name,
+                    ProvinceId = jobRequest.ProvinceId,
+                    Province = province.Name,
+                    CreationDate = jobRequest.CreationDate.ToFarsi(),
+                    Address = jobRequest.Address,
+                    Description = jobRequest.Description
+                };
+            return query.FirstOrDefault(x => x.Id == id);
         }
 
         public List<JobRequestViewModel> Search(JobRequestSearchModel searchModel, out int recordCount)

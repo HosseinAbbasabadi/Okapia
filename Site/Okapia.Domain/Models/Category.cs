@@ -19,5 +19,6 @@
         public string Job { get; set; }
         public long RegisteringEmployeeId { get; set; }
         public bool IsDeleted { get; set; }
+        public Category ParentCategory { get; set; }
     }
 }

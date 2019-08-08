@@ -7,7 +7,7 @@ using Okapia.Areas.Administrator.Models;
 using Okapia.Domain.Commands.Job;
 using Okapia.Domain.Commands.JobRequest;
 using Okapia.Domain.SeachModels;
-using Okapia.Domain.ViewModels.RequestJob;
+using Okapia.Domain.ViewModels.JobRequest;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
@@ -62,9 +62,10 @@ namespace Okapia.Areas.Administrator.Controllers
             return PartialView("_ListRequests", jobRequests);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(long id)
         {
-            return View();
+            var result = _jobRequestApplication.GetJobRequestDetails(id);
+            return PartialView("_JobRequestDetails", result);
         }
 
         public JsonResult ChangeStatus(ChangeStatus command)

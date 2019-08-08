@@ -12,8 +12,8 @@ namespace Okapia.Repository.Mappings
 
             builder.HasKey(x => x.PageId);
 
-            builder.HasMany(x => x.PageComments).WithOne(x => x.Page).HasForeignKey(x => x.PageId)
-                .OnDelete(DeleteBehavior.Cascade);
+            //builder.HasMany(x => x.PageComments).WithOne(x => x.).HasForeignKey(x => x.PageId)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(d => d.PageCategory)
                 .WithMany(p => p.Pages)

@@ -10,12 +10,12 @@ namespace Okapia.Domain.Models
         public long CommentatorAccountId { get; set; }
         public string CommentTitle { get; set; }
         public string CommnetText { get; set; }
-        public int CommentAgrreCount { get; set; }
+        public int CommentAgreeCount { get; set; }
         public int CommentDisagreeCount { get; set; }
         public bool CommentIsConfirmed { get; set; }
-        public long CommentConfirmingAccountId { get; set; }
+        public long CommentConfirmorAccountId { get; set; }
         public DateTime CommentConfirmDate { get; set; }
-        public bool CommentIsDeleted { get; set; }
         public DateTime CommentCreationDateDate { get; set; }
+        public bool CommentIsDeleted { get; set; }
     }
 }

@@ -69,6 +69,9 @@ namespace Okapia.Configuration
             services.AddScoped<IPageCategoryApplication, PageCategoryApplication>();
             services.AddScoped<IPageCategoryRepository, PageCategoryRepository>();
 
+            services.AddScoped<ICommentApplication, CommentApplication>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
+
             services.AddSingleton<IAuthHelper, AuthHelper>();
 
             services.AddScoped<IUserGroupRepository, UserGroupRepository>();
@@ -81,7 +84,13 @@ namespace Okapia.Configuration
             services.AddDbContext<OkapiaContext>(options =>
             {
                 options.UseSqlServer(_configuration.GetConnectionString("OkapiaContext"));
-                options.EnableSensitiveDataLogging(true);
+                options.EnableSensitiveDataLogging();
+            });
+
+            services.AddDbContext<OkapiaViewContext>(options =>
+            {
+                options.UseSqlServer(_configuration.GetConnectionString("OkapiaViewContext"));
+                options.EnableSensitiveDataLogging();
             });
         }
     }

@@ -1,14 +1,14 @@
-﻿@model Okapia.Areas.Administrator.Models.JobRequestIndexViewModel
+﻿@model Okapia.Areas.Administrator.Models.CommentIndexViewModel
 
 @{
-  ViewData["Title"] = "مدیریت درخواست های شغلی";
+  ViewData["Title"] = "مدیریت کامنت ها";
 }
 
-<h1>صفحه مدیریت درخواست های شغلی</h1>
+<h1>صفحه مدیریت کامنت ها</h1>
 
 
-@await Html.PartialAsync("~/Areas/Administrator/Views/JobRequest/_SearchRequests.cshtml", Model.JobRequestSearchModel)
+@await Html.PartialAsync("~/Areas/Administrator/Views/Comment/_SearchComments.cshtml", Model.CommentSearchModel)
 
 <div id="listRequestsDiv">
-  @await Html.PartialAsync("~/Areas/Administrator/Views/JobRequest/_ListRequests.cshtml", Model.JobRequestViewModels)
+  @await Html.PartialAsync("~/Areas/Administrator/Views/Comment/_ListComments.cshtml", Model.CommentViewModels)
 </div>

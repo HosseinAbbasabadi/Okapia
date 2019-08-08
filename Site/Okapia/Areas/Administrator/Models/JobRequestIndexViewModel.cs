@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Okapia.Domain.SeachModels;
-using Okapia.Domain.ViewModels.RequestJob;
+using Okapia.Domain.ViewModels.JobRequest;
 
 namespace Okapia.Areas.Administrator.Models
 {

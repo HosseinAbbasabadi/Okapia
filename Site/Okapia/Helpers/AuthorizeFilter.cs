@@ -24,10 +24,6 @@ namespace Okapia.Helpers
             if (!context.HttpContext.User.Identity.IsAuthenticated)
             {
                 context.HttpContext.Response.Redirect("/Administrator/User/Login");
-                //context.Result = new ViewResult
-                //{
-                //    ViewName = "~/Views/User/Login"
-                //};
             }
 
             var controller = context.RouteData.Values["Controller"].ToString();
@@ -42,10 +38,6 @@ namespace Okapia.Helpers
             if (roleId == roles.User.Id || roleId == roles.Job.Id || roleId == roles.Club.Id)
             {
                 context.HttpContext.Response.Redirect("/Account/AccessDenied");
-                //context.Result = new ViewResult
-                //{
-                //    ViewName = "AccessDenied"
-                //};
             }
 
             var employeeControllers =
@@ -53,10 +45,6 @@ namespace Okapia.Helpers
             if (employeeControllers.All(x => x.ControllerId != controllerId))
             {
                 context.HttpContext.Response.Redirect("/Account/AccessDenied");
-                //context.Result = new ViewResult
-                //{
-                //    ViewName = "AccessDenied"
-                //};
             }
 
             base.OnActionExecuting(context);

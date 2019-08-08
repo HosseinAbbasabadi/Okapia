@@ -22,6 +22,6 @@ namespace Okapia.Domain.Models
         public DateTime PagePublishDate { get; set; }
         
         public PageCategory PageCategory { get; set; }
-        public ICollection<Comments> PageComments { get; set; }
+        public ICollection<Comment> PageComments { get; set; }
     }
 }

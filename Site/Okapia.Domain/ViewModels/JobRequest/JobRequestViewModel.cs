@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Okapia.Domain.ViewModels.RequestJob
+namespace Okapia.Domain.ViewModels.JobRequest
 {
     public class JobRequestViewModel
     {
@@ -18,7 +15,8 @@ namespace Okapia.Domain.ViewModels.RequestJob
         [Display(Name = "شهر")] public string City { get; set; }
         [Display(Name = "وضعیت")] public int Status { get; set; }
         [Display(Name = "شماره پیگیری")] public long TrackingNumber { get; set; }
-
         [Display(Name = "تاریخ درخواست")] public string CreationDate { get; set; }
+        [Display(Name = "آدرس")] public string Address { get; set; }
+        [Display(Name = "توضیحات")] public string Description { get; set; }
     }
 }

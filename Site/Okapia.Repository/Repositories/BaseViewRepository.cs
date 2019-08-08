@@ -6,11 +6,11 @@ using Framework;
 
 namespace Okapia.Repository.Repositories
 {
-    public class BaseRepository<TKey, T> : IRepository<TKey, T> where T : class
+    public class BaseViewRepository<TKey, T> : IRepository<TKey, T> where T : class
     {
-        public OkapiaContext _context;
+        public OkapiaViewContext _context;
 
-        public BaseRepository(OkapiaContext context)
+        public BaseViewRepository(OkapiaViewContext context)
         {
             _context = context;
         }
@@ -75,8 +75,6 @@ namespace Okapia.Repository.Repositories
 
         public long GetNextId(string sequenceName)
         {
-            //var t = _context.Users.FromSql($"exec dbo.GetUserSeqNextValue").ToList();
-            //return 2;
             throw new NotImplementedException();
         }
 
