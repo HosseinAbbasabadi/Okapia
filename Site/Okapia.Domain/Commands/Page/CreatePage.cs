@@ -8,7 +8,7 @@ namespace Okapia.Domain.Commands.Page
     {
         [Display(Name = "عنوان صفحه")]
         [Required(ErrorMessage = ValidationMessages.Required)]
-        public string PageTittle { get; set; }
+        public string PageTitle { get; set; }
 
         [Display(Name = "رده")]
         [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.PageCategoryRange)]

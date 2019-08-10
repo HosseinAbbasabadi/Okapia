@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Okapia.Application.Contracts;
+using Okapia.Application.Utilities;
+using Okapia.Areas.Customer.Models;
 using Okapia.Domain.Commands.User;
+using Okapia.Domain.SeachModels;
 
 namespace Okapia.Areas.Customer.Controllers
 {
@@ -10,8 +13,8 @@ namespace Okapia.Areas.Customer.Controllers
     [Authorize(Roles = "1")]
     public class IntroduceController : Controller
     {
-        private readonly IUserApplication _userApplication;
         private readonly IAuthHelper _authHelper;
+        private readonly IUserApplication _userApplication;
 
         public IntroduceController(IUserApplication userApplication, IAuthHelper authHelper)
         {
@@ -20,10 +23,22 @@ namespace Okapia.Areas.Customer.Controllers
         }
 
         // GET: Introduce
-        public ActionResult Index()
+        public ActionResult Index(IntroducedSearchModel searchModel)
         {
-            var createUser = new CreateUser();
-            return View(createUser);
+            if (searchModel.PageSize == 0)
+            {
+                searchModel.PageSize = 20;
+            }
+
+            var users = _userApplication.SearchIntroduced(searchModel, out var recordCount);
+            var userIndexViewModel = new IntroducedIndexViewModel
+            {
+                IntroducedSearchModel = searchModel,
+                IntroducedViewModels = users
+            };
+            Pager.PreparePager(searchModel, recordCount);
+            ViewData["searchModel"] = searchModel;
+            return View(userIndexViewModel);
         }
 
         // GET: Introduce/Details/5
@@ -35,7 +50,8 @@ namespace Okapia.Areas.Customer.Controllers
         // GET: Introduce/Create
         public ActionResult Create()
         {
-            return View();
+            var createUser = new CreateUser();
+            return View(createUser);
         }
 
         // POST: Introduce/Create

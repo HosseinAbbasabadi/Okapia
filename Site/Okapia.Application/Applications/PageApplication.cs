@@ -27,7 +27,7 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("Pages", "Create");
             try
             {
-                if (_pageRepository.IsDuplicated(x => x.PageTittle == command.PageTittle))
+                if (_pageRepository.IsDuplicated(x => x.PageTittle == command.PageTitle))
                 {
                     result.Message = ApplicationMessages.DuplicatedRecord;
                     return result;
@@ -44,7 +44,7 @@ namespace Okapia.Application.Applications
 
                 var page = new Page
                 {
-                    PageTittle = command.PageTittle,
+                    PageTittle = command.PageTitle,
                     PageCanonicalAddress = command.PageCanonicalAddress,
                     PageCategoryId = command.PageCategoryId,
                     PageContent = command.Content,
@@ -82,9 +82,9 @@ namespace Okapia.Application.Applications
                     result.Message = ApplicationMessages.EntityNotExists;
                     return result;
                 }
-                
+
                 var page = _pageRepository.Get(command.PageId);
-                page.PageTittle = command.PageTittle;
+                page.PageTittle = command.PageTitle;
                 page.PagePublishDate = command.PagePublishDate.ToGeorgianDateTime();
                 page.PageCategoryId = command.PageCategoryId;
                 page.PageContent = command.Content;
@@ -119,6 +119,7 @@ namespace Okapia.Application.Applications
                     result.Message = ApplicationMessages.EntityNotExists;
                     return result;
                 }
+
                 var page = _pageRepository.Get(id);
                 page.PageIsDeleted = true;
                 _pageRepository.SaveChanges();
@@ -144,10 +145,34 @@ namespace Okapia.Application.Applications
                     result.Message = ApplicationMessages.EntityNotExists;
                     return result;
                 }
+
                 var page = _pageRepository.Get(id);
                 page.PageIsDeleted = false;
                 _pageRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
+        }
+
+        public OperationResult CheckSlugDuplication(string slug)
+        {
+            var result = new OperationResult("Pages", "CheckSlugDuplication");
+            try
+            {
+                var slugified = slug.GenerateSlug();
+                if (_pageRepository.Exists(x => x.PageSlug == slugified))
+                {
+                    result.Message = ApplicationMessages.DuplicatedSlug;
+                    return result;
+                }
+
                 result.Success = true;
                 return result;
             }

@@ -10,6 +10,7 @@ namespace Okapia.Domain.ViewModels.Category
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string Photo { get; set; }
+        public string PhotoAlt { get; set; }
         public List<CategoryMenuViewModel> CategoryChilds { get; set; }
     }
 }

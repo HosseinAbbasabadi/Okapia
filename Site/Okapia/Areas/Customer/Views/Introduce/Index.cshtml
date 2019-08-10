@@ -1,74 +1,14 @@
-﻿@model Okapia.Domain.Commands.User.CreateUser
+﻿@model Okapia.Areas.Customer.Models.IntroducedIndexViewModel
 
 @{
-  ViewData["Title"] = "Index";
+  ViewData["Title"] = "مدیریت مشتریان";
 }
 
-<h1>فرم معرفی عضو جدید</h1>
+<h1>معرفی شدگان توسط من</h1>
 
-<h4>برای معرفی عضو جدید به سیستم اٌکاپیا فرم زیر را کامل کنید</h4>
-<hr/>
-<div class="row">
-  <div class="col-md-12">
-    <form id="introduceUserFrm" method="post">
-      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="Name" class="control-label"></label>
-          <input asp-for="Name" class="form-control"/>
-          <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="Family" class="control-label"></label>
-          <input asp-for="Family" class="form-control"/>
-          <span asp-validation-for="Family" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="NameEn" class="control-label"></label>
-          <input asp-for="NameEn" class="form-control direct-ltr"/>
-          <span asp-validation-for="NameEn" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="FamilyEn" class="control-label"></label>
-          <input asp-for="FamilyEn" class="form-control direct-ltr"/>
-          <span asp-validation-for="FamilyEn" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="NationalCardNumber" class="control-label"></label>
-          <input asp-for="NationalCardNumber" class="form-control direct-ltr"/>
-          <span asp-validation-for="NationalCardNumber" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="PhoneNumber" class="control-label"></label>
-          <input asp-for="PhoneNumber" class="form-control direct-ltr"/>
-          <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-        </div>
-      </div>
-      <div id="bankCards">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label asp-for="Card1" class="control-label"></label>
-            <input asp-for="Card1" class="form-control direct-ltr"/>
-            <button type="button" class="btn btn-primary" onclick="dynamicCard()">افزودن کارت</button>
-            <span asp-validation-for="Card1" class="text-danger"></span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="form-group">
-          <input type="button" value="ثبت" onclick="createEntity('@Url.Action("Create", "Introduce")', 'introduceUserFrm')" class="btn btn-success"/>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
+<h2>
+  <a class="btn btn-success text-lg-center" asp-action="Create" asp-controller="Introduce" asp-area="Customer">ایجاد مشتری جدید</a>
+</h2>
+
+@await Html.PartialAsync("~/Areas/Customer/Views/Introduce/_SearchIntroduces.cshtml", Model.IntroducedSearchModel)
+@await Html.PartialAsync("~/Areas/Customer/Views/Introduce/_ListIntroduces.cshtml", Model.IntroducedViewModels)

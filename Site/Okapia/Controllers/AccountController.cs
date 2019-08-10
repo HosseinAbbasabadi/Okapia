@@ -37,6 +37,8 @@ namespace Okapia.Controllers
             if (result.Success)
                 return RedirectToAction("Login", "Account");
             ViewData["errorMessage"] = result.Message;
+            createUser.ProvinceId = 0;
+            createUser.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
             return View(createUser);
         }
 

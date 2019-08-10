@@ -1,0 +1,96 @@
+﻿@using Okapia.Domain.SeachModels
+@model IEnumerable<Okapia.Domain.ViewModels.User.IntroducedViewModel>
+@{
+  var searchModel = ViewData["searchModel"] as IntroducedSearchModel;
+}
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <div class="col-md-6">
+          <h2 class="panel-title">لیست معرفی شدگان</h2>
+        </div>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>
+              @Html.DisplayNameFor(model => model.FullnameFa)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.FullnameEn)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.NationalCode)
+            </th>
+            <th>
+              @Html.DisplayNameFor(model => model.Phonenumber)
+            </th>
+            <th>
+              عملیات
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          @foreach (var item in Model)
+          {
+            <tr>
+              <td>
+                @Html.DisplayFor(modelItem => item.FullnameFa)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.FullnameEn)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.NationalCode)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.Phonenumber)
+              </td>
+              <td>
+
+              </td>
+            </tr>
+          }
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-md-12">
+            تعداد کل رکوردها: @searchModel.RecordCount
+          </div>
+        </div>
+        <nav>
+          <ul class="pagination">
+            @for (var i = 0; i < searchModel.PageCount; i++)
+            {
+              var routingSearchModel = new IntroducedSearchModel
+              {
+                FirstNameFa = searchModel.FirstNameFa,
+                LastNameFa = searchModel.LastNameFa,
+                FirstNameEn = searchModel.FirstNameEn,
+                LastNameEn = searchModel.LastNameEn,
+                NationalCode = searchModel.NationalCode,
+                Phonenumber = searchModel.Phonenumber,
+                PageSize = 20,
+                PageIndex = i
+              };
+              if (searchModel.PageIndex == i)
+              {
+                <li class="active">
+                  @Html.ActionLink((i + 1).ToString(), "Index", "Introduce", routingSearchModel)
+                </li>
+              }
+              else
+              {
+                <li>
+                  @Html.ActionLink((i + 1).ToString(), "Index", "Introduce", routingSearchModel)
+                </li>
+              }
+            }
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

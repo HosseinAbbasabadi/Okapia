@@ -17,5 +17,7 @@ namespace Okapia.Domain.Models
         public DateTime CommentConfirmDate { get; set; }
         public DateTime CommentCreationDateDate { get; set; }
         public bool CommentIsDeleted { get; set; }
+        
+        public Page Page { get; set; }
     }
 }

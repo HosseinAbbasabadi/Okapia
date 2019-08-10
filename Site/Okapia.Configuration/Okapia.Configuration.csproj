@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Okapia.Application\Okapia.Application.csproj" />
     <ProjectReference Include="..\Okapia.Repository\Okapia.Repository.csproj" />
+    <ProjectReference Include="..\Okapia.WebService.Adapter\Okapia.WebService.Adapter.csproj" />
   </ItemGroup>
 
   <ItemGroup>

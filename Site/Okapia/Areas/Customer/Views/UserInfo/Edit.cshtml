@@ -94,70 +94,70 @@
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Card1" class="control-label"></label>
-          <input asp-for="Card1" class="form-control direct-ltr"/>
+          <input asp-for="Card1" class="form-control direct-ltr" asp-is-disabled="@Model.Card1"/>
           <span asp-validation-for="Card1" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Card2" class="control-label"></label>
-          <input asp-for="Card2" class="form-control direct-ltr"/>
+          <input asp-for="Card2" class="form-control direct-ltr" asp-is-disabled="@Model.Card2"/>
           <span asp-validation-for="Card2" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Card3" class="control-label"></label>
-          <input asp-for="Card3" class="form-control direct-ltr"/>
+          <input asp-for="Card3" class="form-control direct-ltr" asp-is-disabled="@Model.Card3"/>
           <span asp-validation-for="Card3" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Card4" class="control-label"></label>
-          <input asp-for="Card4" class="form-control direct-ltr"/>
+          <input asp-for="Card4" class="form-control direct-ltr" asp-is-disabled="@Model.Card4"/>
           <span asp-validation-for="Card4" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Card5" class="control-label"></label>
-          <input asp-for="Card5" class="form-control direct-ltr"/>
+          <input asp-for="Card5" class="form-control direct-ltr" asp-is-disabled="@Model.Card5"/>
           <span asp-validation-for="Card5" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Card6" class="control-label"></label>
-          <input asp-for="Card6" class="form-control direct-ltr"/>
+          <input asp-for="Card6" class="form-control direct-ltr" asp-is-disabled="@Model.Card6"/>
           <span asp-validation-for="Card6" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Card7" class="control-label"></label>
-          <input asp-for="Card7" class="form-control direct-ltr"/>
+          <input asp-for="Card7" class="form-control direct-ltr" asp-is-disabled="@Model.Card7"/>
           <span asp-validation-for="Card7" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Card8" class="control-label"></label>
-          <input asp-for="Card8" class="form-control direct-ltr"/>
+          <input asp-for="Card8" class="form-control direct-ltr" asp-is-disabled="@Model.Card8"/>
           <span asp-validation-for="Card8" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Card9" class="control-label"></label>
-          <input asp-for="Card9" class="form-control direct-ltr"/>
+          <input asp-for="Card9" class="form-control direct-ltr" asp-is-disabled="@Model.Card9"/>
           <span asp-validation-for="Card9" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Card10" class="control-label"></label>
-          <input asp-for="Card10" class="form-control direct-ltr"/>
+          <input asp-for="Card10" class="form-control direct-ltr" asp-is-disabled="@Model.Card10"/>
           <span asp-validation-for="Card10" class="text-danger"></span>
         </div>
       </div>
@@ -171,3 +171,13 @@
     </form>
   </div>
 </div>
+
+<script>
+  function checkCardValue(id) {
+    const card = $(`#${id}`);
+    debugger;
+    if (card.value !== undefined) {
+      card.attr("disabled", "disabled");
+    }
+  };
+</script>

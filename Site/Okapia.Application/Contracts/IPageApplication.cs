@@ -12,6 +12,7 @@ namespace Okapia.Application.Contracts
         OperationResult Edit(EditPage command);
         OperationResult Delete(long id);
         OperationResult Activate(long id);
+        OperationResult CheckSlugDuplication(string slug);
         EditPage GetPageDetails(long id);
         List<PageViewModel> Search(PageSearchModel searchModel, out int recordCount);
     }

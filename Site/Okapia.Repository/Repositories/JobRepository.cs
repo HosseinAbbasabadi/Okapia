@@ -35,16 +35,6 @@ namespace Okapia.Repository.Repositories
             var query = from job in _context.Jobs
                 join account in _context.Accounts
                     on job.JobId equals account.ReferenceRecordId
-                //join category in _context.Categories
-                //    on job.JobCategory equals category.CategoryId
-                //join province in _context.Provinces
-                //    on job.JobProvienceId equals province.Id
-                //join city in _context.Cities
-                //    on job.JobCityId equals city.Id
-                //join district in _context.Districts
-                //    on job.JobDistrictId equals district.Id
-                //join neighborhood in _context.Neighborhoods
-                //    on job.JobNeighborhoodId equals neighborhood.Id
                 where job.JobId == id
                 select new EditJob
                 {

@@ -1,0 +1,67 @@
+﻿@model Okapia.Domain.SeachModels.IntroducedSearchModel
+@{
+}
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">جستجو در معرفی شدگان</h2>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <form asp-action="Index" asp-controller="Introduce" asp-area="Administrator" method="GET" id="searchUsersFrm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="FirstNameFa" class="control-label"></label>
+                <input asp-for="FirstNameFa" class="form-control"/>
+                <span asp-validation-for="FirstNameFa" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="LastNameFa" class="control-label"></label>
+                <input asp-for="LastNameFa" class="form-control"/>
+                <span asp-validation-for="LastNameFa" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="FirstNameEn" class="control-label"></label>
+                <input asp-for="FirstNameEn" class="form-control"/>
+                <span asp-validation-for="FirstNameEn" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="LastNameEn" class="control-label"></label>
+                <input asp-for="LastNameEn" class="form-control"/>
+                <span asp-validation-for="LastNameEn" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="NationalCode" class="control-label"></label>
+                <input asp-for="NationalCode" class="form-control"/>
+                <span asp-validation-for="NationalCode" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label asp-for="Phonenumber" class="control-label"></label>
+                <input asp-for="Phonenumber" class="form-control"/>
+                <span asp-validation-for="Phonenumber" class="text-danger"></span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <input type="submit" value="جستجو" class="btn btn-primary"/>
+                <a asp-area="Administrator" asp-controller="Introduce" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

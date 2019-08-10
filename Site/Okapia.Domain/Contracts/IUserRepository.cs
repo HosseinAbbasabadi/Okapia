@@ -14,5 +14,6 @@ namespace Okapia.Domain.Contracts
         EditUser GetUserDetails(long id);
         List<User> Search(UserSearchModel searchModel);
         List<UserViewModel> Search(UserSearchModel searchModel, out int recordCount);
+        List<IntroducedViewModel> SearchIntroduced(IntroducedSearchModel searchModel, out int recordCount);
     }
 }

@@ -244,6 +244,7 @@ function checkSlugDuplication(url, dist) {
 
 function makeSlug(source, dist, url) {
   const takedata = $('#' + source).val();
+  debugger;
   $('#' + dist).val(convertToSlug(takedata));
   checkSlugDuplication(url, dist);
 };

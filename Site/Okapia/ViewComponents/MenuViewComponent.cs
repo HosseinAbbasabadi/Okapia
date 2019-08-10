@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Okapia.Application.Contracts;
+using Okapia.Models;
 
 namespace Okapia.ViewComponents
 {
@@ -18,7 +19,12 @@ namespace Okapia.ViewComponents
         {
             var authentication = _authHelper.GetCurrnetUserInfo();
             var categories = _categoryApplication.GetCategoriesForMenu();
-            return View("Default", authentication);
+            var menuViewModel = new MenuViewModel
+            {
+                AccountViewModel = authentication,
+                CategoryMenuViewModels = categories
+            };
+            return View("Default", menuViewModel);
         }
     }
 }

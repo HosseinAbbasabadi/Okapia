@@ -211,5 +211,39 @@ namespace Okapia.Repository.Repositories
 
             return query.ToList();
         }
+
+        public List<IntroducedViewModel> SearchIntroduced(IntroducedSearchModel searchModel, out int recordCount)
+        {
+            var query = _context.Users.Where(x => x.IntroducedBy == searchModel.CurrentUserAccountId)
+                .Include(x => x.Account).Select(user => new IntroducedViewModel
+                {
+                    UserId = user.UserId,
+                    FullnameFa = $"{user.UserFirstName} {user.UserLastName}",
+                    FullnameEn = $"{user.UserFirstNameEn} {user.UserLastNameEn}",
+                    NationalCode = user.UserNationalCode,
+                    Phonenumber = user.UserPhoneNumber
+                });
+
+            if (!string.IsNullOrEmpty(searchModel.FirstNameFa))
+                query = query.Where(x => x.FullnameFa.Contains(searchModel.FirstNameFa));
+            if (!string.IsNullOrEmpty(searchModel.LastNameFa))
+                query = query.Where(x => x.FullnameFa.Contains(searchModel.LastNameFa));
+            if (!string.IsNullOrEmpty(searchModel.FirstNameEn))
+                query = query.Where(x => x.FullnameEn.Contains(searchModel.FirstNameEn));
+            if (!string.IsNullOrEmpty(searchModel.LastNameEn))
+                query = query.Where(x => x.FullnameEn.Contains(searchModel.LastNameEn));
+            if (!string.IsNullOrEmpty(searchModel.NationalCode))
+                query = query.Where(x => x.NationalCode.Contains(searchModel.NationalCode));
+            if (!string.IsNullOrEmpty(searchModel.Phonenumber))
+                query = query.Where(x => x.Phonenumber.Contains(searchModel.Phonenumber));
+
+            recordCount = query.Count();
+
+            query = query.OrderByDescending(x => x.UserId)
+                .Skip(searchModel.PageIndex * searchModel.PageSize)
+                .Take(searchModel.PageSize);
+
+            return query.ToList();
+        }
     }
 }

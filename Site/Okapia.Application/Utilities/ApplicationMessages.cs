@@ -23,5 +23,9 @@
         public static string StartEndDateIsRequired = "تاریخ شروع و پایان اجراری است";
         public static string InvalidNationalCode = "کدملی وارد شده صحیح نیست";
         public static string IntroducingLimitation = "اعضای معرفی شده از حد مجاز بالاتر رفته است. لطفا با مدیر سیستم تماس بگیرید";
+
+        //WebService Messages
+        public static string UserAlreadyRegistered = "امکان ثبت نام وجود ندارد. کاربر با این کدملی قبلا در سیستم ثبت شده است";
+
     }
 }

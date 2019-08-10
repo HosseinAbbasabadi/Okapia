@@ -24,7 +24,7 @@ namespace Okapia.Repository.Repositories
                 PageId = page.PageId,
                 PagePublishDate = page.PagePublishDate.ToFarsi(),
                 PageSlug = page.PageSlug,
-                PageTittle = page.PageTittle,
+                PageTitle = page.PageTittle,
                 PageIsDeleted = page.PageIsDeleted,
                 PageCanonicalAddress = page.PageCanonicalAddress,
                 PageSmallDescription = page.PageSmallDescription,

@@ -54,7 +54,7 @@ namespace Okapia.Areas.Administrator.Controllers
 
         private string GetOriginalFilePath(string filename, string containingFoler)
         {
-            var path = _hostingEnvironment.WebRootPath + "\\"+ containingFoler + "\\";
+            var path = _hostingEnvironment.WebRootPath + "\\" + containingFoler + "\\";
             //if (!Directory.Exists(path))
             //    Directory.CreateDirectory(path);
             return path + filename;
@@ -74,7 +74,7 @@ namespace Okapia.Areas.Administrator.Controllers
             using (var image = new MagickImage(fileNameOnServer))
             {
                 var thumbFileNameOnServer = GetThumbFilePath(fileName, containingFoler);
-                var size = new MagickGeometry(200, 0);
+                var size = new MagickGeometry(200, 200);
                 image.Resize(size);
 
                 image.Write(thumbFileNameOnServer);

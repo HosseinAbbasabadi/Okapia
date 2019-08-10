@@ -1,5 +1,4 @@
-﻿@using Okapia.Application.Utilities
-@using Okapia.Domain.ViewModels
+﻿@using Okapia.Domain.ViewModels
 @{
   var auth = ViewData["Auth"] as AccountViewModel;
 }
@@ -10,7 +9,7 @@
     <!-- LOGO -->
     <div class="topbar-left">
       <div class="text-center">
-        <a href="index.html" class="logo">
+        <a href="/Customer/Home/Index" class="logo">
           <i class="md md-terrain"></i> <span> @auth?.Username عزیز به اُکاپیا خوش آمدید </span>
         </a>
       </div>
@@ -48,9 +47,15 @@
             </a>
           </li>
           <li>
-            <a asp-action="Index" asp-controller="Introduce" asp-area="Customer" class="waves-effect">
+            <a asp-action="Create" asp-controller="Introduce" asp-area="Customer" class="waves-effect">
               <i class="fa fa-user-plus"></i>
               <span>معرفی عضو</span>
+            </a>
+          </li>
+          <li>
+            <a asp-action="Index" asp-controller="Introduce" asp-area="Customer" class="waves-effect">
+              <i class="fa fa-users"></i>
+              <span>معرفی شدگان توسط من</span>
             </a>
           </li>
           <li>

@@ -102,5 +102,11 @@ namespace Okapia.Areas.Administrator.Controllers
             var referer = Request.Headers["Referer"].ToString();
             return Redirect(referer);
         }
+
+        public JsonResult CheckSlugDuplication(string id)
+        {
+            var result = _pageApplication.CheckSlugDuplication(id);
+            return Json(result);
+        }
     }
 }

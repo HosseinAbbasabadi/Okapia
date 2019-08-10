@@ -9,6 +9,8 @@ using Okapia.Domain.QueryContracts;
 using Okapia.Repository;
 using Okapia.Repository.Query;
 using Okapia.Repository.Repositories;
+using Okapia.WebService.Adapter;
+using Okapia.WebService.Adapter.Contracts;
 
 namespace Okapia.Configuration
 {
@@ -85,6 +87,8 @@ namespace Okapia.Configuration
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
             services.AddScoped<IJobPictureRepository, JobPictureRepository>();
+
+            services.AddScoped<IPasargadService, PasargadService>();
 
 
             services.AddDbContext<OkapiaContext>(options =>

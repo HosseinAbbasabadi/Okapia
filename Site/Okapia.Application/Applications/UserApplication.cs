@@ -10,6 +10,7 @@ using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.User;
+using Okapia.WebService.Adapter.Contracts;
 
 namespace Okapia.Application.Applications
 {
@@ -23,11 +24,12 @@ namespace Okapia.Application.Applications
         private readonly INeighborhoodApplication _neighborhoodApplication;
         private readonly IAuthHelper _authHelper;
         private readonly IUserCardRepository _userCardRepository;
+        private readonly IPasargadService _pasargadService;
 
         public UserApplication(IUserRepository userRepository, IPasswordHasher passwordHasher,
             IAccountRepository accountRepository, ICityApplication cityApplication,
             IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication,
-            IAuthHelper authHelper, IUserCardRepository userCardRepository)
+            IAuthHelper authHelper, IUserCardRepository userCardRepository, IPasargadService pasargadService)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
@@ -37,6 +39,7 @@ namespace Okapia.Application.Applications
             _neighborhoodApplication = neighborhoodApplication;
             _authHelper = authHelper;
             _userCardRepository = userCardRepository;
+            _pasargadService = pasargadService;
         }
 
         public OperationResult Create(CreateUser command)
@@ -52,7 +55,7 @@ namespace Okapia.Application.Applications
 
                 if (_accountRepository.IsDuplicated(x => x.Username == command.NationalCardNumber))
                 {
-                    result.Message = ApplicationMessages.DuplicatedUser;
+                    result.Message = ApplicationMessages.DuplicatedNationalCode;
                     return result;
                 }
 
@@ -75,6 +78,12 @@ namespace Okapia.Application.Applications
                 {
                     if (!_userCardRepository.IsDuplicated(x => x.CardNumber == userCard.CardNumber)) continue;
                     result.Message = ApplicationMessages.DuplicatedDatabaseCard;
+                    return result;
+                }
+
+                if (_pasargadService.IsAlreadyRegistered(command.NationalCardNumber))
+                {
+                    result.Message = ApplicationMessages.UserAlreadyRegistered;
                     return result;
                 }
 
@@ -196,8 +205,8 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
-                var introducerId = _authHelper.GetCurrnetUserInfo().ReferenceRecordId;
-                var introducer = _userRepository.Get(introducerId);
+                var introducerId = _authHelper.GetCurrnetUserInfo().AuthUserId;
+                var introducer = _userRepository.Get(x=>x.Account.Id == introducerId).First();
                 if (_userRepository.Get(x => x.IntroducedBy == introducerId).Count >
                     introducer.UserCustomerIntroductionLimit)
                 {
@@ -443,6 +452,12 @@ namespace Okapia.Application.Applications
         public List<UserViewModel> Search(UserSearchModel searchModel, out int recordCount)
         {
             return _userRepository.Search(searchModel, out recordCount);
+        }
+
+        public List<IntroducedViewModel> SearchIntroduced(IntroducedSearchModel searchModel, out int recordCount)
+        {
+            searchModel.CurrentUserAccountId = _authHelper.GetCurrnetUserInfo().AuthUserId;
+            return _userRepository.SearchIntroduced(searchModel, out recordCount);
         }
     }
 }

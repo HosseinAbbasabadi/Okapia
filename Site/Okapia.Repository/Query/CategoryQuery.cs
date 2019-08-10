@@ -17,8 +17,29 @@ namespace Okapia.Repository.Query
 
         public List<CategoryMenuViewModel> GetCategoriesForMenu()
         {
-            var categories = _context.Categories.Include(x => x.Childs).ToList();
-            return null;
+            return _context.Categories.Include(x => x.Childs).Select(category => new CategoryMenuViewModel
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName,
+                CategoryChilds = MapToCategoryMenuViewModels(category.Childs),
+                Photo = category.CategoryThumbPicUrl,
+                PhotoAlt = category.CategoryPicAlt
+            }).ToList();
+        }
+
+
+        private static List<CategoryMenuViewModel> MapToCategoryMenuViewModels(IEnumerable<Category> categories)
+        {
+            return categories.Select(MapToCategoryMenuViewModel).ToList();
+        }
+
+        private static CategoryMenuViewModel MapToCategoryMenuViewModel(Category category)
+        {
+            return new CategoryMenuViewModel
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName
+            };
         }
     }
 }
