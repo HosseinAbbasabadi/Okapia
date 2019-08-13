@@ -1,4 +1,5 @@
-﻿@model MenuViewModel
+﻿@using Okapia.Domain.SeachModels
+@model MenuViewModel
 
   <nav class="navbar sticky-top navbar-expand-lg main-menu blog-Menu">
     <div class="container rtl">
@@ -106,9 +107,13 @@
                     <ul class="list">
                       @foreach (var child in menu.CategoryChilds)
                       {
-                        <li>
-                          <a href="#">@child.CategoryName</a>
-                        </li>
+                        var searchModel = new JobViewSearchModel
+                        {
+                          CategoryId = child.CategoryId
+                        };
+                      <li>
+                        @Html.ActionLink(child.CategoryName , "Index", "JobView", searchModel)
+                      </li>
                       }
                     </ul>
                   </li>

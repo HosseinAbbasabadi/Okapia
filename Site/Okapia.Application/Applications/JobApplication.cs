@@ -28,12 +28,17 @@ namespace Okapia.Application.Applications
         private readonly IDistrictRepository _districtRepository;
         private readonly INeighborhoodRepository _neighborhoodRepository;
         private readonly IJobQuery _jobQuery;
+        private readonly ICityApplication _cityApplication;
+        private readonly IDistrictApplication _districtApplication;
+        private readonly INeighborhoodApplication _neighborhoodApplication;
 
         public JobApplication(IJobRepository jobRepository, IAccountRepository accountRepository,
             IAuthHelper authHelper, IPasswordHasher passwordHasher, IJobRequestRepository jobRequestRepository,
             IMarketerApplication marketerApplication,
             ICategoryApplication categoryApplication, ICityRepository cityRepository,
-            IDistrictRepository districtRepository, INeighborhoodRepository neighborhoodRepository, IJobQuery jobQuery)
+            IDistrictRepository districtRepository, INeighborhoodRepository neighborhoodRepository, IJobQuery jobQuery,
+            ICityApplication cityApplication, IDistrictApplication districtApplication,
+            INeighborhoodApplication neighborhoodApplication)
         {
             _jobRepository = jobRepository;
             _accountRepository = accountRepository;
@@ -46,6 +51,9 @@ namespace Okapia.Application.Applications
             _districtRepository = districtRepository;
             _neighborhoodRepository = neighborhoodRepository;
             _jobQuery = jobQuery;
+            _cityApplication = cityApplication;
+            _districtApplication = districtApplication;
+            _neighborhoodApplication = neighborhoodApplication;
         }
 
         public OperationResult Create(CreateJob command)
@@ -397,9 +405,27 @@ namespace Okapia.Application.Applications
             }
         }
 
+        public JobViewDetailsViewModel GetJobViewDetails(long id)
+        {
+            return _jobQuery.GetJobViewDetails(id);
+        }
+
         public List<JobStaredViewModel> GetStaredJobsForLandingPage()
         {
             return _jobQuery.GetStaredJobs();
+        }
+
+        public List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel)
+        {
+            if (searchModel.Province != 0)
+                searchModel.Cities = new SelectList(_cityApplication.GetCitiesBy(searchModel.Province), "Id", "Name");
+            if (searchModel.City != 0)
+                searchModel.Districts =
+                    new SelectList(_districtApplication.GetDistrictsBy(searchModel.City), "Id", "Name");
+            if (searchModel.Neighborhood != 0)
+                searchModel.Neighborhoods =
+                    new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(searchModel.District), "Id", "Name");
+            return _jobQuery.GetJobsForCategoryView(searchModel);
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Okapia.Domain.ViewModels.JobPicture
+﻿namespace Okapia.Domain.ViewModels.JobPicture
 {
     public class JobPictureViewModel
     {

@@ -30,156 +30,157 @@
 
   <!-- Main css -->
   <link href="~/assets/css/main.css" rel="stylesheet">
+  @* Slider Product *@
+  <link href="~/assets/css/swiper.min.css" rel="stylesheet">
 
   <link href="~/css/site.css" rel="stylesheet" />
   <link href="~/css/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
 </head>
 <body>
-<header class="header-area">
-  @await Component.InvokeAsync("Menu")
-</header>
+  <header class="header-area">
+    @await Component.InvokeAsync("Menu")
+  </header>
 
-      @RenderBody()
+  @RenderBody()
 
-<footer class="footer-area section-padding-2">
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-        <div class="footer-content">
-          <a href="#">
-            <img src="assets/images/logo.png" alt="">
-          </a>
-          <p>
-            موسسه اکاپیا با بهره گیری از برترین متخصصین بازاریابی توزیع و فروش
-            علاوه بر ارایه خدمات و کالاهای با کیفیت امکان دریافت تخفیف های چشمگیری را برای هموطنان عزیز فراهم
-            نموده است
-          </p>
-          <div class="footer-social">
+  <footer class="footer-area section-padding-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+          <div class="footer-content">
             <a href="#">
-              <i class="fab fa-facebook"></i>
+              <img src="assets/images/logo.png" alt="">
             </a>
-            <a href="#">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-telegram"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 d-none d-md-block">
-        <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="footer-menu">
-              <h3>دسترسی سریع</h3>
-              <ul>
-                <li>
-                  <a href="index-2.html">صفحه نخست</a>
-                </li>
-                <li>
-                  <a href="#">درباره ما</a>
-                </li>
-                <li>
-                  <a href="#">تهیه کارت</a>
-                </li>
-                <li>
-                  <a href="#">تماس با ما</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="footer-menu">
-              <h3>لینک های مهم</h3>
-              <ul>
-                <li>
-                  <a href="#">ثبت نام</a>
-                </li>
-                <li>
-                  <a href="#">همکاری با ما</a>
-                </li>
-                <li>
-                  <a href="#">نحوه کار</a>
-                </li>
-                <li>
-                  <a href="#">مراکز معتبر</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="footer-menu">
-              <h3>آخرین مطالب</h3>
-              <ul>
-                <li>
-                  <a href="#">نخفیفات جدید در راه است</a>
-                </li>
-                <li>
-                  <a href="#">دوستان خود را معرفی کنید و درآمد داشته باشید</a>
-                </li>
-                <li>
-                  <a href="#">از کجا خرید کنم ؟</a>
-                </li>
-                <li>
-                  <a href="#">چطور کارت خود را سفارش دهیم ؟</a>
-                </li>
-              </ul>
+            <p>
+              موسسه اکاپیا با بهره گیری از برترین متخصصین بازاریابی توزیع و فروش
+              علاوه بر ارایه خدمات و کالاهای با کیفیت امکان دریافت تخفیف های چشمگیری را برای هموطنان عزیز فراهم
+              نموده است
+            </p>
+            <div class="footer-social">
+              <a href="#">
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-telegram"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-        <div class="copyright centered">
-          <p>&copy;طراحی و اجرا <a href="https://tahlildadeh.com">تحلیل داده</a></p>
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 d-none d-md-block">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6">
+              <div class="footer-menu">
+                <h3>دسترسی سریع</h3>
+                <ul>
+                  <li>
+                    <a href="index-2.html">صفحه نخست</a>
+                  </li>
+                  <li>
+                    <a href="#">درباره ما</a>
+                  </li>
+                  <li>
+                    <a href="#">تهیه کارت</a>
+                  </li>
+                  <li>
+                    <a href="#">تماس با ما</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+              <div class="footer-menu">
+                <h3>لینک های مهم</h3>
+                <ul>
+                  <li>
+                    <a href="#">ثبت نام</a>
+                  </li>
+                  <li>
+                    <a href="#">همکاری با ما</a>
+                  </li>
+                  <li>
+                    <a href="#">نحوه کار</a>
+                  </li>
+                  <li>
+                    <a href="#">مراکز معتبر</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+              <div class="footer-menu">
+                <h3>آخرین مطالب</h3>
+                <ul>
+                  <li>
+                    <a href="#">نخفیفات جدید در راه است</a>
+                  </li>
+                  <li>
+                    <a href="#">دوستان خود را معرفی کنید و درآمد داشته باشید</a>
+                  </li>
+                  <li>
+                    <a href="#">از کجا خرید کنم ؟</a>
+                  </li>
+                  <li>
+                    <a href="#">چطور کارت خود را سفارش دهیم ؟</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="copyright centered">
+            <p>&copy;طراحی و اجرا <a href="https://tahlildadeh.com">تحلیل داده</a></p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
-<footer class="border-top footer text-muted">
-  <div class="container">
-    &copy; 2019 - Okapia - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-  </div>
-</footer>
+  </footer>
+  <footer class="border-top footer text-muted">
+    <div class="container">
+      &copy; 2019 - Okapia - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+  </footer>
 
-@*<script src="~/lib/jquery/dist/jquery.js"></script>*@
-<script src="~/assets/js/jquery-3.2.1.min.js"></script>
-<script src="~/assets/js/jquery-migrate.js"></script>
+  @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+  <script src="~/assets/js/jquery-3.2.1.min.js"></script>
+  <script src="~/assets/js/jquery-migrate.js"></script>
 
-<script src="~/assets/js/popper.js"></script>
-<script src="~/assets/js/bootstrap.min.js"></script>
-<script src="~/assets/js/owl.carousel.min.js"></script>
+  <script src="~/assets/js/popper.js"></script>
+  <script src="~/assets/js/bootstrap.min.js"></script>
+  <script src="~/assets/js/owl.carousel.min.js"></script>
 
-<script src="~/assets/js/magnific-popup.min.js"></script>
-<script src="~/assets/js/imagesloaded.pkgd.min.js"></script>
-<script src="~/assets/js/isotope.pkgd.min.js"></script>
+  <script src="~/assets/js/magnific-popup.min.js"></script>
+  <script src="~/assets/js/imagesloaded.pkgd.min.js"></script>
+  <script src="~/assets/js/isotope.pkgd.min.js"></script>
 
-<script src="~/assets/js/waypoints.min.js"></script>
-<script src="~/assets/js/jquery.counterup.min.js"></script>
-<script src="~/assets/js/wow.min.js"></script>
-<script src="~/assets/js/scrollUp.min.js"></script>
+  <script src="~/assets/js/waypoints.min.js"></script>
+  <script src="~/assets/js/jquery.counterup.min.js"></script>
+  <script src="~/assets/js/wow.min.js"></script>
+  <script src="~/assets/js/scrollUp.min.js"></script>
+  <script src="~/assets/js/swiper.min.js"></script>
 
-<script src="~/assets/js/script.js"></script>
+  <script src="~/assets/js/script.js"></script>
 
-<script src="~/assets/js/swiper.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+  <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+  <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+  <script src="~/assets/notifications/notify.min.js"></script>
+  <script src="~/assets/notifications/notify-metro.js"></script>
+  <script src="~/assets/notifications/notifications.js"></script>
 
-<script src="~/assets/notifications/notify.min.js"></script>
-<script src="~/assets/notifications/notify-metro.js"></script>
-<script src="~/assets/notifications/notifications.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+  <script src="~/js/ajaxFunctions.js"></script>
 
-<script src="~/js/site.js" asp-append-version="true"></script>
-<script src="~/js/ajaxFunctions.js"></script>
-
-<script src="~/js/calendar.js"></script>
-<script src="~/js/jquery.Bootstrap-PersianDateTimePicker.js"></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-@RenderSection("Scripts", required: false)
+  <script src="~/js/calendar.js"></script>
+  <script src="~/js/jquery.Bootstrap-PersianDateTimePicker.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  @RenderSection("Scripts", required: false)
 </body>
 </html>

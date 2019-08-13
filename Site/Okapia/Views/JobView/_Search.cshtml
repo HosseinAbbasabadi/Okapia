@@ -1,0 +1,41 @@
+﻿@model Okapia.Domain.SeachModels.JobViewSearchModel
+
+<fieldset class="FormSearch">
+  <legend>
+    منطقه مورد نظر خود را مشخص کنید
+  </legend>
+  <div class="row rtl text-right mb-4">
+    <form method="get" id="createUserFrm" asp-controller="JobView" asp-action="Index" as>
+      <div class="single-field-inline">
+        <label asp-for="Province" class="control-label"></label>
+        <select asp-for="Province" asp-items="@Model.Provinces" class="form-control" id="CreateProvinceDropDown" onchange="getCityList('CreateProvinceDropDown', '@Url.Action("GetCitiesByProvince", "Home", new {area = ""})', 'createCityDropDown')"></select>
+        @*<span asp-validation-for="ProvinceId" class="text-danger"></span>*@
+      </div>
+      <div class="single-field-inline">
+        <label asp-for="City" class="control-label"></label>
+        <select asp-for="City" class="form-control" asp-items="@Model.Cities" id="createCityDropDown" onchange="getDistrictList('createCityDropDown', '@Url.Action("GetDistrictsByCity", "Home", new {area = ""})', 'createDistrictDropDown')">
+          <option value="0">شهر را انتخاب کنید...</option>
+        </select>
+        @*<span asp-validation-for="CityId" class="text-danger"></span>*@
+      </div>
+      <div class="single-field-inline">
+        <label asp-for="District" class="control-label"></label>
+        <select asp-for="District" class="form-control" id="createDistrictDropDown" onchange="getDistrictList('createDistrictDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Home", new {area = ""})', 'createNeighborhoodDropDown')">
+          <option value="0">شهر را انتخاب کنید...</option>
+        </select>
+        @*<span asp-validation-for="DistrictId" class="text-danger"></span>*@
+      </div>
+      <div class="single-field-inline">
+        <label asp-for="Neighborhood" class="control-label"></label>
+        <select asp-for="Neighborhood" class="form-control" id="createNeighborhoodDropDown">
+          <option value="0">شهر را انتخاب کنید...</option>
+        </select>
+        @*<span asp-validation-for="NeighborhoodId" class="text-danger"></span>*@
+      </div>
+      <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
+      <div class="single-field-inline">
+        <button type="submit" class="bttn-mid btn-fill">فیلتر</button>
+      </div>
+    </form>
+  </div>
+</fieldset>

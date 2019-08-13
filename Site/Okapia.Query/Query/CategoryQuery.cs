@@ -16,7 +16,7 @@ namespace Okapia.Query.Query
 
         public List<CategoryMenuViewModel> GetCategoriesForMenu()
         {
-            return _context.Categories.Include(x => x.Childs).Select(category => new CategoryMenuViewModel
+            return _context.Categories.Where(x=>x.CategoryParentId == 0).Include(x => x.Childs).Select(category => new CategoryMenuViewModel
             {
                 CategoryId = category.CategoryId,
                 CategoryName = category.CategoryName,
