@@ -14,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.Configuration", "Oka
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework", "Framework\Framework.csproj", "{BEB5DFE8-8CBF-43F8-BF2E-36116946EF7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okapia.WebService.Adapter", "Okapia.WebService.Adapter\Okapia.WebService.Adapter.csproj", "{CF753532-79E5-4B42-85C5-9371D6E55F0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.WebService.Adapter", "Okapia.WebService.Adapter\Okapia.WebService.Adapter.csproj", "{CF753532-79E5-4B42-85C5-9371D6E55F0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okapia.Query", "Okapia.Query\Okapia.Query.csproj", "{CFCFBE8A-E33C-4866-8AFB-B4879A983369}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,10 @@ Global
 		{CF753532-79E5-4B42-85C5-9371D6E55F0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF753532-79E5-4B42-85C5-9371D6E55F0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF753532-79E5-4B42-85C5-9371D6E55F0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFCFBE8A-E33C-4866-8AFB-B4879A983369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFCFBE8A-E33C-4866-8AFB-B4879A983369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFCFBE8A-E33C-4866-8AFB-B4879A983369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFCFBE8A-E33C-4866-8AFB-B4879A983369}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

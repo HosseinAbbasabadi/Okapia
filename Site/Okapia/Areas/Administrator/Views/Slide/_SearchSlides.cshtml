@@ -1,0 +1,59 @@
+﻿@using Okapia.Domain.SeachModels
+@model Okapia.Domain.SeachModels.SlideSearchModel
+<hr/>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">جستجو در اسلایدها</h2>
+      </div>
+      <div class="panel-body">
+        <form asp-action="Index" asp-controller="Slide" method="GET">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="SlideTitleText" class="control-label"></label>
+              <input asp-for="SlideTitleText" class="form-control"/>
+              <span asp-validation-for="SlideTitleText" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="SlideFromCreationDate" class="control-label"></label>
+              <div class="input-group">
+                <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="left">
+                  <span class="fa fa-calendar"></span>
+                </div>
+                <input asp-for="SlideFromCreationDate" type="text" class="form-control" id="fromDate1" placeholder="از تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="SlideToCreationDate" class="control-label"></label>
+              <div class="input-group">
+                <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="left">
+                  <span class="fa fa-calendar"></span>
+                </div>
+                <input asp-for="SlideToCreationDate" type="text" class="form-control" id="fromDate1" placeholder="از تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="SlideIsDeleted" class="control-label"></label>
+              <input asp-for="SlideIsDeleted" class="form-control"/>
+              <span asp-validation-for="SlideIsDeleted" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="submit" value="جستجو" class="btn btn-primary"/>
+              <a asp-area="Administrator" asp-controller="Slide" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

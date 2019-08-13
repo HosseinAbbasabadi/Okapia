@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Okapia.Domain.ViewModels.Slide.SliderViewModel>
+
+<section class="hero-area owl-carousel">
+  @foreach (var sliderViewModel in Model)
+  {
+    <div class="single-hero dark-overlay" style="background: url('/SlidePhotos/@sliderViewModel.SlideName') no-repeat;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
+            <div class="hero-sub">
+              <div class="table-cell">
+                <div class="hero-box">
+                  <h1>@sliderViewModel.SlideTitleText</h1>
+                  <p>@sliderViewModel.SlideDescriptionText</p>
+                  <a href="@sliderViewModel.SlideLink" target="_blank" class="bttn-mid btn-fill">بیشتر بدانید</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  }
+</section>

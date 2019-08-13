@@ -12,15 +12,5 @@ namespace Okapia.Areas.Customer.Controllers
         {
             return View();
         }
-
-        public IActionResult EditCustomer()
-        {
-            var customer = new CreateUser
-            {
-                NationalCardNumber = "0020304050",
-                PhoneNumber = "09102030400"
-            };
-            return View(customer);
-        }
     }
 }

@@ -19,8 +19,7 @@ namespace Okapia.Domain.Commands.Job
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobSmallDescription { get; set; }
 
-        [Display(Name = "ویژگی های شغل")]
-        public string JobFeatures { get; set; }
+        [Display(Name = "ویژگی های شغل")] public string JobFeatures { get; set; }
 
         [Display(Name = "توضیح کامل")] public string Content { get; set; }
 
@@ -217,6 +216,7 @@ namespace Okapia.Domain.Commands.Job
         public string DescPhoto6 { get; set; }
         public string AltPhoto6 { get; set; }
         public long JobRequestId { get; set; }
+        [Display(Name = "نمایش در صفحه اصلی")] public bool IsStared { get; set; }
         public IReadOnlyCollection<JobPictureViewModel> Photos { get; set; }
         public SelectList Proviences { get; set; }
         public SelectList Categories { get; set; }

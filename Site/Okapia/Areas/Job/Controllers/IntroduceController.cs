@@ -1,6 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Okapia.Application.Contracts;
+using Okapia.Application.Utilities;
+using Okapia.Areas.Customer.Models;
+using Okapia.Domain.Commands.User;
+using Okapia.Domain.SeachModels;
 
 namespace Okapia.Areas.Job.Controllers
 {
@@ -8,10 +13,30 @@ namespace Okapia.Areas.Job.Controllers
     [Authorize(Roles = "2")]
     public class IntroduceController : Controller
     {
-        // GET: Introduce
-        public ActionResult Index()
+        private readonly IUserApplication _userApplication;
+
+        public IntroduceController(IUserApplication userApplication, IAuthHelper authHelper)
         {
-            return View();
+            _userApplication = userApplication;
+        }
+
+        // GET: Introduce
+        public ActionResult Index(IntroducedSearchModel searchModel)
+        {
+            if (searchModel.PageSize == 0)
+            {
+                searchModel.PageSize = 20;
+            }
+
+            var users = _userApplication.SearchIntroduced(searchModel, out var recordCount);
+            var userIndexViewModel = new IntroducedIndexViewModel
+            {
+                IntroducedSearchModel = searchModel,
+                IntroducedViewModels = users
+            };
+            Pager.PreparePager(searchModel, recordCount);
+            ViewData["searchModel"] = searchModel;
+            return View(userIndexViewModel);
         }
 
         // GET: Introduce/Details/5
@@ -23,24 +48,17 @@ namespace Okapia.Areas.Job.Controllers
         // GET: Introduce/Create
         public ActionResult Create()
         {
-            return View();
+            var createUser = new CreateUser();
+            return View(createUser);
         }
 
         // POST: Introduce/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        //[ValidateAntiForgeryToken]
+        public JsonResult Create(CreateUser command)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var result = _userApplication.Introduce(command);
+            return Json(result);
         }
 
         // GET: Introduce/Edit/5

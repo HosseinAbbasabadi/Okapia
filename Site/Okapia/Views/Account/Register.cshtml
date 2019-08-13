@@ -18,7 +18,7 @@
           <h2>ثبت نام</h2>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-8">
         <form method="post" id="createUserFrm" asp-controller="Account" asp-action="Register">
           <div asp-validation-summary="ModelOnly" class="text-danger"></div>
           <div class="single-field">
@@ -102,49 +102,21 @@
             <span asp-validation-for="Email" class="text-danger"></span>
           </div>
           <div id="bankCards">
-            <div class="col-md-4">
-              <div class="form-group">
+            <div>
+              <div class="single-field">
                 <label asp-for="Card1" class="control-label"></label>
-                <input asp-for="Card1" class="form-control direct-ltr"/>
-                <button type="button" class="btn btn-primary" onclick="dynamicCard()">افزودن کارت</button>
+                <input asp-for="Card1" class="form-control direct-ltr" />
+                <button type="button" class="btn btn-success" onclick="dynamicCard('ui')">افزودن کارت</button>
                 <span asp-validation-for="Card1" class="text-danger"></span>
               </div>
             </div>
           </div>
-          @*<div class="single-field">
-            <label asp-for="Card1" class="control-label"></label>
-            <input asp-for="Card1" class="form-control"/>
-            <span asp-validation-for="Card1" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="Card2" class="control-label"></label>
-            <input asp-for="Card2" class="form-control"/>
-            <span asp-validation-for="Card2" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="Card3" class="control-label"></label>
-            <input asp-for="Card3" class="form-control"/>
-            <span asp-validation-for="Card3" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="Card4" class="control-label"></label>
-            <input asp-for="Card4" class="form-control"/>
-            <span asp-validation-for="Card4" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="Card5" class="control-label"></label>
-            <input asp-for="Card5" class="form-control"/>
-            <span asp-validation-for="Card5" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="Card6" class="control-label"></label>
-            <input asp-for="Card6" class="form-control"/>
-            <span asp-validation-for="Card6" class="text-danger"></span>
-          </div>*@
+          <br/>
           <h3 class="text-danger">@ViewData["errorMessage"]</h3>
+          <br />
           <div class="form-group">
             @*<input type="button" value="ثبت" class="btn btn-primary" onclick="createUser('@Url.Action("Register", "User")', 'createUserFrm', '@Url.Action("Index", "Home")')"/>*@
-            <button type="submit" class="bttn-mid btn-fill">ورود</button>
+            <button type="submit" class="bttn-mid btn-fill">ثبت نام</button>
           </div>
         </form>
       </div>

@@ -1,5 +1,4 @@
-﻿@using Okapia.Application.Utilities
-@using Okapia.Domain.ViewModels
+﻿@using Okapia.Domain.ViewModels
 @{
   var auth = ViewData["Auth"] as AccountViewModel;
 }
@@ -10,16 +9,13 @@
     <!-- LOGO -->
     <div class="topbar-left">
       <div class="text-center">
-        <a href="index.html" class="logo">
-          <i class="md md-terrain"></i> <span> OKAPIA </span>
+        <a href="/Job/Home/Index" class="logo">
+          <i class="md md-terrain"></i> <span> @auth?.Username عزیز به اُکاپیا خوش آمدید </span>
         </a>
       </div>
     </div>
     <div class="topbar-left pull-right">
       <div class="text-center">
-        <a asp-action="Index" asp-controller="Home" asp-area="" class="logo">
-          <i class="md md-terrain"></i><span> بازگشت به سایت </span>
-        </a>
       </div>
     </div>
     <!-- Button mobile view to collapse sidebar menu -->
@@ -38,26 +34,39 @@
             </a>
           </div>
 
-          <p class="text-muted m-0">@auth?.Role</p>
+          <p class="text-muted m-0">کاربر محترم اُکاپیا</p>
         </div>
       </div>
       <!--- Divider -->
       <div id="sidebar-menu">
         <ul>
-          @*<li>
-            <a asp-action="EditJob" asp-controller="Home" asp-area="Job">
-              <i class="md md-home"></i><span> اطلاعات شغل </span>
-            </a>
-          </li>*@
           <li>
-            <a asp-action="Index" asp-controller="Introduce" asp-area="Job" class="waves-effect">
-              <i class="md md-home"></i>
+            <a asp-action="Index" asp-controller="Home" asp-area="Job">
+              <i class="fa fa-home"></i><span> صفحه اصلی </span>
+            </a>
+          </li>
+          <li>
+            <a asp-action="Create" asp-controller="Introduce" asp-area="Job" class="waves-effect">
+              <i class="fa fa-user-plus"></i>
               <span>معرفی عضو</span>
             </a>
           </li>
           <li>
+            <a asp-action="Index" asp-controller="Introduce" asp-area="Job" class="waves-effect">
+              <i class="fa fa-users"></i>
+              <span>معرفی شدگان توسط من</span>
+            </a>
+          </li>
+          <li>
+            <a onclick="openChangePasswordModal('@auth?.AuthUserId')" class="waves-effect">
+              <i class="fa fa-key"></i>
+              <span>تغییر کلمه رمز</span>
+            </a>
+          </li>
+
+          <li>
             <a href="#" class="waves-effect">
-              <i class="md md-home"></i>
+              <i class="fa fa-diagnoses"></i>
               <span>گزارشات کارت های من</span>
             </a>
             <ul class="list-unstyled">
@@ -75,6 +84,7 @@
               </li>
             </ul>
           </li>
+
           <li>
             <a href="#" class="waves-effect">
               <i class="md md-home"></i>
@@ -95,9 +105,33 @@
               </li>
             </ul>
           </li>
+          <li>
+            <a asp-action="Index" asp-controller="Home" asp-area="" class="waves-effect">
+              <i class="fa fa-home"></i><span> بازگشت به سایت </span>
+            </a>
+          </li>
+          <li>
+            <a asp-action="Logout" asp-controller="Account" asp-area="" class="waves-effect">
+              <i class="fa fa-sign-out"></i>
+              <span>خروج</span>
+            </a>
+          </li>
         </ul>
+
       </div>
       <div class="clearfix"></div>
     </div>
   </div>
 </div>
+
+<div id="changePasswordDiv">
+
+</div>
+
+<script>
+  function openChangePasswordModal(id) {
+    openModalWithData(`@Url.Action("ChnagePassword", "Account", new {area = ""})/${id}`,
+      'changePasswordDiv',
+      'changePasswordModal');
+  }
+</script>

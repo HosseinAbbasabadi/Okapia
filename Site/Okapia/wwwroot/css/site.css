@@ -3,10 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 @font-face {
     font-family: 'IranianSans';
     src: url('../fonts/IranianSans.eot');
-    src: url('../fonts/IranianSans.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/IranianSans.woff') format('woff'),
-         url('../fonts/IranianSans.ttf') format('truetype'),
-         url('../fonts/IranianSans.svg#merriweatherheavy') format('svg');
+    src: url('../fonts/IranianSans.eot?#iefix') format('embedded-opentype'), url('../fonts/IranianSans.woff') format('woff'), url('../fonts/IranianSans.ttf') format('truetype'), url('../fonts/IranianSans.svg#merriweatherheavy') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -57,7 +54,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    direction: rtl;
+    /* direction: rtl; */
     text-align: right;
 }
 
@@ -70,6 +67,7 @@ body {
     height: 60px;
     line-height: 60px; /* Vertically center the text there */
 }
+
 .thumbnail {
     display: block;
     padding: 5px;
@@ -83,9 +81,9 @@ body {
     transition: border .2s ease-in-out;
 }
 
-.thumbnail .caption {
-    margin-top: 5px;
-}
+    .thumbnail .caption {
+        margin-top: 5px;
+    }
 
 .dropdown-menu-li {
     text-align: right;
@@ -136,7 +134,6 @@ body.loading .loader {
 }
 
 .detail-for {
-    
     font-size: 18px;
 }
 
@@ -146,4 +143,8 @@ body.loading .loader {
 
 .direct-ltr {
     direction: ltr;
+}
+
+.hidden {
+    display: none !important;
 }

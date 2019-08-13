@@ -6,7 +6,8 @@ using Okapia.Domain.ViewModels.Category;
 
 namespace Okapia.Application.Contracts
 {
-    public interface ICategoryApplication
+    public interface 
+        ICategoryApplication
     {
         OperationResult Create(CreateCategory command);
         OperationResult Update(EditCategory command);
@@ -17,6 +18,7 @@ namespace Okapia.Application.Contracts
         IEnumerable<CategoryViewModel> Search(CategorySearchModel searchModel, out int recordCount);
         OperationResult CheckSlugDuplication(string slug);
 
+        //
         List<CategoryMenuViewModel> GetCategoriesForMenu();
     }
 }

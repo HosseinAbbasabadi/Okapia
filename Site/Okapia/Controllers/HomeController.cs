@@ -16,7 +16,8 @@ namespace Okapia.Controllers
         private readonly INeighborhoodApplication _neighborhoodApplication;
 
         public HomeController(IJobRequestApplication jobRequestApplication, ICityApplication cityApplication,
-            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication)
+            IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication,
+            IJobApplication jobApplication)
         {
             _jobRequestApplication = jobRequestApplication;
             _cityApplication = cityApplication;

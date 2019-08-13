@@ -6,8 +6,9 @@ using Okapia.Application.Applications;
 using Okapia.Application.Contracts;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.QueryContracts;
+using Okapia.Query;
+using Okapia.Query.Query;
 using Okapia.Repository;
-using Okapia.Repository.Query;
 using Okapia.Repository.Repositories;
 using Okapia.WebService.Adapter;
 using Okapia.WebService.Adapter.Contracts;
@@ -40,8 +41,6 @@ namespace Okapia.Configuration
 
             services.AddScoped<ICategoryApplication, CategoryApplication>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-
-            services.AddScoped<ICategoryQuery, CategoryQuery>();
 
             services.AddScoped<IAccountApplication, AccountApplication>();
 
@@ -77,7 +76,14 @@ namespace Okapia.Configuration
 
             services.AddScoped<ICommentApplication, CommentApplication>();
             services.AddScoped<ICommentRepository, CommentRepository>();
+            
+            services.AddScoped<ISlideApplication, SlideApplication>();
+            services.AddScoped<ISlideRepository, SlideRepository>();
 
+            services.AddScoped<ICategoryQuery, CategoryQuery>();
+            services.AddScoped<IJobQuery, JobQuery>();
+            services.AddScoped<ISlideQuery, SlideQuery>();
+            
             services.AddScoped<IUserCardRepository, UserCardRepository>();
 
             services.AddSingleton<IAuthHelper, AuthHelper>();

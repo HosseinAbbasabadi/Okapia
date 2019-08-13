@@ -1,0 +1,35 @@
+﻿@using System.Collections.Generic;
+@model List<Okapia.Domain.ViewModels.Job.JobStaredViewModel>
+
+<section class="card-features-area section-padding-2">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 centered wow fadeInUp" data-wow-delay="0.3s">
+        <div class="section-title">
+          <h2>مراکز منتخب</h2>
+          <p>برخی از مراکز سرویس دهی منتخب</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      
+      @foreach (var jobStaredViewModel in Model)
+      {
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="card-features-content">
+            <div class="card-features-img order-sm-1 order-1 wow fadeInLeft" data-wow-delay="0.4s"
+                 style="background-image: url('/JobPhotos/@jobStaredViewModel.JobPictureName');" >
+            </div>
+            <div class="card-content cl-white order-sm-2 order-2 wow fadeInRight" data-wow-delay="0.4s">
+              <h3>@jobStaredViewModel.JobName</h3>
+              <p>
+                @jobStaredViewModel.JobSmallDescription
+              </p>
+            </div>
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</section>

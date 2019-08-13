@@ -8,4 +8,8 @@
     <PackageReference Include="restsharp" Version="106.6.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Okapia.Domain\Okapia.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

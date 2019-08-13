@@ -88,7 +88,8 @@ namespace Okapia.Repository.Repositories
                     ShowInHomePage = job.ShowInHomePage,
                     WebsiteUrl = job.WebSiteUrl,
                     RedirectInstead301Url = job.JobRemoved301InsteadUrl,
-                    JobFeatures = job.JobFeatures
+                    JobFeatures = job.JobFeatures,
+                    IsStared = job.IsStared
                 };
 
             var jobDetails = query.FirstOrDefault();
@@ -102,7 +103,7 @@ namespace Okapia.Repository.Repositories
                 Title = x.JobPictureTitle,
                 IsDefault = x.IsDefault
             }).ToList();
-            
+
             jobDetails.Photos = jobPictures;
             return jobDetails;
         }
@@ -145,7 +146,8 @@ namespace Okapia.Repository.Repositories
                     JobDistrictId = district.Id,
                     JobNeighborhood = neighborhood.Name,
                     JobNeighborhoodId = neighborhood.Id,
-                    JobPicture = picture.JobPictureName
+                    JobPicture = picture.JobPictureName,
+                    IsStared = job.IsStared
                 };
 
 
@@ -160,6 +162,9 @@ namespace Okapia.Repository.Repositories
             IQueryable<JobViewModel> query)
         {
             query = query.Where(x => x.IsDeleted == searchModel.IsDeleted);
+            if (searchModel.IsStared)
+                query = query.Where(x => x.IsStared);
+            query = query.Where(x => x.IsStared == searchModel.IsStared);
             if (!string.IsNullOrEmpty(searchModel.JobName))
                 query = query.Where(x => x.JobName.Contains(searchModel.JobName));
             if (!string.IsNullOrEmpty(searchModel.JobContactTitile))

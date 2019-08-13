@@ -8,6 +8,7 @@ using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.Job;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
+using Okapia.Domain.QueryContracts;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Job;
 using Okapia.Domain.ViewModels.JobPicture;
@@ -26,12 +27,13 @@ namespace Okapia.Application.Applications
         private readonly ICityRepository _cityRepository;
         private readonly IDistrictRepository _districtRepository;
         private readonly INeighborhoodRepository _neighborhoodRepository;
+        private readonly IJobQuery _jobQuery;
 
         public JobApplication(IJobRepository jobRepository, IAccountRepository accountRepository,
             IAuthHelper authHelper, IPasswordHasher passwordHasher, IJobRequestRepository jobRequestRepository,
             IMarketerApplication marketerApplication,
             ICategoryApplication categoryApplication, ICityRepository cityRepository,
-            IDistrictRepository districtRepository, INeighborhoodRepository neighborhoodRepository)
+            IDistrictRepository districtRepository, INeighborhoodRepository neighborhoodRepository, IJobQuery jobQuery)
         {
             _jobRepository = jobRepository;
             _accountRepository = accountRepository;
@@ -43,6 +45,7 @@ namespace Okapia.Application.Applications
             _cityRepository = cityRepository;
             _districtRepository = districtRepository;
             _neighborhoodRepository = neighborhoodRepository;
+            _jobQuery = jobQuery;
         }
 
         public OperationResult Create(CreateJob command)
@@ -256,7 +259,8 @@ namespace Okapia.Application.Applications
                 IsWebsite = command.IsWebsite,
                 WebSiteUrl = command.WebsiteUrl,
                 InstagramUrl = command.InstagramUrl,
-                TelegramUrl = command.TelegramUrl
+                TelegramUrl = command.TelegramUrl,
+                IsStared = command.IsStared
             };
             return job;
         }
@@ -311,7 +315,8 @@ namespace Okapia.Application.Applications
                 InstagramUrl = command.InstagramUrl,
                 TelegramUrl = command.TelegramUrl,
                 JobId = command.JobId,
-                JobRemoved301InsteadUrl = command.RedirectInstead301Url
+                JobRemoved301InsteadUrl = command.RedirectInstead301Url,
+                IsStared = command.IsStared
             };
             return job;
         }
@@ -390,6 +395,11 @@ namespace Okapia.Application.Applications
                 result.Message = ApplicationMessages.SystemFailure;
                 return result;
             }
+        }
+
+        public List<JobStaredViewModel> GetStaredJobsForLandingPage()
+        {
+            return _jobQuery.GetStaredJobs();
         }
     }
 }

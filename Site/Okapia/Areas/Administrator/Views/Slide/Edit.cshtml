@@ -1,0 +1,102 @@
+﻿@model Okapia.Domain.Commands.Slide.EditSlide
+
+@{
+  ViewData["Title"] = "ویرایش اسلاید";
+}
+
+<h1>ویرایش اسلاید - @Model.SlideTitleText</h1>
+<hr/>
+<div class="row">
+  <div class="col-md-12">
+    <form method="post" id="editSlideFrm">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="SlideTitleText" class="control-label"></label>
+          <input asp-for="SlideTitleText" class="form-control" />
+          <span asp-validation-for="SlideTitleText" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="SlideDescriptionText" class="control-label"></label>
+          <input asp-for="SlideDescriptionText" class="form-control" />
+          <span asp-validation-for="SlideDescriptionText" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="SlideLink" class="control-label"></label>
+          <input asp-for="SlideLink" class="form-control direct-ltr" />
+          <span asp-validation-for="SlideLink" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="SlideIsDeleted" class="control-label"></label>
+          <input asp-for="SlideIsDeleted" class="form-control" />
+          <span asp-validation-for="SlideIsDeleted" class="text-danger"></span>
+        </div>
+      </div>
+      <table class="col-md-12 table table-bordered text-center">
+        <tr>
+          <td>فایل</td>
+          <td>عنوان عکس</td>
+          <td>Alt</td>
+          <td>توضیحات</td>
+          <td>پیش نمایش</td>
+          <td>حذف</td>
+        </tr>
+        <tr>
+          <td>
+            <input id="slidePicture" name="slidePicture" type="file" size="1" onchange="uploadFile('slidePicture', 'NameImage', 'deleteImage', 'slide');PreviewImage('slidePicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
+          </td>
+          <td>
+            <div class="form-group">
+              <input asp-for="TitleImage" class="form-control" />
+              <span asp-validation-for="TitleImage" class="text-danger"></span>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <input asp-for="AltImage" class="form-control" />
+              <span asp-validation-for="AltImage" class="text-danger"></span>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <input asp-for="DescImage" class="form-control" />
+              <span asp-validation-for="DescImage" class="text-danger"></span>
+            </div>
+          </td>
+          @if (string.IsNullOrEmpty(Model.NameImage))
+          {
+            <td>
+              <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100" />
+              <input asp-for="NameImage" type="hidden" size="1" value="" />
+            </td>
+            <td>
+              <button type="button" id="deleteImage" onclick="deletePhoto('NameImage', 'prevImage', 'deleteImage', 'TitleImage', 'AltImage', 'DescImage', 'slide')" class="btn btn-danger hidden">حذف</button>
+            </td>
+          }
+          else
+          {
+            <td>
+              <img id="prevImage" src="~/SlidePhotos/Thumbs/@Model.NameImage" alt="your image" with="100" height="100" />
+              <input asp-for="NameImage" type="hidden" size="1" value="@Model.NameImage" />
+            </td>
+            <td>
+              <button type="button" id="deleteImage" onclick="deletePhoto('NameImage', 'prevImage', 'deleteImage', 'TitleImage', 'AltImage', 'DescImage', 'slide')" class="btn btn-danger">حذف</button>
+            </td>
+          }
+        </tr>
+      </table>
+      <div class="col-md-12">
+        <div class="form-group">
+          <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Slide")', 'editSlideFrm', '@ViewData["redirectUrl"]')" />
+          <a class="btn btn-warning btn-lg" href="@ViewData["redirectUrl"]">بازگشت به لیست</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

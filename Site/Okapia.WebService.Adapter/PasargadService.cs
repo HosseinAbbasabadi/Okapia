@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using Okapia.Domain.Commands.User;
 using Okapia.WebService.Adapter.Contracts;
 using RestSharp;
 using RestSharp.Serialization.Json;
@@ -18,7 +20,17 @@ namespace Okapia.WebService.Adapter
             _jsonSerializer = new JsonSerializer();
             _client = new RestClient("https://212.80.25.71/api/api/GeneralApi");
         }
-        
+
+        public bool TryRegister(CreateUser user)
+        {
+            ServicePointManager.ServerCertificateValidationCallback +=
+                (sender, certificate, chain, sslPolicyErrors) => true;
+            var request = RequestBuilder("Register", Method.POST).AddJsonBody(user);
+            var response = _client.Execute(request);
+            var result = _jsonSerializer.Deserialize<WebServiceResponse>(response);
+            return result.Status == -1;
+        }
+
         public bool IsAlreadyRegistered(string nationalCode)
         {
             ServicePointManager.ServerCertificateValidationCallback +=
@@ -29,6 +41,16 @@ namespace Okapia.WebService.Adapter
             return result.Status == -105;
         }
 
+        public bool IsCardAleadyExists(List<string> cards)
+        {
+            ServicePointManager.ServerCertificateValidationCallback +=
+                (sender, certificate, chain, sslPolicyErrors) => true;
+            var request = RequestBuilder("CardMembership", Method.GET).AddParameter("CardNumber", cards);
+            var response = _client.Execute(request);
+            var result = _jsonSerializer.Deserialize<WebServiceResponse>(response);
+            return result.Status == -105;
+        }
+        
         private static RestRequest RequestBuilder(string resource, Method method)
         {
             var request = new RestRequest(resource, method);

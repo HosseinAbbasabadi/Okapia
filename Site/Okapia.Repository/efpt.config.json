@@ -1,0 +1,1 @@
+﻿{"ContextClassName":"Okapia_DbContext","DefaultDacpacSchema":null,"IdReplace":false,"IncludeConnectionString":false,"OutputPath":null,"ProjectRootNamespace":"Okapia.Repository","SelectedToBeGenerated":2,"Tables":[{"HasPrimaryKey":true,"Name":"dbo.Slides"}],"UseDatabaseNames":false,"UseFluentApiOnly":true,"UseHandleBars":false,"UseInflector":false}
