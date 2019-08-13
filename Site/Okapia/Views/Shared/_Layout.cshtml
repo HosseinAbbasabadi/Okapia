@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>@ViewData["Title"] - سایت تخفیف اُکاپیا</title>
 
   <meta charset="utf-8">
@@ -26,11 +26,13 @@
   <link href="~/assets/css/animate.css" rel="stylesheet">
   <link href="~/assets/css/owl.carousel.min.css" rel="stylesheet">
 
+  <link href="~/assets/notifications/notification.css" rel="stylesheet" />
+
   <!-- Main css -->
   <link href="~/assets/css/main.css" rel="stylesheet">
 
-  <link href="~/css/site.css" rel="stylesheet"/>
-  <link href="~/css/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet"/>
+  <link href="~/css/site.css" rel="stylesheet" />
+  <link href="~/css/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
 </head>
 <body>
 <header class="header-area">
@@ -168,12 +170,16 @@
 <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
+<script src="~/assets/notifications/notify.min.js"></script>
+<script src="~/assets/notifications/notify-metro.js"></script>
+<script src="~/assets/notifications/notifications.js"></script>
+
 <script src="~/js/site.js" asp-append-version="true"></script>
 <script src="~/js/ajaxFunctions.js"></script>
 
 <script src="~/js/calendar.js"></script>
 <script src="~/js/jquery.Bootstrap-PersianDateTimePicker.js"></script>
-
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 @RenderSection("Scripts", required: false)
 </body>
 </html>

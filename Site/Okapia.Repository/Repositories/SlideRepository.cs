@@ -48,9 +48,9 @@ namespace Okapia.Repository.Repositories
             if (!string.IsNullOrEmpty(searchModel.SlideTitleText))
                 query = query.Where(x => x.SlideTitleText == searchModel.SlideTitleText);
             if (searchModel.SlideFromCreationDateG != default(DateTime))
-                query = query.Where(x => x.SlideCreationDateG > searchModel.SlideFromCreationDateG);
+                query = query.Where(x => x.SlideCreationDateG >= searchModel.SlideFromCreationDateG);
             if (searchModel.SlideToCreationDateG != default(DateTime))
-                query = query.Where(x => x.SlideCreationDateG > searchModel.SlideToCreationDateG);
+                query = query.Where(x => x.SlideCreationDateG <= searchModel.SlideToCreationDateG);
             query = query.Where(x => x.SlideIsDeleted == searchModel.SlideIsDeleted);
 
             recordCount = query.Count();

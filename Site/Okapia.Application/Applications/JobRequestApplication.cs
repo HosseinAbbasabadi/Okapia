@@ -44,6 +44,7 @@ namespace Okapia.Application.Applications
                 _jobRequestRepository.Create(jobRequest);
                 _jobRequestRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
+                result.RecordId = jobRequest.TrackingNumber;
                 result.Success = true;
                 return result;
             }

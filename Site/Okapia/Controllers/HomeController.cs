@@ -40,10 +40,22 @@ namespace Okapia.Controllers
         }
 
         [HttpPost]
-        public JsonResult Agency(CreateJobRequest command)
+        [ValidateAntiForgeryToken]
+        public ActionResult Agency(CreateJobRequest command)
         {
             var result = _jobRequestApplication.Create(command);
-            return Json(result);
+            if (result.Success)
+            {
+                ViewData["name"] = command.ContactTitle;
+                return View("AgencySuccess", result.RecordId.ToString());
+            }
+            ViewData["errorMessage"] = result.Message;
+            return View();
+        }
+
+        public ActionResult AgencySuccess()
+        {
+            return View();
         }
 
         public IActionResult Privacy()

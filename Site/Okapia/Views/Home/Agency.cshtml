@@ -4,63 +4,72 @@
 @{
   ViewData["Title"] = "درخواست نمایندگی و عضویت در سیستم اکاپیا";
 }
+<section class="custom-banner dark-overlay" style="background: url('/assets/images/hero.jpg') no-repeat fixed;"></section>
 
-<h1>درخواست نمایندگی و عضویت در سیستم اکاپیا</h1>
+<section class="form-area section-padding">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 centered">
+        <div class="section-title">
+          <h2>ثبت درخواست نمایندگی</h2>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <form id="createJobRequestFrm" method="post" asp-action="Agency" asp-controller="Home" asp-area="">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="single-field">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+          </div>
+          <div class="single-field">
+            <label asp-for="ContactTitle" class="control-label"></label>
+            <input asp-for="ContactTitle" class="form-control" />
+            <span asp-validation-for="ContactTitle" class="text-danger"></span>
+          </div>
+          <div class="single-field">
+            <label asp-for="ProvinceId" class="control-label"></label>
+            <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="searchProvinceDropDown" onchange="getCityList('searchProvinceDropDown', '@Url.Action("GetCitiesByProvince", "Home", new {area = ""})', 'searchCityDropDown')">
+              <option value="0">استان را انتخاب کنید...</option>
+            </select>
+            <span asp-validation-for="ProvinceId" class="text-danger"></span>
+          </div>
+          <div class="single-field">
+            <label asp-for="CityId" class="control-label"></label>
+            <select asp-for="CityId" class="form-control" id="searchCityDropDown">
+              <option value="0">شهر را انتخاب کنید...</option>
+            </select>
+            <span asp-validation-for="CityId" class="text-danger"></span>
+          </div>
+          <div class="single-field">
+            <label asp-for="Tel" class="control-label"></label>
+            <input asp-for="Tel" class="form-control" />
+            <span asp-validation-for="Tel" class="text-danger"></span>
+          </div>
+          <div class="single-field">
+            <label asp-for="Mobile" class="control-label"></label>
+            <input asp-for="Mobile" class="form-control" />
+            <span asp-validation-for="Mobile" class="text-danger"></span>
+          </div>
 
-<h4>برای ثبت درخواست فرم زیر را کامل کنید:</h4>
-<hr/>
-<div class="row">
-  <div class="col-md-4">
-    <form id="createJobRequestFrm" method="post">
-      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-      <div class="form-group">
-        <label asp-for="Name" class="control-label"></label>
-        <input asp-for="Name" class="form-control"/>
-        <span asp-validation-for="Name" class="text-danger"></span>
+          <div class="single-field">
+            <label asp-for="Address" class="control-label"></label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+          </div>
+          <div class="single-field">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+          </div>
+          <div class="single-field">
+            <div class="g-recaptcha" data-sitekey="6LeXubIUAAAAAPl-CpA4zsosiLVHjUbs6uLdQJsq"></div>
+          </div>
+            <div class="form-group">
+              <input type="submit" value="ثبت درخواست" class="btn btn-primary" onclick="checkFormValidation('createJobRequestFrm')" />
+            </div>
+        </form>
       </div>
-      <div class="form-group">
-        <label asp-for="ContactTitle" class="control-label"></label>
-        <input asp-for="ContactTitle" class="form-control"/>
-        <span asp-validation-for="ContactTitle" class="text-danger"></span>
-      </div>
-      <div class="form-group">
-        <label asp-for="ProvinceId" class="control-label"></label>
-        <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="searchProvinceDropDown" onchange="getCityList('searchProvinceDropDown', '@Url.Action("GetCitiesByProvince", "City", new {area = "Administrator"})', 'searchCityDropDown')">
-          <option value="0">استان را انتخاب کنید...</option>
-        </select>
-        <span asp-validation-for="ProvinceId" class="text-danger"></span>
-      </div>
-      <div class="form-group">
-        <label asp-for="CityId" class="control-label"></label>
-        <select asp-for="CityId" class="form-control" id="searchCityDropDown">
-          <option value="0">شهر را انتخاب کنید...</option>
-        </select>
-        <span asp-validation-for="CityId" class="text-danger"></span>
-      </div>
-      <div class="form-group">
-        <label asp-for="Tel" class="control-label"></label>
-        <input asp-for="Tel" class="form-control"/>
-        <span asp-validation-for="Tel" class="text-danger"></span>
-      </div>
-      <div class="form-group">
-        <label asp-for="Mobile" class="control-label"></label>
-        <input asp-for="Mobile" class="form-control"/>
-        <span asp-validation-for="Mobile" class="text-danger"></span>
-      </div>
-
-      <div class="form-group">
-        <label asp-for="Address" class="control-label"></label>
-        <input asp-for="Address" class="form-control"/>
-        <span asp-validation-for="Address" class="text-danger"></span>
-      </div>
-      <div class="form-group">
-        <label asp-for="Description" class="control-label"></label>
-        <input asp-for="Description" class="form-control"/>
-        <span asp-validation-for="Description" class="text-danger"></span>
-      </div>
-      <div class="form-group">
-        <input type="button" value="ثبت درخواست" class="btn btn-primary" onclick="createEntity('@Url.Action("Agency", "Home")', 'createJobRequestFrm')"/>
-      </div>
-    </form>
+    </div>
   </div>
-</div>
+</section>

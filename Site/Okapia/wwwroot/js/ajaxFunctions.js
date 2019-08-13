@@ -73,7 +73,31 @@ function openModalWithData(url, containerName, modalName) {
   });
 }
 
+function checkFormValidation(formId) {
+  if ($("#" + formId).valid() === true) {
+    return true;
+  }
+  return false;
+}
+
 function createEntity(url, formId) {
+  if ($("#" + formId).valid() === true) {
+    const sendingData = $(`#${formId}`).serialize();
+    $.post(url,
+      sendingData,
+      function(operationResult) {
+        if (operationResult.success) {
+          sendNotification('success', 'top right', "موفقیت", operationResult.message);
+          $(`#${formId}`).trigger("reset");
+          location.reload();
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      });
+  }
+}
+
+function createEntityViewPages(url, formId) {
   if ($("#" + formId).valid() === true) {
     const sendingData = $(`#${formId}`).serialize();
     $.post(url,
