@@ -29,9 +29,12 @@
           <div class="single-field">
             <div class="g-recaptcha" data-sitekey="6LeXubIUAAAAAPl-CpA4zsosiLVHjUbs6uLdQJsq"></div>
           </div>
+          <br />
           <h3 class="text-danger">@ViewData["errorMessage"]</h3>
           <div class="form-group">
             @*<input type="button" value="ثبت" class="btn btn-primary" onclick="createUser('@Url.Action("Register", "User")', 'createUserFrm', '@Url.Action("Index", "Home")')"/>*@
+            <a href="/Account/Register" class="not-account">ثبت نام</a>
+            <a href="/Account/ForgetPassword" class="not-account">بازیابی کلمه عبور</a>
             <button type="submit" class="bttn-mid btn-fill">ورود</button>
           </div>
         </form>

@@ -1,4 +1,5 @@
 ﻿@using System.Collections.Generic;
+@using System.Linq
 @model List<Okapia.Domain.ViewModels.Job.JobStaredViewModel>
 
 <section class="card-features-area section-padding-2">
@@ -13,21 +14,37 @@
     </div>
     <div class="row">
       
-      @foreach (var jobStaredViewModel in Model)
+      @foreach (var item in Model.Select((value, index) => new { index, value }))
       {
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-          <div class="card-features-content">
-            <div class="card-features-img order-sm-1 order-1 wow fadeInLeft" data-wow-delay="0.4s"
-                 style="background-image: url('/JobPhotos/@jobStaredViewModel.JobPictureName');" >
-            </div>
-            <div class="card-content cl-white order-sm-2 order-2 wow fadeInRight" data-wow-delay="0.4s">
-              <h3>@jobStaredViewModel.JobName</h3>
-              <p>
-                @jobStaredViewModel.JobSmallDescription
-              </p>
+        if (item.index % 2 == 0)
+        {
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="card-features-content">
+              <div class="card-features-img order-sm-1 order-1 wow fadeInLeft" data-wow-delay="0.4s"
+                   style="background-image: url('/JobPhotos/@item.value.JobPictureName');" >
+              </div>
+              <div class="card-content cl-white order-sm-2 order-2 wow fadeInRight" data-wow-delay="0.4s">
+                <h3>@item.value.JobName</h3>
+                <p>
+                  @item.value.JobSmallDescription
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        }
+        else
+        {
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="card-features-content">
+              <div class="card-content cl-white order-sm-1 order-2 wow fadeInLeft" data-wow-delay="0.5s">
+                <h3>@item.value.JobName</h3>
+                <p>@item.value.JobSmallDescription</p>
+              </div>
+              <div class="card-features-img order-sm-2 order-1 wow fadeInRight" data-wow-delay="0.5s"
+                   style="background: url('/JobPhotos/@item.value.JobPictureName') no-repeat"></div>
+            </div>
+          </div>
+        }
       }
 
     </div>
