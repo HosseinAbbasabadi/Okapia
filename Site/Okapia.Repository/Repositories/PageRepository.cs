@@ -33,7 +33,11 @@ namespace Okapia.Repository.Repositories
                 PageMetaDesccription = page.PageMetaDesccription,
                 PageMetaTag = page.PageMetaTag,
                 PageRemoved301InsteadUrl = page.PageRemoved301InsteadUrl,
-                PageSeohead = page.PageSeohead
+                PageSeohead = page.PageSeohead,
+                PagePicture = page.PagePicture,
+                PagePictureAlt = page.PagePictureAlt,
+                PagePictureTitle = page.PagePictureTitle,
+                PagePictureDescription = page.PagePictureDescription
             }).FirstOrDefault(x => x.PageId == id);
         }
 
@@ -55,7 +59,8 @@ namespace Okapia.Repository.Repositories
                     PageIsDeleted = page.PageIsDeleted,
                     PageCommentsCount = page.PageComments.Count,
                     PagePublishDate = page.PagePublishDate.ToFarsi(),
-                    PagePublishDateG = page.PagePublishDate
+                    PagePublishDateG = page.PagePublishDate,
+                    PagePicture = page.PagePicture
                 };
 
             if (!string.IsNullOrEmpty(searchModel.PageTittle))

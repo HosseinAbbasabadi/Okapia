@@ -1,4 +1,7 @@
-﻿@model Okapia.Domain.ViewModels.Job.JobViewDetailsViewModel
+﻿@inject IAuthHelper AuthHelper;
+@using Okapia.Application.Contracts
+@using Okapia.Domain.Commands.Comment
+@model DetailsIndexViewModel
 @{
   ViewData["Title"] = "جزپیات مرکز خدماتی";
   Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,7 +26,7 @@
         <!-- Swiper -->
         <div class="swiper-container">
           <div class="swiper-wrapper">
-            @foreach (var photo in Model.Photos)
+            @foreach (var photo in Model.JobViewDetailsViewModel.Photos)
             {
               if (!string.IsNullOrEmpty(photo.Name))
               {
@@ -40,12 +43,12 @@
       </div>
       <div class="col-12 col-md-6 okapia wow fadeInUp" data-wow-delay="0.5s">
         <div class="section-title text-right">
-          <h2>@Model.JobName</h2>
-          <span class="discount">تخفیف @Model.JobBenefitPercentForEndCustomer%</span>
+          <h2>@Model.JobViewDetailsViewModel.JobName</h2>
+          <span class="discount">تخفیف @Model.JobViewDetailsViewModel.JobBenefitPercentForEndCustomer%</span>
         </div>
 
         <ul class="Features">
-          @foreach (var feature in Model.JobFeatureList)
+          @foreach (var feature in Model.JobViewDetailsViewModel.JobFeatureList)
           {
             <li>
               <b>@feature</b>
@@ -57,14 +60,14 @@
         <div class="card">
           <div class="card-body">
             <div class="section-title text-right mb-3 wow fadeInUp" data-wow-delay="0.8s">
-              <h4>در مورد @Model.JobName</h4>
+              <h4>در مورد @Model.JobViewDetailsViewModel.JobName</h4>
             </div>
             <article class="wow fadeInUp" data-wow-delay="0.5s">
               <p>
-                @Model.JobSmallDescription
+                @Model.JobViewDetailsViewModel.JobSmallDescription
               </p>
               <p>
-                @Html.Raw(Model.JobDescription)
+                @Html.Raw(Model.JobViewDetailsViewModel.JobDescription)
               </p>
             </article>
           </div>
@@ -74,139 +77,98 @@
       <div class="col-12 addressInfo card col-md-6 wow fadeInRight" data-wow-delay="0.5s">
         <div class="card-body">
           <div class="section-title text-right mb-3 wow fadeInUp" data-wow-delay="0.8s">
-            <h4>آدرس @Model.JobName</h4>
+            <h4>آدرس @Model.JobViewDetailsViewModel.JobName</h4>
           </div>
           <p class="fadeInUp" data-wow-delay="0.5s">
-            <i class="fas fa-map-marker"></i>@Model.JobAddress
+            <i class="fas fa-map-marker"></i>@Model.JobViewDetailsViewModel.JobAddress
           </p>
           <p class="fadeInUp" data-wow-delay="0.5s">
-            <i class="fas fa-phone"></i>@Model.JobTel1 @Model.JobTel2</p>
+            <i class="fas fa-phone"></i>@Model.JobViewDetailsViewModel.JobTel1 @Model.JobViewDetailsViewModel.JobTel2</p>
           <p class="fadeInUp" data-wow-delay="0.5s">
-            <i class="fas fa-phone"></i>@Model.JobMobile1 @Model.JobMobile2</p>
+            <i class="fas fa-phone"></i>@Model.JobViewDetailsViewModel.JobMobile1 @Model.JobViewDetailsViewModel.JobMobile2</p>
           <p class="fadeInUp" data-wow-delay="0.5s">
             <i class="fas fa-map">
-              <a target="_blank" href="@Model.JobWazeLink">برو به Waze</a>
+              <a target="_blank" href="@Model.JobViewDetailsViewModel.JobWazeLink">برو به Waze</a>
             </i>
           </p>
         </div>
       </div>
       <div class="col-12 col-md-6 wow fadeInLeft" data-wow-delay="0.5s">
-        @Html.Raw(Model.JobWazeMap)
+        @Html.Raw(Model.JobViewDetailsViewModel.JobWazeMap)
       </div>
     </div>
   </div>
 </section>
 
+<section class="blog-details section-padding gray-bg">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
 
-<script>
-  function initMap() {
 
-    //--- Set Lat And Long
-    var Place = { lat: 35.756905, lng: 51.414264 };
-    // Styles a map in night mode.
-    var map = new google.maps.Map(document.getElementById('map'),
-      {
-        center: Place,
-        zoom: 17,
-        disableDefaultUI: true,
-        styles: [
+        <div class="blog-all-comments">
+          @foreach (var comment in Model.JobViewDetailsViewModel.Comments)
           {
-            featureType: "poi",
-            elementType: "labels",
-            stylers: [
-              { visibility: "off" }
-            ]
-          },
-          //{ elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
-          //{ elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
-          //{ elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
-          //{
-          //    featureType: 'administrative.locality',
-          //    elementType: 'labels.text.fill',
-          //    stylers: [{ color: '#d59563' }]
-          //},
-          //{
-          //    featureType: 'poi',
-          //    elementType: 'labels.text.fill',
-          //    stylers: [{ color: '#d59563' }]
-          //},
-          //{
-          //    featureType: 'poi.park',
-          //    elementType: 'geometry',
-          //    stylers: [{ color: '#263c3f' }]
-          //},
-          //{
-          //    featureType: 'poi.park',
-          //    elementType: 'labels.text.fill',
-          //    stylers: [{ color: '#6b9a76' }]
-          //},
-          //{
-          //    featureType: 'road',
-          //    elementType: 'geometry',
-          //    stylers: [{ color: '#38414e' }]
-          //},
-          //{
-          //    featureType: 'road',
-          //    elementType: 'geometry.stroke',
-          //    stylers: [{ color: '#212a37' }]
-          //},
-          //{
-          //    featureType: 'road',
-          //    elementType: 'labels.text.fill',
-          //    stylers: [{ color: '#9ca5b3' }]
-          //},
-          //{
-          //    featureType: 'road.highway',
-          //    elementType: 'geometry',
-          //    stylers: [{ color: '#746855' }]
-          //},
-          //{
-          //    featureType: 'road.highway',
-          //    elementType: 'geometry.stroke',
-          //    stylers: [{ color: '#1f2835' }]
-          //},
-          //{
-          //    featureType: 'road.highway',
-          //    elementType: 'labels.text.fill',
-          //    stylers: [{ color: '#f3d19c' }]
-          //},
-          //{
-          //    featureType: 'transit',
-          //    elementType: 'geometry',
-          //    stylers: [{ color: '#2f3948' }]
-          //},
-          //{
-          //    featureType: 'transit.station',
-          //    elementType: 'labels.text.fill',
-          //    stylers: [{ color: '#d59563' }]
-          //},
-          //{
-          //    featureType: 'water',
-          //    elementType: 'geometry',
-          //    stylers: [{ color: '#17263c' }]
-          //},
-          //{
-          //    featureType: 'water',
-          //    elementType: 'labels.text.fill',
-          //    stylers: [{ color: '#515c6d' }]
-          //},
-          //{
-          //    featureType: 'water',
-          //    elementType: 'labels.text.stroke',
-          //    stylers: [{ color: '#17263c' }]
-          //}
-        ]
-      });
+            <div class="blog-comments wow fadeInUp" data-wow-delay="0.3s">
+              <div class="author-thumb">
+                <img src="/personImage.jpg" alt=""/>
+              </div>
+              <div class="author-comments">
+                <div class="author-details">
+                  <h4>@comment.CommentorFullname</h4>
+                  @*<div class="comment-reply-btn">
+                    <a href="#">
+                      <i class="fa fa-share"></i>
+                    </a>
+                  </div>*@
+                </div>
+                <div class="author-designation">
+                  @comment.CommentCreationDate
+                </div>
+                <h3>
+                  @comment.CommentTitle
+                </h3>
+                <p>
+                  @comment.CommentText
+                </p>
+              </div>
+            </div>
+          }
+        </div>
 
-    var marker = new google.maps.Marker({
-      position: Place,
-      map: map,
-    });
-
-
-  }
-
-
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7cKhDofbpXgQD99WZgnqgL-KoVImz75c&callback=initMap"
-        async defer></script>
+        @if (AuthHelper.GetCurrnetUserInfo().IsAuthorized)
+        {
+          <div class="blog-comment-form wow fadeInUp" data-wow-delay="0.3s">
+            <h3>نظر خود را بنویسید</h3>
+            <form asp-action="AddComment" method="post">
+              <div class="row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-md-6">
+                  <label asp-for="AddComment.CommentTitle" class="control-label"></label>
+                  <input asp-for="AddComment.CommentTitle" name="CommentTitle" class="form-control"/>
+                  <span asp-validation-for="AddComment.CommentTitle" class="text-danger"></span>
+                </div>
+                <div class="col-md-12">
+                  <label asp-for="AddComment.CommentText" class="control-label"></label>
+                  <textarea asp-for="AddComment.CommentText" name="CommentText" rows="6" class="form-control"></textarea>
+                  <span asp-validation-for="AddComment.CommentText" class="text-danger"></span>
+                </div>
+                <input type="hidden" name="CommentOwnerRecordId" value="@Model.JobViewDetailsViewModel.JobId"/>
+                <div class="col-md-12">
+                  <button class="bttn-mid btn-fill" type="submit">ارسال نظر</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        }
+        else
+        {
+          <div class="blog-comment-form wow fadeInUp" data-wow-delay="0.3s">
+            <h3>برای ثبت نظر لطفا ابتدا وارد شوید <a href="/Account/Login">ورود به سایت</a></h3>
+          </div>
+        }
+        
+      </div>
+    </div>
+  </div>
+</section>

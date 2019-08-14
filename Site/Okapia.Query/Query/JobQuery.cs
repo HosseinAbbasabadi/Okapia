@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Framework;
 using Microsoft.EntityFrameworkCore;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.QueryContracts;
 using Okapia.Domain.SeachModels;
+using Okapia.Domain.ViewModels.Comment;
 using Okapia.Domain.ViewModels.Job;
 using Okapia.Domain.ViewModels.JobPicture;
 
@@ -13,10 +15,12 @@ namespace Okapia.Query.Query
     public class JobQuery : BaseViewRepository<long, Job>, IJobQuery
     {
         private readonly IJobPictureRepository _jobPictureRepository;
+        private readonly IAccountRepository _accountRepository;
 
-        public JobQuery(OkapiaViewContext context, IJobPictureRepository jobPictureRepository) : base(context)
+        public JobQuery(OkapiaViewContext context, IJobPictureRepository jobPictureRepository, IAccountRepository accountRepository) : base(context)
         {
             _jobPictureRepository = jobPictureRepository;
+            _accountRepository = accountRepository;
         }
 
         public JobViewDetailsViewModel GetJobViewDetails(long id)
@@ -75,6 +79,29 @@ namespace Okapia.Query.Query
                 IsDefault = x.IsDefault
             }).ToList();
 
+            var commentItemViewModels = new List<CommentItemViewModel>();
+            var comments = _context.Comments.Where(x =>
+                    x.CommentIsConfirmed && !x.CommentIsDeleted && x.CommentOwner == "Job" &&
+                    x.CommentOwnerRecordId == id)
+                .ToList();
+            comments.ForEach(c =>
+            {
+                //var commentator = _userRepository.GetUserBy(c.CommentatorAccountId);
+                var commentator = _accountRepository.GetAccount(c.CommentatorAccountId);
+                var comment = new CommentItemViewModel
+                {
+                    //CommentorFullname = commentator.UserFirstName + "" + commentator.UserLastName,
+                    CommentorFullname = commentator.Username,
+                    CommentTitle = c.CommentTitle,
+                    CommentText = c.CommnetText,
+                    CommentCreationDate = c.CommentCreationDate.ToFarsi(),
+                    CommentAgreeCount = c.CommentAgreeCount,
+                    CommentDisagreeCount = c.CommentDisagreeCount
+                };
+                commentItemViewModels.Add(comment);
+            });
+
+            jobDetails.Comments = commentItemViewModels;
             jobDetails.Photos = jobPictures;
             return jobDetails;
         }
@@ -97,9 +124,15 @@ namespace Okapia.Query.Query
         public List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel)
         {
             var q = _context.Jobs.Include(x => x.Account).Include(x => x.JobPictures)
-                .Where(x => x.JobCategory == searchModel.CategoryId)
                 .Where(x => x.Account.IsDeleted == false);
 
+            if (!string.IsNullOrEmpty(searchModel.Text))
+            {
+                q = q.Where(x => x.JobName.Contains(searchModel.Text) || x.JobSmallDescription.Contains(searchModel.Text) || x.JobDescription.Contains(searchModel.Text) || x.JobFeatures.Contains(searchModel.Text) || x.JobMetaDesccription.Contains(searchModel.Text) || x.JobMetaTag.Contains(searchModel.Text));
+            }
+
+            if (searchModel.CategoryId != 0)
+                q = q.Where(x => x.JobCategory == searchModel.CategoryId);
             if (searchModel.Province != 0)
                 q = q.Where(x => x.JobProvienceId == searchModel.Province);
             if (searchModel.City != 0)

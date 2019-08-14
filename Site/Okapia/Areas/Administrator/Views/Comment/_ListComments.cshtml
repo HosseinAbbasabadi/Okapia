@@ -25,6 +25,9 @@
             @Html.DisplayNameFor(model => model.CommentTitle)
           </th>
           <th>
+            @Html.DisplayNameFor(model => model.CommentText)
+          </th>
+          <th>
             @Html.DisplayNameFor(model => model.CommentOwner)
           </th>
           <th>
@@ -65,6 +68,19 @@
                 @Html.DisplayFor(modelItem => item.value.CommentTitle)
               </td>
               <td>
+                @Html.DisplayFor(modelItem => item.value.CommentText)
+              </td>
+              <td>
+                @if (item.value.CommentOwner == "Job")
+                {
+                  <span>مشاغل</span>
+                }
+                @if (item.value.CommentOwner == "Page")
+                {
+                  <span>صفحات</span>
+                }
+              </td>
+              <td>
                 @Html.DisplayFor(modelItem => item.value.CommentAgreeCount)
               </td>
               <td>
@@ -76,23 +92,31 @@
               <td>
                 @Html.DisplayFor(modelItem => item.value.CommentCreationDateDate)
               </td>
-              <td>
-                @Html.DisplayFor(modelItem => item.value.CommentIsConfirmed)
-              </td>
               @if (!item.value.CommentIsConfirmed)
               {
                 <td class="text-danger">
                   تایید نشده
                 </td>
               }
-              @if (!item.value.CommentIsConfirmed)
+              @if (item.value.CommentIsConfirmed)
               {
                 <td class="text-success">
                   تایید شده
                 </td>
               }
                 <td>
-                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="Comment" asp-action="Delete" asp-route-id="@item.value.CommentId">حذف</a>
+                  @if (!item.value.CommentIsConfirmed)
+                  {
+                    <a class="btn btn-sm btn-success" onclick="createEntityWithBodyThenFeedList('@Url.Action("Confirm", "Comment")/@item.value.CommentId', '', '@Url.Action("ListContent", "Comment")', 'listCommentsDiv')">تایید</a>
+                  }
+                  @if (!item.value.CommentIsDeleted)
+                  {
+                    <a class="btn btn-sm btn-danger" onclick="createEntityWithBodyThenFeedList('@Url.Action("Delete", "Comment")/@item.value.CommentId', '', '@Url.Action("ListContent", "Comment")', 'listCommentsDiv')">حذف</a>
+                  }
+                  @if (item.value.CommentIsDeleted)
+                  {
+                    <a class="btn btn-sm btn-success" onclick="createEntityWithBodyThenFeedList('@Url.Action("Activate", "Comment")/@item.value.CommentId', '', '@Url.Action("ListContent", "Comment")', 'listCommentsDiv')">فعال سازی</a>
+                  }
                 </td>
             </tr>
           }

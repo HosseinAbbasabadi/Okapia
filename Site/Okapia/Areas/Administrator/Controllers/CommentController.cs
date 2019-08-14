@@ -49,16 +49,23 @@ namespace Okapia.Areas.Administrator.Controllers
             return PartialView("_ListComments", jobRequests);
         }
 
-        public ActionResult Details(int id)
+        public JsonResult Delete(long id)
         {
-            return View();
+            var result = _commentApplication.Delete(id);
+            return Json(result);
         }
 
-        //public JsonResult ChangeStatus(ChangeStatus command)
-        //{
-        //    var result = _commentApplication.ChangeStatus(command);
-        //    return Json(result);
-        //}
+        public JsonResult Activate(long id)
+        {
+            var result = _commentApplication.Activate(id);
+            return Json(result);
+        }
+
+        public JsonResult Confirm(long id)
+        {
+            var result = _commentApplication.Confirm(id);
+            return Json(result);
+        }
 
         //public ActionResult RegisterJobRequestToJob(long id)
         //{

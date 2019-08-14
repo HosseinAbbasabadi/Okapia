@@ -20,7 +20,11 @@ namespace Okapia.Domain.Models
         public long PageRegisteringEmployeeId { get; set; }
         public DateTime PageRegistrationDate { get; set; }
         public DateTime PagePublishDate { get; set; }
-        
+        public string PagePicture { get; set; }
+        public string PagePictureAlt { get; set; }
+        public string PagePictureTitle { get; set; }
+        public string PagePictureDescription { get; set; }
+
         public PageCategory PageCategory { get; set; }
         public ICollection<Comment> PageComments { get; set; }
     }

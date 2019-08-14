@@ -12,6 +12,7 @@ using Okapia.Repository;
 using Okapia.Repository.Repositories;
 using Okapia.WebService.Adapter;
 using Okapia.WebService.Adapter.Contracts;
+using reCAPTCHA.AspNetCore;
 
 namespace Okapia.Configuration
 {
@@ -83,6 +84,7 @@ namespace Okapia.Configuration
             services.AddScoped<ICategoryQuery, CategoryQuery>();
             services.AddScoped<IJobQuery, JobQuery>();
             services.AddScoped<ISlideQuery, SlideQuery>();
+            services.AddScoped<IPageCategoryQuery, PageCategoryQuery>();
             
             services.AddScoped<IUserCardRepository, UserCardRepository>();
 
@@ -96,6 +98,7 @@ namespace Okapia.Configuration
 
             services.AddScoped<IPasargadService, PasargadService>();
 
+            services.AddTransient<IRecaptchaService, RecaptchaService>();
 
             services.AddDbContext<OkapiaContext>(options =>
             {

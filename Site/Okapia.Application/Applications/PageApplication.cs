@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Framework;
+using Microsoft.EntityFrameworkCore.Update.Internal;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.Page;
@@ -56,7 +57,11 @@ namespace Okapia.Application.Applications
                     PageSeohead = command.PageSeohead,
                     PageSlug = command.PageSlug,
                     PageSmallDescription = command.PageSmallDescription,
-                    PageRegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId
+                    PageRegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId,
+                    PagePicture = command.PagePicture,
+                    PagePictureAlt = command.PagePictureAlt,
+                    PagePictureTitle = command.PagePictureTitle,
+                    PagePictureDescription = command.PagePictureDescription
                 };
                 _pageRepository.Create(page);
                 _pageRepository.SaveChanges();
@@ -96,6 +101,10 @@ namespace Okapia.Application.Applications
                 page.PageIsDeleted = command.PageIsDeleted;
                 page.PageSlug = command.PageSlug;
                 page.PageSmallDescription = command.PageSmallDescription;
+                page.PagePicture = command.PagePicture;
+                page.PagePictureAlt = command.PagePictureAlt;
+                page.PagePictureTitle = command.PagePictureTitle;
+                page.PagePictureDescription = command.PagePictureDescription;
                 _pageRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

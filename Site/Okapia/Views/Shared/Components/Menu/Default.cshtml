@@ -1,129 +1,83 @@
 ﻿@using Okapia.Domain.SeachModels
 @model MenuViewModel
 
-  <nav class="navbar sticky-top navbar-expand-lg main-menu blog-Menu">
-    <div class="container rtl">
-      <div class="row megamenu collapse navbar-collapse">
-        <div class="container">
-          <ul class="items">
-            <li>
-              <a href="#">
-                آموزش
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                اخبار
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                گالری تصاویر
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                خاطرات مشتریان
-              </a>
-            </li>
-            <li>
-              <a href="/category/کالای+دیجیتال">
-                دستاورد های ما
-              </a>
-            </li>
-            <li>
-              <a href="/category/پوشاک">
-                درباره ما
-              </a>
-            </li>
-            <li>
-              <a href="/category/لوازم+شخصی">
-                تماس با ما
-              </a>
-            </li>
-          </ul>
+<div class="container sticky-hiden">
+  <div class="row rtl">
+    <div class="col-12 col-md-8 text-right d-flex align-items-center">
+      <form class="form-bundle" asp-action="Search" asp-controller="Home" asp-area="">
+        <div class="clearfix">
+          <i class="icon fa fa-search"></i>
+          <input id="search__input" name="q" type="text" autocomplete="off"
+                 placeholder="محصول,دسته یا برند ..." class="invisible-input" value="">
+          <button class="submit">جستجو</button>
         </div>
-      </div>
-
+      </form>
     </div>
-  </nav>
-  <div class="container sticky-hiden">
-    <div class="row rtl">
-      <div class="col-12 col-md-8 text-right d-flex align-items-center">
-        <form class="form-bundle" action="/tehran/search">
-          <div class="clearfix">
-            <i class="icon fa fa-search"></i>
-            <input id="search__input" name="q" type="text" autocomplete="off"
-                   placeholder="محصول,دسته یا برند ..." class="invisible-input" value="">
-            <button class="submit">جستجو</button>
-          </div>
-        </form>
-      </div>
-      <div class="d-none d-md-block col-md-4 text-left">
-        <a href="/">
-          <img src="~/assets/images/logo.png" class="logo d-inline-block align-top" alt="">
-        </a>
-      </div>
-    </div>
-  </div>
-  <nav class="navbar sticky-top navbar-expand-lg main-menu">
-    <div class="container rtl">
-      <button class="navbar-toggler" type="button" data-toggle="collapse"
-              data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-              aria-label="Toggle navigation">
-        <span class="menu-toggle"></span>
-      </button>
-      <a href="/" class="d-md-none float-right">
+    <div class="d-none d-md-block col-md-4 text-left">
+      <a href="/">
         <img src="~/assets/images/logo.png" class="logo d-inline-block align-top" alt="">
       </a>
+    </div>
+  </div>
+</div>
+<nav class="navbar sticky-top navbar-expand-lg main-menu">
+<div class="container rtl">
+<button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+  <span class="menu-toggle"></span>
+</button>
+<a href="/" class="d-md-none float-right">
+  <img src="~/assets/images/logo.png" class="logo d-inline-block align-top" alt="">
+</a>
 
-      <div class="row megamenu collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="container">
-          <ul class="items">
-            <li>
-              <a asp-controller="Home" asp-action="Index" asp-area="">
-                صفحه نخست
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                وبلاگ
-              </a>
-            </li>
-            <li>
-              <a asp-controller="Home" asp-action="Agency" asp-area="">
-                درخواست نمایندگی
-              </a>
-            </li>
-            @foreach (var menu in Model.CategoryMenuViewModels)
+<div class="row megamenu collapse navbar-collapse" id="navbarSupportedContent">
+<div class="container">
+<ul class="items">
+<li>
+  <a asp-controller="Home" asp-action="Index" asp-area="">
+    صفحه نخست
+  </a>
+</li>
+<li>
+  <a href="#">
+    گردشگری
+  </a>
+</li>
+<li>
+  <a asp-controller="Home" asp-action="Agency" asp-area="">
+    درخواست نمایندگی
+  </a>
+</li>
+@foreach (var menu in Model.CategoryMenuViewModels)
+{
+  <li>
+    <a href="#">
+      <i class=""></i>
+      @menu.CategoryName
+    </a>
+    <ul class="menu-hover">
+      <li class="row">
+        <ul class="list">
+          @foreach (var child in menu.CategoryChilds)
+          {
+            var searchModel = new JobViewSearchModel
             {
-              <li>
-                <a href="#">
-                  <i class=""></i>
-                  @menu.CategoryName
-                </a>
-                <ul class="menu-hover">
-                  <li class="row">
-                    <ul class="list">
-                      @foreach (var child in menu.CategoryChilds)
-                      {
-                        var searchModel = new JobViewSearchModel
-                        {
-                          CategoryId = child.CategoryId
-                        };
-                      <li>
-                        @Html.ActionLink(child.CategoryName , "Index", "JobView", searchModel)
-                      </li>
-                      }
-                    </ul>
-                  </li>
-                  <div class="mega-side">
-                    <img src="~/CategoryPhotos/@menu.Photo" class="image-megamenu" width="441" height="268">
-                  </div>
-                </ul>
-              </li>
-            }
-            @*<li>
+              CategoryId = child.CategoryId
+            };
+            <li>
+              @Html.ActionLink(child.CategoryName, "Index", "JobView", searchModel)
+            </li>
+          }
+        </ul>
+      </li>
+      <div class="mega-side">
+        <img src="~/CategoryPhotos/@menu.Photo" class="image-megamenu" width="441" height="268">
+      </div>
+    </ul>
+  </li>
+}
+@*<li>
                 <a href="#">
                   <i class="icon-Home-Appliances icon-ml"></i>
                   لوازم خانگی
@@ -309,56 +263,56 @@
               </li>*@
 
 
-            @if (!Model.AccountViewModel.IsAuthorized)
-            {
-              <li class="float-left">
-                <div class="login-btn">
-                  <a asp-controller="Account" asp-action="Login">
-                    <i class="icon-signin icon-ml"></i>ورود
-                  </a>
-                </div>
-              </li>
-              <li class="float-left">
-                <div class="login-btn">
-                  <a asp-controller="Account" asp-action="Register">
-                    <i class="icon-signup icon-ml"></i>ثبت نام
-                  </a>
-                </div>
-              </li>
-            }
-            else
-            {
-              if (Model.AccountViewModel.Role == 4 || Model.AccountViewModel.Role == 5)
-              {
-                <li class="nav-item float-left">
-                  <a class="nav-link" asp-area="Administrator" asp-controller="Home" asp-action="Index">@Model.AccountViewModel.Name خوش آمدید</a>
-                </li>
-              }
-              if (Model.AccountViewModel.Role == 2)
-              {
-                <li class="nav-item float-left">
-                  <a class="nav-link" asp-area="Job" asp-controller="Home" asp-action="Index">@Model.AccountViewModel.Name خوش آمدید</a>
-                </li>
-              }
-              if (Model.AccountViewModel.Role == 1)
-              {
-                <li class="nav-item float-left">
-                  <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">@Model.AccountViewModel.Name خوش آمدید</a>
-                </li>
-              }
-              if (Model.AccountViewModel.Role == 3)
-              {
-                <li class="nav-item float-left">
-                  <a class="nav-link" asp-area="Club" asp-controller="Home" asp-action="Index">@Model.AccountViewModel.Name خوش آمدید</a>
-                </li>
-              }
-              <li class="nav-item float-left">
-                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">خروج</a>
-              </li>
-            }
-          </ul>
-        </div>
-      </div>
-
+@if (!Model.AccountViewModel.IsAuthorized)
+{
+  <li class="float-left">
+    <div class="login-btn">
+      <a asp-controller="Account" asp-action="Login">
+        <i class="icon-signin icon-ml"></i>ورود
+      </a>
     </div>
-  </nav>
+  </li>
+  <li class="float-left">
+    <div class="login-btn">
+      <a asp-controller="Account" asp-action="Register">
+        <i class="icon-signup icon-ml"></i>ثبت نام
+      </a>
+    </div>
+  </li>
+}
+else
+{
+  if (Model.AccountViewModel.Role == 4 || Model.AccountViewModel.Role == 5)
+  {
+    <li class="nav-item float-left">
+      <a class="nav-link" asp-area="Administrator" asp-controller="Home" asp-action="Index">@Model.AccountViewModel.Name خوش آمدید</a>
+    </li>
+  }
+  if (Model.AccountViewModel.Role == 2)
+  {
+    <li class="nav-item float-left">
+      <a class="nav-link" asp-area="Job" asp-controller="Home" asp-action="Index">@Model.AccountViewModel.Name خوش آمدید</a>
+    </li>
+  }
+  if (Model.AccountViewModel.Role == 1)
+  {
+    <li class="nav-item float-left">
+      <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">@Model.AccountViewModel.Name خوش آمدید</a>
+    </li>
+  }
+  if (Model.AccountViewModel.Role == 3)
+  {
+    <li class="nav-item float-left">
+      <a class="nav-link" asp-area="Club" asp-controller="Home" asp-action="Index">@Model.AccountViewModel.Name خوش آمدید</a>
+    </li>
+  }
+  <li class="nav-item float-left">
+    <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">خروج</a>
+  </li>
+}
+</ul>
+</div>
+</div>
+
+</div>
+</nav>

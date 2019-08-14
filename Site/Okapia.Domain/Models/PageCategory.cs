@@ -11,7 +11,7 @@ namespace Okapia.Domain.Models
         public string PageCategorySmallPictutreTitle { get; set; }
         public string PageCategorySmallPictutreAlt { get; set; }
         public string PageCategorySmallPictutreDescription { get; set; }
-        public string PageCategoryPageTittle { get; set; }
+        public string PageCategoryPageTitle { get; set; }
         public string PageCategorySlug { get; set; }
         public string PageCategoryMetaTag { get; set; }
         public string PageCategoryMetaDesccription { get; set; }

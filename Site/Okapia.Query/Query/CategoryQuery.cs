@@ -12,18 +12,27 @@ namespace Okapia.Query.Query
         public CategoryQuery(OkapiaViewContext context) : base(context)
         {
         }
-
-
-        public List<CategoryMenuViewModel> GetCategoriesForMenu()
+        
+        public List<CategoryViewModel> GetCategoriesForSearch()
         {
-            return _context.Categories.Where(x=>x.CategoryParentId == 0).Include(x => x.Childs).Select(category => new CategoryMenuViewModel
+            return _context.Categories.Where(x => x.CategoryParentId != 0).Select(category => new CategoryViewModel
             {
                 CategoryId = category.CategoryId,
                 CategoryName = category.CategoryName,
-                CategoryChilds = MapToCategoryMenuViewModels(category.Childs),
-                Photo = category.CategoryThumbPicUrl,
-                PhotoAlt = category.CategoryPicAlt
             }).ToList();
+        }
+
+        public List<CategoryMenuViewModel> GetCategoriesForMenu()
+        {
+            return _context.Categories.Where(x => x.CategoryParentId == 0).Include(x => x.Childs).Select(category =>
+                new CategoryMenuViewModel
+                {
+                    CategoryId = category.CategoryId,
+                    CategoryName = category.CategoryName,
+                    CategoryChilds = MapToCategoryMenuViewModels(category.Childs),
+                    Photo = category.CategoryThumbPicUrl,
+                    PhotoAlt = category.CategoryPicAlt
+                }).ToList();
         }
 
 

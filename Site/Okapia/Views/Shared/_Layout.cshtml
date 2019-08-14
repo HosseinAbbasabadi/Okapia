@@ -37,9 +37,10 @@
   <link href="~/css/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
 </head>
 <body>
-  <header class="header-area">
-    @await Component.InvokeAsync("Menu")
-  </header>
+<header class="header-area">
+  @await Component.InvokeAsync("PageCategoryMenu")
+  @await Component.InvokeAsync("Menu")
+</header>
 
   @RenderBody()
 

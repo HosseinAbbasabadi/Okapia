@@ -27,8 +27,9 @@ namespace Okapia.Repository.Repositories
                     CommentAgreeCount = comment.CommentAgreeCount,
                     CommentDisagreeCount = comment.CommentDisagreeCount,
                     CommentConfirmDate = comment.CommentConfirmDate.ToFarsi(),
-                    CommentCreationDateDate = comment.CommentCreationDateDate.ToFarsi(),
-                    CommentatorUsername = account.Username
+                    CommentCreationDateDate = comment.CommentCreationDate.ToFarsi(),
+                    CommentatorUsername = account.Username,
+                    CommentText = comment.CommnetText
                 }));
 
             if (!string.IsNullOrEmpty(searchModel.CommentTitle))

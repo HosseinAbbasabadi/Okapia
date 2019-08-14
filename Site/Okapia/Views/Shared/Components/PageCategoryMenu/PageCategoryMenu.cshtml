@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Okapia.Domain.ViewModels.PageCategory.PageCategoryMenuViewModel>
+
+<nav class="navbar sticky-top navbar-expand-lg main-menu blog-Menu">
+  <div class="container rtl">
+    <div class="row megamenu collapse navbar-collapse">
+      <div class="container">
+        <ul class="items">
+          @foreach (var pageCategory in Model)
+          {
+            <li>
+              <a href="#">
+                @pageCategory.PageCategoryName
+              </a>
+            </li>
+          }
+          <li>
+            <a href="/category/پوشاک">
+              درباره ما
+            </a>
+          </li>
+          <li>
+            <a href="/category/لوازم+شخصی">
+              تماس با ما
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

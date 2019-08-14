@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Okapia.Domain.ViewModels.Comment;
 using Okapia.Domain.ViewModels.JobPicture;
 
 namespace Okapia.Domain.ViewModels.Job
@@ -33,5 +34,6 @@ namespace Okapia.Domain.ViewModels.Job
         public string InstagramUrl { get; set; }
         public string TelegramUrl { get; set; }
         public List<JobPictureViewModel> Photos { get; set; }
+        public List<CommentItemViewModel> Comments { get; set; }
     }
 }

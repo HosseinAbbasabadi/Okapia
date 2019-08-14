@@ -20,7 +20,7 @@ namespace Okapia.Repository.Mappings
 
             builder.Property(e => e.PageCategoryName).HasMaxLength(50);
 
-            builder.Property(e => e.PageCategoryPageTittle).HasMaxLength(400);
+            builder.Property(e => e.PageCategoryPageTitle).HasMaxLength(400);
 
             builder.Property(e => e.PageCategoryParentId).HasColumnName("PageCategoryParentID");
 

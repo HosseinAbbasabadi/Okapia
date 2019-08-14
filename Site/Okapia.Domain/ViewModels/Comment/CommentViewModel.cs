@@ -12,6 +12,8 @@ namespace Okapia.Domain.ViewModels.Comment
         public string CommentatorUsername { get; set; }
         [Display(Name = "عنوان")]
         public string CommentTitle { get; set; }
+        [Display(Name = "متن")]
+        public string CommentText { get; set; }
         [Display(Name = "رای مثبت")]
         public int CommentAgreeCount { get; set; }
         [Display(Name = "رای منفی")]

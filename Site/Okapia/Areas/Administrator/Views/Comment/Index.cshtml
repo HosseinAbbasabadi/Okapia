@@ -9,6 +9,6 @@
 
 @await Html.PartialAsync("~/Areas/Administrator/Views/Comment/_SearchComments.cshtml", Model.CommentSearchModel)
 
-<div id="listRequestsDiv">
+<div id="listCommentsDiv">
   @await Html.PartialAsync("~/Areas/Administrator/Views/Comment/_ListComments.cshtml", Model.CommentViewModels)
 </div>

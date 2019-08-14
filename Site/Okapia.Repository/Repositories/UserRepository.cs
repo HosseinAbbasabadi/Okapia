@@ -71,6 +71,11 @@ namespace Okapia.Repository.Repositories
             return query.FirstOrDefault(x => x.UserId == id);
         }
 
+        public User GetUserBy(long accountId)
+        {
+            return _context.Users.Include(x => x.Account).FirstOrDefault(x => x.Account.Id == accountId);
+        }
+
         private UserDetailsViewModel MapToUserViewModel(User user)
         {
             return new UserDetailsViewModel

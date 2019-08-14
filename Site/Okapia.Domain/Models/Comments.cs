@@ -15,9 +15,10 @@ namespace Okapia.Domain.Models
         public bool CommentIsConfirmed { get; set; }
         public long CommentConfirmorAccountId { get; set; }
         public DateTime CommentConfirmDate { get; set; }
-        public DateTime CommentCreationDateDate { get; set; }
+        public DateTime CommentCreationDate { get; set; }
         public bool CommentIsDeleted { get; set; }
         
         public Page Page { get; set; }
+        public Job Job { get; set; }
     }
 }

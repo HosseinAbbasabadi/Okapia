@@ -6,6 +6,7 @@ using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.PageCategory;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
+using Okapia.Domain.QueryContracts;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.PageCategory;
 
@@ -15,11 +16,13 @@ namespace Okapia.Application.Applications
     {
         private readonly IAuthHelper _authHelper;
         private readonly IPageCategoryRepository _pageCategoryRepository;
+        private readonly IPageCategoryQuery _pageCategoryQuery;
 
-        public PageCategoryApplication(IPageCategoryRepository pageCategoryRepository, IAuthHelper authHelper)
+        public PageCategoryApplication(IPageCategoryRepository pageCategoryRepository, IAuthHelper authHelper, IPageCategoryQuery pageCategoryQuery)
         {
             _pageCategoryRepository = pageCategoryRepository;
             _authHelper = authHelper;
+            _pageCategoryQuery = pageCategoryQuery;
         }
 
         public OperationResult Create(CreatePageCategory command)
@@ -27,7 +30,7 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("PageCategory", "Create");
             try
             {
-                if (_pageCategoryRepository.IsDuplicated(x => x.PageCategoryName == command.PageCategoryPageTittle))
+                if (_pageCategoryRepository.IsDuplicated(x => x.PageCategoryName == command.PageCategoryPageTitle))
                 {
                     result.Message = ApplicationMessages.DuplicatedRecord;
                     return result;
@@ -39,7 +42,7 @@ namespace Okapia.Application.Applications
                     PageCategoryMetaDesccription = command.PageCategoryMetaDesccription,
                     PageCategoryMetaTag = command.PageCategoryMetaTag,
                     PageCategoryName = command.PageCategoryName,
-                    PageCategoryPageTittle = command.PageCategoryPageTittle,
+                    PageCategoryPageTitle = command.PageCategoryPageTitle,
                     PageCategoryParentId = command.PageCategoryParentId,
                     PageCategorySeohead = command.PageCategorySeohead,
                     PageCategoryShowOrder = command.PageCategoryShowOrder,
@@ -90,7 +93,7 @@ namespace Okapia.Application.Applications
                 pageCategory.PageCategorySmallPictutreAlt = command.AltImage;
                 pageCategory.PageCategorySmallPictutreDescription = command.DescImage;
                 pageCategory.PageCategorySmallPictutreTitle = command.TitleImage;
-                pageCategory.PageCategoryPageTittle = command.PageCategoryPageTittle;
+                pageCategory.PageCategoryPageTitle = command.PageCategoryPageTitle;
                 pageCategory.PageCanonicalAddress = command.PageCanonicalAddress;
                 pageCategory.PageCategoryIsDeleted = command.PageCategoryIsDeleted;
                 pageCategory.PageCategoryName = command.PageCategoryName;
@@ -195,6 +198,11 @@ namespace Okapia.Application.Applications
                 result.Message = ApplicationMessages.SystemFailure;
                 return result;
             }
+        }
+
+        public List<PageCategoryMenuViewModel> GetPageCategoriesForMenu()
+        {
+            return _pageCategoryQuery.GetPageCategoriesForMenu();
         }
     }
 }

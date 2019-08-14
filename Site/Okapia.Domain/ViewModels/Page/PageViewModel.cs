@@ -15,7 +15,8 @@ namespace Okapia.Domain.ViewModels.Page
         public DateTime PageRegistrationDateG { get; set; }
         [Display(Name = "تاریخ انتشار")] public string PagePublishDate { get; set; }
         public DateTime PagePublishDateG { get; set; }
-        [Display(Name = "تعداد کامنت ها")]public int PageCommentsCount { get; set; }
+        [Display(Name = "تعداد کامنت ها")] public int PageCommentsCount { get; set; }
+        [Display(Name = "عکس")] public string PagePicture { get; set; }
         public bool PageIsDeleted { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using Okapia.Application.Applications;
 using Okapia.Application.Contracts;
 using Okapia.Configuration;
 using Okapia.Helpers;
+using reCAPTCHA.AspNetCore;
 
 namespace Okapia
 {
@@ -46,6 +47,7 @@ namespace Okapia
                 });
 
             services.AddHttpContextAccessor();
+            services.Configure<RecaptchaSettings>(Configuration.GetSection("RecaptchaSettings"));
             services.AddMvc(options => { options.EnableEndpointRouting = false; })
                 .AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = true)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

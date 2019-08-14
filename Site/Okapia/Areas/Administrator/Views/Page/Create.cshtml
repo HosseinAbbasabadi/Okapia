@@ -89,48 +89,47 @@
           <span asp-validation-for="Content" class="text-danger"></span>
         </div>
       </div>
-
-
-      @*<table class="col-md-12 table table-bordered text-center">
-      <tr>
-        <td>فایل</td>
-        <td>عنوان عکس</td>
-        <td>Alt</td>
-        <td>توضیحات</td>
-        <td>پیش نمایش</td>
-        <td>حذف</td>
-      </tr>
-      <tr>
-        <td>
-          <input id="modalPicture" name="modalPicture" type="file" size="1" onchange="uploadFile('modalPicture', 'PicName', 'deleteImage', 'Modal');PreviewImage('modalPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*"/>
-          <input asp-for="PicName" type="hidden" size="1" value=""/>
-        </td>
-        <td>
-          <div class="form-group">
-            <input asp-for="PicTitle" class="form-control"/>
-            <span asp-validation-for="PicTitle" class="text-danger"></span>
-          </div>
-        </td>
-        <td>
-          <div class="form-group">
-            <input asp-for="PicAlt" class="form-control"/>
-            <span asp-validation-for="PicAlt" class="text-danger"></span>
-          </div>
-        </td>
-        <td>
-          <div class="form-group">
-            <input asp-for="PicDescription" class="form-control"/>
-            <span asp-validation-for="PicDescription" class="text-danger"></span>
-          </div>
-        </td>
-        <td>
-          <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
-        </td>
-        <td>
-          <button type="button" id="deleteImage" onclick="deletePhoto('PicName', 'prevImage', 'deleteImage','PicTitle', 'PicAlt', 'PicDescription', 'Modal')" class="btn btn-danger hidden">حذف</button>
-        </td>
-      </tr>
-    </table>*@
+      
+      <table class="col-md-12 table table-bordered text-center">
+        <tr>
+          <td>فایل</td>
+          <td>عنوان عکس</td>
+          <td>Alt</td>
+          <td>توضیحات</td>
+          <td>پیش نمایش</td>
+          <td>حذف</td>
+        </tr>
+        <tr>
+          <td>
+            <input id="pagePicture" name="pagePicture" type="file" size="1" onchange="uploadFile('pagePicture', 'PagePicture', 'deleteImage', 'page');PreviewImage('pagePicture', 'prevImage');" class="form-control custom-file-input" accept="image/*"/>
+            <input asp-for="PagePicture" type="hidden" size="1" value=""/>
+          </td>
+          <td>
+            <div class="form-group">
+              <input asp-for="PagePictureTitle" class="form-control" />
+              <span asp-validation-for="PagePictureTitle" class="text-danger"></span>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <input asp-for="PagePictureAlt" class="form-control" />
+              <span asp-validation-for="PagePictureAlt" class="text-danger"></span>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <input asp-for="PagePictureDescription" class="form-control" />
+              <span asp-validation-for="PagePictureDescription" class="text-danger"></span>
+            </div>
+          </td>
+          <td>
+            <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
+          </td>
+          <td>
+            <button type="button" id="deleteImage" onclick="deletePhoto('PagePicture', 'prevImage', 'deleteImage', 'TitleImage', 'AltImage', 'DescImage', 'page')" class="btn btn-danger hidden">حذف</button>
+          </td>
+        </tr> 
+      </table>
 
       <div class="col-md-12">
         <div class="form-group">

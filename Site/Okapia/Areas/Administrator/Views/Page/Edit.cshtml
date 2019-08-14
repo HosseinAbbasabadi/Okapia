@@ -13,7 +13,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="PageTitle" class="control-label"></label>
-          <input asp-for="PageTitle" class="form-control" onchange="makeSlug('PageTitle', 'PageSlug', '@Url.Action("CheckSlugDuplication", "Page")')"/>
+          <input asp-for="PageTitle" class="form-control" onchange="makeSlug('PageTitle', 'PageSlug', '@Url.Action("CheckSlugDuplication", "Page")')" />
           <span asp-validation-for="PageTitle" class="text-danger"></span>
         </div>
       </div>
@@ -29,35 +29,35 @@
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="PageSlug" class="control-label"></label>
-          <input asp-for="PageSlug" class="form-control" onchange="checkSlugDuplication('@Url.Action("CheckSlugDuplication", "Page")', 'PageSlug')"/>
+          <input asp-for="PageSlug" class="form-control" onchange="checkSlugDuplication('@Url.Action("CheckSlugDuplication", "Page")', 'PageSlug')" />
           <span asp-validation-for="PageSlug" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="PageMetaTag" class="control-label"></label>
-          <input asp-for="PageMetaTag" class="form-control direct-ltr"/>
+          <input asp-for="PageMetaTag" class="form-control direct-ltr" />
           <span asp-validation-for="PageMetaTag" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="PageMetaDesccription" class="control-label"></label>
-          <input asp-for="PageMetaDesccription" class="form-control direct-ltr"/>
+          <input asp-for="PageMetaDesccription" class="form-control direct-ltr" />
           <span asp-validation-for="PageMetaDesccription" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="PageSeohead" class="control-label"></label>
-          <input asp-for="PageSeohead" class="form-control direct-ltr"/>
+          <input asp-for="PageSeohead" class="form-control direct-ltr" />
           <span asp-validation-for="PageSeohead" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="PageCanonicalAddress" class="control-label"></label>
-          <input asp-for="PageCanonicalAddress" class="form-control direct-ltr"/>
+          <input asp-for="PageCanonicalAddress" class="form-control direct-ltr" />
           <span asp-validation-for="PageCanonicalAddress" class="text-danger"></span>
         </div>
       </div>
@@ -75,21 +75,21 @@
             <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="left">
               <span class="fa fa-calendar"></span>
             </div>
-            <input asp-for="PagePublishDate" type="text" class="form-control" id="fromDate1" placeholder="از تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right"/>
+            <input asp-for="PagePublishDate" type="text" class="form-control" id="fromDate1" placeholder="از تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right" />
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="PageIsDeleted" class="control-label"></label>
-          <input asp-for="PageIsDeleted" class="form-control direct-ltr"/>
+          <input asp-for="PageIsDeleted" class="form-control direct-ltr" />
           <span asp-validation-for="PageIsDeleted" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="PageRemoved301InsteadUrl" class="control-label"></label>
-          <input asp-for="PageRemoved301InsteadUrl" class="form-control direct-ltr"/>
+          <input asp-for="PageRemoved301InsteadUrl" class="form-control direct-ltr" />
           <span asp-validation-for="PageRemoved301InsteadUrl" class="text-danger"></span>
         </div>
       </div>
@@ -100,9 +100,49 @@
           <span asp-validation-for="Content" class="text-danger"></span>
         </div>
       </div>
+      <table class="col-md-12 table table-bordered text-center">
+        <tr>
+          <td>فایل</td>
+          <td>عنوان عکس</td>
+          <td>Alt</td>
+          <td>توضیحات</td>
+          <td>پیش نمایش</td>
+          <td>حذف</td>
+        </tr>
+        <tr>
+          <td>
+            <input id="pagePicture" name="pagePicture" type="file" size="1" onchange="uploadFile('pagePicture', 'PagePicture', 'deleteImage', 'page');PreviewImage('pagePicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
+            <input asp-for="PagePicture" type="hidden" size="1" value="" />
+          </td>
+          <td>
+            <div class="form-group">
+              <input asp-for="PagePictureTitle" class="form-control" />
+              <span asp-validation-for="PagePictureTitle" class="text-danger"></span>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <input asp-for="PagePictureAlt" class="form-control" />
+              <span asp-validation-for="PagePictureAlt" class="text-danger"></span>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <input asp-for="PagePictureDescription" class="form-control" />
+              <span asp-validation-for="PagePictureDescription" class="text-danger"></span>
+            </div>
+          </td>
+          <td>
+            <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100" />
+          </td>
+          <td>
+            <button type="button" id="deleteImage" onclick="deletePhoto('PagePicture', 'prevImage', 'deleteImage', 'TitleImage', 'AltImage', 'DescImage', 'page')" class="btn btn-danger hidden">حذف</button>
+          </td>
+        </tr>
+      </table>
       <div class="col-md-12">
         <div class="form-group">
-          <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Page")', 'editPageFrm', '@ViewData["redirectUrl"]')"/>
+          <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Page")', 'editPageFrm', '@ViewData["redirectUrl"]')" />
           <a class="btn btn-warning btn-lg" href="@ViewData["redirectUrl"]">بازگشت به لیست</a>
         </div>
       </div>

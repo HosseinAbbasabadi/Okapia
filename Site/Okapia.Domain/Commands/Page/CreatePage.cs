@@ -33,6 +33,10 @@ namespace Okapia.Domain.Commands.Page
         [Display(Name = "توضیحات کوتاه")] public string PageSmallDescription { get; set; }
         [Display(Name = "محتوا")] public string Content { get; set; }
         [Display(Name = "تاریخ انتشار")] public string PagePublishDate { get; set; }
+        public string PagePicture { get; set; }
+        public string PagePictureAlt { get; set; }
+        public string PagePictureTitle { get; set; }
+        public string PagePictureDescription { get; set; }
         public DateTime PagePublishDateG { get; set; }
         public SelectList PageCategories { get; set; }
         public SelectList Employees { get; set; }

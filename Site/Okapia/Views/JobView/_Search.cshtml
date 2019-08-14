@@ -5,7 +5,14 @@
     منطقه مورد نظر خود را مشخص کنید
   </legend>
   <div class="row rtl text-right mb-4">
-    <form method="get" id="createUserFrm" asp-controller="JobView" asp-action="Index" as>
+    <form method="get" id="createUserFrm" asp-controller="JobView" asp-action="Index">
+      <div class="single-field-inline">
+        <label asp-for="CategoryId" class="control-label"></label>
+        <select asp-for="CategoryId" asp-items="@Model.Categories" class="form-control">
+          <option value="0">گروه را انتخاب کنید...</option>
+        </select>
+        @*<span asp-validation-for="ProvinceId" class="text-danger"></span>*@
+      </div>
       <div class="single-field-inline">
         <label asp-for="Province" class="control-label"></label>
         <select asp-for="Province" asp-items="@Model.Provinces" class="form-control" id="CreateProvinceDropDown" onchange="getCityList('CreateProvinceDropDown', '@Url.Action("GetCitiesByProvince", "Home", new {area = ""})', 'createCityDropDown')"></select>
@@ -32,9 +39,13 @@
         </select>
         @*<span asp-validation-for="NeighborhoodId" class="text-danger"></span>*@
       </div>
-      <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
-      <div class="single-field-inline">
+      <input type="hidden" name="CategoryId" value="@Model.CategoryId"/>
+      <br />
+      <br />
+      <br />
+      <div class="col-md-12">
         <button type="submit" class="bttn-mid btn-fill">فیلتر</button>
+        <a class="btn btn-default" asp-action="Index" asp-controller="JobView">لغو فیلتر</a>
       </div>
     </form>
   </div>

@@ -18,7 +18,7 @@ namespace Okapia.Domain.Commands.PageCategory
         [Display(Name = "توضیحات")] public string DescImage { get; set; }
         [Display(Name = "alt")] public string AltImage { get; set; }
 
-        [Display(Name = "عنوان صفحه")] public string PageCategoryPageTittle { get; set; }
+        [Display(Name = "عنوان صفحه")] public string PageCategoryPageTitle { get; set; }
         [Display(Name = "اسلاگ")] public string PageCategorySlug { get; set; }
 
         [Display(Name = "متاتگ")]
@@ -36,7 +36,6 @@ namespace Okapia.Domain.Commands.PageCategory
         public string PageCanonicalAddress { get; set; }
 
         [Display(Name = "رده مافوق")]
-        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.PageCategoryParentRange)]
         public int PageCategoryParentId { get; set; }
 
         [Display(Name = "ترتیب نمایش")] public int PageCategoryShowOrder { get; set; }

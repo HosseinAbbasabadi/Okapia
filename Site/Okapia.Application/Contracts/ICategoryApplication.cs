@@ -20,5 +20,6 @@ namespace Okapia.Application.Contracts
 
         //
         List<CategoryMenuViewModel> GetCategoriesForMenu();
+        List<CategoryViewModel> GetCategoriesForSearch();
     }
 }

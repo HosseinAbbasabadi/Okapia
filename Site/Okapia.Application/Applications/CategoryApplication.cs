@@ -182,5 +182,10 @@ namespace Okapia.Application.Applications
         {
             return _categoryQuery.GetCategoriesForMenu();
         }
+
+        public List<CategoryViewModel> GetCategoriesForSearch()
+        {
+            return _categoryQuery.GetCategoriesForSearch();
+        }
     }
 }

@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>fcaa1b94-dbe4-461d-8dbd-855c056935da</UserSecretsId>
   </PropertyGroup>
 
 
@@ -11,6 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="reCAPTCHA.AspNetCore" Version="2.2.3" />
   </ItemGroup>
 
 
@@ -29,9 +31,11 @@
 
   <ItemGroup>
     <Folder Include="Areas\Administrator\Views\Modal\NewFolder\" />
+    <Folder Include="Views\PageView\" />
     <Folder Include="wwwroot\JobPhotos\Thumbs\" />
     <Folder Include="wwwroot\ModalPhotos\Thumbs\" />
     <Folder Include="wwwroot\PageCategoryPhotos\Thumbs\" />
+    <Folder Include="wwwroot\PagePhotos\Thumbs\" />
     <Folder Include="wwwroot\SlidePhotos\Thumbs\" />
   </ItemGroup>
 

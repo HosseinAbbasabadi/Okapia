@@ -7,6 +7,7 @@ namespace Okapia.Domain.QueryContracts
 {
     public interface ICategoryQuery : IRepository<int, Category>
     {
+        List<CategoryViewModel> GetCategoriesForSearch();
         List<CategoryMenuViewModel> GetCategoriesForMenu();
     }
 }

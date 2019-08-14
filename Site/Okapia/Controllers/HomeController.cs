@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Areas.Administrator.Controllers;
 using Okapia.Domain.Commands.JobRequest;
+using Okapia.Domain.SeachModels;
 using Okapia.Models;
+using reCAPTCHA.AspNetCore;
 
 namespace Okapia.Controllers
 {
@@ -14,15 +16,17 @@ namespace Okapia.Controllers
         private readonly ICityApplication _cityApplication;
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
+        private readonly IRecaptchaService _recaptchaService;
 
         public HomeController(IJobRequestApplication jobRequestApplication, ICityApplication cityApplication,
             IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication,
-            IJobApplication jobApplication)
+            IJobApplication jobApplication, IRecaptchaService recaptchaService)
         {
             _jobRequestApplication = jobRequestApplication;
             _cityApplication = cityApplication;
             _districtApplication = districtApplication;
             _neighborhoodApplication = neighborhoodApplication;
+            _recaptchaService = recaptchaService;
         }
 
         public IActionResult Index()
@@ -43,12 +47,20 @@ namespace Okapia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Agency(CreateJobRequest command)
         {
+            var recaptcha = _recaptchaService.Validate(Request);
+            if (!recaptcha.IsCompletedSuccessfully)
+            {
+                ViewData["errorMessage"] = "خطای اعتبارسنجی. لطفا دوباره تلاش کنید";
+                return View();
+            }
+
             var result = _jobRequestApplication.Create(command);
             if (result.Success)
             {
                 ViewData["name"] = command.ContactTitle;
                 return View("AgencySuccess", result.RecordId.ToString());
             }
+
             ViewData["errorMessage"] = result.Message;
             return View();
         }
@@ -72,6 +84,15 @@ namespace Okapia.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+        }
+
+        public ActionResult Search([FromForm] string q)
+        {
+            var search = new JobViewSearchModel
+            {
+                Text = q
+            };
+            return RedirectToAction("Index", "JobView", search);
         }
 
         [HttpGet]

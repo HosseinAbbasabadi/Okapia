@@ -1,4 +1,6 @@
-﻿@using Okapia.Domain.Commands.JobRequest
+﻿@inject IOptions<RecaptchaSettings> RecaptchaSettings
+@using Microsoft.Extensions.Options
+@using reCAPTCHA.AspNetCore
 @model Okapia.Domain.Commands.JobRequest.CreateJobRequest
 
 @{
@@ -63,11 +65,11 @@
             <span asp-validation-for="Description" class="text-danger"></span>
           </div>
           <div class="single-field">
-            <div class="g-recaptcha" data-sitekey="6LeXubIUAAAAAPl-CpA4zsosiLVHjUbs6uLdQJsq"></div>
+            @Html.Recaptcha(RecaptchaSettings.Value)
           </div>
-            <div class="form-group">
-              <input type="submit" value="ثبت درخواست" class="btn btn-primary" onclick="checkFormValidation('createJobRequestFrm')" />
-            </div>
+          <div class="form-group">
+            <input type="submit" value="ثبت درخواست" class="btn btn-primary" onclick="checkFormValidation('createJobRequestFrm')" />
+          </div>
         </form>
       </div>
     </div>

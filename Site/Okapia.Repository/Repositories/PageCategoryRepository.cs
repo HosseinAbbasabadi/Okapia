@@ -21,7 +21,7 @@ namespace Okapia.Repository.Repositories
             {
                 PageCategoryId = x.PageCategoryId,
                 PageCategoryName = x.PageCategoryName,
-                PageCategoryPageTittle = x.PageCategoryPageTittle,
+                PageCategoryPageTitle = x.PageCategoryPageTitle,
                 PageCategoryIsDeleted = x.PageCategoryIsDeleted,
                 PageCanonicalAddress = x.PageCanonicalAddress,
                 PageCategoryMetaTag = x.PageCategoryMetaTag,
@@ -50,7 +50,7 @@ namespace Okapia.Repository.Repositories
 
         public List<PageCategoryViewModel> Search(PageCategorySearchModel searchModel, out int recordCount)
         {
-            var q = _context.PageCategory.Include(x => x.PageCategoryParent).Include(x => x.Pages).AsQueryable();
+            var q = _context.PageCategory.Include(x => x.Pages).AsQueryable();
             var query = from pageCategory in q
                 join account in _context.Accounts
                     on pageCategory.PageCategoryRegisteringEmployeId equals account.Id
@@ -60,7 +60,7 @@ namespace Okapia.Repository.Repositories
                     PageCategoryName = pageCategory.PageCategoryName,
                     PageCategoryIsDeleted = pageCategory.PageCategoryIsDeleted,
                     PageCategoryParentId = pageCategory.PageCategoryParentId,
-                    PageCategoryParent = pageCategory.PageCategoryParent.PageCategoryName,
+                    //PageCategoryParent = pageCategory.PageCategoryParent.PageCategoryName,
                     PageCategoryRegisteringEmployeId = pageCategory.PageCategoryRegisteringEmployeId,
                     PageCategoryRegisteringEmploye = account.Username,
                     Photo = pageCategory.PageCategorySmallPictutre,

@@ -105,6 +105,8 @@ namespace Okapia.Areas.Administrator.Controllers
                 containingFoler = "ModalPhotos";
             if (type == "pageCategory")
                 containingFoler = "PageCategoryPhotos";
+            if (type == "page")
+                containingFoler = "PagePhotos";
             if (type == "slide")
                 containingFoler = "SlidePhotos";
             return containingFoler;

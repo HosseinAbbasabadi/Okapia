@@ -17,7 +17,9 @@ namespace Okapia.Domain.Models
         public string JobTel1 { get; set; }
         public string JobTel2 { get; set; }
         public string JobMobile1 { get; set; }
+
         public string JobMobile2 { get; set; }
+
         //public string JobGeoLocation { get; set; }
         public int JobProvienceId { get; set; }
         public int JobCityId { get; set; }
@@ -54,6 +56,7 @@ namespace Okapia.Domain.Models
         public string TelegramUrl { get; set; }
         public bool IsStared { get; set; }
         public ICollection<JobPicture> JobPictures { get; set; }
+        public ICollection<Comment> JobComments { get; set; }
         public Account Account { get; set; }
     }
 }
