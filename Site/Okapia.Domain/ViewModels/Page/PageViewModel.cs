@@ -6,7 +6,7 @@ namespace Okapia.Domain.ViewModels.Page
     public class PageViewModel
     {
         public long PageId { get; set; }
-        [Display(Name = "عنوان صفحه")] public string PageTittle { get; set; }
+        [Display(Name = "عنوان صفحه")] public string PageTitle { get; set; }
         public int PageCategoryId { get; set; }
         [Display(Name = "رده")] public string PageCategory { get; set; }
         public long PageRegisteringEmployeeId { get; set; }

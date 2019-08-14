@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Okapia.Domain.ViewModels.Page.PageItemViewModel>
+
+<section class="blog-area section-padding-2">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 centered wow fadeInUp" data-wow-delay="0.3s">
+        <div class="section-title">
+          <h2>آخرین نوشته ها</h2>
+          <p>آخرین اخبار و آموزش ها را بخوانید</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      @foreach (var pageItem in Model)
+      {
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
+          <div class="single-blog-block">
+            <div class="single-blog-block-img">
+              <img src="/PagePhotos/@pageItem.PagePicture" alt="@pageItem.PagePictureAlt" title="@pageItem.PagePictureTitle">
+              <a href="blog-details.html">
+                <i class="fa fa-expand"></i>
+              </a>
+            </div>
+            <div class="single-blog-block-content">
+              <div class="blog-meta">
+                <h3>
+                  <a href="#">@pageItem.PageTittle</a>
+                </h3>
+                <div class="blog-text">
+                  <p>@pageItem.PageSmallDescription</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</section>

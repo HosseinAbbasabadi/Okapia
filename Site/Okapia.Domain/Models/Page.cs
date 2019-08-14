@@ -7,7 +7,7 @@ namespace Okapia.Domain.Models
     {
         public long PageId { get; set; }
         public int PageCategoryId { get; set; }
-        public string PageTittle { get; set; }
+        public string PageTitle { get; set; }
         public string PageSlug { get; set; }
         public string PageMetaTag { get; set; }
         public string PageMetaDesccription { get; set; }

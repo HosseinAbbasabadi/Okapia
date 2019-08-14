@@ -1,0 +1,200 @@
+.MenuContextDiv {
+    background: transparent;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.MenuContext {
+    position: absolute;
+    z-index: 10;
+    background: #cccccc;
+    width: 200px;
+}
+
+.active {
+    display: block !important;
+}
+
+.MenuContext > div {
+    text-align: center;
+}
+
+.PFileManager {
+    background: #0F2027;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-gradient(linear, left top, right top, from(#2C5364), color-stop(#203A43), to(#0F2027));
+    background: -webkit-linear-gradient(left, #2C5364, #203A43, #0F2027);
+    background: -o-linear-gradient(left, #2C5364, #203A43, #0F2027);
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+    .PFileManager a {
+        color: #fff;
+        -webkit-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+    }
+
+        .PFileManager a:hover {
+            color: #afe08a;
+            text-decoration: none;
+        }
+
+.FileContainer {
+}
+
+.NavBar {
+    direction: rtl;
+    text-align: right;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 20px;
+}
+
+    .NavBar ul {
+        margin-bottom: 3px;
+    }
+
+        .NavBar ul li {
+            display: inline-block;
+            margin: 2%;
+        }
+
+.FileDivider {
+    direction: rtl;
+    height: 80vh;
+    overflow: auto;
+}
+
+    .FileDivider .item {
+        cursor: pointer;
+        color: #fff;
+        background-color: #a96d00;
+        padding-bottom: 1px;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        overflow: hidden;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+        .FileDivider .item .imgDivider {
+            height: 10vh;
+            overflow: hidden;
+            font-size: 36px;
+        }
+
+        .FileDivider .item img {
+            max-width: 100%;
+        }
+
+        .FileDivider .item p {
+            margin: 0
+        }
+
+.directories {
+    direction: rtl;
+    text-align: right;
+    height: 100vh;
+    border-left: 2px solid #fff;
+    overflow: auto;
+}
+
+    .directories h6 {
+        border-bottom: 1px solid #fff;
+        color: #fff;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+
+    .directories ul {
+        list-style-type: none;
+    }
+
+    .directories a::before {
+        content: "\f07b";
+        font-family: 'Font Awesome 5 Free';
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        font-weight: 400;
+        margin-left: 10px;
+    }
+
+/*Loader*/
+#Loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0d161f;
+}
+
+.loader-container {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.loader-div {
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    border: 8px solid #162534;
+    border-top: 8px solid #09f;
+    -webkit-animation: rotate 5s linear infinite;
+    animation: rotate 5s linear infinite;
+}
+
+.img-container > img {
+    max-width: 100%;
+}
+
+@-webkit-keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.fa-trash {
+    position: absolute;
+    left: 20px;
+    font-size: 23px;
+    top: 7px;
+    cursor: pointer;
+    -webkit-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
+    color: aliceblue
+}
+
+.fa-trash-alt:hover {
+    -webkit-transform: scale(1.6);
+    -ms-transform: scale(1.6);
+    transform: scale(1.6);
+}

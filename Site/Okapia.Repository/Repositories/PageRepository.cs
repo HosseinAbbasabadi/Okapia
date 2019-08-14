@@ -24,7 +24,7 @@ namespace Okapia.Repository.Repositories
                 PageId = page.PageId,
                 PagePublishDate = page.PagePublishDate.ToFarsi(),
                 PageSlug = page.PageSlug,
-                PageTitle = page.PageTittle,
+                PageTitle = page.PageTitle,
                 PageIsDeleted = page.PageIsDeleted,
                 PageCanonicalAddress = page.PageCanonicalAddress,
                 PageSmallDescription = page.PageSmallDescription,
@@ -50,7 +50,7 @@ namespace Okapia.Repository.Repositories
                 select new PageViewModel
                 {
                     PageId = page.PageId,
-                    PageTittle = page.PageTittle,
+                    PageTitle = page.PageTitle,
                     PageCategoryId = page.PageCategoryId,
                     PageCategory = page.PageCategory.PageCategoryName,
                     PageRegisteringEmployeeId = page.PageRegisteringEmployeeId,
@@ -64,7 +64,7 @@ namespace Okapia.Repository.Repositories
                 };
 
             if (!string.IsNullOrEmpty(searchModel.PageTittle))
-                query = query.Where(x => x.PageTittle.Contains(searchModel.PageTittle));
+                query = query.Where(x => x.PageTitle.Contains(searchModel.PageTittle));
             if (searchModel.PageFromRegistrationDateG != default(DateTime))
                 query = query.Where(x => x.PageRegistrationDateG >= searchModel.PageFromRegistrationDateG);
             if (searchModel.PageToRegistrationDateG != default(DateTime))

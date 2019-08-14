@@ -15,5 +15,9 @@ namespace Okapia.Application.Contracts
         OperationResult CheckSlugDuplication(string slug);
         EditPage GetPageDetails(long id);
         List<PageViewModel> Search(PageSearchModel searchModel, out int recordCount);
+
+        //
+        List<PageItemViewModel> GetPagesForLatestArticles();
+        List<PageItemViewModel> GetPagesForBlogBy(int categoryId);
     }
 }

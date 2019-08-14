@@ -35,6 +35,7 @@
     <Folder Include="wwwroot\JobPhotos\Thumbs\" />
     <Folder Include="wwwroot\ModalPhotos\Thumbs\" />
     <Folder Include="wwwroot\PageCategoryPhotos\Thumbs\" />
+    <Folder Include="wwwroot\Data\Video\" />
     <Folder Include="wwwroot\PagePhotos\Thumbs\" />
     <Folder Include="wwwroot\SlidePhotos\Thumbs\" />
   </ItemGroup>

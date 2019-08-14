@@ -85,6 +85,7 @@ namespace Okapia.Configuration
             services.AddScoped<IJobQuery, JobQuery>();
             services.AddScoped<ISlideQuery, SlideQuery>();
             services.AddScoped<IPageCategoryQuery, PageCategoryQuery>();
+            services.AddScoped<IPageQuery, PageQuery>();
             
             services.AddScoped<IUserCardRepository, UserCardRepository>();
 

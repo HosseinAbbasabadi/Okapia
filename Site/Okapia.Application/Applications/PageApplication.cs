@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Framework;
-using Microsoft.EntityFrameworkCore.Update.Internal;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.Page;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
+using Okapia.Domain.QueryContracts;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Page;
 
@@ -15,12 +15,14 @@ namespace Okapia.Application.Applications
     public class PageApplication : IPageApplication
     {
         private readonly IPageRepository _pageRepository;
+        private readonly IPageQuery _pageQuery;
         private readonly IAuthHelper _authHelper;
 
-        public PageApplication(IPageRepository pageRepository, IAuthHelper authHelper)
+        public PageApplication(IPageRepository pageRepository, IAuthHelper authHelper, IPageQuery pageQuery)
         {
             _pageRepository = pageRepository;
             _authHelper = authHelper;
+            _pageQuery = pageQuery;
         }
 
         public OperationResult Create(CreatePage command)
@@ -28,7 +30,7 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("Pages", "Create");
             try
             {
-                if (_pageRepository.IsDuplicated(x => x.PageTittle == command.PageTitle))
+                if (_pageRepository.IsDuplicated(x => x.PageTitle == command.PageTitle))
                 {
                     result.Message = ApplicationMessages.DuplicatedRecord;
                     return result;
@@ -45,7 +47,7 @@ namespace Okapia.Application.Applications
 
                 var page = new Page
                 {
-                    PageTittle = command.PageTitle,
+                    PageTitle = command.PageTitle,
                     PageCanonicalAddress = command.PageCanonicalAddress,
                     PageCategoryId = command.PageCategoryId,
                     PageContent = command.Content,
@@ -89,7 +91,7 @@ namespace Okapia.Application.Applications
                 }
 
                 var page = _pageRepository.Get(command.PageId);
-                page.PageTittle = command.PageTitle;
+                page.PageTitle = command.PageTitle;
                 page.PagePublishDate = command.PagePublishDate.ToGeorgianDateTime();
                 page.PageCategoryId = command.PageCategoryId;
                 page.PageContent = command.Content;
@@ -209,6 +211,16 @@ namespace Okapia.Application.Applications
             if (!string.IsNullOrEmpty(searchModel.PageToPublishDate))
                 searchModel.PageToPublishDateG = searchModel.PageToPublishDate.ToGeorgianDateTime();
             return _pageRepository.Search(searchModel, out recordCount);
+        }
+
+        public List<PageItemViewModel> GetPagesForLatestArticles()
+        {
+            return _pageQuery.GetPagesForLatestArticles();
+        }
+
+        public List<PageItemViewModel> GetPagesForBlogBy(int categoryId)
+        {
+            return _pageQuery.GetPagesForBlogBy(categoryId);
         }
     }
 }
