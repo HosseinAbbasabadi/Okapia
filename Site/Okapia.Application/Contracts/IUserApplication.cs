@@ -19,5 +19,8 @@ namespace Okapia.Application.Contracts
         UserDetailsViewModel GetUserInfo(long id);
         List<UserViewModel> Search(UserSearchModel searchModel, out int recordCount);
         List<IntroducedViewModel> SearchIntroduced(IntroducedSearchModel searchModel, out int recordCount);
+
+        //
+        long GetActiveUsersCount();
     }
 }

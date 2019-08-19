@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Framework;
 using Microsoft.EntityFrameworkCore;
 using Okapia.Domain.Models;
 using Okapia.Domain.QueryContracts;
+using Okapia.Domain.ViewModels.Page;
 using Okapia.Domain.ViewModels.PageCategory;
 
 namespace Okapia.Query.Query
@@ -29,6 +30,47 @@ namespace Okapia.Query.Query
                     PageCategoryShowOrder = x.PageCategoryShowOrder,
                     PageCategorySlug = x.PageCategorySlug
                 }).ToList();
+        }
+
+        public PageCategoryBlogViewModel GetPageCategoryForBlog(int categoryId)
+        {
+            var pageCategory = _context.PageCategory.Include(x => x.Pages).Where(x => x.PageCategoryIsDeleted == false)
+                .FirstOrDefault(x => x.PageCategoryId == categoryId);
+            var getPagesForBlog = new PageCategoryBlogViewModel
+            {
+                PageCategoryId = pageCategory.PageCategoryId,
+                PageCategoryMetaTags = pageCategory.PageCategoryMetaTag,
+                PageCategoryMetaDescription = pageCategory.PageCategoryMetaDesccription,
+                PageCategoryCanonicalAddress = pageCategory.PageCanonicalAddress,
+                PageCategorySlug = pageCategory.PageCategorySlug,
+                PageCategoryName = pageCategory.PageCategoryName,
+                MetaTags = pageCategory.PageCategoryMetaTag.Split(",").ToList(),
+                Pages = MapPages(pageCategory.Pages.ToList())
+            };
+            return getPagesForBlog;
+        }
+
+        private static List<PageItemViewModel> MapPages(List<Page> pages)
+        {
+            var result = new List<PageItemViewModel>();
+            pages.ForEach(page =>
+            {
+                var pageItem = new PageItemViewModel
+                {
+                    PageId = page.PageId,
+                    PagePicture = page.PagePicture,
+                    PagePictureTitle = page.PagePictureTitle,
+                    PagePictureAlt = page.PagePictureAlt,
+                    PagePictureDescription = page.PagePictureDescription,
+                    PageCategory = page.PageCategory.PageCategoryName,
+                    PagePublishDate = page.PagePublishDate.ToFarsi(),
+                    PageTitle = page.PageTitle,
+                    PageCommentsCount = page.PageComments.Count,
+                    PageSmallDescription = page.PageSmallDescription
+                };
+                result.Add(pageItem);
+            });
+            return result;
         }
     }
 }

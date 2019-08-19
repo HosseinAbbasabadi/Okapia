@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Administrator\Views\Modal\NewFolder\" />
-    <Folder Include="Views\PageView\" />
     <Folder Include="wwwroot\JobPhotos\Thumbs\" />
     <Folder Include="wwwroot\ModalPhotos\Thumbs\" />
     <Folder Include="wwwroot\PageCategoryPhotos\Thumbs\" />

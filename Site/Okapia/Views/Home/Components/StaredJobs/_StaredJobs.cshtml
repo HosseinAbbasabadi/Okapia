@@ -20,14 +20,17 @@
         {
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div class="card-features-content">
-              <div class="card-features-img order-sm-1 order-1 wow fadeInLeft" data-wow-delay="0.4s"
-                   style="background-image: url('/JobPhotos/@item.value.JobPictureName');" >
+              <div class="card-features-img order-sm-1 order-1 wow fadeInLeft" data-wow-delay="0.4s">
+                <img width="600" height="372" src="/JobPhotos/@item.value.JobPictureName" alt="@item.value.JobPictureAlt" title="@item.value.JobPictureTitle"/>
               </div>
               <div class="card-content cl-white order-sm-2 order-2 wow fadeInRight" data-wow-delay="0.4s">
                 <h3>@item.value.JobName</h3>
                 <p>
                   @item.value.JobSmallDescription
                 </p>
+                <a class="bttn-mid btn-fill animated fadeInUp" title="@item.value.JobName" asp-controller="JobView" asp-action="Details" asp-route-id="@item.value.JobId">
+                  مطالعه جزییات
+                </a>
               </div>
             </div>
           </div>
@@ -39,9 +42,13 @@
               <div class="card-content cl-white order-sm-1 order-2 wow fadeInLeft" data-wow-delay="0.5s">
                 <h3>@item.value.JobName</h3>
                 <p>@item.value.JobSmallDescription</p>
+                <a class="bttn-mid btn-fill animated fadeInUp" title="@item.value.JobName" asp-controller="JobView" asp-action="Details" asp-route-id="@item.value.JobId">
+                  مطالعه جزییات
+                </a>
               </div>
-              <div class="card-features-img order-sm-2 order-1 wow fadeInRight" data-wow-delay="0.5s"
-                   style="background: url('/JobPhotos/@item.value.JobPictureName') no-repeat"></div>
+              <div class="card-features-img order-sm-2 order-1 wow fadeInRight" data-wow-delay="0.5s">
+                <img width="600" height="372" src="/JobPhotos/@item.value.JobPictureName" alt="@item.value.JobPictureAlt" title="@item.value.JobPictureTitle" />
+              </div>
             </div>
           </div>
         }

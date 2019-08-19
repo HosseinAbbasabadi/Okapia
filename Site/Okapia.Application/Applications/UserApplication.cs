@@ -8,6 +8,7 @@ using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.User;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
+using Okapia.Domain.QueryContracts;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.User;
 using Okapia.WebService.Adapter.Contracts;
@@ -17,6 +18,7 @@ namespace Okapia.Application.Applications
     public class UserApplication : IUserApplication
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUserQuery _userQuery;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IAccountRepository _accountRepository;
         private readonly ICityApplication _cityApplication;
@@ -29,7 +31,7 @@ namespace Okapia.Application.Applications
         public UserApplication(IUserRepository userRepository, IPasswordHasher passwordHasher,
             IAccountRepository accountRepository, ICityApplication cityApplication,
             IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication,
-            IAuthHelper authHelper, IUserCardRepository userCardRepository, IPasargadService pasargadService)
+            IAuthHelper authHelper, IUserCardRepository userCardRepository, IPasargadService pasargadService, IUserQuery userQuery)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
@@ -40,6 +42,7 @@ namespace Okapia.Application.Applications
             _authHelper = authHelper;
             _userCardRepository = userCardRepository;
             _pasargadService = pasargadService;
+            _userQuery = userQuery;
         }
 
         public OperationResult Create(CreateUser command)
@@ -458,6 +461,11 @@ namespace Okapia.Application.Applications
         {
             searchModel.CurrentUserAccountId = _authHelper.GetCurrnetUserInfo().AuthUserId;
             return _userRepository.SearchIntroduced(searchModel, out recordCount);
+        }
+
+        public long GetActiveUsersCount()
+        {
+            return _userQuery.GetActiveUsersCount() + 500;
         }
     }
 }

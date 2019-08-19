@@ -427,5 +427,10 @@ namespace Okapia.Application.Applications
                     new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(searchModel.District), "Id", "Name");
             return _jobQuery.GetJobsForCategoryView(searchModel);
         }
+
+        public long GetActiveJobsCount()
+        {
+            return _jobQuery.GetActiveJobsCount() + 200;
+        }
     }
 }

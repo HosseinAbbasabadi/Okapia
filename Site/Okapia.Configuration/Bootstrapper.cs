@@ -77,16 +77,23 @@ namespace Okapia.Configuration
 
             services.AddScoped<ICommentApplication, CommentApplication>();
             services.AddScoped<ICommentRepository, CommentRepository>();
-            
+
             services.AddScoped<ISlideApplication, SlideApplication>();
             services.AddScoped<ISlideRepository, SlideRepository>();
+
+            services.AddScoped<IJobTransactionApplication, JobTransactionApplication>();
+
+            services.AddScoped<IUserTransactionApplication, UserTransactionApplication>();
 
             services.AddScoped<ICategoryQuery, CategoryQuery>();
             services.AddScoped<IJobQuery, JobQuery>();
             services.AddScoped<ISlideQuery, SlideQuery>();
             services.AddScoped<IPageCategoryQuery, PageCategoryQuery>();
             services.AddScoped<IPageQuery, PageQuery>();
-            
+            services.AddScoped<IJobTransactionQuery, JobTransactionQuery>();
+            services.AddScoped<IUserTransactionQuery, UserTransactionsQuery>();
+            services.AddScoped<IUserQuery, UserQuery>();
+
             services.AddScoped<IUserCardRepository, UserCardRepository>();
 
             services.AddSingleton<IAuthHelper, AuthHelper>();

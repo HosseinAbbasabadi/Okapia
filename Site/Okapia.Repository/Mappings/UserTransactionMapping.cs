@@ -4,11 +4,11 @@ using Okapia.Domain.Models;
 
 namespace Okapia.Repository.Mappings
 {
-    public class JobTransactionMapping : IEntityTypeConfiguration<JobTransaction>
+    public class UserTransactionMapping : IEntityTypeConfiguration<UserTransaction>
     {
-        public void Configure(EntityTypeBuilder<JobTransaction> builder)
+        public void Configure(EntityTypeBuilder<UserTransaction> builder)
         {
-            builder.ToTable("JobTransactions");
+            builder.ToTable("UserTransactions");
             builder.Property(e => e.Ammount).HasColumnType("decimal(18, 3)");
 
             builder.Property(e => e.LocalDateTime).HasColumnType("datetime");

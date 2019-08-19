@@ -20,5 +20,6 @@ namespace Okapia.Application.Contracts
         JobViewDetailsViewModel GetJobViewDetails(long id);
         List<JobStaredViewModel> GetStaredJobsForLandingPage();
         List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel);
+        long GetActiveJobsCount();
     }
 }

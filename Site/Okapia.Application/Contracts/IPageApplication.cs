@@ -18,6 +18,6 @@ namespace Okapia.Application.Contracts
 
         //
         List<PageItemViewModel> GetPagesForLatestArticles();
-        List<PageItemViewModel> GetPagesForBlogBy(int categoryId);
+        PageViewDetailsViewModel GetPageDetailsForView(long id);
     }
 }

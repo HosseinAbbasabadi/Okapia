@@ -8,7 +8,7 @@
           @foreach (var pageCategory in Model)
           {
             <li>
-              <a href="#">
+              <a asp-action="Index" asp-controller="PageView" asp-route-id="@pageCategory.PageCategoryId">
                 @pageCategory.PageCategoryName
               </a>
             </li>

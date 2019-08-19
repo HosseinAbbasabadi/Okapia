@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Okapia.Application.Applications;
-using Okapia.Application.Contracts;
 using Okapia.Configuration;
 using Okapia.Helpers;
 using reCAPTCHA.AspNetCore;

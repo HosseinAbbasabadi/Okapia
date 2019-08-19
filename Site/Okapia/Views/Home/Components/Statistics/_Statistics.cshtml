@@ -1,0 +1,49 @@
+﻿@model Okapia.Models.StatisticsViewModel
+
+<!--Counter Area-->
+<section class="counter-area section-padding-2 dark-overlay"
+         style="background: url(/assets/images/counter.jpg) no-repeat fixed">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="single-counter">
+          <!-- <i class="pe-7s-credit"></i> -->
+          <i class="fas fa-store"></i>
+          <h3><span class="count">@Model.Jobs</span>+</h3>
+          <p>شعبه سرویس دهی</p>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+        <div class="single-counter active">
+          <!-- <i class="pe-7s-coffee"></i> -->
+          <i class="fas fa-user-tie"></i>
+          <h3>
+            <span class="count">@Model.Users</span>
+          </h3>
+          <p>کاربران اوکاپیا</p>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="single-counter">
+          <!-- <i class="pe-7s-medal"></i> -->
+          <i class="fas fa-money-bill-alt"></i>
+          <h3>
+            <span class="count">@Model.Transactinos</span>
+          </h3>
+          <p>تراکنش های انجام شده</p>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+        <div class="single-counter">
+          <!-- <i class="pe-7s-stopwatch"></i> -->
+          <i class="far fa-hourglass"></i>
+          <h3>
+            <span class="count">@Model.Days</span>
+          </h3>
+          <p>روز از آغاز</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/Counter Area-->

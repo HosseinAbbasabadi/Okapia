@@ -15,11 +15,12 @@ namespace Okapia.Query
         {
         }
 
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Group> Groups { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Group> Groups { get; set; }
         public DbSet<JobPicture> JobPicture { get; set; }
         public DbSet<JobRelation> JobRelation { get; set; }
-        public DbSet<JobTransactions> JobTransactions { get; set; }
+        public DbSet<JobTransaction> JobTransactions { get; set; }
+        public DbSet<UserTransaction> UserTransactions { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Modal> Modals { get; set; }
         public DbSet<Page> Page { get; set; }
@@ -60,6 +61,7 @@ namespace Okapia.Query
             modelBuilder.ApplyConfiguration(new GroupMapping());
             modelBuilder.ApplyConfiguration(new EmployeeMapping());
             modelBuilder.ApplyConfiguration(new UserGroupMapping());
+            modelBuilder.ApplyConfiguration(new UserTransactionMapping());
 
             // modal mapping
             modelBuilder.ApplyConfiguration(new ModalMapping());

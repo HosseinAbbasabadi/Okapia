@@ -19,5 +19,6 @@ namespace Okapia.Application.Contracts
 
         //
         List<PageCategoryMenuViewModel> GetPageCategoriesForMenu();
+        PageCategoryBlogViewModel GetPageCategoryForBlog(int categoryId);
     }
 }

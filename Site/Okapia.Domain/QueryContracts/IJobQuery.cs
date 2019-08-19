@@ -11,5 +11,6 @@ namespace Okapia.Domain.QueryContracts
         JobViewDetailsViewModel GetJobViewDetails(long id);
         List<JobStaredViewModel> GetStaredJobs();
         List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel);
+        long GetActiveJobsCount();
     }
 }

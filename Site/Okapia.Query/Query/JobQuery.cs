@@ -17,7 +17,8 @@ namespace Okapia.Query.Query
         private readonly IJobPictureRepository _jobPictureRepository;
         private readonly IAccountRepository _accountRepository;
 
-        public JobQuery(OkapiaViewContext context, IJobPictureRepository jobPictureRepository, IAccountRepository accountRepository) : base(context)
+        public JobQuery(OkapiaViewContext context, IJobPictureRepository jobPictureRepository,
+            IAccountRepository accountRepository) : base(context)
         {
             _jobPictureRepository = jobPictureRepository;
             _accountRepository = accountRepository;
@@ -118,6 +119,7 @@ namespace Okapia.Query.Query
                         JobSmallDescription = job.JobSmallDescription,
                         JobPictureName = job.JobPictures.First(x => x.IsDefault).JobPictureName,
                         JobPictureAlt = job.JobPictures.First(x => x.IsDefault).JobPictureAlt,
+                        JobPictureTitle = job.JobPictures.First(x => x.IsDefault).JobPictureTitle
                     }).ToList();
         }
 
@@ -128,7 +130,10 @@ namespace Okapia.Query.Query
 
             if (!string.IsNullOrEmpty(searchModel.Text))
             {
-                q = q.Where(x => x.JobName.Contains(searchModel.Text) || x.JobSmallDescription.Contains(searchModel.Text) || x.JobDescription.Contains(searchModel.Text) || x.JobFeatures.Contains(searchModel.Text) || x.JobMetaDesccription.Contains(searchModel.Text) || x.JobMetaTag.Contains(searchModel.Text));
+                q = q.Where(x =>
+                    x.JobName.Contains(searchModel.Text) || x.JobSmallDescription.Contains(searchModel.Text) ||
+                    x.JobDescription.Contains(searchModel.Text) || x.JobFeatures.Contains(searchModel.Text) ||
+                    x.JobMetaDesccription.Contains(searchModel.Text) || x.JobMetaTag.Contains(searchModel.Text));
             }
 
             if (searchModel.CategoryId != 0)
@@ -156,6 +161,11 @@ namespace Okapia.Query.Query
                 };
 
             return query.ToList();
+        }
+
+        public long GetActiveJobsCount()
+        {
+            return _context.Jobs.Count();
         }
     }
 }

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Okapia.Domain.ViewModels.Page
+﻿namespace Okapia.Domain.ViewModels.Page
 {
     public class PageItemViewModel
     {
         public long PageId { get; set; }
-        public string PageTittle { get; set; }
+        public string PageTitle { get; set; }
         public string PageCategory { get; set; }
         public string PagePublishDate { get; set; }
         public int PageCommentsCount { get; set; }

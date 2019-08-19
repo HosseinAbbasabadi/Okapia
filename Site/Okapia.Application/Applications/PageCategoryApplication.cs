@@ -204,5 +204,10 @@ namespace Okapia.Application.Applications
         {
             return _pageCategoryQuery.GetPageCategoriesForMenu();
         }
+
+        public PageCategoryBlogViewModel GetPageCategoryForBlog(int categoryId)
+        {
+            return _pageCategoryQuery.GetPageCategoryForBlog(categoryId);
+        }
     }
 }

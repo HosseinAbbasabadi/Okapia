@@ -2,7 +2,7 @@
 
 namespace Okapia.Domain.Models
 {
-    public partial class JobTransactions
+    public class UserTransaction
     {
         public long Id { get; set; }
         public decimal Ammount { get; set; }

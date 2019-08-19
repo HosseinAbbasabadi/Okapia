@@ -11,5 +11,6 @@ namespace Okapia.Domain.ViewModels.Job
         public string JobSmallDescription { get; set; }
         public string JobPictureName { get; set; }
         public string JobPictureAlt { get; set; }
+        public string JobPictureTitle { get; set; }
     }
 }

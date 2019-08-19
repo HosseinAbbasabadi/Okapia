@@ -103,21 +103,28 @@ namespace Okapia.Domain.Commands.Job
         public string JobWazeLink { get; set; }
 
         [Display(Name = "عنوان صفحه شغل(Page Title)")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobPageTittle { get; set; }
 
-        [Display(Name = "اسلاگ")] public string JobSlug { get; set; }
+        [Display(Name = "اسلاگ")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string JobSlug { get; set; }
 
         [Display(Name = "متاتگ(Meta Tag)")]
         [MaxLength(50, ErrorMessage = "متاتگ نمی تواند بیش از 80 کاراکتر باشد")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobMetaTag { get; set; }
 
         [Display(Name = "توضیحات(Meta Description)")]
         [MaxLength(120, ErrorMessage = "Meta Description نمیتواند بیش از 120 کاراکتر باشد")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobMetaDesccription { get; set; }
 
         [Display(Name = "اطلاعات هد سثو")] public string JobSeohead { get; set; }
 
-        [Display(Name = "آدرس کانونیکال")] public string JobCanonicalAddress { get; set; }
+        [Display(Name = "آدرس کانونیکال")]
+        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        public string JobCanonicalAddress { get; set; }
 
         [Display(Name = "شماره قرارداد")]
         public string JobContractNumber

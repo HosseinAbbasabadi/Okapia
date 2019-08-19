@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Okapia.Domain.ViewModels.PageCategory.PageCategoryMenuViewModel>
+
+<div class="single-sidebar wow fadeInRight" data-wow-delay="0.4s">
+  <h3>دسته بندی ها</h3>
+  <div class="blog-categories">
+    <ul>
+      @foreach (var pageCategory in Model)
+      {
+        <li>
+          <a asp-controller="PageView" asp-action="Index" asp-route-id="@pageCategory.PageCategoryId">اخبار</a>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

@@ -15,22 +15,23 @@ namespace Okapia.Repository
         {
         }
 
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Group> Groups { get; set; }
-        public virtual DbSet<JobPicture> JobPicture { get; set; }
-        public virtual DbSet<JobRelation> JobRelation { get; set; }
-        public virtual DbSet<JobTransactions> JobTransactions { get; set; }
-        public virtual DbSet<Job> Jobs { get; set; }
-        public virtual DbSet<Modal> Modals { get; set; }
-        public virtual DbSet<Page> Page { get; set; }
-        public virtual DbSet<PageCategory> PageCategory { get; set; }
-        public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserCard> UserCards { get; set; }
-        public virtual DbSet<Province> Provinces { get; set; }
-        public virtual DbSet<City> Cities { get; set; }
-        public virtual DbSet<District> Districts { get; set; }
-        public virtual DbSet<Neighborhood> Neighborhoods { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<JobPicture> JobPicture { get; set; }
+        public DbSet<JobRelation> JobRelation { get; set; }
+        public DbSet<JobTransaction> JobTransactions { get; set; }
+        public DbSet<UserTransaction> UserTransactions { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Modal> Modals { get; set; }
+        public DbSet<Page> Page { get; set; }
+        public DbSet<PageCategory> PageCategory { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserCard> UserCards { get; set; }
+        public DbSet<Province> Provinces { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<Neighborhood> Neighborhoods { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Controller> Controllers { get; set; }
@@ -62,6 +63,7 @@ namespace Okapia.Repository
             modelBuilder.ApplyConfiguration(new GroupMapping());
             modelBuilder.ApplyConfiguration(new EmployeeMapping());
             modelBuilder.ApplyConfiguration(new UserGroupMapping());
+            modelBuilder.ApplyConfiguration(new UserTransactionMapping());
 
             // modal mapping
             modelBuilder.ApplyConfiguration(new ModalMapping());
