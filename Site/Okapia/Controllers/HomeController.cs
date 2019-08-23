@@ -1,10 +1,12 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Areas.Administrator.Controllers;
 using Okapia.Domain.Commands.JobRequest;
 using Okapia.Domain.SeachModels;
+using Okapia.Domain.ViewModels.Modal;
 using Okapia.Models;
 using reCAPTCHA.AspNetCore;
 
@@ -17,21 +19,32 @@ namespace Okapia.Controllers
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
         private readonly IRecaptchaService _recaptchaService;
+        private readonly IModalApplication _modalApplication;
+        private readonly IAuthHelper _authHelper;
+        private readonly ISettingApplication _settingApplication;
 
         public HomeController(IJobRequestApplication jobRequestApplication, ICityApplication cityApplication,
             IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication,
-            IJobApplication jobApplication, IRecaptchaService recaptchaService)
+            IJobApplication jobApplication, IRecaptchaService recaptchaService, IModalApplication modalApplication,
+            IAuthHelper authHelper, ISettingApplication settingApplication)
         {
             _jobRequestApplication = jobRequestApplication;
             _cityApplication = cityApplication;
             _districtApplication = districtApplication;
             _neighborhoodApplication = neighborhoodApplication;
             _recaptchaService = recaptchaService;
+            _modalApplication = modalApplication;
+            _authHelper = authHelper;
+            _settingApplication = settingApplication;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var modals = new List<ModalShowViewModel>();
+            if (_authHelper.GetCurrnetUserInfo().Role != 1) return View(modals);
+            var userId = _authHelper.GetCurrnetUserInfo().ReferenceRecordId;
+            modals = _modalApplication.GetUserModals(userId);
+            return View(modals);
         }
 
         public IActionResult Agency()
@@ -77,7 +90,14 @@ namespace Okapia.Controllers
 
         public IActionResult About()
         {
-            return View();
+            var about = _settingApplication.GetSettings();
+            return View(about);
+        }
+
+        public IActionResult Contact()
+        {
+            var contact = _settingApplication.GetSettings();
+            return View(contact);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -92,7 +112,7 @@ namespace Okapia.Controllers
             {
                 Text = q
             };
-            return RedirectToAction("Index", "JobView", search);
+            return RedirectToAction("مراکز-خدماتی-و-فروشگاهی", "JobView", search);
         }
 
         [HttpGet]

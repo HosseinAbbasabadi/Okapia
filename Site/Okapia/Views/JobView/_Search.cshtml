@@ -5,11 +5,10 @@
     منطقه مورد نظر خود را مشخص کنید
   </legend>
   <div class="row rtl text-right mb-4">
-    <form method="get" id="createUserFrm" asp-controller="JobView" asp-action="Index">
+    <form method="get" id="createUserFrm" asp-controller="JobView" asp-action="مراکز-خدماتی-و-فروشگاهی">
       <div class="single-field-inline">
         <label asp-for="CategoryId" class="control-label"></label>
         <select asp-for="CategoryId" asp-items="@Model.Categories" class="form-control">
-          <option value="0">گروه را انتخاب کنید...</option>
         </select>
         @*<span asp-validation-for="ProvinceId" class="text-danger"></span>*@
       </div>
@@ -39,13 +38,13 @@
         </select>
         @*<span asp-validation-for="NeighborhoodId" class="text-danger"></span>*@
       </div>
-      <input type="hidden" name="CategoryId" value="@Model.CategoryId"/>
-      <br />
-      <br />
-      <br />
+      @*<input type="hidden" name="CategorySlug" value="@Model.CategorySlug"/>*@
+      <br/>
+      <br/>
+      <br/>
       <div class="col-md-12">
         <button type="submit" class="bttn-mid btn-fill">فیلتر</button>
-        <a class="btn btn-default" asp-action="Index" asp-controller="JobView">لغو فیلتر</a>
+        <a class="btn btn-default" asp-action="مراکز-خدماتی-و-فروشگاهی" asp-controller="JobView">لغو فیلتر</a>
       </div>
     </form>
   </div>

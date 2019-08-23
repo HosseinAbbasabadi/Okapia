@@ -27,7 +27,6 @@ namespace Okapia.Configuration
 
         public void Wireup(IServiceCollection services)
         {
-            //services.AddSingleton<IAuthHelper, AuthHelper>();
             services.AddScoped<IJobApplication, JobApplication>();
             services.AddScoped<IJobRepository, JobRepository>();
 
@@ -42,8 +41,6 @@ namespace Okapia.Configuration
 
             services.AddScoped<ICategoryApplication, CategoryApplication>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-
-            services.AddScoped<IAccountApplication, AccountApplication>();
 
             services.AddScoped<IUserApplication, UserApplication>();
             services.AddScoped<IUserRepository, UserRepository>();
@@ -81,6 +78,9 @@ namespace Okapia.Configuration
             services.AddScoped<ISlideApplication, SlideApplication>();
             services.AddScoped<ISlideRepository, SlideRepository>();
 
+            services.AddScoped<ISettingApplication, SettingApplication>();
+            services.AddScoped<ISettingRepository, SettingRepository>();
+
             services.AddScoped<IJobTransactionApplication, JobTransactionApplication>();
 
             services.AddScoped<IUserTransactionApplication, UserTransactionApplication>();
@@ -93,7 +93,11 @@ namespace Okapia.Configuration
             services.AddScoped<IJobTransactionQuery, JobTransactionQuery>();
             services.AddScoped<IUserTransactionQuery, UserTransactionsQuery>();
             services.AddScoped<IUserQuery, UserQuery>();
+            services.AddScoped<IModalQuery, ModalQuery>();
+            services.AddScoped<IUserCardQuery, UserCardQuery>();
+            services.AddScoped<ISettingQuery, SettingQuery>();
 
+            services.AddScoped<IUserCardApplication, UserCardApplication>();
             services.AddScoped<IUserCardRepository, UserCardRepository>();
 
             services.AddSingleton<IAuthHelper, AuthHelper>();

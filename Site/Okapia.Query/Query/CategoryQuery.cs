@@ -12,7 +12,7 @@ namespace Okapia.Query.Query
         public CategoryQuery(OkapiaViewContext context) : base(context)
         {
         }
-        
+
         public List<CategoryViewModel> GetCategoriesForSearch()
         {
             return _context.Categories.Where(x => x.CategoryParentId != 0).Select(category => new CategoryViewModel
@@ -35,7 +35,6 @@ namespace Okapia.Query.Query
                 }).ToList();
         }
 
-
         private static List<CategoryMenuViewModel> MapToCategoryMenuViewModels(IEnumerable<Category> categories)
         {
             return categories.Select(MapToCategoryMenuViewModel).ToList();
@@ -46,8 +45,23 @@ namespace Okapia.Query.Query
             return new CategoryMenuViewModel
             {
                 CategoryId = category.CategoryId,
-                CategoryName = category.CategoryName
+                CategoryName = category.CategoryName,
+                CategorySlug = category.CategorySlug
             };
+        }
+
+        public CategoryViewDetailsViewModel GetCategoryViewDetails(int id)
+        {
+            return _context.Categories.Where(x => x.CategoryId == id).Select(cat => new CategoryViewDetailsViewModel
+            {
+                CategorySlug = cat.CategorySlug,
+                CategoryCanonicalAddress = cat.CategoryCanonicalAddress,
+                CategoryMetaDesccription = cat.CategoryMetaDesccription,
+                CategoryMetaTag = cat.CategoryMetaTag,
+                CategoryPageTittle = cat.CategoryPageTittle,
+                CategorySeohead = cat.CategorySeohead,
+                CatgoryName = cat.CategoryName
+            }).FirstOrDefault();
         }
     }
 }

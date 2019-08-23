@@ -37,18 +37,30 @@ namespace Okapia.Repository.Repositories
                 TitleImage = x.CategoryPicTitle,
                 AltImage = x.CategoryPicAlt,
                 DescImage = x.CategoryPicDescription,
+                CategoryCanonicalAddress = x.CategoryCanonicalAddress,
                 IsDeleted = x.IsDeleted
             }).ToList().First();
             return category;
         }
 
-        public List<CategoryViewModel> GetCategories()
+        public List<CategoryViewModel> GetParentCategories()
         {
-            return _context.Categories.Where(x => x.IsDeleted == false).Select(x => new CategoryViewModel
-            {
-                CategoryId = x.CategoryId,
-                CategoryName = x.CategoryName
-            }).ToList();
+            return _context.Categories.Where(x => x.IsDeleted == false).Where(x => x.CategoryParentId == 0).Select(x =>
+                new CategoryViewModel
+                {
+                    CategoryId = x.CategoryId,
+                    CategoryName = x.CategoryName
+                }).ToList();
+        }
+
+        public List<CategoryViewModel> GetChildCategories()
+        {
+            return _context.Categories.Where(x => x.IsDeleted == false).Where(x => x.CategoryParentId != 0).Select(x =>
+                new CategoryViewModel
+                {
+                    CategoryId = x.CategoryId,
+                    CategoryName = x.CategoryName
+                }).ToList();
         }
 
         public List<CategoryViewModel> Search(CategorySearchModel searchModel, out int recordCount)

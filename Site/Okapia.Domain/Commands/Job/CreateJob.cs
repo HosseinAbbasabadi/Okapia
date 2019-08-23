@@ -83,11 +83,11 @@ namespace Okapia.Domain.Commands.Job
         public int JobCityId { get; set; }
 
         [Display(Name = "منطقه")]
-        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.DistrictRange)]
+        [Range(0, int.MaxValue, ErrorMessage = ValidationMessages.DistrictRange)]
         public int JobDistrictId { get; set; }
 
         [Display(Name = "محله")]
-        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.NeighborhoodRange)]
+        [Range(0, int.MaxValue, ErrorMessage = ValidationMessages.NeighborhoodRange)]
         public int JobneighborhoodId { get; set; }
 
         [Display(Name = "آدرس")]
@@ -123,7 +123,8 @@ namespace Okapia.Domain.Commands.Job
         [Display(Name = "اطلاعات هد سثو")] public string JobSeohead { get; set; }
 
         [Display(Name = "آدرس کانونیکال")]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        [Url(ErrorMessage = ValidationMessages.Url)]
+        //[Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string JobCanonicalAddress { get; set; }
 
         [Display(Name = "شماره قرارداد")]
@@ -133,7 +134,7 @@ namespace Okapia.Domain.Commands.Job
             set => _jobContractNumber = value.ToEnglishNumber();
         }
 
-        [Display(Name = "درصد سود معرف")]
+        [Display(Name = "درصد سود مشتری")]
         [Range(0, 99.99, ErrorMessage = ValidationMessages.ValidNumber)]
         public double JobBenefitPercentForEndCustomer { get; set; }
 

@@ -1,13 +1,15 @@
-﻿@model Okapia.Domain.ViewModels.Page.PageViewDetailsViewModel
+﻿@inject IAuthHelper AuthHelper;
+@using Okapia.Application.Contracts
+@model PageDetailsIndexViewModel
 @{
-  ViewData["Title"] = Model.PageTitle;
-  ViewData["MetaDescription"] = Model.PageMetaDescription;
-  ViewData["MetaTags"] = Model.PageMetaTag;
-  ViewData["CanonicalAddress"] = Model.PageCanonicalAddress;
+  ViewData["Title"] = Model.PageViewDetailsViewModel.PageTitle;
+  ViewData["MetaDescription"] = Model.PageViewDetailsViewModel.PageMetaDescription;
+  ViewData["MetaTags"] = Model.PageViewDetailsViewModel.PageMetaTag;
+  ViewData["CanonicalAddress"] = Model.PageViewDetailsViewModel.PageCanonicalAddress;
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="custom-banner dark-overlay" style="background: url('assets/images/hero.jpg') no-repeat fixed;"></section>
+<section class="custom-banner dark-overlay" style="background: url('/assets/images/hero.jpg') no-repeat fixed;"></section>
 <!--/Custom Banner-->
 <!--Blog Details Area-->
 <section class="blog-details section-padding gray-bg">
@@ -15,73 +17,27 @@
     <div class="row">
       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
         <div class="single-blog-details">
-          <img src="/PagePhotos/@Model.PagePicture" alt="@Model.PagePictureAlt" title="@Model.PagePictureTitle" class="wow fadeInUp" data-wow-delay="0.3s">
-          <h2 class="wow fadeInUp" data-wow-delay="0.4s">@Model.PageTitle</h2>
+          <img src="/PagePhotos/@Model.PageViewDetailsViewModel.PagePicture" alt="@Model.PageViewDetailsViewModel.PagePictureAlt" title="@Model.PageViewDetailsViewModel.PagePictureTitle" class="wow fadeInUp" data-wow-delay="0.3s">
+          <h2 class="wow fadeInUp" data-wow-delay="0.4s">@Model.PageViewDetailsViewModel.PageTitle</h2>
           <div class="post-meta wow fadeInUp" data-wow-delay="0.4s">
             <span>
-              <a asp-controller="PageView" asp-action="Index" asp-route-id="@Model.PageCategoryId">@Model.PageCategory</a>
+              <a asp-controller="PageView" asp-action="Index" asp-route-id="@Model.PageViewDetailsViewModel.PageSlug">@Model.PageViewDetailsViewModel.PageCategory</a>
             </span>
-            <span>@Model.PagePublishDate</span>
+            <span>@Model.PageViewDetailsViewModel.PagePublishDate</span>
           </div>
           <p class="wow fadeInUp" data-wow-delay="0.5s">
-            @Model.PageSmallDescription
+            @Model.PageViewDetailsViewModel.PageSmallDescription
           </p>
 
           <p class="wow fadeInUp" data-wow-delay="0.7s">
-            @Html.Raw(Model.PageDescription)
+            @Html.Raw(Model.PageViewDetailsViewModel.PageDescription)
           </p>
-
         </div>
 
-        <div class="blog-all-comments">
-          @foreach (var comment in Model.Comments)
-          {
-            <div class="blog-comments wow fadeInUp" data-wow-delay="0.3s">
-              <div class="author-thumb">
-                <img src="/personImage.jpg" alt=""/>
-              </div>
-              <div class="author-comments">
-                <div class="author-details">
-                  <h4>@comment.CommentorFullname</h4>
-
-                </div>
-                <div class="author-designation">
-                  @comment.CommentCreationDate
-                </div>
-                <h3>
-                  @comment.CommentTitle
-                </h3>
-                <p>
-                  @comment.CommentText
-                </p>
-              </div>
-            </div>
-          }
-        </div>
-
-        <div class="blog-comment-form wow fadeInUp" data-wow-delay="0.3s">
-          <h3>نظر خود را بنویسید</h3>
-          <form action="#">
-            <div class="row">
-              <div class="col-md-6">
-                <input type="text" placeholder="نام*" required/>
-              </div>
-              <div class="col-md-6">
-                <input type="email" placeholder="ایمیل*" required/>
-              </div>
-              <div class="col-md-12">
-                <textarea rows="6" placeholder="پیام"></textarea>
-              </div>
-              <div class="col-md-12">
-                <button class="bttn-mid btn-fill" type="submit">ارسال نظر</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
         
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
         @await Component.InvokeAsync("LatestPagesBlogSide")
         @await Component.InvokeAsync("PageCategoryBlogSide")
 
@@ -94,17 +50,72 @@
             </form>
           </div>
         </div>
-        <div class="single-sidebar wow fadeInRight" data-wow-delay="0.7s">
+        @*<div class="single-sidebar wow fadeInRight" data-wow-delay="0.7s">
           <h3>تگ ها</h3>
           <div class="tags">
-            @foreach (var tag in Model.MetaTags)
+            @foreach (var tag in Model.PageViewDetailsViewModel.MetaTags)
             {
               <a title="@tag">@tag</a>
             }
           </div>
-        </div>
+        </div>*@
       </div>
+      @if (AuthHelper.GetCurrnetUserInfo().IsAuthorized)
+      {
+        <div class="blog-comment-form wow fadeInUp" data-wow-delay="0.3s">
+          <h3>نظر خود را بنویسید</h3>
+          <form asp-action="AddComment" method="post">
+            <div class="row">
+              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="col-md-6">
+                <label asp-for="AddComment.CommentTitle" class="control-label"></label>
+                <input asp-for="AddComment.CommentTitle" name="CommentTitle" class="form-control"/>
+                <span asp-validation-for="AddComment.CommentTitle" class="text-danger"></span>
+              </div>
+              <div class="col-md-12">
+                <label asp-for="AddComment.CommentText" class="control-label"></label>
+                <textarea asp-for="AddComment.CommentText" name="CommentText" rows="6" class="form-control"></textarea>
+                <span asp-validation-for="AddComment.CommentText" class="text-danger"></span>
+              </div>
+              <input type="hidden" name="CommentOwnerRecordId" value="@Model.PageViewDetailsViewModel.PageId"/>
+              <div class="col-md-12">
+                <button class="bttn-mid btn-fill" type="submit">ارسال نظر</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      }
+      else
+      {
+        <div class="blog-comment-form wow fadeInUp" data-wow-delay="0.3s">
+          <h3>برای ثبت نظر لطفا ابتدا وارد شوید <a href="/Account/Login">ورود به سایت</a></h3>
+        </div>
+      }
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        @foreach (var comment in Model.PageViewDetailsViewModel.Comments)
+        {
+          <div class="blog-comments wow fadeInUp" data-wow-delay="0.3s">
+            <div class="author-thumb">
+              <img src="/personImage.jpg" alt=""/>
+            </div>
+            <div class="author-comments">
+              <div class="author-details">
+                <h4>@comment.CommentorFullname</h4>
 
+              </div>
+              <div class="author-designation">
+                @comment.CommentCreationDate
+              </div>
+              <h3>
+                @comment.CommentTitle
+              </h3>
+              <p>
+                @comment.CommentText
+              </p>
+            </div>
+          </div>
+        }
+      </div>
     </div>
   </div>
 </section>

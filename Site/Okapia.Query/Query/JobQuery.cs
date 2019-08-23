@@ -24,7 +24,7 @@ namespace Okapia.Query.Query
             _accountRepository = accountRepository;
         }
 
-        public JobViewDetailsViewModel GetJobViewDetails(long id)
+        public JobViewDetailsViewModel GetJobViewDetails(string slug)
         {
             var query = from job in _context.Jobs
                 join account in _context.Accounts
@@ -37,7 +37,7 @@ namespace Okapia.Query.Query
                     on job.JobDistrictId equals district.Id
                 join neighborhood in _context.Neighborhoods
                     on job.JobNeighborhoodId equals neighborhood.Id
-                where job.JobId == id
+                where job.JobSlug == slug
                 select new JobViewDetailsViewModel
                 {
                     JobId = job.JobId,
@@ -70,20 +70,21 @@ namespace Okapia.Query.Query
 
             var jobDetails = query.FirstOrDefault();
             jobDetails.JobFeatureList = jobDetails.JobFeatures.Split(',').ToList();
-            var jobPictures = _jobPictureRepository.GetJobPicturesByJob(id).Select(x => new JobPictureViewModel
-            {
-                Id = x.JobPictureId,
-                Name = x.JobPictureName,
-                Description = x.JobPictureSmallDescription,
-                Alt = x.JobPictureAlt,
-                Title = x.JobPictureTitle,
-                IsDefault = x.IsDefault
-            }).ToList();
+            var jobPictures = _jobPictureRepository.GetJobPicturesByJob(jobDetails.JobId).Select(x =>
+                new JobPictureViewModel
+                {
+                    Id = x.JobPictureId,
+                    Name = x.JobPictureName,
+                    Description = x.JobPictureSmallDescription,
+                    Alt = x.JobPictureAlt,
+                    Title = x.JobPictureTitle,
+                    IsDefault = x.IsDefault
+                }).ToList();
 
             var commentItemViewModels = new List<CommentItemViewModel>();
             var comments = _context.Comments.Where(x =>
                     x.CommentIsConfirmed && !x.CommentIsDeleted && x.CommentOwner == "Job" &&
-                    x.CommentOwnerRecordId == id)
+                    x.CommentOwnerRecordId == jobDetails.JobId)
                 .ToList();
             comments.ForEach(c =>
             {
@@ -115,6 +116,7 @@ namespace Okapia.Query.Query
                     new JobStaredViewModel
                     {
                         JobId = job.JobId,
+                        JobSlug = job.JobSlug,
                         JobName = job.JobName,
                         JobSmallDescription = job.JobSmallDescription,
                         JobPictureName = job.JobPictures.First(x => x.IsDefault).JobPictureName,
@@ -136,7 +138,7 @@ namespace Okapia.Query.Query
                     x.JobMetaDesccription.Contains(searchModel.Text) || x.JobMetaTag.Contains(searchModel.Text));
             }
 
-            if (searchModel.CategoryId != 0)
+            if ((searchModel.CategoryId != 0))
                 q = q.Where(x => x.JobCategory == searchModel.CategoryId);
             if (searchModel.Province != 0)
                 q = q.Where(x => x.JobProvienceId == searchModel.Province);
@@ -153,6 +155,7 @@ namespace Okapia.Query.Query
                 select new JobItemViewModel
                 {
                     JobId = job.JobId,
+                    JobSlug = job.JobSlug,
                     JobName = job.JobName,
                     JobPicture = job.JobPictures.First(x => x.IsDefault).JobPictureName,
                     JobPictureAlt = job.JobPictures.First(x => x.IsDefault).JobPictureAlt,

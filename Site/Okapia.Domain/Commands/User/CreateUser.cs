@@ -60,11 +60,11 @@ namespace Okapia.Domain.Commands.User
         public int CityId { get; set; }
 
         [Display(Name = "منطقه")]
-        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.DistrictRange)]
+        [Range(0, int.MaxValue, ErrorMessage = ValidationMessages.DistrictRange)]
         public int DistrictId { get; set; }
 
         [Display(Name = "محله")]
-        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.NeighborhoodRange)]
+        [Range(0, int.MaxValue, ErrorMessage = ValidationMessages.NeighborhoodRange)]
         public int NeighborhoodId { get; set; }
 
         [Display(Name = "آدرس")]

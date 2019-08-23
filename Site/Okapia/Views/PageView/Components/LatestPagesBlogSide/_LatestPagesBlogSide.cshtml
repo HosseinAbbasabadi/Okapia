@@ -6,7 +6,7 @@
   {
     <div class="single-latest-post">
       <h4>
-        <a title="@pageItem.PageTitle" asp-controller="PageView" asp-action="Details" asp-route-id="@pageItem.PageId">@pageItem.PageTitle</a>
+        <a title="@pageItem.PageTitle" asp-controller="PageView" asp-action="Details" asp-route-id="@pageItem.PageSlug">@pageItem.PageTitle</a>
       </h4>
       <div class="single-latest-post-date">
         <span>@pageItem.PagePublishDate</span>

@@ -14,7 +14,7 @@ namespace Okapia.Application.Applications
 
         public long GetJobTransactionsCount()
         {
-            return _jobTransactionQuery.GetJobTransactionsCount() + 1000;
+            return _jobTransactionQuery.GetJobTransactionsCount();
         }
     }
 }

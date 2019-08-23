@@ -40,7 +40,7 @@
   </a>
 </li>
 <li>
-  <a href="#">
+  <a href="http://eghamatyab.com/" target="_blank">
     گردشگری
   </a>
 </li>
@@ -66,7 +66,7 @@
               CategoryId = child.CategoryId
             };
             <li>
-              @Html.ActionLink(child.CategoryName, "Index", "JobView", searchModel)
+              @Html.ActionLink(child.CategoryName, "مراکز-خدماتی-و-فروشگاهی", "JobView", searchModel)
             </li>
           }
         </ul>
@@ -77,191 +77,6 @@
     </ul>
   </li>
 }
-@*<li>
-                <a href="#">
-                  <i class="icon-Home-Appliances icon-ml"></i>
-                  لوازم خانگی
-                </a>
-                <ul class="menu-hover">
-                  <li class="row">
-                    <ul class="list">
-                      <li>
-                        <a href="#">خوشبو کننده</a>
-                      </li>
-                      <li>
-                        <a href="#">دکوری</a>
-                      </li>
-                      <li>
-                        <a href="#">شستشو و نظافت</a>
-                      </li>
-                      <li>
-                        <a href="#">ظروف</a>
-                      </li>
-                      <li>
-                        <a href="#">گجت آشپزخانه</a>
-                      </li>
-                      <li>
-                        <a href="#">لوازم برقی</a>
-                      </li>
-                      <li>
-                        <a href="#">لوازم کاربردی خانگی</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <div class="mega-side">
-                    <img src="https://cdn.goldtag.net/frontend/assets/v1/desktop/build/images/tmp/home.jpg"
-                         class="image-megamenu">
-                  </div>
-                </ul>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="icon-Entertainment icon-ml"></i>
-                  ورزشی و سرگرمی
-                </a>
-                <ul class="menu-hover">
-                  <li class="row">
-                    <ul class="list">
-                      <li>
-                        <a href="">اسباب بازی</a>
-                      </li>
-                      <li>
-                        <a href="">پوشاک ورزشی</a>
-                      </li>
-                      <li>
-                        <a href="">کفش ورزشی</a>
-                      </li>
-                      <li>
-                        <a href="">گجت سرگرمی</a>
-                      </li>
-                      <li>
-                        <a href="">لوازم ورزشی</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <div class="mega-side">
-                    <img src="https://cdn.goldtag.net/frontend/assets/v1/desktop/build/images/tmp/sport.jpg"
-                         class="image-megamenu">
-                  </div>
-                </ul>
-              </li>
-              <li>
-                <a href="/category/کالای+دیجیتال">
-                  <i class="icon-Digital icon-ml"></i>
-                  کالای دیجیتال
-                </a>
-                <ul class="menu-hover">
-                  <li class="row">
-                    <ul class="list">
-                      <li>
-                        <a href="#">صوتی و تصویری</a>
-                      </li>
-                      <li>
-                        <a href="#">کامپیوتر و لوازم جانبی</a>
-                      </li>
-                      <li>
-                        <a href="#">گجت کالای دیجیتال</a>
-                      </li>
-                      <li>
-                        <a href="#">لوازم بهداشتی شخصی</a>
-                      </li>
-                      <li>
-                        <a href="#">لوازم جانبی موبایل</a>
-                      </li>
-                      <li>
-                        <a href="#">لوازم خودرو</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <div class="mega-side">
-                    <img src="https://cdn.goldtag.net/frontend/assets/v1/desktop/build/images/tmp/digital.jpg"
-                         class="image-megamenu">
-
-                  </div>
-                </ul>
-              </li>
-              <li>
-                <a href="/category/پوشاک">
-                  <i class="icon-Clothing icon-ml"></i>
-                  پوشاک
-                </a>
-                <ul class="menu-hover">
-                  <li class="row">
-                    <ul class="list">
-                      <li>
-                        <a href="#">پوشاک زنانه</a>
-                      </li>
-                      <li>
-                        <a href="#">پوشاک مردانه</a>
-                      </li>
-                      <li>
-                        <a href="#">ساعت</a>
-                      </li>
-                      <li>
-                        <a href="#">شال و روسری</a>
-                      </li>
-                      <li>
-                        <a href="#">عینک</a>
-                      </li>
-                      <li>
-                        <a href="#">کفش</a>
-                      </li>
-                      <li>
-                        <a href="#">کیف</a>
-                      </li>
-                      <li>
-                        <a href="#">لباس کودک</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <div class="mega-side">
-                    <img src="https://cdn.goldtag.net/frontend/assets/v1/desktop/build/images/tmp/cloth.jpg"
-                         class="image-megamenu">
-                  </div>
-                </ul>
-              </li>
-              <li>
-                <a href="/category/لوازم+شخصی">
-                  <i class="icon-Products icon-ml"></i>
-                  لوازم شخصی
-                </a>
-                <ul class="menu-hover">
-                  <li class="row">
-                    <ul class="list">
-                      <li>
-                        <a href="#">ابزارآلات</a>
-                      </li>
-                      <li>
-                        <a href="#">زیورآلات</a>
-                      </li>
-                      <li>
-                        <a href="#">عطر و ادکلن</a>
-                      </li>
-                      <li>
-                        <a href="#">فندک و جاسوئیچی</a>
-                      </li>
-                      <li>
-                        <a href="#">گجت شخصی</a>
-                      </li>
-                      <li>
-                        <a href="#">لوازم آرایشی و بهداشتی</a>
-                      </li>
-                      <li>
-                        <a href="#">لوازم التحریر</a>
-                      </li>
-                      <li>
-                        <a href="#">لوازم بهداشتی مردانه</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <div class="mega-side">
-                    <img src="https://cdn.goldtag.net/frontend/assets/v1/desktop/build/images/tmp/personal.jpg"
-                         class="image-megamenu">
-
-                  </div>
-                </ul>
-              </li>*@
-
 
 @if (!Model.AccountViewModel.IsAuthorized)
 {

@@ -12,7 +12,8 @@ namespace Okapia.ViewComponents
         private readonly IUserTransactionApplication _userTransactionApplication;
 
         public StatisticsViewComponent(IJobApplication jobApplication, IUserApplication userApplication,
-            IJobTransactionApplication jobTransactionApplication, IUserTransactionApplication userTransactionApplication)
+            IJobTransactionApplication jobTransactionApplication,
+            IUserTransactionApplication userTransactionApplication)
         {
             _jobApplication = jobApplication;
             _userApplication = userApplication;
@@ -23,12 +24,12 @@ namespace Okapia.ViewComponents
         public IViewComponentResult Invoke()
         {
             var transactions = _jobTransactionApplication.GetJobTransactionsCount() +
-                               _userTransactionApplication.GetUserTransactionsCount();
+                               _userTransactionApplication.GetUserTransactionsCount() + 2000;
             var statistics = new StatisticsViewModel
             {
-                Jobs = _jobApplication.GetActiveJobsCount(),
-                Users = _userApplication.GetActiveUsersCount(),
-                Transactinos = transactions,
+                Jobs = _jobApplication.GetActiveJobsCount() + 200,
+                Users = _userApplication.GetActiveUsersCount() + 500,
+                Transactions = transactions,
                 Days = 100
             };
             return View("_Statistics", statistics);

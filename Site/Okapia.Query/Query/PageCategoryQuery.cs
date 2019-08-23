@@ -22,20 +22,21 @@ namespace Okapia.Query.Query
                 .Select(x => new PageCategoryMenuViewModel
                 {
                     PageCategoryId = x.PageCategoryId,
+                    PageCategorySlug = x.PageCategorySlug,
                     PageCategoryName = x.PageCategoryName,
                     PageCategoryMetaDesccription = x.PageCategoryMetaDesccription,
                     PageCategoryMetaTag = x.PageCategoryMetaTag,
                     PageCategoryPageTitle = x.PageCategoryPageTitle,
                     PageCategorySeohead = x.PageCategorySeohead,
-                    PageCategoryShowOrder = x.PageCategoryShowOrder,
-                    PageCategorySlug = x.PageCategorySlug
+                    PageCategoryShowOrder = x.PageCategoryShowOrder
                 }).ToList();
         }
 
-        public PageCategoryBlogViewModel GetPageCategoryForBlog(int categoryId)
+        public PageCategoryBlogViewModel GetPageCategoryForBlog(string categorySlug)
         {
             var pageCategory = _context.PageCategory.Include(x => x.Pages).Where(x => x.PageCategoryIsDeleted == false)
-                .FirstOrDefault(x => x.PageCategoryId == categoryId);
+                .FirstOrDefault(x => x.PageCategorySlug == categorySlug);
+            if (pageCategory == null) return new PageCategoryBlogViewModel();
             var getPagesForBlog = new PageCategoryBlogViewModel
             {
                 PageCategoryId = pageCategory.PageCategoryId,
@@ -55,9 +56,13 @@ namespace Okapia.Query.Query
             var result = new List<PageItemViewModel>();
             pages.ForEach(page =>
             {
+                var commentsCount = 0;
+                if (page.PageComments != null)
+                    commentsCount = page.PageComments.Count;
                 var pageItem = new PageItemViewModel
                 {
                     PageId = page.PageId,
+                    PageSlug = page.PageSlug,
                     PagePicture = page.PagePicture,
                     PagePictureTitle = page.PagePictureTitle,
                     PagePictureAlt = page.PagePictureAlt,
@@ -65,7 +70,7 @@ namespace Okapia.Query.Query
                     PageCategory = page.PageCategory.PageCategoryName,
                     PagePublishDate = page.PagePublishDate.ToFarsi(),
                     PageTitle = page.PageTitle,
-                    PageCommentsCount = page.PageComments.Count,
+                    PageCommentsCount = commentsCount,
                     PageSmallDescription = page.PageSmallDescription
                 };
                 result.Add(pageItem);

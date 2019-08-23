@@ -8,7 +8,7 @@ namespace Okapia.Domain.QueryContracts
 {
     public interface IJobQuery : IRepository<long, Job>
     {
-        JobViewDetailsViewModel GetJobViewDetails(long id);
+        JobViewDetailsViewModel GetJobViewDetails(string slug);
         List<JobStaredViewModel> GetStaredJobs();
         List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel);
         long GetActiveJobsCount();

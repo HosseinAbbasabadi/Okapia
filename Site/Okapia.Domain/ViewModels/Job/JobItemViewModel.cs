@@ -3,6 +3,7 @@
     public class JobItemViewModel
     {
         public long JobId { get; set; }
+        public string JobSlug { get; set; }
         public string JobPicture { get; set; }
         public string JobPictureAlt { get; set; }
         public string JobName { get; set; }

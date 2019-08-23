@@ -70,8 +70,6 @@ namespace Okapia
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-            //app.UseAuthorizationMiddleware();
-            //app.UseAccessControlMiddleware();
             app.UseMvc(ConfigureRoutes());
         }
 

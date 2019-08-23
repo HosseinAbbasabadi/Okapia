@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using Framework;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
-using Okapia.Domain.Commands;
 using Okapia.Domain.Commands.Job;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Job;
@@ -62,7 +60,7 @@ namespace Okapia.Areas.Administrator.Controllers
         private JobSearchModel ProvideJobSearchModel(JobSearchModel searchModel)
         {
             searchModel.Proviences = new SelectList(Provinces.ToList(), "Id", "Name");
-            searchModel.Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName");
+            searchModel.Categories = new SelectList(_categoryApplication.GetChildCategories(), "CategoryId", "CategoryName");
             if (searchModel.PageSize == 0)
             {
                 searchModel.PageSize = 40;
@@ -87,7 +85,7 @@ namespace Okapia.Areas.Administrator.Controllers
             var createModel = new CreateJob
             {
                 Proviences = new SelectList(Provinces.ToList(), "Id", "Name"),
-                Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName"),
+                Categories = new SelectList(_categoryApplication.GetChildCategories(), "CategoryId", "CategoryName"),
                 Marketers = new SelectList(_marketerApplication.GetMarketers(), "MarketerId", "MarketerFullName")
             };
             return View(createModel);
@@ -164,7 +162,7 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             var editJob = _jobApplication.GetJobDetails(id);
             editJob.Proviences = new SelectList(Provinces.ToList(), "Id", "Name");
-            editJob.Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName");
+            editJob.Categories = new SelectList(_categoryApplication.GetChildCategories(), "CategoryId", "CategoryName");
             ViewData["redirectUrl"] = redirectUrl;
             return View(editJob);
         }

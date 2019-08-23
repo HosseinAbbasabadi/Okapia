@@ -6,19 +6,21 @@ using Okapia.Application.Utilities;
 using Okapia.Domain.Commands.Modal;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
+using Okapia.Domain.QueryContracts;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Modal;
-using Okapia.Repository;
 
 namespace Okapia.Application.Applications
 {
     public class ModalApplication : IModalApplication
     {
         private readonly IModalRepository _modalRepository;
+        private readonly IModalQuery _modalQuery;
 
-        public ModalApplication(IModalRepository modalRepository)
+        public ModalApplication(IModalRepository modalRepository, IModalQuery modalQuery)
         {
             _modalRepository = modalRepository;
+            _modalQuery = modalQuery;
         }
 
         public OperationResult Create(CreateModal command)
@@ -170,6 +172,11 @@ namespace Okapia.Application.Applications
             if (!string.IsNullOrEmpty(searchModel.ModalEndDate))
                 searchModel.ModalEndDateG = searchModel.ModalEndDate.ToGeorgianDateTime();
             return _modalRepository.Search(searchModel, out recordCount);
+        }
+
+        public List<ModalShowViewModel> GetUserModals(long userId)
+        {
+            return _modalQuery.GetUserModals(userId);
         }
     }
 }

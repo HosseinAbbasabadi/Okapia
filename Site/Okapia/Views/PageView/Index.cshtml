@@ -28,14 +28,14 @@
           <div class="single-blog-block">
             <div class="single-blog-block-img">
               <img src="/PagePhotos/@pageItem.PagePicture" alt="@pageItem.PagePictureAlt" title="@pageItem.PagePictureTitle">
-              <a title="@pageItem.PageTitle" asp-controller="PageView" asp-action="Details" asp-route-id="@pageItem.PageId">
+              <a title="@pageItem.PageTitle" asp-controller="PageView" asp-action="Details" asp-route-id="@pageItem.PageSlug">
                 <i class="fa fa-expand"></i>
               </a>
             </div>
             <div class="single-blog-block-content">
               <div class="blog-meta">
                 <h3>
-                  <a title="@pageItem.PageTitle" asp-controller="PageView" asp-action="Details" asp-route-id="@pageItem.PageId">@pageItem.PageTitle</a>
+                 <a title="@pageItem.PageTitle" asp-controller="PageView" asp-action="Details" asp-route-id="@pageItem.PageSlug">@pageItem.PageTitle</a>
                 </h3>
                 <div class="blog-text">
                   <p>

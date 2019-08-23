@@ -11,7 +11,8 @@ namespace Okapia.Domain.Contracts
     {
         Category GetCategory(int id);
         EditCategory GetCategoryDetails(int id);
-        List<CategoryViewModel> GetCategories();
+        List<CategoryViewModel> GetParentCategories();
+        List<CategoryViewModel> GetChildCategories();
         List<CategoryViewModel> Search(CategorySearchModel searchModel, out int recordCount);
     }
 }

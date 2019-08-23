@@ -32,17 +32,16 @@ namespace Okapia.Areas.Administrator.Controllers
             }
 
             var categories = _categoryApplication.Search(searchModel, out var recordCount).ToList();
-            var categorySearchModel = ProvideCategorySearchModel(searchModel, categories);
+            var categorySearchModel = ProvideCategorySearchModel(searchModel);
             var categoryIndex = ProviceCategoryIndex(categorySearchModel, categories);
             Pager.PreparePager(categorySearchModel, recordCount);
             ViewData["searchModel"] = categorySearchModel;
             return View(categoryIndex);
         }
 
-        private CategorySearchModel ProvideCategorySearchModel(CategorySearchModel searchModel,
-            IEnumerable<CategoryViewModel> categories)
+        private CategorySearchModel ProvideCategorySearchModel(CategorySearchModel searchModel)
         {
-            searchModel.Categories = new SelectList(categories, "CategoryId", "CategoryName");
+            searchModel.Categories = new SelectList(_categoryApplication.GetParentCategories(), "CategoryId", "CategoryName");
             return searchModel;
         }
 
@@ -61,7 +60,7 @@ namespace Okapia.Areas.Administrator.Controllers
         {
             var createModel = new CreateCategory
             {
-                Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName")
+                Categories = new SelectList(_categoryApplication.GetParentCategories(), "CategoryId", "CategoryName")
             };
             return View(createModel);
         }
@@ -78,7 +77,7 @@ namespace Okapia.Areas.Administrator.Controllers
         public ActionResult Edit(int id, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
             var category = _categoryApplication.GetCategoryDetails(id);
-            var categories = _categoryApplication.GetCategories().Where(x => x.CategoryId != id);
+            var categories = _categoryApplication.GetParentCategories().Where(x => x.CategoryId != id);
             category.Categories = new SelectList(categories, "CategoryId", "CategoryName");
             ViewData["redirectUrl"] = redirectUrl;
             return View(category);

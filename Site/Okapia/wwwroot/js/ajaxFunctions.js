@@ -246,12 +246,12 @@ function sendNotification(status, place, title, body) {
   $.Notification.autoHideNotify(status, place, title, body);
 }
 
-var convertToSlug = function (str) {
+var convertToSlug = function(str) {
   var $slug = '';
   const trimmed = $.trim(str);
   $slug = trimmed.replace(/[^a-z0-9-آ-ی-]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
   return $slug.toLowerCase();
-}
+};
 
 function checkSlugDuplication(url, dist) {
   const slug = $('#' + dist).val();
@@ -271,4 +271,8 @@ function makeSlug(source, dist, url) {
   debugger;
   $('#' + dist).val(convertToSlug(takedata));
   checkSlugDuplication(url, dist);
-};
+}
+
+function makeCanonical(path) {
+  return `http://www.okapia.ir/${path}`;
+}

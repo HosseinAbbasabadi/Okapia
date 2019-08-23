@@ -8,18 +8,18 @@
           @foreach (var pageCategory in Model)
           {
             <li>
-              <a asp-action="Index" asp-controller="PageView" asp-route-id="@pageCategory.PageCategoryId">
+              <a asp-action="Index" asp-controller="PageView" asp-route-id="@pageCategory.PageCategorySlug">
                 @pageCategory.PageCategoryName
               </a>
             </li>
           }
           <li>
-            <a href="/category/پوشاک">
+            <a href="/Home/About">
               درباره ما
             </a>
           </li>
           <li>
-            <a href="/category/لوازم+شخصی">
+            <a href="/Home/Contact">
               تماس با ما
             </a>
           </li>

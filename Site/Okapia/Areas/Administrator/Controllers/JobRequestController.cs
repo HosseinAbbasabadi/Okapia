@@ -94,7 +94,7 @@ namespace Okapia.Areas.Administrator.Controllers
                 Content = jobRequest.Description,
                 Proviences = new SelectList(Provinces.ToList(), "Id", "Name"),
                 JobRequestId = id,
-                Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName")
+                Categories = new SelectList(_categoryApplication.GetChildCategories(), "CategoryId", "CategoryName")
             };
             return View("~/Areas/Administrator/Views/Job/Create.cshtml", createJob);
         }

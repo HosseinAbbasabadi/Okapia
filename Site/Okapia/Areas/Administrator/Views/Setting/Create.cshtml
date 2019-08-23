@@ -1,0 +1,113 @@
+﻿@model Okapia.Domain.Commands.Setting.SetSettings
+
+@{
+  ViewData["Title"] = "ویرایش تنظیمات سایت";
+}
+
+<h2>مدیریت تنظیمات سایت</h2>
+
+<hr/>
+<div class="row">
+  <div class="col-md-12">
+    <form id="createSettingsFrm">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="About" class="control-label"></label>
+          <textarea asp-for="About" class="form-control"></textarea>
+          <span asp-validation-for="About" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="AboutPicture" class="control-label"></label>
+          <input type="file" asp-for="AboutPicture" class="form-control"/>
+          <span asp-validation-for="AboutPicture" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="AboutPictureAlt" class="control-label"></label>
+          <input asp-for="AboutPictureAlt" class="form-control"/>
+          <span asp-validation-for="AboutPictureAlt" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="AboutPictureTitle" class="control-label"></label>
+          <input asp-for="AboutPictureTitle" class="form-control"/>
+          <span asp-validation-for="AboutPictureTitle" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="FooterAbout" class="control-label"></label>
+          <textarea asp-for="FooterAbout" class="form-control"></textarea>
+          <span asp-validation-for="FooterAbout" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Address" class="control-label"></label>
+          <input asp-for="Address" class="form-control"/>
+          <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Tell1" class="control-label"></label>
+          <input asp-for="Tell1" class="form-control"/>
+          <span asp-validation-for="Tell1" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Tell2" class="control-label"></label>
+          <input asp-for="Tell2" class="form-control"/>
+          <span asp-validation-for="Tell2" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Email" class="control-label"></label>
+          <input asp-for="Email" class="form-control"/>
+          <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Map" class="control-label"></label>
+          <input asp-for="Map" class="form-control"/>
+          <span asp-validation-for="Map" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="MetaTags" class="control-label"></label>
+          <input asp-for="MetaTags" class="form-control"/>
+          <span asp-validation-for="MetaTags" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="MetaDescription" class="control-label"></label>
+          <input asp-for="MetaDescription" class="form-control"/>
+          <span asp-validation-for="MetaDescription" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="CanonicalAddress" class="control-label"></label>
+          <input asp-for="CanonicalAddress" class="form-control"/>
+          <span asp-validation-for="CanonicalAddress" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <input type="button" value="ثبت" onclick="createEntityThenReferesh('@Url.Action("Create", "Setting")', 'createSettingsFrm')" class="btn btn-lg btn-success"/>
+          <a class="btn btn-lg btn-warning" asp-action="Index" asp-controller="Setting">بازگشت به تنظیمات</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

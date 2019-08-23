@@ -5,16 +5,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>@ViewData["Title"] - سایت تخفیف اُکاپیا</title>
   <meta name="description" content="@ViewData["MetaDescription"]">
   <meta name="robots" content="@ViewData["MetaTags"]" />
   <link rel="canonical" href="@ViewData["CanonicalAddress"]" />
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
 
   <link rel="shortcut icon" href="~/assets/images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
@@ -40,6 +35,8 @@
   <link href="~/css/site.css" rel="stylesheet" />
   <link href="~/css/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
 </head>
+
+
 <body>
 <header class="header-area">
   @await Component.InvokeAsync("PageCategoryMenu")
@@ -84,16 +81,13 @@
                 <h3>دسترسی سریع</h3>
                 <ul>
                   <li>
-                    <a href="index-2.html">صفحه نخست</a>
+                    <a asp-controller="Home" asp-action="Index">صفحه نخست</a>
                   </li>
                   <li>
-                    <a href="#">درباره ما</a>
+                    <a asp-controller="Home" asp-action="About">درباره ما</a>
                   </li>
                   <li>
-                    <a href="#">تهیه کارت</a>
-                  </li>
-                  <li>
-                    <a href="#">تماس با ما</a>
+                    <a asp-controller="Home" asp-action="Contact">تماس با ما</a>
                   </li>
                 </ul>
               </div>
@@ -103,39 +97,18 @@
                 <h3>لینک های مهم</h3>
                 <ul>
                   <li>
-                    <a href="#">ثبت نام</a>
+                    <a asp-controller="Account" asp-action="Register">ثبت نام</a>
                   </li>
                   <li>
-                    <a href="#">همکاری با ما</a>
+                    <a asp-controller="Account" asp-action="Login">ورود</a>
                   </li>
                   <li>
-                    <a href="#">نحوه کار</a>
-                  </li>
-                  <li>
-                    <a href="#">مراکز معتبر</a>
+                    <a asp-controller="Home" asp-action="Agency">همکاری با ما</a>
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-              <div class="footer-menu">
-                <h3>آخرین مطالب</h3>
-                <ul>
-                  <li>
-                    <a href="#">نخفیفات جدید در راه است</a>
-                  </li>
-                  <li>
-                    <a href="#">دوستان خود را معرفی کنید و درآمد داشته باشید</a>
-                  </li>
-                  <li>
-                    <a href="#">از کجا خرید کنم ؟</a>
-                  </li>
-                  <li>
-                    <a href="#">چطور کارت خود را سفارش دهیم ؟</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            @await Component.InvokeAsync("LatestPagesFooter")
           </div>
         </div>
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -185,7 +158,8 @@
 
   <script src="~/js/calendar.js"></script>
   <script src="~/js/jquery.Bootstrap-PersianDateTimePicker.js"></script>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
   @RenderSection("Scripts", required: false)
 </body>
 </html>

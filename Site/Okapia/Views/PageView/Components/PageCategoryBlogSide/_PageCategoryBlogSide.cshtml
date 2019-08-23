@@ -7,7 +7,7 @@
       @foreach (var pageCategory in Model)
       {
         <li>
-          <a asp-controller="PageView" asp-action="Index" asp-route-id="@pageCategory.PageCategoryId">اخبار</a>
+          <a asp-controller="PageView" asp-action="Index" asp-route-id="@pageCategory.PageCategorySlug">@pageCategory.PageCategoryName</a>
         </li>
       }
     </ul>

@@ -28,7 +28,7 @@
                 <p>
                   @item.value.JobSmallDescription
                 </p>
-                <a class="bttn-mid btn-fill animated fadeInUp" title="@item.value.JobName" asp-controller="JobView" asp-action="Details" asp-route-id="@item.value.JobId">
+                <a class="bttn-mid btn-fill animated fadeInUp" title="@item.value.JobName" asp-controller="JobView" asp-action="Details" asp-route-id="@item.value.JobSlug">
                   مطالعه جزییات
                 </a>
               </div>
@@ -42,7 +42,7 @@
               <div class="card-content cl-white order-sm-1 order-2 wow fadeInLeft" data-wow-delay="0.5s">
                 <h3>@item.value.JobName</h3>
                 <p>@item.value.JobSmallDescription</p>
-                <a class="bttn-mid btn-fill animated fadeInUp" title="@item.value.JobName" asp-controller="JobView" asp-action="Details" asp-route-id="@item.value.JobId">
+                <a class="bttn-mid btn-fill animated fadeInUp" title="@item.value.JobName" asp-controller="JobView" asp-action="Details" asp-route-id="@item.value.JobSlug">
                   مطالعه جزییات
                 </a>
               </div>

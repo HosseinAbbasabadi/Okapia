@@ -112,6 +112,12 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("Employee", "Update");
             try
             {
+                if (!command.EmployeeNationalCode.IsValidNationalCode())
+                {
+                    result.Message = ApplicationMessages.InvalidNationalCode;
+                    return result;
+                }
+
                 if (!_employeeRepository.Exists(x => x.EmployeeId == command.EmployeeId))
                 {
                     result.Message = ApplicationMessages.EntityNotExists;

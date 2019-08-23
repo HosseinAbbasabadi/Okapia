@@ -6,10 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.QueryContracts;
-using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Comment;
 using Okapia.Domain.ViewModels.Page;
-using Okapia.Domain.ViewModels.PageCategory;
 
 namespace Okapia.Query.Query
 {
@@ -29,6 +27,7 @@ namespace Okapia.Query.Query
                     page => new PageItemViewModel
                     {
                         PageId = page.PageId,
+                        PageSlug = page.PageSlug,
                         PagePicture = page.PagePicture,
                         PagePictureTitle = page.PagePictureTitle,
                         PagePictureAlt = page.PagePictureAlt,
@@ -42,7 +41,7 @@ namespace Okapia.Query.Query
         }
 
 
-        public PageViewDetailsViewModel GetPageDetailsForView(long id)
+        public PageViewDetailsViewModel GetPageDetailsForView(string slug)
         {
             var pageDetails = _context.Page.Include(x => x.PageCategory).Include(x => x.PageComments)
                 .Where(x => x.PagePublishDate <= DateTime.Now)
@@ -50,6 +49,7 @@ namespace Okapia.Query.Query
                     page => new PageViewDetailsViewModel
                     {
                         PageId = page.PageId,
+                        PageSlug = page.PageSlug,
                         PagePicture = page.PagePicture,
                         PagePictureTitle = page.PagePictureTitle,
                         PagePictureAlt = page.PagePictureAlt,
@@ -64,13 +64,14 @@ namespace Okapia.Query.Query
                         PageMetaDescription = page.PageMetaDesccription,
                         PageMetaTag = page.PageMetaTag,
                         PageCanonicalAddress = page.PageCanonicalAddress,
-                    }).FirstOrDefault(x => x.PageId == id);
+                    }).FirstOrDefault(x => x.PageSlug == slug);
+            if (pageDetails == null) return new PageViewDetailsViewModel();
 
             pageDetails.MetaTags = pageDetails.PageMetaTag.Split(",").ToList();
             var commentItemViewModels = new List<CommentItemViewModel>();
             var comments = _context.Comments.Where(x =>
                     x.CommentIsConfirmed && !x.CommentIsDeleted && x.CommentOwner == "Page" &&
-                    x.CommentOwnerRecordId == id)
+                    x.CommentOwnerRecordId == pageDetails.PageId)
                 .ToList();
             comments.ForEach(c =>
             {

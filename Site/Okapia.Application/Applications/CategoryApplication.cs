@@ -13,12 +13,14 @@ using Okapia.Domain.ViewModels.Category;
 namespace Okapia.Application.Applications
 {
     public class CategoryApplication : ICategoryApplication
+
     {
         private readonly ICategoryQuery _categoryQuery;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IAuthHelper _authHelper;
 
-        public CategoryApplication(ICategoryRepository categoryRepository, IAuthHelper authHelper, ICategoryQuery categoryQuery)
+        public CategoryApplication(ICategoryRepository categoryRepository, IAuthHelper authHelper,
+            ICategoryQuery categoryQuery)
         {
             _categoryRepository = categoryRepository;
             _authHelper = authHelper;
@@ -50,6 +52,7 @@ namespace Okapia.Application.Applications
                     CategoryPicTitle = command.TitleImage,
                     CategoryPicAlt = command.AltImage,
                     CategoryPicDescription = command.DescImage,
+                    CategoryCanonicalAddress = command.CategoryCanonicalAddress,
                     RegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId,
                     IsDeleted = false
                 };
@@ -72,31 +75,29 @@ namespace Okapia.Application.Applications
             var result = new OperationResult("Categories", "Update");
             try
             {
-                var checkingCategory = _categoryRepository.GetCategory(command.CategoryId);
-                if (checkingCategory == null)
+                if (!_categoryRepository.Exists(x => x.CategoryId == command.CategoryId))
                 {
                     result.Message = ApplicationMessages.EntityNotExists;
                     return result;
                 }
 
-                var category = new Category
-                {
-                    CategoryId = command.CategoryId,
-                    CategoryName = command.CategoryName,
-                    CategoryMetaDesccription = command.CategoryMetaDesccription,
-                    CategorySlug = command.CategorySlug,
-                    CategoryMetaTag = command.CategoryMetaTag,
-                    CategoryPageTittle = command.CategoryPageTittle,
-                    CategoryParentId = command.CategoryParentId,
-                    CategorySeohead = command.CategorySeohead,
-                    CategorySmallDescription = command.CategorySmallDescription,
-                    CategoryThumbPicUrl = command.NameImage,
-                    CategoryPicTitle = command.TitleImage,
-                    CategoryPicAlt = command.AltImage,
-                    CategoryPicDescription = command.DescImage,
-                    RegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId,
-                    IsDeleted = command.IsDeleted
-                };
+                var category = _categoryRepository.GetCategory(command.CategoryId);
+
+                category.CategoryName = command.CategoryName;
+                category.CategoryMetaDesccription = command.CategoryMetaDesccription;
+                category.CategorySlug = command.CategorySlug;
+                category.CategoryMetaTag = command.CategoryMetaTag;
+                category.CategoryPageTittle = command.CategoryPageTittle;
+                category.CategoryParentId = command.CategoryParentId;
+                category.CategorySeohead = command.CategorySeohead;
+                category.CategorySmallDescription = command.CategorySmallDescription;
+                category.CategoryThumbPicUrl = command.NameImage;
+                category.CategoryPicTitle = command.TitleImage;
+                category.CategoryPicAlt = command.AltImage;
+                category.CategoryPicDescription = command.DescImage;
+                category.CategoryCanonicalAddress = command.CategoryCanonicalAddress;
+                category.RegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId;
+                category.IsDeleted = command.IsDeleted;
                 _categoryRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -145,9 +146,14 @@ namespace Okapia.Application.Applications
             return _categoryRepository.GetCategoryDetails(id);
         }
 
-        public IEnumerable<CategoryViewModel> GetCategories()
+        public IEnumerable<CategoryViewModel> GetParentCategories()
         {
-            return _categoryRepository.GetCategories();
+            return _categoryRepository.GetParentCategories();
+        }
+
+        public IEnumerable<CategoryViewModel> GetChildCategories()
+        {
+            return _categoryRepository.GetChildCategories();
         }
 
         public IEnumerable<CategoryViewModel> Search(CategorySearchModel searchModel, out int recordCount)
@@ -186,6 +192,12 @@ namespace Okapia.Application.Applications
         public List<CategoryViewModel> GetCategoriesForSearch()
         {
             return _categoryQuery.GetCategoriesForSearch();
+        }
+
+        public CategoryViewDetailsViewModel GetCategoryViewDetails(int id)
+        {
+            var category = _categoryQuery.GetCategoryViewDetails(id);
+            return category;
         }
     }
 }

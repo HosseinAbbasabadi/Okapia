@@ -218,9 +218,9 @@ namespace Okapia.Application.Applications
             return _pageQuery.GetPagesForLatestArticles();
         }
 
-        public PageViewDetailsViewModel GetPageDetailsForView(long id)
+        public PageViewDetailsViewModel GetPageDetailsForView(string slug)
         {
-            return _pageQuery.GetPageDetailsForView(id);
+            return _pageQuery.GetPageDetailsForView(slug);
         }
     }
 }

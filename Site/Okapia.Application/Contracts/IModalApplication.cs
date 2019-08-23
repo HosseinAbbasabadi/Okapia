@@ -14,5 +14,8 @@ namespace Okapia.Application.Contracts
         OperationResult Activate(int id);
         EditModal GetModalDetails(int id);
         List<ModalViewModel> Search(ModalSearchModel searchModel, out int recordCount);
+
+        //
+        List<ModalShowViewModel> GetUserModals(long userId);
     }
 }

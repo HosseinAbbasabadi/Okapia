@@ -5,6 +5,7 @@ namespace Okapia.Domain.ViewModels.Category
     public class CategoryViewModel
     {
         public int CategoryId { get; set; }
+        public string CategorySlug { get; set; }
         [Display(Name = "نام")] public string CategoryName { get; set; }
         [Display(Name = "توضیحات")] public string CategorySmallDescription { get; set; }
         public int CategoryParentId { get; set; }

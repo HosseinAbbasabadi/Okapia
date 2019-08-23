@@ -39,6 +39,8 @@ namespace Okapia.Query
         public DbSet<JobRequest> JobRequests { get; set; }
         public DbSet<Marketer> Marketers { get; set; }
         public DbSet<Slide> Slides { get; set; }
+        public DbSet<UserGroup> UserGroups { get; set; }
+        public DbSet<Setting> Settings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -78,6 +80,8 @@ namespace Okapia.Query
             modelBuilder.ApplyConfiguration(new EmployeeControllerMapping());
             modelBuilder.ApplyConfiguration(new AccountMapping());
             modelBuilder.ApplyConfiguration(new MarketerMapping());
+
+            modelBuilder.ApplyConfiguration(new SettingMapping());
 
             OnModelCreatingPartial(modelBuilder);
         }

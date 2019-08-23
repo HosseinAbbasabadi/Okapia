@@ -17,7 +17,7 @@ namespace Okapia.Application.Contracts
         OperationResult CheckJobSlugDuplication(string slug);
 
         //
-        JobViewDetailsViewModel GetJobViewDetails(long id);
+        JobViewDetailsViewModel GetJobViewDetails(string slug);
         List<JobStaredViewModel> GetStaredJobsForLandingPage();
         List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel);
         long GetActiveJobsCount();

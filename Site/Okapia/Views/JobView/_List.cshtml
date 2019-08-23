@@ -15,16 +15,16 @@
         <div class="clearfix">
           <div class="starRating">
             <div class="wrapper">
-              <div class="star-rating">
+              @*<div class="star-rating">
                 <i></i>
                 <span style="width: 100%">
                   <span></span>
                 </span>
-              </div>
+              </div>*@
             </div>
           </div>
         </div>
-        <a asp-action="Details" asp-controller="JobView" asp-route-id="@jobItemViewModel.JobId" class="bttn-small btn-fill">اطلاعات بیشتر</a>
+        <a asp-action="Details" asp-controller="JobView" asp-route-id="@jobItemViewModel.JobSlug" class="bttn-small btn-fill">اطلاعات بیشتر</a>
       </div>
     </div>
   }

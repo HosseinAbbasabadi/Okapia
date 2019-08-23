@@ -465,7 +465,7 @@ namespace Okapia.Application.Applications
 
         public long GetActiveUsersCount()
         {
-            return _userQuery.GetActiveUsersCount() + 500;
+            return _userQuery.GetActiveUsersCount();
         }
     }
 }

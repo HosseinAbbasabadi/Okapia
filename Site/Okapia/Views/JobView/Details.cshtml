@@ -1,7 +1,7 @@
 ﻿@inject IAuthHelper AuthHelper;
 @using Okapia.Application.Contracts
 @using Okapia.Domain.Commands.Comment
-@model DetailsIndexViewModel
+@model JobDetailsIndexViewModel
 @{
   ViewData["Title"] = "جزپیات مرکز خدماتی";
   Layout = "~/Views/Shared/_Layout.cshtml";
@@ -83,9 +83,9 @@
             <i class="fas fa-map-marker"></i>@Model.JobViewDetailsViewModel.JobAddress
           </p>
           <p class="fadeInUp" data-wow-delay="0.5s">
-            <i class="fas fa-phone"></i>@Model.JobViewDetailsViewModel.JobTel1 @Model.JobViewDetailsViewModel.JobTel2</p>
+            <i class="fas fa-phone"></i>@Model.JobViewDetailsViewModel.JobTel1 - @Model.JobViewDetailsViewModel.JobTel2</p>
           <p class="fadeInUp" data-wow-delay="0.5s">
-            <i class="fas fa-phone"></i>@Model.JobViewDetailsViewModel.JobMobile1 @Model.JobViewDetailsViewModel.JobMobile2</p>
+            <i class="fas fa-phone"></i>@Model.JobViewDetailsViewModel.JobMobile1 - @Model.JobViewDetailsViewModel.JobMobile2</p>
           <p class="fadeInUp" data-wow-delay="0.5s">
             <i class="fas fa-map">
               <a target="_blank" href="@Model.JobViewDetailsViewModel.JobWazeLink">برو به Waze</a>
@@ -153,6 +153,7 @@
                   <textarea asp-for="AddComment.CommentText" name="CommentText" rows="6" class="form-control"></textarea>
                   <span asp-validation-for="AddComment.CommentText" class="text-danger"></span>
                 </div>
+                <input type="hidden" name="CommentOwnerRecordSlug" value="@Model.JobViewDetailsViewModel.JobSlug"/>
                 <input type="hidden" name="CommentOwnerRecordId" value="@Model.JobViewDetailsViewModel.JobId"/>
                 <div class="col-md-12">
                   <button class="bttn-mid btn-fill" type="submit">ارسال نظر</button>

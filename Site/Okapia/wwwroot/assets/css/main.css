@@ -2737,10 +2737,11 @@ Card Features
     -ms-flex: 0 0 60%;
     flex: 0 0 60%;
     max-width: 60%;
-    padding: 85px 40px;
+    padding: 40px 40px;
     background-image: linear-gradient(to top, #bd333c 0%, #e26e48 100%);
     direction: rtl;
     text-align: right;
+    height: 372px;
 }
 
     .card-content h3 {
@@ -3755,6 +3756,7 @@ ul.Features {
                         display: block;
                         color: #fff;
                         font-family: 'pargraph';
+                        font-size: 20px;
                     }
 
                         .megamenu .items > li .menu-hover ul li a:hover {

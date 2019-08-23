@@ -10,6 +10,6 @@ namespace Okapia.Domain.QueryContracts
     public interface IPageQuery : IRepository<long, Page>
     {
         List<PageItemViewModel> GetPagesForLatestArticles();
-        PageViewDetailsViewModel GetPageDetailsForView(long id);
+        PageViewDetailsViewModel GetPageDetailsForView(string slug);
     }
 }

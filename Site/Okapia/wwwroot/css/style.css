@@ -1010,7 +1010,7 @@ a:focus {
   color: #fff;
 }
 .portlet .portlet-heading .portlet-title {
-  float: left;
+  float: right;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 0;
@@ -1020,7 +1020,7 @@ a:focus {
 .portlet .portlet-heading .portlet-widgets {
   position: relative;
   text-align: right;
-  float: right;
+  float: left;
   padding-left: 15px;
   display: inline-block;
   font-size: 15px;

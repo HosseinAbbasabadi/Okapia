@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Okapia.Application.Contracts;
-using Okapia.Domain.ViewModels.EmployeeController;
 
-namespace Okapia.Areas.Administrator.ViewComponents
+namespace Okapia.ViewComponents
 {
     public class StaredJobsViewComponent : ViewComponent
     {

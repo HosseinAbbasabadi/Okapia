@@ -1,7 +1,10 @@
 ﻿@model JobViewIndexViewModel
 
 @{
-    ViewData["Title"] = "لیست مراکز خدماتی";
+    ViewData["Title"] = "مراکز خدماتی" + " " + Model.CategoryViewDetailsViewModel?.CategoryPageTittle;
+    ViewData["MetaDescription"] = Model.CategoryViewDetailsViewModel?.CategoryMetaDesccription;
+    ViewData["MetaTags"] = Model.CategoryViewDetailsViewModel?.CategoryMetaTag;
+    ViewData["CanonicalAddress"] = Model.CategoryViewDetailsViewModel?.CategoryCanonicalAddress;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -19,7 +22,6 @@
 
     @await Html.PartialAsync("~/Views/JobView/_Search.cshtml", Model.JobViewSearchModel)
     @await Html.PartialAsync("~/Views/JobView/_List.cshtml", Model.JobItemViewModels)
-
     
   </div>
 </section>

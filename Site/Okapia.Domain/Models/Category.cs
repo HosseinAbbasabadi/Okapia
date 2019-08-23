@@ -11,6 +11,7 @@ namespace Okapia.Domain.Models
         public string CategoryMetaTag { get; set; }
         public string CategoryMetaDesccription { get; set; }
         public string CategorySeohead { get; set; }
+        public string CategoryCanonicalAddress { get; set; }
         public string CategoryPageTittle { get; set; }
         public string CategoryThumbPicUrl { get; set; }
         public string CategoryPicTitle { get; set; }

@@ -215,7 +215,7 @@ namespace Okapia.Application.Applications
                     "Name");
             jobDetails.Marketers =
                 new SelectList(_marketerApplication.GetMarketers(), "MarketerId", "MarketerFullName");
-            jobDetails.Categories = new SelectList(_categoryApplication.GetCategories(), "CategoryId", "CategoryName");
+            jobDetails.Categories = new SelectList(_categoryApplication.GetParentCategories(), "CategoryId", "CategoryName");
             return jobDetails;
         }
 
@@ -405,9 +405,9 @@ namespace Okapia.Application.Applications
             }
         }
 
-        public JobViewDetailsViewModel GetJobViewDetails(long id)
+        public JobViewDetailsViewModel GetJobViewDetails(string slug)
         {
-            return _jobQuery.GetJobViewDetails(id);
+            return _jobQuery.GetJobViewDetails(slug);
         }
 
         public List<JobStaredViewModel> GetStaredJobsForLandingPage()
@@ -430,7 +430,7 @@ namespace Okapia.Application.Applications
 
         public long GetActiveJobsCount()
         {
-            return _jobQuery.GetActiveJobsCount() + 200;
+            return _jobQuery.GetActiveJobsCount();
         }
     }
 }

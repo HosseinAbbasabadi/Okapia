@@ -38,7 +38,7 @@ namespace Okapia.Repository
         public DbSet<EmployeeController> EmployeeControllers { get; set; }
         public DbSet<JobRequest> JobRequests { get; set; }
         public DbSet<Marketer> Marketers { get; set; }
-
+        public DbSet<Setting> Settings { get; set; }
         public DbSet<Slide> Slides { get; set; }
         //public DbSet<UserGroup> UserGroups { get; set; }
 
@@ -81,6 +81,7 @@ namespace Okapia.Repository
             modelBuilder.ApplyConfiguration(new AccountMapping());
             modelBuilder.ApplyConfiguration(new MarketerMapping());
 
+            modelBuilder.ApplyConfiguration(new SettingMapping());
             OnModelCreatingPartial(modelBuilder);
         }
 

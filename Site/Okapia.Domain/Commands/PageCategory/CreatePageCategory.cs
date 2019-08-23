@@ -18,15 +18,21 @@ namespace Okapia.Domain.Commands.PageCategory
         [Display(Name = "توضیحات")] public string DescImage { get; set; }
         [Display(Name = "alt")] public string AltImage { get; set; }
 
-        [Display(Name = "عنوان صفحه")] public string PageCategoryPageTitle { get; set; }
-        [Display(Name = "اسلاگ")] public string PageCategorySlug { get; set; }
+        [Display(Name = "عنوان صفحه")]
+        [Required(ErrorMessage = ValidationMessages.Required)]
+        public string PageCategoryPageTitle { get; set; }
+        [Display(Name = "اسلاگ")]
+        [Required(ErrorMessage = ValidationMessages.Required)]
+        public string PageCategorySlug { get; set; }
 
         [Display(Name = "متاتگ")]
         [MaxLength(80, ErrorMessage = "حد اکثر طور متاتگ ۸۰ کارکتر است")]
+        [Required(ErrorMessage = ValidationMessages.Required)]
         public string PageCategoryMetaTag { get; set; }
 
         [Display(Name = "توضیحات متا")]
         [MaxLength(120, ErrorMessage = "حد اکثر طور توضیحات متا 120 کارکتر است")]
+        [Required(ErrorMessage = ValidationMessages.Required)]
         public string PageCategoryMetaDesccription { get; set; }
 
         [Display(Name = "Seo Head")] public string PageCategorySeohead { get; set; }

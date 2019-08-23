@@ -129,8 +129,8 @@ body.loading .loader {
 .detail-name {
     font-weight: bold;
     font-size: 18px;
-    height: 45px;
     border-bottom: 1px #ccc solid;
+    padding: 5px;
 }
 
 .detail-for {

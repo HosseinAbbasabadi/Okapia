@@ -1,7 +1,30 @@
-﻿
+﻿@model Okapia.Domain.Commands.Setting.SetSettings
+
 @{
-    ViewData["Title"] = "درباره";
+  ViewData["Title"] = "درباره";
 }
-
-<h1>درباره سایت اَکاپیا</h1>
-
+<section class="custom-banner dark-overlay" style="background: url('/assets/images/hero.jpg') no-repeat fixed;"></section><!--/Custom Banner-->
+<!--About Area-->
+<section class="about-area section-padding-2">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-12 centered wow fadeInUp" data-wow-delay="0.3s">
+        <div class="section-title">
+          <h2>درباره ما</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row rtl">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInLeft" data-wow-delay="0.4s">
+        <div class="about-media">
+          <img src="~/assets/images/about.jpg" alt="">
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInRight" data-wow-delay="0.4s">
+        <div class="about-content">
+          <p>@Model.About</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!--/About Area-->

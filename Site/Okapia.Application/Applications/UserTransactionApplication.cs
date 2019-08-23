@@ -14,7 +14,7 @@ namespace Okapia.Application.Applications
 
         public long GetUserTransactionsCount()
         {
-            return _userTransactionQuery.GetUserTransactionsCount() + 1000;
+            return _userTransactionQuery.GetUserTransactionsCount();
         }
     }
 }

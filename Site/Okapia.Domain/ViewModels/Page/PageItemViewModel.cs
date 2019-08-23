@@ -3,6 +3,7 @@
     public class PageItemViewModel
     {
         public long PageId { get; set; }
+        public string PageSlug { get; set; }
         public string PageTitle { get; set; }
         public string PageCategory { get; set; }
         public string PagePublishDate { get; set; }
