@@ -90,6 +90,12 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
+                if (!_pasargadService.TryRegister(command, userCards))
+                {
+                    result.Message = "خطای ثبت نام";
+                    return result;
+                }
+
                 var account = new Account
                 {
                     Username = command.NationalCardNumber,

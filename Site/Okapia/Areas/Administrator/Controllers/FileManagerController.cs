@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -301,7 +302,7 @@ namespace Okapia.Areas.Administrator.Controllers
             }
         }
 
-        private void SaveFile(string pathFile, IFormFile file, string mainPath)
+        private async Task SaveFile(string pathFile, IFormFile file, string mainPath)
         {
             //  get time for name
             var dateForName = DateTime.Now.ToString("mmssFFF");
@@ -312,7 +313,7 @@ namespace Okapia.Areas.Administrator.Controllers
 
             fileName = _hostingEnvironment.WebRootPath + "\\Data\\" + mainPath + "\\" + dateForName + fileName;
             var output = System.IO.File.Create(fileName);
-            file.CopyTo(output);
+            await file.CopyToAsync(output);
         }
 
         [HttpPost]

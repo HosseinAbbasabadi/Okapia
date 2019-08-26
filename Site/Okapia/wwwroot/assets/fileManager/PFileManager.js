@@ -336,7 +336,7 @@ function imageCrope(elem) {
     $modal.modal('show');
     return;
   }
-  ModalBody.innerHTML = '<label style="font-size:20px"><input type="checkbox" id="withOutCompress" />آپلود تصویر بدون برش و فشرده سازی</label>';
+  ModalBody.innerHTML = '<label style="font-size:20px"><input type="checkbox" id="withOutCompress" checked="true"/>آپلود تصویر بدون برش و فشرده سازی</label>';
   if (PFileManager.Cropp.MainRatio != undefined)
     ModalBody.innerHTML += '<h5>توجه داشته باشید که نسبت عرض به طول تصویر باید ' + PFileManager.Cropp.MainRatio + ' باشد</h5>';
   ModalBody.innerHTML += '<div class="img-container"><img id="image" src=""></div>';

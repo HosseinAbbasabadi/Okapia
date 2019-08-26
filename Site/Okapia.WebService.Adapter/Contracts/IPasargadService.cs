@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Okapia.Domain.Commands.User;
+using Okapia.Domain.Models;
 
 namespace Okapia.WebService.Adapter.Contracts
 {
@@ -10,7 +11,7 @@ namespace Okapia.WebService.Adapter.Contracts
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        bool TryRegister(CreateUser user);
+        bool TryRegister(CreateUser user, List<UserCard> userCards);
 
         /// <summary>
         /// Executes "EnquireMemebership" in web service

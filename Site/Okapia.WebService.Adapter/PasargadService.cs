@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Okapia.Domain.Commands.User;
+using Okapia.Domain.Models;
 using Okapia.WebService.Adapter.Contracts;
 using RestSharp;
 using RestSharp.Serialization.Json;
@@ -21,14 +23,24 @@ namespace Okapia.WebService.Adapter
             _client = new RestClient("https://212.80.25.71/api/api/GeneralApi");
         }
 
-        public bool TryRegister(CreateUser user)
+        public bool TryRegister(CreateUser user, List<UserCard> userCards)
         {
+            var cards = userCards.Where(x => !string.IsNullOrEmpty(x.CardNumber));
+            const string seperator = ",";
+            var cardString = $"{user.Card1},";
+            if (!string.IsNullOrEmpty(user.Card2))
+                cardString += string.Join(seperator, cards);
+
             ServicePointManager.ServerCertificateValidationCallback +=
                 (sender, certificate, chain, sslPolicyErrors) => true;
-            var request = RequestBuilder("Register", Method.POST).AddJsonBody(user);
+            var request = RequestBuilder("Register", Method.POST).AddParameter("FirstNameFa", user.Name)
+                .AddParameter("LastNameFa", user.Family).AddParameter("FirstNameEn", user.NameEn)
+                .AddParameter("LastNameEn", user.FamilyEn).AddParameter("NationalCode", user.NationalCardNumber)
+                .AddParameter("CellNumber", user.PhoneNumber).AddParameter("MappedCards", cardString)
+                .AddParameter("CardGroupId", "253").AddParameter("CustomerGroupId", "1234010910");
             var response = _client.Execute(request);
             var result = _jsonSerializer.Deserialize<WebServiceResponse>(response);
-            return result.Status == -1;
+            return result.Status == -1 && result.ErrorMessage == "";
         }
 
         public bool IsAlreadyRegistered(string nationalCode)
@@ -50,7 +62,7 @@ namespace Okapia.WebService.Adapter
             var result = _jsonSerializer.Deserialize<WebServiceResponse>(response);
             return result.Status == -105;
         }
-        
+
         private static RestRequest RequestBuilder(string resource, Method method)
         {
             var request = new RestRequest(resource, method);
