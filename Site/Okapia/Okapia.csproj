@@ -8,6 +8,8 @@
 
 
   <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="2.9.406" />
+    <PackageReference Include="BundlerMinifier.Core" Version="2.9.406" />
     <PackageReference Include="Magick.NET-Q8-x64" Version="7.14.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -31,6 +33,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Administrator\Views\Modal\NewFolder\" />
+    <Folder Include="wwwroot\AboutPicture\Thumbs\" />
     <Folder Include="wwwroot\JobPhotos\Thumbs\" />
     <Folder Include="wwwroot\ModalPhotos\Thumbs\" />
     <Folder Include="wwwroot\PageCategoryPhotos\Thumbs\" />

@@ -2,15 +2,18 @@
 
 namespace Okapia.Domain.Commands.Setting
 {
-    public class SetSettings
+    public class SettingDto
     {
         [Display(Name = "درباره ما")] public string About { get; set; }
-        [Display(Name = "درباره عکس درباره")] public string AboutPicture { get; set; }
+        [Display(Name = "عکس درباره")] public string AboutPicture { get; set; }
         [Display(Name = "Alt")] public string AboutPictureAlt { get; set; }
         [Display(Name = "عنوان عکس")] public string AboutPictureTitle { get; set; }
 
         [Display(Name = "درباره (نمایش در فوتر)")]
         public string FooterAbout { get; set; }
+
+        [Display(Name = "قوانین و مقررات")]
+        public string Privacy { get; set; }
 
         [Display(Name = "آدرس")] public string Address { get; set; }
 

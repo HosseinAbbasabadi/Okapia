@@ -1,13 +1,14 @@
-﻿@model Okapia.Domain.Commands.Setting.SetSettings
+﻿@model Okapia.Domain.Commands.Setting.SettingDto
 @{
-  ViewData["Title"] = "تماس با ما";
+  ViewData["Title"] = "تماس با اُکاپیا";
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!--Custom Banner-->
-<section class="custom-banner dark-overlay" style="background: url('/assets/images/hero.jpg') no-repeat fixed;"></section><!--/Custom Banner-->
-<!--Contact Area-->
-<div id="map"></div>
+<section class="custom-banner dark-overlay" style="background: url('/assets/images/hero.jpg') no-repeat fixed;"></section>
+
+<div id="map">
+  @Html.Raw(Model.Map)
+</div>
 
 <section class="contact-area section-padding-2">
   <div class="container">
@@ -22,12 +23,15 @@
           </div>
           <div class="single-contact-info">
             <h4>تلفن</h4>
-            <p><a href="tel:"><i class="fa fa-phone"></i>@Model.Tell1</a> <br> <i class="fa fa-fax"></i>@Model.Tell2</p>
+            <p>
+              <a href="tel:">
+                <i class="fa fa-phone"></i>@Model.Tell1</a> <br> <i class="fa fa-fax"></i>@Model.Tell2</p>
           </div>
           <div class="single-contact-info">
             <h4>پست الکترونیکی</h4>
             <p>
-              <a href="mailto:"><i class="fa fa-envelope"></i>@Model.Email</a> <br>
+              <a href="mailto:">
+                <i class="fa fa-envelope"></i>@Model.Email</a> <br>
             </p>
           </div>
         </div>
@@ -55,10 +59,9 @@
       </div>*@
     </div>
   </div>
-</section><!--/Contact Area-->
+</section>
 
-
-<script>
+@*<script>
   function initMap() {
     var Place = { lat: 35.756905, lng: 51.414264 };
     // Styles a map in night mode.
@@ -167,4 +170,4 @@
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7cKhDofbpXgQD99WZgnqgL-KoVImz75c&callback=initMap"
-        async defer></script>
+        async defer></script>*@

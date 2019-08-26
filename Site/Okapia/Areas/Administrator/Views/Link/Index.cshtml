@@ -1,0 +1,27 @@
+﻿@model Okapia.Areas.Administrator.Models.LinkIndexViewModel
+@{
+  ViewData["Title"] = "مدیریت لینک ها";
+}
+
+
+<h1>صفحه مدیریت لینک ها</h1>
+
+<h2>
+  <button onclick="openCreateLinkModal()" class="btn btn-success text-lg-center">ایجاد لینک جدید</button>
+</h2>
+
+<div id="createLinkDiv">
+
+</div>
+
+<script>
+  function openCreateLinkModal() {
+    openModalWithData('@Url.Action("Create", "Link")', 'createLinkDiv', 'createLinkModal');
+  }
+</script>
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/Link/_SearchLinks.cshtml", Model.LinkSearchModel)
+
+<div id="listLinkDiv">
+  @await Html.PartialAsync("~/Areas/Administrator/Views/Link/_ListLink.cshtml", Model.LinkViewModels)
+</div>

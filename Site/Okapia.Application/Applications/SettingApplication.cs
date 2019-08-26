@@ -22,7 +22,7 @@ namespace Okapia.Application.Applications
             _settingQuery = settingQuery;
         }
 
-        public OperationResult CreateSettings(SetSettings command)
+        public OperationResult CreateSettings(SettingDto command)
         {
             var result = new OperationResult("Settings", "Create");
             try
@@ -49,21 +49,26 @@ namespace Okapia.Application.Applications
             }
         }
 
-        public SetSettings GetSettings()
+        public SettingDto GetSettings()
         {
             var settings = _settingRepository.GetAll();
             return MapSettings(settings);
         }
 
-        public SetSettings GetSettingsForView()
+        public SettingDto GetSettingsForView()
         {
             var settings = _settingQuery.GetAll();
             return MapSettings(settings);
         }
 
-        private static SetSettings MapSettings(IReadOnlyCollection<Setting> settings)
+        public string GetPrivacy()
         {
-            var setSetting = new SetSettings();
+            return _settingQuery.Get(x => x.SettingKey == "Privacy").First().SettingValue;
+        }
+        
+        private static SettingDto MapSettings(IReadOnlyCollection<Setting> settings)
+        {
+            var setSetting = new SettingDto();
             foreach (var property in setSetting.GetType().GetProperties())
             {
                 var setting = settings.First(x => x.SettingKey == property.Name);

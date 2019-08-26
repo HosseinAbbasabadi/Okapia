@@ -1,0 +1,51 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [
+      "wwwroot/css/jquery.Bootstrap-PersianDateTimePicker.css",
+      "wwwroot/assets/css/bootstrap.min.css",
+      "wwwroot/assets/css/all.css",
+      "wwwroot/assets/css/magnific-popup.css",
+      "wwwroot/assets/css/animate.css",
+      "wwwroot/assets/notifications/notification.css",
+      "wwwroot/assets/css/swiper.min.css",
+      "wwwroot/assets/css/owl.carousel.min.css",
+      "wwwroot/assets/css/main.css",
+      "wwwroot/css/site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/jquery-3.2.1.min.js",
+      "wwwroot/assets/js/jquery-migrate.js",
+      "wwwroot/assets/js/popper.js",
+      "wwwroot/assets/js/bootstrap.min.js",
+      "wwwroot/assets/js/owl.carousel.min.js",
+      "wwwroot/assets/js/magnific-popup.min.js",
+      "wwwroot/assets/js/imagesloaded.pkgd.min.js",
+      "wwwroot/assets/js/isotope.pkgd.min.js",
+      "wwwroot/assets/js/waypoints.min.js",
+      "wwwroot/assets/js/jquery.counterup.min.js",
+      "wwwroot/assets/js/wow.min.js",
+      "wwwroot/assets/js/scrollUp.min.js",
+      "wwwroot/assets/js/swiper.min.js",
+      "wwwroot/assets/js/script.js",
+      //"wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "wwwroot/assets/notifications/notify.min.js",
+      "wwwroot/assets/notifications/notify-metro.js",
+      "wwwroot/assets/notifications/notifications.js",
+      "wwwroot/js/site.js",
+      "wwwroot/js/ajaxFunctions.js",
+      "wwwroot/js/calendar.js",
+      "wwwroot/js/jquery.Bootstrap-PersianDateTimePicker.js",
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]

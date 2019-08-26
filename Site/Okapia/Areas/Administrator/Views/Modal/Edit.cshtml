@@ -13,21 +13,14 @@
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Title" class="control-label"></label>
-          <input asp-for="Title" class="form-control" onchange="makeSlug('CategoryName', 'CategorySlug', '@Url.Action("CheckSlugDuplication", "Category")')"/>
+          <input asp-for="Title" class="form-control" onchange="makeSlug('CategoryName', 'CategorySlug', '@Url.Action("CheckSlugDuplication", "Category")')" />
           <span asp-validation-for="Title" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
-          <label asp-for="Message" class="control-label"></label>
-          <input asp-for="Message" class="form-control"/>
-          <span asp-validation-for="Message" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
           <label asp-for="PageLink" class="control-label"></label>
-          <input asp-for="PageLink" class="form-control direct-ltr"/>
+          <input asp-for="PageLink" class="form-control direct-ltr" />
           <span asp-validation-for="PageLink" class="text-danger"></span>
         </div>
       </div>
@@ -38,7 +31,7 @@
             <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="left">
               <span class="fa fa-calendar"></span>
             </div>
-            <input asp-for="StartDate" type="text" class="form-control" id="fromDate1" placeholder="از تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right"/>
+            <input asp-for="StartDate" type="text" class="form-control" id="fromDate1" placeholder="از تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right" />
           </div>
         </div>
       </div>
@@ -49,7 +42,7 @@
             <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="false" data-placement="left">
               <span class="fa fa-calendar"></span>
             </div>
-            <input asp-for="EndDate" type="text" class="form-control" id="toDate1" placeholder="تا تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="false" data-placement="right"/>
+            <input asp-for="EndDate" type="text" class="form-control" id="toDate1" placeholder="تا تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="false" data-placement="right" />
           </div>
         </div>
       </div>
@@ -65,8 +58,15 @@
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="IsDeleted" class="control-label"></label>
-          <input asp-for="IsDeleted" class="form-control"/>
+          <input asp-for="IsDeleted" class="form-control" />
           <span asp-validation-for="IsDeleted" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Message" class="control-label"></label>
+          <textarea asp-for="Message" class="form-control" rows="5"></textarea>
+          <span asp-validation-for="Message" class="text-danger"></span>
         </div>
       </div>
       <table class="col-md-12 table table-bordered text-center">
@@ -124,7 +124,7 @@
       </table>
       <div class="col-md-12">
         <div class="form-group">
-          <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Modal")', 'editModalFrm', '@ViewData["redirectUrl"]')"/>
+          <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Modal")', 'editModalFrm', '@ViewData["redirectUrl"]')" />
           <a class="btn btn-warning btn-lg" href="@ViewData["redirectUrl"]">بازگشت به لیست</a>
         </div>
       </div>

@@ -40,6 +40,7 @@ namespace Okapia.Repository
         public DbSet<Marketer> Marketers { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Slide> Slides { get; set; }
+        public DbSet<Link> Links { get; set; }
         //public DbSet<UserGroup> UserGroups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -82,6 +83,7 @@ namespace Okapia.Repository
             modelBuilder.ApplyConfiguration(new MarketerMapping());
 
             modelBuilder.ApplyConfiguration(new SettingMapping());
+            modelBuilder.ApplyConfiguration(new LinkMapping());
             OnModelCreatingPartial(modelBuilder);
         }
 

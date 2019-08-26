@@ -1,4 +1,4 @@
-﻿@model Okapia.Domain.Commands.Setting.SetSettings
+﻿@model Okapia.Domain.Commands.Setting.SettingDto
 
 @{
   ViewData["Title"] = "ویرایش تنظیمات سایت";
@@ -11,39 +11,65 @@
   <div class="col-md-12">
     <form id="createSettingsFrm">
       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-      <div class="col-md-4">
+      <div class="col-md-8">
         <div class="form-group">
           <label asp-for="About" class="control-label"></label>
-          <textarea asp-for="About" class="form-control"></textarea>
+          <div class="">
+            <textarea asp-for="About" class="form-control" rows="8"></textarea>
+          </div>
           <span asp-validation-for="About" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
-          <label asp-for="AboutPicture" class="control-label"></label>
-          <input type="file" asp-for="AboutPicture" class="form-control"/>
-          <span asp-validation-for="AboutPicture" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="AboutPictureAlt" class="control-label"></label>
-          <input asp-for="AboutPictureAlt" class="form-control"/>
-          <span asp-validation-for="AboutPictureAlt" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="AboutPictureTitle" class="control-label"></label>
-          <input asp-for="AboutPictureTitle" class="form-control"/>
-          <span asp-validation-for="AboutPictureTitle" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
           <label asp-for="FooterAbout" class="control-label"></label>
-          <textarea asp-for="FooterAbout" class="form-control"></textarea>
+          <div class="">
+            <textarea asp-for="FooterAbout" class="form-control" rows="8"></textarea>
+          </div>
           <span asp-validation-for="FooterAbout" class="text-danger"></span>
+        </div>
+      </div>
+      <table class="col-md-12 table table-bordered text-center">
+        <tr>
+          <td>تصویر درباره ما</td>
+          <td>عنوان عکس</td>
+          <td>Alt</td>
+          <td>پیش نمایش</td>
+          <td>حذف</td>
+        </tr>
+        <tr>
+          <td>
+            <input id="aboutPicture" name="aboutPicture" type="file" size="1" onchange="uploadFile('aboutPicture', 'AboutPicture', 'deleteImage', 'about');PreviewImage('aboutPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
+            <input asp-for="AboutPicture" type="hidden" size="1" value="" />
+            <span class="text-danger"><strong>نکته:</strong> سایز عکس باید ۵۷۰ * ۵۷۰ باشد</span>
+          </td>
+          <td>
+            <div class="form-group">
+              <input asp-for="AboutPictureTitle" class="form-control"/>
+              <span asp-validation-for="AboutPictureTitle" class="text-danger"></span>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <input asp-for="AboutPictureAlt" class="form-control"/>
+              <span asp-validation-for="AboutPictureAlt" class="text-danger"></span>
+            </div>
+          </td>
+          <td>
+            <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
+          </td>
+          <td>
+            <button type="button" id="deleteImage" onclick="deletePhoto('AboutPicture', 'prevImage', 'deleteImage', 'AboutPictureTitle', 'AboutPictureAlt', 'desc', 'about')" class="btn btn-danger hidden">حذف</button>
+          </td>
+        </tr>
+      </table>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label asp-for="Privacy" class="control-label"></label>
+          <div class="">
+            <textarea asp-for="Privacy" class="form-control" rows="8"></textarea>
+          </div>
+          <span asp-validation-for="Privacy" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">

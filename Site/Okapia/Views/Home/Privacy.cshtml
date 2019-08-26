@@ -1,6 +1,24 @@
-﻿@{
-    ViewData["Title"] = "قوانین و مقررات";
+﻿@model string
+@{
+  ViewData["Title"] = "قوانین و مقررات";
 }
-<h1>@ViewData["Title"]</h1>
-
-<p>قوانین و مقررات مربوط به گروه سایت اَکاپیا</p>
+<section class="custom-banner dark-overlay" style="background: url('/assets/images/hero.jpg') no-repeat fixed;"></section><!--/Custom Banner-->
+<!--About Area-->
+<section class="about-area section-padding-2">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-12 centered wow fadeInUp" data-wow-delay="0.3s">
+        <div class="section-title">
+          <h2>قوانین و مقررات اُکاپیا</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row rtl">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInLeft" data-wow-delay="0.4s">
+        <div class="about-media">
+          <p>@Model</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!--/About Area-->

@@ -115,10 +115,11 @@
           </td>
           @if (string.IsNullOrEmpty(Model.NameImage))
           {
-            <td>
-              <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
-              <input asp-for="NameImage" type="hidden" size="1" value=""/>
-            </td>
+          <td>
+            <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100" />
+            <input asp-for="NameImage" type="hidden" size="1" value="" />
+            <span class="text-danger"><strong>نکته:</strong> سایز عکس باید 372 * 600 باشد و بهتر است پشت زمینه آن #F2F0ED باشد</span>
+          </td>
             <td>
               <button type="button" id="deleteImage" onclick="deletePhoto('NameImage', 'prevImage', 'deleteImage', 'TitleImage', 'AltImage', 'DescImage', 'category')" class="btn btn-danger hidden">حذف</button>
             </td>

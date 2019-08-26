@@ -359,6 +359,7 @@
           <td>
             <input id="@inputId" name="@inputId" type="file" size="1" onchange="uploadFile('@inputId', '@propertyInputName', '@deleteBtnId', 'job');PreviewImage('@inputId', '@prevImageId');" class="form-control custom-file-input" accept="image/*" value="@photo.value.Name" />
             <input asp-for="@propertyInputId" id="@propertyInputId" name="@propertyInputId" type="hidden" size="1" value="@photo.value.Id" />
+            <span class="text-danger"><strong>نکته:</strong> سایز عکس باید 372 * 600 باشد</span>
           </td>
           <td>
             <div class="form-group">

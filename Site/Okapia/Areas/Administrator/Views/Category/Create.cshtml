@@ -90,8 +90,9 @@
     </tr>
     <tr>
       <td>
-        <input id="categoryPicture" name="categoryPicture" type="file" size="1" onchange="uploadFile('categoryPicture', 'NameImage', 'deleteImage', 'category');PreviewImage('categoryPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*"/>
-        <input asp-for="NameImage" type="hidden" size="1" value=""/>
+        <input id="categoryPicture" name="categoryPicture" type="file" size="1" onchange="uploadFile('categoryPicture', 'NameImage', 'deleteImage', 'category');PreviewImage('categoryPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
+        <input asp-for="NameImage" type="hidden" size="1" value="" />
+        <span class="text-danger"><strong>نکته:</strong> سایز عکس باید 372 * 600 باشد و بهتر است پشت زمینه آن #F2F0ED باشد</span>
       </td>
       <td>
         <div class="form-group">

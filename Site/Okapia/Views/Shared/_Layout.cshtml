@@ -3,37 +3,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>@ViewData["Title"] - سایت تخفیف اُکاپیا</title>
   <meta name="description" content="@ViewData["MetaDescription"]">
-  <meta name="robots" content="@ViewData["MetaTags"]" />
-  <link rel="canonical" href="@ViewData["CanonicalAddress"]" />
+  <meta name="robots" content="@ViewData["MetaTags"]"/>
+  <link rel="canonical" href="@ViewData["CanonicalAddress"]"/>
 
   <link rel="shortcut icon" href="~/assets/images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  @*<link href="~/assets/css/bootstrap.min.css" rel="stylesheet">*@
+  @*<link href="~/assets/css/swiper.min.css" rel="stylesheet">*@
 
-  <!-- Bootstrap -->
-  <link href="~/assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="~/css/site.min.css" rel="stylesheet">
 
-  <!-- <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet"> -->
-  <link href="~/assets/css/all.css" rel="stylesheet">
-  <!-- <link href="assets/css/font-awesome.min.css" rel="stylesheet"> -->
+  @*<link href="~/assets/css/all.css" rel="stylesheet">
   <link href="~/assets/css/magnific-popup.css" rel="stylesheet">
-
   <link href="~/assets/css/animate.css" rel="stylesheet">
   <link href="~/assets/css/owl.carousel.min.css" rel="stylesheet">
-
   <link href="~/assets/notifications/notification.css" rel="stylesheet" />
-
-  <!-- Main css -->
   <link href="~/assets/css/main.css" rel="stylesheet">
-  @* Slider Product *@
-  <link href="~/assets/css/swiper.min.css" rel="stylesheet">
-
   <link href="~/css/site.css" rel="stylesheet" />
-  <link href="~/css/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
+  <link href="~/css/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />*@
+
 </head>
 
 
@@ -43,123 +36,100 @@
   @await Component.InvokeAsync("Menu")
 </header>
 
-  @RenderBody()
+@RenderBody()
 
-  <footer class="footer-area section-padding-2">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-          <div class="footer-content">
+<footer class="footer-area section-padding-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <div class="footer-content">
+          <a href="#">
+            <img src="assets/images/logo.png" alt="">
+          </a>
+          <p>
+            موسسه اکاپیا با بهره گیری از برترین متخصصین بازاریابی توزیع و فروش
+            علاوه بر ارایه خدمات و کالاهای با کیفیت امکان دریافت تخفیف های چشمگیری را برای هموطنان عزیز فراهم
+            نموده است
+          </p>
+          <div class="footer-social">
             <a href="#">
-              <img src="assets/images/logo.png" alt="">
+              <i class="fab fa-facebook"></i>
             </a>
-            <p>
-              موسسه اکاپیا با بهره گیری از برترین متخصصین بازاریابی توزیع و فروش
-              علاوه بر ارایه خدمات و کالاهای با کیفیت امکان دریافت تخفیف های چشمگیری را برای هموطنان عزیز فراهم
-              نموده است
-            </p>
-            <div class="footer-social">
-              <a href="#">
-                <i class="fab fa-facebook"></i>
-              </a>
-              <a href="#">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="#">
-                <i class="fab fa-telegram"></i>
-              </a>
-              <a href="#">
-                <i class="fab fa-twitter"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 d-none d-md-block">
-          <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6">
-              <div class="footer-menu">
-                <h3>دسترسی سریع</h3>
-                <ul>
-                  <li>
-                    <a asp-controller="Home" asp-action="Index">صفحه نخست</a>
-                  </li>
-                  <li>
-                    <a asp-controller="Home" asp-action="About">درباره ما</a>
-                  </li>
-                  <li>
-                    <a asp-controller="Home" asp-action="Contact">تماس با ما</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-              <div class="footer-menu">
-                <h3>لینک های مهم</h3>
-                <ul>
-                  <li>
-                    <a asp-controller="Account" asp-action="Register">ثبت نام</a>
-                  </li>
-                  <li>
-                    <a asp-controller="Account" asp-action="Login">ورود</a>
-                  </li>
-                  <li>
-                    <a asp-controller="Home" asp-action="Agency">همکاری با ما</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            @await Component.InvokeAsync("LatestPagesFooter")
-          </div>
-        </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-          <div class="copyright centered">
-            <p>&copy;طراحی و اجرا <a href="https://tahlildadeh.com">تحلیل داده</a></p>
+            <a href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-telegram"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-twitter"></i>
+            </a>
           </div>
         </div>
       </div>
+      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 d-none d-md-block">
+        <div class="row">
+          
+          @await Component.InvokeAsync("FooterLinks")
+          @await Component.InvokeAsync("LatestPagesFooter")
+
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="copyright centered">
+          <p>&copy;طراحی و اجرا <a href="https://tahlildadeh.com">تحلیل داده</a></p>
+        </div>
+      </div>
     </div>
-  </footer>
-  <footer class="border-top footer text-muted">
-    <div class="container">
-      &copy; 2019 - Okapia - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </div>
-  </footer>
+  </div>
+</footer>
+<footer class="border-top footer text-muted">
+  <div class="container">
+    &copy; 2019 - Okapia - <a asp-area="" asp-controller="Home" asp-action="قوانین-و-مقررات">قوانین و مقررات</a>
+  </div>
+</footer>
 
-  @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
-  <script src="~/assets/js/jquery-3.2.1.min.js"></script>
-  <script src="~/assets/js/jquery-migrate.js"></script>
+@*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+@*<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/js/jquery-migrate.js"></script>
+<script src="~/assets/js/popper.js"></script>
+<script src="~/assets/js/bootstrap.min.js"></script>
+<script src="~/assets/js/owl.carousel.min.js"></script>
+<script src="~/assets/js/magnific-popup.min.js"></script>
+<script src="~/assets/js/imagesloaded.pkgd.min.js"></script>
+<script src="~/assets/js/isotope.pkgd.min.js"></script>
+<script src="~/assets/js/waypoints.min.js"></script>
+<script src="~/assets/js/jquery.counterup.min.js"></script>
+<script src="~/assets/js/wow.min.js"></script>
+<script src="~/assets/js/scrollUp.min.js"></script>
+<script src="~/assets/js/swiper.min.js"></script>
+<script src="~/assets/js/script.js"></script>*@
+@*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>*@
+@*<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/assets/notifications/notify.min.js"></script>
+<script src="~/assets/notifications/notify-metro.js"></script>
+<script src="~/assets/notifications/notifications.js"></script>
+<script src="~/js/site.js"></script>
+<script src="~/js/ajaxFunctions.js"></script>
+<script src="~/js/calendar.js"></script>
+<script src="~/js/jquery.Bootstrap-PersianDateTimePicker.js"></script>*@
+@*<script src="https://www.google.com/recaptcha/api.js" async defer></script>*@
 
-  <script src="~/assets/js/popper.js"></script>
-  <script src="~/assets/js/bootstrap.min.js"></script>
-  <script src="~/assets/js/owl.carousel.min.js"></script>
+<script src="~/js/site.min.js"></script>
 
-  <script src="~/assets/js/magnific-popup.min.js"></script>
-  <script src="~/assets/js/imagesloaded.pkgd.min.js"></script>
-  <script src="~/assets/js/isotope.pkgd.min.js"></script>
-
-  <script src="~/assets/js/waypoints.min.js"></script>
-  <script src="~/assets/js/jquery.counterup.min.js"></script>
-  <script src="~/assets/js/wow.min.js"></script>
-  <script src="~/assets/js/scrollUp.min.js"></script>
-  <script src="~/assets/js/swiper.min.js"></script>
-
-  <script src="~/assets/js/script.js"></script>
-
-  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-  <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-  <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-
-  <script src="~/assets/notifications/notify.min.js"></script>
-  <script src="~/assets/notifications/notify-metro.js"></script>
-  <script src="~/assets/notifications/notifications.js"></script>
-
-  <script src="~/js/site.js" asp-append-version="true"></script>
-  <script src="~/js/ajaxFunctions.js"></script>
-
-  <script src="~/js/calendar.js"></script>
-  <script src="~/js/jquery.Bootstrap-PersianDateTimePicker.js"></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-  @RenderSection("Scripts", required: false)
+<script>
+  jQuery(document).ready(function() {
+    $.get('@Url.Action("GetModals", "Home")',
+      {},
+      function(HTMLData) {
+        if (HTMLData !== "") {
+          $('body').append(HTMLData);
+          $('.modalNotify').modal('show');
+        }
+      });
+  });
+    </script>
+@*@RenderSection("Scripts", required: false)*@
 </body>
 </html>

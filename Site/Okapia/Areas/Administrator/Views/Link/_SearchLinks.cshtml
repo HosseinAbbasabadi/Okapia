@@ -1,0 +1,47 @@
+﻿@model Okapia.Domain.SeachModels.LinkSearchModel
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">جستجو در لینک ها</h2>
+      </div>
+      <div class="panel-body">
+        <form asp-action="Index" asp-controller="Link" asp-area="Administrator" method="GET">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="Label" class="control-label"></label>
+              <input asp-for="Label" class="form-control" />
+              <span asp-validation-for="Label" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="Category" class="control-label"></label>
+              <select asp-for="Category" class="select2">
+                <option value="0">انتخاب گروه</option>
+                <option value="1">دسترسی سریع</option>
+                <option value="2">مطالب مهم</option>
+              </select>
+              <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="IsDeleted" class="control-label"></label>
+              <input asp-for="IsDeleted" class="form-control" />
+              <span asp-validation-for="IsDeleted" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="submit" value="جستجو" class="btn btn-primary" />
+              <a asp-area="Administrator" asp-controller="Link" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

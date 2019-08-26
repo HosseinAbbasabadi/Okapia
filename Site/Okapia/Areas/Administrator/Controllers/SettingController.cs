@@ -29,7 +29,7 @@ namespace Okapia.Areas.Administrator.Controllers
         }
 
         [HttpPost]
-        public JsonResult Create(SetSettings command)
+        public JsonResult Create(SettingDto command)
         {
             var result = _settingApplication.CreateSettings(command);
             return Json(result);

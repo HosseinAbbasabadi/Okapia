@@ -10,12 +10,18 @@ namespace Okapia.Controllers
     public class AccountController : Controller
     {
         private readonly IAuthHelper _authHelper;
+        private readonly ICityApplication _cityApplication;
+        private readonly IDistrictApplication _districtApplication;
+        private readonly INeighborhoodApplication _neighborhoodApplication;
         private readonly IAccountApplication _accountApplication;
 
-        public AccountController(IAccountApplication accountApplication, IAuthHelper authHelper)
+        public AccountController(IAccountApplication accountApplication, IAuthHelper authHelper, ICityApplication cityApplication, IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication)
         {
             _accountApplication = accountApplication;
             _authHelper = authHelper;
+            _cityApplication = cityApplication;
+            _districtApplication = districtApplication;
+            _neighborhoodApplication = neighborhoodApplication;
         }
 
         public ActionResult Register()
@@ -37,8 +43,11 @@ namespace Okapia.Controllers
             if (result.Success)
                 return RedirectToAction("Login", "Account");
             ViewData["errorMessage"] = result.Message;
-            createUser.ProvinceId = 0;
             createUser.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
+            createUser.Cities= new SelectList(_cityApplication.GetCitiesBy(createUser.ProvinceId), "Id", "Name");
+            createUser.Districts= new SelectList(_districtApplication.GetDistrictsBy(createUser.CityId), "Id", "Name");
+            createUser.Neighborhoods= new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(createUser.DistrictId), "Id", "Name");
+
             return View(createUser);
         }
 

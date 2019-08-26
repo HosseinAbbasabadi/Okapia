@@ -179,5 +179,8 @@ namespace Okapia.Domain.Commands.User
         }
 
         public SelectList Provinces { get; set; }
+        public SelectList Cities { get; set; }
+        public SelectList Districts { get; set; }
+        public SelectList Neighborhoods { get; set; }
     }
 }

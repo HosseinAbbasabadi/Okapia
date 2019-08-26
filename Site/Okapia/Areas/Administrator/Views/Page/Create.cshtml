@@ -101,8 +101,9 @@
         </tr>
         <tr>
           <td>
-            <input id="pagePicture" name="pagePicture" type="file" size="1" onchange="uploadFile('pagePicture', 'PagePicture', 'deleteImage', 'page');PreviewImage('pagePicture', 'prevImage');" class="form-control custom-file-input" accept="image/*"/>
-            <input asp-for="PagePicture" type="hidden" size="1" value=""/>
+            <input id="pagePicture" name="pagePicture" type="file" size="1" onchange="uploadFile('pagePicture', 'PagePicture', 'deleteImage', 'page');PreviewImage('pagePicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
+            <input asp-for="PagePicture" type="hidden" size="1" value="" />
+            <span class="text-danger"><strong>نکته:</strong> سایز عکس باید ۴۵۲ * ۶۴۰ باشد</span>
           </td>
           <td>
             <div class="form-group">

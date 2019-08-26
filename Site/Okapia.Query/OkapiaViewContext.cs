@@ -41,6 +41,7 @@ namespace Okapia.Query
         public DbSet<Slide> Slides { get; set; }
         public DbSet<UserGroup> UserGroups { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Link> Links { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -82,6 +83,7 @@ namespace Okapia.Query
             modelBuilder.ApplyConfiguration(new MarketerMapping());
 
             modelBuilder.ApplyConfiguration(new SettingMapping());
+            modelBuilder.ApplyConfiguration(new LinkMapping());
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Okapia.Domain.ViewModels.Link.LinkSiteViewModel>
+
+<div class="col-lg-4 col-md-4 col-sm-6">
+  <div class="footer-menu">
+    <h3>دسترسی سریع</h3>
+    <ul>
+      @foreach (var item in Model.Where(x => x.Category == 1))
+      {
+        <li>
+          <a href="@item.Target">@item.Label</a>
+        </li>
+      }
+    </ul>
+  </div>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-6">
+  <div class="footer-menu">
+    <h3>لینک های مهم</h3>
+    <ul>
+      @foreach (var item in Model.Where(x => x.Category == 2))
+      {
+        <li>
+          <a href="@item.Target">@item.Label</a>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

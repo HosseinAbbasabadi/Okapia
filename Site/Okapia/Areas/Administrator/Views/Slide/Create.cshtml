@@ -46,8 +46,9 @@
         </tr>
         <tr>
           <td>
-            <input id="slidePicture" name="slidePicture" type="file" size="1" onchange="uploadFile('slidePicture', 'NameImage', 'deleteImage', 'slide');PreviewImage('slidePicture', 'prevImage');" class="form-control custom-file-input" accept="image/*"/>
-            <input asp-for="NameImage" type="hidden" size="1" value=""/>
+            <input id="slidePicture" name="slidePicture" type="file" size="1" onchange="uploadFile('slidePicture', 'NameImage', 'deleteImage', 'slide');PreviewImage('slidePicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
+            <input asp-for="NameImage" type="hidden" size="1" value="" />
+            <span class="text-danger"><strong>نکته:</strong> سایز عکس باید ۶۸۳ * ۱۰۲۴ باشد</span>
           </td>
           <td>
             <div class="form-group">

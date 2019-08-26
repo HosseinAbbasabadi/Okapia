@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Okapia.Domain.ViewModels.Modal.ModalShowViewModel>
+@foreach (var modal in Model)
+{
+  <div class="modal fade modalNotify" id="modal-@modal.ModalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="display: block">
+          <h5 class="modal-title" id="exampleModalLabel" style="text-align: right !important; direction: rtl">
+            @modal.ModalTitle
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div></div>
+          <img src="~/ModalPhotos/@modal.ModalPic" alt="@modal.ModalPicAlt" title="@modal.ModalPicTitle"/>
+          @modal.ModalMessage
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+          <a href="@modal.ModalPageLink" target="_blank" class="bttn-mid btn-fill">بیشتر بدانید</a>
+        </div>
+      </div>
+    </div>
+  </div>  
+}

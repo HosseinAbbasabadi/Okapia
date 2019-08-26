@@ -6,10 +6,11 @@ namespace Okapia.Application.Contracts
 {
     public interface ISettingApplication
     {
-        OperationResult CreateSettings(SetSettings command);
-        SetSettings GetSettings();
+        OperationResult CreateSettings(SettingDto command);
+        SettingDto GetSettings();
         
         //
-        SetSettings GetSettingsForView();
+        SettingDto GetSettingsForView();
+        string GetPrivacy();
     }
 }

@@ -96,9 +96,13 @@ namespace Okapia.Configuration
             services.AddScoped<IModalQuery, ModalQuery>();
             services.AddScoped<IUserCardQuery, UserCardQuery>();
             services.AddScoped<ISettingQuery, SettingQuery>();
+            services.AddScoped<ILinkQuery, LinkQuery>();
 
             services.AddScoped<IUserCardApplication, UserCardApplication>();
             services.AddScoped<IUserCardRepository, UserCardRepository>();
+
+            services.AddScoped<ILinkApplication, LinkApplication>();
+            services.AddScoped<ILinkRepository, LinkRepository>();
 
             services.AddSingleton<IAuthHelper, AuthHelper>();
 

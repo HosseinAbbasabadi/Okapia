@@ -40,32 +40,29 @@ namespace Okapia.Controllers
 
         public IActionResult Index()
         {
-            var modals = new List<ModalShowViewModel>();
-            if (_authHelper.GetCurrnetUserInfo().Role != 1) return View(modals);
-            var userId = _authHelper.GetCurrnetUserInfo().ReferenceRecordId;
-            modals = _modalApplication.GetUserModals(userId);
-            return View(modals);
+            return View();
         }
 
+        [ActionName("درخواست-ثبت-نمایندگی-اُکاپیا")]
         public IActionResult Agency()
         {
-            var createJobRequest = new CreateJobRequest()
+            var createJobRequest = new CreateJobRequest
             {
                 Provinces = new SelectList(Provinces.ToList(), "Id", "Name")
             };
-            return View(createJobRequest);
+            return View("Agency", createJobRequest);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Agency(CreateJobRequest command)
         {
-            var recaptcha = _recaptchaService.Validate(Request);
-            if (!recaptcha.IsCompletedSuccessfully)
-            {
-                ViewData["errorMessage"] = "خطای اعتبارسنجی. لطفا دوباره تلاش کنید";
-                return View();
-            }
+            //var recaptcha = _recaptchaService.Validate(Request);
+            //if (!recaptcha.IsCompletedSuccessfully)
+            //{
+            //    ViewData["errorMessage"] = "خطای اعتبارسنجی. لطفا دوباره تلاش کنید";
+            //    return View();
+            //}
 
             var result = _jobRequestApplication.Create(command);
             if (result.Success)
@@ -78,26 +75,31 @@ namespace Okapia.Controllers
             return View();
         }
 
+        [ActionName("ثبت-موفق-نمایندگی-در-اُکاپیا")]
         public ActionResult AgencySuccess()
         {
-            return View();
+            return View("AgencySuccess");
         }
 
+        [ActionName("قوانین-و-مقررات")]
         public IActionResult Privacy()
         {
-            return View();
+            var privacy = _settingApplication.GetPrivacy();
+            return View("Privacy", privacy);
         }
 
+        [ActionName("درباره-اُکاپیا")]
         public IActionResult About()
         {
             var about = _settingApplication.GetSettings();
-            return View(about);
+            return View("About", about);
         }
 
+        [ActionName("تماس-با-اُکاپیا")]
         public IActionResult Contact()
         {
             var contact = _settingApplication.GetSettings();
-            return View(contact);
+            return View("Contact", contact);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -134,6 +136,15 @@ namespace Okapia.Controllers
         {
             var cities = _neighborhoodApplication.GetNeighborhoodsBy(id);
             return new JsonResult(cities);
+        }
+
+        [HttpGet]
+        public ActionResult GetModals()
+        {
+            if (_authHelper.GetCurrnetUserInfo().Role != 1) return Json("");
+            var userId = _authHelper.GetCurrnetUserInfo().ReferenceRecordId;
+            var modals = _modalApplication.GetUserModals(userId);
+            return PartialView("_Modal", modals);
         }
     }
 }

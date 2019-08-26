@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
-@model Okapia.Domain.Commands.Setting.SetSettings
+@model Okapia.Domain.Commands.Setting.SettingDto
 
 @{
   ViewData["Title"] = "تنظیمات سایت";
@@ -15,75 +15,81 @@
       </div>
       <hr />
       <div class="panel-body">
-        <div class="col-md-4 form-group">
+        <div class="col-md-12 form-group">
           <div class="detail-name">
             @Html.DisplayNameFor(model => model.About):
             <span>@Html.DisplayFor(model => model.About)</span>
           </div>
         </div>
-        <div class="col-md-4 form-group">
-          <div class="detail-name">
-            @Html.DisplayNameFor(model => model.AboutPicture):
-            <span>
-              @*<img src="@Model.AboutPicture" alt="@Model.AboutPictureAlt" />*@
-            </span>
-          </div>
-        </div>
-        <div class="col-md-4 form-group">
-          <div class="detail-name">
-            @Html.DisplayNameFor(model => model.AboutPictureAlt):
-            <span>@Html.DisplayFor(model => model.AboutPictureAlt)</span>
-          </div>
-        </div>
-        <div class="col-md-4 form-group">
-          <div class="detail-name">
-            @Html.DisplayNameFor(model => model.AboutPictureTitle):
-            <span>@Html.DisplayFor(model => model.AboutPictureTitle)</span>
-          </div>
-        </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-12 form-group">
           <div class="detail-name">
             @Html.DisplayNameFor(model => model.FooterAbout):
             <span>@Html.DisplayFor(model => model.FooterAbout)</span>
           </div>
         </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-6 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.AboutPicture):
+            <span>
+              <img src="~/AboutPicture/Thumbs/@Model.AboutPicture" alt="@Model.AboutPictureAlt" />
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.AboutPictureAlt):
+            <span>@Html.DisplayFor(model => model.AboutPictureAlt)</span>
+          </div>
+        </div>
+        <div class="col-md-6 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.AboutPictureTitle):
+            <span>@Html.DisplayFor(model => model.AboutPictureTitle)</span>
+          </div>
+        </div>
+        <div class="col-md-6 form-group">
+          <div class="detail-name">
+            @Html.DisplayNameFor(model => model.Privacy):
+            <span>@Html.DisplayFor(model => model.Privacy)</span>
+          </div>
+        </div>
+        <div class="col-md-6 form-group">
           <div class="detail-name">
             @Html.DisplayNameFor(model => model.Tell1):
             <span>@Html.DisplayFor(model => model.Tell2)</span>
           </div>
         </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-6 form-group">
           <div class="detail-name">
             @Html.DisplayNameFor(model => model.Address):
             <span>@Html.DisplayFor(model => model.Address)</span>
           </div>
         </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-6 form-group">
           <div class="detail-name">
             @Html.DisplayNameFor(model => model.Email):
             <span>@Html.DisplayFor(model => model.Email)</span>
           </div>
         </div>
-        <div class="col-md-4 form-group">
-          <div class="detail-name">
-            @Html.DisplayNameFor(model => model.Map):
-            <span>@Html.DisplayFor(model => model.Map)</span>
-          </div>
-        </div>
-        <div class="col-md-4 form-group">
+        @*<div class="col-md-6 form-group">
+      <div class="detail-name">
+        @Html.DisplayNameFor(model => model.Map):
+        <span>@Html.Raw(model => model.Map)</span>
+      </div>
+    </div>*@
+        <div class="col-md-6 form-group">
           <div class="detail-name">
             @Html.DisplayNameFor(model => model.MetaTags):
             <span>@Html.DisplayFor(model => model.MetaTags)</span>
           </div>
         </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-6 form-group">
           <div class="detail-name">
             @Html.DisplayNameFor(model => model.MetaDescription):
             <span>@Html.DisplayFor(model => model.MetaDescription)</span>
           </div>
         </div>
-        <div class="col-md-4 form-group">
+        <div class="col-md-6 form-group">
           <div class="detail-name">
             @Html.DisplayNameFor(model => model.CanonicalAddress):
             <span>@Html.DisplayFor(model => model.CanonicalAddress)</span>

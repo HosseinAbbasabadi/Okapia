@@ -1,0 +1,62 @@
+﻿@model Okapia.Domain.Commands.Link.EditLink
+
+<div id="editLinkModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog" style="width: 55%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="custom-width-modalLabel">ویرایش لینک @Model.Label</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <form id="editLinkFrm" method="post">
+              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="Label" class="control-label"></label>
+                  <input asp-for="Label" class="form-control" />
+                  <span asp-validation-for="Label" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="Target" class="control-label"></label>
+                  <input asp-for="Target" class="form-control" />
+                  <span asp-validation-for="Target" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="Category" class="control-label"></label>
+                  <select class="select2" asp-for="Category">
+                    <option value="0">انتخاب گروه</option>
+                    <option value="1">دسترسی سریع</option>
+                    <option value="2">مطالب مهم</option>
+                  </select>
+                  <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="IsDeleted" class="control-label"></label>
+                  <input asp-for="IsDeleted" class="form-control" />
+                  <span asp-validation-for="IsDeleted" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntity('@Url.Action("Edit", "Link")', 'editLinkFrm', 'editLinkModal')" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      @*<div class="modal-footer">
+          <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal">انصراف</button>
+          <button type="button" class="btn btn-success waves-effect waves-light">Save changes</button>
+        </div>*@
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
