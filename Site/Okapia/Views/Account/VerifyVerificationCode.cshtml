@@ -1,0 +1,40 @@
+﻿@model Okapia.Models.ChooseFpMethod
+
+@{
+  ViewData["Title"] = "کد احراز هویت";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="custom-banner dark-overlay" style="background: url('/assets/images/hero.jpg') no-repeat fixed;"></section>
+
+<section class="form-area section-padding">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 centered">
+        <div class="section-title">
+          <h2>کد ارسال شده را وارد نمایید</h2>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <form id="verifyCodeFrm" method="post" asp-controller="Account" asp-action="VerifyCode">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+          <div class="single-field">
+            <label asp-for="Code" class="control-label"></label>
+            <input asp-for="Code" class="form-control direct-ltr" />
+            <span asp-validation-for="Code" class="text-danger"></span>
+          </div>
+          <input asp-for="Type" type="hidden" />
+          <input asp-for="Phonenumber" type="hidden" />
+          <input asp-for="Email" type="hidden" />
+          <br />
+          <h3 class="text-danger">@ViewData["errorMessage"]</h3>
+          <br />
+          <div class="form-group">
+            <button type="submit" onclick="" class="bttn-mid btn-fill">تایید</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

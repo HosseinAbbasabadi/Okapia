@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Framework;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Areas.Administrator.Controllers;
 using Okapia.Domain.Commands;
 using Okapia.Domain.Commands.User;
+using Okapia.Models;
 
 namespace Okapia.Controllers
 {
@@ -15,7 +17,9 @@ namespace Okapia.Controllers
         private readonly INeighborhoodApplication _neighborhoodApplication;
         private readonly IAccountApplication _accountApplication;
 
-        public AccountController(IAccountApplication accountApplication, IAuthHelper authHelper, ICityApplication cityApplication, IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication)
+        public AccountController(IAccountApplication accountApplication, IAuthHelper authHelper,
+            ICityApplication cityApplication, IDistrictApplication districtApplication,
+            INeighborhoodApplication neighborhoodApplication)
         {
             _accountApplication = accountApplication;
             _authHelper = authHelper;
@@ -44,9 +48,10 @@ namespace Okapia.Controllers
                 return RedirectToAction("Login", "Account");
             ViewData["errorMessage"] = result.Message;
             createUser.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
-            createUser.Cities= new SelectList(_cityApplication.GetCitiesBy(createUser.ProvinceId), "Id", "Name");
-            createUser.Districts= new SelectList(_districtApplication.GetDistrictsBy(createUser.CityId), "Id", "Name");
-            createUser.Neighborhoods= new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(createUser.DistrictId), "Id", "Name");
+            createUser.Cities = new SelectList(_cityApplication.GetCitiesBy(createUser.ProvinceId), "Id", "Name");
+            createUser.Districts = new SelectList(_districtApplication.GetDistrictsBy(createUser.CityId), "Id", "Name");
+            createUser.Neighborhoods =
+                new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(createUser.DistrictId), "Id", "Name");
 
             return View(createUser);
         }
@@ -105,6 +110,80 @@ namespace Okapia.Controllers
             command.AccountId = id;
             var result = _accountApplication.ChangePassword(command);
             return Json(result);
+        }
+
+        public ActionResult ChooseFpMethod()
+        {
+            var chooseFpMethod = new ChooseFpMethod();
+            return View(chooseFpMethod);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChooseFpMethod(ChooseFpMethod command)
+        {
+            var result = new OperationResult();
+            if (command.Type == "sms")
+            {
+                result = _accountApplication.CreateVerificationCodeByMobile(command.Phonenumber);
+            }
+
+            if (command.Type == "email")
+            {
+                result = _accountApplication.CreateVerificationCodeByEmail(command.Email);
+            }
+
+            if (result.Success)
+            {
+                return RedirectToAction("VerifyVerificationCode", command);
+            }
+
+            ViewData["errorMessage"] = result.Message;
+            return View(command);
+        }
+
+        public ActionResult VerifyVerificationCode(ChooseFpMethod command)
+        {
+            return View(command);
+        }
+
+        [HttpPost]
+        public ActionResult VerifyCode(ChooseFpMethod command)
+        {
+            var result = new OperationResult();
+            if (command.Type == "sms")
+            {
+                result = _accountApplication.VerifyWithSms(command.Phonenumber, command.Code);
+            }
+
+            if (command.Type == "email")
+            {
+                result = _accountApplication.VerifyWithEmail(command.Email, command.Code);
+            }
+
+            if (result.Success)
+                return RedirectToAction("ChangePasswordPage", routeValues: new {id = result.RecordId});
+            ViewData["errorMessage"] = result.Message;
+            return View("VerifyVerificationCode");
+        }
+
+        [HttpGet]
+        public ActionResult ChangePasswordPage(long id)
+        {
+            var model = new ChangePassword();
+            ViewData["accountId"] = id;
+            return View("ChangePassword", model);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePasswordPage(long id, ChangePassword command)
+        {
+            command.AccountId = id;
+            var result = _accountApplication.ChangePassword(command);
+            if (result.Success)
+                return RedirectToAction("Login");
+            ViewData["errorMessage"] = result.Message;
+            return View("ChangePassword");
         }
     }
 }

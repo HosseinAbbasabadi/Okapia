@@ -17,10 +17,9 @@ namespace Okapia.Repository.Repositories
             return _context.Accounts.FirstOrDefault(x => x.Id == id);
         }
 
-        public Account GetAccountByReferenceRecord(long id, int roleId)
+        public Account GetAccountByReferenceRecord(long id)
         {
-            return _context.Accounts.Where(x => x.ReferenceRecordId == id)
-                .FirstOrDefault(x => x.RoleId == roleId);
+            return _context.Accounts.FirstOrDefault(x => x.ReferenceRecordId == id);
         }
 
         public Account GetChnagePasswordInfo(long id)

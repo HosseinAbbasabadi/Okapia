@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,6 +48,14 @@ namespace Okapia
 
             services.AddHttpContextAccessor();
             services.Configure<RecaptchaSettings>(Configuration.GetSection("RecaptchaSettings"));
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add<GzipCompressionProvider>();
+                options.MimeTypes =
+                    ResponseCompressionDefaults.MimeTypes.Concat(
+                        new[] {"image/svg+xml/css/js"});
+            });
+            services.AddResponseCaching();
             services.AddMvc(options => { options.EnableEndpointRouting = false; })
                 .AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = true)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -65,6 +75,8 @@ namespace Okapia
                 app.UseHsts();
             }
 
+            app.UseResponseCaching();
+            app.UseResponseCompression();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

@@ -14,7 +14,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Okapia.Domain\Okapia.Domain.csproj" />
+    <ProjectReference Include="..\Okapia.EmailService\Okapia.EmailService.csproj" />
     <ProjectReference Include="..\Okapia.Repository\Okapia.Repository.csproj" />
+    <ProjectReference Include="..\Okapia.SmsService\Okapia.SmsService.csproj" />
     <ProjectReference Include="..\Okapia.WebService.Adapter\Okapia.WebService.Adapter.csproj" />
   </ItemGroup>
 

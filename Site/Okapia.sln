@@ -16,7 +16,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework", "Framework\Fram
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.WebService.Adapter", "Okapia.WebService.Adapter\Okapia.WebService.Adapter.csproj", "{CF753532-79E5-4B42-85C5-9371D6E55F0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okapia.Query", "Okapia.Query\Okapia.Query.csproj", "{CFCFBE8A-E33C-4866-8AFB-B4879A983369}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.Query", "Okapia.Query\Okapia.Query.csproj", "{CFCFBE8A-E33C-4866-8AFB-B4879A983369}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.SmsService", "Okapia.SmsService\Okapia.SmsService.csproj", "{277BC47D-A0F5-491D-88F5-17CEEB211DDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okapia.EmailService", "Okapia.EmailService\Okapia.EmailService.csproj", "{EA017F08-49FC-4914-BFAC-CE4CB5B1D816}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +60,14 @@ Global
 		{CFCFBE8A-E33C-4866-8AFB-B4879A983369}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFCFBE8A-E33C-4866-8AFB-B4879A983369}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFCFBE8A-E33C-4866-8AFB-B4879A983369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{277BC47D-A0F5-491D-88F5-17CEEB211DDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{277BC47D-A0F5-491D-88F5-17CEEB211DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{277BC47D-A0F5-491D-88F5-17CEEB211DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{277BC47D-A0F5-491D-88F5-17CEEB211DDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA017F08-49FC-4914-BFAC-CE4CB5B1D816}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA017F08-49FC-4914-BFAC-CE4CB5B1D816}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA017F08-49FC-4914-BFAC-CE4CB5B1D816}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA017F08-49FC-4914-BFAC-CE4CB5B1D816}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

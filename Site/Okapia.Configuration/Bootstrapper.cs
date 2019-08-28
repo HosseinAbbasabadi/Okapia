@@ -6,10 +6,12 @@ using Okapia.Application.Applications;
 using Okapia.Application.Contracts;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.QueryContracts;
+using Okapia.EmailService;
 using Okapia.Query;
 using Okapia.Query.Query;
 using Okapia.Repository;
 using Okapia.Repository.Repositories;
+using Okapia.SmsService;
 using Okapia.WebService.Adapter;
 using Okapia.WebService.Adapter.Contracts;
 using reCAPTCHA.AspNetCore;
@@ -113,6 +115,8 @@ namespace Okapia.Configuration
             services.AddScoped<IJobPictureRepository, JobPictureRepository>();
 
             services.AddScoped<IPasargadService, PasargadService>();
+            services.AddScoped<ISmsService, SmsService.SmsService>();
+            services.AddScoped<IEmailService, EmailService.EmailService>();
 
             services.AddTransient<IRecaptchaService, RecaptchaService>();
 

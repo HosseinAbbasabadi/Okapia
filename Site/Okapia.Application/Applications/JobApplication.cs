@@ -186,7 +186,7 @@ namespace Okapia.Application.Applications
 
                 var jobWithoutPictures = MapEditJobToJob(command);
                 var job = MapJobPicturesForUpdate(command.Photos, jobWithoutPictures);
-                var account = _accountRepository.GetAccountByReferenceRecord(job.JobId, Constants.Roles.Job.Id);
+                var account = _accountRepository.GetAccountByReferenceRecord(job.JobId);
                 account.Username = command.Username.ToLower();
                 account.IsDeleted = command.IsDeleted;
                 _jobRepository.Update(job);

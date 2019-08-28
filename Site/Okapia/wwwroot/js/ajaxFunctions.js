@@ -80,6 +80,23 @@ function checkFormValidation(formId) {
   return false;
 }
 
+function verifyCode(url, formId) {
+  if ($("#" + formId).valid() === true) {
+    const sendingData = $(`#${formId}`).serialize();
+    $.post(url,
+      sendingData,
+      function(operationResult) {
+        if (operationResult.success) {
+          
+          $(`#${formId}`).trigger("reset");
+          location.reload();
+        } else {
+          sendNotification('error', 'top right', "خطا", operationResult.message);
+        }
+      });
+  }
+}
+
 function createEntity(url, formId) {
   if ($("#" + formId).valid() === true) {
     const sendingData = $(`#${formId}`).serialize();

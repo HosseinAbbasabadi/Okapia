@@ -14,5 +14,9 @@ namespace Okapia.Application.Contracts
         OperationResult Activate(long id);
         AccountViewModel GetAccountInfo();
         OperationResult ChangePassword(ChangePassword command);
+        OperationResult CreateVerificationCodeByMobile(string mobile);
+        OperationResult CreateVerificationCodeByEmail(string email);
+        OperationResult VerifyWithSms(string commandPhonenumber, long code);
+        OperationResult VerifyWithEmail(string commandEmail, long code);
     }
 }

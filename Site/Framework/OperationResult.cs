@@ -11,6 +11,10 @@ namespace Framework
         public bool Success { get; set; }
         public string Message { get; set; }
 
+        public OperationResult()
+        {
+            
+        }
         public OperationResult(string tableName, string operation)
         {
             TableName = tableName;

@@ -44,7 +44,7 @@
           </th>
           </thead>
           <tbody>
-          @foreach (var item in Model.Select((value, index) => new { index, value }))
+          @foreach (var item in Model.Select((value, index) => new {index, value}))
           {
             <tr>
               <td>
@@ -55,7 +55,14 @@
                 @index
               </td>
               <td>
-                <img src="~/PagePhotos/Thumbs/@item.value.PagePicture" with="100" height="100" />
+                @if (!string.IsNullOrEmpty(item.value.PagePicture))
+                {
+                  <img src="~/PagePhotos/Thumbs/@item.value.PagePicture" with="100" height="100"/>
+                }
+                else
+                {
+                  <img src="~/defaultimage.png" with="100" height="100"/>
+                }
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.PageTitle)

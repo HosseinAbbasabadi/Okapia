@@ -1,0 +1,53 @@
+﻿@model Okapia.Models.ChooseFpMethod
+
+@{
+  ViewData["Title"] = "انتخاب روش احراز هویت";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="custom-banner dark-overlay" style="background: url('/assets/images/hero.jpg') no-repeat fixed;"></section>
+
+<section class="form-area section-padding">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 centered">
+        <div class="section-title">
+          <h2>روش ارسال کد احراز هویت را انتخاب کنید</h2>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <form method="post" id="chooseFpMethodFrm" asp-controller="Account" asp-action="ChooseFpMethod">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="radio">
+            <label class="control-label">ارسال از طریق پیامک</label>
+            <input asp-for="Type" type="radio" value="sms" checked="checked" />
+          </div>
+
+          <div class="radio">
+            <label class="control-label">ارسال از طریق پست ایمیل</label>
+            <input asp-for="Type" type="radio" value="email" />
+          </div>
+
+          <div class="single-field">
+            <label asp-for="Phonenumber" class="control-label"></label>
+            <input asp-for="Phonenumber" class="form-control direct-ltr" />
+            <span asp-validation-for="Phonenumber" class="text-danger"></span>
+          </div>
+
+          <div class="single-field">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control direct-ltr" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+          </div>
+          <br />
+          <h3 class="text-danger">@ViewData["errorMessage"]</h3>
+          <br />
+          <div class="form-group">
+            @*<input type="button" value="ثبت" class="btn btn-primary" onclick="createUser('@Url.Action("Register", "User")', 'createUserFrm', '@Url.Action("Index", "Home")')"/>*@
+            <button type="submit" class="bttn-mid btn-fill">ارسال کد</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -12,6 +12,9 @@
         public const string DuplicatedListCard = "ورود کارت تکراری مجاز نمی باشد";
         public const string DuplicatedDatabaseCard = "کارت قبلا در سیستم ثبت شده است";
         public const string UserNotExists = "نام کاربری اشتباه است. لطفا دوباره تلاش کنید";
+        public const string UserMobileNotExists = "شماره موبایلی که وارد کردید در سیستم ثبت نشده است.";
+        public const string UserEmailNotExists = "ایمیلی که وارد کردید در سیستم ثبت نشده است.";
+        public const string WrongVerificationCode = "کد احراز هویت وارد شده اشتباه است.";
         public const string IncorrectPassword = "کلمه رمز اشتباه است. لطفا دوباره تلاش کنید";
         public const string DuplicatedSlug = "اسلاگ نمی تواند تکراری باشد";
         public const string DuplicatedJobName = "نام شغل نمی تواند تکراری باشد";
@@ -27,5 +30,7 @@
         //WebService Messages
         public static string UserAlreadyRegistered = "امکان ثبت نام وجود ندارد. کاربر با این کدملی قبلا در سیستم ثبت شده است";
 
+        //SmsService Message
+        public static string VerificationCodeSent = "کد احراز هویت برای شما ارسال شد";
     }
 }

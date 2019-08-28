@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Framework;
@@ -16,7 +17,7 @@ namespace Okapia.Areas.Administrator.Controllers
     public class UploaderController : Controller
     {
         private readonly IHostingEnvironment _hostingEnvironment;
-        private const int ThreeMegaBytes = 3 * 1024 * 1024;
+        private const int SizeLimitation = 1024 * 1024 / 5;
 
         public UploaderController(IHostingEnvironment hostingEnvironment)
         {
@@ -29,7 +30,11 @@ namespace Okapia.Areas.Administrator.Controllers
             var containingFoler = DetectContainingFoler(type);
             var photo = files.First();
             if (!photo.FileName.IsValidFileName()) return Json(400);
-            if (photo.Length > ThreeMegaBytes) return Json(401);
+            if (photo.Length > SizeLimitation) return Json(401);
+            using (var image  = Image.FromStream(photo.OpenReadStream()))
+            {
+                //TODO: check image with & height here
+            }
             var filename = ContentDispositionHeaderValue.Parse(photo.ContentDisposition).FileName.ToString()
                 .Trim('"');
             var uniqueFileName = DateTime.Now.ToFileName() + "_" + filename;
