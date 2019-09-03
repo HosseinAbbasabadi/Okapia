@@ -38,6 +38,20 @@
           <span asp-validation-for="SlideIsDeleted" class="text-danger"></span>
         </div>
       </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="SlideBtnText" class="control-label"></label>
+          <input asp-for="SlideBtnText" class="form-control direct-ltr" />
+          <span asp-validation-for="SlideBtnText" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="SlideBtnIsVisible" class="control-label"></label>
+          <input asp-for="SlideBtnIsVisible" class="form-control direct-ltr" />
+          <span asp-validation-for="SlideBtnIsVisible" class="text-danger"></span>
+        </div>
+      </div>
       <table class="col-md-12 table table-bordered text-center">
         <tr>
           <td>فایل</td>
@@ -50,7 +64,6 @@
         <tr>
           <td>
             <input id="slidePicture" name="slidePicture" type="file" size="1" onchange="uploadFile('slidePicture', 'NameImage', 'deleteImage', 'slide');PreviewImage('slidePicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
-            <input asp-for="NameImage" type="hidden" size="1" value="" />
             <span class="text-danger"><strong>نکته:</strong> سایز عکس باید ۶۸۳ * ۱۰۲۴ باشد</span>
           </td>
           <td>

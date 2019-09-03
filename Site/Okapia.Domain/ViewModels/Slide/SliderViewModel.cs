@@ -10,5 +10,7 @@
         public string SlideDescription { get; set; }
         public string SlideTitleText { get; set; }
         public string SlideDescriptionText { get; set; }
+        public string SlideBtnText { get; set; }
+        public bool SlideBtnIsVisible { get; set; }
     }
 }

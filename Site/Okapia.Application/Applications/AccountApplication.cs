@@ -22,10 +22,12 @@ namespace Okapia.Application.Applications
         private readonly IPasswordHasher _passwordHasher;
         private readonly ISmsService _smsService;
         private readonly IEmailService _emailService;
+        private readonly ISettingApplication _settingApplication;
 
         public AccountApplication(IUserRepository userRepository, IAccountRepository accountRepository,
             IAuthHelper authHelper, IPasswordHasher passwordHasher, IUserApplication userApplication,
-            ISmsService smsService, IJobRepository jobRepository, IEmailService emailService)
+            ISmsService smsService, IJobRepository jobRepository, IEmailService emailService,
+            ISettingApplication settingApplication)
         {
             _userRepository = userRepository;
             _accountRepository = accountRepository;
@@ -35,6 +37,7 @@ namespace Okapia.Application.Applications
             _smsService = smsService;
             _jobRepository = jobRepository;
             _emailService = emailService;
+            _settingApplication = settingApplication;
         }
 
         public OperationResult Login(Login login)
@@ -203,7 +206,8 @@ namespace Okapia.Application.Applications
 
                 var random = new Random();
                 var code = random.Next(10000, 99999);
-                _smsService.SendSms($"کد احراز هویت شما: {code}", mobile);
+                var forgetPasswordMessage = $"{_settingApplication.GetForgetPasswordText()} {code}";
+                _smsService.SendSms(forgetPasswordMessage, mobile);
                 var account = _accountRepository.GetAccountByReferenceRecord(referenceRecordId);
                 account.RefereshToken = code;
                 _accountRepository.SaveChanges();

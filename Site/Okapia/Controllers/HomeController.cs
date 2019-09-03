@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Areas.Administrator.Controllers;
+using Okapia.Domain.Commands.Contactus;
 using Okapia.Domain.Commands.JobRequest;
 using Okapia.Domain.SeachModels;
-using Okapia.Domain.ViewModels.Modal;
 using Okapia.Models;
 using reCAPTCHA.AspNetCore;
 
 namespace Okapia.Controllers
 {
+    [ResponseCache(CacheProfileName = "Default")]
     public class HomeController : Controller
     {
         private readonly IJobRequestApplication _jobRequestApplication;
@@ -22,11 +22,12 @@ namespace Okapia.Controllers
         private readonly IModalApplication _modalApplication;
         private readonly IAuthHelper _authHelper;
         private readonly ISettingApplication _settingApplication;
+        private readonly IContactApplication _contactApplication;
 
         public HomeController(IJobRequestApplication jobRequestApplication, ICityApplication cityApplication,
             IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication,
             IJobApplication jobApplication, IRecaptchaService recaptchaService, IModalApplication modalApplication,
-            IAuthHelper authHelper, ISettingApplication settingApplication)
+            IAuthHelper authHelper, ISettingApplication settingApplication, IContactApplication contactApplication)
         {
             _jobRequestApplication = jobRequestApplication;
             _cityApplication = cityApplication;
@@ -36,6 +37,7 @@ namespace Okapia.Controllers
             _modalApplication = modalApplication;
             _authHelper = authHelper;
             _settingApplication = settingApplication;
+            _contactApplication = contactApplication;
         }
 
         public IActionResult Index()
@@ -145,6 +147,13 @@ namespace Okapia.Controllers
             var userId = _authHelper.GetCurrnetUserInfo().ReferenceRecordId;
             var modals = _modalApplication.GetUserModals(userId);
             return PartialView("_Modal", modals);
+        }
+
+        [HttpPost]
+        public JsonResult Contactus(CreateContact command)
+        {
+            var result = _contactApplication.Create(command);
+            return Json(result);
         }
     }
 }

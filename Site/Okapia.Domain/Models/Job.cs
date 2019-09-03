@@ -55,6 +55,7 @@ namespace Okapia.Domain.Models
         public string InstagramUrl { get; set; }
         public string TelegramUrl { get; set; }
         public bool IsStared { get; set; }
+        public double JobPrice { get; set; }
         public ICollection<JobPicture> JobPictures { get; set; }
         public ICollection<Comment> JobComments { get; set; }
         public Account Account { get; set; }

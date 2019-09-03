@@ -1,5 +1,4 @@
-﻿@using Okapia.Domain.Commands.Category
-@model Okapia.Domain.Commands.Slide.CreateSlide
+﻿@model Okapia.Domain.Commands.Slide.CreateSlide
 
 @{
   ViewData["Title"] = "ایجاد اسلاید جدید";
@@ -33,6 +32,20 @@
           <label asp-for="SlideLink" class="control-label"></label>
           <input asp-for="SlideLink" class="form-control direct-ltr"/>
           <span asp-validation-for="SlideLink" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="SlideBtnText" class="control-label"></label>
+          <input asp-for="SlideBtnText" class="form-control direct-ltr"/>
+          <span asp-validation-for="SlideBtnText" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="SlideBtnIsVisible" class="control-label"></label>
+          <input asp-for="SlideBtnIsVisible" class="form-control direct-ltr"/>
+          <span asp-validation-for="SlideBtnIsVisible" class="text-danger"></span>
         </div>
       </div>
       <table class="col-md-12 table table-bordered text-center">

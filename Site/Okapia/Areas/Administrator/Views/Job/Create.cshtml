@@ -65,6 +65,13 @@
 </div>
 <div class="col-md-4">
   <div class="form-group">
+    <label asp-for="JobPrice" class="control-label"></label>
+    <input asp-for="JobPrice" class="form-control"/>
+    <span asp-validation-for="JobPrice" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
     <label asp-for="JobManagerFirstName" class="control-label"></label>
     <input asp-for="JobManagerFirstName" class="form-control"/>
     <span asp-validation-for="JobManagerFirstName" class="text-danger"></span>

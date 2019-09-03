@@ -37,6 +37,8 @@ namespace Okapia.Application.Applications
                     SlideTitle = command.TitleImage,
                     SlideAlt = command.AltImage,
                     SlideDescription = command.DescImage,
+                    SlideBtnIsVisible = command.SlideBtnIsVisible,
+                    SlideBtnText = command.SlideBtnText,
                     SlideIsDeleted = false,
                     SlideCreationDate = DateTime.Now
                 };
@@ -75,6 +77,8 @@ namespace Okapia.Application.Applications
                 slide.SlideTitle = command.TitleImage;
                 slide.SlideAlt = command.AltImage;
                 slide.SlideDescription = command.DescImage;
+                slide.SlideBtnIsVisible = command.SlideBtnIsVisible;
+                slide.SlideBtnText = command.SlideBtnText;
                 _slideRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

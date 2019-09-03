@@ -3,105 +3,12 @@
 }
 
 @*<div class="preloader">
-  <img src="/assets/images/logo.png" alt="">
-</div>*@
+    <img src="/assets/images/logo.png" alt="">
+  </div>*@
 
 @await Component.InvokeAsync("SlideShow")
 
 <!--Choose Card-->
-<section class="choose-card section-padding-2">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-8 centered">
-        <div class="section-title wow fadeInUp" data-wow-delay="0.3s">
-          <h2>اُکاپیا خرید ارزان ، درآمد مادام</h2>
-          <p>همه کارت های عضو شبکه شتاب</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
-        <div class="single-card">
-          <img src="/assets/images/cards/platinum.jpg" alt="">
-          <div class="card-titles">
-            <h3>
-              <a href="platinum-card.html">بانک پارسیان</a>
-            </h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-        <div class="single-card">
-          <img src="/assets/images/cards/gold.jpg" alt="">
-          <div class="card-titles">
-            <h3>
-              <a href="gold-card.html">بانک ملی</a>
-            </h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
-        <div class="single-card">
-          <img src="/assets/images/cards/thank-you.jpg" alt="">
-          <div class="card-titles">
-            <h3>
-              <a href="thank-you-card.html">بانک مسکن</a>
-            </h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-        <div class="single-card">
-          <img src="/assets/images/cards/gift.jpg" alt="">
-          <div class="card-titles">
-            <h3>
-              <a href="gift-card.html">بانک ملت</a>
-            </h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!--/Choose Card-->
-<!--Award Area-->
-<section class="award-area section-padding-2 dark-overlay"
-         style="background: url(/assets/images/award.jpg) no-repeat fixed">
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-4 wow fadeInUp" data-wow-delay="0.3s">
-        <div class="single-award bootom-after">
-          <!-- <i class="pe-7s-medal"></i> -->
-          <i class="icon-signup icon-ml"></i>
-          <h3>عضویت رایگان</h3>
-          <p>بدون پرداخت هیچ مبلغی از امکانات اُکاپیا استفاده کنید</p>
-        </div>
-      </div>
-      <div class="col-xl-4">
-        <div class="single-award bootom-before wow fadeInUp" data-wow-delay="0.4s">
-          <!-- <i class="pe-7s-cup"></i> -->
-          <i class="fas fa-credit-card"></i>
-          <h3>خرید ارزان</h3>
-          <p>با کارت خود خرید کنید ، تخفیف بگیرید</p>
-        </div>
-      </div>
-      <div class="col-xl-4 wow fadeInUp" data-wow-delay="0.5s">
-        <div class="single-award">
-          <!-- <i class="pe-7s-coffee"></i> -->
-          <i class="fas fa-dollar-sign"></i>
-          <h3>درآمد مادام</h3>
-          <p>با معرفی دوستان خود درآمد کسب کنید</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!--/Award Area-->
-
-@await Component.InvokeAsync("StaredJobs")
-
-@await Component.InvokeAsync("Statistics")
-
 <!--Features Area-->
 <section class="features-area section-padding-2 gray-bg">
   <div class="container">
@@ -148,17 +55,115 @@
   </div>
 </section>
 <!--/Features Area-->
-<!--Promo Area-->
-<div class="promo-area wow flipInX" data-wow-delay="0.5s">
+
+@*<section class="choose-card section-padding-2">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-8 centered">
+          <div class="section-title wow fadeInUp" data-wow-delay="0.3s">
+            <h2>اُکاپیا خرید ارزان ، درآمد مادام</h2>
+            <p>همه کارت های عضو شبکه شتاب</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+          <div class="single-card">
+            <img src="/assets/images/cards/platinum.jpg" alt="">
+            <div class="card-titles">
+              <h3>
+                <a href="platinum-card.html">بانک پارسیان</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+          <div class="single-card">
+            <img src="/assets/images/cards/gold.jpg" alt="">
+            <div class="card-titles">
+              <h3>
+                <a href="gold-card.html">بانک ملی</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+          <div class="single-card">
+            <img src="/assets/images/cards/thank-you.jpg" alt="">
+            <div class="card-titles">
+              <h3>
+                <a href="thank-you-card.html">بانک مسکن</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+          <div class="single-card">
+            <img src="/assets/images/cards/gift.jpg" alt="">
+            <div class="card-titles">
+              <h3>
+                <a href="gift-card.html">بانک ملت</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>*@
+<!--/Choose Card-->
+<!--Award Area-->
+<section class="award-area section-padding-2 dark-overlay"
+         style="background: url(/assets/images/award.jpg) no-repeat fixed">
   <div class="container">
-    <div class="row ">
-      <div class="col-xl-12 col-lg-12 col-md-12">
-        <div class="promo-content centered wow fadeInUp" data-wow-delay="0.7s">
-          <a href="/Account/Register" class="bttn-mid btn-fill">کارت خود را عضو کنید</a>
+    <div class="row">
+      <div class="col-xl-4 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="single-award bootom-after">
+          <!-- <i class="pe-7s-medal"></i> -->
+          <i class="icon-signup icon-ml"></i>
+          <h3>عضویت رایگان</h3>
+          <p>بدون پرداخت هیچ مبلغی از امکانات اُکاپیا استفاده کنید</p>
+        </div>
+      </div>
+      <div class="col-xl-4">
+        <div class="single-award bootom-before wow fadeInUp" data-wow-delay="0.4s">
+          <!-- <i class="pe-7s-cup"></i> -->
+          <i class="fas fa-credit-card"></i>
+          <h3>خرید ارزان</h3>
+          <p>با کارت خود خرید کنید ، تخفیف بگیرید</p>
+        </div>
+      </div>
+      <div class="col-xl-4 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="single-award">
+          <!-- <i class="pe-7s-coffee"></i> -->
+          <i class="fas fa-dollar-sign"></i>
+          <h3>درآمد مادام</h3>
+          <p>با معرفی دوستان خود درآمد کسب کنید</p>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+<!--/Award Area-->
+
+@await Component.InvokeAsync("StaredJobs")
+
+@await Component.InvokeAsync("Statistics")
+
+
+<!--Promo Area-->
+<section class="counter-area section-padding-2">
+  <div class="promo-area wow flipInX" data-wow-delay="0.5s">
+    <div class="container">
+      <div class="row ">
+        <div class="col-xl-12 col-lg-12 col-md-12">
+          <div class="promo-content centered wow fadeInUp" data-wow-delay="0.7s">
+            <a href="/Account/Register" class="bttn-mid btn-fill">کارت خود را عضو کنید</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 @await Component.InvokeAsync("LatestPages")

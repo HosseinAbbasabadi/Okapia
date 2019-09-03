@@ -8,10 +8,12 @@ using Okapia.Domain.Commands.Job;
 using Okapia.Domain.Commands.JobRequest;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.JobRequest;
+using Okapia.Helpers;
 
 namespace Okapia.Areas.Administrator.Controllers
 {
     [Area("Administrator")]
+    [ServiceFilter(typeof(AuthorizeFilter))]
     public class JobRequestController : Controller
     {
         private readonly IJobRequestApplication _jobRequestApplication;

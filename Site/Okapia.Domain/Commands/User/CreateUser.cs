@@ -31,12 +31,12 @@ namespace Okapia.Domain.Commands.User
 
         [Display(Name = "نام انگلیسی")]
         [RegularExpression(@"^[A-Za-z|^ ]+$", ErrorMessage = ValidationMessages.EnghlishText)]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        //[Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string NameEn { get; set; }
 
         [Display(Name = "نام خانوادگی انگلیسی")]
         [RegularExpression(@"^[A-Za-z|^ ]+$", ErrorMessage = ValidationMessages.EnghlishText)]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        //[Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string FamilyEn { get; set; }
 
         [Display(Name = "کد ملی")]
@@ -52,11 +52,11 @@ namespace Okapia.Domain.Commands.User
         public string PhoneNumber { get; set; }
 
         [Display(Name = "استان")]
-        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.ProvinceRange)]
+        [Range(0, int.MaxValue, ErrorMessage = ValidationMessages.ProvinceRange)]
         public int ProvinceId { get; set; }
 
         [Display(Name = "شهر")]
-        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.CityRange)]
+        [Range(0, int.MaxValue, ErrorMessage = ValidationMessages.CityRange)]
         public int CityId { get; set; }
 
         [Display(Name = "منطقه")]
@@ -68,7 +68,7 @@ namespace Okapia.Domain.Commands.User
         public int NeighborhoodId { get; set; }
 
         [Display(Name = "آدرس")]
-        [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
+        //[Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string Address { get; set; }
 
         [Display(Name = "کد پستی")]

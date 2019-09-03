@@ -5,7 +5,7 @@
   ViewData["Title"] = "ثبت نام";
 }
 <!--Custom Banner-->
-<section class="custom-banner dark-overlay" style="background: url(/assets/images/hero.jpg) no-repeat fixed;">
+<section class="custom-banner dark-overlay" style="background: url(/assets/images/counter.jpg) no-repeat fixed;">
 </section>
 <!--/Custom Banner-->
 
@@ -31,7 +31,7 @@
             <input asp-for="Family" class="form-control" />
             <span asp-validation-for="Family" class="text-danger"></span>
           </div>
-          <div class="single-field">
+          @*<div class="single-field">
             <label asp-for="NameEn" class="control-label"></label>
             <input asp-for="NameEn" class="form-control" />
             <span asp-validation-for="NameEn" class="text-danger"></span>
@@ -40,14 +40,14 @@
             <label asp-for="FamilyEn" class="control-label"></label>
             <input asp-for="FamilyEn" class="form-control" />
             <span asp-validation-for="FamilyEn" class="text-danger"></span>
-          </div>
+          </div>*@
           <div class="single-field">
-            <label asp-for="NationalCardNumber" class="control-label"></label>
+            <label asp-for="NationalCardNumber" class="control-label">کدملی(به عنوان نام کاربری)</label>
             <input asp-for="NationalCardNumber" class="form-control" />
             <span asp-validation-for="NationalCardNumber" class="text-danger"></span>
           </div>
           <div class="single-field">
-            <label asp-for="PhoneNumber" class="control-label"></label>
+            <label asp-for="PhoneNumber" class="control-label">موبایل(به عنوان رمز عبور)</label>
             <input asp-for="PhoneNumber" class="form-control" />
             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
           </div>
@@ -61,42 +61,6 @@
             </div>
           </div>
           <div class="single-field">
-            <label asp-for="ProvinceId" class="control-label"></label>
-            <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="CreateProvinceDropDown" onchange="getCityList('CreateProvinceDropDown', '@Url.Action("GetCitiesByProvince", "Home", new {area = ""})', 'createCityDropDown')"></select>
-            <span asp-validation-for="ProvinceId" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="CityId" class="control-label"></label>
-            <select asp-for="CityId" class="form-control" id="createCityDropDown" onchange="getDistrictList('createCityDropDown', '@Url.Action("GetDistrictsByCity", "Home", new {area = ""})', 'createDistrictDropDown')">
-              <option value="0">شهر را انتخاب کنید...</option>
-            </select>
-            <span asp-validation-for="CityId" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="DistrictId" class="control-label"></label>
-            <select asp-for="DistrictId" class="form-control" id="createDistrictDropDown" onchange="getDistrictList('createDistrictDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Home", new {area = ""})', 'createNeighborhoodDropDown')">
-              <option value="0">شهر را انتخاب کنید...</option>
-            </select>
-            <span asp-validation-for="DistrictId" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="NeighborhoodId" class="control-label"></label>
-            <select asp-for="NeighborhoodId" class="form-control" id="createNeighborhoodDropDown">
-              <option value="0">شهر را انتخاب کنید...</option>
-            </select>
-            <span asp-validation-for="NeighborhoodId" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="Address" class="control-label"></label>
-            <input asp-for="Address" class="form-control" />
-            <span asp-validation-for="Address" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="Postalcode" class="control-label"></label>
-            <input asp-for="Postalcode" class="form-control" />
-            <span asp-validation-for="Postalcode" class="text-danger"></span>
-          </div>
-          <div class="single-field">
             <label asp-for="Email" class="control-label"></label>
             <input asp-for="Email" class="form-control" />
             <span asp-validation-for="Email" class="text-danger"></span>
@@ -106,11 +70,12 @@
               <div class="single-field">
                 <label asp-for="Card1" class="control-label"></label>
                 <input asp-for="Card1" class="form-control direct-ltr" />
-                <button type="button" class="btn btn-success" onclick="dynamicCard('ui')">افزودن کارت</button>
                 <span asp-validation-for="Card1" class="text-danger"></span>
               </div>
             </div>
           </div>
+          <button type="button" class="btn btn-success" onclick="dynamicCard('ui')">افزودن کارت</button>
+
           @*<div class="single-field">
       <div class="g-recaptcha" data-sitekey="6LeXubIUAAAAAPl-CpA4zsosiLVHjUbs6uLdQJsq"></div>
     </div>*@

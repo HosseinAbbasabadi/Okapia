@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Framework;
 using Okapia.Domain.Commands.User;
-using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.User;
 
@@ -12,9 +11,8 @@ namespace Okapia.Application.Contracts
         OperationResult Create(CreateUser command);
         OperationResult Introduce(CreateUser command);
         OperationResult Edit(EditUser command);
-
         OperationResult EditByUser(EditUser command);
-
+        OperationResult MakeUserMarketer(long accountId);
         //OperationResult SendUsersToGroup(long id, UserSearchModel searchModel);
         EditUser GetUserDetails(long id);
         UserDetailsViewModel GetUserInfo(long id);

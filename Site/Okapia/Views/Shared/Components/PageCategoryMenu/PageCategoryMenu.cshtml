@@ -1,11 +1,16 @@
-﻿@model IEnumerable<Okapia.Domain.ViewModels.PageCategory.PageCategoryMenuViewModel>
+﻿@model PageCategoryMenuIndexViewModel
 
 <nav class="navbar sticky-top navbar-expand-lg main-menu blog-Menu">
   <div class="container rtl">
-    <div class="row megamenu collapse navbar-collapse">
+    <div class="row megamenu navbar-collapse">
       <div class="container">
         <ul class="items">
-          @foreach (var pageCategory in Model)
+          <li>
+            <a asp-controller="Home" asp-action="درخواست-ثبت-نمایندگی-اُکاپیا" asp-area="">
+              درخواست نمایندگی
+            </a>
+          </li>
+          @foreach (var pageCategory in Model.PageCategoryMenuViewModels)
           {
             <li>
               <a asp-action="Index" asp-controller="PageView" asp-route-id="@pageCategory.PageCategorySlug">
@@ -15,14 +20,66 @@
           }
           <li>
             <a asp-action="درباره-اُکاپیا" asp-controller="Home">
-              درباره ما
+              <i class="icon-info icon-ml"></i> 
+              <span>درباره ما</span>
             </a>
           </li>
           <li>
             <a asp-action="تماس-با-اُکاپیا" asp-controller="Home">
-              تماس با ما
+              <i class="icon-phone icon-ml"></i>
+              <span>تماس با ما</span>
             </a>
           </li>
+          @if (!Model.AccountViewModel.IsAuthorized)
+          {
+            <li class="float-left">
+              <div class="login-btn">
+                <a asp-controller="Account" asp-action="Login">
+                  <i class="icon-signin icon-ml"></i>
+                    <span>ورود</span>
+                </a>
+              </div>
+            </li>
+            <li class="float-left">
+              <div class="login-btn">
+                <a asp-controller="Account" asp-action="Register">
+                  <i class="icon-signup icon-ml"></i>
+                  <span>ثبت نام</span>
+
+                </a>
+              </div>
+            </li>
+          }
+          else
+          {
+            if (Model.AccountViewModel.Role == 4 || Model.AccountViewModel.Role == 5)
+            {
+              <li class="nav-item float-left">
+                <a class="nav-link" asp-area="Administrator" asp-controller="Home" asp-action="Index">@Model.AccountViewModel.Name خوش آمدید</a>
+              </li>
+            }
+            if (Model.AccountViewModel.Role == 2)
+            {
+              <li class="nav-item float-left">
+                <a class="nav-link" asp-area="Job" asp-controller="Home" asp-action="Index">@Model.AccountViewModel.Name خوش آمدید</a>
+              </li>
+            }
+            if (Model.AccountViewModel.Role == 1)
+            {
+              <li class="nav-item float-left">
+                <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">@Model.AccountViewModel.Name خوش آمدید</a>
+              </li>
+            }
+            if (Model.AccountViewModel.Role == 3)
+            {
+              <li class="nav-item float-left">
+                <a class="nav-link" asp-area="Club" asp-controller="Home" asp-action="Index">@Model.AccountViewModel.Name خوش آمدید</a>
+              </li>
+            }
+            <li class="nav-item float-left">
+              <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">خروج</a>
+            </li>
+          }
         </ul>
       </div>
     </div>

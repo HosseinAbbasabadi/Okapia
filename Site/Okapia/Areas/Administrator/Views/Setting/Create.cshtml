@@ -128,6 +128,48 @@
           <span asp-validation-for="CanonicalAddress" class="text-danger"></span>
         </div>
       </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Facebook" class="control-label"></label>
+          <input asp-for="Facebook" class="form-control"/>
+          <span asp-validation-for="Facebook" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Instagram" class="control-label"></label>
+          <input asp-for="Instagram" class="form-control"/>
+          <span asp-validation-for="Instagram" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Telegram" class="control-label"></label>
+          <input asp-for="Telegram" class="form-control"/>
+          <span asp-validation-for="Telegram" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="Twitter" class="control-label"></label>
+          <input asp-for="Twitter" class="form-control"/>
+          <span asp-validation-for="Twitter" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="FeaturedJobsTitle" class="control-label"></label>
+          <input asp-for="FeaturedJobsTitle" class="form-control"/>
+          <span asp-validation-for="FeaturedJobsTitle" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label asp-for="ForgetPasswordText" class="control-label"></label>
+          <input asp-for="ForgetPasswordText" class="form-control"/>
+          <span asp-validation-for="ForgetPasswordText" class="text-danger"></span>
+        </div>
+      </div>
       <div class="col-md-12">
         <div class="form-group">
           <input type="button" value="ثبت" onclick="createEntityThenReferesh('@Url.Action("Create", "Setting")', 'createSettingsFrm')" class="btn btn-lg btn-success"/>

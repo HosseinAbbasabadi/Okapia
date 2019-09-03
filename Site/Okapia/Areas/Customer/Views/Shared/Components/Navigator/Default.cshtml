@@ -1,4 +1,6 @@
-﻿@using Okapia.Domain.ViewModels
+﻿@inject IAuthHelper _authHelper
+@using Okapia.Application.Contracts
+@using Okapia.Domain.ViewModels
 @{
   var auth = ViewData["Auth"] as AccountViewModel;
 }
@@ -46,18 +48,22 @@
               <i class="fa fa-info"></i><span> اطلاعات کاربری </span>
             </a>
           </li>
-          <li>
-            <a asp-action="Create" asp-controller="Introduce" asp-area="Customer" class="waves-effect">
-              <i class="fa fa-user-plus"></i>
-              <span>معرفی عضو</span>
-            </a>
-          </li>
-          <li>
-            <a asp-action="Index" asp-controller="Introduce" asp-area="Customer" class="waves-effect">
-              <i class="fa fa-users"></i>
-              <span>معرفی شدگان توسط من</span>
-            </a>
-          </li>
+          @if (_authHelper.GetCurrnetUserInfo().Role == 6)
+          {
+            <li>
+              <a asp-action="Create" asp-controller="Introduce" asp-area="Customer" class="waves-effect">
+                <i class="fa fa-user-plus"></i>
+                <span>معرفی عضو</span>
+              </a>
+            </li>
+            <li>
+              <a asp-action="Index" asp-controller="Introduce" asp-area="Customer" class="waves-effect">
+                <i class="fa fa-users"></i>
+                <span>معرفی شدگان توسط من</span>
+              </a>
+            </li>
+          }
+          
           @*<li>
             <a href="#" class="waves-effect">
               <i class="fa fa-diagnoses"></i>

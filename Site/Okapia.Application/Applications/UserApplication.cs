@@ -11,6 +11,7 @@ using Okapia.Domain.Models;
 using Okapia.Domain.QueryContracts;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.User;
+using Okapia.SmsService;
 using Okapia.WebService.Adapter.Contracts;
 
 namespace Okapia.Application.Applications
@@ -27,11 +28,13 @@ namespace Okapia.Application.Applications
         private readonly IAuthHelper _authHelper;
         private readonly IUserCardRepository _userCardRepository;
         private readonly IPasargadService _pasargadService;
+        private readonly ISmsService _smsService;
 
         public UserApplication(IUserRepository userRepository, IPasswordHasher passwordHasher,
             IAccountRepository accountRepository, ICityApplication cityApplication,
             IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication,
-            IAuthHelper authHelper, IUserCardRepository userCardRepository, IPasargadService pasargadService, IUserQuery userQuery)
+            IAuthHelper authHelper, IUserCardRepository userCardRepository, IPasargadService pasargadService,
+            IUserQuery userQuery, ISmsService smsService)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
@@ -43,6 +46,7 @@ namespace Okapia.Application.Applications
             _userCardRepository = userCardRepository;
             _pasargadService = pasargadService;
             _userQuery = userQuery;
+            _smsService = smsService;
         }
 
         public OperationResult Create(CreateUser command)
@@ -84,16 +88,14 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
-                if (_pasargadService.IsAlreadyRegistered(command.NationalCardNumber))
+                var isAlreadyApiMember = _pasargadService.IsAlreadyApiMember(command.NationalCardNumber);
+                if (!isAlreadyApiMember)
                 {
-                    result.Message = ApplicationMessages.UserAlreadyRegistered;
-                    return result;
-                }
-
-                if (!_pasargadService.TryRegister(command, userCards))
-                {
-                    result.Message = "خطای ثبت نام";
-                    return result;
+                    if (!_pasargadService.TryRegister(command, userCards))
+                    {
+                        result.Message = "مشکل ثبت نام در سرویس وفاداری. لطفا با مدیر سیستم تماس بگیرید";
+                        return result;
+                    }
                 }
 
                 var account = new Account
@@ -109,8 +111,8 @@ namespace Okapia.Application.Applications
                 {
                     UserFirstName = command.Name,
                     UserLastName = command.Family,
-                    UserFirstNameEn = command.NameEn,
-                    UserLastNameEn = command.FamilyEn,
+                    UserFirstNameEn = command.Name,
+                    UserLastNameEn = command.Family,
                     UserAddress = command.Address,
                     UserEmail = command.Email,
                     UserCityId = command.CityId,
@@ -126,11 +128,15 @@ namespace Okapia.Application.Applications
                     UserCustomerIntroductionLimit = 200,
                     Account = account,
                     UserCards = userCards,
-                    IntroducedBy = 0
+                    IntroducedBy = 0,
+                    IsAlreadyApiMember = isAlreadyApiMember
                 };
 
                 _userRepository.Create(user);
                 _userRepository.SaveChanges();
+                _smsService.SendSms(
+                    $"{command.Name} عزیز به اُکاپیا خوش آمدید. \r\n نام کاربری: {command.NationalCardNumber} \r\n کلمه رمز:‌ {command.PhoneNumber}",
+                    command.PhoneNumber);
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
                 return result;
@@ -215,7 +221,7 @@ namespace Okapia.Application.Applications
                 }
 
                 var introducerId = _authHelper.GetCurrnetUserInfo().AuthUserId;
-                var introducer = _userRepository.Get(x=>x.Account.Id == introducerId).First();
+                var introducer = _userRepository.Get(x => x.Account.Id == introducerId).First();
                 if (_userRepository.Get(x => x.IntroducedBy == introducerId).Count >
                     introducer.UserCustomerIntroductionLimit)
                 {
@@ -235,6 +241,13 @@ namespace Okapia.Application.Applications
                 {
                     if (!_userCardRepository.IsDuplicated(x => x.CardNumber == userCard.CardNumber)) continue;
                     result.Message = ApplicationMessages.DuplicatedDatabaseCard;
+                    return result;
+                }
+
+                if (!_pasargadService.MapCards(command.NationalCardNumber,
+                    string.Join(",", userCards.Select(x => x.CardNumber))))
+                {
+                    result.Message = ApplicationMessages.SystemFailure;
                     return result;
                 }
 
@@ -298,7 +311,8 @@ namespace Okapia.Application.Applications
 
                 foreach (var userCard in userCards.Where(x => !string.IsNullOrEmpty(x.CardNumber)))
                 {
-                    if (!_userCardRepository.IsDuplicated(x => x.CardNumber == userCard.CardNumber, x=>x.UserId != command.Id)) continue;
+                    if (!_userCardRepository.IsDuplicated(x => x.CardNumber == userCard.CardNumber,
+                        x => x.UserId != command.Id)) continue;
                     result.Message = ApplicationMessages.DuplicatedDatabaseCard;
                     return result;
                 }
@@ -401,6 +415,32 @@ namespace Okapia.Application.Applications
                 //user.UserCards[8].CardNumber = command.Card9;
                 //user.UserCards[9].CardNumber = command.Card10;
                 _userRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
+        }
+
+        public OperationResult MakeUserMarketer(long accountId)
+        {
+            var result = new OperationResult("Users", "MakeUserMarketer");
+            try
+            {
+                if (!_accountRepository.Exists(x => x.Id == accountId))
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
+                var account = _accountRepository.Get(accountId);
+                account.RoleId = Constants.Roles.Marketer.Id;
+                _accountRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
                 return result;

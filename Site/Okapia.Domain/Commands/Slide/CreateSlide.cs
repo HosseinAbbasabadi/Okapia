@@ -28,5 +28,9 @@ namespace Okapia.Domain.Commands.Slide
 
         [Display(Name = "Title")] public string TitleImage { get; set; }
         [Display(Name = "Description")] public string DescImage { get; set; }
+        [Display(Name = "متن دکمه")] public string SlideBtnText { get; set; }
+
+        [Display(Name = "آیا دکمه اسلاید فعال باشد؟")]
+        public bool SlideBtnIsVisible { get; set; }
     }
 }

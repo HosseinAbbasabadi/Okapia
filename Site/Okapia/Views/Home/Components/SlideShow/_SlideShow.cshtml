@@ -12,13 +12,16 @@
                 <div class="hero-box">
                   <h1>@sliderViewModel.SlideTitleText</h1>
                   <p>@sliderViewModel.SlideDescriptionText</p>
-                  <a href="@sliderViewModel.SlideLink" target="_blank" class="bttn-mid btn-fill">بیشتر بدانید</a>
+                  @if (sliderViewModel.SlideBtnIsVisible)
+                  {
+                    <a href="@sliderViewModel.SlideLink" target="_blank" class="bttn-mid btn-fill">@sliderViewModel.SlideBtnText</a>
+                  }
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>  
+    </div>
   }
 </section>

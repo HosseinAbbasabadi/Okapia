@@ -43,7 +43,7 @@ namespace Okapia.WebService.Adapter
             return result.Status == -1 && result.ErrorMessage == "";
         }
 
-        public bool IsAlreadyRegistered(string nationalCode)
+        public bool IsAlreadyApiMember(string nationalCode)
         {
             ServicePointManager.ServerCertificateValidationCallback +=
                 (sender, certificate, chain, sslPolicyErrors) => true;
@@ -61,6 +61,16 @@ namespace Okapia.WebService.Adapter
             var response = _client.Execute(request);
             var result = _jsonSerializer.Deserialize<WebServiceResponse>(response);
             return result.Status == -105;
+        }
+
+        public bool MapCards(string nationalCode, string concatedCards)
+        {
+            ServicePointManager.ServerCertificateValidationCallback +=
+                (sender, certificate, chain, sslPolicyErrors) => true;
+            var request = RequestBuilder("CardMembership", Method.GET).AddParameter("NationalCode", nationalCode).AddParameter("MappedCards", concatedCards);
+            var response = _client.Execute(request);
+            var result = _jsonSerializer.Deserialize<WebServiceResponse>(response);
+            return result.Status == 0;
         }
 
         private static RestRequest RequestBuilder(string resource, Method method)

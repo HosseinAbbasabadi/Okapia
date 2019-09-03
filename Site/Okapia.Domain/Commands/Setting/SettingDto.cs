@@ -12,8 +12,7 @@ namespace Okapia.Domain.Commands.Setting
         [Display(Name = "درباره (نمایش در فوتر)")]
         public string FooterAbout { get; set; }
 
-        [Display(Name = "قوانین و مقررات")]
-        public string Privacy { get; set; }
+        [Display(Name = "قوانین و مقررات")] public string Privacy { get; set; }
 
         [Display(Name = "آدرس")] public string Address { get; set; }
 
@@ -44,5 +43,27 @@ namespace Okapia.Domain.Commands.Setting
         [Display(Name = "آدرس کانونیکال")]
         [Url(ErrorMessage = ValidationMessages.Url)]
         public string CanonicalAddress { get; set; }
+
+        [Display(Name = "لینک فیس بوک")]
+        [Url(ErrorMessage = ValidationMessages.Url)]
+        public string Facebook { get; set; }
+
+        [Display(Name = "لینک اینستاگرام")]
+        [Url(ErrorMessage = ValidationMessages.Url)]
+        public string Instagram { get; set; }
+
+        [Display(Name = "لینک تلگرام")]
+        [Url(ErrorMessage = ValidationMessages.Url)]
+        public string Telegram { get; set; }
+
+        [Display(Name = "لینک توییتر")]
+        [Url(ErrorMessage = ValidationMessages.Url)]
+        public string Twitter { get; set; }
+
+        [Display(Name = "عنوان بخش مراکز منتخب")]
+        public string FeaturedJobsTitle { get; set; }
+
+        [Display(Name = "متن پیام فراموشی رمز عبور")]
+        public string ForgetPasswordText { get; set; }
     }
 }

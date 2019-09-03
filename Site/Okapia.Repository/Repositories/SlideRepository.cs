@@ -28,7 +28,9 @@ namespace Okapia.Repository.Repositories
                 AltImage = x.SlideAlt,
                 TitleImage = x.SlideTitle,
                 DescImage = x.SlideDescription,
-                NameImage = x.SlideName
+                NameImage = x.SlideName,
+                SlideBtnIsVisible = x.SlideBtnIsVisible,
+                SlideBtnText = x.SlideBtnText
             }).FirstOrDefault(x => x.SlideId == id);
         }
 

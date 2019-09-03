@@ -1,0 +1,117 @@
+﻿@using Okapia.Domain.SeachModels
+@model IEnumerable<Okapia.Domain.ViewModels.ContactViewModel>
+@{
+  var searchModel = ViewData["searchModel"] as ContactSearchModel;
+}
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">لیست پیام ها</h2>
+      </div>
+      <div class="panel-body">
+        <table id="datatable" class="table table-striped table-bordered">
+          <thead>
+          <tr>
+          <th>
+            ردیف
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Name)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Email)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Message)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+          </th>
+          <th>
+            عملیات
+          </th>
+
+          </thead>
+          <tbody>
+          @foreach (var item in Model.Select((value, index) => new {index, value}))
+          {
+            <tr>
+              <td>
+                @{
+                  var index = item.index;
+                  index += 1;
+                }
+                @index
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.Name)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.Email)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.Message)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.CreationDate)
+              </td>
+              <td>
+                @if (!item.value.IsChecked)
+                {
+                  <a class="btn btn-sm btn-success" onclick="createEntityWithBodyThenFeedList('@Url.Action("Check", "Contact")/@item.value.Id', '', '@Url.Action("ListContent", "Contact")', 'listContactsDiv')">بررسی شد</a>
+                }
+                else
+                {
+                  <a class="btn btn-sm btn-info" onclick="openContactInfoModal('@item.value.Id')">اطلاعات تکمیلی</a>
+                }
+              </td>
+            </tr>
+          }
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-md-12">
+            تعداد کل رکوردها: @searchModel.RecordCount
+          </div>
+        </div>
+      </div>
+      <nav>
+        <ul class="pagination">
+          @for (var i = 0; i < searchModel.PageCount; i++)
+          {
+            var routingSearchModel = new ContactSearchModel
+            {
+              Name = searchModel.Name,
+              Email = searchModel.Email,
+              IsChecked = searchModel.IsChecked,
+              PageSize = 80,
+              PageIndex = i
+            };
+            if (searchModel.PageIndex == i)
+            {
+              <li class="active">
+                @Html.ActionLink((i + 1).ToString(), "Index", "Contact", routingSearchModel)
+              </li>
+            }
+            else
+            {
+              <li>
+                @Html.ActionLink((i + 1).ToString(), "Index", "Contact", routingSearchModel)
+              </li>
+            }
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div id="contactDetailsModalDiv">
+
+</div>
+<script>
+  function openContactInfoModal(id) {
+    openModalWithData(`@Url.Action("Details", "Contact")/${id}`, 'contactDetailsModalDiv', 'contactDetailsModal');
+  }
+</script>

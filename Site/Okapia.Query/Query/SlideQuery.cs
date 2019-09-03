@@ -24,7 +24,9 @@ namespace Okapia.Query.Query
                 SlideAlt = x.SlideAlt,
                 SlideTitle = x.SlideTitle,
                 SlideDescription = x.SlideDescription,
-                SlideLink = x.SlideLink
+                SlideLink = x.SlideLink,
+                SlideBtnIsVisible = x.SlideBtnIsVisible,
+                SlideBtnText = x.SlideBtnText
             }).ToList();
         }
     }

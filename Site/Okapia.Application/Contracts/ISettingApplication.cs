@@ -8,7 +8,8 @@ namespace Okapia.Application.Contracts
     {
         OperationResult CreateSettings(SettingDto command);
         SettingDto GetSettings();
-        
+
+        string GetForgetPasswordText();
         //
         SettingDto GetSettingsForView();
         string GetPrivacy();

@@ -48,32 +48,7 @@
 <footer class="footer-area section-padding-2">
   <div class="container">
     <div class="row">
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-        <div class="footer-content">
-          <a href="#">
-            <img src="~/assets/images/logo.png" alt="">
-          </a>
-          <p>
-            موسسه اکاپیا با بهره گیری از برترین متخصصین بازاریابی توزیع و فروش
-            علاوه بر ارایه خدمات و کالاهای با کیفیت امکان دریافت تخفیف های چشمگیری را برای هموطنان عزیز فراهم
-            نموده است
-          </p>
-          <div class="footer-social">
-            <a href="#">
-              <i class="fab fa-facebook"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-telegram"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </div>
-        </div>
-      </div>
+      @await Component.InvokeAsync("FooterAbout")
       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 d-none d-md-block">
         <div class="row">
           
@@ -84,7 +59,7 @@
       </div>
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="copyright centered">
-          <p>&copy;طراحی و اجرا <a href="https://tahlildadeh.com">تحلیل داده</a></p>
+          <p>&copy;طراحی و اجرا <a href="http://www.tahlildadeh.com">تحلیل داده</a></p>
         </div>
       </div>
     </div>

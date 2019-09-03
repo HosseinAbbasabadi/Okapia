@@ -83,6 +83,9 @@ namespace Okapia.Configuration
             services.AddScoped<ISettingApplication, SettingApplication>();
             services.AddScoped<ISettingRepository, SettingRepository>();
 
+            services.AddScoped<IContactApplication, ContactApplication>();
+            services.AddScoped<IContactRepository, ContactRepository>();
+
             services.AddScoped<IJobTransactionApplication, JobTransactionApplication>();
 
             services.AddScoped<IUserTransactionApplication, UserTransactionApplication>();

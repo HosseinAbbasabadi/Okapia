@@ -18,7 +18,7 @@ namespace Okapia.WebService.Adapter.Contracts
         /// </summary>
         /// <param name="nationalCode"></param>
         /// <returns></returns>
-        bool IsAlreadyRegistered(string nationalCode);
+        bool IsAlreadyApiMember(string nationalCode);
 
         /// <summary>
         /// Executes "CardMembership" in web service
@@ -26,5 +26,13 @@ namespace Okapia.WebService.Adapter.Contracts
         /// <param name="cards"></param>
         /// <returns></returns>
         bool IsCardAleadyExists(List<string> cards);
+
+        /// <summary>
+        /// Execuutes "MapCards" in web service
+        /// </summary>
+        /// <param name="nationalCode">user national code</param>
+        /// <param name="concatedCards">user cards seperated by ','</param>
+        /// <returns></returns>
+        bool MapCards(string nationalCode, string concatedCards);
     }
 }

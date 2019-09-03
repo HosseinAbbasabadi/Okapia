@@ -24,6 +24,7 @@ namespace Okapia.Domain.Models
         public DateTime UserRegistrationDate { get; set; }
         public bool UserIsActivated { get; set; }
         public long IntroducedBy { get; set; }
+        public bool IsAlreadyApiMember { get; set; }
         public Account Account { get; set; }
         public ICollection<UserGroup> UserGroups { get; set; }
         public IList<UserCard> UserCards { get; set; }

@@ -42,6 +42,7 @@ namespace Okapia.Repository
         public DbSet<Slide> Slides { get; set; }
         public DbSet<Link> Links { get; set; }
         //public DbSet<UserGroup> UserGroups { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -84,6 +85,8 @@ namespace Okapia.Repository
 
             modelBuilder.ApplyConfiguration(new SettingMapping());
             modelBuilder.ApplyConfiguration(new LinkMapping());
+            modelBuilder.ApplyConfiguration(new ContactUsMapping());
+
             OnModelCreatingPartial(modelBuilder);
         }
 

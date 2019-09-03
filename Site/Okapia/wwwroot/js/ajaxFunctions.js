@@ -51,11 +51,11 @@ function string_to_slug(str) {
 }
 
 function openModalWithData(url, containerName, modalName) {
-  jQuery(document).ready(function () {
-    jQuery(".select2").select2({
-      width: '100%'
-    });
-  });
+  //jQuery(document).ready(function () {
+  //  jQuery(".select2").select2({
+  //    width: '100%'
+  //  });
+  //});  
   $.ajax({
     url: url,
     type: "Get",

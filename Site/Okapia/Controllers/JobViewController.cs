@@ -9,6 +9,7 @@ using Okapia.Models;
 
 namespace Okapia.Controllers
 {
+    [ResponseCache(CacheProfileName = "Default")]
     public class JobViewController : Controller
     {
         private readonly IJobApplication _jobApplication;

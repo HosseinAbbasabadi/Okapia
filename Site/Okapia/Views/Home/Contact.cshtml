@@ -4,7 +4,7 @@
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="custom-banner dark-overlay" style="background: url('/assets/images/hero.jpg') no-repeat fixed;"></section>
+<section class="custom-banner dark-overlay" style="background: url('/assets/images/counter.jpg') no-repeat fixed;"></section>
 
 <div id="map">
   @Html.Raw(Model.Map)
@@ -25,38 +25,23 @@
             <h4>تلفن</h4>
             <p>
               <a href="tel:">
-                <i class="fa fa-phone"></i>@Model.Tell1</a> <br> <i class="fa fa-fax"></i>@Model.Tell2</p>
+                <i class="fa fa-phone"></i>@Model.Tell1
+              </a> <br> <i class="fa fa-fax"></i>@Model.Tell2
+            </p>
           </div>
           <div class="single-contact-info">
             <h4>پست الکترونیکی</h4>
             <p>
               <a href="mailto:">
-                <i class="fa fa-envelope"></i>@Model.Email</a> <br>
+                <i class="fa fa-envelope"></i>@Model.Email
+              </a> <br>
             </p>
           </div>
         </div>
       </div>
-      @*<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 wow fadeInRight" data-wow-delay="0.4s">
-        <div class="contact-form rtl text-right">
-          <h3>فرم تماس</h3>
-          <p>نظرات سوالات و پیشنهادات</p>
-          <form action="#" id="contact_form_submit">
-            <div class="single-field">
-              <label for="name">نام</label>
-              <input type="text" id="name" name="name">
-            </div>
-            <div class="single-field">
-              <label for="email">ایمیل</label>
-              <input type="email" id="email" name="email">
-            </div>
-            <div class="single-field">
-              <label for="message">پیام</label>
-              <textarea name="message" id="message" rows="4"></textarea>
-            </div>
-            <button type="submit" class="bttn-mid btn-fill">ارسال</button>
-          </form>
-        </div>
-      </div>*@
+
+      @await Component.InvokeAsync("ContactForm")
+
     </div>
   </div>
 </section>

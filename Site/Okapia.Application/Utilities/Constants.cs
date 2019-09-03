@@ -16,6 +16,7 @@ namespace Okapia.Application.Utilities
         public Role Club = new Role(3, "صاحب باشگاه");
         public Role Employee = new Role(4, "کارمند شرکت");
         public Role Administrator = new Role(5, "مدیر سیستم");
+        public Role Marketer = new Role(6, "بازاریاب");
 
         public IEnumerable<Role> ToList()
         {

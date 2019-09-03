@@ -185,6 +185,7 @@ namespace Okapia.Domain.Commands.Job
         [Display(Name = "آدرس اینستاگرام")] public string InstagramUrl { get; set; }
 
         [Display(Name = "آدرس تلگرام")] public string TelegramUrl { get; set; }
+        [Display(Name = "قیمت واحد")] public double JobPrice { get; set; }
 
 
         public int NamePhoto1Id { get; set; }

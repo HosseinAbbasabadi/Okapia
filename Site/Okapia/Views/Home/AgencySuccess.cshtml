@@ -3,20 +3,24 @@
   ViewData["Title"] = "AgencySuccess";
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<section class="custom-banner dark-overlay" style="background: url('/assets/images/hero.jpg') no-repeat fixed;"></section>
+<section class="custom-banner dark-overlay" style="background: url('/assets/images/counter.jpg') no-repeat fixed;"></section>
 
 <section class="form-area section-padding">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-8 centered">
         <div class="section-title">
-          <h2>ثبت نام</h2>
+          <h2>درخواست نمایندگی</h2>
         </div>
       </div>
-      <div class="col-md-8">
-        <h3>@ViewData["name"] عزیز درخواست نمایندگی شما به شماره پیگیری
-        <span class="text-danger">@Model</span>
-        ثبت شد. کارشناسان اُکاپیا در اسرع وقت با شما تماس خواند گرفت</h3>
+      <div class="jumbotron">
+        <div class="col-md-12">
+          <h3>
+            @ViewData["name"] عزیز درخواست نمایندگی شما به شماره پیگیری
+            <span class="text-danger">@Model</span>
+            ثبت شد. کارشناسان اُکاپیا در اسرع وقت با شما تماس خواند گرفت
+          </h3>
+        </div>
       </div>
     </div>
   </div>

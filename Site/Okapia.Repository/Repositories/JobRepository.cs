@@ -89,7 +89,8 @@ namespace Okapia.Repository.Repositories
                     WebsiteUrl = job.WebSiteUrl,
                     RedirectInstead301Url = job.JobRemoved301InsteadUrl,
                     JobFeatures = job.JobFeatures,
-                    IsStared = job.IsStared
+                    IsStared = job.IsStared,
+                    JobPrice =  job.JobPrice
                 };
 
             var jobDetails = query.FirstOrDefault();

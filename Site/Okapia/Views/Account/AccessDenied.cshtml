@@ -2,23 +2,25 @@
   ViewData["Title"] = "عدم دسترسی به صفحه";
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<br />
-<br />
+
+<section class="custom-banner dark-overlay" style="background: url('/assets/images/counter.jpg') no-repeat fixed;"></section>
+
 <section class="form-area section-padding">
   <div class="container">
     <div class="row justify-content-center">
-      <br />
-      <div class="col-md-12">
-        <h2>عدم دسترسی</h2>
-      </div>
-      <div class="col-md-12">
-        <h3>شما به صفحه درخواستی دسترسی ندارید</h3>
-      </div>
-      <div class="col-md-12">
-        <h4>
-          <a asp-controller="Home" asp-action="Index" asp-area="">خانه - صفحه اصلی سایت</a>
-        </h4>
+      <div class="col-xl-8 centered">
+        <div class="section-title">
+          <h2>عدم دسترسی</h2>
+        </div>
+        <div class="col-md-12">
+          <h3>شما به صفحه درخواستی دسترسی ندارید</h3>
+        </div>
+        <div class="col-md-12">
+          <h4>
+            <a asp-controller="Home" asp-action="Index" asp-area="">خانه - صفحه اصلی سایت</a>
+          </h4>
+        </div>
       </div>
     </div>
-    </div>
+  </div>
 </section>

@@ -12,6 +12,8 @@ namespace Okapia.Domain.Models
         public string SlideTitleText { get; set; }
         public string SlideDescriptionText { get; set; }
         public string SlideLink { get; set; }
+        public string SlideBtnText { get; set; }
+        public bool SlideBtnIsVisible { get; set; }
         public DateTime SlideCreationDate { get; set; }
         public bool SlideIsDeleted { get; set; }
     }

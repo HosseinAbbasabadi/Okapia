@@ -87,7 +87,7 @@
   </li>
 }
 
-@if (Model.Any(x => x.ControllerName == "User") || Model.Any(x => x.ControllerName == "Group") || Model.Any(x => x.ControllerName == "Modal"))
+@if (Model.Any(x => x.ControllerName == "User") || Model.Any(x => x.ControllerName == "Group") || Model.Any(x => x.ControllerName == "Modal") || Model.Any(x => x.ControllerName == "Contact"))
 {
   <li>
     <a class="waves-effect">
@@ -119,6 +119,15 @@
           <a asp-action="Index" asp-controller="Modal" asp-area="Administrator" class="waves-effect">
             <i class="md md-home"></i>
             <span>مدیریت اعلانات</span>
+          </a>
+        </li>
+      }
+      @if (Model.Any(x => x.ControllerName == "Contact"))
+      {
+        <li>
+          <a asp-action="Index" asp-controller="Contact" asp-area="Administrator" class="waves-effect">
+            <i class="md md-home"></i>
+            <span>صدای مشتری</span>
           </a>
         </li>
       }

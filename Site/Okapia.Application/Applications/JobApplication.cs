@@ -268,7 +268,8 @@ namespace Okapia.Application.Applications
                 WebSiteUrl = command.WebsiteUrl,
                 InstagramUrl = command.InstagramUrl,
                 TelegramUrl = command.TelegramUrl,
-                IsStared = command.IsStared
+                IsStared = command.IsStared,
+                JobPrice = command.JobPrice
             };
             return job;
         }
@@ -324,7 +325,8 @@ namespace Okapia.Application.Applications
                 TelegramUrl = command.TelegramUrl,
                 JobId = command.JobId,
                 JobRemoved301InsteadUrl = command.RedirectInstead301Url,
-                IsStared = command.IsStared
+                IsStared = command.IsStared,
+                JobPrice = command.JobPrice
             };
             return job;
         }

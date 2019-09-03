@@ -9,9 +9,11 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Net.Http.Headers;
 using Okapia.Configuration;
 using Okapia.Helpers;
 using reCAPTCHA.AspNetCore;
+using SameSiteMode = Microsoft.AspNetCore.Http.SameSiteMode;
 
 namespace Okapia
 {
@@ -56,7 +58,16 @@ namespace Okapia
                         new[] {"image/svg+xml/css/js"});
             });
             services.AddResponseCaching();
-            services.AddMvc(options => { options.EnableEndpointRouting = false; })
+            services.AddMvc(options =>
+                {
+                    options.EnableEndpointRouting = false;
+                    options.CacheProfiles.Add("Default",
+                        new CacheProfile
+                        {
+                            Duration = 60,
+                            Location = ResponseCacheLocation.Any
+                        });
+                })
                 .AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = true)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -78,7 +89,15 @@ namespace Okapia
             app.UseResponseCaching();
             app.UseResponseCompression();
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    const int durationInSeconds = 60 * 60 * 24;
+                    ctx.Context.Response.Headers[HeaderNames.CacheControl] =
+                        "public,max-age=" + durationInSeconds;
+                }
+            });
             app.UseCookiePolicy();
 
             app.UseAuthentication();

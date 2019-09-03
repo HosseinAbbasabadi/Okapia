@@ -1,4 +1,6 @@
-﻿using Okapia.Domain.Contracts;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore.Internal;
+using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 
 namespace Okapia.Repository.Repositories
@@ -7,6 +9,11 @@ namespace Okapia.Repository.Repositories
     {
         public SettingRepository(OkapiaContext context) : base(context)
         {
+        }
+
+        public string GetValueByKey(string key)
+        {
+            return _context.Settings.FirstOrDefault(x => x.SettingKey == key)?.SettingValue;
         }
     }
 }

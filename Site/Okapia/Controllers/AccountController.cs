@@ -1,8 +1,6 @@
 ﻿using Framework;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
-using Okapia.Areas.Administrator.Controllers;
 using Okapia.Domain.Commands;
 using Okapia.Domain.Commands.User;
 using Okapia.Models;
@@ -12,9 +10,6 @@ namespace Okapia.Controllers
     public class AccountController : Controller
     {
         private readonly IAuthHelper _authHelper;
-        private readonly ICityApplication _cityApplication;
-        private readonly IDistrictApplication _districtApplication;
-        private readonly INeighborhoodApplication _neighborhoodApplication;
         private readonly IAccountApplication _accountApplication;
 
         public AccountController(IAccountApplication accountApplication, IAuthHelper authHelper,
@@ -23,18 +18,12 @@ namespace Okapia.Controllers
         {
             _accountApplication = accountApplication;
             _authHelper = authHelper;
-            _cityApplication = cityApplication;
-            _districtApplication = districtApplication;
-            _neighborhoodApplication = neighborhoodApplication;
         }
 
         public ActionResult Register()
         {
             if (_authHelper.GetCurrnetUserInfo().IsAuthorized) return RedirectToAction("Index", "Home");
-            var createUser = new CreateUser
-            {
-                Provinces = new SelectList(Provinces.ToList(), "Id", "Name")
-            };
+            var createUser = new CreateUser();
             return View(createUser);
         }
 
@@ -45,14 +34,21 @@ namespace Okapia.Controllers
             if (!ModelState.IsValid) return View("Register", createUser);
             var result = _accountApplication.Register(createUser);
             if (result.Success)
-                return RedirectToAction("Login", "Account");
+            {
+                var loginResult = _accountApplication.Login(new Login { Username = createUser.NationalCardNumber, Password = createUser.PhoneNumber });
+                if (loginResult.Success)
+                {
+                    if (loginResult.RecordId == 5 || loginResult.RecordId == 4)
+                        return RedirectToAction("Index", "Home", new { area = "Administrator" });
+                    if (loginResult.RecordId == 3)
+                        return RedirectToAction("Index", "Home", new { area = "Club" });
+                    if (loginResult.RecordId == 2)
+                        return RedirectToAction("Index", "Home", new { area = "Job" });
+                    if (loginResult.RecordId == 1)
+                        return RedirectToAction("Index", "Home", new { area = "Customer" });
+                }
+            }
             ViewData["errorMessage"] = result.Message;
-            createUser.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
-            createUser.Cities = new SelectList(_cityApplication.GetCitiesBy(createUser.ProvinceId), "Id", "Name");
-            createUser.Districts = new SelectList(_districtApplication.GetDistrictsBy(createUser.CityId), "Id", "Name");
-            createUser.Neighborhoods =
-                new SelectList(_neighborhoodApplication.GetNeighborhoodsBy(createUser.DistrictId), "Id", "Name");
-
             return View(createUser);
         }
 

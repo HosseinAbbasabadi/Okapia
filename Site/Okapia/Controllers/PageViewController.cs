@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Okapia.Application.Contracts;
-using Okapia.Areas.Administrator.Models;
 using Okapia.Domain.Commands.Comment;
-using Okapia.Domain.ViewModels.Page;
 using Okapia.Models;
 
 namespace Okapia.Controllers
 {
+    [ResponseCache(CacheProfileName = "Default")]
     public class PageViewController : Controller
     {
         private readonly IPageApplication _pageApplication;

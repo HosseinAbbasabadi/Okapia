@@ -55,6 +55,11 @@ namespace Okapia.Application.Applications
             return MapSettings(settings);
         }
 
+        public string GetForgetPasswordText()
+        {
+            return _settingRepository.GetValueByKey("ForgetPasswordText");
+        }
+
         public SettingDto GetSettingsForView()
         {
             var settings = _settingQuery.GetAll();
@@ -65,7 +70,7 @@ namespace Okapia.Application.Applications
         {
             return _settingQuery.Get(x => x.SettingKey == "Privacy").First().SettingValue;
         }
-        
+
         private static SettingDto MapSettings(IReadOnlyCollection<Setting> settings)
         {
             var setSetting = new SettingDto();

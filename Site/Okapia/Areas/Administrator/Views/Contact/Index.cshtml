@@ -1,0 +1,13 @@
+﻿@model Okapia.Areas.Administrator.Models.ContactIndexViewModel
+@{
+  ViewData["Title"] = "مدیریت پیام های ارتباط با ما";
+}
+
+
+<h1>صفحه مدیریت مدیریت پیام های ارتباط با ما</h1>
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/Contact/_SearchContacts.cshtml", Model.ContactSearchModel)
+
+<div id="listContactsDiv">
+  @await Html.PartialAsync("~/Areas/Administrator/Views/Contact/_ListContacts.cshtml", Model.ContactViewModels)
+</div>
