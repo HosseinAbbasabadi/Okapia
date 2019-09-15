@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Okapia.Domain.Commands.Box;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
@@ -11,6 +12,26 @@ namespace Okapia.Repository.Repositories
     {
         public BoxRepository(OkapiaContext context) : base(context)
         {
+        }
+
+        public EditBox GetDetails(int id)
+        {
+            return _context.Boxes.Select(x => new EditBox
+            {
+                BoxId = x.BoxId,
+                BoxTitle = x.BoxTitle,
+                BoxBannerPicture = x.BoxBannerPicture,
+                BoxBannerPictureAlt = x.BoxBannerPictureAlt,
+                BoxBannerPictureIsEnabled = x.BoxBannerPictureIsEnabled,
+                BoxBannerPictureLink = x.BoxBannerPictureLink,
+                BoxBannerPictureTitle = x.BoxBannerPictureTitle,
+                BoxColor = x.BoxColor,
+                BoxIcon = x.BoxIcon,
+                BoxLink = x.BoxLink,
+                BoxLinkBtnText = x.BoxLinkBtnText,
+                BoxLinkText = x.BoxLinkText,
+                BoxIsEnabled = x.BoxIsEnabled
+            }).FirstOrDefault(x => x.BoxId == id);
         }
 
         public List<BoxViewModel> Search(BoxSearchModel searchModel, out int recordCount)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Framework;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
@@ -91,7 +92,7 @@ namespace Okapia.Application.Applications
                 box.BoxBannerPictureAlt = command.BoxBannerPictureAlt;
                 box.BoxBannerPictureLink = command.BoxBannerPictureLink;
                 box.BoxBannerPictureTitle = command.BoxBannerPictureTitle;
-                box.BoxBannerPictureIsEnabled = command.BoxIsEnabled;
+                box.BoxBannerPictureIsEnabled = command.BoxBannerPictureIsEnabled;
                 _boxRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -155,6 +156,20 @@ namespace Okapia.Application.Applications
                 result.Message = ApplicationMessages.SystemFailure;
                 return result;
             }
+        }
+
+        public EditBox GetDetails(int id)
+        {
+            return _boxRepository.GetDetails(id);
+        }
+
+        public List<BoxViewModel> GetActiveBoxes()
+        {
+            return _boxRepository.Get(x => x.BoxIsEnabled).Select(x => new BoxViewModel
+            {
+                BoxId = x.BoxId,
+                BoxTitle = x.BoxTitle
+            }).ToList();
         }
 
         public List<BoxViewModel> Search(BoxSearchModel searchModel, out int recordCount)

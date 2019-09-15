@@ -1,4 +1,7 @@
-﻿namespace Okapia.Domain.Commands.Job
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace Okapia.Domain.Commands.Job
 {
     public class Provience
     {
@@ -10,5 +13,13 @@
 
         public int Id { get; set; }
         public string Name { get; set; }
+    }
+
+    public class AddToBox
+    {
+        public long JobId { get; set; }
+        public int BoxId { get; set; }
+        [Display(Name = "باکس های فعال")]
+        public SelectList Boxes { get; set; }
     }
 }

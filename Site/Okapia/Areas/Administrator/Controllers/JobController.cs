@@ -20,13 +20,16 @@ namespace Okapia.Areas.Administrator.Controllers
         private readonly IJobApplication _jobApplication;
         private readonly ICategoryApplication _categoryApplication;
         private readonly IMarketerApplication _marketerApplication;
+        private readonly IBoxApplication _boxApplication;
 
         public JobController(IJobApplication jobApplication, ICategoryApplication categoryApplication,
-            IAccountApplication accountApplication, IMarketerApplication marketerApplication)
+            IAccountApplication accountApplication, IMarketerApplication marketerApplication,
+            IBoxApplication boxApplication)
         {
             _jobApplication = jobApplication;
             _categoryApplication = categoryApplication;
             _marketerApplication = marketerApplication;
+            _boxApplication = boxApplication;
         }
 
         // GET: Shop
@@ -46,21 +49,11 @@ namespace Okapia.Areas.Administrator.Controllers
             return jobIndex;
         }
 
-        //[HttpGet]
-        ////[ValidateAntiForgeryToken]
-        //public ActionResult Search(JobSearchModel searchModel)
-        //{
-        //    ProvideJobSearchModel(searchModel);
-        //    var jobs = _jobApplication.GetJobsForList(searchModel, out var recordCount);
-        //    var jobIndex = ProvideJobIndex(jobs, searchModel);
-        //    Pager.PreparePager(searchModel, recordCount);
-        //    return View("Index", jobIndex);
-        //}
-
         private JobSearchModel ProvideJobSearchModel(JobSearchModel searchModel)
         {
             searchModel.Proviences = new SelectList(Provinces.ToList(), "Id", "Name");
-            searchModel.Categories = new SelectList(_categoryApplication.GetChildCategories(), "CategoryId", "CategoryName");
+            searchModel.Categories =
+                new SelectList(_categoryApplication.GetChildCategories(), "CategoryId", "CategoryName");
             if (searchModel.PageSize == 0)
             {
                 searchModel.PageSize = 40;
@@ -79,7 +72,6 @@ namespace Okapia.Areas.Administrator.Controllers
             return jobIndex;
         }
 
-        // GET: Shop/Create
         public ActionResult Create()
         {
             var createModel = new CreateJob
@@ -91,7 +83,6 @@ namespace Okapia.Areas.Administrator.Controllers
             return View(createModel);
         }
 
-        // POST: Shop/Create
         [HttpPost]
         public JsonResult Create(CreateJob command)
         {
@@ -157,19 +148,17 @@ namespace Okapia.Areas.Administrator.Controllers
             return photos;
         }
 
-        // GET: Shop/Edit/5
         public ActionResult Edit(int id, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
             var editJob = _jobApplication.GetJobDetails(id);
             editJob.Proviences = new SelectList(Provinces.ToList(), "Id", "Name");
-            editJob.Categories = new SelectList(_categoryApplication.GetChildCategories(), "CategoryId", "CategoryName");
+            editJob.Categories =
+                new SelectList(_categoryApplication.GetChildCategories(), "CategoryId", "CategoryName");
             ViewData["redirectUrl"] = redirectUrl;
             return View(editJob);
         }
 
-        // POST: Shop/Edit/5
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public JsonResult Edit(int id, EditJob command)
         {
             command.JobId = id;
@@ -179,7 +168,6 @@ namespace Okapia.Areas.Administrator.Controllers
             return Json(result);
         }
 
-        // POST: Shop/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public JsonResult Delete(int id, IFormCollection collection)
@@ -199,6 +187,23 @@ namespace Okapia.Areas.Administrator.Controllers
         public JsonResult CheckSlugDuplication(string id)
         {
             var result = _jobApplication.CheckJobSlugDuplication(id);
+            return Json(result);
+        }
+
+        public ActionResult AddToBox(long id)
+        {
+            var addTobox = new AddToBox
+            {
+                JobId = id,
+                Boxes = new SelectList(_boxApplication.GetActiveBoxes(), "BoxId", "BoxTitle")
+            };
+            return PartialView("_AddToBox", addTobox);
+        }
+
+        [HttpPost]
+        public JsonResult AddToBox(AddToBox command)
+        {
+            var result = _jobApplication.AddJobToBox(command);
             return Json(result);
         }
     }

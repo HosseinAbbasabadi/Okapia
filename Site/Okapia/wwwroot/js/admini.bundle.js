@@ -4949,7 +4949,6 @@ function feedList(listUrl, listDivId) {
 }
 
 function createEntityThenReferesh(url, formId) {
-  debugger;
   if ($("#" + formId).valid() === true) {
     for (instance in CKEDITOR.instances) {
       CKEDITOR.instances[instance].updateElement();

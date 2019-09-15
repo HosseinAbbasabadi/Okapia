@@ -54,6 +54,7 @@ namespace Okapia.Repository
             modelBuilder.ApplyConfiguration(new JobRelationMapping());
             modelBuilder.ApplyConfiguration(new JobRequestMapping());
             modelBuilder.ApplyConfiguration(new BoxMapping());
+            modelBuilder.ApplyConfiguration(new BoxJobMapping());
 
             // page mapping
             modelBuilder.ApplyConfiguration(new PageMapping());

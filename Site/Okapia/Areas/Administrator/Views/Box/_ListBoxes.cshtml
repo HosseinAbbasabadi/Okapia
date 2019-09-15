@@ -68,9 +68,9 @@
               </td>
               <td>
                 <a class="btn btn-sm btn-info" asp-area="Administrator" asp-controller="Box" asp-action="Edit" asp-route-id="@item.value.BoxId" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>
-                @if (!item.value.BoxIsEnabled)
+                @if (item.value.BoxIsEnabled)
                 {
-                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="Box" asp-action="Delete" asp-route-id="@item.value.BoxId">حذف</a>
+                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="Box" asp-action="Deactive" asp-route-id="@item.value.BoxId">غیر فعال کردن</a>
                 }
                 else
                 {

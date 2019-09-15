@@ -58,6 +58,7 @@ namespace Okapia
                         new[] {"image/svg+xml/css/js"});
             });
             services.AddResponseCaching();
+
             services.AddMvc(options =>
                 {
                     options.EnableEndpointRouting = false;

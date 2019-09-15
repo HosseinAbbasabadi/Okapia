@@ -16,7 +16,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="BoxTitle" class="control-label"></label>
-          <input asp-for="BoxTitle" class="form-control" onchange="makeSlug('CategoryName', 'CategorySlug', '@Url.Action("CheckSlugDuplication", "Category")')"/>
+          <input asp-for="BoxTitle" class="form-control"/>
           <span asp-validation-for="BoxTitle" class="text-danger"></span>
         </div>
       </div>
@@ -30,7 +30,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="BoxLinkText" class="control-label"></label>
-          <input asp-for="BoxLinkText" class="form-control" onchange="checkSlugDuplication('@Url.Action("CheckSlugDuplication", "Category")', 'CategorySlug')"/>
+          <input asp-for="BoxLinkText" class="form-control"/>
           <span asp-validation-for="BoxLinkText" class="text-danger"></span>
         </div>
       </div>
@@ -95,9 +95,7 @@
             </div>
           </td>
           <td>
-            <div style="width: 100px; height: 100px">
               <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
-            </div>
           </td>
           <td>
             <button type="button" id="deleteImage" onclick="deletePhoto('BoxBannerPicture', 'prevImage', 'deleteImage', 'BoxBannerPictureTitle', 'BoxBannerPictureAlt', 'desc', 'box')" class="btn btn-danger hidden">حذف</button>

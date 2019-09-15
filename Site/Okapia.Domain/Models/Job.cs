@@ -4,6 +4,11 @@ namespace Okapia.Domain.Models
 {
     public class Job
     {
+        public Job()
+        {
+            this.BoxJobs = new List<BoxJob>();
+        }
+
         public long JobId { get; set; }
         public string JobName { get; set; }
         public string JobSmallDescription { get; set; }
@@ -58,6 +63,7 @@ namespace Okapia.Domain.Models
         public double JobPrice { get; set; }
         public ICollection<JobPicture> JobPictures { get; set; }
         public ICollection<Comment> JobComments { get; set; }
+        public ICollection<BoxJob> BoxJobs { get; set; }
         public Account Account { get; set; }
     }
 }

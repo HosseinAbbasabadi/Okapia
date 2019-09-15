@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
@@ -60,47 +59,33 @@ namespace Okapia.Areas.Administrator.Controllers
             return Json(result);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
-            return View();
+            var editBox = _boxApplication.GetDetails(id);
+            ViewData["redirectUrl"] = redirectUrl;
+            return View(editBox);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public JsonResult Edit(int id, EditBox command)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            command.BoxId = id;
+            var result = _boxApplication.Edit(command);
+            return Json(result);
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Deactive(int id)
         {
-            return View();
+            var result = _boxApplication.Deactive(id);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
         }
 
-        // POST: Box/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Activate(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var result = _boxApplication.Activate(id);
+            var referer = Request.Headers["Referer"].ToString();
+            return Redirect(referer);
         }
     }
 }

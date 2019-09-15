@@ -31,6 +31,7 @@ namespace Okapia.Application.Applications
         private readonly ICityApplication _cityApplication;
         private readonly IDistrictApplication _districtApplication;
         private readonly INeighborhoodApplication _neighborhoodApplication;
+        private readonly IBoxRepository _boxRepository;
 
         public JobApplication(IJobRepository jobRepository, IAccountRepository accountRepository,
             IAuthHelper authHelper, IPasswordHasher passwordHasher, IJobRequestRepository jobRequestRepository,
@@ -38,7 +39,7 @@ namespace Okapia.Application.Applications
             ICategoryApplication categoryApplication, ICityRepository cityRepository,
             IDistrictRepository districtRepository, INeighborhoodRepository neighborhoodRepository, IJobQuery jobQuery,
             ICityApplication cityApplication, IDistrictApplication districtApplication,
-            INeighborhoodApplication neighborhoodApplication)
+            INeighborhoodApplication neighborhoodApplication, IBoxRepository boxRepository)
         {
             _jobRepository = jobRepository;
             _accountRepository = accountRepository;
@@ -54,6 +55,7 @@ namespace Okapia.Application.Applications
             _cityApplication = cityApplication;
             _districtApplication = districtApplication;
             _neighborhoodApplication = neighborhoodApplication;
+            _boxRepository = boxRepository;
         }
 
         public OperationResult Create(CreateJob command)
@@ -215,7 +217,8 @@ namespace Okapia.Application.Applications
                     "Name");
             jobDetails.Marketers =
                 new SelectList(_marketerApplication.GetMarketers(), "MarketerId", "MarketerFullName");
-            jobDetails.Categories = new SelectList(_categoryApplication.GetParentCategories(), "CategoryId", "CategoryName");
+            jobDetails.Categories =
+                new SelectList(_categoryApplication.GetParentCategories(), "CategoryId", "CategoryName");
             return jobDetails;
         }
 
@@ -396,6 +399,44 @@ namespace Okapia.Application.Applications
                     return result;
                 }
 
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
+        }
+
+        public OperationResult AddJobToBox(AddToBox command)
+        {
+            var result = new OperationResult("Jobs", "AddJobToBox");
+            try
+            {
+                if (!_boxRepository.Exists(x => x.BoxId == command.BoxId))
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
+                var job = _jobRepository.Get(command.JobId);
+                if (job == null)
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
+                var boxJob = new BoxJob
+                {
+                    JobId = command.JobId,
+                    BoxId = command.BoxId
+                };
+
+                job.BoxJobs.Add(boxJob);
+                _jobRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
                 return result;
             }
