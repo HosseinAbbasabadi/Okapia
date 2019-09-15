@@ -31,10 +31,6 @@ namespace Okapia.Areas.Administrator.Controllers
             var photo = files.First();
             if (!photo.FileName.IsValidFileName()) return Json(400);
             if (photo.Length > SizeLimitation) return Json(401);
-            using (var image  = Image.FromStream(photo.OpenReadStream()))
-            {
-                //TODO: check image with & height here
-            }
             var filename = ContentDispositionHeaderValue.Parse(photo.ContentDisposition).FileName.ToString()
                 .Trim('"');
             var uniqueFileName = DateTime.Now.ToFileName() + "_" + filename;
@@ -116,6 +112,12 @@ namespace Okapia.Areas.Administrator.Controllers
                 containingFoler = "SlidePhotos";
             if (type == "about")
                 containingFoler = "AboutPicture";
+            if (type == "banner")
+                containingFoler = "BannerPhoto";
+            if (type == "special")
+                containingFoler = "SpecialPictures";
+            if (type == "box")
+                containingFoler = "BoxPhotos";
             return containingFoler;
         }
     }

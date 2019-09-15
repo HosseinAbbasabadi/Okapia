@@ -43,6 +43,7 @@ namespace Okapia.Repository
         public DbSet<Link> Links { get; set; }
         //public DbSet<UserGroup> UserGroups { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Box> Boxes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -52,6 +53,7 @@ namespace Okapia.Repository
             modelBuilder.ApplyConfiguration(new JobPictureMapping());
             modelBuilder.ApplyConfiguration(new JobRelationMapping());
             modelBuilder.ApplyConfiguration(new JobRequestMapping());
+            modelBuilder.ApplyConfiguration(new BoxMapping());
 
             // page mapping
             modelBuilder.ApplyConfiguration(new PageMapping());

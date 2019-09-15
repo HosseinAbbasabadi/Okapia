@@ -86,6 +86,9 @@ namespace Okapia.Configuration
             services.AddScoped<IContactApplication, ContactApplication>();
             services.AddScoped<IContactRepository, ContactRepository>();
 
+            services.AddScoped<IBoxApplication, BoxApplication>();
+            services.AddScoped<IBoxRepository, BoxRepository>();
+
             services.AddScoped<IJobTransactionApplication, JobTransactionApplication>();
 
             services.AddScoped<IUserTransactionApplication, UserTransactionApplication>();
@@ -102,6 +105,7 @@ namespace Okapia.Configuration
             services.AddScoped<IUserCardQuery, UserCardQuery>();
             services.AddScoped<ISettingQuery, SettingQuery>();
             services.AddScoped<ILinkQuery, LinkQuery>();
+            services.AddScoped<IBoxQuery, BoxQuery>();
 
             services.AddScoped<IUserCardApplication, UserCardApplication>();
             services.AddScoped<IUserCardRepository, UserCardRepository>();

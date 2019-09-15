@@ -42,6 +42,7 @@ namespace Okapia.Query
         public DbSet<UserGroup> UserGroups { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Link> Links { get; set; }
+        public DbSet<Box> Boxes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -52,6 +53,7 @@ namespace Okapia.Query
             modelBuilder.ApplyConfiguration(new JobRelationMapping());
             modelBuilder.ApplyConfiguration(new JobRequestMapping());
             modelBuilder.ApplyConfiguration(new CategoryMapping());
+            modelBuilder.ApplyConfiguration(new BoxMapping());
 
             // page mapping
             modelBuilder.ApplyConfiguration(new PageMapping());

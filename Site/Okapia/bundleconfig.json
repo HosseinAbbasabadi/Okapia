@@ -1,51 +1,104 @@
 [
   {
-    "outputFileName": "wwwroot/css/site.min.css",
+    "outputFileName": "wwwroot/assets/theme/css/site.min.css",
     "inputFiles": [
-      "wwwroot/css/jquery.Bootstrap-PersianDateTimePicker.css",
-      "wwwroot/assets/css/bootstrap.min.css",
-      "wwwroot/assets/css/all.css",
-      "wwwroot/assets/css/magnific-popup.css",
-      "wwwroot/assets/css/animate.css",
-      "wwwroot/assets/notifications/notification.css",
-      "wwwroot/assets/css/swiper.min.css",
-      "wwwroot/assets/css/owl.carousel.min.css",
-      "wwwroot/assets/css/main.css",
-      "wwwroot/css/site.css"
-    ]
+      "wwwroot/assets/theme/css/bootstrap.min.css",
+      "wwwroot/assets/theme/css/bootstrap-rtl.min.css",
+      "wwwroot/assets/theme/css/owl.carousel.min.css",
+      "wwwroot/assets/theme/css/owl.theme.css",
+      "wwwroot/assets/theme/css/jquery-ui.min.css",
+      "wwwroot/assets/theme/css/jquery-ui.structure.min.css",
+      "wwwroot/assets/theme/css/jquery-ui.theme.min.css",
+      "wwwroot/assets/theme/css/jquery.ui.slider-rtl.css",
+      "wwwroot/assets/theme/css/select2.min.css",
+      "wwwroot/assets/theme/css/kit1abf.css?v=2.6.4",
+      "wwwroot/assets/theme/css/animate.css",
+      "wwwroot/assets/theme/css/AutoComplete/easy-autocomplete.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
+    }
   },
   {
-    "outputFileName": "wwwroot/js/site.min.js",
+    "outputFileName": "wwwroot/assets/theme/js/site.min.js",
     "inputFiles": [
-      "wwwroot/assets/js/jquery-3.2.1.min.js",
-      "wwwroot/assets/js/jquery-migrate.js",
-      "wwwroot/assets/js/popper.js",
-      "wwwroot/assets/js/bootstrap.min.js",
-      "wwwroot/assets/js/owl.carousel.min.js",
-      "wwwroot/assets/js/magnific-popup.min.js",
-      "wwwroot/assets/js/imagesloaded.pkgd.min.js",
-      "wwwroot/assets/js/isotope.pkgd.min.js",
-      "wwwroot/assets/js/waypoints.min.js",
-      "wwwroot/assets/js/jquery.counterup.min.js",
-      "wwwroot/assets/js/wow.min.js",
-      "wwwroot/assets/js/scrollUp.min.js",
-      "wwwroot/assets/js/swiper.min.js",
-      "wwwroot/assets/js/script.js",
-      //"wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "wwwroot/assets/theme/js/jquery-1.12.0.min.js",
+      "wwwroot/assets/theme/js/bootstrap.min.js",
+      "wwwroot/assets/theme/js/jquery.touchSwipe.min.js",
+      "wwwroot/assets/theme/js/js-cookie.js",
+      "wwwroot/assets/theme/js/owl.carousel.min.js?v=1.0.1",
+      "wwwroot/assets/theme/js/wow.min.js",
+      "wwwroot/assets/theme/js/sticky.js",
+      "wwwroot/assets/theme/js/bowser.js",
+      "wwwroot/assets/theme/js/jquery.flip.min.js",
+      "wwwroot/assets/theme/js/jquery-ui.min.js",
+      "wwwroot/assets/theme/js/jquery.ui.slider-rtl.min.js",
+      "wwwroot/assets/theme/js/select2.full.min.js",
+      "wwwroot/assets/theme/js/jquery.unveil.js?v=1.0.3",
+      "wwwroot/assets/theme/js/jquery.dotdotdot.min.js",
+      "wwwroot/assets/theme/js/i18n/fa.js",
+      "wwwroot/assets/theme/js/phone-verification.js?v=1.0.4",
+      "wwwroot/assets/theme/js/app.js?v=1.5.9",
+      "wwwroot/assets/theme/js/validation.js?v=1.0.6",
+      "wwwroot/assets/theme/js/madjax.js?v=1.1.5",
+      "wwwroot/assets/theme/js/ajax-result-function.js?v=1.5.6",
+      "wwwroot/assets/theme/js/client-function.js",
+      "wwwroot/assets/theme/js/AutoComplete/jquery.easy-autocomplete.js?v=1.0.5",
+      "wwwroot/assets/theme/js/elastic.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/admini.bundle.css",
+    "inputFiles": [
+      "wwwroot/css/bootstrap.css",
+      "wwwroot/assets/font-awesome/css/font-awesome.min.css",
+      "wwwroot/assets/ionicon/css/ionicons.min.css",
+      "wwwroot/css/animate.css",
+      "wwwroot/css/waves-effect.css",
+      "wwwroot/css/helper.css",
+      "wwwroot/css/style.css",
+      "wwwroot/css/site.css",
+      "wwwroot/assets/notifications/notification.css",
+      "wwwroot/css/jquery.Bootstrap-PersianDateTimePicker.css",
+      "wwwroot/assets/select2/select2.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/admini.bundle.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/dist/jquery.min.js",
       "wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
       "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "wwwroot/js/bootstrap.js",
+      "wwwroot/js/jquery.app.js",
+      "wwwroot/js/jquery.dashboard.js",
+      "wwwroot/assets/chartjs/chart.min.js",
+      "wwwroot/assets/chartjs/chartjs.init.js",
+      "wwwroot/js/jquery.nicescroll.js",
+      "wwwroot/js/jquery.scrollTo.min.js",
+      "wwwroot/js/aspnetcorefileuploading.js",
+      "wwwroot/js/ajaxFunctions.js",
       "wwwroot/assets/notifications/notify.min.js",
       "wwwroot/assets/notifications/notify-metro.js",
       "wwwroot/assets/notifications/notifications.js",
-      "wwwroot/js/site.js",
-      "wwwroot/js/ajaxFunctions.js",
       "wwwroot/js/calendar.js",
       "wwwroot/js/jquery.Bootstrap-PersianDateTimePicker.js",
+      "wwwroot/assets/select2/select2.min.js",
+      "wwwroot/assets/fileManager/PFileManager.js",
+      "wwwroot/js/site.js"
     ],
     "minify": {
-      "enabled": true,
-      "renameLocals": true
-    },
-    "sourceMap": false
+      "enabled": false,
+      "renameLocals": false
+    }
   }
 ]

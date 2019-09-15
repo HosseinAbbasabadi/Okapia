@@ -11,25 +11,25 @@
   <div class="col-md-12">
     <div class="panel panel-border panel-primary">
       <div class="panel-heading">
-        <h2 class="panel-title">تنظیمات سایت</h2>
+        <h2 class="panel-title">تنظیمات کلی سایت</h2>
       </div>
       <hr/>
       <div class="panel-body">
         <div class="col-md-12 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.About):
+            <strong>@Html.DisplayNameFor(model => model.About):</strong>
             <span>@Html.DisplayFor(model => model.About)</span>
           </div>
         </div>
         <div class="col-md-12 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.FooterAbout):
+            <strong>@Html.DisplayNameFor(model => model.FooterAbout):</strong>
             <span>@Html.DisplayFor(model => model.FooterAbout)</span>
           </div>
         </div>
-        <div class="col-md-6 form-group">
+        <div class="col-md-12 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.AboutPicture):
+            <strong>@Html.DisplayNameFor(model => model.AboutPicture):</strong>
             <span>
               <img src="~/AboutPicture/Thumbs/@Model.AboutPicture" alt="@Model.AboutPictureAlt"/>
             </span>
@@ -37,37 +37,49 @@
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.AboutPictureAlt):
+            <strong>
+              @Html.DisplayNameFor(model => model.AboutPictureAlt):
+            </strong>
             <span>@Html.DisplayFor(model => model.AboutPictureAlt)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.AboutPictureTitle):
+            <strong>
+              @Html.DisplayNameFor(model => model.AboutPictureTitle):
+            </strong>
             <span>@Html.DisplayFor(model => model.AboutPictureTitle)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.Privacy):
+            <strong>
+              @Html.DisplayNameFor(model => model.Privacy):
+            </strong>
             <span>@Html.DisplayFor(model => model.Privacy)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.Tell1):
+            <strong>
+              @Html.DisplayNameFor(model => model.Tell1):
+            </strong>
             <span>@Html.DisplayFor(model => model.Tell2)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.Address):
+            <strong>
+              @Html.DisplayNameFor(model => model.Address):
+            </strong>
             <span>@Html.DisplayFor(model => model.Address)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.Email):
+            <strong>
+              @Html.DisplayNameFor(model => model.Email):
+            </strong>
             <span>@Html.DisplayFor(model => model.Email)</span>
           </div>
         </div>
@@ -79,61 +91,183 @@
     </div>*@
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.MetaTags):
+            <strong>
+              @Html.DisplayNameFor(model => model.MetaTags):
+            </strong>
             <span>@Html.DisplayFor(model => model.MetaTags)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.MetaDescription):
+            <strong>
+              @Html.DisplayNameFor(model => model.MetaDescription):
+            </strong>
             <span>@Html.DisplayFor(model => model.MetaDescription)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.CanonicalAddress):
+            <strong>
+              @Html.DisplayNameFor(model => model.CanonicalAddress):
+            </strong>
             <span>@Html.DisplayFor(model => model.CanonicalAddress)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.Facebook):
+            <strong>
+              @Html.DisplayNameFor(model => model.Facebook):
+            </strong>
             <span>@Html.DisplayFor(model => model.Facebook)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.Instagram):
+            <strong>
+              @Html.DisplayNameFor(model => model.Instagram):
+            </strong>
             <span>@Html.DisplayFor(model => model.Instagram)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.Telegram):
+            <strong>
+              @Html.DisplayNameFor(model => model.Telegram):
+            </strong>
             <span>@Html.DisplayFor(model => model.Telegram)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.Twitter):
+            <strong>
+              @Html.DisplayNameFor(model => model.Twitter):
+            </strong>
             <span>@Html.DisplayFor(model => model.Twitter)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.FeaturedJobsTitle):
+            <strong>
+              @Html.DisplayNameFor(model => model.FeaturedJobsTitle):
+            </strong>
             <span>@Html.DisplayFor(model => model.FeaturedJobsTitle)</span>
           </div>
         </div>
         <div class="col-md-6 form-group">
           <div class="detail-name">
-            @Html.DisplayNameFor(model => model.ForgetPasswordText):
+            <strong>
+              @Html.DisplayNameFor(model => model.ForgetPasswordText):
+            </strong>
             <span>@Html.DisplayFor(model => model.ForgetPasswordText)</span>
           </div>
         </div>
         <div class="col-md-12">
           <div class="form-group">
             <a class="btn btn-lg btn-info" asp-action="Create" asp-controller="Setting" asp-area="Administrator" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  <div class="panel panel-border panel-primary">
+    <div class="panel-heading">
+      <h2 class="panel-title">تنظیمات بنر</h2>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-12 form-group">
+        <div class="detail-name">
+          <strong>@Html.DisplayNameFor(model => model.BannerPicture):</strong>
+          <span>
+            <img src="~/BannerPhoto/Thumbs/@Model.BannerPicture" alt="@Model.BannerPictureAlt" />
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.BannerIsActive):
+          </strong>
+          <span>@Html.DisplayFor(model => model.BannerIsActive)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.BannerPictureAlt):
+          </strong>
+          <span>@Html.DisplayFor(model => model.BannerPictureAlt)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.BannerBackgroundColor):
+          </strong>
+          <span>@Html.DisplayFor(model => model.BannerBackgroundColor)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.BannerPictureTitle):
+          </strong>
+          <span>@Html.DisplayFor(model => model.BannerPictureTitle)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">تنظیمات پیشنهادات ویژه</h2>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            <strong>@Html.DisplayNameFor(model => model.SpecialSuggestionPicture1):</strong>
+            <span>
+              <img src="~/SpecialPictures/Thumbs/@Model.SpecialSuggestionPicture1" alt="@Model.SpecialSuggestionPictureAlt1" />
+            </span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            <strong>@Html.DisplayNameFor(model => model.SpecialSuggestionPicture2):</strong>
+            <span>
+              <img src="~/SpecialPictures/Thumbs/@Model.SpecialSuggestionPicture2" alt="@Model.SpecialSuggestionPictureAlt2" />
+            </span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            <strong>@Html.DisplayNameFor(model => model.SpecialSuggestionPicture3):</strong>
+            <span>
+              <img src="~/SpecialPictures/Thumbs/@Model.SpecialSuggestionPicture3" alt="@Model.SpecialSuggestionPictureAlt3" />
+            </span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            <strong>
+              @Html.DisplayNameFor(model => model.SpecialSuggestionPictureLink1):
+            </strong>
+            <span>@Html.DisplayFor(model => model.SpecialSuggestionPictureLink1)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            <strong>
+              @Html.DisplayNameFor(model => model.SpecialSuggestionPictureLink2):
+            </strong>
+            <span>@Html.DisplayFor(model => model.SpecialSuggestionPictureLink2)</span>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <div class="detail-name">
+            <strong>
+              @Html.DisplayNameFor(model => model.SpecialSuggestionPictureLink3):
+            </strong>
+            <span>@Html.DisplayFor(model => model.SpecialSuggestionPictureLink3)</span>
           </div>
         </div>
       </div>

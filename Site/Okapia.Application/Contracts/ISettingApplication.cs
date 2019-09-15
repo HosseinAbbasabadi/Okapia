@@ -13,5 +13,7 @@ namespace Okapia.Application.Contracts
         //
         SettingDto GetSettingsForView();
         string GetPrivacy();
+        BannerDto GetBannerInfo();
+        SuggestionDto GetSuggestionsInfo();
     }
 }

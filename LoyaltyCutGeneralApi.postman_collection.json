@@ -1,0 +1,629 @@
+{
+	"info": {
+		"_postman_id": "6026e0fa-e600-421a-a007-a955345e0c0a",
+		"name": "LoyaltyCutGeneralApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GeneralApi/Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPSP",
+							"type": "text"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPSP",
+							"type": "text"
+						},
+						{
+							"key": "FirstNameFa",
+							"value": "نام",
+							"type": "text"
+						},
+						{
+							"key": "LastNameFa",
+							"value": "فامیلی",
+							"type": "text"
+						},
+						{
+							"key": "FirstNameEn",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "LastNameEn",
+							"value": "family",
+							"type": "text"
+						},
+						{
+							"key": "NationalCode",
+							"value": "0061911161",
+							"type": "text"
+						},
+						{
+							"key": "CellNumber",
+							"value": "09306004722",
+							"type": "text"
+						},
+						{
+							"key": "MappedCards",
+							"value": "6104337189299520,6104337843189323",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://212.80.25.71/api/api/GeneralApi/Register",
+					"protocol": "https",
+					"host": [
+						"212",
+						"80",
+						"25",
+						"71"
+					],
+					"path": [
+						"api",
+						"api",
+						"GeneralApi",
+						"Register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeneralApi/TerminalTransactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://212.80.25.71/api/api/GeneralApi/TerminalTransactions?AppKey=GetItFromPSP&AppSecret=GetItFromPSP&TerminalNumber=44060123&FromDate=20170121080000",
+					"protocol": "https",
+					"host": [
+						"212",
+						"80",
+						"25",
+						"71"
+					],
+					"path": [
+						"api",
+						"api",
+						"GeneralApi",
+						"TerminalTransactions"
+					],
+					"query": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPSP"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPSP"
+						},
+						{
+							"key": "TerminalNumber",
+							"value": "44060123"
+						},
+						{
+							"key": "FromDate",
+							"value": "20170121080000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeneralApi/Balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://212.80.25.71/api/api/GeneralApi/Balance?AppKey=GetItFromPSP&AppSecret=GetItFromPSP&NationalCode=0017371171",
+					"protocol": "https",
+					"host": [
+						"212",
+						"80",
+						"25",
+						"71"
+					],
+					"path": [
+						"api",
+						"api",
+						"GeneralApi",
+						"Balance"
+					],
+					"query": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPSP"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPSP"
+						},
+						{
+							"key": "NationalCode",
+							"value": "0017371171"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeneralApi/EnquireMemebership",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPSP",
+							"type": "text"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPSP",
+							"type": "text"
+						},
+						{
+							"key": "NationalCode",
+							"value": "1234567890",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://212.80.25.71/api/api/GeneralApi/EnquireMemebership",
+					"protocol": "https",
+					"host": [
+						"212",
+						"80",
+						"25",
+						"71"
+					],
+					"path": [
+						"api",
+						"api",
+						"GeneralApi",
+						"EnquireMemebership"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeneralApi/CardMembership",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://212.80.25.71/api/api/GeneralApi/CardMembership?AppKey=GetItFromPSP&AppSecret=GetItFromPSP&CardNo=6393461020694366",
+					"protocol": "https",
+					"host": [
+						"212",
+						"80",
+						"25",
+						"71"
+					],
+					"path": [
+						"api",
+						"api",
+						"GeneralApi",
+						"CardMembership"
+					],
+					"query": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPSP"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPSP"
+						},
+						{
+							"key": "CardNo",
+							"value": "6393461020694366"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeneralApi/GetCardGroups",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://212.80.25.71/api/api/GeneralApi/GetCardGroups?AppKey=GetItFromPSP&AppSecret=GetItFromPSP",
+					"protocol": "https",
+					"host": [
+						"212",
+						"80",
+						"25",
+						"71"
+					],
+					"path": [
+						"api",
+						"api",
+						"GeneralApi",
+						"GetCardGroups"
+					],
+					"query": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPSP"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPSP"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeneralApi/GetCustomerGroups",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://212.80.25.71/api/api/GeneralApi/GetCustomerGroups?AppKey=GetItFromPSP&AppSecret=GetItFromPSP",
+					"protocol": "https",
+					"host": [
+						"212",
+						"80",
+						"25",
+						"71"
+					],
+					"path": [
+						"api",
+						"api",
+						"GeneralApi",
+						"GetCustomerGroups"
+					],
+					"query": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPSP"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPSP"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeneralApi/DisableCustomer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPSP",
+							"type": "text"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPSP",
+							"type": "text"
+						},
+						{
+							"key": "NationalCode",
+							"value": "0123456789",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://212.80.25.71/api/api/GeneralApi/DisableCustomer",
+					"protocol": "https",
+					"host": [
+						"212",
+						"80",
+						"25",
+						"71"
+					],
+					"path": [
+						"api",
+						"api",
+						"GeneralApi",
+						"DisableCustomer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeneralApi/MapCards",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPSP",
+							"type": "text"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPSP",
+							"type": "text"
+						},
+						{
+							"key": "NationalCode",
+							"value": "0123456789",
+							"description": "\n",
+							"type": "text"
+						},
+						{
+							"key": "MappedCards",
+							"value": "62210610123412346221061012341235,6221061012341236",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://212.80.25.71/api/api/GeneralApi/MapCards",
+					"protocol": "https",
+					"host": [
+						"212",
+						"80",
+						"25",
+						"71"
+					],
+					"path": [
+						"api",
+						"api",
+						"GeneralApi",
+						"MapCards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeneralApi/MappedCustomerTransactions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPSP",
+							"type": "text"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPSP",
+							"type": "text"
+						},
+						{
+							"key": "NationalCode",
+							"value": "0123456789",
+							"description": "\n",
+							"type": "text"
+						},
+						{
+							"key": "MappedCards",
+							"value": "62210610123412346221061012341235,6221061012341236",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://212.80.25.71/api/api/GeneralApi/MappedCustomerTransactions?AppKey=GetItFromPsp&AppSecret=GetItFromPsp&CardNumber=1234567890123456&FromDate=20190317",
+					"protocol": "https",
+					"host": [
+						"212",
+						"80",
+						"25",
+						"71"
+					],
+					"path": [
+						"api",
+						"api",
+						"GeneralApi",
+						"MappedCustomerTransactions"
+					],
+					"query": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPsp"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPsp"
+						},
+						{
+							"key": "CardNumber",
+							"value": "1234567890123456"
+						},
+						{
+							"key": "FromDate",
+							"value": "20190317"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeneralApi/TerminalTransactionsForMappedCustomers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPSP",
+							"type": "text"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPSP",
+							"type": "text"
+						},
+						{
+							"key": "NationalCode",
+							"value": "0123456789",
+							"description": "\n",
+							"type": "text"
+						},
+						{
+							"key": "MappedCards",
+							"value": "62210610123412346221061012341235,6221061012341236",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://212.80.25.71/api/api/GeneralApi/TerminalTransactionsForMappedCustomers?AppKey=GetItFromPsp&AppSecret=GetItFromPsp&TerminalNumber=11223344&FromDate=20190317",
+					"protocol": "https",
+					"host": [
+						"212",
+						"80",
+						"25",
+						"71"
+					],
+					"path": [
+						"api",
+						"api",
+						"GeneralApi",
+						"TerminalTransactionsForMappedCustomers"
+					],
+					"query": [
+						{
+							"key": "AppKey",
+							"value": "GetItFromPsp"
+						},
+						{
+							"key": "AppSecret",
+							"value": "GetItFromPsp"
+						},
+						{
+							"key": "TerminalNumber",
+							"value": "11223344"
+						},
+						{
+							"key": "FromDate",
+							"value": "20190317"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "37f1d078-09b8-4d2a-a9e0-32525d6c7885",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ac55e6c7-6ad6-4ebf-b176-9ecf2ee4586d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

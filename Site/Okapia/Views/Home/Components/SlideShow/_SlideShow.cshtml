@@ -1,27 +1,35 @@
 ﻿@model IEnumerable<Okapia.Domain.ViewModels.Slide.SliderViewModel>
 
-<section class="hero-area owl-carousel">
-  @foreach (var sliderViewModel in Model)
-  {
-    <div class="single-hero dark-overlay" style="background: url('/SlidePhotos/@sliderViewModel.SlideName') no-repeat;">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
-            <div class="hero-sub">
-              <div class="table-cell">
-                <div class="hero-box">
-                  <h1>@sliderViewModel.SlideTitleText</h1>
-                  <p>@sliderViewModel.SlideDescriptionText</p>
-                  @if (sliderViewModel.SlideBtnIsVisible)
-                  {
-                    <a href="@sliderViewModel.SlideLink" target="_blank" class="bttn-mid btn-fill">@sliderViewModel.SlideBtnText</a>
-                  }
-                </div>
-              </div>
-            </div>
+<div class="col-lg-19 col-md-22">
+  <div class="slider-full clearfix ">
+    <div class="overlay"></div>
+    <div id="carousel_2" data-ride="carousel" class="carousel carousel-2 slide nb-carousel">
+      <div role="listbox" class="carousel-inner">
+        @foreach (var sliderViewModel in Model.Select((value, index) => new {index, value}))
+        {
+          var cssClass = "item ";
+          if (sliderViewModel.index == 0)
+          {
+            cssClass += "active";
+          }
+
+          <div class="@cssClass">
+            <ul class="deal-tag list-unstyled"></ul>
+            <a href="@sliderViewModel.value.SlideLink">
+              <img src="~/SlidePhotos/@sliderViewModel.value.SlideName" alt="@sliderViewModel.value.SlideAlt" title="@sliderViewModel.value.SlideTitle"/>
+            </a>
           </div>
-        </div>
+        }
       </div>
+      <!-- Controls-->
+      <a href="#carousel_2" role="button" data-slide="prev" class="left carousel-control">
+        <span aria-hidden="true" class="icon icon-arrow-left">
+        </span><span class="sr-only">Previous</span>
+      </a>
+      <a href="#carousel_2" role="button" data-slide="next" class="right carousel-control">
+        <span aria-hidden="true" class="icon icon-arrow-right">
+        </span><span class="sr-only">Next</span>
+      </a>
     </div>
-  }
-</section>
+  </div>
+</div>

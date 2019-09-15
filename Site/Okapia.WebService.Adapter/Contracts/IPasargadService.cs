@@ -10,6 +10,7 @@ namespace Okapia.WebService.Adapter.Contracts
         /// Executes "Register" in web service
         /// </summary>
         /// <param name="user"></param>
+        /// <param name="userCards"></param>
         /// <returns></returns>
         bool TryRegister(CreateUser user, List<UserCard> userCards);
 

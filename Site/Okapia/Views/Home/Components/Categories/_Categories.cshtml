@@ -1,0 +1,50 @@
+﻿@using Okapia.Domain.SeachModels
+@model List<Okapia.Domain.ViewModels.Category.CategoryMenuViewModel>
+
+<div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+  <nav>
+    <ul class="side-cat">
+      @foreach (var menu in Model)
+      {
+        <li class="li-restaurant">
+          <a itemprop="url" href="" data-toggle="collapse" data-target="#sub-menu-8">
+            <i>
+              <i class="icon icon-burger"></i>
+            </i>
+            <span itemprop="name">@menu.CategoryName</span>
+          </a>
+
+          @foreach (var child in menu.CategoryChilds)
+          {
+            var searchModel = new JobViewSearchModel
+            {
+              CategoryId = child.CategoryId
+            };
+            <ul class="clearfix step2">
+              <li mj-success="successMegaMenu" class="item2" mj-target="/Categories/getDescendents?id=31">
+                <a itemprop="url" href="">
+                  @child.CategoryName
+                </a>
+              </li>
+            </ul>
+          }
+
+        </li>
+      }
+
+
+      <li class="li-vip" itemprop="name">
+        <a itemprop="url" href="tehran/c_vip/index.html" data-toggle="collapse"
+           data-target="#sub-menu-507">
+          <i>
+            <i class="icon icon-vip"></i>
+          </i>
+          <span>پیشنهادات لوکس</span>
+          <div class="new-item">جدید </div>
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+</div>
+

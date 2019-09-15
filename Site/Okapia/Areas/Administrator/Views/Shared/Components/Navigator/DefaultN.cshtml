@@ -225,6 +225,41 @@
     </ul>
   </li>
 }
+@if (Model.Any(x => x.ControllerName == "Slide") || Model.Any(x => x.ControllerName == "Setting") || Model.Any(x => x.ControllerName == "Link") || Model.Any(x => x.ControllerName == "Box"))
+{
+  <li>
+    <a class="waves-effect">
+      <i class="fa fa-gears fa-2x"></i>
+      <span>پیکربندی</span>
+    </a>
+    <ul class="list-unstyled">
+      @if (Model.Any(x => x.ControllerName == "Slide"))
+      {
+        <li>
+          <a asp-action="Index" asp-controller="Slide" asp-area="Administrator">مدیریت اسلایدها</a>
+        </li>
+      }
+      @if (Model.Any(x => x.ControllerName == "Box"))
+      {
+        <li>
+          <a asp-action="Index" asp-controller="Box" asp-area="Administrator">مدیریت باکس ها</a>
+        </li>
+      }
+      @if (Model.Any(x => x.ControllerName == "Setting"))
+      {
+        <li>
+          <a asp-action="Index" asp-controller="Setting" asp-area="Administrator">مدیریت تنظیمات سایت</a>
+        </li>
+      }
+      @if (Model.Any(x => x.ControllerName == "Link"))
+      {
+        <li>
+          <a asp-action="Index" asp-controller="Link" asp-area="Administrator">مدیریت لینک ها</a>
+        </li>
+      }
+    </ul>
+  </li>
+}
 @if (Model.Any(x => x.ControllerName == "City") || Model.Any(x => x.ControllerName == "District") || Model.Any(x => x.ControllerName == "Neighborhood"))
 {
   <li>
@@ -254,35 +289,7 @@
     </ul>
   </li>
 }
-@if (Model.Any(x => x.ControllerName == "Slide") || Model.Any(x => x.ControllerName == "Setting") || Model.Any(x => x.ControllerName == "Link"))
-{
-  <li>
-    <a class="waves-effect">
-      <i class="fa fa-gears fa-2x"></i>
-      <span>پیکربندی</span>
-    </a>
-    <ul class="list-unstyled">
-      @if (Model.Any(x => x.ControllerName == "Slide"))
-      {
-        <li>
-          <a asp-action="Index" asp-controller="Slide" asp-area="Administrator">مدیریت اسلایدها</a>
-        </li>
-      }
-      @if (Model.Any(x => x.ControllerName == "Setting"))
-      {
-        <li>
-          <a asp-action="Index" asp-controller="Setting" asp-area="Administrator">مدیریت تنظیمات سایت</a>
-        </li>
-      }
-      @if (Model.Any(x => x.ControllerName == "Link"))
-      {
-        <li>
-          <a asp-action="Index" asp-controller="Link" asp-area="Administrator">مدیریت لینک ها</a>
-        </li>
-      }
-    </ul>
-  </li>
-}
+
 <li>
   <a asp-action="Index" asp-controller="Home" asp-area="" class="waves-effect">
     <i class="fa fa-home"></i>

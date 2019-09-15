@@ -1,0 +1,65 @@
+﻿@using Okapia.Domain.SeachModels
+@model List<Okapia.Domain.ViewModels.Category.CategoryMenuViewModel>
+
+<div class="burger-menu-right hidden-lg hidden-md clearfix out ">
+  <div class="fix"></div>
+  <div class="wrapper">
+    <div class="loginout">
+      <a href="Account/Login" class="login">
+        <span>
+          <i class="icon icon-Login"></i>
+          ورود
+        </span>
+      </a>
+      <a href="Account/Register" class="signup">
+        <span>
+          <i class="icon icon-signup"></i>
+          ثبت نام
+        </span>
+      </a>
+    </div>
+    <nav>
+      <ul class="side-cat">
+      @foreach (var menu in Model)
+      {
+        <li class="li-restaurant">
+          <a href="" data-toggle="collapse" data-target="#sub-menu-8">
+            <i>
+              <i class="icon icon-burger"></i>
+            </i>
+            <span itemprop="name">@menu.CategoryName</span>
+          </a>
+          <ul class="clearfix step2">
+            @foreach (var child in menu.CategoryChilds)
+            {
+              <li mj-success="successMegaMenu" class="item2">
+                <a itemprop="url" href="">
+                  @child.CategoryName
+                </a>
+              </li>
+            }
+          </ul>
+        </li>
+      }
+      </ul>
+    </nav>
+    <div class="spacer"></div>
+    <ul class="side-extra-items">
+      <li>
+        <a href="tel:+982141096000">
+          <i>
+            <i class="icon icon-home-phone"></i>
+          </i><span>۰۲۱-۴۱۰۹۶۰۰۰</span>
+        </a>
+      </li>
+      <li>
+        <a href="page/buy-netbarg/index.html">
+          <i>
+            <i class="icon icon-lifebuoy">
+            </i>
+          </i><span>راهنمای خرید</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

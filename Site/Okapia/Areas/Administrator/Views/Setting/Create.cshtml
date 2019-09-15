@@ -1,4 +1,5 @@
-﻿@model Okapia.Domain.Commands.Setting.SettingDto
+﻿@using Okapia.Repository.Migrations
+@model Okapia.Domain.Commands.Setting.SettingDto
 
 @{
   ViewData["Title"] = "ویرایش تنظیمات سایت";
@@ -8,8 +9,13 @@
 
 <hr/>
 <div class="row">
-  <div class="col-md-12">
-    <form id="createSettingsFrm">
+<form id="createSettingsFrm">
+<div class="panel panel-border panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">تنظیمات کلی سایت</h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-12">
       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
       <div class="col-md-8">
         <div class="form-group">
@@ -39,8 +45,8 @@
         </tr>
         <tr>
           <td>
-            <input id="aboutPicture" name="aboutPicture" type="file" size="1" onchange="uploadFile('aboutPicture', 'AboutPicture', 'deleteImage', 'about');PreviewImage('aboutPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
-            <input asp-for="AboutPicture" type="hidden" size="1" value="" />
+            <input id="aboutPicture" name="aboutPicture" type="file" size="1" onchange="uploadFile('aboutPicture', 'AboutPicture', 'deleteImage', 'about');PreviewImage('aboutPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*"/>
+            <input asp-for="AboutPicture" type="hidden" size="1" value=""/>
             <span class="text-danger"><strong>نکته:</strong> سایز عکس باید ۵۷۰ * ۵۷۰ باشد</span>
           </td>
           <td>
@@ -55,12 +61,25 @@
               <span asp-validation-for="AboutPictureAlt" class="text-danger"></span>
             </div>
           </td>
-          <td>
-            <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
-          </td>
-          <td>
-            <button type="button" id="deleteImage" onclick="deletePhoto('AboutPicture', 'prevImage', 'deleteImage', 'AboutPictureTitle', 'AboutPictureAlt', 'desc', 'about')" class="btn btn-danger hidden">حذف</button>
-          </td>
+
+          @if (string.IsNullOrEmpty(Model.AboutPicture))
+          {
+            <td>
+              <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
+            </td>
+            <td>
+              <button type="button" id="deleteImage" onclick="deletePhoto('AboutPicture', 'prevImage', 'deleteImage', 'AboutPictureTitle', 'AboutPictureAlt', 'desc', 'about')" class="btn btn-danger hidden">حذف</button>
+            </td>
+          }
+          else
+          {
+            <td>
+              <img id="prevImage" src="~/AboutPicture/thumbs/@Model.AboutPicture" alt="your image" with="100" height="100"/>
+            </td>
+            <td>
+              <button type="button" id="deleteImage" onclick="deletePhoto('AboutPicture', 'prevImage', 'deleteImage', 'AboutPictureTitle', 'AboutPictureAlt', 'desc', 'about')" class="btn btn-danger">حذف</button>
+            </td>
+          }
         </tr>
       </table>
       <div class="col-md-12">
@@ -82,21 +101,21 @@
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Tell1" class="control-label"></label>
-          <input asp-for="Tell1" class="form-control"/>
+          <input asp-for="Tell1" class="form-control direct-ltr"/>
           <span asp-validation-for="Tell1" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Tell2" class="control-label"></label>
-          <input asp-for="Tell2" class="form-control"/>
+          <input asp-for="Tell2" class="form-control direct-ltr"/>
           <span asp-validation-for="Tell2" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Email" class="control-label"></label>
-          <input asp-for="Email" class="form-control"/>
+          <input asp-for="Email" class="form-control direct-ltr"/>
           <span asp-validation-for="Email" class="text-danger"></span>
         </div>
       </div>
@@ -124,35 +143,35 @@
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="CanonicalAddress" class="control-label"></label>
-          <input asp-for="CanonicalAddress" class="form-control"/>
+          <input asp-for="CanonicalAddress" class="form-control direct-ltr"/>
           <span asp-validation-for="CanonicalAddress" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Facebook" class="control-label"></label>
-          <input asp-for="Facebook" class="form-control"/>
+          <input asp-for="Facebook" class="form-control direct-ltr"/>
           <span asp-validation-for="Facebook" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Instagram" class="control-label"></label>
-          <input asp-for="Instagram" class="form-control"/>
+          <input asp-for="Instagram" class="form-control direct-ltr"/>
           <span asp-validation-for="Instagram" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Telegram" class="control-label"></label>
-          <input asp-for="Telegram" class="form-control"/>
+          <input asp-for="Telegram" class="form-control direct-ltr"/>
           <span asp-validation-for="Telegram" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="Twitter" class="control-label"></label>
-          <input asp-for="Twitter" class="form-control"/>
+          <input asp-for="Twitter" class="form-control direct-ltr"/>
           <span asp-validation-for="Twitter" class="text-danger"></span>
         </div>
       </div>
@@ -170,12 +189,240 @@
           <span asp-validation-for="ForgetPasswordText" class="text-danger"></span>
         </div>
       </div>
-      <div class="col-md-12">
-        <div class="form-group">
-          <input type="button" value="ثبت" onclick="createEntityThenReferesh('@Url.Action("Create", "Setting")', 'createSettingsFrm')" class="btn btn-lg btn-success"/>
-          <a class="btn btn-lg btn-warning" asp-action="Index" asp-controller="Setting">بازگشت به تنظیمات</a>
-        </div>
-      </div>
-    </form>
+    </div>
   </div>
+</div>
+
+<div class="panel panel-border panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">تنظیمات بنر</h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label asp-for="BannerLink" class="control-label"></label>
+        <input asp-for="BannerLink" class="form-control direct-ltr" rows="8"/>
+        <span asp-validation-for="BannerLink" class="text-danger"></span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label asp-for="BannerIsActive" class="control-label"></label>
+        <input type="checkbox" asp-for="BannerIsActive" class="form-control" rows="8"/>
+        <span asp-validation-for="BannerIsActive" class="text-danger"></span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label asp-for="BannerBackgroundColor" class="control-label"></label>
+        <input asp-for="BannerBackgroundColor" class="form-control direct-ltr" rows="8"/>
+        <span asp-validation-for="BannerBackgroundColor" class="text-danger"></span>
+      </div>
+    </div>
+    <table class="col-md-12 table table-bordered text-center">
+      <tr>
+        <td>تصویر بنر</td>
+        <td>عنوان عکس</td>
+        <td>Alt</td>
+        <td>پیش نمایش</td>
+        <td>حذف</td>
+      </tr>
+      <tr>
+        <td>
+          <input id="bannerPicture" name="bannerPicture" type="file" size="1" onchange="uploadFile('bannerPicture', 'BannerPicture', 'deleteBannerImage', 'banner');PreviewImage('bannerPicture', 'prevBannerImage');" class="form-control custom-file-input" accept="image/*"/>
+          <input asp-for="BannerPicture" type="hidden" size="1" value=""/>
+          <span class="text-danger"><strong>نکته:</strong> سایز عکس باید ۵۷۰ * ۵۷۰ باشد</span>
+        </td>
+        <td>
+          <div class="form-group">
+            <input asp-for="BannerPictureTitle" class="form-control"/>
+            <span asp-validation-for="BannerPictureTitle" class="text-danger"></span>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <input asp-for="BannerPictureAlt" class="form-control"/>
+            <span asp-validation-for="BannerPictureAlt" class="text-danger"></span>
+          </div>
+        </td>
+        @if (string.IsNullOrEmpty(Model.BannerPicture))
+        {
+          <td>
+              <img id="prevBannerImage" src="~/defaultimage.png" alt="your image"/>
+          </td>
+          <td>
+            <button type="button" id="deleteBannerImage" onclick="deletePhoto('bannerPicture', 'prevBannerImage', 'deleteBannerImage', 'BannerPictureTitle', 'BannerPictureAlt', 'desc', 'banner')" class="btn btn-danger hidden">حذف</button>
+          </td>
+        }
+        else
+        {
+          <td>
+            <img id="prevBannerImage" src="~/BannerPhoto/thumbs/@Model.BannerPicture"/>
+          </td>
+          <td>
+            <button type="button" id="deleteBannerImage" onclick="deletePhoto('bannerPicture', 'prevBannerImage', 'deleteBannerImage', 'BannerPictureTitle', 'BannerPictureAlt', 'desc', 'banner')" class="btn btn-danger">حذف</button>
+          </td>
+        }
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="panel panel-border panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">تنظیمات پیشنهادات ویژه</h3>
+  </div>
+  <div class="panel-body">
+    <table class="col-md-12 table table-bordered text-center">
+      <tr>
+        <td>تصویر</td>
+        <td>عنوان عکس</td>
+        <td>Alt</td>
+        <td>پیش نمایش</td>
+        <td>حذف</td>
+      </tr>
+      <tr>
+        <td>
+          <input id="ssPicture1" name="ssPicture1" type="file" size="1" onchange="uploadFile('ssPicture1', 'SpecialSuggestionPicture1', 'deleteSSImage1', 'special');PreviewImage('ssPicture1', 'prevSSImage1');" class="form-control custom-file-input" accept="image/*"/>
+          <input asp-for="SpecialSuggestionPicture1" type="hidden" size="1" value=""/>
+          <span class="text-danger"><strong>نکته:</strong> سایز عکس باید ۵۷۰ * ۵۷۰ باشد</span>
+        </td>
+        <td>
+          <div class="form-group">
+            <input asp-for="SpecialSuggestionPictureTitle1" class="form-control"/>
+            <span asp-validation-for="SpecialSuggestionPictureTitle1" class="text-danger"></span>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <input asp-for="SpecialSuggestionPictureAlt1" class="form-control"/>
+            <span asp-validation-for="SpecialSuggestionPictureAlt1" class="text-danger"></span>
+          </div>
+        </td>
+        @if (string.IsNullOrEmpty(Model.SpecialSuggestionPicture1))
+        {
+          <td>
+            <img id="prevSSImage1" src="~/defaultimage.png" with="100" height="100"/>
+          </td>
+          <td>
+            <button type="button" id="deleteSSImage1" onclick="deletePhoto('ssPicture1', 'prevSSImage1', 'deleteSSImage1', 'SpecialSuggestionPictureTitle1', 'SpecialSuggestionPictureAlt1', 'desc', 'special')" class="btn btn-danger hidden">حذف</button>
+          </td>
+        }
+        else
+        {
+          <td>
+            <img id="prevSSImage1" src="~/SpecialPictures/thumbs/@Model.SpecialSuggestionPicture1" with="100" height="100"/>
+          </td>
+          <td>
+            <button type="button" id="deleteSSImage1" onclick="deletePhoto('ssPicture1', 'prevSSImage1', 'deleteSSImage1', 'SpecialSuggestionPictureTitle1', 'SpecialSuggestionPictureAlt1', 'desc', 'special')" class="btn btn-danger">حذف</button>
+          </td>
+        }
+      </tr>
+      <tr>
+        <td>
+          <input id="ssPicture2" name="ssPicture2" type="file" size="1" onchange="uploadFile('ssPicture2', 'SpecialSuggestionPicture2', 'deleteSSImage2', 'special');PreviewImage('ssPicture2', 'prevSSImage2');" class="form-control custom-file-input" accept="image/*"/>
+          <input asp-for="SpecialSuggestionPicture2" type="hidden" size="1" value=""/>
+          <span class="text-danger"><strong>نکته:</strong> سایز عکس باید ۵۷۰ * ۵۷۰ باشد</span>
+        </td>
+        <td>
+          <div class="form-group">
+            <input asp-for="SpecialSuggestionPictureTitle2" class="form-control"/>
+            <span asp-validation-for="SpecialSuggestionPictureTitle2" class="text-danger"></span>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <input asp-for="SpecialSuggestionPictureAlt2" class="form-control"/>
+            <span asp-validation-for="SpecialSuggestionPictureAlt2" class="text-danger"></span>
+          </div>
+        </td>
+        @if (string.IsNullOrEmpty(Model.SpecialSuggestionPicture2))
+        {
+          <td>
+            <img id="prevSSImage2" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
+          </td>
+          <td>
+            <button type="button" id="deleteSSImage2" onclick="deletePhoto('ssPicture2', 'prevSSImage2', 'deleteSSImage2', 'SpecialSuggestionPictureTitle2', 'SpecialSuggestionPictureAlt2', 'desc', 'special')" class="btn btn-danger hidden">حذف</button>
+          </td>
+        }
+        else
+        {
+          <td>
+            <img id="prevSSImage2" src="~/SpecialPictures/thumbs/@Model.SpecialSuggestionPicture2" with="100" height="100"/>
+          </td>
+          <td>
+            <button type="button" id="deleteSSImage2" onclick="deletePhoto('ssPicture2', 'prevSSImage2', 'deleteSSImage2', 'SpecialSuggestionPictureTitle2', 'SpecialSuggestionPictureAlt2', 'desc', 'special')" class="btn btn-danger">حذف</button>
+          </td>
+        }
+      </tr>
+      <tr>
+        <td>
+          <input id="ssPicture3" name="ssPicture3" type="file" size="1" onchange="uploadFile('ssPicture3', 'SpecialSuggestionPicture3', 'deleteSSImage3', 'special');PreviewImage('ssPicture3', 'prevSSImage3');" class="form-control custom-file-input" accept="image/*"/>
+          <input asp-for="SpecialSuggestionPicture3" type="hidden" size="1" value=""/>
+          <span class="text-danger"><strong>نکته:</strong> سایز عکس باید ۵۷۰ * ۵۷۰ باشد</span>
+        </td>
+        <td>
+          <div class="form-group">
+            <input asp-for="SpecialSuggestionPictureTitle3" class="form-control"/>
+            <span asp-validation-for="SpecialSuggestionPictureTitle3" class="text-danger"></span>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <input asp-for="SpecialSuggestionPictureAlt3" class="form-control"/>
+            <span asp-validation-for="SpecialSuggestionPictureAlt3" class="text-danger"></span>
+          </div>
+        </td>
+        @if (string.IsNullOrEmpty(Model.SpecialSuggestionPicture3))
+        {
+          <td>
+            <img id="prevSSImage3" src="~/defaultimage.png" with="100" height="100"/>
+          </td>
+          <td>
+            <button type="button" id="deleteSSImage3" onclick="deletePhoto('ssPicture3', 'prevSSImage3', 'deleteSSImage3', 'SpecialSuggestionPictureTitle3', 'SpecialSuggestionPictureAlt3', 'desc', 'special')" class="btn btn-danger hidden">حذف</button>
+          </td>
+        }
+        else
+        {
+          <td>
+            <img id="prevSSImage3" src="~/SpecialPictures/thumbs/@Model.SpecialSuggestionPicture3" with="100" height="100"/>
+          </td>
+          <td>
+            <button type="button" id="deleteSSImage3" onclick="deletePhoto('ssPicture3', 'prevSSImage3', 'deleteSSImage3', 'SpecialSuggestionPictureTitle3', 'SpecialSuggestionPictureAlt3', 'desc', 'special')" class="btn btn-danger">حذف</button>
+          </td>
+        }
+      </tr>
+    </table>
+    
+    <div class="col-md-4">
+      <div class="form-group">
+        <label asp-for="SpecialSuggestionPictureLink1" class="control-label"></label>
+        <input asp-for="SpecialSuggestionPictureLink1" class="form-control direct-ltr"/>
+        <span asp-validation-for="SpecialSuggestionPictureLink1" class="text-danger"></span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label asp-for="SpecialSuggestionPictureLink2" class="control-label"></label>
+        <input asp-for="SpecialSuggestionPictureLink2" class="form-control direct-ltr"/>
+        <span asp-validation-for="SpecialSuggestionPictureLink2" class="text-danger"></span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label asp-for="SpecialSuggestionPictureLink3" class="control-label"></label>
+        <input asp-for="SpecialSuggestionPictureLink3" class="form-control direct-ltr"/>
+        <span asp-validation-for="SpecialSuggestionPictureLink3" class="text-danger"></span>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="form-group">
+    <input type="button" value="ثبت" onclick="createEntityThenReferesh('@Url.Action("Create", "Setting")', 'createSettingsFrm')" class="btn btn-lg btn-success"/>
+    <a class="btn btn-lg btn-warning" asp-action="Index" asp-controller="Setting">بازگشت به تنظیمات</a>
+  </div>
+</div>
+</form>
 </div>

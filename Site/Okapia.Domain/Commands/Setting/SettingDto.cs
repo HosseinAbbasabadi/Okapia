@@ -65,5 +65,55 @@ namespace Okapia.Domain.Commands.Setting
 
         [Display(Name = "متن پیام فراموشی رمز عبور")]
         public string ForgetPasswordText { get; set; }
+
+        [Display(Name = "عکس بنر")] public string BannerPicture { get; set; }
+        [Display(Name = "عنوان عکس بنر")] public string BannerPictureTitle { get; set; }
+        [Display(Name = "alt عکس بنر")] public string BannerPictureAlt { get; set; }
+        [Display(Name = "لینک بنر")] public string BannerLink { get; set; }
+
+        [Display(Name = "آیا بنر بالای سایت نمایش داده شود؟")]
+        public string BannerIsActive { get; set; }
+
+        [Display(Name = "رنگ پس زمینه ناحیه بنر")]
+        public string BannerBackgroundColor { get; set; }
+
+        [Display(Name = "عکس پیشنهاد ویژه اول")]
+        public string SpecialSuggestionPicture1 { get; set; }
+
+        [Display(Name = "Alt عکس پیشنهاد ویژه اول")]
+        public string SpecialSuggestionPictureAlt1 { get; set; }
+
+        [Display(Name = "عنوان عکس پیشنهاد ویژه اول")]
+        public string SpecialSuggestionPictureTitle1 { get; set; }
+
+        [Display(Name = "لینک پیشنهاد ویژه اول")]
+        [Url(ErrorMessage = ValidationMessages.Url)]
+        public string SpecialSuggestionPictureLink1 { get; set; }
+
+        [Display(Name = "عکس پیشنهاد ویژه دوم")]
+        public string SpecialSuggestionPicture2 { get; set; }
+
+        [Display(Name = "Alt عکس پیشنهاد ویژه دوم")]
+        public string SpecialSuggestionPictureAlt2 { get; set; }
+
+        [Display(Name = "عنوان عکس پیشنهاد ویژه دوم")]
+        public string SpecialSuggestionPictureTitle2 { get; set; }
+
+        [Display(Name = "لینک پیشنهاد ویژه دوم")]
+        [Url(ErrorMessage = ValidationMessages.Url)]
+        public string SpecialSuggestionPictureLink2 { get; set; }
+
+        [Display(Name = "عکس پیشنهاد ویژه سوم")]
+        public string SpecialSuggestionPicture3 { get; set; }
+
+        [Display(Name = "Alt عکس پیشنهاد ویژه سوم")]
+        public string SpecialSuggestionPictureAlt3 { get; set; }
+
+        [Display(Name = "عنوان عکس پیشنهاد ویژه سوم")]
+        public string SpecialSuggestionPictureTitle3 { get; set; }
+
+        [Display(Name = "لینک پیشنهاد ویژه سوم")]
+        [Url(ErrorMessage = ValidationMessages.Url)]
+        public string SpecialSuggestionPictureLink3 { get; set; }
     }
 }

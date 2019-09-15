@@ -1,0 +1,16 @@
+﻿@model Okapia.Areas.Administrator.Models.BoxIndexViewModel
+
+@{
+  ViewData["Title"] = "مدیریت باکس ها";
+}
+
+<h1>صفحه مدیریت باکس ها</h1>
+
+<h2>
+  <a asp-action="Create" class="btn btn-success text-lg-center">ایجاد باکس جدید</a>
+</h2>
+
+@*@await Component.InvokeAsync()*@
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/Box/_SearchBoxes.cshtml", Model.BoxSearchModel)
+@await Html.PartialAsync("~/Areas/Administrator/Views/Box/_ListBoxes.cshtml", Model.BoxViewModels)

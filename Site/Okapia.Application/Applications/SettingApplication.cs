@@ -66,14 +66,50 @@ namespace Okapia.Application.Applications
             return MapSettings(settings);
         }
 
+        private static SettingDto MapSettings(IReadOnlyCollection<Setting> settings)
+        {
+            var setSetting = new SettingDto();
+            foreach (var property in setSetting.GetType().GetProperties())
+            {
+                var setting = settings.First(x => x.SettingKey == property.Name);
+                property.SetValue(setSetting, setting.SettingValue);
+            }
+
+            return setSetting;
+        }
+
         public string GetPrivacy()
         {
             return _settingQuery.Get(x => x.SettingKey == "Privacy").First().SettingValue;
         }
 
-        private static SettingDto MapSettings(IReadOnlyCollection<Setting> settings)
+        public BannerDto GetBannerInfo()
         {
-            var setSetting = new SettingDto();
+            var settings = _settingQuery.Get(x => x.SettingScope == "Banner");
+            return MapBanner(settings);
+        }
+
+        private static BannerDto MapBanner(IReadOnlyCollection<Setting> settings)
+        {
+            var setSetting = new BannerDto();
+            foreach (var property in setSetting.GetType().GetProperties())
+            {
+                var setting = settings.First(x => x.SettingKey == property.Name);
+                property.SetValue(setSetting, setting.SettingValue);
+            }
+
+            return setSetting;
+        }
+
+        public SuggestionDto GetSuggestionsInfo()
+        {
+            var settings = _settingQuery.Get(x => x.SettingScope == "Suggestion");
+            return MapSuggestions(settings);
+        }
+
+        private static SuggestionDto MapSuggestions(IReadOnlyCollection<Setting> settings)
+        {
+            var setSetting = new SuggestionDto();
             foreach (var property in setSetting.GetType().GetProperties())
             {
                 var setting = settings.First(x => x.SettingKey == property.Name);

@@ -20,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.Query", "Okapia.Quer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.SmsService", "Okapia.SmsService\Okapia.SmsService.csproj", "{277BC47D-A0F5-491D-88F5-17CEEB211DDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okapia.EmailService", "Okapia.EmailService\Okapia.EmailService.csproj", "{EA017F08-49FC-4914-BFAC-CE4CB5B1D816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Okapia.EmailService", "Okapia.EmailService\Okapia.EmailService.csproj", "{EA017F08-49FC-4914-BFAC-CE4CB5B1D816}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

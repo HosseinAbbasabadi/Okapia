@@ -5,6 +5,7 @@
         public int SettingId { get; set; }
         public string SettingKey { get; set; }
         public string SettingValue { get; set; }
+        public string SettingScope { get; set; }
 
         public Setting()
         {

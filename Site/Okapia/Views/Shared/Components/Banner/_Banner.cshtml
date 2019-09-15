@@ -1,0 +1,22 @@
+﻿@model Okapia.Domain.Commands.Setting.BannerDto
+
+
+@if (bool.Parse(Model.BannerIsActive))
+{
+  <div style="background: @Model.BannerBackgroundColor;" class="top-ads-row hidden-xs clearfix">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-22">
+          <a target="_blank" href="@Model.BannerLink" class="figure m-b">
+            <img src="~/BannerPhoto/@Model.BannerPicture"
+                 alt="@Model.BannerPictureAlt"
+                 title="@Model.BannerPictureTitle"
+                 class="img-responsive">
+          </a>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </div>
+}

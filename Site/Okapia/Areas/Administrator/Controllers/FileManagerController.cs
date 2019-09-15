@@ -12,7 +12,7 @@ namespace Okapia.Areas.Administrator.Controllers
     [Area("Administrator")]
     public class FileManagerController : Controller
     {
-        public static string basePath = "Data/";
+        public static string BasePath = "Data/";
         private readonly IHostingEnvironment _hostingEnvironment;
 
         public FileManagerController(IHostingEnvironment hostingEnvironment)
@@ -27,7 +27,7 @@ namespace Okapia.Areas.Administrator.Controllers
 
         public JsonResult CreateDirectory(string path, string type)
         {
-            path = AppDomain.CurrentDomain.BaseDirectory + basePath + type + '/' + path;
+            path = AppDomain.CurrentDomain.BaseDirectory + BasePath + type + '/' + path;
             if (!Directory.Exists(path))
             {
                 try
@@ -58,7 +58,7 @@ namespace Okapia.Areas.Administrator.Controllers
             return Json(new {Success = true});
         }
 
-        public JsonResult Upload(string pathFile = "")
+        public async Task<JsonResult> Upload(string pathFile = "")
         {
             object op = new
             {
@@ -80,7 +80,8 @@ namespace Okapia.Areas.Administrator.Controllers
                 {
                     var file = Request.Form.Files[0];
 
-                    if (!CheckFile(pathFile, file))
+                    var result = await CheckFile(pathFile, file);
+                    if (!result)
                     {
                         op = new
                         {
@@ -123,24 +124,24 @@ namespace Okapia.Areas.Administrator.Controllers
             return Json(op);
         }
 
-        public JsonResult getFile(string type, string path = "")
+        public JsonResult GetFile(string type, string path = "")
         {
             //--- define Variable
-            List<string> FileVitPath = new List<string>();
-            string[] Temp;
-            string[] Directories = null;
+            var fileVitPath = new List<string>();
+            string[] temp;
+            string[] directories = null;
             string[] fileList = null;
 
 
             if (type.ToLower() == "all")
                 type = "";
 
-            string pathFile = string.Format("{0}{1}/{2}", basePath, type, path);
+            var pathFile = $"{BasePath}{type}/{path}";
 
             //---- create Path
             //in masir to .net core dige injoori nist
             //bayad avaz beshe
-            pathFile = string.Format("{0}/{1}", _hostingEnvironment.WebRootPath, pathFile);
+            pathFile = $"{_hostingEnvironment.WebRootPath}/{pathFile}";
 
             try
             {
@@ -148,57 +149,57 @@ namespace Okapia.Areas.Administrator.Controllers
             }
             catch
             {
+                // ignored
             }
 
 
             //--- create Vitural Path for File        
             if (fileList != null)
             {
-                for (int i = 0; i < fileList.Length; i++)
+                foreach (var t in fileList)
                 {
-                    Temp = fileList[i].Split('/');
-                    string VitPath = "";
-                    for (int a = 1; a < Temp.Length; a++)
+                    temp = t.Split('/');
+                    var VitPath = "";
+                    for (var a = 1; a < temp.Length; a++)
                     {
-                        VitPath += "/" + Temp[a];
+                        VitPath += "/" + temp[a];
                     }
 
-                    FileVitPath.Add(VitPath);
+                    fileVitPath.Add(VitPath);
                 }
             }
 
             try
             {
-                Directories = Directory.GetDirectories(pathFile);
+                directories = Directory.GetDirectories(pathFile);
             }
             catch
             {
+                // ignored
             }
 
             //--- create Vitural Path for Directories
-            if (Directories != null)
+            if (directories == null) return Json(new {files = fileVitPath, Directories = directories});
             {
-                for (int i = 0; i < Directories.Length; i++)
+                for (var i = 0; i < directories.Length; i++)
                 {
-                    Temp = Directories[i].Split('\\');
-                    Directories[i] = "";
-                    bool FindBasePath = false;
-                    for (int a = 1; a < Temp.Length; a++)
+                    temp = directories[i].Split('\\');
+                    directories[i] = "";
+                    var findBasePath = false;
+                    for (var a = 1; a < temp.Length; a++)
                     {
-                        if (Temp[a].IndexOf(basePath) > -1 || FindBasePath)
-                        {
-                            Directories[i] += Temp[a];
+                        if (temp[a].IndexOf(BasePath, StringComparison.Ordinal) <= -1 && !findBasePath) continue;
+                        directories[i] += temp[a];
 
-                            if (a != Temp.Length - 1)
-                                Directories[i] += '/';
+                        if (a != temp.Length - 1)
+                            directories[i] += '/';
 
-                            FindBasePath = true;
-                        }
+                        findBasePath = true;
                     }
                 }
             }
 
-            return Json(new {files = FileVitPath, Directories = Directories});
+            return Json(new {files = fileVitPath, Directories = directories});
         }
 
         //public JsonResult UploadImage(IFormFile file)
@@ -224,11 +225,11 @@ namespace Okapia.Areas.Administrator.Controllers
         //    return Json(new {url = vitPath});
         //}
 
-        protected bool CheckFile(string pathFile, IFormFile file)
+        protected async Task<bool> CheckFile(string pathFile, IFormFile file)
         {
-            bool res = false;
-            string FilePath = file.FileName;
-            string FileName = Path.GetFileName(FilePath);
+            var res = false;
+            var filePath = file.FileName;
+            var fileName = Path.GetFileName(filePath);
 
             var checkStream = file.OpenReadStream();
             using (var chkBinary = new BinaryReader(checkStream))
@@ -244,32 +245,32 @@ namespace Okapia.Areas.Administrator.Controllers
                 {
                     //---- images                    
                     case "FF-D8-FF":
-                        SaveFile(pathFile, file, "Image");
+                        await SaveFile(pathFile, file, "Image");
                         res = true;
                         break;
                     case "89-50-4E":
-                        SaveFile(pathFile, file, "Image");
+                        await SaveFile(pathFile, file, "Image");
                         res = true;
                         break;
                     case "47-49-46":
-                        SaveFile(pathFile, file, "Image");
+                        await SaveFile(pathFile, file, "Image");
                         res = true;
                         break;
                     case "42-4D-BE":
-                        SaveFile(pathFile, file, "Image");
+                        await SaveFile(pathFile, file, "Image");
                         res = true;
                         break;
                     //----- Video
                     case "4F-67-67":
-                        SaveFile(pathFile, file, "Video");
+                        await SaveFile(pathFile, file, "Video");
                         res = true;
                         break;
                     case "66-74-79":
-                        SaveFile(pathFile, file, "Video");
+                        await SaveFile(pathFile, file, "Video");
                         res = true;
                         break;
                     case "00-00-00":
-                        SaveFile(pathFile, file, "Video");
+                        await SaveFile(pathFile, file, "Video");
                         res = true;
                         break;
                     ////----- audio   
