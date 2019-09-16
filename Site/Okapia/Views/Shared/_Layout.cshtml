@@ -1,44 +1,44 @@
-﻿@{
+﻿@using Okapia.Areas.Administrator.Controllers
+@{
 }
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>@ViewData["Title"] - سایت تخفیف اُکاپیا</title>
-  <meta name="description" content="@ViewData["MetaDescription"]">
-  <meta name="robots" content="@ViewData["MetaTags"]"/>
-  <link rel="canonical" href="@ViewData["CanonicalAddress"]"/>
-
+  <meta name="description" content="@ViewData["MetaDescription"]" />
+  <meta name="robots" content="@ViewData["MetaTags"]" />
+  <link rel="canonical" href="@ViewData["CanonicalAddress"]" />
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
   @*<link href="~/assets/theme/css/bundle.css" rel="stylesheet">
-  <link href="~/assets/theme/fonts/iran_sans/fontiran.css" rel="stylesheet">*@
+    <link href="~/assets/theme/fonts/iran_sans/fontiran.css" rel="stylesheet">*@
 
   @*<script src="//code.jivosite.com/widget.js" data-jv-id="bIe87janoL" async></script>*@
 
-  <link rel="stylesheet" href="~/assets/theme/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="~/assets/theme/css/bootstrap-rtl.min.css"/>
-  <link rel="stylesheet" href="~/assets/theme/css/owl.carousel.min.css"/>
-  <link rel="stylesheet" href="~/assets/theme/css/owl.theme.css"/>
-  <link rel="stylesheet" href="~/assets/theme/css/jquery-ui.min.css"/>
-  <link rel="stylesheet" href="~/assets/theme/css/jquery-ui.structure.min.css"/>
-  <link rel="stylesheet" href="~/assets/theme/css/jquery-ui.theme.min.css"/>
-  <link rel="stylesheet" href="~/assets/theme/css/jquery.ui.slider-rtl.css"/>
-  <link rel="stylesheet" href="~/assets/theme/css/select2.min.css"/>
-  <link rel="stylesheet" href="~/assets/theme/css/kit1abf.css?v=2.6.4"/>
-  <link rel="stylesheet" href="~/assets/theme/css/animate.css"/>
-  <link rel="stylesheet" href="~/assets/theme/fonts/iran_sans/fontiran.css"/>
-  <link rel="stylesheet" href="~/assets/theme/css/AutoComplete/easy-autocomplete.css"/>
-  <link rel="stylesheet" href="~/assets/theme/css/AutoComplete/easy-autocomplete.themes.css"/>
+  <link rel="stylesheet" href="~/assets/theme/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="~/assets/theme/css/bootstrap-rtl.min.css" />
+  <link rel="stylesheet" href="~/assets/theme/css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="~/assets/theme/css/owl.theme.css" />
+  <link rel="stylesheet" href="~/assets/theme/css/jquery-ui.min.css" />
+  <link rel="stylesheet" href="~/assets/theme/css/jquery-ui.structure.min.css" />
+  <link rel="stylesheet" href="~/assets/theme/css/jquery-ui.theme.min.css" />
+  <link rel="stylesheet" href="~/assets/theme/css/jquery.ui.slider-rtl.css" />
+  <link rel="stylesheet" href="~/assets/theme/css/select2.min.css" />
+  <link rel="stylesheet" href="~/assets/theme/css/kit1abf.css?v=2.6.4" />
+  <link rel="stylesheet" href="~/assets/theme/css/animate.css" />
+  <link rel="stylesheet" href="~/assets/theme/fonts/iran_sans/fontiran.css" />
+  <link rel="stylesheet" href="~/assets/theme/css/AutoComplete/easy-autocomplete.css" />
+  <link rel="stylesheet" href="~/assets/theme/css/AutoComplete/easy-autocomplete.themes.css" />
+  <link rel="stylesheet" href="~/assets/theme/css/swiper.min.css" />
 
 </head>
 
 <body>
-
 <div class="madJaxWait hidden">
   <div class="loading-content">
     <div class="spinner">
@@ -117,65 +117,15 @@
                 <span class="inline-block icon icon-arrow-down"></span>
               </button>
               <ul class="dropdown-menu">
-
-                <li>
-                  <a href="ardebil/index.html">
-                    <span class="pull-right">اردبیل</span>
-                    <span class="badge"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="isfahan/index.html">
-                    <span class="pull-right">اصفهان</span>
-                    <span class="badge"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="tabriz/index.html">
-                    <span class="pull-right">تبریز</span>
-                    <span class="badge"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="tehran/index.html">
-                    <span class="pull-right">تهران</span>
-                    <span class="badge"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="northerncities/index.html">
-                    <span class="pull-right">شهرهای شمالی</span>
-                    <span class="badge"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="mashhad/index.html">
-                    <span class="pull-right">مشهد</span>
-                    <span class="badge"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="karaj/index.html">
-                    <span class="pull-right">کرج</span>
-                    <span class="badge"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="kish/index.html">
-                    <span class="pull-right">کیش</span>
-                    <span class="badge"></span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" type="button" data-toggle="modal" data-target="#mapModal" class="cities_map">
-                    <span class="pull-right">
-                      تمامی شهر ها
-                    </span>
-                    <span class="map_icon icon icon-more-fill">
-                    </span>
-                  </a>
-                </li>
-
+                @foreach (var province in Provinces.ToList().Where(x=>x.Id != 0).OrderBy(x=>x.Name))
+                {
+                  <li>
+                    <a href="ardebil/index.html">
+                      <span class="pull-right">@province.Name</span>
+                      <span class="badge"></span>
+                    </a>
+                  </li>  
+                }
               </ul>
             </div>
           </div>
@@ -471,6 +421,7 @@
 <script src="~/assets/theme/js/client-function.js"></script>
 <script src="~/assets/theme/js/AutoComplete/jquery.easy-autocomplete.js?v=1.0.5"></script>
 <script src="~/assets/theme/js/elastic.js"></script>
+<script src="~/assets/theme/js/swiper.min.js"></script>
 
 @*<script src="~/assets/theme/js/site.min.js"></script>*@
 
@@ -484,6 +435,23 @@
           $('.modalNotify').modal('show');
         }
       });
+  });
+</script>
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 4,
+    spaceBetween: 30,
+    slidesPerGroup: 4,
+    loop: true,
+    loopFillGroupWithBlank: false,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
   });
 </script>
 </body>

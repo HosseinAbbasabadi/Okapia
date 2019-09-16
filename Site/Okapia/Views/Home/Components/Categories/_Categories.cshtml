@@ -4,17 +4,21 @@
 <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
   <nav>
     <ul class="side-cat">
-      @foreach (var menu in Model)
+      @foreach (var category in Model)
       {
-        <li class="li-restaurant">
-          <a itemprop="url" href="" data-toggle="collapse" data-target="#sub-menu-8">
+        <li onMouseOver="addCategoryMenuItemStyle('a-@category.CategoryId', '@category.Color')" onmouseout="removeCategoryMenuItemStyle('a-@category.CategoryId')">
+          <a id="a-@category.CategoryId" itemprop="url" href="" data-toggle="collapse" data-target="#sub-menu-8">
             <i>
-              <i class="icon icon-burger"></i>
+              <i class="icon @category.Icon"></i>
             </i>
-            <span itemprop="name">@menu.CategoryName</span>
+            <span>@category.CategoryName</span>
+            @if (category.IsNew)
+            {
+              <div class="new-item">جدید</div>
+            }
           </a>
 
-          @foreach (var child in menu.CategoryChilds)
+          @foreach (var child in category.CategoryChilds)
           {
             var searchModel = new JobViewSearchModel
             {
@@ -31,20 +35,17 @@
 
         </li>
       }
-
-
-      <li class="li-vip" itemprop="name">
-        <a itemprop="url" href="tehran/c_vip/index.html" data-toggle="collapse"
-           data-target="#sub-menu-507">
-          <i>
-            <i class="icon icon-vip"></i>
-          </i>
-          <span>پیشنهادات لوکس</span>
-          <div class="new-item">جدید </div>
-        </a>
-      </li>
-
     </ul>
   </nav>
 </div>
 
+<script>
+  function addCategoryMenuItemStyle(elementId, color) {
+    document.getElementById(elementId).style.color = color; 
+    document.getElementById(elementId).style.borderBottom = `2px solid ${color}`; 
+  }
+  function removeCategoryMenuItemStyle(elementId) {
+    document.getElementById(elementId).style.color = '#3c3c3c';
+    document.getElementById(elementId).style.borderBottom = '1px solid #dcdcdc';   
+  }
+</script>

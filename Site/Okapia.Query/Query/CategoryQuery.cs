@@ -31,7 +31,10 @@ namespace Okapia.Query.Query
                     CategoryName = category.CategoryName,
                     CategoryChilds = MapToCategoryMenuViewModels(category.Childs),
                     Photo = category.CategoryThumbPicUrl,
-                    PhotoAlt = category.CategoryPicAlt
+                    PhotoAlt = category.CategoryPicAlt,
+                    Color = category.CategoryColor,
+                    Icon = category.CategoryIcon,
+                    IsNew = category.CategoryIsNew
                 }).ToList();
         }
 

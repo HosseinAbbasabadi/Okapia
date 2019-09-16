@@ -28,6 +28,9 @@
             @Html.DisplayNameFor(model => model.CategorySmallDescription)
           </th>
           <th>
+            @Html.DisplayNameFor(model => model.CategoryColor)
+          </th>
+          <th>
             عملیات
           </th>
 
@@ -58,6 +61,11 @@
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.CategorySmallDescription)
+              </td>
+
+              <td>
+                @Html.DisplayFor(modelItem => item.value.CategoryColor)
+                <a style="padding: 5px; background-color: @item.value.CategoryColor"></a>
               </td>
               <td>
                 <a class="btn btn-sm btn-info" asp-area="Administrator" asp-controller="Category" asp-action="Edit" asp-route-id="@item.value.CategoryId" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>

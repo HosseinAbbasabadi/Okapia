@@ -20,17 +20,21 @@
     </div>
     <nav>
       <ul class="side-cat">
-      @foreach (var menu in Model)
+      @foreach (var category in Model)
       {
         <li class="li-restaurant">
           <a href="" data-toggle="collapse" data-target="#sub-menu-8">
             <i>
-              <i class="icon icon-burger"></i>
+              <i class="icon @category.Icon"></i>
             </i>
-            <span itemprop="name">@menu.CategoryName</span>
+            <span>@category.CategoryName</span>
+            @if (category.IsNew)
+            {
+              <div class="new-item">جدید</div>
+            }
           </a>
           <ul class="clearfix step2">
-            @foreach (var child in menu.CategoryChilds)
+            @foreach (var child in category.CategoryChilds)
             {
               <li mj-success="successMegaMenu" class="item2">
                 <a itemprop="url" href="">

@@ -53,6 +53,9 @@ namespace Okapia.Application.Applications
                     CategoryPicAlt = command.AltImage,
                     CategoryPicDescription = command.DescImage,
                     CategoryCanonicalAddress = command.CategoryCanonicalAddress,
+                    CategoryColor = command.CategoryColor,
+                    CategoryIcon = command.CategoryIcon,
+                    CategoryIsNew = command.CategoryIsNew,
                     RegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId,
                     IsDeleted = false
                 };
@@ -98,6 +101,9 @@ namespace Okapia.Application.Applications
                 category.CategoryCanonicalAddress = command.CategoryCanonicalAddress;
                 category.RegisteringEmployeeId = _authHelper.GetCurrnetUserInfo().AuthUserId;
                 category.IsDeleted = command.IsDeleted;
+                category.CategoryIcon = command.CategoryIcon;
+                category.CategoryColor = command.CategoryColor;
+                category.CategoryIsNew = command.CategoryIsNew;
                 _categoryRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

@@ -72,6 +72,27 @@
 </div>
 <div class="col-md-4">
   <div class="form-group">
+    <label asp-for="CategoryIcon" class="control-label"></label>
+    <input asp-for="CategoryIcon" class="form-control direct-ltr"/>
+    <span asp-validation-for="CategoryIcon" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="CategoryColor" class="control-label"></label>
+    <input asp-for="CategoryColor" class="colorpicker-default form-control direct-ltr"/>
+    <span asp-validation-for="CategoryColor" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label asp-for="CategoryIsNew" class="control-label"></label>
+    <input asp-for="CategoryIsNew" class="form-control direct-ltr"/>
+    <span asp-validation-for="CategoryIsNew" class="text-danger"></span>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
     <label asp-for="CategoryParentId" class="control-label"></label>
     <select class="select2" asp-for="CategoryParentId" asp-items="@Model.Categories">
       <option value="0">گروه مافوق را انتخاب کنید...</option>

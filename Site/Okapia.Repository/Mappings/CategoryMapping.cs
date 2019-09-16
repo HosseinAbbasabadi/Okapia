@@ -31,8 +31,8 @@ namespace Okapia.Repository.Mappings
 
             builder.Property(e => e.CategoryName).HasMaxLength(400);
 
-            builder.Property(e => e.JobLinkTitle).HasMaxLength(100);
-
+            builder.Property(e => e.CategoryColor);
+            builder.Property(e => e.CategoryIcon);
             builder.Property(e => e.RegisteringEmployeeId).HasColumnName("RegisteringEmployeeId");
 
             builder.HasOne(x => x.Parent).WithMany(x => x.Childs).HasForeignKey(x => x.CategoryParentId)

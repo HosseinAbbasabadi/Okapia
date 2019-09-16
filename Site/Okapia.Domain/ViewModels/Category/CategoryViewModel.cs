@@ -8,6 +8,8 @@ namespace Okapia.Domain.ViewModels.Category
         public string CategorySlug { get; set; }
         [Display(Name = "نام")] public string CategoryName { get; set; }
         [Display(Name = "توضیحات")] public string CategorySmallDescription { get; set; }
+        [Display(Name ="رنگ")]
+        public string CategoryColor { get; set; }
         public int CategoryParentId { get; set; }
         [Display(Name = "عنوان گروه مافوق")] public string CategoryParentName { get; set; }
         [Display(Name = "عکس")] public string Photo { get; set; }

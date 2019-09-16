@@ -37,6 +37,10 @@ namespace Okapia.Domain.Commands.Category
         [Required(ErrorMessage = ValidationMessages.Required, AllowEmptyStrings = false)]
         public string CategoryPageTittle { get; set; }
 
+        [Display(Name = "آیکون")] public string CategoryIcon { get; set; }
+        [Display(Name = "رنگ")] public string CategoryColor { get; set; }
+        [Display(Name = "آیا این گروه با برچست جدید نمایش داده شود؟")]
+        public bool CategoryIsNew { get; set; }
         [Display(Name = "گروه مافوق")] public int CategoryParentId { get; set; }
         [Display(Name = "عکس گروه")] public string NameImage { get; set; }
         public string TitleImage { get; set; }

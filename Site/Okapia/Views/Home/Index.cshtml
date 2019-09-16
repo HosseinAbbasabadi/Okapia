@@ -1,2681 +1,428 @@
-﻿
-<main>
-  <div class="page-index page-home">
-    <div class="wrapper-1">
-      <div class="container-fluid">
-      <div class="row">
+﻿<main>
+<div class="page-index page-home">
+<div class="wrapper-1">
+  <div class="container-fluid">
+    <div class="row">
       <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
 
       @await Component.InvokeAsync("Categories")
       @await Component.InvokeAsync("SlideShow")
 
       <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
-      </div>
+    </div>
 
-      @await Component.InvokeAsync("Suggestions")
+    @await Component.InvokeAsync("Suggestions")
 
+  </div>
+</div>
+<div class="wrapper-2">
+<div class="container-fluid">
+<div class="row h-position">
+
+@await Component.InvokeAsync("FloatingCategories")
+
+<div class="col-lg-22 col-md-22 col-sm-24 col-xs-24 padd-0-xs clearfix">
+  <section class="related cat-deal-color main-cat around-me clearfix">
+  <header class="section-header">
+    <h6 class="hx">
+      <span class="icon icon-special-user-offer"></span><span class="article-h3">پیشنهادات ویژه نت برگ</span>
+    </h6>
+  </header>
+
+  <div class="main-cat-deal-thumbnail clearfix main-row">
+    <div itemscope="" itemtype="http://schema.org/Offer" class="col-lg-6 col-md-12 col-sm-12 col-xs-24 cds-item  ">
+      <div class="cat-deal-smallbox">
+        <div class="cat-deal-box">
+          <a href="tehran/d/c_entertainment/160583/%d8%b3%d8%b1%d8%b2%d9%85%db%8c%d9%86-%d9%81%da%a9%d8%b1-%d8%a8%d8%a7%d8%b2%db%8c%d8%a7-%d8%af%d8%b1-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d8%aa%d8%a7%d8%a8%d8%b3%d8%aa%d8%a7%d9%86%db%8c/index.html"
+             class="figure">
+            <ul class="deal-tag list-unstyled"></ul>
+            <div class="overlay">
+              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
+            </div>
+            <img data-src="http://static.netbarg.com/img/responsive_medium/deals/160583/21d70411.jpg" alt="سرزمین فکر بازیا در جشنواره تابستانی" data-type="lazy">
+          </a>
+          <div class="cat-deal-box-main clearfix">
+            <h4 itemprop="name" class="cdbm-title">
+              <a href="tehran/d/c_entertainment/160583/%d8%b3%d8%b1%d8%b2%d9%85%db%8c%d9%86-%d9%81%da%a9%d8%b1-%d8%a8%d8%a7%d8%b2%db%8c%d8%a7-%d8%af%d8%b1-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d8%aa%d8%a7%d8%a8%d8%b3%d8%aa%d8%a7%d9%86%db%8c/index.html" itemprop="url" class="truncate">
+                سرزمین فکر بازیا در جشنواره تابستانی
+              </a>
+            </h4>
+            <span class="cdbm-total-buy">
+              <span class="ir">
+                <i class="icon icon-shopping-cart hidden-xs"></i>
+                <i class="icon icon-shopping-cart_L visible-xs"></i>
+              </span>
+              <span class="cdbm-tb-total">
+                6708
+              </span>
+            </span>
+          </div>
+          <div class="cat-deal-box-footer clearfix">
+            <a href="area/%d8%a7%d8%aa%d9%88%d8%a8%d8%a7%d9%86%20%d8%ad%d9%82%d8%a7%d9%86%db%8c/index.html"
+               class="cdbf-location truncate">
+              <span class="ir">
+                <i class="icon icon-location74"></i>
+              </span>
+              <span class="cdbfl-address">
+                اتوبان حقانی
+              </span>
+            </a>
+            <span class="cdbf-takhfif">
+              <span class="cdbft-shape">
+                <span class="cdbft-shape-text">
+                  %60
+                </span>
+              </span>
+            </span>
+            <span class="cdbf-price">
+              <ins class="cdbf-netbarg-price">
+                <span itemprop="price" content="280000">
+                  ۲۴,۰۰۰
+                </span>
+                <span itemprop="priceCurrency" content="IRR"> تومان</span>
+              </ins>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="wrapper-2">
-      <div class="container-fluid">
-        <div class="row h-position">
-          <div class="col-lg-1 col-md-1 hidden-sm hidden-xs right-aside sticky-aside">
-            <div id="nava" class="">
-              <div class="float-cat">
-                <ul>
-                  <a href="tehran/c_todaydeals/index.html"
-                     class="float-cat-todaydeal">
-                    <li>
-                      <i>
-                        <i class="icon icon-logo_e"></i>
-                      </i><span>نت‌برگ‌های امروز</span>
-                    </li>
-                  </a>
-
-                  <a href="tehran/c_restaurant/index.html"
-                     class="float-cat-restaurant">
-                    <li>
-                      <i>
-                        <i class="icon icon-burger"></i>
-                      </i>
-                      <span>رستوران و فست فود</span>
-                    </li>
-                  </a>
-                  <a href="tehran/c_entertainment/index.html"
-                     class="float-cat-entertainment">
-                    <li>
-                      <i>
-                        <i class="icon icon-basketball"></i>
-                      </i>
-                      <span>تفریحی و ورزشی</span>
-                    </li>
-                  </a>
-                  <a href="tehran/c_health/index.html"
-                     class="float-cat-health">
-                    <li>
-                      <i>
-                        <i class="icon icon-car-first-aid-kit"></i>
-                      </i>
-                      <span>پزشکی و سلامت</span>
-                    </li>
-                  </a>
-                  <a href="tehran/c_art/index.html"
-                     class="float-cat-art">
-                    <li>
-                      <i>
-                        <i class="icon icon-Theater"></i>
-                      </i>
-                      <span>هنر و تئاتر</span>
-                    </li>
-                  </a>
-                  <a href="tehran/c_education/index.html"
-                     class="float-cat-education">
-                    <li>
-                      <i>
-                        <i class="icon icon-earth-globe"></i>
-                      </i>
-                      <span>آموزشی</span>
-                    </li>
-                  </a>
-                  <a href="tehran/c_beauty/index.html"
-                     class="float-cat-beauty">
-                    <li>
-                      <i>
-                        <i class="icon icon-lipstick-with-cover"></i>
-                      </i>
-                      <span>زیبایی و آرایشی</span>
-                    </li>
-                  </a>
-                  <a href="tehran/c_product/index.html"
-                     class="float-cat-product">
-                    <li>
-                      <i>
-                        <i class="icon icon-shopping-bag-1"></i>
-                      </i>
-                      <span>کالا</span>
-                    </li>
-                  </a>
-                  <a href="tehran/c_giftcode/index.html"
-                     class="float-cat-giftcode">
-                    <li>
-                      <i>
-                        <i class="icon icon-couponcodes"></i>
-                      </i>
-                      <span>کد تخفیف</span>
-                    </li>
-                  </a>
-                  <a href="tehran/c_vip/index.html"
-                     class="float-cat-vip">
-                    <li>
-                      <i>
-                        <i class="icon icon-vip"></i>
-                      </i>
-                      <span>پیشنهادات لوکس</span>
-                    </li>
-                  </a>
-                  <a href="tehran/c_services/index.html"
-                     class="float-cat-services">
-                    <li>
-                      <i>
-                        <i class="icon icon-cleaning"></i>
-                      </i>
-                      <span>خدمات</span>
-                    </li>
-                  </a>
-                  <a href="tehran/c_last/index.html" class="float-cat-last">
-                    <li class="sc">
-                      <i>
-                        <i class="icon icon-timer"></i>
-                      </i>
-                      <span>لحظه آخری</span>
-                    </li>
-                  </a>
-                </ul>
-              </div>
+    <div itemscope="" itemtype="http://schema.org/Offer" class="col-lg-6 col-md-12 col-sm-12 col-xs-24 cds-item  ">
+      <div class="cat-deal-smallbox">
+        <div class="cat-deal-box">
+          <a href="tehran/d/c_entertainment/160583/%d8%b3%d8%b1%d8%b2%d9%85%db%8c%d9%86-%d9%81%da%a9%d8%b1-%d8%a8%d8%a7%d8%b2%db%8c%d8%a7-%d8%af%d8%b1-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d8%aa%d8%a7%d8%a8%d8%b3%d8%aa%d8%a7%d9%86%db%8c/index.html"
+             class="figure">
+            <ul class="deal-tag list-unstyled"></ul>
+            <div class="overlay">
+              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
             </div>
+            <img data-src="http://static.netbarg.com/img/responsive_medium/deals/160583/21d70411.jpg" alt="سرزمین فکر بازیا در جشنواره تابستانی" data-type="lazy">
+          </a>
+          <div class="cat-deal-box-main clearfix">
+            <h4 itemprop="name" class="cdbm-title">
+              <a href="tehran/d/c_entertainment/160583/%d8%b3%d8%b1%d8%b2%d9%85%db%8c%d9%86-%d9%81%da%a9%d8%b1-%d8%a8%d8%a7%d8%b2%db%8c%d8%a7-%d8%af%d8%b1-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d8%aa%d8%a7%d8%a8%d8%b3%d8%aa%d8%a7%d9%86%db%8c/index.html" itemprop="url" class="truncate">
+                سرزمین فکر بازیا در جشنواره تابستانی
+              </a>
+            </h4>
+            <span class="cdbm-total-buy">
+              <span class="ir">
+                <i class="icon icon-shopping-cart hidden-xs"></i>
+                <i class="icon icon-shopping-cart_L visible-xs"></i>
+              </span>
+              <span class="cdbm-tb-total">
+                6708
+              </span>
+            </span>
           </div>
-          <div class="col-lg-22 col-md-22 col-sm-24 col-xs-24 padd-0-xs clearfix">
-            <section class="related cat-deal-color main-cat around-me clearfix">
-              <header class="section-header">
-                <h6 class="hx">
-                  <span class="icon icon-special-user-offer"></span><span class="article-h3">پیشنهادات ویژه نت برگ</span>
-                </h6>
-              </header>
-              <div class="main-cat-deal-thumbnail clearfix main-row">
-                <div itemscope="" itemtype="http://schema.org/Offer" class="col-lg-6 col-md-12 col-sm-12 col-xs-24 cds-item  ">
-                  <div class="cat-deal-smallbox">
-                    <div class="cat-deal-box">
-                      <a href="tehran/d/c_entertainment/160583/%d8%b3%d8%b1%d8%b2%d9%85%db%8c%d9%86-%d9%81%da%a9%d8%b1-%d8%a8%d8%a7%d8%b2%db%8c%d8%a7-%d8%af%d8%b1-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d8%aa%d8%a7%d8%a8%d8%b3%d8%aa%d8%a7%d9%86%db%8c/index.html"
-                         class="figure">
-                        <ul class="deal-tag list-unstyled"></ul>
-                        <div class="overlay">
-                          <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                        </div>
-                        <img data-src="http://static.netbarg.com/img/responsive_medium/deals/160583/21d70411.jpg" alt="سرزمین فکر بازیا در جشنواره تابستانی" data-type="lazy">
-                      </a>
-                      <div class="cat-deal-box-main clearfix">
-                        <h4 itemprop="name" class="cdbm-title">
-                          <a href="tehran/d/c_entertainment/160583/%d8%b3%d8%b1%d8%b2%d9%85%db%8c%d9%86-%d9%81%da%a9%d8%b1-%d8%a8%d8%a7%d8%b2%db%8c%d8%a7-%d8%af%d8%b1-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d8%aa%d8%a7%d8%a8%d8%b3%d8%aa%d8%a7%d9%86%db%8c/index.html" itemprop="url" class="truncate">
-                            سرزمین فکر بازیا در جشنواره تابستانی
-                          </a>
-                        </h4>
-                        <span class="cdbm-total-buy">
-                          <span class="ir">
-                            <i class="icon icon-shopping-cart hidden-xs"></i>
-                            <i class="icon icon-shopping-cart_L visible-xs"></i>
-                          </span>
-                          <span class="cdbm-tb-total">
-                            6708
-                          </span>
-                        </span>
-                      </div>
-                      <div class="cat-deal-box-footer clearfix">
-                        <a href="area/%d8%a7%d8%aa%d9%88%d8%a8%d8%a7%d9%86%20%d8%ad%d9%82%d8%a7%d9%86%db%8c/index.html"
-                           class="cdbf-location truncate">
-                          <span class="ir">
-                            <i class="icon icon-location74"></i>
-                          </span>
-                          <span class="cdbfl-address">
-                            اتوبان حقانی
-                          </span>
-                        </a>
-                        <span class="cdbf-takhfif">
-                          <span class="cdbft-shape">
-                            <span class="cdbft-shape-text">
-                              %60
-                            </span>
-                          </span>
-                        </span>
-                        <span class="cdbf-price">
-                          <ins class="cdbf-netbarg-price">
-                            <span itemprop="price" content="280000">
-                              ۲۴,۰۰۰
-                            </span>
-                            <span itemprop="priceCurrency" content="IRR"> تومان</span>
-                          </ins>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div itemscope="" itemtype="http://schema.org/Offer" class="col-lg-6 col-md-12 col-sm-12 col-xs-24 cds-item  ">
-                  <div class="cat-deal-smallbox">
-                    <div class="cat-deal-box">
-                      <a href="tehran/d/c_entertainment/163253/%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d9%be%d8%a7%db%8c%db%8c%d8%b2%d9%87-%d9%88-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d9%85%d8%ad%d8%b5%d9%88%d9%84%d8%a7%d8%aa-%d8%b3%d8%a7%d9%84%d9%85-%d9%88-%d8%b7%d8%a8%db%8c%d8%b9%db%8c/index.html"
-                         class="figure">
-                        <ul class="deal-tag list-unstyled"></ul>
-                        <div class="overlay">
-                          <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                        </div>
-                        <img data-src="http://static.netbarg.com/img/responsive_medium/deals/163253/1111.jpg" alt="جشنواره پاییزه و جشنواره محصولات سالم و طبیعی" data-type="lazy">
-                      </a>
-                      <div class="cat-deal-box-main clearfix">
-                        <h4 itemprop="name" class="cdbm-title">
-                          <a href="tehran/d/c_entertainment/163253/%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d9%be%d8%a7%db%8c%db%8c%d8%b2%d9%87-%d9%88-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d9%85%d8%ad%d8%b5%d9%88%d9%84%d8%a7%d8%aa-%d8%b3%d8%a7%d9%84%d9%85-%d9%88-%d8%b7%d8%a8%db%8c%d8%b9%db%8c/index.html" itemprop="url" class="truncate">
-                            جشنواره پاییزه و جشنواره محصولات سالم و طبیعی
-                          </a>
-                        </h4>
-                        <span class="cdbm-total-buy">
-                          <span class="ir">
-                            <i class="icon icon-shopping-cart hidden-xs"></i>
-                            <i class="icon icon-shopping-cart_L visible-xs"></i>
-                          </span>
-                          <span class="cdbm-tb-total">
-                            62
-                          </span>
-                        </span>
-                      </div>
-                      <div class="cat-deal-box-footer clearfix">
-                        <a href="area/%d8%a8%d8%a7%d8%ba-%da%af%db%8c%d8%a7%d9%87-%d8%b4%d9%86%d8%a7%d8%b3%db%8c-%d9%85%d9%84%db%8c-%d8%a7%db%8c%d8%b1%d8%a7%d9%86/index.html"
-                           class="cdbf-location truncate">
-                          <span class="ir">
-                            <i class="icon icon-location74"></i>
-                          </span>
-                          <span class="cdbfl-address">
-                            باغ گیاه شناسی ملی ایران
-                          </span>
-                        </a>
-                        <span class="cdbf-takhfif">
-                          <span class="cdbft-shape">
-                            <span class="cdbft-shape-text">
-                              %34
-                            </span>
-                          </span>
-                        </span>
-                        <span class="cdbf-price">
-                          <ins class="cdbf-netbarg-price">
-                            <span itemprop="price" content="280000">
-                              ۹,۹۰۰
-                            </span>
-                            <span itemprop="priceCurrency" content="IRR"> تومان</span>
-                          </ins>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div itemscope="" itemtype="http://schema.org/Offer" class="col-lg-6 col-md-12 col-sm-12 col-xs-24 cds-item  ">
-                  <div class="cat-deal-smallbox">
-                    <div class="cat-deal-box">
-                      <a href="tehran/d/c_restaurant/163300/%d8%a8%d9%88%d9%81%d9%87-%d8%b5%d8%a8%d8%ad%d8%a7%d9%86%d9%87-%d9%87%d8%aa%d9%84-%d9%be%d8%a7%d8%b1%d8%b3%db%8c%d8%a7%d9%86-%d8%a7%d9%88%db%8c%d9%86/index.html"
-                         class="figure">
-                        <ul class="deal-tag list-unstyled"></ul>
-                        <div class="overlay">
-                          <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                        </div>
-                        <img data-src="http://static.netbarg.com/img/responsive_medium/deals/163300/1b2d03a6.jpg" alt="بوفه صبحانه هتل پارسیان اوین" data-type="lazy">
-                      </a>
-                      <div class="cat-deal-box-main clearfix">
-                        <h4 itemprop="name" class="cdbm-title">
-                          <a href="tehran/d/c_restaurant/163300/%d8%a8%d9%88%d9%81%d9%87-%d8%b5%d8%a8%d8%ad%d8%a7%d9%86%d9%87-%d9%87%d8%aa%d9%84-%d9%be%d8%a7%d8%b1%d8%b3%db%8c%d8%a7%d9%86-%d8%a7%d9%88%db%8c%d9%86/index.html" itemprop="url" class="truncate">
-                            بوفه صبحانه هتل پارسیان اوین
-                          </a>
-                        </h4>
-                        <span class="cdbm-total-buy">
-                          <span class="ir">
-                            <i class="icon icon-shopping-cart hidden-xs"></i>
-                            <i class="icon icon-shopping-cart_L visible-xs"></i>
-                          </span>
-                          <span class="cdbm-tb-total">
-                            14
-                          </span>
-                        </span>
-                      </div>
-                      <div class="cat-deal-box-footer clearfix">
-                        <a href="area/%d9%87%d8%aa%d9%84%20%d9%be%d8%a7%d8%b1%d8%b3%db%8c%d8%a7%d9%86%20%d8%a7%d9%88%db%8c%d9%86/index.html"
-                           class="cdbf-location truncate">
-                          <span class="ir">
-                            <i class="icon icon-location74"></i>
-                          </span>
-                          <span class="cdbfl-address">
-                            هتل پارسیان اوین
-                          </span>
-                        </a>
-                        <span class="cdbf-takhfif">
-                          <span class="cdbft-shape">
-                            <span class="cdbft-shape-text">
-                              %35
-                            </span>
-                          </span>
-                        </span>
-                        <span class="cdbf-price">
-                          <ins class="cdbf-netbarg-price">
-                            <span itemprop="price" content="280000">
-                              ۴۵,۵۰۰
-                            </span>
-                            <span itemprop="priceCurrency" content="IRR"> تومان</span>
-                          </ins>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div itemscope="" itemtype="http://schema.org/Offer" class="col-lg-6 col-md-12 col-sm-12 col-xs-24 cds-item  ">
-                  <div class="cat-deal-smallbox">
-                    <div class="cat-deal-box">
-                      <a href="tehran/d/c_entertainment/163290/%d8%a7%d8%b3%d8%aa%d8%ae%d8%b1-%d8%b1%d9%88%d8%a8%d8%a7%d8%b2-%d8%a7%d8%b1%d9%85-%d9%88%db%8c%da%98%d9%87-%d8%a8%d8%a7%d9%86%d9%88%d8%a7%d9%86-21/index.html"
-                         class="figure">
-                        <ul class="deal-tag list-unstyled"></ul>
-                        <div class="overlay">
-                          <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                        </div>
-                        <img data-src="http://static.netbarg.com/img/responsive_medium/deals/163290/346.jpg" alt="استخر روباز ارم ویژه بانوان " data-type="lazy">
-                      </a>
-                      <div class="cat-deal-box-main clearfix">
-                        <h4 itemprop="name" class="cdbm-title">
-                          <a href="tehran/d/c_entertainment/163290/%d8%a7%d8%b3%d8%aa%d8%ae%d8%b1-%d8%b1%d9%88%d8%a8%d8%a7%d8%b2-%d8%a7%d8%b1%d9%85-%d9%88%db%8c%da%98%d9%87-%d8%a8%d8%a7%d9%86%d9%88%d8%a7%d9%86-21/index.html" itemprop="url" class="truncate">
-                            استخر روباز ارم ویژه بانوان
-                          </a>
-                        </h4>
-                        <span class="cdbm-total-buy">
-                          <span class="ir">
-                            <i class="icon icon-shopping-cart hidden-xs"></i>
-                            <i class="icon icon-shopping-cart_L visible-xs"></i>
-                          </span>
-                          <span class="cdbm-tb-total">
-                            54
-                          </span>
-                        </span>
-                      </div>
-                      <div class="cat-deal-box-footer clearfix">
-                        <a href="area/%d9%be%d8%a7%d8%b1%da%a9-%d8%a7%d8%b1%d9%85/index.html"
-                           class="cdbf-location truncate">
-                          <span class="ir">
-                            <i class="icon icon-location74"></i>
-                          </span>
-                          <span class="cdbfl-address">
-                            پارک ارم
-                          </span>
-                        </a>
-                        <span class="cdbf-takhfif">
-                          <span class="cdbft-shape">
-                            <span class="cdbft-shape-text">
-                              %32
-                            </span>
-                          </span>
-                        </span>
-                        <span class="cdbf-price">
-                          <ins class="cdbf-netbarg-price">
-                            <span itemprop="price" content="280000">
-                              ۲۷,۲۰۰
-                            </span>
-                            <span itemprop="priceCurrency" content="IRR"> تومان</span>
-                          </ins>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section class="cat-big-small">
-              <article id="float-cat-restaurant" class="cat-deal-color color-rescoffee">
-                <header class="section-header">
-                  <a href="tehran/c_restaurant/index.html"
-                     class="visible-xs">
-                    بیشتر
-                  </a>
-                  <h3 class="hx">
-                    <span class="ir">
-                      <i class="icon icon-burger"></i>
-                    </span><a href="tehran/c_restaurant/index.html" class="article-h3">رستوران و کافی‌شاپ</a>
-                  </h3>
-                </header>
-                <div class="main-row clearfix">
-                  <div itemscope="" itemtype="http://schema.org/Offer"
-                       class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-bigbox">
-                    <div class="cat-deal-box ">
-                      <a href="tehran/d/c_restaurant/161472/%d8%a8%d9%88%d9%81%d9%87-%d8%b4%d8%a7%d9%85-%d9%88-%d9%85%d9%88%d8%b3%db%8c%d9%82%db%8c-%d8%b2%d9%86%d8%af%d9%87-%d8%af%d8%b1-%d8%b1%d8%b3%d8%aa%d9%88%d8%b1%d8%a7%d9%86-%d9%85%d8%ac%d9%84%d9%84-%d8%b9%d9%85%d8%a7%d8%b1%d8%aa-%da%a9%d8%a7%d8%a8%d8%a7%d9%86-99/index.html"
-                         class="figure">
-                        <ul class="deal-tag list-unstyled">
-                          <li class="orange-label"></li>
-                          <li class="violet-label"></li>
-                        </ul>
-                        <img data-src="http://static.netbarg.com/img/responsive_large/deals/161472/364e054e.jpg" alt="بوفه شام و موسیقی زنده در رستوران مجلل عمارت کابان" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_large/deals/161472/364e054e.jpg">
-                      </a>
-                      <div class="cat-deal-box-main clearfix">
-                        <h4 itemprop="name" class="cdbm-title">
-                          <a itemprop="url"
-                             href="tehran/d/c_restaurant/161472/%d8%a8%d9%88%d9%81%d9%87-%d8%b4%d8%a7%d9%85-%d9%88-%d9%85%d9%88%d8%b3%db%8c%d9%82%db%8c-%d8%b2%d9%86%d8%af%d9%87-%d8%af%d8%b1-%d8%b1%d8%b3%d8%aa%d9%88%d8%b1%d8%a7%d9%86-%d9%85%d8%ac%d9%84%d9%84-%d8%b9%d9%85%d8%a7%d8%b1%d8%aa-%da%a9%d8%a7%d8%a8%d8%a7%d9%86-99/index.html"
-                             class="truncate">
-                            بوفه شام و موسیقی زنده در رستوران مجلل عمارت کابان
-                          </a>
-                        </h4>
-                        <span class="cdbm-total-buy">
-                          <span class="ir">
-                            <i class="icon icon-shopping-cart hidden-xs"></i>
-                            <i class="icon icon-shopping-cart_L visible-xs">
-                            </i>
-                          </span>
-                          <span class="cdbm-tb-total">
-                            2958
-                          </span>
-                        </span>
-                      </div>
-                      <div class="cat-deal-box-footer clearfix">
-                        <span class="cdbf-takhfif">
-                          <span class="cdbft-shape">
-                            <span class="cdbft-shape-text">
-                              %40
-                            </span>
-                          </span>
-                        </span>
-                        <a href="area/%d8%a2%db%8c%d8%aa-%d8%a7%d9%84%d9%84%d9%87-%da%a9%d8%a7%d8%b4%d8%a7%d9%86%db%8c/index.html"
-                           class="cdbf-location truncate">
-                          <span class="ir">
-                            <i class="icon icon-location74"></i>
-                          </span>
-                          <span class="cdbfl-address">
-                            آیت الله کاشانی
-                          </span>
-                        </a>
-                        <a href="tehran/d/c_restaurant/161472/%d8%a8%d9%88%d9%81%d9%87-%d8%b4%d8%a7%d9%85-%d9%88-%d9%85%d9%88%d8%b3%db%8c%d9%82%db%8c-%d8%b2%d9%86%d8%af%d9%87-%d8%af%d8%b1-%d8%b1%d8%b3%d8%aa%d9%88%d8%b1%d8%a7%d9%86-%d9%85%d8%ac%d9%84%d9%84-%d8%b9%d9%85%d8%a7%d8%b1%d8%aa-%da%a9%d8%a7%d8%a8%d8%a7%d9%86-99/index.html"
-                           class="cdbf-buy-icon">
-                          <button class="nb-btn nb-btn-icon nb-btn-success">
-                            مشاهده و خرید
-                            <i class="icon icon-shopping-cart2">
-                            </i>
-                          </button>
-                        </a>
-                        <span class="cdbf-price">
-                          <del class="cdbf-real-price">
-                            <span>۹۲,۰۰۰</span>
-                          </del>
-                          <ins class="cdbf-netbarg-price">
-                            <span itemprop="price"
-                                  content="552000">
-                              ۵۵,۲۰۰
-                            </span>
-                            <span itemprop="priceCurrency" content="IRR">
-                              تومان
-                            </span>
-                          </ins>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-smallbox">
-                    <div class="row">
-                      <div itemscope="" itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_restaurant/161577/%d8%b3%d8%b1%d9%88%db%8c%d8%b3-%d8%b3%d9%81%d8%b1%d9%87-%d8%ae%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%af%d8%b1-%d8%b1%d8%b3%d8%aa%d9%88%d8%b1%d8%a7%d9%86-%da%a9%d9%86%d8%af%db%8c%d9%85%db%8c%d8%b2/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/161577/1bc503b2.jpg" alt="سرویس سفره خانه ای در رستوران کندیمیز" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/161577/1bc503b2.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_restaurant/161577/%d8%b3%d8%b1%d9%88%db%8c%d8%b3-%d8%b3%d9%81%d8%b1%d9%87-%d8%ae%d8%a7%d9%86%d9%87-%d8%a7%db%8c-%d8%af%d8%b1-%d8%b1%d8%b3%d8%aa%d9%88%d8%b1%d8%a7%d9%86-%da%a9%d9%86%d8%af%db%8c%d9%85%db%8c%d8%b2/index.html"
-                                 class="truncate">
-                                سرویس سفره خانه ای در رستوران کندیمیز
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                64
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d9%85%d8%ad%d9%85%d8%af-%d8%b9%d9%84%db%8c-%d8%ac%d9%86%d8%a7%d8%ad/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                محمد علی جناح
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %50
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۵۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="250000">
-                                  ۲۵,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope="" itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_restaurant/161219/%d9%85%d9%86%d9%88-%d8%a8%d8%a7%d8%b2-%d8%ba%d8%b0%d8%a7%db%8c%db%8c-%d8%af%d8%b1-%d8%b1%d8%b3%d8%aa%d9%88%d8%b1%d8%a7%d9%86-%d8%a7%db%8c%d8%aa%d8%a7%d9%84%db%8c%d8%a7%db%8c%db%8c-%d9%87%db%8c%d8%b1%d8%a7%d8%af/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/161219/22ae0460.jpg" alt="منو باز غذایی در رستوران ایتالیایی هیراد" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/161219/22ae0460.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_restaurant/161219/%d9%85%d9%86%d9%88-%d8%a8%d8%a7%d8%b2-%d8%ba%d8%b0%d8%a7%db%8c%db%8c-%d8%af%d8%b1-%d8%b1%d8%b3%d8%aa%d9%88%d8%b1%d8%a7%d9%86-%d8%a7%db%8c%d8%aa%d8%a7%d9%84%db%8c%d8%a7%db%8c%db%8c-%d9%87%db%8c%d8%b1%d8%a7%d8%af/index.html"
-                                 class="truncate">
-                                منو باز غذایی در رستوران ایتالیایی هیراد
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                2442
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%a7%d8%b4%d8%b1%d9%81%db%8c-%d8%a7%d8%b5%d9%81%d9%87%d8%a7%d9%86%db%8c/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                اشرفی اصفهانی
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %40
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۴۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="240000">
-                                  ۲۴,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope="" itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_restaurant/162054/%d9%85%d9%86%d9%88-%d8%ba%d8%b0%d8%a7%d9%87%d8%a7%db%8c-%d8%a7%db%8c%d8%b1%d8%a7%d9%86%db%8c-%d8%af%d8%b1-%d8%b1%d8%b3%d8%aa%d9%88%d8%b1%d8%a7%d9%86-%d8%b3%d8%a7%d8%ad%d9%84%db%8c-%d9%85%d8%af%db%8c%d8%aa%d8%b1%d8%a7%d9%86%d9%87-%d9%81%d8%b4%d9%85/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/162054/1bc803b5.jpg" alt="منو غذاهای ایرانی در رستوران ساحلی مدیترانه فشم" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/162054/1bc803b5.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_restaurant/162054/%d9%85%d9%86%d9%88-%d8%ba%d8%b0%d8%a7%d9%87%d8%a7%db%8c-%d8%a7%db%8c%d8%b1%d8%a7%d9%86%db%8c-%d8%af%d8%b1-%d8%b1%d8%b3%d8%aa%d9%88%d8%b1%d8%a7%d9%86-%d8%b3%d8%a7%d8%ad%d9%84%db%8c-%d9%85%d8%af%db%8c%d8%aa%d8%b1%d8%a7%d9%86%d9%87-%d9%81%d8%b4%d9%85/index.html"
-                                 class="truncate">
-                                منو غذاهای ایرانی در رستوران ساحلی مدیترانه فشم
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                11545
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d9%81%d8%b4%d9%85/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                فشم
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %40
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۳۵,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="210000">
-                                  ۲۱,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-24 cds-item hidden-xs done">
-                        <div class="cds-all-view-box">
-                          <span class="ir">
-                            <i class="icon icon-burger"></i>
-                          </span>
-                          <h4 class="cds-title">151 پیشنهاد رستوران و کافی شاپ</h4>
-                          <a href="tehran/c_restaurant/index.html">
-                            <button class="nb-btn nb-btn-success">مشاهده همه</button>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <figure class="figure-ads-baner hidden-xs visible-lg">
-                <a href="trend/%d8%b5%d8%a8%d8%ad%d8%a7%d9%86%d9%87-%d8%af%d8%b1-%d8%aa%d9%87%d8%b1%d8%a7%d9%86/index.html" target="_blank">
-                  <img src="../static.netbarg.com/img/banner/banners/restaurantBanner/77/81c10add.jpg" alt="رستوران و کافی شاپ" />
-                </a>
-              </figure>
-              <article id="float-cat-entertainment" class="cat-deal-color color-inter-sport">
-                <header class="section-header">
-                  <a href="tehran/c_entertainment/index.html"
-                     class="visible-xs">
-                    بیشتر
-                  </a>
-                  <h3 class="hx">
-                    <span class="ir">
-                      <i class="icon icon-basketball"></i>
-                    </span>
-                    <a href="tehran/c_entertainment/index.html"
-                       class="article-h3">
-                      تفریحی و ورزشی
-                    </a>
-                  </h3>
-                </header>
-                <div class="main-row clearfix">
-                  <div itemscope="" itemtype="http://schema.org/Offer"
-                       class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-bigbox">
-                    <div class="cat-deal-box ">
-                      <a href="tehran/d/c_entertainment/160583/%d8%b3%d8%b1%d8%b2%d9%85%db%8c%d9%86-%d9%81%da%a9%d8%b1-%d8%a8%d8%a7%d8%b2%db%8c%d8%a7-%d8%af%d8%b1-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d8%aa%d8%a7%d8%a8%d8%b3%d8%aa%d8%a7%d9%86%db%8c/index.html"
-                         class="figure">
-                        <ul class="deal-tag list-unstyled">
-                          <li class="orange-label"></li>
-                        </ul>
-                        <img data-src="http://static.netbarg.com/img/responsive_large/deals/160583/21d70411.jpg" alt="سرزمین فکر بازیا در جشنواره تابستانی" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_large/deals/160583/21d70411.jpg">
-                      </a>
-                      <div class="cat-deal-box-main clearfix">
-                        <h4 itemprop="name" class="cdbm-title">
-                          <a itemprop="url"
-                             href="tehran/d/c_entertainment/160583/%d8%b3%d8%b1%d8%b2%d9%85%db%8c%d9%86-%d9%81%da%a9%d8%b1-%d8%a8%d8%a7%d8%b2%db%8c%d8%a7-%d8%af%d8%b1-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d8%aa%d8%a7%d8%a8%d8%b3%d8%aa%d8%a7%d9%86%db%8c/index.html"
-                             class="truncate">
-                            سرزمین فکر بازیا در جشنواره تابستانی
-                          </a>
-                        </h4>
-                        <span class="cdbm-total-buy">
-                          <span class="ir">
-                            <i class="icon icon-shopping-cart hidden-xs"></i>
-                            <i class="icon icon-shopping-cart_L visible-xs">
-                            </i>
-                          </span>
-                          <span class="cdbm-tb-total">
-                            4469
-                          </span>
-                        </span>
-                      </div>
-                      <div class="cat-deal-box-footer clearfix">
-                        <span class="cdbf-takhfif">
-                          <span class="cdbft-shape">
-                            <span class="cdbft-shape-text">
-                              %60
-                            </span>
-                          </span>
-                        </span>
-                        <a href="area/%d8%a7%d8%aa%d9%88%d8%a8%d8%a7%d9%86%20%d8%ad%d9%82%d8%a7%d9%86%db%8c/index.html"
-                           class="cdbf-location truncate">
-                          <span class="ir">
-                            <i class="icon icon-location74"></i>
-                          </span>
-                          <span class="cdbfl-address">
-                            اتوبان حقانی
-                          </span>
-                        </a>
-                        <a href="tehran/d/c_entertainment/160583/%d8%b3%d8%b1%d8%b2%d9%85%db%8c%d9%86-%d9%81%da%a9%d8%b1-%d8%a8%d8%a7%d8%b2%db%8c%d8%a7-%d8%af%d8%b1-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d8%aa%d8%a7%d8%a8%d8%b3%d8%aa%d8%a7%d9%86%db%8c/index.html"
-                           class="cdbf-buy-icon">
-                          <button class="nb-btn nb-btn-icon nb-btn-success">
-                            مشاهده و خرید
-                            <i class="icon icon-shopping-cart2">
-                            </i>
-                          </button>
-                        </a>
-                        <span class="cdbf-price">
-                          <del class="cdbf-real-price">
-                            <span>۶۰,۰۰۰</span>
-                          </del>
-                          <ins class="cdbf-netbarg-price">
-                            <span itemprop="price">
-                              ۲۴,۰۰۰
-                            </span>
-                            <span itemprop="priceCurrency" content="IRR">
-                              تومان
-                            </span>
-                          </ins>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-smallbox">
-                    <div class="row">
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_entertainment/162812/%d8%b1%d9%88%db%8c%d8%a7-%d9%be%d8%a7%d8%b1%da%a9-%d8%a7%d9%88%d9%84%db%8c%d9%86-%d9%be%d8%a7%d8%b1%da%a9-%d8%ac%d8%a7%d8%af%d9%88%db%8c%db%8c-%d8%a7%db%8c%d8%b1%d8%a7%d9%86-20/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/162812/1b1503aa.jpg" alt="رویا پارک اولین پارک جادویی ایران" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/162812/1b1503aa.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_entertainment/162812/%d8%b1%d9%88%db%8c%d8%a7-%d9%be%d8%a7%d8%b1%da%a9-%d8%a7%d9%88%d9%84%db%8c%d9%86-%d9%be%d8%a7%d8%b1%da%a9-%d8%ac%d8%a7%d8%af%d9%88%db%8c%db%8c-%d8%a7%db%8c%d8%b1%d8%a7%d9%86-20/index.html"
-                                 class="truncate">
-                                رویا پارک اولین پارک جادویی ایران
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                5635
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d9%85%db%8c%d8%af%d8%a7%d9%86%20%d9%86%db%8c%d8%a7%d9%88%d8%b1%d8%a7%d9%86/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                میدان نیاوران
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %30
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۳۵,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="245000">
-                                  ۲۴,۵۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_entertainment/160418/%d8%b4%d9%86%d8%a7-%d8%af%d8%b1-%d8%b3%d8%a7%d9%86%d8%b3-%d8%a2%d8%b2%d8%a7%d8%af-%d8%a7%d8%b3%d8%aa%d8%ae%d8%b1-%d9%be%d8%b1%d8%af%db%8c%d8%b3%d8%a7%d9%86-%d9%86%d9%88%d8%b1-28/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/160418/e2.jpg" alt="شنا در سانس آزاد استخر پردیسان نور" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/160418/e2.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_entertainment/160418/%d8%b4%d9%86%d8%a7-%d8%af%d8%b1-%d8%b3%d8%a7%d9%86%d8%b3-%d8%a2%d8%b2%d8%a7%d8%af-%d8%a7%d8%b3%d8%aa%d8%ae%d8%b1-%d9%be%d8%b1%d8%af%db%8c%d8%b3%d8%a7%d9%86-%d9%86%d9%88%d8%b1-28/index.html"
-                                 class="truncate">
-                                شنا در سانس آزاد استخر پردیسان نور
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                7940
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%b4%d9%87%d8%b1%da%a9-%da%af%d9%84%d8%b3%d8%aa%d8%a7%d9%86/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                شهرک گلستان
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %40
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۶۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="360000">
-                                  ۳۶,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_entertainment/153591/%d8%b4%d9%86%d8%a7-%d9%88-%d8%a2%d8%a8-%d8%af%d8%b1%d9%85%d8%a7%d9%86%db%8c-%d8%af%d8%b1-%d8%a7%d8%b3%d8%aa%d8%ae%d8%b1-%d8%b3%d9%be%db%8c%d8%af%d8%a7%d8%b1/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/153591/1b7203b0.jpg" alt="شنا و آب درمانی در استخر سپیدار" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/153591/1b7203b0.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_entertainment/153591/%d8%b4%d9%86%d8%a7-%d9%88-%d8%a2%d8%a8-%d8%af%d8%b1%d9%85%d8%a7%d9%86%db%8c-%d8%af%d8%b1-%d8%a7%d8%b3%d8%aa%d8%ae%d8%b1-%d8%b3%d9%be%db%8c%d8%af%d8%a7%d8%b1/index.html"
-                                 class="truncate">
-                                شنا و آب درمانی در استخر سپیدار
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                53512
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d9%85%db%8c%d8%af%d8%a7%d9%86-%d9%be%d8%a7%d8%b3%d8%aa%d9%88%d8%b1/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                میدان پاستور
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %35
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۴۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="260000">
-                                  ۲۶,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-24 cds-item hidden-xs done">
-                        <div class="cds-all-view-box">
-                          <span class="ir">
-                            <i class="icon icon-basketball"></i>
-                          </span>
-                          <h4 class="cds-title">210 پیشنهاد تفریحی و ورزشی</h4>
-                          <a href="tehran/c_entertainment/index.html">
-                            <button class="nb-btn nb-btn-success">مشاهده همه</button>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <figure class="figure-ads-baner hidden-xs visible-lg">
-                <a href="trend/%d8%a7%d8%b3%d8%aa%d8%ae%d8%b1/index.html" target="_blank">
-                  <img src="../static.netbarg.com/img/banner/banners/entertainmentBanner/68/682a09a5.jpg" alt="تفریحی و ورزشی" />
-                </a>
-              </figure>
-              <article id="float-cat-health" class="cat-deal-color color-health">
-                <header class="section-header">
-                  <a href="tehran/c_health/index.html"
-                     class="visible-xs">
-                    بیشتر
-                  </a>
-                  <h3 class="hx">
-                    <span class="ir">
-                      <i class="icon icon-car-first-aid-kit"></i>
-                    </span><a href="tehran/c_health/index.html" class="article-h3">پزشکی و سلامت</a>
-                  </h3>
-                </header>
-                <div class="main-row clearfix">
-                  <div itemscope="" itemtype="http://schema.org/Offer"
-                       class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-bigbox">
-                    <div class="cat-deal-box ">
-                      <a href="tehran/d/c_health/160195/%d9%85%d8%a7%d8%b3%d8%a7%da%98-%d8%b3%d9%88%d8%a6%d8%af%db%8c-%d9%81%d9%88%d8%aa-%d9%85%d8%a7%d8%b3%d8%a7%da%98-%d9%88-%d8%af%d8%b1-%d9%85%d8%b1%da%a9%d8%b2-%d9%85%d8%a7%d8%b3%d8%a7%da%98-%d9%81%d8%b1%d9%88%d8%b2%d8%a7%d9%86/index.html"
-                         class="figure">
-                        <ul class="deal-tag list-unstyled">
-                          <li class="orange-label"></li>
-                          <li class="violet-label"></li>
-                        </ul>
-                        <img data-src="http://static.netbarg.com/img/responsive_large/deals/160195/5101071b.jpg" alt="ماساژ سوئدی ، فوت ماساژ و...در مرکز ماساژ فروزان" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_large/deals/160195/5101071b.jpg">
-                      </a>
-                      <div class="cat-deal-box-main clearfix">
-                        <h4 itemprop="name" class="cdbm-title">
-                          <a itemprop="url"
-                             href="tehran/d/c_health/160195/%d9%85%d8%a7%d8%b3%d8%a7%da%98-%d8%b3%d9%88%d8%a6%d8%af%db%8c-%d9%81%d9%88%d8%aa-%d9%85%d8%a7%d8%b3%d8%a7%da%98-%d9%88-%d8%af%d8%b1-%d9%85%d8%b1%da%a9%d8%b2-%d9%85%d8%a7%d8%b3%d8%a7%da%98-%d9%81%d8%b1%d9%88%d8%b2%d8%a7%d9%86/index.html"
-                             class="truncate">
-                            ماساژ سوئدی ، فوت ماساژ و...در مرکز ماساژ فروزان
-                          </a>
-                        </h4>
-                        <span class="cdbm-total-buy">
-                          <span class="ir">
-                            <i class="icon icon-shopping-cart hidden-xs"></i>
-                            <i class="icon icon-shopping-cart_L visible-xs">
-                            </i>
-                          </span>
-                          <span class="cdbm-tb-total">
-                            599
-                          </span>
-                        </span>
-                      </div>
-                      <div class="cat-deal-box-footer clearfix">
-                        <span class="cdbf-takhfif">
-                          <span class="cdbft-shape">
-                            <span class="cdbft-shape-text">
-                              %70
-                            </span>
-                          </span>
-                        </span>
-                        <a href="area/%d9%88%d9%86%da%a9/index.html"
-                           class="cdbf-location truncate">
-                          <span class="ir">
-                            <i class="icon icon-location74"></i>
-                          </span>
-                          <span class="cdbfl-address">
-                            ونک
-                          </span>
-                        </a>
-                        <a href="tehran/d/c_health/160195/%d9%85%d8%a7%d8%b3%d8%a7%da%98-%d8%b3%d9%88%d8%a6%d8%af%db%8c-%d9%81%d9%88%d8%aa-%d9%85%d8%a7%d8%b3%d8%a7%da%98-%d9%88-%d8%af%d8%b1-%d9%85%d8%b1%da%a9%d8%b2-%d9%85%d8%a7%d8%b3%d8%a7%da%98-%d9%81%d8%b1%d9%88%d8%b2%d8%a7%d9%86/index.html"
-                           class="cdbf-buy-icon">
-                          <button class="nb-btn nb-btn-icon nb-btn-success">
-                            مشاهده و خرید
-                            <i class="icon icon-shopping-cart2">
-                            </i>
-                          </button>
-                        </a>
-                        <span class="cdbf-price">
-                          <del class="cdbf-real-price">
-                            <span>۱۰۰,۰۰۰</span>
-                          </del>
-                          <ins class="cdbf-netbarg-price">
-                            <span itemprop="price">
-                              ۳۰,۰۰۰
-                            </span>
-                            <span itemprop="priceCurrency" content="IRR">
-                              تومان
-                            </span>
-                          </ins>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-smallbox">
-                    <div class="row">
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_health/152307/%d8%b3%d9%88%d8%b1%d9%be%d8%b1%d8%a7%db%8c%d8%b2-%d8%b7%d9%84%d8%a7%db%8c%db%8c-%d9%84%db%8c%d8%b2%d8%b1-%d9%85%d9%88%d9%87%d8%a7%db%8c-%d8%b2%d8%a7%d8%a6%d8%af-alexandrite/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/152307/1a680396.jpg" alt="سورپرایز طلایی لیزر موهای زائد ALEXANDRITE" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/152307/1a680396.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_health/152307/%d8%b3%d9%88%d8%b1%d9%be%d8%b1%d8%a7%db%8c%d8%b2-%d8%b7%d9%84%d8%a7%db%8c%db%8c-%d9%84%db%8c%d8%b2%d8%b1-%d9%85%d9%88%d9%87%d8%a7%db%8c-%d8%b2%d8%a7%d8%a6%d8%af-alexandrite.html"
-                                 class="truncate">
-                                سورپرایز طلایی لیزر موهای زائد ALEXANDRITE
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                57731
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d9%88%d9%86%da%a9-%da%af%d8%a7%d9%86%d8%af%db%8c/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                ونک-گاندی
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %80
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۲۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="40000">
-                                  ۴,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_health/157556/%d8%a8%d9%84%db%8c%da%86%db%8c%d9%86%da%af-%d8%aa%d9%88%d8%b3%d8%b7-%d8%af%da%a9%d8%aa%d8%b1-%d8%b9%d8%b2%db%8c%d8%b2%db%8c/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/157556/2202041c.jpg" alt="بلیچینگ توسط دکتر عزیزی" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/157556/2202041c.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_health/157556/%d8%a8%d9%84%db%8c%da%86%db%8c%d9%86%da%af-%d8%aa%d9%88%d8%b3%d8%b7-%d8%af%da%a9%d8%aa%d8%b1-%d8%b9%d8%b2%db%8c%d8%b2%db%8c.html"
-                                 class="truncate">
-                                بلیچینگ توسط دکتر عزیزی
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                214
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%a7%d9%82%d8%af%d8%b3%db%8c%d9%87/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                اقدسیه
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %72
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۵۰۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="1400000">
-                                  ۱۴۰,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_health/159190/%da%a9%d8%a7%d9%85%d9%be%d9%88%d8%b2%db%8c%d8%aa-%d8%af%d9%86%d8%af%d8%a7%d9%86-%d8%aa%d9%88%d8%b3%d8%b7-%d8%af%da%a9%d8%aa%d8%b1-%d8%ae%d8%a7%d9%86%da%86%db%8c/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/159190/1e5003dd.jpg" alt="کامپوزیت دندان توسط دکتر خانچی" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/159190/1e5003dd.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_health/159190/%da%a9%d8%a7%d9%85%d9%be%d9%88%d8%b2%db%8c%d8%aa-%d8%af%d9%86%d8%af%d8%a7%d9%86-%d8%aa%d9%88%d8%b3%d8%b7-%d8%af%da%a9%d8%aa%d8%b1-%d8%ae%d8%a7%d9%86%da%86%db%8c.html"
-                                 class="truncate">
-                                کامپوزیت دندان توسط دکتر خانچی
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                634
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%b3%d8%b9%d8%a7%d8%af%d8%aa-%d8%a2%d8%a8%d8%a7%d8%af/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                سعادت آباد
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %61
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۵۰۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="1950000">
-                                  ۱۹۵,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-24 cds-item hidden-xs done">
-                        <div class="cds-all-view-box">
-                          <span class="ir">
-                            <i class="icon icon-car-first-aid-kit"></i>
-                          </span>
-                          <h4 class="cds-title">445 پیشنهاد پزشکی و سلامت</h4>
-                          <a href="tehran/c_health/index.html">
-                            <button class="nb-btn nb-btn-success">مشاهده همه</button>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <figure class="figure-ads-baner hidden-xs visible-lg">
-                <a href="trend/%d9%85%d8%a7%d8%b3%d8%a7%da%98-%d8%aa%d9%87%d8%b1%d8%a7%d9%86/index.html" target="_blank">
-                  <img src="../static.netbarg.com/img/banner/banners/healthBanner/74/81830b06.jpg" alt="پزشکی و سلامت" />
-                </a>
-              </figure>
-              <article id="float-cat-art" class="cat-deal-color color-art">
-                <header class="section-header">
-                  <a href="tehran/c_art/index.html"
-                     class="visible-xs">
-                    بیشتر
-                  </a>
-                  <h3 class="hx">
-                    <span class="ir">
-                      <i class="icon icon-Theater"></i>
-                    </span>
-                    <a href="tehran/c_art/index.html"
-                       class="article-h3">
-                      فرهنگی و هنری
-                    </a>
-                  </h3>
-                </header>
-                <div class="main-row clearfix">
-                  <div itemscope="" itemtype="http://schema.org/Offer"
-                       class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-bigbox">
-                    <div class="cat-deal-box ">
-                      <a href="tehran/d/c_art/140439/%d8%a2%d8%aa%d9%84%db%8c%d9%87-%d8%a2%d9%88%db%8c%d9%86-%d8%a8%d8%a7-%d8%ab%d8%a8%d8%aa-%d9%84%d8%ad%d8%b8%d8%a7%d8%aa-%d8%ae%d9%88%d8%b4-%d8%b2%d9%86%d8%af%da%af%db%8c/index.html"
-                         class="figure">
-                        <ul class="deal-tag list-unstyled">
-                          <li class="orange-label"></li>
-                          <li class="violet-label"></li>
-                        </ul>
-                        <img data-src="http://static.netbarg.com/img/responsive_large/deals/140439/1be303b2.jpg" alt="آتلیه آوین با ثبت لحظات خوش زندگی" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_large/deals/140439/1be303b2.jpg">
-                      </a>
-                      <div class="cat-deal-box-main clearfix">
-                        <h4 itemprop="name" class="cdbm-title">
-                          <a itemprop="url"
-                             href="tehran/d/c_art/140439/%d8%a2%d8%aa%d9%84%db%8c%d9%87-%d8%a2%d9%88%db%8c%d9%86-%d8%a8%d8%a7-%d8%ab%d8%a8%d8%aa-%d9%84%d8%ad%d8%b8%d8%a7%d8%aa-%d8%ae%d9%88%d8%b4-%d8%b2%d9%86%d8%af%da%af%db%8c/index.html"
-                             class="truncate">
-                            آتلیه آوین با ثبت لحظات خوش زندگی
-                          </a>
-                        </h4>
-
-                        <span class="cdbm-total-buy">
-                          <span class="ir">
-                            <i class="icon icon-shopping-cart hidden-xs"></i>
-                            <i class="icon icon-shopping-cart_L visible-xs">
-                            </i>
-                          </span>
-                          <span class="cdbm-tb-total">
-                            635
-                          </span>
-                        </span>
-                      </div>
-                      <div class="cat-deal-box-footer clearfix">
-                        <span class="cdbf-takhfif">
-                          <span class="cdbft-shape">
-                            <span class="cdbft-shape-text">
-                              %85
-                            </span>
-                          </span>
-                        </span>
-                        <a href="area/%d8%b4%d9%87%d8%b1-%d8%b1%db%8c/index.html"
-                           class="cdbf-location truncate">
-                          <span class="ir">
-                            <i class="icon icon-location74"></i>
-                          </span>
-                          <span class="cdbfl-address">
-                            شهر ری
-                          </span>
-                        </a>
-                        <a href="tehran/d/c_art/140439/%d8%a2%d8%aa%d9%84%db%8c%d9%87-%d8%a2%d9%88%db%8c%d9%86-%d8%a8%d8%a7-%d8%ab%d8%a8%d8%aa-%d9%84%d8%ad%d8%b8%d8%a7%d8%aa-%d8%ae%d9%88%d8%b4-%d8%b2%d9%86%d8%af%da%af%db%8c/index.html"
-                           class="cdbf-buy-icon">
-                          <button class="nb-btn nb-btn-icon nb-btn-success">
-                            مشاهده و خرید
-                            <i class="icon icon-shopping-cart2">
-                            </i>
-                          </button>
-                        </a>
-                        <span class="cdbf-price">
-                          <del class="cdbf-real-price">
-                            <span>۳۰,۰۰۰</span>
-                          </del>
-                          <ins class="cdbf-netbarg-price">
-                            <span itemprop="price">۴,۵۰۰</span>
-                            <span itemprop="priceCurrency" content="IRR">
-                              تومان
-                            </span>
-                          </ins>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-smallbox">
-                    <div class="row">
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_art/161670/%d8%b9%da%a9%d8%a7%d8%b3%db%8c-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d8%af%d8%b1-%d8%a2%d8%aa%d9%84%db%8c%d9%87-%d9%86%da%af%d8%a7%d9%87-%d9%85%d8%a7%d9%86%d8%af%da%af%d8%a7%d8%b1/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/161670/18820381.jpg" alt="عکاسی تخصصی در آتلیه نگاه ماندگار" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/161670/18820381.jpg">
-                          </a>
-
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_art/161670/%d8%b9%da%a9%d8%a7%d8%b3%db%8c-%d8%aa%d8%ae%d8%b5%d8%b5%db%8c-%d8%af%d8%b1-%d8%a2%d8%aa%d9%84%db%8c%d9%87-%d9%86%da%af%d8%a7%d9%87-%d9%85%d8%a7%d9%86%d8%af%da%af%d8%a7%d8%b1/index.html"
-                                 class="truncate">
-                                عکاسی تخصصی در آتلیه نگاه ماندگار
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                718
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%a7%d8%aa%d9%88%d8%a8%d8%a7%d9%86-%d8%b3%d8%aa%d8%a7%d8%b1%db%8c-%d8%b4%d9%85%d8%a7%d9%84/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                اتوبان ستاری شمال
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %85
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۴۵,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="67500">
-                                  ۶,۷۵۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_art/151602/%d8%ab%d8%a8%d8%aa-%d9%84%d8%ad%d8%b8%d8%a7%d8%aa-%d9%85%d8%a7%d9%86%d8%af%da%af%d8%a7%d8%b1-%d8%af%d8%b1-%d8%a2%d8%aa%d9%84%db%8c%d9%87-%d8%a7%d8%b1%db%8c%da%a9%d9%87/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/151602/1ba703b9.jpg" alt="ثبت لحظات ماندگار در آتلیه اریکه" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/151602/1ba703b9.jpg">
-                          </a>
-
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_art/151602/%d8%ab%d8%a8%d8%aa-%d9%84%d8%ad%d8%b8%d8%a7%d8%aa-%d9%85%d8%a7%d9%86%d8%af%da%af%d8%a7%d8%b1-%d8%af%d8%b1-%d8%a2%d8%aa%d9%84%db%8c%d9%87-%d8%a7%d8%b1%db%8c%da%a9%d9%87/index.html"
-                                 class="truncate">
-                                ثبت لحظات ماندگار در آتلیه اریکه
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                297
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%b4%d9%87%d8%b1%da%a9-%d8%ba%d8%b1%d8%a8/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                شهرک غرب
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %85
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۳۵,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="52500">
-                                  ۵,۲۵۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_art/162467/%d8%b9%da%a9%d8%a7%d8%b3%db%8c-%d8%ad%d8%b1%d9%81%d9%87-%d8%a7%db%8c-%d8%af%d8%b1-%d8%a2%d8%aa%d9%84%db%8c%d9%87-%d9%81%d8%aa%d9%88%d8%b1%d8%a7%d8%b4%db%8c%d9%86/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/162467/b1bc0acf.jpg" alt="عکاسی حرفه ای در آتلیه فتوراشین" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/162467/b1bc0acf.jpg">
-                          </a>
-
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_art/162467/%d8%b9%da%a9%d8%a7%d8%b3%db%8c-%d8%ad%d8%b1%d9%81%d9%87-%d8%a7%db%8c-%d8%af%d8%b1-%d8%a2%d8%aa%d9%84%db%8c%d9%87-%d9%81%d8%aa%d9%88%d8%b1%d8%a7%d8%b4%db%8c%d9%86/index.html"
-                                 class="truncate">
-                                عکاسی حرفه ای در آتلیه فتوراشین
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                31
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d9%85%db%8c%d8%af%d8%a7%d9%86-%d8%b4%d9%87%d8%af%d8%a7/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                میدان شهدا
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %85
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۵۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="75000">
-                                  ۷,۵۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-24 cds-item hidden-xs done">
-                        <div class="cds-all-view-box">
-                          <span class="ir">
-                            <i class="icon icon-Theater"></i>
-                          </span>
-                          <h4 class="cds-title">30 پیشنهاد فرهنگی و هنری</h4>
-                          <a href="tehran/c_art/index.html">
-                            <button class="nb-btn nb-btn-success">مشاهده همه</button>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <figure class="figure-ads-baner hidden-xs visible-lg">
-                <a href="trend/%d8%aa%d8%a6%d8%a7%d8%aa%d8%b1-%da%a9%d9%85%d8%af%db%8c/index.html" target="_blank">
-                  <img src="../static.netbarg.com/img/banner/banners/artBanner/80/9e280c4e.jpg" alt="فرهنگی و هنری" />
-                </a>
-              </figure>
-              <article id="float-cat-education" class="cat-deal-color color-learning">
-                <header class="section-header">
-                  <a href="tehran/c_education/index.html"
-                     class="visible-xs">
-                    بیشتر
-                  </a>
-                  <h3 class="hx">
-                    <span class="ir">
-                      <i class="icon icon-earth-globe"></i>
-                    </span>
-                    <a href="tehran/c_education/index.html"
-                       class="article-h3">
-                      آموزشی
-                    </a>
-                  </h3>
-                </header>
-                <div class="main-row clearfix">
-                  <div itemscope="" itemtype="http://schema.org/Offer"
-                       class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-bigbox">
-                    <div class="cat-deal-box ">
-                      <a href="tehran/d/c_education/157589/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d9%88-%d8%a7%d9%81%d8%b2%d8%a7%db%8c%d8%b4-%d9%85%d9%87%d8%a7%d8%b1%d8%aa-%d8%b1%d8%a7%d9%86%d9%86%d8%af%da%af%db%8c-%d8%a8%d8%a7-%d8%af%d8%b3%d8%aa%da%af%d8%a7%d9%87-%d8%b4%d8%a8%db%8c%d9%87-%d8%b3%d8%a7%d8%b2-97/index.html"
-                         class="figure">
-                        <ul class="deal-tag list-unstyled">
-                          <li class="orange-label"></li>
-                          <li class="violet-label"></li>
-                        </ul>
-                        <img data-src="http://static.netbarg.com/img/responsive_large/deals/157589/13c7034d.jpg" alt="آموزش و افزایش مهارت رانندگی با دستگاه شبیه ساز" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_large/deals/157589/13c7034d.jpg">
-                      </a>
-                      <div class="cat-deal-box-main clearfix">
-                        <h4 itemprop="name" class="cdbm-title">
-                          <a itemprop="url"
-                             href="tehran/d/c_education/157589/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d9%88-%d8%a7%d9%81%d8%b2%d8%a7%db%8c%d8%b4-%d9%85%d9%87%d8%a7%d8%b1%d8%aa-%d8%b1%d8%a7%d9%86%d9%86%d8%af%da%af%db%8c-%d8%a8%d8%a7-%d8%af%d8%b3%d8%aa%da%af%d8%a7%d9%87-%d8%b4%d8%a8%db%8c%d9%87-%d8%b3%d8%a7%d8%b2-97/index.html"
-                             class="truncate">
-                            آموزش و افزایش مهارت رانندگی با دستگاه شبیه ساز
-                          </a>
-                        </h4>
-                        <span class="cdbm-total-buy">
-                          <span class="ir">
-                            <i class="icon icon-shopping-cart hidden-xs"></i>
-                            <i class="icon icon-shopping-cart_L visible-xs">
-                            </i>
-                          </span>
-                          <span class="cdbm-tb-total">
-                            173
-                          </span>
-                        </span>
-                      </div>
-                      <div class="cat-deal-box-footer clearfix">
-                        <span class="cdbf-takhfif">
-                          <span class="cdbft-shape">
-                            <span class="cdbft-shape-text">
-                              %55
-                            </span>
-                          </span>
-                        </span>
-                        <a href="area/%d8%ae%db%8c%d8%a7%d8%a8%d8%a7%d9%86-%d8%b7%d8%a7%d9%84%d9%82%d8%a7%d9%86%db%8c/index.html"
-                           class="cdbf-location truncate">
-                          <span class="ir">
-                            <i class="icon icon-location74"></i>
-                          </span>
-                          <span class="cdbfl-address">
-                            خیابان طالقانی
-                          </span>
-                        </a>
-                        <a href="tehran/d/c_education/157589/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d9%88-%d8%a7%d9%81%d8%b2%d8%a7%db%8c%d8%b4-%d9%85%d9%87%d8%a7%d8%b1%d8%aa-%d8%b1%d8%a7%d9%86%d9%86%d8%af%da%af%db%8c-%d8%a8%d8%a7-%d8%af%d8%b3%d8%aa%da%af%d8%a7%d9%87-%d8%b4%d8%a8%db%8c%d9%87-%d8%b3%d8%a7%d8%b2-97/index.html"
-                           class="cdbf-buy-icon">
-                          <button class="nb-btn nb-btn-icon nb-btn-success">
-                            مشاهده و خرید
-                            <i class="icon icon-shopping-cart2">
-                            </i>
-                          </button>
-                        </a>
-                        <span class="cdbf-price">
-                          <del class="cdbf-real-price">
-                            <span>۵۶,۰۰۰</span>
-                          </del>
-                          <ins class="cdbf-netbarg-price">
-                            <span itemprop="price">
-                              ۲۵,۲۰۰
-                            </span>
-                            <span itemprop="priceCurrency" content="IRR">
-                              تومان
-                            </span>
-                          </ins>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-smallbox">
-                    <div class="row">
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_education/160939/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-network-%d9%88%db%8c%da%98%d9%87-%d9%85%d8%aa%d9%82%d8%a7%d8%b6%db%8c%d8%a7%d9%86-cisco-%d8%af%d8%b1%d9%84%d8%a7%db%8c%d9%86-%d8%a2%da%a9%d8%a7%d8%af%d9%85%db%8c/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled"></ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/160939/6f3c0853.jpg" alt="آموزش Network+ویژه متقاضیان Cisco درلاین آکادمی" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/160939/6f3c0853.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_education/160939/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-network-%d9%88%db%8c%da%98%d9%87-%d9%85%d8%aa%d9%82%d8%a7%d8%b6%db%8c%d8%a7%d9%86-cisco-%d8%af%d8%b1%d9%84%d8%a7%db%8c%d9%86-%d8%a2%da%a9%d8%a7%d8%af%d9%85%db%8c/index.html"
-                                 class="truncate">
-                                آموزش Network+ویژه متقاضیان Cisco درلاین آکادمی
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                5
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%ae%db%8c%d8%a7%d8%a8%d8%a7%d9%86%20%d9%85%d8%b7%d9%87%d8%b1%db%8c%20-%20%d9%84%d8%a7%d8%b1%d8%b3%d8%aa%d8%a7%d9%86/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                خیابان مطهری - لارستان
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %90
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۲۵۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="250000">
-                                  ۲۵,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_education/152719/%d8%b3%d9%85%db%8c%d9%86%d8%a7%d8%b1-%d8%b1%d8%a7%d9%87-%d8%a7%d9%86%d8%af%d8%a7%d8%b2%db%8c-%da%a9%d8%b3%d8%a8-%d9%88-%da%a9%d8%a7%d8%b1%d9%87%d8%a7%db%8c-%d8%a7%db%8c%d9%86%d8%aa%d8%b1%d9%86%d8%aa%db%8c-10/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled"></ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/152719/1b7703b0.jpg" alt="سمینار راه اندازی کسب و کارهای اینترنتی " data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/152719/1b7703b0.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_education/152719/%d8%b3%d9%85%db%8c%d9%86%d8%a7%d8%b1-%d8%b1%d8%a7%d9%87-%d8%a7%d9%86%d8%af%d8%a7%d8%b2%db%8c-%da%a9%d8%b3%d8%a8-%d9%88-%da%a9%d8%a7%d8%b1%d9%87%d8%a7%db%8c-%d8%a7%db%8c%d9%86%d8%aa%d8%b1%d9%86%d8%aa%db%8c-10/index.html"
-                                 class="truncate">
-                                سمینار راه اندازی کسب و کارهای اینترنتی
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                1708
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%ae%db%8c%d8%a7%d8%a8%d8%a7%d9%86-%d8%a2%d8%b2%d8%a7%d8%af%db%8c/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                خیابان آزادی
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %90
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۲۰۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="200000">
-                                  ۲۰,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_education/160829/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d9%88%d8%b1%d8%af%d9%be%d8%b1%d8%b3-wordpress-%d8%af%d8%b1-%d9%85%d9%88%d8%b3%d8%b3%d9%87-%d8%a7%d9%86%d8%af%db%8c%d8%b4%d9%87-%d9%86%d8%a7%d8%a8-%d9%81%d8%b1%d8%af%d8%a7/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/160829/4353.jpg" alt="آموزش وردپرس (WordPress) در موسسه اندیشه ناب فردا" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/160829/4353.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_education/160829/%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d9%88%d8%b1%d8%af%d9%be%d8%b1%d8%b3-wordpress-%d8%af%d8%b1-%d9%85%d9%88%d8%b3%d8%b3%d9%87-%d8%a7%d9%86%d8%af%db%8c%d8%b4%d9%87-%d9%86%d8%a7%d8%a8-%d9%81%d8%b1%d8%af%d8%a7/index.html"
-                                 class="truncate">
-                                آموزش وردپرس (WordPress) در موسسه اندیشه ناب فردا
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                275
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d9%81%d8%b1%d8%af%d9%88%d8%b3%db%8c/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                فردوسی
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %90
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۴۵۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="450000">
-                                  ۴۵,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-24 cds-item hidden-xs done">
-                        <div class="cds-all-view-box">
-                          <span class="ir">
-                            <i class="icon icon-earth-globe"></i>
-                          </span>
-                          <h4 class="cds-title">145 پیشنهاد آموزشی</h4>
-                          <a href="tehran/c_education/index.html">
-                            <button class="nb-btn nb-btn-success">مشاهده همه</button>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              </article>
-              <figure class="figure-ads-baner hidden-xs visible-lg">
-                <a href="trend/%d8%b2%d8%a8%d8%a7%d9%86-%d8%a7%d9%86%da%af%d9%84%db%8c%d8%b3%db%8c/index.html" target="_blank">
-                  <img src="../static.netbarg.com/img/banner/banners/educationalBanner/86/e54c0f6b.jpg" alt="آموزشی" />
-                </a>
-              </figure>
-              <article id="float-cat-beauty" class="cat-deal-color color-beauty">
-                <header class="section-header">
-                  <a href="tehran/c_beauty/index.html"
-                     class="visible-xs">
-                    بیشتر
-                  </a>
-                  <h3 class="hx">
-                    <span class="ir">
-                      <i class="icon icon-lipstick-with-cover"></i>
-                    </span><a href="tehran/c_beauty/index.html" class="article-h3">زیبایی و آرایشی</a>
-                  </h3>
-                </header>
-                <div class="main-row clearfix">
-                  <div itemscope="" itemtype="http://schema.org/Offer"
-                       class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-bigbox">
-                    <div class="cat-deal-box ">
-                      <a href="tehran/d/c_beauty/161602/%d8%a8%d9%86-%d8%aa%d8%ae%d9%81%db%8c%d9%81-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%db%8c-%d8%af%d8%b1-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%da%af%d8%a7%d9%87-%d9%85%d8%b1%d9%88%d8%a7%d8%b1%db%8c%d8%af/index.html"
-                         class="figure">
-                        <ul class="deal-tag list-unstyled">
-                          <li class="violet-label"></li>
-                        </ul>
-                        <img data-src="http://static.netbarg.com/img/responsive_large/deals/161602/769.jpg" alt="بن تخفیف خدمات آرایشی در آرایشگاه مروارید" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_large/deals/161602/769.jpg">
-                      </a>
-                      <div class="cat-deal-box-main clearfix">
-                        <h4 itemprop="name" class="cdbm-title">
-                          <a itemprop="url"
-                             href="tehran/d/c_beauty/161602/%d8%a8%d9%86-%d8%aa%d8%ae%d9%81%db%8c%d9%81-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%db%8c-%d8%af%d8%b1-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%da%af%d8%a7%d9%87-%d9%85%d8%b1%d9%88%d8%a7%d8%b1%db%8c%d8%af/index.html"
-                             class="truncate">
-                            بن تخفیف خدمات آرایشی در آرایشگاه مروارید
-                          </a>
-                        </h4>
-                        <span class="cdbm-total-buy">
-                          <span class="ir">
-                            <i class="icon icon-shopping-cart hidden-xs"></i>
-                            <i class="icon icon-shopping-cart_L visible-xs">
-                            </i>
-                          </span>
-                          <span class="cdbm-tb-total">
-                            144
-                          </span>
-                        </span>
-                      </div>
-                      <div class="cat-deal-box-footer clearfix">
-                        <span class="cdbf-takhfif">
-                          <span class="cdbft-shape">
-                            <span class="cdbft-shape-text">
-                              %80
-                            </span>
-                          </span>
-                        </span>
-                        <a href="area/%d9%be%db%8c%d8%b1%d9%88%d8%b2%db%8c/index.html"
-                           class="cdbf-location truncate">
-                          <span class="ir">
-                            <i class="icon icon-location74"></i>
-                          </span>
-                          <span class="cdbfl-address">
-                            پیروزی
-                          </span>
-                        </a>
-                        <a href="tehran/d/c_beauty/161602/%d8%a8%d9%86-%d8%aa%d8%ae%d9%81%db%8c%d9%81-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%db%8c-%d8%af%d8%b1-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%da%af%d8%a7%d9%87-%d9%85%d8%b1%d9%88%d8%a7%d8%b1%db%8c%d8%af/index.html"
-                           class="cdbf-buy-icon">
-                          <button class="nb-btn nb-btn-icon nb-btn-success">
-                            مشاهده و خرید
-                            <i class="icon icon-shopping-cart2">
-                            </i>
-                          </button>
-                        </a>
-                        <span class="cdbf-price">
-                          <del class="cdbf-real-price">
-                            <span>۱۰,۰۰۰</span>
-                          </del>
-                          <ins class="cdbf-netbarg-price">
-                            <span itemprop="price">
-                              ۲,۰۰۰
-                            </span>
-                            <span itemprop="priceCurrency" content="IRR">
-                              تومان
-                            </span>
-                          </ins>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-smallbox">
-                    <div class="row">
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_beauty/161483/%d8%a8%d9%86-%d8%aa%d8%ae%d9%81%db%8c%d9%81-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%db%8c-%d8%af%d8%b1-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%da%af%d8%a7%d9%87-%d9%87%d8%a7%d9%84%db%8c/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/161483/22ac0428.jpg" alt="بن تخفیف خدمات آرایشی در آرایشگاه هالی" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/161483/22ac0428.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_beauty/161483/%d8%a8%d9%86-%d8%aa%d8%ae%d9%81%db%8c%d9%81-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%db%8c-%d8%af%d8%b1-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%da%af%d8%a7%d9%87-%d9%87%d8%a7%d9%84%db%8c/index.html"
-                                 class="truncate">
-                                بن تخفیف خدمات آرایشی در آرایشگاه هالی
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                1164
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d9%82%d9%84%d9%87%da%a9/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                قلهک
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %80
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۱۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="20000">
-                                  ۲,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_beauty/162771/%d8%a8%d9%86-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%db%8c-%d9%88-%d8%b2%db%8c%d8%a8%d8%a7%db%8c%db%8c-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%da%af%d8%a7%d9%87-%da%af%d9%84%d8%b3%d8%aa%d8%a7%d9%86-%d9%87%d9%86%d8%b1/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/162771/1611036a.jpg" alt="بن خدمات آرایشی و زیبایی آرایشگاه گلستان هنر" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/162771/1611036a.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_beauty/162771/%d8%a8%d9%86-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%db%8c-%d9%88-%d8%b2%db%8c%d8%a8%d8%a7%db%8c%db%8c-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%da%af%d8%a7%d9%87-%da%af%d9%84%d8%b3%d8%aa%d8%a7%d9%86-%d9%87%d9%86%d8%b1/index.html"
-                                 class="truncate">
-                                بن خدمات آرایشی و زیبایی آرایشگاه گلستان هنر
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                162
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%a8%d9%84%d9%88%d8%a7%d8%b1-%d9%81%d8%b1%d8%af%d9%88%d8%b3-%d8%b4%d8%b1%d9%82/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                بلوار فردوس شرق
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %80
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۱۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="20000">
-                                  ۲,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_beauty/161887/%d8%a8%d9%86-%d8%aa%d8%ae%d9%81%db%8c%d9%81-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%db%8c-%d8%af%d8%b1-%d8%b3%d8%a7%d9%84%d9%86-%da%af%d9%86%d8%af%d9%85-%d8%a8%d9%84%d9%88%d8%b1%db%8c/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                              <li class="violet-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/161887/21bd0414.jpg" alt="بن تخفیف خدمات آرایشی در سالن گندم بلوری" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/161887/21bd0414.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_beauty/161887/%d8%a8%d9%86-%d8%aa%d8%ae%d9%81%db%8c%d9%81-%d8%ae%d8%af%d9%85%d8%a7%d8%aa-%d8%a2%d8%b1%d8%a7%db%8c%d8%b4%db%8c-%d8%af%d8%b1-%d8%b3%d8%a7%d9%84%d9%86-%da%af%d9%86%d8%af%d9%85-%d8%a8%d9%84%d9%88%d8%b1%db%8c/index.html"
-                                 class="truncate">
-                                بن تخفیف خدمات آرایشی در سالن گندم بلوری
-                              </a>
-                            </h4>
-                            <span class="cdbm-total-buy">
-                              <span class="ir">
-                                <i class="icon icon-shopping-cart hidden-xs">
-                                </i>
-                                <i class="icon icon-shopping-cart_L visible-xs">
-                                </i>
-                              </span>
-                              <span class="cdbm-tb-total">
-                                40
-                              </span>
-                            </span>
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%b3%d8%b9%d8%a7%d8%af%d8%aa-%d8%a2%d8%a8%d8%a7%d8%af/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                سعادت آباد
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %80
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۱۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="20000">
-                                  ۲,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-24 cds-item hidden-xs done">
-                        <div class="cds-all-view-box">
-                          <span class="ir">
-                            <i class="icon icon-lipstick-with-cover"></i>
-                          </span>
-                          <h4 class="cds-title">27 پیشنهاد زیبایی و آرایشی</h4>
-                          <a href="tehran/c_beauty/index.html">
-                            <button class="nb-btn nb-btn-success">مشاهده همه</button>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <figure class="figure-ads-baner hidden-xs visible-lg">
-                <a href="trend/%d8%a2%d8%b1%d8%a7%db%8c%d8%b4-%d9%85%d9%88/index.html" target="_blank">
-                  <img src="../static.netbarg.com/img/banner/banners/beautyBanner/71/66cc0982.jpg" alt="زیبایی و آرایشی" />
-                </a>
-              </figure>
-              <article id="float-cat-product" class="cat-deal-color color-product">
-                <header class="section-header">
-                  <a href="tehran/c_product/index.html"
-                     class="visible-xs">
-                    بیشتر
-                  </a>
-                  <h3 class="hx">
-                    <span class="ir">
-                      <i class="icon icon-shopping-bag-1"></i>
-                    </span>
-                    <a href="tehran/c_product/index.html"
-                       class="article-h3">
-                      کالا
-                    </a>
-                  </h3>
-                </header>
-                <div class="main-row clearfix">
-                  <div itemscope="" itemtype="http://schema.org/Offer"
-                       class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-bigbox">
-                    <div class="cat-deal-box ">
-                      <a href="tehran/d/c_/156038/%d8%b3%d8%b4%d9%88%d8%a7%d8%b1-%da%86%d8%b1%d8%ae%d8%b4%db%8c-%d9%85%da%a9-%d8%a7%d8%b3%d8%aa%d8%a7%db%8c%d9%84%d8%b1-mc-6625/index.html"
-                         class="figure">
-                        <ul class="deal-tag list-unstyled"></ul>
-                        <img data-src="http://static.netbarg.com/img/responsive_large/deals/156038/16110356.jpg" alt="سشوار چرخشی مک استایلر MC-6625" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_large/deals/156038/16110356.jpg">
-                      </a>
-                      <div class="cat-deal-box-main clearfix">
-                        <h4 itemprop="name" class="cdbm-title">
-                          <a itemprop="url"
-                             href="tehran/d/c_/156038/%d8%b3%d8%b4%d9%88%d8%a7%d8%b1-%da%86%d8%b1%d8%ae%d8%b4%db%8c-%d9%85%da%a9-%d8%a7%d8%b3%d8%aa%d8%a7%db%8c%d9%84%d8%b1-mc-6625/index.html"
-                             class="truncate">
-                            سشوار چرخشی مک استایلر MC-6625
-                          </a>
-                        </h4>
-                        <!-- <span class="cdbm-total-buy"><span class="ir"><i class="icon icon-shopping-cart hidden-xs"></i><i
-                                                                                                                              class="icon icon-shopping-cart_L visible-xs"></i></span><span
-                                                                                                                                                                                        class="cdbm-tb-total">
-                        </span></span> -->
-                      </div>
-                      <div class="cat-deal-box-footer clearfix">
-                        <span class="cdbf-takhfif">
-                          <span class="cdbft-shape">
-                            <span class="cdbft-shape-text">
-                              %13
-                            </span>
-                          </span>
-                        </span>
-                        <a href="area/%d8%a7%d8%b1%d8%b3%d8%a7%d9%84-%d8%b1%d8%a7%db%8c%da%af%d8%a7%d9%86/index.html"
-                           class="cdbf-location truncate">
-                          <span class="ir">
-                            <i class="icon icon-location74"></i>
-                          </span>
-                          <span class="cdbfl-address">
-                            ارسال رایگان
-                          </span>
-                        </a>
-                        <a href="tehran/d/c_/156038/%d8%b3%d8%b4%d9%88%d8%a7%d8%b1-%da%86%d8%b1%d8%ae%d8%b4%db%8c-%d9%85%da%a9-%d8%a7%d8%b3%d8%aa%d8%a7%db%8c%d9%84%d8%b1-mc-6625/index.html"
-                           class="cdbf-buy-icon">
-                          <button class="nb-btn nb-btn-icon nb-btn-success">
-                            مشاهده و خرید
-                            <i class="icon icon-shopping-cart2">
-                            </i>
-                          </button>
-                        </a>
-                        <span class="cdbf-price">
-                          <del class="cdbf-real-price">
-                            <span>۴۹۰,۰۰۰</span>
-                          </del>
-                          <ins class="cdbf-netbarg-price">
-                            <span itemprop="price">
-                              ۴۲۶,۳۰۰
-                            </span>
-                            <span itemprop="priceCurrency" content="IRR">
-                              تومان
-                            </span>
-                          </ins>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24 cat-deal-smallbox">
-                    <div class="row">
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_product/152184/%d9%85%d9%88%d8%b2%d9%86-%da%af%d9%88%d8%b4-%d8%a8%db%8c%d9%86%db%8c-%d9%88-%d8%a7%d8%a8%d8%b1%d9%88-%d9%88%d8%a7%d9%84-%d9%85%d8%af%d9%84-3-%d8%af%d8%b1-1/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled"></ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/152184/16080359.jpg" alt="موزن گوش، بینی و ابرو وال مدل 3 در 1" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/152184/16080359.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_product/152184/%d9%85%d9%88%d8%b2%d9%86-%da%af%d9%88%d8%b4-%d8%a8%db%8c%d9%86%db%8c-%d9%88-%d8%a7%d8%a8%d8%b1%d9%88-%d9%88%d8%a7%d9%84-%d9%85%d8%af%d9%84-3-%d8%af%d8%b1-1/index.html"
-                                 class="truncate">
-                                موزن گوش، بینی و ابرو وال مدل 3 در 1
-                              </a>
-                            </h4>
-                            <!-- <span class="cdbm-total-buy"><span class="ir"><i
-                                                                                 class="icon icon-shopping-cart hidden-xs"></i><i
-                                                                                                                                 class="icon icon-shopping-cart_L visible-xs"></i></span><span
-                                                                                                                                                                                           class="cdbm-tb-total">
-                            </span></span> -->
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%a7%d8%b1%d8%b3%d8%a7%d9%84-%d8%b1%d8%a7%db%8c%da%af%d8%a7%d9%86/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                ارسال رایگان
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %12
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۲۰۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="2000000">
-                                  ۱۷۶,۰۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_product/154162/%d9%87%d8%af%d9%81%d9%88%d9%86-%d8%a8%db%8c-%d8%b3%db%8c%d9%85-%d8%b3%d8%a7%d9%85%d8%b3%d9%88%d9%86%da%af-%d9%85%d8%af%d9%84-level-u-16/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled"></ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/154162/15d00352.jpg" alt="هدفون بی سیم سامسونگ مدل Level U" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/154162/15d00352.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_product/154162/%d9%87%d8%af%d9%81%d9%88%d9%86-%d8%a8%db%8c-%d8%b3%db%8c%d9%85-%d8%b3%d8%a7%d9%85%d8%b3%d9%88%d9%86%da%af-%d9%85%d8%af%d9%84-level-u-16/index.html"
-                                 class="truncate">
-                                هدفون بی سیم سامسونگ مدل Level U
-                              </a>
-                            </h4>
-                            <!-- <span class="cdbm-total-buy"><span class="ir"><i
-                                                                                 class="icon icon-shopping-cart hidden-xs"></i><i
-                                                                                                                                 class="icon icon-shopping-cart_L visible-xs"></i></span><span
-                                                                                                                                                                                           class="cdbm-tb-total">
-                            </span></span> -->
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%a7%d8%b1%d8%b3%d8%a7%d9%84-%d8%b1%d8%a7%db%8c%da%af%d8%a7%d9%86/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                ارسال رایگان
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %13
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۵۳۰,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="5300000">
-                                  ۴۶۱,۱۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div itemscope itemtype="http://schema.org/Offer"
-                           class="col-lg-12 col-md-12 col-sm-8 cds-item ">
-                        <div class="cat-deal-box">
-                          <a href="tehran/d/c_product/162481/%da%86%d8%a7%d9%be-%d8%b9%da%a9%d8%b3-%d8%b1%d9%88%db%8c-%d9%84%db%8c%d9%88%d8%a7%d9%86-%d8%b3%d9%81%db%8c%d8%af-%d9%88-%d8%b2%db%8c%d8%b1-%d9%84%db%8c%d9%88%d8%a7%d9%86%db%8c/index.html"
-                             class="figure">
-                            <ul class="deal-tag list-unstyled">
-                              <li class="orange-label"></li>
-                            </ul>
-                            <div class="overlay">
-                              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
-                            </div>
-                            <img data-src="http://static.netbarg.com/img/responsive_small/deals/162481/33c3054a.jpg" alt="چاپ عکس روی لیوان سفید و زیر لیوانی" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/162481/33c3054a.jpg">
-                          </a>
-                          <div class="cat-deal-box-main clearfix">
-                            <h4 itemprop="name" class="cdbm-title">
-                              <a itemprop="url"
-                                 href="tehran/d/c_product/162481/%da%86%d8%a7%d9%be-%d8%b9%da%a9%d8%b3-%d8%b1%d9%88%db%8c-%d9%84%db%8c%d9%88%d8%a7%d9%86-%d8%b3%d9%81%db%8c%d8%af-%d9%88-%d8%b2%db%8c%d8%b1-%d9%84%db%8c%d9%88%d8%a7%d9%86%db%8c/index.html"
-                                 class="truncate">
-                                چاپ عکس روی لیوان سفید و زیر لیوانی
-                              </a>
-                            </h4>
-                            <!-- <span class="cdbm-total-buy"><span class="ir"><i
-                                                                                 class="icon icon-shopping-cart hidden-xs"></i><i
-                                                                                                                                 class="icon icon-shopping-cart_L visible-xs"></i></span><span
-                                                                                                                                                                                           class="cdbm-tb-total">
-                            </span></span> -->
-                          </div>
-                          <div class="cat-deal-box-footer clearfix">
-                            <a href="area/%d8%aa%d9%87%d8%b1%d8%a7%d9%86%d9%be%d8%a7%d8%b1%d8%b3%20%d8%b4%d8%b1%d9%82%db%8c/index.html"
-                               class="cdbf-location truncate">
-                              <span class="ir">
-                                <i class="icon icon-location74">
-                                </i>
-                              </span>
-                              <span class="cdbfl-address">
-                                تهرانپارس شرقی
-                              </span>
-                            </a>
-                            <span class="cdbf-takhfif">
-                              <span class="cdbft-shape">
-                                <span class="cdbft-shape-text">
-                                  %50
-                                </span>
-                              </span>
-                            </span>
-                            <span class="cdbf-price">
-                              <del class="cdbf-real-price visible-xs">
-                                <span>۱۵,۰۰۰</span>
-                              </del>
-                              <ins class="cdbf-netbarg-price">
-                                <span itemprop="price"
-                                      content="150000">
-                                  ۷,۵۰۰
-                                </span>
-                                <span itemprop="priceCurrency" content="IRR">
-                                  تومان
-                                </span>
-                              </ins>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-24 cds-item hidden-xs done">
-                        <div class="cds-all-view-box">
-                          <span class="ir">
-                            <i class="icon icon-shopping-bag-1"></i>
-                          </span>
-                          <h4 class="cds-title">6 پیشنهاد کالا</h4>
-                          <a href="tehran/c_product/index.html">
-                            <button class="nb-btn nb-btn-success">مشاهده همه</button>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <figure class="figure-ads-baner hidden-xs visible-lg">
-                <a href="tehran/c_product/s_home/index.html" target="_blank">
-                  <img src="../static.netbarg.com/img/banner/banners/productBanner/83/ec760f49.jpg" alt="کالا" />
-                </a>
-              </figure>
-            </section>
-
-            <div class="app-action">
-              <div class="main-row">
-                <div class="row">
-                  <article class="main-content col-lg-13 col-md-16 col-sm-19">
-                    <div class="row">
-                      <div class="col-lg-24">
-                        <h4 class="app-action-header">
-                          <span>با اپلیکیشن </span><img src="~/assets/theme/img/app-logo.png" alt="لوگو نت برگ">
-                        </h4>
-                        <h2 class="app-action-header-2">
-                          <span>جـدیدتـرین&nbsp;</span><span>تـخـفـیـف‌ها&nbsp;</span><span>هـمـیشه در جـیـب شـماسـت!</span>
-                        </h2>
-                      </div>
-                      <div class="col-lg-24">
-                        <div class="dl-app-box">
-                          <div class="links">
-                            <a href="https://play.google.com/store/apps/details?id=com.IranModernBusinesses.Netbarg&amp;hl=en" target="_blank" class="dl-link"><img src="~/assets/theme/img/dl-gplayer.png" class="icon"> دانلود از گوگل پلی</a>
-                            <a href="https://cafebazaar.ir/app/com.IranModernBusinesses.Netbarg/?l=en" target="_blank" class="dl-link"><img src="~/assets/theme/img/dl-bazar.png" class="icon"> دانلود از بازار</a>
-                          </div>
-                        </div>
-                        <div class="dl-app-box">
-                          <div class="links">
-                            <a href="page/appleStoreDirectLink/index.html" target="_blank" class="dl-link">
-                              <img src="~/assets/theme/img/dl-ios-white.png" class="icon"> دانلود مستقیم
-                            </a>
-                            <a href="https://new.sibapp.com/applications/netbarg-نت-برگ" target="_blank" class="dl-link">
-                              <img src="~/assets/theme/img/dl-sibapp.png" class="icon"> دانلود از سیپ&zwnj;اپ
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              </div>
+          <div class="cat-deal-box-footer clearfix">
+            <a href="area/%d8%a7%d8%aa%d9%88%d8%a8%d8%a7%d9%86%20%d8%ad%d9%82%d8%a7%d9%86%db%8c/index.html"
+               class="cdbf-location truncate">
+              <span class="ir">
+                <i class="icon icon-location74"></i>
+              </span>
+              <span class="cdbfl-address">
+                اتوبان حقانی
+              </span>
+            </a>
+            <span class="cdbf-takhfif">
+              <span class="cdbft-shape">
+                <span class="cdbft-shape-text">
+                  %60
+                </span>
+              </span>
+            </span>
+            <span class="cdbf-price">
+              <ins class="cdbf-netbarg-price">
+                <span itemprop="price" content="280000">
+                  ۲۴,۰۰۰
+                </span>
+                <span itemprop="priceCurrency" content="IRR"> تومان</span>
+              </ins>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div itemscope="" itemtype="http://schema.org/Offer" class="col-lg-6 col-md-12 col-sm-12 col-xs-24 cds-item  ">
+      <div class="cat-deal-smallbox">
+        <div class="cat-deal-box">
+          <a href="tehran/d/c_entertainment/163253/%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d9%be%d8%a7%db%8c%db%8c%d8%b2%d9%87-%d9%88-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d9%85%d8%ad%d8%b5%d9%88%d9%84%d8%a7%d8%aa-%d8%b3%d8%a7%d9%84%d9%85-%d9%88-%d8%b7%d8%a8%db%8c%d8%b9%db%8c/index.html"
+             class="figure">
+            <ul class="deal-tag list-unstyled"></ul>
+            <div class="overlay">
+              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
             </div>
-            <div class="col-md-1"></div>
+            <img data-src="http://static.netbarg.com/img/responsive_medium/deals/163253/1111.jpg" alt="جشنواره پاییزه و جشنواره محصولات سالم و طبیعی" data-type="lazy">
+          </a>
+          <div class="cat-deal-box-main clearfix">
+            <h4 itemprop="name" class="cdbm-title">
+              <a href="tehran/d/c_entertainment/163253/%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d9%be%d8%a7%db%8c%db%8c%d8%b2%d9%87-%d9%88-%d8%ac%d8%b4%d9%86%d9%88%d8%a7%d8%b1%d9%87-%d9%85%d8%ad%d8%b5%d9%88%d9%84%d8%a7%d8%aa-%d8%b3%d8%a7%d9%84%d9%85-%d9%88-%d8%b7%d8%a8%db%8c%d8%b9%db%8c/index.html" itemprop="url" class="truncate">
+                جشنواره پاییزه و جشنواره محصولات سالم و طبیعی
+              </a>
+            </h4>
+            <span class="cdbm-total-buy">
+              <span class="ir">
+                <i class="icon icon-shopping-cart hidden-xs"></i>
+                <i class="icon icon-shopping-cart_L visible-xs"></i>
+              </span>
+              <span class="cdbm-tb-total">
+                62
+              </span>
+            </span>
           </div>
-          <div class="col-lg-1 col-md-1 hidden-sm hidden-xs left-aside sticky-aside">
-            <div id="nava2" class="affix-top">
-              <div class="float-left-button">
-                <ul>
-                  <a href="javascript:void(0)">
-                    <li>
-                      <i>
-                        <i class="icon icon-support"></i>
-                      </i><span>۰۲۱-۴۱۰۹۶۱۰۰ : پشتیبانی</span>
-                    </li>
-                  </a>
-                  <a href="javascript:void(0)">
-                    <li>
-                      <i>
-                        <i class="icon icon-home-phone"></i>
-                      </i><span>۰۲۱-۴۲۰۹۱۰۰۰ : شرکت</span>
-                    </li>
-                  </a>
-                  <a href="page/buy-netbarg/index.html">
-                    <li>
-                      <i>
-                        <i class="icon icon-lifebuoy"></i>
-                      </i><span>راهنمای خرید نت برگ</span>
-                    </li>
-                  </a>
-                  <a href="javascript:void(0)" class="backtotop">
-                    <li>
-                      <i>
-                        <i class="icon icon-arrow-up"></i>
-                      </i>
-                    </li>
-                  </a>
-                </ul>
-              </div>
+          <div class="cat-deal-box-footer clearfix">
+            <a href="area/%d8%a8%d8%a7%d8%ba-%da%af%db%8c%d8%a7%d9%87-%d8%b4%d9%86%d8%a7%d8%b3%db%8c-%d9%85%d9%84%db%8c-%d8%a7%db%8c%d8%b1%d8%a7%d9%86/index.html"
+               class="cdbf-location truncate">
+              <span class="ir">
+                <i class="icon icon-location74"></i>
+              </span>
+              <span class="cdbfl-address">
+                باغ گیاه شناسی ملی ایران
+              </span>
+            </a>
+            <span class="cdbf-takhfif">
+              <span class="cdbft-shape">
+                <span class="cdbft-shape-text">
+                  %34
+                </span>
+              </span>
+            </span>
+            <span class="cdbf-price">
+              <ins class="cdbf-netbarg-price">
+                <span itemprop="price" content="280000">
+                  ۹,۹۰۰
+                </span>
+                <span itemprop="priceCurrency" content="IRR"> تومان</span>
+              </ins>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div itemscope="" itemtype="http://schema.org/Offer" class="col-lg-6 col-md-12 col-sm-12 col-xs-24 cds-item  ">
+      <div class="cat-deal-smallbox">
+        <div class="cat-deal-box">
+          <a href="tehran/d/c_restaurant/163300/%d8%a8%d9%88%d9%81%d9%87-%d8%b5%d8%a8%d8%ad%d8%a7%d9%86%d9%87-%d9%87%d8%aa%d9%84-%d9%be%d8%a7%d8%b1%d8%b3%db%8c%d8%a7%d9%86-%d8%a7%d9%88%db%8c%d9%86/index.html"
+             class="figure">
+            <ul class="deal-tag list-unstyled"></ul>
+            <div class="overlay">
+              <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
             </div>
+            <img data-src="http://static.netbarg.com/img/responsive_medium/deals/163300/1b2d03a6.jpg" alt="بوفه صبحانه هتل پارسیان اوین" data-type="lazy">
+          </a>
+          <div class="cat-deal-box-main clearfix">
+            <h4 itemprop="name" class="cdbm-title">
+              <a href="tehran/d/c_restaurant/163300/%d8%a8%d9%88%d9%81%d9%87-%d8%b5%d8%a8%d8%ad%d8%a7%d9%86%d9%87-%d9%87%d8%aa%d9%84-%d9%be%d8%a7%d8%b1%d8%b3%db%8c%d8%a7%d9%86-%d8%a7%d9%88%db%8c%d9%86/index.html" itemprop="url" class="truncate">
+                بوفه صبحانه هتل پارسیان اوین
+              </a>
+            </h4>
+            <span class="cdbm-total-buy">
+              <span class="ir">
+                <i class="icon icon-shopping-cart hidden-xs"></i>
+                <i class="icon icon-shopping-cart_L visible-xs"></i>
+              </span>
+              <span class="cdbm-tb-total">
+                14
+              </span>
+            </span>
           </div>
+          <div class="cat-deal-box-footer clearfix">
+            <a href="area/%d9%87%d8%aa%d9%84%20%d9%be%d8%a7%d8%b1%d8%b3%db%8c%d8%a7%d9%86%20%d8%a7%d9%88%db%8c%d9%86/index.html"
+               class="cdbf-location truncate">
+              <span class="ir">
+                <i class="icon icon-location74"></i>
+              </span>
+              <span class="cdbfl-address">
+                هتل پارسیان اوین
+              </span>
+            </a>
+            <span class="cdbf-takhfif">
+              <span class="cdbft-shape">
+                <span class="cdbft-shape-text">
+                  %35
+                </span>
+              </span>
+            </span>
+            <span class="cdbf-price">
+              <ins class="cdbf-netbarg-price">
+                <span itemprop="price" content="280000">
+                  ۴۵,۵۰۰
+                </span>
+                <span itemprop="priceCurrency" content="IRR"> تومان</span>
+              </ins>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div itemscope="" itemtype="http://schema.org/Offer" class="col-lg-6 col-md-12 col-sm-12 col-xs-24 cds-item  ">
+    <div class="cat-deal-smallbox">
+      <div class="cat-deal-box">
+        <a href="tehran/d/c_entertainment/163290/%d8%a7%d8%b3%d8%aa%d8%ae%d8%b1-%d8%b1%d9%88%d8%a8%d8%a7%d8%b2-%d8%a7%d8%b1%d9%85-%d9%88%db%8c%da%98%d9%87-%d8%a8%d8%a7%d9%86%d9%88%d8%a7%d9%86-21/index.html"
+           class="figure">
+          <ul class="deal-tag list-unstyled"></ul>
+          <div class="overlay">
+            <div class="nb-btn nb-btn-success">مشاهده و خرید</div>
+          </div>
+          <img data-src="http://static.netbarg.com/img/responsive_medium/deals/163290/346.jpg" alt="استخر روباز ارم ویژه بانوان " data-type="lazy">
+        </a>
+        <div class="cat-deal-box-main clearfix">
+          <h4 itemprop="name" class="cdbm-title">
+            <a href="tehran/d/c_entertainment/163290/%d8%a7%d8%b3%d8%aa%d8%ae%d8%b1-%d8%b1%d9%88%d8%a8%d8%a7%d8%b2-%d8%a7%d8%b1%d9%85-%d9%88%db%8c%da%98%d9%87-%d8%a8%d8%a7%d9%86%d9%88%d8%a7%d9%86-21/index.html" itemprop="url" class="truncate">
+              استخر روباز ارم ویژه بانوان
+            </a>
+          </h4>
+          <span class="cdbm-total-buy">
+            <span class="ir">
+              <i class="icon icon-shopping-cart hidden-xs"></i>
+              <i class="icon icon-shopping-cart_L visible-xs"></i>
+            </span>
+            <span class="cdbm-tb-total">
+              54
+            </span>
+          </span>
+        </div>
+        <div class="cat-deal-box-footer clearfix">
+          <a href="area/%d9%be%d8%a7%d8%b1%da%a9-%d8%a7%d8%b1%d9%85/index.html"
+             class="cdbf-location truncate">
+            <span class="ir">
+              <i class="icon icon-location74"></i>
+            </span>
+            <span class="cdbfl-address">
+              پارک ارم
+            </span>
+          </a>
+          <span class="cdbf-takhfif">
+            <span class="cdbft-shape">
+              <span class="cdbft-shape-text">
+                %32
+              </span>
+            </span>
+          </span>
+          <span class="cdbf-price">
+            <ins class="cdbf-netbarg-price">
+              <span itemprop="price" content="280000">
+                ۲۷,۲۰۰
+              </span>
+              <span itemprop="priceCurrency" content="IRR"> تومان</span>
+            </ins>
+          </span>
         </div>
       </div>
     </div>
   </div>
+  </div>
+
+  </section>
+
+  @await Component.InvokeAsync("CategoriesWithJobs")
+
+  <div class="col-md-1"></div>
+</div>
+
+<div class="col-lg-1 col-md-1 hidden-sm hidden-xs left-aside sticky-aside">
+  <div id="nava2" class="affix-top">
+    <div class="float-left-button">
+      <ul>
+        <a href="javascript:void(0)">
+          <li>
+            <i>
+              <i class="icon icon-support"></i>
+            </i><span>۰۲۱-۴۱۰۹۶۱۰۰ : پشتیبانی</span>
+          </li>
+        </a>
+        <a href="javascript:void(0)">
+          <li>
+            <i>
+              <i class="icon icon-home-phone"></i>
+            </i><span>۰۲۱-۴۲۰۹۱۰۰۰ : شرکت</span>
+          </li>
+        </a>
+        <a href="page/buy-netbarg/index.html">
+          <li>
+            <i>
+              <i class="icon icon-lifebuoy"></i>
+            </i><span>راهنمای خرید نت برگ</span>
+          </li>
+        </a>
+        <a href="javascript:void(0)" class="backtotop">
+          <li>
+            <i>
+              <i class="icon icon-arrow-up"></i>
+            </i>
+          </li>
+        </a>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
 
 
-  <div class="rate-notif desktop-notif">
-    <div class="main-row">
-      <span class="border-effect"></span>
-      <div class="box-notif">
-        <div class="circle-deal " id="rating-deal-img">
+<div class="rate-notif desktop-notif">
+  <div class="main-row">
+    <span class="border-effect"></span>
+    <div class="box-notif">
+      <div class="circle-deal " id="rating-deal-img">
 
+      </div>
+      <div class="content-part">
+        <div class="text1"></div>
+        <div class="emoji_box">
+          <ul class="list-inline list-unstyled emoji-ratings">
+            <li>
+              <div mj-type="single" rate-value="5" class="rating-box happy" mj-success="successNewRating">
+                <i aria-hidden="true" class="icon icon-happy-face"></i>
+                <p>راضی</p>
+              </div>
+            </li>
+            <li>
+              <div mj-type="single" rate-value="3" class="rating-box neutral" mj-success="successNewRating">
+                <i aria-hidden="true" class="icon icon-normal-face"></i>
+                <p>متوسط</p>
+              </div>
+            </li>
+            <li>
+              <div mj-type="single" rate-value="1" class="rating-box sad" mj-success="successNewRating">
+                <i aria-hidden="true" class="icon icon-sad-face"></i>
+                <p>ناراضی</p>
+              </div>
+            </li>
+          </ul>
         </div>
-        <div class="content-part">
-          <div class="text1"></div>
-          <div class="emoji_box">
-            <ul class="list-inline list-unstyled emoji-ratings">
-              <li>
-                <div mj-type="single" rate-value="5" class="rating-box happy" mj-success="successNewRating">
-                  <i aria-hidden="true" class="icon icon-happy-face"></i>
-                  <p>راضی</p>
-                </div>
-              </li>
-              <li>
-                <div mj-type="single" rate-value="3" class="rating-box neutral" mj-success="successNewRating">
-                  <i aria-hidden="true" class="icon icon-normal-face"></i>
-                  <p>متوسط</p>
-                </div>
-              </li>
-              <li>
-                <div mj-type="single" rate-value="1" class="rating-box sad" mj-success="successNewRating">
-                  <i aria-hidden="true" class="icon icon-sad-face"></i>
-                  <p>ناراضی</p>
-                </div>
-              </li>
-            </ul>
-          </div>
+        <div class="close-icon">
+          <i class="icon icon-close"></i>
+        </div>
+      </div>
+    </div>
+    <div class="box-comment">
+      <form method="post" accept-charset="utf-8" mj-type="form" mj-model="model2" mj-method="post" mj-success="successGiftCardNotification" mj-target="/rating/ratings/ratingProcess.json" mj-before="checkRating" ="" action="http://netbarg.com/">
+        <div style="display: none;">
+          <input type="hidden" name="_method" value="POST"/>
+        </div><input type="hidden" name="rate" id="rate-value"/><input type="hidden" name="notification" id="notification" value="1"/><input type="hidden" name="deal_user_id" id="deal-user-id" value=""/><input type="hidden" name="user_id" id="user-id" value="d41d8cd98f00b204e9800998ecf8427e"/>
+        <div class="input textarea">
+          <textarea name="opinion" placeholder="با ثبت نظر کد تخفیف بگیرید" class="" id="opinion" rows="2"></textarea>
+        </div> <button type="submit" class="nb-btn nb-btn-sm nb-btn-success btn-green">ثبت نظر</button>
+      </form>
+    </div>
+    <div class="box-off-code active c-rotate1">
+      <div class="part3">
+        <div class="circle-off">
+          <div class="percent-num">%<span id="percent-num-notif"></span></div>
+          <div class="text">تخفیف</div>
+        </div>
+        <div class="content_part2">
+          <div class="text" id="percent-text-notif"></div>
+          <div class="code-part">کد تخفیف :<span class="num gift-rating-notification"></span></div><a href="user/userProfiles/index.html#tab3" class="nb-btn nb-btn-sm nb-btn-rate">خریدهای من </a>
           <div class="close-icon">
             <i class="icon icon-close"></i>
           </div>
         </div>
       </div>
-      <div class="box-comment">
-        <form method="post" accept-charset="utf-8" mj-type="form" mj-model="model2" mj-method="post" mj-success="successGiftCardNotification" mj-target="/rating/ratings/ratingProcess.json" mj-before="checkRating" ="" action="http://netbarg.com/">
-          <div style="display: none;">
-            <input type="hidden" name="_method" value="POST" />
-          </div><input type="hidden" name="rate" id="rate-value" /><input type="hidden" name="notification" id="notification" value="1" /><input type="hidden" name="deal_user_id" id="deal-user-id" value="" /><input type="hidden" name="user_id" id="user-id" value="d41d8cd98f00b204e9800998ecf8427e" />
-          <div class="input textarea">
-            <textarea name="opinion" placeholder="با ثبت نظر کد تخفیف بگیرید" class="" id="opinion" rows="2"></textarea>
-          </div> <button type="submit" class="nb-btn nb-btn-sm nb-btn-success btn-green">ثبت نظر</button>
-        </form>
-      </div>
-      <div class="box-off-code active c-rotate1">
-        <div class="part3">
-          <div class="circle-off">
-            <div class="percent-num">%<span id="percent-num-notif"></span></div>
-            <div class="text">تخفیف</div>
-          </div>
-          <div class="content_part2">
-            <div class="text" id="percent-text-notif"></div>
-            <div class="code-part">کد تخفیف :<span class="num gift-rating-notification"></span></div><a href="user/userProfiles/index.html#tab3" class="nb-btn nb-btn-sm nb-btn-rate">خریدهای من </a>
-            <div class="close-icon">
-              <i class="icon icon-close"></i>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
+</div>
 </main>

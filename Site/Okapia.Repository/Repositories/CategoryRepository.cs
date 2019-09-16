@@ -38,7 +38,9 @@ namespace Okapia.Repository.Repositories
                 AltImage = x.CategoryPicAlt,
                 DescImage = x.CategoryPicDescription,
                 CategoryCanonicalAddress = x.CategoryCanonicalAddress,
-                IsDeleted = x.IsDeleted
+                IsDeleted = x.IsDeleted,
+                CategoryColor = x.CategoryColor,
+                CategoryIcon = x.CategoryIcon
             }).ToList().First();
             return category;
         }
@@ -73,7 +75,8 @@ namespace Okapia.Repository.Repositories
                     CategorySmallDescription = category.CategorySmallDescription,
                     CategoryParentId = category.CategoryParentId,
                     Photo = category.CategoryThumbPicUrl,
-                    IsDeleted = category.IsDeleted
+                    IsDeleted = category.IsDeleted,
+                    CategoryColor = category.CategoryColor
                 };
 
             if (!string.IsNullOrEmpty(searchModel.CategoryName))
