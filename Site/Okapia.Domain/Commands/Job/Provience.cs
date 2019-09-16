@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Okapia.Domain.Commands.Job
@@ -18,8 +19,7 @@ namespace Okapia.Domain.Commands.Job
     public class AddToBox
     {
         public long JobId { get; set; }
-        public int BoxId { get; set; }
-        [Display(Name = "باکس های فعال")]
-        public SelectList Boxes { get; set; }
+        [Display(Name = "باکس")] public int BoxId { get; set; }
+        [Display(Name = "باکس های فعال")] public SelectList Boxes { get; set; }
     }
 }

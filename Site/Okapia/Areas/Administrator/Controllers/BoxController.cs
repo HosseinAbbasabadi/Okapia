@@ -4,6 +4,7 @@ using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
 using Okapia.Domain.Commands.Box;
+using Okapia.Domain.Commands.Job;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Box;
 using Okapia.Helpers;
@@ -86,6 +87,13 @@ namespace Okapia.Areas.Administrator.Controllers
             var result = _boxApplication.Activate(id);
             var referer = Request.Headers["Referer"].ToString();
             return Redirect(referer);
+        }
+
+        [HttpPost]
+        public ActionResult RemoveJobFromBox(AddToBox command)
+        {
+            var result = _boxApplication.RemoveJobFromBox(command.BoxId, command.JobId);
+            return Json(result);
         }
     }
 }

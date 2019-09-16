@@ -10,8 +10,10 @@ namespace Okapia.Repository.Mappings
         {
             builder.ToTable("BoxJobs");
             builder.HasKey(x => new {x.BoxId, x.JobId});
-            builder.HasOne(x => x.Box).WithMany(x => x.BoxJobs).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(x => x.Job).WithMany(x => x.BoxJobs).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.Box).WithMany(x => x.BoxJobs).HasForeignKey(x => x.BoxId)
+                .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.Job).WithMany(x => x.BoxJobs).HasForeignKey(x => x.JobId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

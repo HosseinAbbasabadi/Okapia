@@ -19,7 +19,6 @@ namespace Okapia.Domain.Models
         public string CategoryPicDescription { get; set; }
         public string JobLinkTitle { get; set; }
         public int CategoryParentId { get; set; }
-        public string Job { get; set; }
         public long RegisteringEmployeeId { get; set; }
         public bool IsDeleted { get; set; }
         public Category Parent { get; set; }

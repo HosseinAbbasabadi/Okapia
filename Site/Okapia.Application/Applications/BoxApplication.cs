@@ -18,12 +18,15 @@ namespace Okapia.Application.Applications
         private readonly IAuthHelper _authHelper;
         private readonly IBoxRepository _boxRepository;
         private readonly IBoxQuery _boxQuery;
+        private readonly IJobRepository _jobRepository;
 
-        public BoxApplication(IBoxRepository boxRepository, IAuthHelper authHelper, IBoxQuery boxQuery)
+        public BoxApplication(IBoxRepository boxRepository, IAuthHelper authHelper, IBoxQuery boxQuery,
+            IJobRepository jobRepository)
         {
             _boxRepository = boxRepository;
             _authHelper = authHelper;
             _boxQuery = boxQuery;
+            _jobRepository = jobRepository;
         }
 
         public OperationResult Create(CreateBox command)
@@ -170,6 +173,39 @@ namespace Okapia.Application.Applications
                 BoxId = x.BoxId,
                 BoxTitle = x.BoxTitle
             }).ToList();
+        }
+
+        public OperationResult RemoveJobFromBox(int boxId, long jobId)
+        {
+            var result = new OperationResult("Boxes", "RemoveJobFromBox");
+            try
+            {
+                if (!_jobRepository.Exists(x => x.JobId == jobId))
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
+                var box = _boxRepository.GetWithBoxJobs(boxId);
+                if (box == null)
+                {
+                    result.Message = ApplicationMessages.EntityNotExists;
+                    return result;
+                }
+
+                var boxJob = box.BoxJobs.First(x => x.BoxId == boxId && x.JobId == jobId);
+                box.BoxJobs.Remove(boxJob);
+                _boxRepository.SaveChanges();
+                result.Message = ApplicationMessages.OperationSuccess;
+                result.Success = true;
+                return result;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                result.Message = ApplicationMessages.SystemFailure;
+                return result;
+            }
         }
 
         public List<BoxViewModel> Search(BoxSearchModel searchModel, out int recordCount)

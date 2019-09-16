@@ -2,23 +2,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>@ViewData["Title"] - اُکاپیا</title>
 
-  <link href="~/css/admini.bundle.css" rel="stylesheet"/>
+  <link href="~/css/admini.bundle.css" rel="stylesheet" />
 
   @*<link href="~/css/bootstrap.css" rel="stylesheet"/>
-  <link href="~/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
-  <link href="~/assets/ionicon/css/ionicons.min.css" rel="stylesheet"/>
-  <link href="~/css/animate.css" rel="stylesheet"/>
-  <link href="~/css/waves-effect.css" rel="stylesheet">
-  <link href="~/css/helper.css" rel="stylesheet" type="text/css"/>
-  <link href="~/css/style.css" rel="stylesheet" type="text/css"/>
-  <link href="~/css/site.css" rel="stylesheet"/>
-  <link href="~/assets/notifications/notification.css" rel="stylesheet"/>
-  <link href="~/css/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet"/>
-  <link href="~/assets/select2/select2.css" rel="stylesheet" type="text/css"/>*@
+    <link href="~/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="~/assets/ionicon/css/ionicons.min.css" rel="stylesheet"/>
+    <link href="~/css/animate.css" rel="stylesheet"/>
+    <link href="~/css/waves-effect.css" rel="stylesheet">
+    <link href="~/css/helper.css" rel="stylesheet" type="text/css"/>
+    <link href="~/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="~/css/site.css" rel="stylesheet"/>
+    <link href="~/assets/notifications/notification.css" rel="stylesheet"/>
+    <link href="~/css/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet"/>
+    <link href="~/assets/select2/select2.css" rel="stylesheet" type="text/css"/>*@
+  <link href="~/assets/colorpicker/colorpicker.css" rel="stylesheet" />
 
 </head>
 
@@ -73,6 +74,7 @@
 <script src="~/assets/select2/select2.min.js" type="text/javascript"></script>
 <script src="~/assets/fileManager/PFileManager.js" type="text/javascript"></script>
 <script src="~/js/site.js"></script>
+<script src="~/assets/colorpicker/bootstrap-colorpicker.js"></script>
 <script src="~/js/ckeditor.js"></script>
 <script>
   CKEDITOR.replace('Content',
@@ -95,6 +97,9 @@
   jQuery(document).ready(function() {
     jQuery(".select2").select2({
       width: '100%'
+    });
+    $('.colorpicker-default').colorpicker({
+      format: 'hex'
     });
   });
 

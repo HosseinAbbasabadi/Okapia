@@ -5,6 +5,10 @@ namespace Okapia.Domain.Models
 {
     public class Box
     {
+        public Box()
+        {
+            this.BoxJobs = new List<BoxJob>();
+        }
         public int BoxId { get; set; }
         public string BoxTitle { get; set; }
         public string BoxLink { get; set; }

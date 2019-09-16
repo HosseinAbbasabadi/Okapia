@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Okapia.Domain.Commands.Box;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
 using Okapia.Domain.ViewModels.Box;
+using Okapia.Domain.ViewModels.Job;
 
 namespace Okapia.Repository.Repositories
 {
@@ -16,7 +19,7 @@ namespace Okapia.Repository.Repositories
 
         public EditBox GetDetails(int id)
         {
-            return _context.Boxes.Select(x => new EditBox
+            var box = _context.Boxes.Include(x => x.BoxJobs).ThenInclude(x => x.Job).Select(x => new EditBox
             {
                 BoxId = x.BoxId,
                 BoxTitle = x.BoxTitle,
@@ -30,8 +33,37 @@ namespace Okapia.Repository.Repositories
                 BoxLink = x.BoxLink,
                 BoxLinkBtnText = x.BoxLinkBtnText,
                 BoxLinkText = x.BoxLinkText,
-                BoxIsEnabled = x.BoxIsEnabled
+                BoxIsEnabled = x.BoxIsEnabled,
+                BoxJobs = x.BoxJobs.ToList()
             }).FirstOrDefault(x => x.BoxId == id);
+            var jobs = MapBoxJobs(box);
+            box.Jobs = jobs;
+            return box;
+        }
+
+        public Box GetWithBoxJobs(int id)
+        {
+            return _context.Boxes.Include(x => x.BoxJobs).FirstOrDefault(x => x.BoxId == id);
+        }
+
+        private List<JobViewModel> MapBoxJobs(EditBox box)
+        {
+            var jobs = new List<JobViewModel>();
+
+            foreach (var boxJob in box.BoxJobs)
+            {
+                var job = _context.Jobs.Join(_context.Categories, j => j.JobCategory, cat => cat.CategoryId,
+                    (job1, category) => new JobViewModel
+                    {
+                        JobId = job1.JobId,
+                        JobName = job1.JobName,
+                        JobCategory = category.CategoryName,
+                        JobPicture = job1.JobPictures.First().JobPictureName
+                    }).FirstOrDefault(x => x.JobId == boxJob.JobId);
+                jobs.Add(job);
+            }
+
+            return jobs;
         }
 
         public List<BoxViewModel> Search(BoxSearchModel searchModel, out int recordCount)

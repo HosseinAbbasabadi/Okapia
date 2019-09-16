@@ -44,6 +44,7 @@ namespace Okapia.Repository
         //public DbSet<UserGroup> UserGroups { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Box> Boxes { get; set; }
+        public DbSet<BoxJob> BoxJobs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

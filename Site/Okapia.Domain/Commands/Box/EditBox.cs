@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Okapia.Domain.Models;
+using Okapia.Domain.ViewModels.Job;
 
 namespace Okapia.Domain.Commands.Box
 {
@@ -8,5 +11,8 @@ namespace Okapia.Domain.Commands.Box
 
         [Display(Name = "آیا باکس فعال باشد؟")]
         public bool BoxIsEnabled { get; set; }
+
+        public List<BoxJob> BoxJobs { get; set; }
+        public List<JobViewModel> Jobs { get; set; }
     }
 }

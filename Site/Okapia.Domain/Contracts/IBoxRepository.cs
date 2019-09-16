@@ -10,6 +10,7 @@ namespace Okapia.Domain.Contracts
     public interface IBoxRepository : IRepository<int, Box>
     {
         EditBox GetDetails(int id);
+        Box GetWithBoxJobs(int id);
         List<BoxViewModel> Search(BoxSearchModel searchModel, out int recordCount);
     }
 }

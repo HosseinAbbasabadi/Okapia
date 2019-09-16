@@ -13,7 +13,8 @@ namespace Okapia.Application.Contracts
         OperationResult Activate(int id);
         OperationResult Deactive(int id);
         EditBox GetDetails(int id);
-        List<Domain.ViewModels.Box.BoxViewModel> GetActiveBoxes();
+        List<BoxViewModel> GetActiveBoxes();
+        OperationResult RemoveJobFromBox(int boxId, long jobId);
         List<BoxViewModel> Search(BoxSearchModel searchModel, out int recordCount);
     }
 }

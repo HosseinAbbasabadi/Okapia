@@ -6,7 +6,6 @@ using Okapia.Domain.Commands.Employee;
 using Okapia.Domain.Contracts;
 using Okapia.Domain.Models;
 using Okapia.Domain.SeachModels;
-using Okapia.Domain.ViewModels;
 using Okapia.Domain.ViewModels.Employee;
 using Okapia.Domain.ViewModels.EmployeeController;
 

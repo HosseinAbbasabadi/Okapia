@@ -13,63 +13,63 @@
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="BoxTitle" class="control-label"></label>
-          <input asp-for="BoxTitle" class="form-control" />
+          <input asp-for="BoxTitle" class="form-control"/>
           <span asp-validation-for="BoxTitle" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="BoxLink" class="control-label"></label>
-          <input asp-for="BoxLink" class="form-control direct-ltr" />
+          <input asp-for="BoxLink" class="form-control direct-ltr"/>
           <span asp-validation-for="BoxLink" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="BoxLinkText" class="control-label"></label>
-          <input asp-for="BoxLinkText" class="form-control" />
+          <input asp-for="BoxLinkText" class="form-control"/>
           <span asp-validation-for="BoxLinkText" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="BoxLinkBtnText" class="control-label"></label>
-          <input asp-for="BoxLinkBtnText" class="form-control" />
+          <input asp-for="BoxLinkBtnText" class="form-control"/>
           <span asp-validation-for="BoxLinkBtnText" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="BoxColor" class="control-label"></label>
-          <input asp-for="BoxColor" class="form-control direct-ltr" />
+          <input asp-for="BoxColor" class="colorpicker-default form-control direct-ltr"/>
           <span asp-validation-for="BoxColor" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="BoxIcon" class="control-label"></label>
-          <input asp-for="BoxIcon" class="form-control direct-ltr" />
+          <input asp-for="BoxIcon" class="form-control direct-ltr"/>
           <span asp-validation-for="BoxIcon" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="BoxBannerPictureLink" class="control-label"></label>
-          <input asp-for="BoxBannerPictureLink" class="form-control direct-ltr" />
+          <input asp-for="BoxBannerPictureLink" class="form-control direct-ltr"/>
           <span asp-validation-for="BoxBannerPictureLink" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="BoxBannerPictureIsEnabled" class="control-label"></label>
-          <input asp-for="BoxBannerPictureIsEnabled" class="form-control" />
+          <input asp-for="BoxBannerPictureIsEnabled" class="form-control"/>
           <span asp-validation-for="BoxBannerPictureIsEnabled" class="text-danger"></span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="BoxIsEnabled" class="control-label"></label>
-          <input asp-for="BoxIsEnabled" class="form-control" />
+          <input asp-for="BoxIsEnabled" class="form-control"/>
           <span asp-validation-for="BoxIsEnabled" class="text-danger"></span>
         </div>
       </div>
@@ -83,24 +83,24 @@
         </tr>
         <tr>
           <td>
-            <input id="boxPicture" name="boxPicture" type="file" size="1" onchange="uploadFile('boxPicture', 'BoxBannerPicture', 'deleteImage', 'box');PreviewImage('boxPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
+            <input id="boxPicture" name="boxPicture" type="file" size="1" onchange="uploadFile('boxPicture', 'BoxBannerPicture', 'deleteImage', 'box');PreviewImage('boxPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*"/>
           </td>
           <td>
             <div class="form-group">
-              <input asp-for="BoxBannerPictureTitle" class="form-control" />
+              <input asp-for="BoxBannerPictureTitle" class="form-control"/>
               <span asp-validation-for="BoxBannerPictureTitle" class="text-danger"></span>
             </div>
           </td>
           <td>
             <div class="form-group">
-              <input asp-for="BoxBannerPictureAlt" class="form-control" />
+              <input asp-for="BoxBannerPictureAlt" class="form-control"/>
               <span asp-validation-for="BoxBannerPictureAlt" class="text-danger"></span>
             </div>
           </td>
           @if (string.IsNullOrEmpty(Model.BoxBannerPicture))
           {
             <td>
-              <img id="prevImage" src="~/defaultimage.png" with="100" height="100" />
+              <img id="prevImage" src="~/defaultimage.png" with="100" height="100"/>
             </td>
             <td>
               <button type="button" id="deleteImage" onclick="deletePhoto('BoxBannerPicture', 'prevImage', 'deleteImage', 'BoxBannerPictureTitle', 'BoxBannerPictureAlt', 'desc', 'box')" class="btn btn-danger hidden">حذف</button>
@@ -109,8 +109,8 @@
           else
           {
             <td>
-              <img id="prevImage" src="~/BoxPhotos/Thumbs/@Model.BoxBannerPicture" />
-              <input asp-for="BoxBannerPicture" type="hidden" size="1" value="@Model.BoxBannerPicture" />
+              <img id="prevImage" src="~/BoxPhotos/Thumbs/@Model.BoxBannerPicture"/>
+              <input asp-for="BoxBannerPicture" type="hidden" size="1" value="@Model.BoxBannerPicture"/>
             </td>
             <td>
               <button type="button" id="deleteImage" onclick="deletePhoto('BoxBannerPicture', 'prevImage', 'deleteImage', 'BoxBannerPictureTitle', 'BoxBannerPictureAlt', 'desc', 'box')" class="btn btn-danger">حذف</button>
@@ -119,8 +119,72 @@
         </tr>
       </table>
       <div class="col-md-12">
+        <div class="panel panel-border panel-primary">
+          <div class="panel-heading">
+            <h2 class="panel-title">لیست مشاغل مربوط به @Model.BoxTitle</h2>
+          </div>
+          <div class="panel-body">
+            <table id="datatable" class="table table-striped table-bordered">
+              <thead>
+              <tr>
+              <th>
+                ردیف
+              </th>
+              <th>
+                عکس شغل
+              </th>
+              <th>
+                نام شغل
+              </th>
+              <th>
+                گروه شغل
+              </th>
+              <th>
+                عملیات
+              </th>
+
+              </thead>
+              <tbody>
+              @foreach (var item in Model.Jobs.Select((value, index) => new {index, value}))
+              {
+                <tr>
+                  <td>
+                    @{
+                      var index = item.index;
+                      index += 1;
+                    }
+                    @index
+                  </td>
+                  <td>
+                    @if (!string.IsNullOrEmpty(item.value.JobPicture))
+                    {
+                      <img src="~/JobPhotos/Thumbs/@item.value.JobPicture"/>
+                    }
+                    else
+                    {
+                      <img src="~/defaultimage.png" with="100" height="100"/>
+                    }
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.value.JobName)
+                  </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.value.JobCategory)
+                  </td>
+                  <td>
+                    <a class="btn btn-sm btn-danger" onclick="createEntityWithBodyThenReferesh('@Url.Action("RemoveJobFromBox", "Box")', {boxId: '@Model.BoxId' , jobId: '@item.value.JobId'})">حذف از باکس</a>
+                  </td>
+                </tr>
+              }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-12">
         <div class="form-group">
-          <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Box")', 'editBoxFrm', '@ViewData["redirectUrl"]')" />
+          <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "Box")', 'editBoxFrm', '@ViewData["redirectUrl"]')"/>
           <a class="btn btn-warning btn-lg" href="@ViewData["redirectUrl"]">بازگشت به لیست</a>
         </div>
       </div>
