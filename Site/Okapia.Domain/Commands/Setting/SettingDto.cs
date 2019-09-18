@@ -16,12 +16,12 @@ namespace Okapia.Domain.Commands.Setting
 
         [Display(Name = "آدرس")] public string Address { get; set; }
 
-        [Display(Name = "شماره تلفن 1")]
+        [Display(Name = "شماره تلفن پشتیبانی")]
         [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Tell1 { get; set; }
 
-        [Display(Name = "شماره تلفن 2")]
+        [Display(Name = "شماره تلفن شرکت")]
         [MaxLength(11, ErrorMessage = ValidationMessages.PhoneNumberLenght)]
         [RegularExpression("([0-9]+)", ErrorMessage = ValidationMessages.ValidNumber)]
         public string Tell2 { get; set; }
@@ -115,5 +115,40 @@ namespace Okapia.Domain.Commands.Setting
         [Display(Name = "لینک پیشنهاد ویژه سوم")]
         [Url(ErrorMessage = ValidationMessages.Url)]
         public string SpecialSuggestionPictureLink3 { get; set; }
+
+        [Display(Name = "عنوان فوتر باکس اول")]
+        public string FooterBoxTitle1 { get; set; }
+        [Display(Name = "متن فوتر باکس اول")]
+        public string FooterBoxText1 { get; set; }
+        [Display(Name = "آیکون فوتر باکس اول")]
+        public string FooterBoxIcon1 { get; set; }
+
+        [Display(Name = "عنوان فوتر باکس دوم")]
+        public string FooterBoxTitle2 { get; set; }
+        [Display(Name = "متن فوتر باکس دوم")]
+        public string FooterBoxText2 { get; set; }
+        [Display(Name = "آیکون فوتر باکس دوم")]
+        public string FooterBoxIcon2 { get; set; }
+
+        [Display(Name = "عنوان فوتر باکس سوم")]
+        public string FooterBoxTitle3 { get; set; }
+        [Display(Name = "متن فوتر باکس سوم")]
+        public string FooterBoxText3 { get; set; }
+        [Display(Name = "آیکون فوتر باکس سوم")]
+        public string FooterBoxIcon3 { get; set; }
+
+        [Display(Name = "عنوان فوتر باکس چهارم")]
+        public string FooterBoxTitle4 { get; set; }
+        [Display(Name = "متن فوتر باکس چهارم")]
+        public string FooterBoxText4 { get; set; }
+        [Display(Name = "آیکون فوتر باکس چهارم")]
+        public string FooterBoxIcon4 { get; set; }
+
+        [Display(Name = "عنوان فوتر باکس پنجم")]
+        public string FooterBoxTitle5 { get; set; }
+        [Display(Name = "متن فوتر باکس پنجم")]
+        public string FooterBoxText5 { get; set; }
+        [Display(Name = "آیکون فوتر باکس پنجم")]
+        public string FooterBoxIcon5 { get; set; }
     }
 }

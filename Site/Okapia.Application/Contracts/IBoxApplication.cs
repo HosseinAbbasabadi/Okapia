@@ -16,5 +16,8 @@ namespace Okapia.Application.Contracts
         List<BoxViewModel> GetActiveBoxes();
         OperationResult RemoveJobFromBox(int boxId, long jobId);
         List<BoxViewModel> Search(BoxSearchModel searchModel, out int recordCount);
+
+        //
+        List<BoxWithJobsViewModel> GetBoxesForLandingPage();
     }
 }

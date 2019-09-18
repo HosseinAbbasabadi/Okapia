@@ -1,30 +1,92 @@
 ﻿@model Okapia.Domain.Commands.Setting.SettingDto
-
-<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-  <div class="footer-content">
-    <a href="#">
-      <img src="~/assets/images/logo.png" alt="">
-    </a>
-    <p>
-      @Model.FooterAbout
-    </p>
-    <div class="footer-social">
-      <a href="@Model.Facebook" target="_blank">
-        <i class="fab fa-facebook"></i>
-      </a>
-
-      <a href="@Model.Instagram" target="_blank">
-        <i class="fab fa-instagram"></i>
-      </a>
-
-      <a href="@Model.Telegram" target="_blank">
-        <i class="fab fa-telegram"></i>
-      </a>
-
-      <a href="@Model.Twitter" target="_blank">
-        <i class="fab fa-twitter"></i>
-      </a>
-
+<div class="row-footer-copy-right">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1 hidden-sm hidden-xs"></div>
+      <div class="col-md-22">
+        <div class="row">
+          <div class="col-lg-24 col-md-24 rfcr-p2 col-sm-24 col-xs-24">
+            <div class="row">
+              <div class="right-part col-lg-24 col-md-24 col-sm-24">
+                <div class="rfcr-contact col-lg-6 col-md-6 col-sm-10">
+                  <div class="phone-num">
+                    <span> پشتیبانی : </span>
+                    <span class="tx-direct-left">
+                      <span class="number-s"> @Model.Tell1</span><span class="number-s"></span>
+                    </span>
+                  </div>
+                  <div class="phone-num">
+                    <span> شرکت : </span>
+                    <span class="tx-direct-left">
+                      <span class="number-s"> @Model.Tell2</span><span class="number-s"></span>
+                    </span>
+                  </div>
+                </div>
+                <div class="rfcr-soc col-lg-6 col-md-6 col-sm-14">
+                  <a href="@Model.Telegram"
+                     target="_blank">
+                    <i aria-hidden="true"
+                       class="icon icon-telegram-logo">
+                    </i>
+                  </a>
+                  <a href="@Model.Instagram" target="_blank">
+                    <i aria-hidden="true"
+                       class="icon icon-instagram-logo">
+                    </i>
+                  </a>
+                  <a href="@Model.Twitter" target="_blank">
+                    <i aria-hidden="true"
+                       class="icon icon-twitter">
+                    </i>
+                  </a>
+                  <a href="@Model.Facebook" target="_blank">
+                    <i aria-hidden="true"
+                       class="icon icon-facebook-logo">
+                    </i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row rfcr-p1 dis-no dis-block-479 after-copy">
+          <span>کلیه حقوق این وب سایت متعلق به شرکت اُکاپیا است.</span>
+        </div>
+      </div>
+      <div class="col-md-1 hidden-sm hidden-xs"></div>
+    </div>
+  </div>
+</div>
+<div class="row-footer-description dis-none-479">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1 hidden-sm hidden-xs"></div>
+      <div class="col-md-22">
+        <div class="rfcr-p1">
+          <span>کلیه حقوق این وب سایت متعلق به شرکت اُکاپیا است.</span>
+        </div>
+        <p class="tx-just rfdtxt">
+          <span>@Model.FooterAbout</span>
+          <span class="partners">
+            <a asp-controller="Home" asp-action="Index" target="_blank" title="netbarg">
+              <img src="~/assets/theme/img/okapia.png" alt="اُکاپیا" title="اُکاپیا" width="200" height="100">
+            </a>
+            @*<a href="http://chilivery.com/" target="_blank" title="chilivery">
+                <img src="~/assets/theme/img/chilivery-logo.png" alt="چیلیوری">
+              </a>
+              <a href="http://tik8.com/" target="_blank" title="tik8">
+                <img src="~/assets/theme/img/tik8-logo.png" alt="تیکیت">
+              </a>
+              <a href="http://saremiz.ir/" target="_blank" title="saremiz">
+                <img src="~/assets/theme/img/saremiz-logo.jpg" alt="سرمیز">
+              </a>
+              <a href="http://drdr.ir/" target="_blank" title="drdr">
+                <img src="~/assets/theme/img/drdr-logo.png" alt="دکتر دکتر">
+              </a>*@
+          </span>
+        </p>
+      </div>
+      <div class="col-md-1 hidden-sm hidden-xs"></div>
     </div>
   </div>
 </div>

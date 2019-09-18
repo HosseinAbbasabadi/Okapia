@@ -4,13 +4,8 @@
 @{
   ViewData["Title"] = "ثبت نام";
 }
-<!--Custom Banner-->
-<section class="custom-banner dark-overlay" style="background: url(/assets/images/counter.jpg) no-repeat fixed;">
-</section>
-<!--/Custom Banner-->
 
-<!--Login Area-->
-<section class="form-area section-padding">
+@*<section class="form-area section-padding">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-8 centered">
@@ -32,15 +27,15 @@
             <span asp-validation-for="Family" class="text-danger"></span>
           </div>
           @*<div class="single-field">
-            <label asp-for="NameEn" class="control-label"></label>
-            <input asp-for="NameEn" class="form-control" />
-            <span asp-validation-for="NameEn" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="FamilyEn" class="control-label"></label>
-            <input asp-for="FamilyEn" class="form-control" />
-            <span asp-validation-for="FamilyEn" class="text-danger"></span>
-          </div>*@
+              <label asp-for="NameEn" class="control-label"></label>
+              <input asp-for="NameEn" class="form-control" />
+              <span asp-validation-for="NameEn" class="text-danger"></span>
+            </div>
+            <div class="single-field">
+              <label asp-for="FamilyEn" class="control-label"></label>
+              <input asp-for="FamilyEn" class="form-control" />
+              <span asp-validation-for="FamilyEn" class="text-danger"></span>
+            </div>
           <div class="single-field">
             <label asp-for="NationalCardNumber" class="control-label">کدملی(به عنوان نام کاربری)</label>
             <input asp-for="NationalCardNumber" class="form-control" />
@@ -54,10 +49,10 @@
           <div class="single-field">
             <label asp-for="BirthDate" class="control-label"></label>
             <div class="input-group">
-              <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#birthDate"  data-groupid="group1"  data-enabletimepicker="false" data-placement="left">
-                @*<span class="fa fa-calendar"></span>*@
+              <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#birthDate" data-groupid="group1" data-enabletimepicker="false" data-placement="left">
+                @*<span class="fa fa-calendar"></span>
               </div>
-              <input asp-for="BirthDate" type="text" class="form-control" id="birthDate" placeholder="تاریخ تولد" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#birthDate" data-groupid="group1" data-enabletimepicker="false" data-placement="right" readonly="readonly"/>
+              <input asp-for="BirthDate" type="text" class="form-control" id="birthDate" placeholder="تاریخ تولد" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#birthDate" data-groupid="group1" data-enabletimepicker="false" data-placement="right" readonly="readonly" />
             </div>
           </div>
           <div class="single-field">
@@ -77,17 +72,109 @@
           <button type="button" class="btn btn-success" onclick="dynamicCard('ui')">افزودن کارت</button>
 
           @*<div class="single-field">
-      <div class="g-recaptcha" data-sitekey="6LeXubIUAAAAAPl-CpA4zsosiLVHjUbs6uLdQJsq"></div>
-    </div>*@
+              <div class="g-recaptcha" data-sitekey="6LeXubIUAAAAAPl-CpA4zsosiLVHjUbs6uLdQJsq"></div>
+            </div>
           <br />
           <h3 class="text-danger">@ViewData["errorMessage"]</h3>
           <br />
           <div class="form-group">
-            @*<input type="button" value="ثبت" class="btn btn-primary" onclick="createUser('@Url.Action("Register", "User")', 'createUserFrm', '@Url.Action("Index", "Home")')"/>*@
+            @*<input type="button" value="ثبت" class="btn btn-primary" onclick="createUser('@Url.Action("Register", "User")', 'createUserFrm', '@Url.Action("Index", "Home")')"/>
             <button type="submit" class="bttn-mid btn-fill">ثبت نام</button>
           </div>
         </form>
       </div>
     </div>
   </div>
-</section>
+</section>*@
+
+<div class="page-signinup">
+  <div class="wrapper-1">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+        <div class="col-lg-10 col-md-10">
+          <div class="panel panel-default">
+            <div class="panel-body tab-content">
+              <div class="nb-signinup-wrapper nb-signup tab-pane personal-tab fade active in">
+                <p class="rb-header">ثبت نام در اُکاپیا</p>
+
+                <form method="post" accept-charset="utf-8" class="personal-pro ajaxform" id="registration-form">
+                  <div style="display: none;">
+                    <input type="hidden" name="_method" value="POST" />
+                  </div>
+                  <div class="nameandfname">
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group req input-label-animate">
+                        <div class="input text">
+                          <label for="user-profile-first-name">نام</label>
+                          <input type="text" asp-for="Name" name="user_profile[first_name]" class="single-input required-input" id="user-profile-first-name" />
+                        </div><span class="hint danger"></span>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group req input-label-animate">
+                        <div class="input text">
+                          <label for="user-profile-last-name">نام خانوادگی</label>
+                          <input type="text" asp-for="Family" name="user_profile[last_name]" class="single-input required-input" id="user-profile-last-name" />
+                        </div><span class="hint danger"></span>
+                      </div>
+                    </div>
+                    <div class="form-group req input-label-animate">
+                      <div class="input email">
+                        <label for="registeremail">ایمیل</label>
+                        <input type="email" asp-for="Email" name="email" id="registeremail" class="single-input required-input" />
+                      </div><span class="hint danger"></span>
+                    </div>
+                    <div class="form-group req input-label-animate">
+                      <div class="input password">
+                        <label for="password">کدملی(به عنوان نام کاربری)</label>
+                        <input type="password" asp-for="NationalCardNumber" name="password" class="single-input required-input password-check" id="password" />
+                      </div><span class="hint danger"></span>
+                    </div>
+                    <div class="form-group req input-label-animate">
+                      <div class="input text">
+                        <label for="phone">موبایل(به عنوان رمز عبور)</label>
+                        <input type="text" asp-for="PhoneNumber" name="phone" maxlength="11" class="single-input required-input phonenumbervalid" id="phone" />
+                      </div><span class="hint danger"></span>
+                    </div>
+                    @*<div class="form-group req input-label-animate">
+                  <label class="hascontent">شهر محل سکونت</label>
+                  <select name="user_profile[city_id]" class="single-select required-input" asp-items="@Model.Provinces">
+                    <option value="0">انتخاب شهر</option>
+                  </select>
+                  <span class="hint danger"></span>
+                </div>*@
+                    <div class="m-b re-captcha text-center">
+                      <div class="control-input captcha-net" style="display: inline-block; margin: 0 auto;">
+                        @*<div align="right" class="captcha-block">
+                      <div class="g-recaptcha" id="g-recaptcha-register-verify" data-sitekey="6LfyZz0UAAAAAABOhV3qPjoUSA6U-lg1I76PjhKc"></div>
+                    </div>*@
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="nb-btn nb-btn-success" sync-bybutton="btn1">ثبت نام</button>
+                      <div class="link-signup clearfix">
+                        <span>در نت برگ عضو هستید؟</span>
+                        <a data-toggle="tab" asp-controller="Account" asp-action="Login"
+                           class="not-register nb-btn nb-btn-sm nb-btn-border show-basket">
+                          ورود به حساب کاربری
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div class="circle-sign"></div>
+                <div class="e"></div>
+              </div>
+            </div>
+            <div class="circle-sign"></div>
+            <div class="e"></div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12 hidden-sm hidden-xs">
+          <img src="~/assets/theme/img/signin.jpg"
+               alt="netbarg-signin"
+               class="img-responsive nb-center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

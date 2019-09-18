@@ -212,5 +212,10 @@ namespace Okapia.Application.Applications
         {
             return _boxRepository.Search(searchModel, out recordCount);
         }
+
+        public List<BoxWithJobsViewModel> GetBoxesForLandingPage()
+        {
+            return _boxQuery.GetBoxesForLandingPage();
+        }
     }
 }

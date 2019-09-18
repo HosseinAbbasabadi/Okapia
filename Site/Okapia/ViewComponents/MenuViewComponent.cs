@@ -19,18 +19,4 @@ namespace Okapia.ViewComponents
             return View("Default", categories);
         }
     }
-    public class FooterAboutViewComponent : ViewComponent
-    {
-        private readonly ISettingApplication _settingApplication;
-        public FooterAboutViewComponent(ISettingApplication settingApplication)
-        {
-            _settingApplication = settingApplication;
-        }
-
-        public IViewComponentResult Invoke()
-        {
-            var settings = _settingApplication.GetSettings();
-            return View("_FooterAbout", settings);
-        }
-    }
 }

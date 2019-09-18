@@ -218,59 +218,189 @@
   </div>
   
   <div class="panel panel-border panel-primary">
-      <div class="panel-heading">
-        <h2 class="panel-title">تنظیمات پیشنهادات ویژه</h2>
+    <div class="panel-heading">
+      <h2 class="panel-title">تنظیمات پیشنهادات ویژه</h2>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>@Html.DisplayNameFor(model => model.SpecialSuggestionPicture1):</strong>
+          <span>
+            <img src="~/SpecialPictures/Thumbs/@Model.SpecialSuggestionPicture1" alt="@Model.SpecialSuggestionPictureAlt1" />
+          </span>
+        </div>
       </div>
-      <div class="panel-body">
-        <div class="col-md-4 form-group">
-          <div class="detail-name">
-            <strong>@Html.DisplayNameFor(model => model.SpecialSuggestionPicture1):</strong>
-            <span>
-              <img src="~/SpecialPictures/Thumbs/@Model.SpecialSuggestionPicture1" alt="@Model.SpecialSuggestionPictureAlt1" />
-            </span>
-          </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>@Html.DisplayNameFor(model => model.SpecialSuggestionPicture2):</strong>
+          <span>
+            <img src="~/SpecialPictures/Thumbs/@Model.SpecialSuggestionPicture2" alt="@Model.SpecialSuggestionPictureAlt2" />
+          </span>
         </div>
-        <div class="col-md-4 form-group">
-          <div class="detail-name">
-            <strong>@Html.DisplayNameFor(model => model.SpecialSuggestionPicture2):</strong>
-            <span>
-              <img src="~/SpecialPictures/Thumbs/@Model.SpecialSuggestionPicture2" alt="@Model.SpecialSuggestionPictureAlt2" />
-            </span>
-          </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>@Html.DisplayNameFor(model => model.SpecialSuggestionPicture3):</strong>
+          <span>
+            <img src="~/SpecialPictures/Thumbs/@Model.SpecialSuggestionPicture3" alt="@Model.SpecialSuggestionPictureAlt3" />
+          </span>
         </div>
-        <div class="col-md-4 form-group">
-          <div class="detail-name">
-            <strong>@Html.DisplayNameFor(model => model.SpecialSuggestionPicture3):</strong>
-            <span>
-              <img src="~/SpecialPictures/Thumbs/@Model.SpecialSuggestionPicture3" alt="@Model.SpecialSuggestionPictureAlt3" />
-            </span>
-          </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.SpecialSuggestionPictureLink1):
+          </strong>
+          <span>@Html.DisplayFor(model => model.SpecialSuggestionPictureLink1)</span>
         </div>
-        <div class="col-md-4 form-group">
-          <div class="detail-name">
-            <strong>
-              @Html.DisplayNameFor(model => model.SpecialSuggestionPictureLink1):
-            </strong>
-            <span>@Html.DisplayFor(model => model.SpecialSuggestionPictureLink1)</span>
-          </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.SpecialSuggestionPictureLink2):
+          </strong>
+          <span>@Html.DisplayFor(model => model.SpecialSuggestionPictureLink2)</span>
         </div>
-        <div class="col-md-4 form-group">
-          <div class="detail-name">
-            <strong>
-              @Html.DisplayNameFor(model => model.SpecialSuggestionPictureLink2):
-            </strong>
-            <span>@Html.DisplayFor(model => model.SpecialSuggestionPictureLink2)</span>
-          </div>
-        </div>
-        <div class="col-md-4 form-group">
-          <div class="detail-name">
-            <strong>
-              @Html.DisplayNameFor(model => model.SpecialSuggestionPictureLink3):
-            </strong>
-            <span>@Html.DisplayFor(model => model.SpecialSuggestionPictureLink3)</span>
-          </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.SpecialSuggestionPictureLink3):
+          </strong>
+          <span>@Html.DisplayFor(model => model.SpecialSuggestionPictureLink3)</span>
         </div>
       </div>
     </div>
+  </div>
+  
+  <div class="panel panel-border panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        تنظیمات فوتر سایت
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxTitle1):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxTitle1)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxText1):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxText1)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxIcon1):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxIcon1)</span>
+        </div>
+      </div>
+    <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxTitle2):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxTitle2)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxText2):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxText2)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxIcon2):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxIcon2)</span>
+        </div>
+      </div>
+    <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxTitle3):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxTitle3)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxText3):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxText3)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxIcon3):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxIcon3)</span>
+        </div>
+      </div>
+    <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxTitle4):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxTitle4)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxText4):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxText4)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxIcon4):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxIcon4)</span>
+        </div>
+      </div>
+    <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxTitle5):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxTitle5)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxText5):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxText5)</span>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <div class="detail-name">
+          <strong>
+            @Html.DisplayNameFor(model => model.FooterBoxIcon5):
+          </strong>
+          <span>@Html.DisplayFor(model => model.FooterBoxIcon5)</span>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 </div>

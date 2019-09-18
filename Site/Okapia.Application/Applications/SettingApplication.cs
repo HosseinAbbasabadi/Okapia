@@ -118,5 +118,41 @@ namespace Okapia.Application.Applications
 
             return setSetting;
         }
+
+        public ContactDto GetCompanyNumbers()
+        {
+            var settings = _settingQuery.Get(x => x.SettingScope == "General");
+            return MapContactInfo(settings);
+        }
+
+        private static ContactDto MapContactInfo(IReadOnlyCollection<Setting> settings)
+        {
+            var setSetting = new ContactDto();
+            foreach (var property in setSetting.GetType().GetProperties())
+            {
+                var setting = settings.First(x => x.SettingKey == property.Name);
+                property.SetValue(setSetting, setting.SettingValue);
+            }
+
+            return setSetting;
+        }
+
+        public FooterBox GetFooterBox()
+        {
+            var settings = _settingQuery.Get(x => x.SettingScope == "FooterBox");
+            return MapFooterBoxes(settings);
+        }
+
+        private static FooterBox MapFooterBoxes(IReadOnlyCollection<Setting> settings)
+        {
+            var setSetting = new FooterBox();
+            foreach (var property in setSetting.GetType().GetProperties())
+            {
+                var setting = settings.First(x => x.SettingKey == property.Name);
+                property.SetValue(setSetting, setting.SettingValue);
+            }
+
+            return setSetting;
+        }
     }
 }

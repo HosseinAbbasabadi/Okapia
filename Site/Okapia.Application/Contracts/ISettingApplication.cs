@@ -15,5 +15,7 @@ namespace Okapia.Application.Contracts
         string GetPrivacy();
         BannerDto GetBannerInfo();
         SuggestionDto GetSuggestionsInfo();
+        ContactDto GetCompanyNumbers();
+        FooterBox GetFooterBox();
     }
 }

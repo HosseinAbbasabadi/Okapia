@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Okapia.Domain.Models;
+using Okapia.Domain.ViewModels.Job;
 
-namespace Okapia.Domain.Models
+namespace Okapia.Domain.ViewModels.Box
 {
-    public class Box
+    public class BoxWithJobsViewModel
     {
-        public Box()
-        {
-            BoxJobs = new List<BoxJob>();
-        }
         public int BoxId { get; set; }
         public string BoxTitle { get; set; }
         public string BoxLink { get; set; }
@@ -16,14 +13,12 @@ namespace Okapia.Domain.Models
         public string BoxLinkBtnText { get; set; }
         public string BoxColor { get; set; }
         public string BoxIcon { get; set; }
-        public bool BoxIsEnabled { get; set; }
         public string BoxBannerPicture { get; set; }
         public string BoxBannerPictureLink { get; set; }
         public string BoxBannerPictureAlt { get; set; }
         public string BoxBannerPictureTitle { get; set; }
         public bool BoxBannerPictureIsEnabled { get; set; }
-        public DateTime BoxCreationDate { get; set; }
-        public long BoxCreatorAccountId { get; set; }
-        public ICollection<BoxJob> BoxJobs { get; set; }
+        public List<BoxJob> BoxJobs { get; set; }
+        public List<JobItemViewModel> Jobs { get; set; }
     }
 }

@@ -1,0 +1,126 @@
+﻿@model List<Okapia.Domain.ViewModels.Box.BoxWithJobsViewModel>
+
+<section class="cat-big-small">
+
+  @foreach (var box in @Model)
+  {
+    <article id="float-cat-restaurant" class="cat-deal-color color-rescoffee">
+      <header class="section-header" style="border-bottom-color: @box.BoxColor">
+        <a href=""
+           class="visible-xs">
+          بیشتر
+        </a>
+        <h3 class="hx" style="border-bottom-color: @box.BoxColor">
+          <span class="ir">
+            <i class="icon @box.BoxIcon" style="color: @box.BoxColor"></i>
+          </span><a href="@box.BoxLink" class="article-h3">@box.BoxTitle</a>
+        </h3>
+      </header>
+      <div class="main-row clearfix">
+        @if(box.Jobs.Count > 0) { 
+          <div class="col-lg-24 col-md-24 col-sm-24 col-xs-24 cat-deal-smallbox">
+            <div class="row">
+              <div class="swiper-container" dir="rtl">
+                <div class="swiper-wrapper">
+                  @foreach (var job in box.Jobs)
+                  {
+                    <div class="col-lg-6 col-md-6 col-sm-4 cds-item swiper-slide">
+                      <div class="cat-deal-box">
+                        <a href=""
+                           class="figure">
+                          <div class="overlay">
+                            <div class="nb-btn nb-btn-success">مشاهده</div>
+                          </div>
+                          <img data-src="~/JobPhotos/@job.JobPicture" alt="@job.JobPictureAlt" title="@job.JobPictureTitle" data-type="lazy" shema="1" itemprop="image" content="../static.netbarg.com/img/responsive_small/deals/161577/1bc503b2.jpg">
+                        </a>
+                        <div class="cat-deal-box-main clearfix">
+                          <h4 itemprop="name" class="cdbm-title">
+                            <a itemprop="url"
+                               href=""
+                               class="truncate">
+                              @job.JobName
+                            </a>
+                          </h4>
+                          <span class="cdbm-total-buy">
+                            <span class="ir">
+                              <i class="icon icon-shopping-cart hidden-xs">
+                              </i>
+                              <i class="icon icon-shopping-cart_L visible-xs">
+                              </i>
+                            </span>
+                            <span class="cdbm-tb-total">
+                              64
+                            </span>
+                          </span>
+                        </div>
+                        <div class="cat-deal-box-footer clearfix">
+                          <a href=""
+                             class="cdbf-location truncate">
+                            <span class="ir">
+                              <i class="icon icon-location74">
+                              </i>
+                            </span>
+                            <span class="cdbfl-address">
+                              @job.City
+                            </span>
+                          </a>
+                          <span class="cdbf-takhfif">
+                            <span class="cdbft-shape">
+                              <span class="cdbft-shape-text">
+                                %@job.BenefitPercentForEndCustomer
+                              </span>
+                            </span>
+                          </span>
+                          <span class="cdbf-price">
+                            <del class="cdbf-real-price visible-xs">
+                              <span>۵۰,۰۰۰</span>
+                            </del>
+                            <ins class="cdbf-netbarg-price">
+                              <span itemprop="price"
+                                    content="250000">
+                                ۲۵,۰۰۰
+                              </span>
+                              <span itemprop="priceCurrency" content="IRR">
+                                تومان
+                              </span>
+                            </ins>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  }
+
+                  <div class="col-lg-6 col-md-6 col-sm-6 cds-item hidden-xs done swiper-slide">
+                    <div class="cds-all-view-box">
+                      <span class="ir">
+                        <i class="icon @box.BoxIcon"></i>
+                      </span>
+                      <h4 class="cds-title">@box.BoxLinkText</h4>
+                      <a href="@box.BoxLink">
+                        <button class="nb-btn nb-btn-success">@box.BoxLinkBtnText</button>
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="swiper-button-prev" style="background-color: rgba(255, 255, 255, 1); height: 65px; right: 0; opacity: 0.5"></div>
+                <div class="swiper-button-next" style="background-color: rgba(255, 255, 255, 1); height: 65px; left: 0; opacity: 0.5"></div>
+              </div>
+            </div>
+          </div>
+        }
+
+      </div>
+    </article>
+    if (box.BoxBannerPictureIsEnabled)
+    {
+      <figure class="figure-ads-baner hidden-xs visible-lg">
+        <a href="@box.BoxBannerPictureLink" target="_blank">
+          <img src="~/BoxPhotos/@box.BoxBannerPicture" alt="@box.BoxBannerPictureAlt" title="@box.BoxBannerPictureLink"/>
+        </a>
+      </figure>
+    }
+  }
+
+</section>
