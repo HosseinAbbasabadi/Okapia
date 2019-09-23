@@ -183,7 +183,6 @@ namespace Okapia.Query.Query
                 Question = faq.Question,
                 Answer = faq.Answer,
                 Id = faq.Id
-                
             }).ToList();
 
             jobDetails.Comments = commentItemViewModels;
@@ -194,41 +193,46 @@ namespace Okapia.Query.Query
 
         public List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel)
         {
-            var q = _context.Jobs.Include(x => x.Account).Include(x => x.JobPictures)
-                .Where(x => x.Account.IsDeleted == false);
+            var q = _context.Jobs
+                .Include(x => x.Account)
+                .Include(x => x.JobPictures)
+                .Where(x => x.Account.IsDeleted == false)
+                .Join(_context.Provinces, job => job.JobProvienceId, province => province.Id,
+                    (job, province) => new {job, province})
+                .Join(_context.Cities, job => job.job.JobCityId, city => city.Id, (job, city) => new {job, city});
 
             if (!string.IsNullOrEmpty(searchModel.Text))
             {
                 q = q.Where(x =>
-                    x.JobName.Contains(searchModel.Text) || x.JobSmallDescription.Contains(searchModel.Text) ||
-                    x.JobDescription.Contains(searchModel.Text) || x.JobFeatures.Contains(searchModel.Text) ||
-                    x.JobMetaDesccription.Contains(searchModel.Text) || x.JobMetaTag.Contains(searchModel.Text));
+                    x.job.job.JobName.Contains(searchModel.Text) ||
+                    x.job.job.JobSmallDescription.Contains(searchModel.Text) ||
+                    x.job.job.JobDescription.Contains(searchModel.Text) ||
+                    x.job.job.JobFeatures.Contains(searchModel.Text) ||
+                    x.job.job.JobMetaDesccription.Contains(searchModel.Text) ||
+                    x.job.job.JobMetaTag.Contains(searchModel.Text));
             }
 
             if (searchModel.CategoryId != 0)
-                q = q.Where(x => x.JobCategory == searchModel.CategoryId);
-            if (searchModel.Province != 0)
-                q = q.Where(x => x.JobProvienceId == searchModel.Province);
+                q = q.Where(x => x.job.job.JobCategory == searchModel.CategoryId);
             if (searchModel.City != 0)
-                q = q.Where(x => x.JobCityId == searchModel.City);
+                q = q.Where(x => x.job.job.JobCityId == searchModel.City);
             if (searchModel.District != 0)
-                q = q.Where(x => x.JobDistrictId == searchModel.District);
+                q = q.Where(x => x.job.job.JobDistrictId == searchModel.District);
             if (searchModel.Neighborhood != 0)
-                q = q.Where(x => x.JobNeighborhoodId == searchModel.Neighborhood);
+                q = q.Where(x => x.job.job.JobNeighborhoodId == searchModel.Neighborhood);
+            q = q.Where(x => x.job.province.Name == searchModel.Province);
 
-            var query = from job in q
-                join city in _context.Cities
-                    on job.JobCityId equals city.Id
-                select new JobItemViewModel
-                {
-                    JobId = job.JobId,
-                    JobSlug = job.JobSlug,
-                    JobName = job.JobName,
-                    JobPicture = job.JobPictures.First(x => x.IsDefault).JobPictureName,
-                    JobPictureAlt = job.JobPictures.First(x => x.IsDefault).JobPictureAlt,
-                    City = city.Name,
-                    BenefitPercentForEndCustomer = job.JobBenefitPercentForEndCustomer
-                };
+            var query = q.Select(job => new JobItemViewModel
+            {
+                JobId = job.job.job.JobId,
+                JobSlug = job.job.job.JobSlug,
+                JobName = job.job.job.JobName,
+                JobPicture = job.job.job.JobPictures.First(x => x.IsDefault).JobPictureName,
+                JobPictureAlt = job.job.job.JobPictures.First(x => x.IsDefault).JobPictureAlt,
+                City = job.city.Name,
+                BenefitPercentForEndCustomer = job.job.job.JobBenefitPercentForEndCustomer,
+                Province = job.job.province.Name
+            });
 
             return query.ToList();
         }

@@ -477,8 +477,8 @@ namespace Okapia.Application.Applications
 
         public List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel)
         {
-            if (searchModel.Province != 0)
-                searchModel.Cities = new SelectList(_cityApplication.GetCitiesBy(searchModel.Province), "Id", "Name");
+            //if (searchModel.Province != 0)
+            //    searchModel.Cities = new SelectList(_cityApplication.GetCitiesBy(searchModel.Province), "Id", "Name");
             if (searchModel.City != 0)
                 searchModel.Districts =
                     new SelectList(_districtApplication.GetDistrictsBy(searchModel.City), "Id", "Name");

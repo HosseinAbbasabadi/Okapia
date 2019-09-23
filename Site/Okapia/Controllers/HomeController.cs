@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
@@ -22,11 +23,13 @@ namespace Okapia.Controllers
         private readonly IAuthHelper _authHelper;
         private readonly ISettingApplication _settingApplication;
         private readonly IContactApplication _contactApplication;
+        private readonly ICookieHelper _cookieHelper;
 
         public HomeController(IJobRequestApplication jobRequestApplication, ICityApplication cityApplication,
             IDistrictApplication districtApplication, INeighborhoodApplication neighborhoodApplication,
             IJobApplication jobApplication, IRecaptchaService recaptchaService, IModalApplication modalApplication,
-            IAuthHelper authHelper, ISettingApplication settingApplication, IContactApplication contactApplication)
+            IAuthHelper authHelper, ISettingApplication settingApplication, IContactApplication contactApplication,
+            ICookieHelper cookieHelper)
         {
             _jobRequestApplication = jobRequestApplication;
             _cityApplication = cityApplication;
@@ -37,10 +40,13 @@ namespace Okapia.Controllers
             _authHelper = authHelper;
             _settingApplication = settingApplication;
             _contactApplication = contactApplication;
+            _cookieHelper = cookieHelper;
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromQuery(Name = "pn")] string pn)
         {
+            var province = _cookieHelper.Get("province");
+            ViewData["province"] = province;
             return View();
         }
 

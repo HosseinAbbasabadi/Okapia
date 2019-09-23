@@ -10,16 +10,19 @@
 
 
 @*@await Html.PartialAsync("~/Views/JobView/_Search.cshtml", Model.JobViewSearchModel)*@
-<div class="wrapper-2">
-  <div class="container-fluid">
-    <div class="row h-position">
+<div class="page-index page-home">
 
-      @await Component.InvokeAsync("FloatingCategories")
+  <div class="wrapper-2">
+    <div class="container-fluid">
+      <div class="row h-position">
 
-      @await Html.PartialAsync("~/Views/JobView/_List.cshtml", Model.CategoryViewDetailsViewModel)
+        @await Component.InvokeAsync("FloatingCategories")
 
-      @await Component.InvokeAsync("CompanyNumbers")
+        @await Html.PartialAsync("~/Views/JobView/_List.cshtml", Model.CategoryViewDetailsViewModel)
 
+        @await Component.InvokeAsync("CompanyNumbers")
+
+      </div>
     </div>
   </div>
 </div>

@@ -21,6 +21,6 @@ namespace Okapia.Application.Contracts
         //
         List<CategoryMenuViewModel> GetCategoriesForMenu();
         List<CategoryViewModel> GetCategoriesForSearch();
-        CategoryViewDetailsViewModel GetCategoryViewDetails(int id);
+        CategoryViewDetailsViewModel GetCategoryViewDetails(int id, string province);
     }
 }

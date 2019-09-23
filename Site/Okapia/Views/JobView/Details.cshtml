@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http.Extensions
 @inject IAuthHelper AuthHelper;
 @using Okapia.Application.Contracts
-@using Okapia.Domain.Commands.Comment
 @model JobDetailsIndexViewModel
 @{
   ViewData["Title"] = "جزپیات مرکز خدماتی";
@@ -335,8 +334,8 @@
         </div>
         <div class="_2 clearfix">
           <form method="Get" accept-charset="utf-8" class="comment-form" asp-controller="JobView" asp-action="AddComment">
-            <input type="hidden" name="CommentOwnerRecordId" id="CommentOwnerRecordId" value="@Model.JobViewDetailsViewModel.JobId" />
-            <input type="hidden" name="CommentOwnerRecordSlug" id="CommentOwnerRecordSlug" value="@Model.JobViewDetailsViewModel.JobSlug" />
+            <input type="hidden" name="CommentOwnerRecordId" id="CommentOwnerRecordId" value="@Model.JobViewDetailsViewModel.JobId"/>
+            <input type="hidden" name="CommentOwnerRecordSlug" id="CommentOwnerRecordSlug" value="@Model.JobViewDetailsViewModel.JobSlug"/>
             <div class="form-group req input-label-animate">
               <div class="input textarea">
                 <textarea name="CommentText" placeholder="متن نظر خود را در این قسمت وارد کنید ..." 
@@ -367,7 +366,7 @@
   <div class="header">
     <h3>پرسش و پاسخ</h3>
   </div>
-  
+
   <div class="row_ clearfix">
     <div class="col-lg-24" id="commentBox">
       @foreach (var faq in Model.JobViewDetailsViewModel.Faqs)
@@ -407,9 +406,9 @@
               <p>@faq.Answer</p>
             </div>
           </div>
-        </div>  
+        </div>
       }
-      
+
       <div id="moreQa" class="moreWrapper">
       </div>
     </div>
@@ -420,7 +419,7 @@
 @await Component.InvokeAsync("CompanyNumbers")
 </div>
 </div>
-
+</div>
 <!-- map modal -->
 <div id="dealLocation" tabindex="-1" role="dialog" class="modal nb-modal nb-fade">
   @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAruoPv71rodN-3pIR4aVptu5XcVfH8n5Q"></script>

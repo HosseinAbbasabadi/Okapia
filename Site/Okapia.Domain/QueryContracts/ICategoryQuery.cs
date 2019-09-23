@@ -9,7 +9,7 @@ namespace Okapia.Domain.QueryContracts
     {
         List<CategoryViewModel> GetCategoriesForSearch();
         List<CategoryMenuViewModel> GetCategoriesForMenu();
-        CategoryViewDetailsViewModel GetCategoryViewDetails(int id);
+        CategoryViewDetailsViewModel GetCategoryViewDetails(int id, string prvince);
         List<CategoryViewDetailsViewModel> GetChildrenOfCategory(int categoryId);
     }
 }

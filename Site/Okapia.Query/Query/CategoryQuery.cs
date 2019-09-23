@@ -57,7 +57,7 @@ namespace Okapia.Query.Query
             };
         }
 
-        public CategoryViewDetailsViewModel GetCategoryViewDetails(int id)
+        public CategoryViewDetailsViewModel GetCategoryViewDetails(int id, string province)
         {
             var childrenCategories = GetChildrenOfCategory(id);
 
@@ -80,11 +80,11 @@ namespace Okapia.Query.Query
 
             if (selectedCategory == null) return new CategoryViewDetailsViewModel();
 
-            var mainCategoryJobs = GetJobsForSpecificCategory(id);
+            var mainCategoryJobs = GetJobsForSpecificCategory(id, province);
             selectedCategory?.JobItems.AddRange(mainCategoryJobs);
             foreach (var child in childrenCategories)
             {
-                var jobs = GetJobsForSpecificCategory(child.CategoryId);
+                var jobs = GetJobsForSpecificCategory(child.CategoryId, province);
                 selectedCategory.JobItems.AddRange(jobs);
             }
 
@@ -102,7 +102,7 @@ namespace Okapia.Query.Query
                 ).ToList();
         }
 
-        private IEnumerable<JobItemViewModel> GetJobsForSpecificCategory(int id)
+        private IEnumerable<JobItemViewModel> GetJobsForSpecificCategory(int id, string pn)
         {
             return _context.Jobs.Where(x => x.JobCategory == id).Include(x => x.JobPictures)
                 .Join(_context.Provinces, job => job.JobProvienceId, province => province.Id,
@@ -121,7 +121,7 @@ namespace Okapia.Query.Query
                         Province = job.province.Name,
                         City = city.Name,
                         BenefitPercentForEndCustomer = job.job.JobBenefitPercentForEndCustomer
-                    }).ToList();
+                    }).Where(x => x.Province == pn).ToList();
         }
 
         private List<JobItemViewModel> MapJobs(IEnumerable<Job> jobs)

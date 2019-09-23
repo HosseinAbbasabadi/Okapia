@@ -1,13 +1,10 @@
-﻿@inject IAuthHelper _AuthHelper
+﻿@inject ICookieHelper _CookieHelper;
+@inject IAuthHelper _AuthHelper
 @using Microsoft.AspNetCore.WebUtilities
 @using Okapia.Application.Contracts
 @using Okapia.Areas.Administrator.Controllers
 @{
-  var provinceName = Context.Request.Query["pn"].ToString();
-  if (provinceName == "")
-  {
-    provinceName = "البرز";
-  }
+  var provinceName = ViewData["province"];
 }
 <!DOCTYPE html>
 <html>
@@ -118,27 +115,9 @@
               </a>
             </div>
           </div>
-          <div class="col-lg-13 col-md-11 clearfix mobile">
-            <div class="dropdown dropdown-1">
-              <button province-name="@provinceName" type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle selected-city">
-                @provinceName
-                <span class="inline-block icon icon-arrow-down"></span>
-              </button>
-              <ul class="dropdown-menu">
-                @foreach (var province in Provinces.ToList().Where(x => x.Id != 0).OrderBy(x => x.Name))
-                {
-                  var url = Url.Action("Index", "Home", new {area = ""});
-                  var query = QueryHelpers.AddQueryString(url, "pn", province.Name);
-                  <li>
-                    <a href="@query">
-                      <span class="pull-right">@province.Name</span>
-                      <span class="badge"></span>
-                    </a>
-                  </li>
-                }
-              </ul>
-            </div>
-          </div>
+          
+          @await Component.InvokeAsync("Provinces")
+
           <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
             @if (_AuthHelper.GetCurrnetUserInfo().IsAuthorized)
             {
@@ -207,11 +186,9 @@
 </header>
 
 <main>
-  <div class="page-index page-home">
 
     @RenderBody()
 
-  </div>
 </main>
 
 <footer>

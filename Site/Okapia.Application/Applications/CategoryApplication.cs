@@ -200,9 +200,9 @@ namespace Okapia.Application.Applications
             return _categoryQuery.GetCategoriesForSearch();
         }
 
-        public CategoryViewDetailsViewModel GetCategoryViewDetails(int id)
+        public CategoryViewDetailsViewModel GetCategoryViewDetails(int id, string province)
         {
-            var category = _categoryQuery.GetCategoryViewDetails(id);
+            var category = _categoryQuery.GetCategoryViewDetails(id, province);
             return category;
         }
     }

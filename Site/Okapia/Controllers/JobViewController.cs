@@ -17,15 +17,17 @@ namespace Okapia.Controllers
         private readonly ICommentApplication _commentApplication;
         private readonly ICategoryApplication _categoryApplication;
         private readonly IHostingEnvironment _environment;
+        private readonly ICookieHelper _cookieHelper;
 
         public JobViewController(IJobApplication jobApplication, ICityApplication cityApplication,
             ICommentApplication commentApplication, ICategoryApplication categoryApplication,
-            IHostingEnvironment environment)
+            IHostingEnvironment environment, ICookieHelper cookieHelper)
         {
             _jobApplication = jobApplication;
             _commentApplication = commentApplication;
             _categoryApplication = categoryApplication;
             _environment = environment;
+            _cookieHelper = cookieHelper;
         }
 
         [ActionName("مراکز-خدماتی-و-فروشگاهی")]
@@ -34,13 +36,14 @@ namespace Okapia.Controllers
             searchModel.Categories =
                 new SelectList(_categoryApplication.GetCategoriesForSearch(), "CategoryId", "CategoryName");
             searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
-            var category = _categoryApplication.GetCategoryViewDetails(searchModel.CategoryId);
+            searchModel.Province = _cookieHelper.Get("province");
+            var category =_categoryApplication.GetCategoryViewDetails(searchModel.CategoryId, searchModel.Province);
             var jobIndex = new JobViewIndexViewModel
             {
                 JobViewSearchModel = searchModel,
                 CategoryViewDetailsViewModel = category
             };
-
+            ViewData["province"] = searchModel.Province;
             return View("Index", jobIndex);
         }
 
