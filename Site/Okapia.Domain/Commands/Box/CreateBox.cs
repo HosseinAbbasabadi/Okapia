@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Okapia.Domain.Commands.Box
 {
@@ -25,5 +26,10 @@ namespace Okapia.Domain.Commands.Box
         public string BoxBannerPictureAlt { get; set; }
         public string BoxBannerPictureTitle { get; set; }
         [Display(Name = "آیا بنر فعال باشد؟")] public bool BoxBannerPictureIsEnabled { get; set; }
+
+        [Display(Name = "نمایش باکس به استان:")]
+        public int BoxProvinceId { get; set; }
+
+        public SelectList Provinces { get; set; }
     }
 }

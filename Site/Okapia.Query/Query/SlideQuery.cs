@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Okapia.Domain.Models;
 using Okapia.Domain.QueryContracts;
@@ -13,21 +12,18 @@ namespace Okapia.Query.Query
         {
         }
 
-        public List<SliderViewModel> GetSlideShow()
+        public List<SliderViewModel> GetSlideShow(string pn)
         {
-            return _context.Slides.Where(x => x.SlideIsDeleted == false).Select(x => new SliderViewModel
+            return _context.Slides.Where(x => x.SlideIsDeleted == false).Join(_context.Provinces, slide=> slide.SlideProvinceId, province => province.Id, (slide, province) =>  new SliderViewModel
             {
-                SlideId = x.SlideId,
-                SlideTitleText = x.SlideTitleText,
-                SlideDescriptionText = x.SlideDescriptionText,
-                SlideName = x.SlideName,
-                SlideAlt = x.SlideAlt,
-                SlideTitle = x.SlideTitle,
-                SlideDescription = x.SlideDescription,
-                SlideLink = x.SlideLink,
-                SlideBtnIsVisible = x.SlideBtnIsVisible,
-                SlideBtnText = x.SlideBtnText
-            }).ToList();
+                SlideId = slide.SlideId,
+                SlideName = slide.SlideName,
+                SlideAlt = slide.SlideAlt,
+                SlideTitle = slide.SlideTitle,
+                SlideDescription = slide.SlideDescription,
+                SlideLink = slide.SlideLink,
+                SlideProvince = province.Name
+            }).Where(x=>x.SlideProvince == pn).ToList();
         }
     }
 }

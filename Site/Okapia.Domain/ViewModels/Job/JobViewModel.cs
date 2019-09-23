@@ -34,7 +34,6 @@ namespace Okapia.Domain.ViewModels.Job
         [Display(Name = "عکس")] public string JobPicture { get; set; }
 
         [Display(Name = "حذف شده؟")] public bool IsDeleted { get; set; }
-        [Display(Name = "صفحه اصلی")] public bool IsStared { get; set; }
         public long AccountId { get; set; }
     }
 }

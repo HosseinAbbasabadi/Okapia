@@ -89,6 +89,12 @@ namespace Okapia.Configuration
             services.AddScoped<IBoxApplication, BoxApplication>();
             services.AddScoped<IBoxRepository, BoxRepository>();
 
+            services.AddScoped<ILinkGroupApplication, LinkGroupApplication>();
+            services.AddScoped<ILinkGroupRepository, LinkGroupRepository>();
+
+            services.AddScoped<IFaqApplication, FaqApplication>();
+            services.AddScoped<IFaqRepository, FaqRepository>();
+
             services.AddScoped<IJobTransactionApplication, JobTransactionApplication>();
 
             services.AddScoped<IUserTransactionApplication, UserTransactionApplication>();
@@ -106,6 +112,7 @@ namespace Okapia.Configuration
             services.AddScoped<ISettingQuery, SettingQuery>();
             services.AddScoped<ILinkQuery, LinkQuery>();
             services.AddScoped<IBoxQuery, BoxQuery>();
+            services.AddScoped<ILinkGroupQuery, LinkGroupQuery>();
 
             services.AddScoped<IUserCardApplication, UserCardApplication>();
             services.AddScoped<IUserCardRepository, UserCardRepository>();
@@ -129,13 +136,15 @@ namespace Okapia.Configuration
 
             services.AddDbContext<OkapiaContext>(options =>
             {
-                options.UseSqlServer(_configuration.GetConnectionString("OkapiaContext"));
+                options.UseSqlServer(_configuration.GetConnectionString("OkapiaContext"),
+                    builder => builder.EnableRetryOnFailure());
                 options.EnableSensitiveDataLogging();
             });
 
             services.AddDbContext<OkapiaViewContext>(options =>
             {
-                options.UseSqlServer(_configuration.GetConnectionString("OkapiaViewContext"));
+                options.UseSqlServer(_configuration.GetConnectionString("OkapiaViewContext"),
+                    builder => builder.EnableRetryOnFailure());
                 options.EnableSensitiveDataLogging();
             });
         }

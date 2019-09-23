@@ -89,8 +89,7 @@ namespace Okapia.Repository.Repositories
                     WebsiteUrl = job.WebSiteUrl,
                     RedirectInstead301Url = job.JobRemoved301InsteadUrl,
                     JobFeatures = job.JobFeatures,
-                    IsStared = job.IsStared,
-                    JobPrice =  job.JobPrice
+                    JobPrice = job.JobPrice
                 };
 
             var jobDetails = query.FirstOrDefault();
@@ -107,6 +106,15 @@ namespace Okapia.Repository.Repositories
 
             jobDetails.Photos = jobPictures;
             return jobDetails;
+        }
+
+        public List<JobViewModel> GetActiveJobs()
+        {
+            return _context.Jobs.Include(x => x.Account).Where(x => x.Account.IsDeleted == false).Select(job => new JobViewModel
+            {
+                JobId = job.JobId,
+                JobName = job.JobName
+            }).ToList();
         }
 
         public List<JobViewModel> Search(JobSearchModel searchModel, out int recordCount)
@@ -148,7 +156,6 @@ namespace Okapia.Repository.Repositories
                     JobNeighborhood = neighborhood.Name,
                     JobNeighborhoodId = neighborhood.Id,
                     JobPicture = picture.JobPictureName,
-                    IsStared = job.IsStared
                 };
 
 
@@ -163,9 +170,6 @@ namespace Okapia.Repository.Repositories
             IQueryable<JobViewModel> query)
         {
             query = query.Where(x => x.IsDeleted == searchModel.IsDeleted);
-            if (searchModel.IsStared)
-                query = query.Where(x => x.IsStared);
-            query = query.Where(x => x.IsStared == searchModel.IsStared);
             if (!string.IsNullOrEmpty(searchModel.JobName))
                 query = query.Where(x => x.JobName.Contains(searchModel.JobName));
             if (!string.IsNullOrEmpty(searchModel.JobContactTitile))

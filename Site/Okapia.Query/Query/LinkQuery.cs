@@ -18,7 +18,7 @@ namespace Okapia.Query.Query
             {
                 Label = link.LinkLabel,
                 Target = link.LinkTarget,
-                Category = link.LinkCategory
+                Category = link.LinkGroupId
             }).ToList();
         }
     }

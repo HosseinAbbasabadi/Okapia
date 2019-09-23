@@ -5,15 +5,15 @@ namespace Okapia.ViewComponents
 {
     public class FooterBoxesViewComponent : ViewComponent
     {
-        private readonly IBoxApplication _boxApplication;
-        public FooterBoxesViewComponent(IBoxApplication boxApplication)
+        private readonly ISettingApplication _settingApplication;
+        public FooterBoxesViewComponent(ISettingApplication settingApplication)
         {
-            _boxApplication = boxApplication;
+            _settingApplication = settingApplication;
         }
 
         public IViewComponentResult Invoke()
         {
-            var fotterBoxes = _boxApplication.GetBoxesForLandingPage()();
+            var fotterBoxes = _settingApplication.GetFooterBox();
             return View("_FooterBoxes", fotterBoxes);
         }
     }

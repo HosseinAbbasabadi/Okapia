@@ -16,6 +16,6 @@ namespace Okapia.Application.Contracts
         List<SlideViewModel> Search(SlideSearchModel searchModel, out int recordCount);
 
         //
-        List<SliderViewModel> GetSlideShow();
+        List<SliderViewModel> GetSlideShow(string province);
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Okapia.Domain.ViewModels.Slide;
 
 namespace Okapia.Domain.QueryContracts
 {
     public interface ISlideQuery
     {
-        List<SliderViewModel> GetSlideShow();
+        List<SliderViewModel> GetSlideShow(string province);
     }
 }

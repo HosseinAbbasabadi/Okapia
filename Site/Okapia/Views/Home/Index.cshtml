@@ -1,100 +1,108 @@
-﻿  <div class="page-index page-home">
-    <div class="wrapper-1">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+﻿@using Microsoft.AspNetCore.Http
+@using Org.BouncyCastle.Asn1.Ocsp
+@{
+  var province = Context.Request.Query["pn"].ToString();
+  if (province == "")
+  {
+    province = "البرز";
+  }
+}
+<div class="wrapper-1">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
 
-          @await Component.InvokeAsync("Categories")
-          @await Component.InvokeAsync("SlideShow")
+      @await Component.InvokeAsync("Categories")
+      @await Component.InvokeAsync("SlideShow", new {pn = province})
 
-          <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
-        </div>
-
-        @await Component.InvokeAsync("Suggestions")
-
-      </div>
+      <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
     </div>
-    <div class="wrapper-2">
-      <div class="container-fluid">
-        <div class="row h-position">
 
-          @await Component.InvokeAsync("FloatingCategories")
+    @await Component.InvokeAsync("Suggestions")
 
-          <div class="col-lg-22 col-md-22 col-sm-24 col-xs-24 padd-0-xs clearfix">
+  </div>
+</div>
 
-            @await Component.InvokeAsync("Boxes")
+<div class="wrapper-2">
+  <div class="container-fluid">
+    <div class="row h-position">
 
-            <div class="col-md-1"></div>
-          </div>
+      @await Component.InvokeAsync("FloatingCategories")
 
-          @await Component.InvokeAsync("CompanyNumbers")
+      <div class="col-lg-22 col-md-22 col-sm-24 col-xs-24 padd-0-xs clearfix">
 
-        </div>
+        @await Component.InvokeAsync("Boxes", new {pn = province})
+
+        <div class="col-md-1"></div>
       </div>
+
+      @await Component.InvokeAsync("CompanyNumbers")
+
     </div>
   </div>
+</div>
 
 
-  <div class="rate-notif desktop-notif">
-    <div class="main-row">
-      <span class="border-effect"></span>
-      <div class="box-notif">
-        <div class="circle-deal " id="rating-deal-img">
+<div class="rate-notif desktop-notif">
+  <div class="main-row">
+    <span class="border-effect"></span>
+    <div class="box-notif">
+      <div class="circle-deal " id="rating-deal-img">
 
+      </div>
+      <div class="content-part">
+        <div class="text1"></div>
+        <div class="emoji_box">
+          <ul class="list-inline list-unstyled emoji-ratings">
+            <li>
+              <div mj-type="single" rate-value="5" class="rating-box happy" mj-success="successNewRating">
+                <i aria-hidden="true" class="icon icon-happy-face"></i>
+                <p>راضی</p>
+              </div>
+            </li>
+            <li>
+              <div mj-type="single" rate-value="3" class="rating-box neutral" mj-success="successNewRating">
+                <i aria-hidden="true" class="icon icon-normal-face"></i>
+                <p>متوسط</p>
+              </div>
+            </li>
+            <li>
+              <div mj-type="single" rate-value="1" class="rating-box sad" mj-success="successNewRating">
+                <i aria-hidden="true" class="icon icon-sad-face"></i>
+                <p>ناراضی</p>
+              </div>
+            </li>
+          </ul>
         </div>
-        <div class="content-part">
-          <div class="text1"></div>
-          <div class="emoji_box">
-            <ul class="list-inline list-unstyled emoji-ratings">
-              <li>
-                <div mj-type="single" rate-value="5" class="rating-box happy" mj-success="successNewRating">
-                  <i aria-hidden="true" class="icon icon-happy-face"></i>
-                  <p>راضی</p>
-                </div>
-              </li>
-              <li>
-                <div mj-type="single" rate-value="3" class="rating-box neutral" mj-success="successNewRating">
-                  <i aria-hidden="true" class="icon icon-normal-face"></i>
-                  <p>متوسط</p>
-                </div>
-              </li>
-              <li>
-                <div mj-type="single" rate-value="1" class="rating-box sad" mj-success="successNewRating">
-                  <i aria-hidden="true" class="icon icon-sad-face"></i>
-                  <p>ناراضی</p>
-                </div>
-              </li>
-            </ul>
-          </div>
+        <div class="close-icon">
+          <i class="icon icon-close"></i>
+        </div>
+      </div>
+    </div>
+    <div class="box-comment">
+      <form method="post" accept-charset="utf-8" mj-type="form" mj-model="model2" mj-method="post" mj-success="successGiftCardNotification" mj-target="/rating/ratings/ratingProcess.json" mj-before="checkRating" ="" action="http://netbarg.com/">
+        <div style="display: none;">
+          <input type="hidden" name="_method" value="POST"/>
+        </div><input type="hidden" name="rate" id="rate-value"/><input type="hidden" name="notification" id="notification" value="1"/><input type="hidden" name="deal_user_id" id="deal-user-id" value=""/><input type="hidden" name="user_id" id="user-id" value="d41d8cd98f00b204e9800998ecf8427e"/>
+        <div class="input textarea">
+          <textarea name="opinion" placeholder="با ثبت نظر کد تخفیف بگیرید" class="" id="opinion" rows="2"></textarea>
+        </div> <button type="submit" class="nb-btn nb-btn-sm nb-btn-success btn-green">ثبت نظر</button>
+      </form>
+    </div>
+    <div class="box-off-code active c-rotate1">
+      <div class="part3">
+        <div class="circle-off">
+          <div class="percent-num">%<span id="percent-num-notif"></span></div>
+          <div class="text">تخفیف</div>
+        </div>
+        <div class="content_part2">
+          <div class="text" id="percent-text-notif"></div>
+          <div class="code-part">کد تخفیف :<span class="num gift-rating-notification"></span></div><a href="user/userProfiles/index.html#tab3" class="nb-btn nb-btn-sm nb-btn-rate">خریدهای من </a>
           <div class="close-icon">
             <i class="icon icon-close"></i>
           </div>
         </div>
       </div>
-      <div class="box-comment">
-        <form method="post" accept-charset="utf-8" mj-type="form" mj-model="model2" mj-method="post" mj-success="successGiftCardNotification" mj-target="/rating/ratings/ratingProcess.json" mj-before="checkRating" ="" action="http://netbarg.com/">
-          <div style="display: none;">
-            <input type="hidden" name="_method" value="POST"/>
-          </div><input type="hidden" name="rate" id="rate-value"/><input type="hidden" name="notification" id="notification" value="1"/><input type="hidden" name="deal_user_id" id="deal-user-id" value=""/><input type="hidden" name="user_id" id="user-id" value="d41d8cd98f00b204e9800998ecf8427e"/>
-          <div class="input textarea">
-            <textarea name="opinion" placeholder="با ثبت نظر کد تخفیف بگیرید" class="" id="opinion" rows="2"></textarea>
-          </div> <button type="submit" class="nb-btn nb-btn-sm nb-btn-success btn-green">ثبت نظر</button>
-        </form>
-      </div>
-      <div class="box-off-code active c-rotate1">
-        <div class="part3">
-          <div class="circle-off">
-            <div class="percent-num">%<span id="percent-num-notif"></span></div>
-            <div class="text">تخفیف</div>
-          </div>
-          <div class="content_part2">
-            <div class="text" id="percent-text-notif"></div>
-            <div class="code-part">کد تخفیف :<span class="num gift-rating-notification"></span></div><a href="user/userProfiles/index.html#tab3" class="nb-btn nb-btn-sm nb-btn-rate">خریدهای من </a>
-            <div class="close-icon">
-              <i class="icon icon-close"></i>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
+</div>

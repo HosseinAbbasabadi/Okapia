@@ -10,8 +10,6 @@ namespace Okapia.Domain.ViewModels.Comment
         public string CommentOwner { get; set; }
         [Display(Name = "ارسال کننده")]
         public string CommentatorUsername { get; set; }
-        [Display(Name = "عنوان")]
-        public string CommentTitle { get; set; }
         [Display(Name = "متن")]
         public string CommentText { get; set; }
         [Display(Name = "رای مثبت")]

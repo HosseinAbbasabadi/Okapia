@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
@@ -13,10 +14,12 @@ namespace Okapia.Areas.Administrator.Controllers
     public class LinkController : Controller
     {
         private readonly ILinkApplication _linkApplication;
+        private readonly ILinkGroupApplication _linkGroupApplication;
 
-        public LinkController(ILinkApplication linkApplication)
+        public LinkController(ILinkApplication linkApplication, ILinkGroupApplication linkGroupApplication)
         {
             _linkApplication = linkApplication;
+            _linkGroupApplication = linkGroupApplication;
         }
 
         // GET: Link
@@ -28,7 +31,8 @@ namespace Okapia.Areas.Administrator.Controllers
             }
 
             var links = _linkApplication.Search(searchModel, out var recordCount);
-            var linkIndex = new LinkIndexViewModel() {LinkSearchModel = searchModel, LinkViewModels = links};
+            searchModel.LinkGroups = new SelectList(_linkGroupApplication.GetActiveLinkGroups(), "Id", "Name");
+            var linkIndex = new LinkIndexViewModel {LinkSearchModel = searchModel, LinkViewModels = links};
             Pager.PreparePager(searchModel, recordCount);
             ViewData["searchModel"] = searchModel;
             return View(linkIndex);
@@ -41,7 +45,8 @@ namespace Okapia.Areas.Administrator.Controllers
                 searchModel.PageSize = 80;
             }
 
-            var links = _linkApplication.Search(searchModel, out int recordCount);
+            var links = _linkApplication.Search(searchModel, out var recordCount);
+            searchModel.LinkGroups = new SelectList(_linkGroupApplication.GetActiveLinkGroups(), "Id", "Name");
             Pager.PreparePager(searchModel, recordCount);
             ViewData["searchModel"] = searchModel;
             return PartialView("_ListLink", links);
@@ -50,7 +55,10 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: City/Create
         public ActionResult Create()
         {
-            var createLink = new CreateLink();
+            var createLink = new CreateLink
+            {
+                LinkGroups = new SelectList(_linkGroupApplication.GetActiveLinkGroups(), "Id", "Name")
+            };
             return PartialView("_Create", createLink);
         }
 
@@ -67,6 +75,7 @@ namespace Okapia.Areas.Administrator.Controllers
         public ActionResult Edit(int id)
         {
             var link = _linkApplication.GetLinkDetails(id);
+            link.LinkGroups = new SelectList(_linkGroupApplication.GetActiveLinkGroups(), "Id", "Name");
             return PartialView("_Edit", link);
         }
 

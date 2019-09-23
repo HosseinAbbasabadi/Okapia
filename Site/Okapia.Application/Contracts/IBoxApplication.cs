@@ -18,6 +18,6 @@ namespace Okapia.Application.Contracts
         List<BoxViewModel> Search(BoxSearchModel searchModel, out int recordCount);
 
         //
-        List<BoxWithJobsViewModel> GetBoxesForLandingPage();
+        List<BoxWithJobsViewModel> GetBoxesForLandingPage(string province);
     }
 }

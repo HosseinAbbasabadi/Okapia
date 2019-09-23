@@ -13,6 +13,7 @@ namespace Okapia.Domain.Models
         public string JobName { get; set; }
         public string JobSmallDescription { get; set; }
         public string JobFeatures { get; set; }
+        public string JobUsageCondition { get; set; }
         public string JobDescription { get; set; }
         public string JobContactTitile { get; set; }
         public string JobManagerFirstName { get; set; }
@@ -59,11 +60,13 @@ namespace Okapia.Domain.Models
         public string WebSiteUrl { get; set; }
         public string InstagramUrl { get; set; }
         public string TelegramUrl { get; set; }
-        public bool IsStared { get; set; }
         public double JobPrice { get; set; }
+        public double JobDiscountPrice { get; set; }
+        public Account Account { get; set; }
+        public Category Category { get; set; }
         public ICollection<JobPicture> JobPictures { get; set; }
         public ICollection<Comment> JobComments { get; set; }
         public ICollection<BoxJob> BoxJobs { get; set; }
-        public Account Account { get; set; }
+        public ICollection<Faq> JobFaqs { get; set; }
     }
 }

@@ -5,17 +5,17 @@ namespace Okapia.ViewComponents
 {
     public class FooterLinksViewComponent : ViewComponent
     {
-        private readonly ILinkApplication _linkApplication;
+        private readonly ILinkGroupApplication _linkGroupApplication;
 
-        public FooterLinksViewComponent(ILinkApplication linkApplication)
+        public FooterLinksViewComponent(ILinkGroupApplication linkGroupApplication)
         {
-            _linkApplication = linkApplication;
+            _linkGroupApplication = linkGroupApplication;
         }
 
         public IViewComponentResult Invoke()
         {
-            var links = _linkApplication.GetLinksForSite();
-            return View("_FooterLinks", links);
+            var linkGroups = _linkGroupApplication.GetFooterLinkGroupsWithLinks();
+            return View("_FooterLinks", linkGroups);
         }
     }
 }

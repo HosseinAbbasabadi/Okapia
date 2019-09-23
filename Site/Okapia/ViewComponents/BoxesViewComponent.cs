@@ -11,9 +11,9 @@ namespace Okapia.ViewComponents
             _boxApplication = boxApplication;
         }
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(string pn)
         {
-            var boxes = _boxApplication.GetBoxesForLandingPage();
+            var boxes = _boxApplication.GetBoxesForLandingPage(pn);
             return View("_Boxes", boxes);
         }
     }

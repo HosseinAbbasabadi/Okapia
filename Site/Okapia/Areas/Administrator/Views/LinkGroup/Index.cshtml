@@ -1,0 +1,27 @@
+﻿@model Okapia.Areas.Administrator.Models.LinkGroupIndexViewModel
+@{
+  ViewData["Title"] = "مدیریت گروه بندی لینک ها";
+}
+
+
+<h1>صفحه مدیریت گروه بندی لینک ها</h1>
+
+<h2>
+  <button onclick="openCreateLinkGroupModal()" class="btn btn-success text-lg-center">ایجاد گروه بندی لینک جدید</button>
+</h2>
+
+<div id="createLinkGroupDiv">
+
+</div>
+
+<script>
+  function openCreateLinkGroupModal() {
+    openModalWithData('@Url.Action("Create", "LinkGroup")', 'createLinkGroupDiv', 'createLinkGroupModal');
+  }
+</script>
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/linkGroup/_SearchlinkGroups.cshtml", Model.LinkGroupSearchModel)
+
+<div id="listLinkGroupsDiv">
+  @await Html.PartialAsync("~/Areas/Administrator/Views/linkGroup/_ListlinkGroups.cshtml", Model.LinkGroupViewModels)
+</div>

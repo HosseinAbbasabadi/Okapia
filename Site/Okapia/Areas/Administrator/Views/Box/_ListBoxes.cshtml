@@ -28,6 +28,9 @@
             @Html.DisplayNameFor(model => model.BoxLinkText)
           </th>
           <th>
+            @Html.DisplayNameFor(model => model.BoxProvince)
+          </th>
+          <th>
             @Html.DisplayNameFor(model => model.BoxColor)
           </th>
           <th>
@@ -47,20 +50,23 @@
                 @index
               </td>
               <td>
-                  @if (!string.IsNullOrEmpty(item.value.BoxBannerPicture))
-                  {
-                    <img src="~/BoxPhotos/Thumbs/@item.value.BoxBannerPicture"/>
-                  }
-                  else
-                  {
-                    <img src="~/defaultimage.png" with="100" height="100"/>
-                  }
+                @if (!string.IsNullOrEmpty(item.value.BoxBannerPicture))
+                {
+                  <img src="~/BoxPhotos/Thumbs/@item.value.BoxBannerPicture"/>
+                }
+                else
+                {
+                  <img src="~/defaultimage.png" with="100" height="100"/>
+                }
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.BoxTitle)
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.BoxLinkText)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.BoxProvince)
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.BoxColor)

@@ -28,13 +28,11 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label asp-for="Category" class="control-label"></label>
-                  <select class="select2" asp-for="Category">
-                    <option value="0">انتخاب گروه</option>
-                    <option value="1">دسترسی سریع</option>
-                    <option value="2">مطالب مهم</option>
+                  <label asp-for="Group" class="control-label"></label>
+                  <select asp-for="Group" asp-items="@Model.LinkGroups" class="select2">
+                    <option value="0">گروه را انتخاب کنید</option>
                   </select>
-                  <span asp-validation-for="Category" class="text-danger"></span>
+                  <span asp-validation-for="Group" class="text-danger"></span>
                 </div>
               </div>
               <div class="col-md-4">

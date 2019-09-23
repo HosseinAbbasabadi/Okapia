@@ -1,0 +1,111 @@
+﻿@using Okapia.Domain.SeachModels
+@model IEnumerable<Okapia.Domain.ViewModels.LinkGroup.LinkGroupViewModel>
+@{
+  var searchModel = ViewData["searchModel"] as LinkGroupSearchModel;
+}
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">لیست گروه بندی لینک ها</h2>
+      </div>
+      <div class="panel-body">
+        <table id="datatable" class="table table-striped table-bordered">
+          <thead>
+          <tr>
+          <th>
+            ردیف
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Name)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CreatorUsername)
+          </th>
+          <th>
+            عملیات
+          </th>
+
+          </thead>
+          <tbody>
+          @foreach (var item in Model.Select((value, index) => new {index, value}))
+          {
+            <tr>
+              <td>
+                @{
+                  var index = item.index;
+                  index += 1;
+                }
+                @index
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.Name)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.CreationDate)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.value.CreatorUsername)
+              </td>
+              <td>
+                <a class="btn btn-sm btn-info" onclick="openEditCityModal('@item.value.Id')">ویرایش</a>
+                @if (!item.value.IsDeleted)
+                {
+                  <a class="btn btn-sm btn-danger" asp-area="Administrator" asp-controller="LinkGroup" asp-action="Delete" asp-route-id="@item.value.Id">حذف</a>
+                }
+                else
+                {
+                  <a class="btn btn-sm btn-success" asp-area="Administrator" asp-controller="LinkGroup" asp-action="Activate" asp-route-id="@item.value.Id">فعال سازی</a>
+                }
+              </td>
+            </tr>
+          }
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-md-12">
+            تعداد کل رکوردها: @searchModel.RecordCount
+          </div>
+        </div>
+      </div>
+      <nav>
+        <ul class="pagination">
+          @for (var i = 0; i < searchModel.PageCount; i++)
+          {
+            var routingSearchModel = new CitySearchModel
+            {
+              Name = searchModel.Name,
+              IsDeleted = searchModel.IsDeleted,
+              PageSize = 80,
+              PageIndex = i
+            };
+            if (searchModel.PageIndex == i)
+            {
+              <li class="active">
+                @Html.ActionLink((i + 1).ToString(), "Index", "LinkGroup", routingSearchModel)
+              </li>
+            }
+            else
+            {
+              <li>
+                @Html.ActionLink((i + 1).ToString(), "Index", "LinkGroup", routingSearchModel)
+              </li>
+            }
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div id="editLinkGroupDiv">
+
+</div>
+<script>
+  function openEditLinkGroupModal(id) {
+    openModalWithData(`@Url.Action("Edit", "LinkGroup")/${id}`, 'editLinkGroupDiv', 'editLinkGroupModal');
+  }
+</script>

@@ -23,7 +23,7 @@
       @foreach (var category in Model)
       {
         <li class="li-restaurant">
-          <a href="" data-toggle="collapse" data-target="#sub-menu-8">
+          <a href="@Url.Action("مراکز-خدماتی-و-فروشگاهی", "JobView", new JobViewSearchModel() {CategoryId = category.CategoryId})" data-toggle="collapse" data-target="#sub-menu-8">
             <i>
               <i class="icon @category.Icon"></i>
             </i>
@@ -37,7 +37,7 @@
             @foreach (var child in category.CategoryChilds)
             {
               <li mj-success="successMegaMenu" class="item2">
-                <a itemprop="url" href="">
+                <a href="@Url.Action("مراکز-خدماتی-و-فروشگاهی", "JobView", new JobViewSearchModel() {CategoryId = category.CategoryId})">
                   @child.CategoryName
                 </a>
               </li>
@@ -56,14 +56,14 @@
           </i><span>۰۲۱-۴۱۰۹۶۰۰۰</span>
         </a>
       </li>
-      <li>
+      @*<li>
         <a href="page/buy-netbarg/index.html">
           <i>
             <i class="icon icon-lifebuoy">
             </i>
           </i><span>راهنمای خرید</span>
         </a>
-      </li>
+      </li>*@
     </ul>
   </div>
 </div>

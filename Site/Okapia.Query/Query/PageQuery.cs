@@ -81,7 +81,6 @@ namespace Okapia.Query.Query
                 {
                     //CommentorFullname = commentator.UserFirstName + "" + commentator.UserLastName,
                     CommentorFullname = commentator.Username,
-                    CommentTitle = c.CommentTitle,
                     CommentText = c.CommnetText,
                     CommentCreationDate = c.CommentCreationDate.ToFarsi(),
                     CommentAgreeCount = c.CommentAgreeCount,

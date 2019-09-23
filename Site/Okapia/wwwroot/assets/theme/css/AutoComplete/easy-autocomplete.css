@@ -243,10 +243,11 @@
 }
 
 .easy-autocomplete-container {
-  left: 0;
-  position: absolute;
-  width: 100%;
-  z-index: 2;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    top: 40px;
 }
 .easy-autocomplete-container ul {
   background: none repeat scroll 0 0 #ffffff;

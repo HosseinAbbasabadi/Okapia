@@ -229,6 +229,7 @@ namespace Okapia.Application.Applications
                 JobName = command.JobName,
                 JobSmallDescription = command.JobSmallDescription,
                 JobFeatures = command.JobFeatures,
+                JobUsageCondition = command.JobUsageCondition,
                 JobDescription = command.Content,
                 JobContactTitile = command.JobContactTitile,
                 JobManagerFirstName = command.JobManagerFirstName,
@@ -271,8 +272,8 @@ namespace Okapia.Application.Applications
                 WebSiteUrl = command.WebsiteUrl,
                 InstagramUrl = command.InstagramUrl,
                 TelegramUrl = command.TelegramUrl,
-                IsStared = command.IsStared,
-                JobPrice = command.JobPrice
+                JobPrice = command.JobPrice,
+                JobDiscountPrice = command.JobDiscountPrice
             };
             return job;
         }
@@ -284,6 +285,7 @@ namespace Okapia.Application.Applications
                 JobName = command.JobName,
                 JobSmallDescription = command.JobSmallDescription,
                 JobFeatures = command.JobFeatures,
+                JobUsageCondition = command.JobUsageCondition,
                 JobDescription = command.Content,
                 JobContactTitile = command.JobContactTitile,
                 JobManagerFirstName = command.JobManagerFirstName,
@@ -328,8 +330,8 @@ namespace Okapia.Application.Applications
                 TelegramUrl = command.TelegramUrl,
                 JobId = command.JobId,
                 JobRemoved301InsteadUrl = command.RedirectInstead301Url,
-                IsStared = command.IsStared,
-                JobPrice = command.JobPrice
+                JobPrice = command.JobPrice,
+                JobDiscountPrice = command.JobDiscountPrice
             };
             return job;
         }
@@ -448,14 +450,29 @@ namespace Okapia.Application.Applications
             }
         }
 
+        public List<JobViewModel> GetActiveJobs()
+        {
+            return _jobRepository.GetActiveJobs();
+        }
+
+        public List<JobSearchResultViewModel> Search(string phrase, string province)
+        {
+            return _jobQuery.Search(phrase, province);
+        }
+
+        public List<JobItemViewModel> SearchResult(string phrase, string province)
+        {
+            return _jobQuery.SearchResult(phrase, province);
+        }
+
         public JobViewDetailsViewModel GetJobViewDetails(string slug)
         {
             return _jobQuery.GetJobViewDetails(slug);
         }
 
-        public List<JobStaredViewModel> GetStaredJobsForLandingPage()
+        public List<JobItemViewModel> GetJobsByCategoryId(int categoryId)
         {
-            return _jobQuery.GetStaredJobs();
+            return _jobQuery.GetJobsByCatgoryId(categoryId);
         }
 
         public List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel)

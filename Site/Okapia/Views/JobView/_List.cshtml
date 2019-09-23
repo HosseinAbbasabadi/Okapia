@@ -1,40 +1,169 @@
-﻿@model IEnumerable<Okapia.Domain.ViewModels.Job.JobItemViewModel>
+﻿@using Okapia.Domain.SeachModels
+@model Okapia.Domain.ViewModels.Category.CategoryViewDetailsViewModel
 
-<div class="row">
-  @foreach (var jobItemViewModel in Model)
-  {
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 wow fadeInUp" data-wow-delay="0.4s">
-      <div class="single-team" data-discount="@jobItemViewModel.BenefitPercentForEndCustomer%">
-        <div class="single-team-img">
-          <img src="~/JobPhotos/Thumbs/@jobItemViewModel.JobPicture" alt="@jobItemViewModel.JobPictureAlt">
-        </div>
-        <div class="team-meta">
-          <div class="row">
-            <div class="col-md-12">
-              <h3>@jobItemViewModel.JobName</h3>
-            </div>
-            <div class="col-md-6">
-              <span class="text-success">@jobItemViewModel.JobPrice</span>
-            </div>
-            <div class="col-md-6">
-              <h5>@jobItemViewModel.City</h5>
-            </div>
-          </div>
-        </div>
-        <div class="clearfix">
-          <div class="starRating">
-            <div class="wrapper">
-              @*<div class="star-rating">
-                <i></i>
-                <span style="width: 100%">
-                  <span></span>
+
+
+
+      <div class="col-lg-22 col-md-22 col-sm-24 col-xs-24 padd-0-xs clearfix">
+        <article class="cat-deal-color main-cat clearfix"></article>
+        <article class="cat-deal-color main-cat clearfix">
+          <header class="section-header today-netbarg" style="border-color: @Model.CategoryColor">
+            <h3 class="hx">
+              <span class="icon @Model.CategoryIcon" style="color: @Model.CategoryColor"></span>
+              <span class="article-h3">
+                @Model.CatgoryName
+              </span>
+            </h3>
+          </header>
+          <div class="row cat-filter-box">
+            <div class="col-lg-24 col-md-24 cat-filter">
+              <div class="owl-carousel slide3">
+                <div class="item">
+                  <div class="slide_item">
+                    <input id="cfilter8" class="filter-restaurant" type="radio" value="restaurant" name="cat_filter" checked="checked">
+                    <label for="cfilter8" class="nb-btn nb-btn-sm name label-cat-filter" onclick="feedList('@Url.Action("GetJobsByCategoryId", "JobView", new {id = Model.CategoryId, color = Model.CategoryColor})', 'jobsForSpecificCategory')" style="background-color: @Model.CategoryColor !important; border-color: @Model.CategoryColor !important">
+                      همه
+                    </label>
+                  </div>
+                </div>
+                @foreach (var child in Model.Children)
+                {
+                  <div class="item">
+                    <div class="slide_item">
+                      <input id="cfilter8" class="filter-restaurant" type="radio" value="restaurant" name="cat_filter">
+                      <label for="cfilter8" class="nb-btn nb-btn-sm name label-cat-filter" onclick="feedList('@Url.Action("GetJobsByCategoryId", "JobView", new {id = child.CategoryId, color = Model.CategoryColor})', 'jobsForSpecificCategory')">@child.CatgoryName</label>
+                    </div>
+                  </div>
+                }
+              </div>
+              <div data-target=".slide3" class="owl_btns">
+                <span class="arrow right prev">
+                  <i class="icon-arrow-right icon"></i>
                 </span>
-              </div>*@
+                <span class="arrow left next">
+                  <i class="icon-arrow-left icon"> </i>
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-        <a asp-action="Details" asp-controller="JobView" asp-route-id="@jobItemViewModel.JobSlug" class="bttn-small btn-fill">اطلاعات بیشتر</a>
+
+          <section class="">
+            <div class="main-cat-deal-thumbnail clearfix main-row" id="jobsForSpecificCategory">
+              @foreach (var jobItem in Model.JobItems)
+              {
+                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-24 cds-item ">
+                  <div class="cat-deal-smallbox">
+                    <div class="cat-deal-box">
+                      <a href="@Url.Action("Details", "JobView", new {id = jobItem.JobSlug})" class="figure">
+                        <ul class="deal-tag list-unstyled">
+                          @*<li class="violet-label"></li>*@
+                        </ul>
+                        <div class="overlay">
+                          <div class="nb-btn nb-btn-success">مشاهده جزییات</div>
+                        </div>
+                        <img src="~/JobPhotos/@jobItem.JobPicture" alt="@jobItem.JobPictureAlt" title="@jobItem.JobPictureTitle" data-type="lazy" shema="1" itemprop="image">
+                      </a>
+                      <div class="cat-deal-box-main clearfix">
+                        <h4 itemprop="name" class="cdbm-title">
+                          <a href="@Url.Action("Details", "JobView", new {id = jobItem.JobSlug})" class="truncate">
+                            @jobItem.JobName</a>
+                        </h4>
+                        @*<span class="cdbm-total-buy">
+                    <span class="ir">
+                      <i class="icon icon-shopping-cart hidden-xs"></i>
+                      <i class="icon icon-shopping-cart_L visible-xs"></i>
+                    </span>
+                    <span class="cdbm-tb-total">
+                      11
+                    </span>
+                  </span>*@
+                      </div>
+                      <div class="cat-deal-box-footer clearfix">
+                        <a asp-controller="Home" asp-action="Index" asp-route-pn="@jobItem.Province" class="cdbf-location truncate">
+                          <span class="ir">
+                            <i class="icon icon-location74"></i>
+                          </span><span class="cdbfl-address">@jobItem.City</span>
+                        </a>
+                        <span class="cdbf-takhfif">
+                          <span class="cdbft-shape">
+                            <span class="cdbft-shape-text" style="background-color: @Model.CategoryColor !important">%@jobItem.BenefitPercentForEndCustomer</span>
+                          </span>
+                        </span>
+                        <span class="cdbf-price">
+                          <del class="cdbf-real-price">
+                            <span>@jobItem.JobPrice</span>
+                          </del>
+                          <ins class="cdbf-netbarg-price">
+                            <span itemprop="price"
+                                  content="@jobItem.JobDiscountPrice">
+                              @jobItem.JobDiscountPrice
+                            </span><span itemprop="priceCurrency" content="IRR">تومان</span>
+                          </ins>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </section>
+
+          @*<section class="tags clearfix">
+  <header class="section-header">
+    <h3 class="hx">
+      <span class="icon icon-tag_netbarg-2"></span><span class="article-h3">برچسب های مرتبط</span>
+    </h3>
+  </header>
+  <ul class="clearfix">
+    <li>
+      <a href="/trend/فینگرفود/"
+         class="inh">
+        <span>فینگرفود</span>
+      </a>
+    </li>
+    <li>
+      <a href="/trend/برگر/"
+         class="inh">
+        <span>برگر</span>
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section class="description clearfix">
+  <header class="section-header">
+    <h3 class="hx">
+      <span class="icon icon-menu-food"></span><span class="article-h3">توضیحات</span>
+    </h3>
+  </header>
+  <div class="box-body clearfix">
+    بهترین
+    <a href="/trend/رستوران/">
+      <a href="/trend/رستوران/">رستوران</a>
+    </a> های تهران، اصفهان، مشهد و کرج را برای شما آماده کرده ایم. برای رفتن به بهترین و لوکس ترین
+    <a href="/trend/کافی-شاپ/">
+      <a href="/trend/کافی-شاپ/">کافی شاپ</a>
+    </a> ها و
+    <a href="/trend/رستوران/">
+      <a href="/trend/رستوران/">رستوران</a>
+    </a> ها نیازی به هزینه زیاد نیست. تخفیف های
+    <a href="/trend/رستوران/">
+      <a href="/trend/رستوران/">رستوران</a>
+    </a> های ایرانی،
+    <a href="/trend/رستوران-ایتالیایی/">
+      <a href="/trend/رستوران-ایتالیایی/"><a href="/trend/رستوران/">رستوران</a> ایتالیایی</a>
+    </a>،
+    <a href="/trend/رستوران/">
+      <a href="/trend/رستوران/">رستوران</a>
+    </a> های سنتی،
+    <a href="/trend/کافه/">
+      <a href="/trend/کافه/">کافه</a>
+    </a> ها و
+    <a href="/trend/کافی-شاپ/">
+      <a href="/trend/کافی-شاپ/">کافی شاپ</a>
+    </a> های شهر را از دست ندهید!
+  </div>
+</section>*@
+
+        </article>
       </div>
-    </div>
-  }
-</div>

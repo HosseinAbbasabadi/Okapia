@@ -22,7 +22,6 @@ namespace Okapia.Repository.Repositories
                     CommentId = comment.CommentId,
                     CommentIsConfirmed = comment.CommentIsConfirmed,
                     CommentIsDeleted = comment.CommentIsDeleted,
-                    CommentTitle = comment.CommentTitle,
                     CommentOwner = comment.CommentOwner,
                     CommentAgreeCount = comment.CommentAgreeCount,
                     CommentDisagreeCount = comment.CommentDisagreeCount,
@@ -31,9 +30,6 @@ namespace Okapia.Repository.Repositories
                     CommentatorUsername = account.Username,
                     CommentText = comment.CommnetText
                 }));
-
-            if (!string.IsNullOrEmpty(searchModel.CommentTitle))
-                query = query.Where(x => x.CommentTitle.Contains(searchModel.CommentTitle));
 
             if (searchModel.CommentOwner == "Job")
                 query = query.Where(x => x.CommentOwner == "Job");

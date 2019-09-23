@@ -1,0 +1,60 @@
+﻿@model List<Okapia.Domain.ViewModels.Job.JobItemViewModel>
+
+@foreach (var jobItem in Model)
+{
+  <div class="col-lg-8 col-md-12 col-sm-12 col-xs-24 cds-item ">
+    <div class="cat-deal-smallbox">
+      <div class="cat-deal-box">
+        <a href="" class="figure">
+          <ul class="deal-tag list-unstyled">
+            @*<li class="violet-label"></li>*@
+          </ul>
+          <div class="overlay">
+            <div class="nb-btn nb-btn-success">مشاهده جزییات</div>
+          </div>
+          <img src="~/JobPhotos/@jobItem.JobPicture" alt="@jobItem.JobPictureAlt" title="@jobItem.JobPictureTitle" data-type="lazy" shema="1" itemprop="image">
+        </a>
+        <div class="cat-deal-box-main clearfix">
+          <h4 itemprop="name" class="cdbm-title">
+            <a itemprop="url"
+               href="" class="truncate">
+              @jobItem.JobName
+            </a>
+          </h4>
+          <span class="cdbm-total-buy">
+            <span class="ir">
+              <i class="icon icon-shopping-cart hidden-xs"></i>
+              <i class="icon icon-shopping-cart_L visible-xs"></i>
+            </span>
+            <span class="cdbm-tb-total">
+              11
+            </span>
+          </span>
+        </div>
+        <div class="cat-deal-box-footer clearfix">
+          <a href="" class="cdbf-location truncate">
+            <span class="ir">
+              <i class="icon icon-location74"></i>
+            </span><span class="cdbfl-address">@jobItem.City</span>
+          </a>
+          <span class="cdbf-takhfif">
+            <span class="cdbft-shape">
+              <span class="cdbft-shape-text" style="background-color: @ViewData["Color"] !important">%@jobItem.BenefitPercentForEndCustomer</span>
+            </span>
+          </span>
+          <span class="cdbf-price">
+            <del class="cdbf-real-price">
+              <span>۳۵,۰۰۰</span>
+            </del>
+            <ins class="cdbf-netbarg-price">
+              <span itemprop="price"
+                    content="175000">
+                ۱۷,۵۰۰
+              </span><span itemprop="priceCurrency" content="IRR">تومان</span>
+            </ins>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+}

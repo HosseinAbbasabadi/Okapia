@@ -12,9 +12,9 @@ namespace Okapia.ViewComponents
             _slideApplication = slideApplication;
         }
         
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(string pn)
         {
-            var slideShow = _slideApplication.GetSlideShow();
+            var slideShow = _slideApplication.GetSlideShow(pn);
             return View("_SlideShow", slideShow);
         }
     }

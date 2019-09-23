@@ -1,7 +1,13 @@
 ﻿@inject IAuthHelper _AuthHelper
+@using Microsoft.AspNetCore.WebUtilities
 @using Okapia.Application.Contracts
 @using Okapia.Areas.Administrator.Controllers
 @{
+  var provinceName = Context.Request.Query["pn"].ToString();
+  if (provinceName == "")
+  {
+    provinceName = "البرز";
+  }
 }
 <!DOCTYPE html>
 <html>
@@ -73,8 +79,8 @@
           </i>
         </div>
         <div class="col-md-6 col-xs-8 col-logo ">
-          <a asp-controller="Home" asp-action="Index" class="logo">
-            <img src="~/assets/theme/img/okapia.png" class="img-responsive" alt=" نت برگ">
+          <a asp-controller="Home" asp-action="Index" asp-route-pn="@provinceName" class="logo">
+            <img src="~/assets/theme/img/okapia.png" class="img-responsive" alt=" اُکاپیا">
           </a>
         </div>
         <div class="btn-col hidden-lg hidden-md col-xs-8">
@@ -84,12 +90,12 @@
           </i>
         </div>
         <div class="col-md-10 col-xs-24 hidden-sm hidden-xs toggle-hidden">
-          <form id="search-form" method="get" class="search" action="http://netbarg.com/tehran/search/">
+          <form id="search-form" class="search" method="get" asp-action="SearchResult" asp-controller="JobView">
             <div style="overflow: visible" class="search-form-box input-btn site-search">
               <i class="icon icon-arrow-back search-close hidden">
               </i>
-              <input name="q" id="search-box" type="text"
-                     placeholder="جستجو (رستوران، مکان ورزشی، کالا، ...)">
+              <input name="q" id="search-box" type="text" placeholder="جستجو (رستوران، مکان ورزشی، کالا، ...)">
+              <input type="hidden" name="pn" value="@provinceName" />
               <button class="btn btn-warning btn-type-1">جستجو</button>
               <i id="closeSearchResult" class="icon icon-close search-clean hidden"></i>
             </div>
@@ -107,22 +113,24 @@
           <div class="col-md-1 hidden-sm hidden-xs"></div>
           <div class="col-lg-3 col-md-4 hidden-sm hidden-xs">
             <div class="clearfix">
-              <a asp-controller="Home" asp-action="Index" class="home-link">
+              <a asp-controller="Home" asp-action="Index" asp-route-pn="@provinceName" class="home-link">
                 <i class="icon icon-home"></i>
               </a>
             </div>
           </div>
           <div class="col-lg-13 col-md-11 clearfix mobile">
             <div class="dropdown dropdown-1">
-              <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle selected-city" city-id="42546">
-                تهران
+              <button province-name="@provinceName" type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle selected-city">
+                @provinceName
                 <span class="inline-block icon icon-arrow-down"></span>
               </button>
               <ul class="dropdown-menu">
                 @foreach (var province in Provinces.ToList().Where(x => x.Id != 0).OrderBy(x => x.Name))
                 {
+                  var url = Url.Action("Index", "Home", new {area = ""});
+                  var query = QueryHelpers.AddQueryString(url, "pn", province.Name);
                   <li>
-                    <a href="ardebil/index.html">
+                    <a href="@query">
                       <span class="pull-right">@province.Name</span>
                       <span class="badge"></span>
                     </a>
@@ -199,86 +207,19 @@
 </header>
 
 <main>
-  @RenderBody()
+  <div class="page-index page-home">
+
+    @RenderBody()
+
+  </div>
 </main>
 
 <footer>
-  
+
   @await Component.InvokeAsync("FooterBoxes")
 
-  <div class="row-footer-menu">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-1 hidden-sm hidden-xs"></div>
-        <div class="col-md-22">
-          <div class="row">
+  @await Component.InvokeAsync("FooterLinks")
 
-            <ul class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-              <li>نت&zwnj;برگ</li>
-              <li>
-                <a href="page/about/index.html">درباره نت&zwnj;برگ</a>
-              </li>
-              <li>
-                <a href="page/term-and-conditions/index.html">قوانین و مقررات</a>
-              </li>
-              <li>
-                <a href="page/privacy-policy/index.html">حریم خصوصی</a>
-              </li>
-              <li>
-                <a href="page/press/index.html">نت&zwnj;برگ در اخبار</a>
-              </li>
-            </ul>
-            <ul class="col-lg-4 col-md-6 col-sm-6 col-xs-12 nth-2">
-              <li>ارتباط با ما</li>
-              <li>
-                <a href="contactus/index.html">تماس با ما</a>
-              </li>
-              <li>
-                <a href="landing/ImbcoWorkable/index.html">همکاری با ما</a>
-              </li>
-              <li>
-                <a href="page/netbarg-agents/index.html">دریافت نمایندگی</a>
-              </li>
-              <li>
-                <a href="page/netbarg-for-your-biz/index.html">نت&zwnj;برگ برای کسب و کار شما</a>
-              </li>
-            </ul>
-            <ul class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-              <li>بیشتر بدانید</li>
-              <li>
-                <a href="corp/index.html">نت&zwnj;برگ سازمانی</a>
-              </li>
-              <li>
-                <a href="page/buy-netbarg/index.html">راهنمای خرید</a>
-              </li>
-              <li>
-                <a href="page/online-payment/index.html">راهنمای پرداخت</a>
-              </li>
-              <li>
-                <a href="page/learn/index.html">نت برگ چگونه کار می‌کند</a>
-              </li>
-              <li>
-                <a href="page/faq/index.html">سوالات متداول</a>
-              </li>
-            </ul>
-            <ul class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-              <li>سایر خدمات</li>
-              <li>
-                <a href="trends/index.html">نت&zwnj;برگ های در جریان</a>
-              </li>
-              <li>
-                <a href="areas/index.html">نت&zwnj;برگ های مناطق</a>
-              </li>
-              <li>
-                <a href="merchants/index.html">نت&zwnj;برگ های کسب و کار</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-1 hidden-sm hidden-xs"></div>
-      </div>
-    </div>
-  </div>
   @await Component.InvokeAsync("FooterAbout")
 
 </footer>
@@ -308,10 +249,11 @@
 <script src="~/assets/theme/js/AutoComplete/jquery.easy-autocomplete.js?v=1.0.5"></script>
 <script src="~/assets/theme/js/elastic.js"></script>
 <script src="~/assets/theme/js/swiper.min.js"></script>
+<script src="~/js/ajaxFunctions.js"></script>
 
 @*<script src="~/assets/theme/js/site.min.js"></script>*@
 
-<script>
+@*<script>
   jQuery(document).ready(function() {
     $.get('@Url.Action("GetModals", "Home")',
       {},
@@ -322,7 +264,7 @@
         }
       });
   });
-</script>
+</script>*@
 <script>
   var swiper = new Swiper('.swiper-container',
     {
@@ -333,7 +275,7 @@
       loopFillGroupWithBlank: true,
       pagination: {
         el: '.swiper-pagination',
-        clickable: true,
+        clickable: true
       },
       navigation: {
         nextEl: '.swiper-button-next',

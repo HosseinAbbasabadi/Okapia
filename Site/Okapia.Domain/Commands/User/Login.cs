@@ -12,5 +12,7 @@ namespace Okapia.Domain.Commands.User
         [Display(Name = "کلمه رمز")]
         [Required(ErrorMessage = ValidationMessages.Required)]
         public string Password { get; set; }
+
+        public string RedirectUrl { get; set; }
     }
 }

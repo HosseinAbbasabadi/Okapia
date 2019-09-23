@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Okapia.Domain.Commands.Box;
@@ -34,6 +33,7 @@ namespace Okapia.Repository.Repositories
                 BoxLinkBtnText = x.BoxLinkBtnText,
                 BoxLinkText = x.BoxLinkText,
                 BoxIsEnabled = x.BoxIsEnabled,
+                BoxProvinceId = x.BoxProvinceId,
                 BoxJobs = x.BoxJobs.ToList()
             }).FirstOrDefault(x => x.BoxId == id);
             var jobs = MapBoxJobs(box);
@@ -68,18 +68,22 @@ namespace Okapia.Repository.Repositories
 
         public List<BoxViewModel> Search(BoxSearchModel searchModel, out int recordCount)
         {
-            var query = _context.Boxes.Select(x => new BoxViewModel
+            var query = _context.Boxes.Join(_context.Provinces, box => box.BoxProvinceId, province => province.Id, (box, province) => new BoxViewModel
             {
-                BoxId = x.BoxId,
-                BoxColor = x.BoxColor,
-                BoxTitle = x.BoxTitle,
-                BoxLinkText = x.BoxLinkText,
-                BoxIsEnabled = x.BoxIsEnabled,
-                BoxBannerPicture = x.BoxBannerPicture
+                BoxId = box.BoxId,
+                BoxColor = box.BoxColor,
+                BoxTitle = box.BoxTitle,
+                BoxLinkText = box.BoxLinkText,
+                BoxIsEnabled = box.BoxIsEnabled,
+                BoxBannerPicture = box.BoxBannerPicture,
+                BoxProvinceId = box.BoxProvinceId,
+                BoxProvince = province.Name
             });
 
             if (!string.IsNullOrEmpty(searchModel.BoxTitle))
                 query = query.Where(x => x.BoxTitle == searchModel.BoxTitle);
+            if (searchModel.BoxProvinceId != 0)
+                query = query.Where(x => x.BoxProvinceId == searchModel.BoxProvinceId);
             query = query.Where(x => x.BoxIsEnabled != searchModel.BoxIsEnabled);
 
             recordCount = query.Count();

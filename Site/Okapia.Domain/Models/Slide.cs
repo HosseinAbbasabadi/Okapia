@@ -9,12 +9,9 @@ namespace Okapia.Domain.Models
         public string SlideAlt { get; set; }
         public string SlideTitle { get; set; }
         public string SlideDescription { get; set; }
-        public string SlideTitleText { get; set; }
-        public string SlideDescriptionText { get; set; }
         public string SlideLink { get; set; }
-        public string SlideBtnText { get; set; }
-        public bool SlideBtnIsVisible { get; set; }
         public DateTime SlideCreationDate { get; set; }
         public bool SlideIsDeleted { get; set; }
+        public int SlideProvinceId { get; set; }
     }
 }

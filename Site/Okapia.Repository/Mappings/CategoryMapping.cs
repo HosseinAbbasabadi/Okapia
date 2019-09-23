@@ -37,6 +37,9 @@ namespace Okapia.Repository.Mappings
 
             builder.HasOne(x => x.Parent).WithMany(x => x.Childs).HasForeignKey(x => x.CategoryParentId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.Jobs).WithOne(x => x.Category).HasForeignKey(x => x.JobCategory)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

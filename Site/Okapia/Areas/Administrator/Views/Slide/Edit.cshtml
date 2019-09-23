@@ -4,26 +4,12 @@
   ViewData["Title"] = "ویرایش اسلاید";
 }
 
-<h1>ویرایش اسلاید - @Model.SlideTitleText</h1>
+<h1>ویرایش اسلاید</h1>
 <hr/>
 <div class="row">
   <div class="col-md-12">
     <form method="post" id="editSlideFrm">
       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="SlideTitleText" class="control-label"></label>
-          <input asp-for="SlideTitleText" class="form-control" />
-          <span asp-validation-for="SlideTitleText" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="SlideDescriptionText" class="control-label"></label>
-          <input asp-for="SlideDescriptionText" class="form-control" />
-          <span asp-validation-for="SlideDescriptionText" class="text-danger"></span>
-        </div>
-      </div>
       <div class="col-md-4">
         <div class="form-group">
           <label asp-for="SlideLink" class="control-label"></label>
@@ -33,23 +19,17 @@
       </div>
       <div class="col-md-4">
         <div class="form-group">
+          <label asp-for="SlideProvinceId" class="control-label"></label>
+          <select asp-for="SlideProvinceId" asp-items="@Model.Provinces" class="select2">
+          </select>
+          <span asp-validation-for="SlideProvinceId" class="text-danger"></span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
           <label asp-for="SlideIsDeleted" class="control-label"></label>
           <input asp-for="SlideIsDeleted" class="form-control" />
           <span asp-validation-for="SlideIsDeleted" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="SlideBtnText" class="control-label"></label>
-          <input asp-for="SlideBtnText" class="form-control direct-ltr" />
-          <span asp-validation-for="SlideBtnText" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="SlideBtnIsVisible" class="control-label"></label>
-          <input asp-for="SlideBtnIsVisible" class="form-control direct-ltr" />
-          <span asp-validation-for="SlideBtnIsVisible" class="text-danger"></span>
         </div>
       </div>
       <table class="col-md-12 table table-bordered text-center">

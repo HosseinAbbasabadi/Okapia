@@ -41,7 +41,7 @@ namespace Okapia.Application.Applications
                     LinkLabel = command.Label,
                     LinkTarget = command.Target,
                     LinkCreationDate = DateTime.Now,
-                    LinkCategory = command.Category,
+                    LinkGroupId = command.Group,
                     LinkIsDeleted = false
                 };
 
@@ -74,7 +74,7 @@ namespace Okapia.Application.Applications
                 link.LinkLabel = command.Label;
                 link.LinkTarget = command.Target;
                 link.LinkIsDeleted = command.IsDeleted;
-                link.LinkCategory = command.Category;
+                link.LinkGroupId = command.Group;
                 _linkRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;

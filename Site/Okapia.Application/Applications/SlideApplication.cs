@@ -30,15 +30,12 @@ namespace Okapia.Application.Applications
             {
                 var slide = new Slide
                 {
-                    SlideTitleText = command.SlideTitleText,
-                    SlideDescriptionText = command.SlideDescriptionText,
                     SlideLink = command.SlideLink,
                     SlideName = command.NameImage,
                     SlideTitle = command.TitleImage,
                     SlideAlt = command.AltImage,
                     SlideDescription = command.DescImage,
-                    SlideBtnIsVisible = command.SlideBtnIsVisible,
-                    SlideBtnText = command.SlideBtnText,
+                    SlideProvinceId = command.SlideProvinceId,
                     SlideIsDeleted = false,
                     SlideCreationDate = DateTime.Now
                 };
@@ -69,16 +66,13 @@ namespace Okapia.Application.Applications
                 }
 
                 var slide = _slideRepository.Get(command.SlideId);
-                slide.SlideTitleText = command.SlideTitleText;
-                slide.SlideDescriptionText = command.SlideDescriptionText;
                 slide.SlideIsDeleted = command.SlideIsDeleted;
                 slide.SlideLink = command.SlideLink;
                 slide.SlideName = command.NameImage;
                 slide.SlideTitle = command.TitleImage;
                 slide.SlideAlt = command.AltImage;
                 slide.SlideDescription = command.DescImage;
-                slide.SlideBtnIsVisible = command.SlideBtnIsVisible;
-                slide.SlideBtnText = command.SlideBtnText;
+                slide.SlideProvinceId = command.SlideProvinceId;
                 _slideRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -159,9 +153,9 @@ namespace Okapia.Application.Applications
             return _slideRepository.Search(searchModel, out recordCount);
         }
 
-        public List<SliderViewModel> GetSlideShow()
+        public List<SliderViewModel> GetSlideShow(string province)
         {
-            return _slideQuery.GetSlideShow();
+            return _slideQuery.GetSlideShow(province);
         }
     }
 }

@@ -20,9 +20,6 @@ namespace Okapia.Domain.SeachModels
         [Display(Name = "جستجو در حذف شده ها")]
         public bool IsDeleted { get; set; }
 
-        [Display(Name = "جستجو در آیتم های صفحه اصلی")]
-        public bool IsStared { get; set; }
-
         public SelectList Proviences { get; set; }
         public SelectList Categories { get; set; }
     }

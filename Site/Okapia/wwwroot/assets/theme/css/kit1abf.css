@@ -6748,17 +6748,17 @@ header .header {
           header .header .site-search ul li:last-child div a span {
             color: #ff8f00; }
     header .header .site-search.open .easy-autocomplete-container {
-      border: 1px solid gainsboro;
-      margin: -1px -1px 0;
-      width: calc(100% + 2px);
-      padding-top: 20px;
-      margin-top: -20px;
-      border-top: 0;
-      -webkit-border-radius: 0 0 20px 20px;
-      -moz-border-radius: 0 0 20px 20px;
-      border-radius: 0 0 20px 20px;
-      overflow: hidden;
-      z-index: 4; }
+        border: 1px solid gainsboro;
+        margin: -1px -1px 0;
+        margin-top: -20px;
+        border-top: 0;
+        -webkit-border-radius: 0 0 20px 20px;
+        -moz-border-radius: 0 0 20px 20px;
+        border-radius: 0 0 20px 20px;
+        overflow: hidden;
+        z-index: 4;
+        width: calc(100% + 2px);
+        padding-top: 20px; }
     header .header .site-search > .easy-autocomplete {
       position: absolute;
       top: 0;

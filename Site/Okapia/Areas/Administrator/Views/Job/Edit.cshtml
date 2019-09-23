@@ -26,13 +26,20 @@
         <span asp-validation-for="JobSmallDescription" class="text-danger"></span>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="form-group">
-        <label asp-for="JobFeatures" class="control-label"></label>
-        <textarea asp-for="JobFeatures" class="form-control"></textarea>
-        <span asp-validation-for="JobFeatures" class="text-danger"></span>
-      </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label asp-for="JobFeatures" class="control-label"></label>
+      <textarea asp-for="JobFeatures" class="form-control"></textarea>
+      <span asp-validation-for="JobFeatures" class="text-danger"></span>
     </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label asp-for="JobUsageCondition" class="control-label"></label>
+      <textarea asp-for="JobUsageCondition" class="form-control"></textarea>
+      <span asp-validation-for="JobUsageCondition" class="text-danger"></span>
+    </div>
+  </div>
     <div class="col-md-12">
       <div class="form-group">
         <label asp-for="Content" class="control-label"></label>
@@ -59,6 +66,13 @@
       <label asp-for="JobPrice" class="control-label"></label>
       <input asp-for="JobPrice" class="form-control"/>
       <span asp-validation-for="JobPrice" class="text-danger"></span>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label asp-for="JobDiscountPrice" class="control-label"></label>
+      <input asp-for="JobDiscountPrice" class="form-control"/>
+      <span asp-validation-for="JobDiscountPrice" class="text-danger"></span>
     </div>
   </div>
     <div class="col-md-4">
@@ -288,13 +302,6 @@
         <label asp-for="CustomerIntroductionLimit" class="control-label"></label>
         <input asp-for="CustomerIntroductionLimit" class="form-control direct-ltr" value="2000" />
         <span asp-validation-for="CustomerIntroductionLimit" class="text-danger"></span>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div class="form-group form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" asp-for="IsStared" /> @Html.DisplayNameFor(model => model.IsStared)
-        </label>
       </div>
     </div>
     <div class="col-md-12">

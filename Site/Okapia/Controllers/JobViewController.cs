@@ -1,60 +1,56 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Areas.Administrator.Controllers;
 using Okapia.Domain.Commands.Comment;
 using Okapia.Domain.SeachModels;
-using Okapia.Domain.ViewModels.Category;
+using Okapia.Domain.ViewModels.Job;
 using Okapia.Models;
 
 namespace Okapia.Controllers
 {
-    [ResponseCache(CacheProfileName = "Default")]
+    //[ResponseCache(CacheProfileName = "Default")]
     public class JobViewController : Controller
     {
         private readonly IJobApplication _jobApplication;
         private readonly ICommentApplication _commentApplication;
         private readonly ICategoryApplication _categoryApplication;
+        private readonly IHostingEnvironment _environment;
 
         public JobViewController(IJobApplication jobApplication, ICityApplication cityApplication,
-            ICommentApplication commentApplication, ICategoryApplication categoryApplication)
+            ICommentApplication commentApplication, ICategoryApplication categoryApplication,
+            IHostingEnvironment environment)
         {
             _jobApplication = jobApplication;
             _commentApplication = commentApplication;
             _categoryApplication = categoryApplication;
+            _environment = environment;
         }
 
         [ActionName("مراکز-خدماتی-و-فروشگاهی")]
         public ActionResult Index(JobViewSearchModel searchModel)
         {
-            var jobs = _jobApplication.GetJobsForCategoryView(searchModel);
             searchModel.Categories =
                 new SelectList(_categoryApplication.GetCategoriesForSearch(), "CategoryId", "CategoryName");
             searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
-            var currentCategory = _categoryApplication.GetCategoryViewDetails(searchModel.CategoryId);
-            if (currentCategory == null)
-            {
-                currentCategory = new CategoryViewDetailsViewModel
-                {
-                    CategorySlug = "",
-                    CategoryMetaTag = "مراکز خدماتی و فروشگاهی, اُکاپیا",
-                    CategoryCanonicalAddress = "http://www.okapia.ir/JobView/مراکز-خدماتی-و-فروشگاهی",
-                    CategoryMetaDesccription = "صفحه معرفی مراکز خدماتی و فروشگاهی شرکت اُکاپیا",
-                    CategoryPageTittle = "مراکز خدماتی و فروشگاهی شرکت اُکاپیا",
-                    CategorySeohead = "مراکز خدماتی و فروشگاهی شرکت اُکاپیا",
-                };
-            }
+            var category = _categoryApplication.GetCategoryViewDetails(searchModel.CategoryId);
             var jobIndex = new JobViewIndexViewModel
             {
                 JobViewSearchModel = searchModel,
-                JobItemViewModels = jobs,
-                CategoryViewDetailsViewModel = currentCategory
+                CategoryViewDetailsViewModel = category
             };
 
             return View("Index", jobIndex);
         }
 
-        // GET: Job/Details/5
+        public ActionResult GetJobsByCategoryId(int id, string color)
+        {
+            var jobs = _jobApplication.GetJobsByCategoryId(id);
+            ViewData["Color"] = color;
+            return PartialView("_Jobs", jobs);
+        }
+
         public ActionResult Details(string id)
         {
             var jobDetails = _jobApplication.GetJobViewDetails(id);
@@ -74,6 +70,31 @@ namespace Okapia.Controllers
                 return RedirectToAction("Details", new {id = command.CommentOwnerRecordSlug});
             ViewData["errorMessage"] = result.Message;
             return RedirectToAction("Details", new {id = command.CommentOwnerRecordSlug});
+        }
+
+        [HttpPost]
+        public JsonResult Search(string phrase, string province)
+        {
+            var jobs = _jobApplication.Search(phrase, province);
+            jobs.ForEach(job =>
+            {
+                job.JobUrl = Url.Action("Details", "JobView", new {id = job.JobSlug});
+                job.JobPictureUrl = _environment.WebRootPath + "/JobPhotos/Thumbs/" + job.JobPicture;
+            });
+
+            jobs.Add(new JobSearchResultViewModel
+            {
+                JobName = "بیشتر",
+                JobUrl = Url.Action("SearchResult", "JobView", new {q = phrase, pn = province})
+            });
+            return Json(jobs);
+        }
+
+        public ActionResult SearchResult(string q, string pn)
+        {
+            var jobs = _jobApplication.SearchResult(q, pn);
+            ViewData["Phrase"] = q;
+            return View(jobs);
         }
     }
 }

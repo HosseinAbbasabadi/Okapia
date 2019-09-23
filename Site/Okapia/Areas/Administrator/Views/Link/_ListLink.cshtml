@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.Target)
           </th>
           <th>
-            @Html.DisplayNameFor(model => model.Category)
+            @Html.DisplayNameFor(model => model.Group)
           </th>
           <th>
             @Html.DisplayNameFor(model => model.CreationDate)
@@ -52,14 +52,7 @@
                 @Html.DisplayFor(modelItem => item.value.Target)
               </td>
               <td>
-                @if (item.value.Category == 1)
-                {
-                  <span>دسترسی سریع</span>
-                }
-                else
-                {
-                  <span>مطالب مهم</span>
-                }
+                @Html.DisplayFor(modelItem => item.value.Group)
               </td>
               <td>
                 @Html.DisplayFor(modelItem => item.value.CreationDate)
@@ -92,7 +85,7 @@
             var routingSearchModel = new LinkSearchModel
             {
               Label = searchModel.Label,
-              Category = searchModel.Category,
+              Group = searchModel.Group,
               IsDeleted = searchModel.IsDeleted,
               PageSize = 80,
               PageIndex = i

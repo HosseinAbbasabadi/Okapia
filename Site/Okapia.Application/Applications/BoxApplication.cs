@@ -53,6 +53,7 @@ namespace Okapia.Application.Applications
                     BoxLink = command.BoxLink,
                     BoxLinkBtnText = command.BoxLinkBtnText,
                     BoxLinkText = command.BoxLinkText,
+                    BoxProvinceId = command.BoxProvinceId,
                     BoxCreationDate = DateTime.Now,
                     BoxCreatorAccountId = _authHelper.GetCurrnetUserInfo().AuthUserId,
                     BoxIsEnabled = true
@@ -96,6 +97,7 @@ namespace Okapia.Application.Applications
                 box.BoxBannerPictureLink = command.BoxBannerPictureLink;
                 box.BoxBannerPictureTitle = command.BoxBannerPictureTitle;
                 box.BoxBannerPictureIsEnabled = command.BoxBannerPictureIsEnabled;
+                box.BoxProvinceId = command.BoxProvinceId;
                 _boxRepository.SaveChanges();
                 result.Message = ApplicationMessages.OperationSuccess;
                 result.Success = true;
@@ -111,7 +113,7 @@ namespace Okapia.Application.Applications
 
         public OperationResult Activate(int id)
         {
-            var result = new OperationResult("Boxes", "Edit");
+            var result = new OperationResult("Boxes", "Activate");
             try
             {
                 var box = _boxRepository.Get(id);
@@ -137,7 +139,7 @@ namespace Okapia.Application.Applications
 
         public OperationResult Deactive(int id)
         {
-            var result = new OperationResult("Boxes", "Edit");
+            var result = new OperationResult("Boxes", "Deactive");
             try
             {
                 var box = _boxRepository.Get(id);
@@ -213,9 +215,9 @@ namespace Okapia.Application.Applications
             return _boxRepository.Search(searchModel, out recordCount);
         }
 
-        public List<BoxWithJobsViewModel> GetBoxesForLandingPage()
+        public List<BoxWithJobsViewModel> GetBoxesForLandingPage(string province)
         {
-            return _boxQuery.GetBoxesForLandingPage();
+            return _boxQuery.GetBoxesForLandingPage(province);
         }
     }
 }

@@ -5,7 +5,6 @@ using Okapia.Models;
 
 namespace Okapia.Controllers
 {
-    [ResponseCache(CacheProfileName = "Default")]
     public class PageViewController : Controller
     {
         private readonly IPageApplication _pageApplication;

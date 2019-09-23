@@ -12,6 +12,7 @@ namespace Okapia.Domain.Contracts
         Job GetJob(long id);
         Job GetJobIncludingAccount(long id);
         EditJob GetJobDetails(long id);
+        List<JobViewModel> GetActiveJobs();
         List<JobViewModel> Search(JobSearchModel searchModel, out int recordCount);
     }
 }

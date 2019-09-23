@@ -1,0 +1,129 @@
+﻿@model List<Okapia.Domain.ViewModels.Job.JobItemViewModel>
+
+@{
+  ViewData["Title"] = "SearchResult";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper-2">
+  <div class="container-fluid">
+    <div class="row h-position">
+
+      @await Component.InvokeAsync("FloatingCategories")
+      <div class="col-lg-22 col-md-22 col-sm-24 col-xs-24 padd-0-xs clearfix">
+
+        <article class="cat-deal-color main-cat clearfix">
+          <header class="section-header today-netbarg">
+            <h3 class="hx">
+              <span class="icon icon icon-search"></span>
+              <span id="searchFor"
+                    class="article-h3">
+                نتیجه جستجو برای @ViewData["Phrase"]
+              </span>
+            </h3>
+          </header>
+          @foreach (var job in Model)
+          {
+            <div class="main-cat-deal-list clearfix main-row general-row-deal grd">
+              <div class="col-lg-24 col-md-24 col-sm-24">
+                <div class="list-items ">
+                  <a asp-action="Details" asp-controller="JobView" asp-route-id="@job.JobSlug"
+                     class="figure clearfix">
+                    <div class="overlay"></div>
+                    <ul class="deal-tag list-unstyled">
+                      @*<li class="orange-label"></li>*@
+                    </ul>
+                    <img src="~/JobPhotos/@job.JobPicture" alt="@job.JobPictureAlt" data-type="lazy">
+                  </a>
+                  <div class="list-deal-details">
+                    <div class="top-panel">
+                      @*<a href="javascript:void" company-id="20311"
+                 class="deal-like list-unstyled list-inline"
+                 mj-type="single"
+                 mj-target="/company/companyLikes/like.json"
+                 mj-method="post" mj-model="model2"
+                 mj-success="likeActivity"
+                 mj-value="158547">
+                <i class="icon"></i><span>16</span>
+              </a>*@
+
+                      <span>
+                        <a asp-action="Details" asp-controller="JobView" asp-route-id="@job.JobSlug">
+                          <h3>@job.JobName</h3>
+                        </a>
+                      </span>
+                    </div>
+                    <div class="middle-panel clearfix">
+                      <a asp-action="Details" asp-controller="JobView" asp-route-id="@job.JobSlug"
+                         class="deal-desc">
+                        <span class="hidden-xs">@job.SmalDescription</span>
+                        <span class="visible-xs">@job.JobName</span>
+                      </a>
+                    </div>
+
+                    <div class="bottom-panel">
+                      <div class="top-bp clearfix">
+                        @*<span class="time-rem">
+                    <i class="icon icon-time-back"></i>
+                    <span>۱۴ روز و ۸ ساعت مانده </span>
+                  </span>*@
+                      </div>
+                      <div class="bottom-bp">
+                        <span class="address">
+                          <a asp-controller="Home" asp-action="Index" asp-route-pn="@job.Province">
+                            <i class="icon icon-location74"></i>
+                            @job.Province
+                          </a>
+                        </span>
+                        @*<span class="deal-sell">
+                    <i class="icon icon-shopping-cart_L"></i>
+                    4 خرید
+                  </span>*@
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="list-deal-cp">
+                    <div class="list-discount-tag">
+                      ٪@job.BenefitPercentForEndCustomer
+                    </div>
+                    <div class="cp-holder">
+                      <a asp-controller="Home" asp-action="Index" asp-route-pn="@job.Province"
+                         class="cdbf-location truncate visible-xs">
+                        <span class="ir">
+                          <i class="icon icon-location74"></i>
+                        </span>
+                        <span class="cdbfl-address">
+                          @job.Province
+                        </span>
+                      </a>
+                      <span class="cp-price-float clearfix">
+                        <span class="discount">
+                          <del>@job.JobPrice</del>
+                        </span>
+                        <span class="full-price">
+                          <span class="full-price-s">@job.JobDiscountPrice</span>
+                          <span class="full-price-s irr"> تومان</span>
+                        </span>
+                      </span>
+                      <a asp-action="Details" asp-controller="JobView" asp-route-id="@job.JobSlug"
+                         class="nb-btn nb-btn-icon nb-btn-success" style="padding-right: 0 !important">
+                        مشاهده
+                        @*<i class="icon icon-shopping-cart2"></i>*@
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+
+        </article>
+
+      </div>
+      @await Component.InvokeAsync("CompanyNumbers")
+
+    </div>
+  </div>
+</div>

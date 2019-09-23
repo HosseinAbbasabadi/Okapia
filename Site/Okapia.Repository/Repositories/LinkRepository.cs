@@ -17,20 +17,21 @@ namespace Okapia.Repository.Repositories
 
         public List<LinkViewModel> Search(LinkSearchModel searchModel, out int recordCount)
         {
-            var query = _context.Links.Select(x => new LinkViewModel
+            var query = _context.Links.Join(_context.LinkGroups, link => link.LinkGroupId, group => group.Id, (link, group) => new LinkViewModel
             {
-                Id = x.LinkId,
-                Label = x.LinkLabel,
-                Target = x.LinkTarget,
-                Category = x.LinkCategory,
-                CreationDate = x.LinkCreationDate.ToFarsi(),
-                IsDeleted = x.LinkIsDeleted
+                Id = link.LinkId,
+                Label = link.LinkLabel,
+                Target = link.LinkTarget,
+                GroupId = link.LinkGroupId,
+                Group = group.Name,
+                CreationDate = link.LinkCreationDate.ToFarsi(),
+                IsDeleted = link.LinkIsDeleted
             });
 
             if (!string.IsNullOrEmpty(searchModel.Label))
                 query = query.Where(x => x.Label.Contains(searchModel.Label));
-            if (searchModel.Category != 0)
-                query = query.Where(x => x.Category == searchModel.Category);
+            if (searchModel.Group != 0)
+                query = query.Where(x => x.GroupId == searchModel.Group);
             query = query.Where(x => x.IsDeleted == searchModel.IsDeleted);
             recordCount = query.Count();
             query = query.OrderByDescending(x => x.Id).Skip(searchModel.PageIndex * searchModel.PageSize)
@@ -46,7 +47,7 @@ namespace Okapia.Repository.Repositories
                 Label = x.LinkLabel,
                 Target = x.LinkTarget,
                 IsDeleted = x.LinkIsDeleted,
-                Category = x.LinkCategory
+                Group = x.LinkGroupId
             }).FirstOrDefault(x=>x.Id == id);
         }
     }

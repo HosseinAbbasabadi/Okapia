@@ -4,6 +4,11 @@ namespace Okapia.Domain.Models
 {
     public class Category
     {
+        public Category()
+        {
+            Jobs = new List<Job>();
+        }
+
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string CategorySmallDescription { get; set; }
@@ -25,5 +30,6 @@ namespace Okapia.Domain.Models
         public bool IsDeleted { get; set; }
         public Category Parent { get; set; }
         public ICollection<Category> Childs { get; set; }
+        public ICollection<Job> Jobs { get; set; }
     }
 }

@@ -1,27 +1,25 @@
 ﻿@model JobViewIndexViewModel
 
 @{
-    ViewData["Title"] = "مراکز خدماتی" + " " + Model.CategoryViewDetailsViewModel?.CategoryPageTittle;
-    ViewData["MetaDescription"] = Model.CategoryViewDetailsViewModel?.CategoryMetaDesccription;
-    ViewData["MetaTags"] = Model.CategoryViewDetailsViewModel?.CategoryMetaTag;
-    ViewData["CanonicalAddress"] = Model.CategoryViewDetailsViewModel?.CategoryCanonicalAddress;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewData["Title"] = "مراکز خدماتی" + " " + Model.CategoryViewDetailsViewModel?.CategoryPageTittle;
+  ViewData["MetaDescription"] = Model.CategoryViewDetailsViewModel?.CategoryMetaDesccription;
+  ViewData["MetaTags"] = Model.CategoryViewDetailsViewModel?.CategoryMetaTag;
+  ViewData["CanonicalAddress"] = Model.CategoryViewDetailsViewModel?.CategoryCanonicalAddress;
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="custom-banner dark-overlay" style="background: url(/assets/images/counter.jpg) no-repeat fixed;"></section>
 
-<section class="team-area section-padding-2">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-12 centered wow fadeInUp" data-wow-delay="0.3s">
-        <div class="section-title">
-          <h2>مراکز خدماتی</h2>
-        </div>
-      </div>
+@*@await Html.PartialAsync("~/Views/JobView/_Search.cshtml", Model.JobViewSearchModel)*@
+<div class="wrapper-2">
+  <div class="container-fluid">
+    <div class="row h-position">
+
+      @await Component.InvokeAsync("FloatingCategories")
+
+      @await Html.PartialAsync("~/Views/JobView/_List.cshtml", Model.CategoryViewDetailsViewModel)
+
+      @await Component.InvokeAsync("CompanyNumbers")
+
     </div>
-
-    @await Html.PartialAsync("~/Views/JobView/_Search.cshtml", Model.JobViewSearchModel)
-    @await Html.PartialAsync("~/Views/JobView/_List.cshtml", Model.JobItemViewModels)
-    
   </div>
-</section>
+</div>

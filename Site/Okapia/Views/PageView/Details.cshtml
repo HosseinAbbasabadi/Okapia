@@ -67,11 +67,6 @@
           <form asp-action="AddComment" method="post">
             <div class="row">
               <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-              <div class="col-md-6">
-                <label asp-for="AddComment.CommentTitle" class="control-label"></label>
-                <input asp-for="AddComment.CommentTitle" name="CommentTitle" class="form-control"/>
-                <span asp-validation-for="AddComment.CommentTitle" class="text-danger"></span>
-              </div>
               <div class="col-md-12">
                 <label asp-for="AddComment.CommentText" class="control-label"></label>
                 <textarea asp-for="AddComment.CommentText" name="CommentText" rows="6" class="form-control"></textarea>

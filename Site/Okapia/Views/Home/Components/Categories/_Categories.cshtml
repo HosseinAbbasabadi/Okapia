@@ -7,7 +7,7 @@
       @foreach (var category in Model)
       {
         <li onMouseOver="addCategoryMenuItemStyle('a-@category.CategoryId', '@category.Color')" onmouseout="removeCategoryMenuItemStyle('a-@category.CategoryId')">
-          <a id="a-@category.CategoryId" itemprop="url" href="" data-toggle="collapse" data-target="#sub-menu-8">
+          <a id="a-@category.CategoryId" href="@Url.Action("مراکز-خدماتی-و-فروشگاهی", "JobView", new JobViewSearchModel() {CategoryId = category.CategoryId})" data-toggle="collapse" data-target="#sub-menu-8">
             <i>
               <i class="icon @category.Icon"></i>
             </i>
@@ -26,7 +26,7 @@
             };
             <ul class="clearfix step2">
               <li mj-success="successMegaMenu" class="item2" mj-target="/Categories/getDescendents?id=31">
-                <a itemprop="url" href="">
+                <a itemprop="url" href="@Url.Action("مراکز-خدماتی-و-فروشگاهی", "JobView", new JobViewSearchModel() {CategoryId = category.CategoryId})">
                   @child.CategoryName
                 </a>
               </li>
@@ -41,11 +41,12 @@
 
 <script>
   function addCategoryMenuItemStyle(elementId, color) {
-    document.getElementById(elementId).style.color = color; 
-    document.getElementById(elementId).style.borderBottom = `2px solid ${color}`; 
+    document.getElementById(elementId).style.color = color;
+    document.getElementById(elementId).style.borderBottom = `2px solid ${color}`;
   }
+
   function removeCategoryMenuItemStyle(elementId) {
     document.getElementById(elementId).style.color = '#3c3c3c';
-    document.getElementById(elementId).style.borderBottom = '1px solid #dcdcdc';   
+    document.getElementById(elementId).style.borderBottom = '1px solid #dcdcdc';
   }
 </script>

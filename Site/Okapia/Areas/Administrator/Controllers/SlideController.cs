@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
@@ -22,6 +23,7 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: Category
         public ActionResult Index(SlideSearchModel searchModel)
         {
+            searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
             if (searchModel.PageSize == 0)
             {
                 searchModel.PageSize = 20;
@@ -38,7 +40,7 @@ namespace Okapia.Areas.Administrator.Controllers
         // GET: Category/Create
         public ActionResult Create()
         {
-            var createSlide = new CreateSlide();
+            var createSlide = new CreateSlide {Provinces = new SelectList(Provinces.ToList(), "Id", "Name")};
             return View(createSlide);
         }
 
@@ -54,6 +56,7 @@ namespace Okapia.Areas.Administrator.Controllers
         public ActionResult Edit(int id, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
             var slide = _slideApplication.GetSlideDetails(id);
+            slide.Provinces= new SelectList(Provinces.ToList(), "Id", "Name");
             ViewData["redirectUrl"] = redirectUrl;
             return View(slide);
         }

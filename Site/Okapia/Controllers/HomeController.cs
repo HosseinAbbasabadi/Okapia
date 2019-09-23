@@ -11,7 +11,6 @@ using reCAPTCHA.AspNetCore;
 
 namespace Okapia.Controllers
 {
-    [ResponseCache(CacheProfileName = "Default")]
     public class HomeController : Controller
     {
         private readonly IJobRequestApplication _jobRequestApplication;

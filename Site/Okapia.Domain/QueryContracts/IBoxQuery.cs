@@ -7,6 +7,6 @@ namespace Okapia.Domain.QueryContracts
 {
     public interface IBoxQuery : IRepository<int, Box>
     {
-        List<BoxWithJobsViewModel> GetBoxesForLandingPage();
+        List<BoxWithJobsViewModel> GetBoxesForLandingPage(string province);
     }
 }

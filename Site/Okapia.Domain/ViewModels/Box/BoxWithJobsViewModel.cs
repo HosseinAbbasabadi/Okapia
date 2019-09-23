@@ -18,6 +18,7 @@ namespace Okapia.Domain.ViewModels.Box
         public string BoxBannerPictureAlt { get; set; }
         public string BoxBannerPictureTitle { get; set; }
         public bool BoxBannerPictureIsEnabled { get; set; }
+        public string BoxProvinceName { get; set; }
         public List<BoxJob> BoxJobs { get; set; }
         public List<JobItemViewModel> Jobs { get; set; }
     }

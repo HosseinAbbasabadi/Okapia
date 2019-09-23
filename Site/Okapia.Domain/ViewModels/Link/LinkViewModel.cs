@@ -10,7 +10,8 @@ namespace Okapia.Domain.ViewModels.Link
         public int Id { get; set; }
         [Display(Name = "نام لینک")] public string Label { get; set; }
         [Display(Name = "آدرس لینک")] public string Target { get; set; }
-        [Display(Name = "گروه")] public int Category { get; set; }
+        public int GroupId { get; set; }
+        [Display(Name = "گروه")] public string Group { get; set; }
         [Display(Name = "تاریخ ایجاد")] public string CreationDate { get; set; }
         public bool IsDeleted { get; set; }
     }

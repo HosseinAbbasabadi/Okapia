@@ -8,7 +8,6 @@ namespace Okapia.Domain.Models
         public string CommentOwner { get; set; }
         public long CommentOwnerRecordId { get; set; }
         public long CommentatorAccountId { get; set; }
-        public string CommentTitle { get; set; }
         public string CommnetText { get; set; }
         public int CommentAgreeCount { get; set; }
         public int CommentDisagreeCount { get; set; }

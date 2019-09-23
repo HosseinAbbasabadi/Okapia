@@ -82,12 +82,14 @@ namespace Okapia.Repository.Mappings
             builder.Property(e => e.TelegramUrl).HasMaxLength(200);
 
             builder.Property(e => e.WebSiteUrl).HasMaxLength(200);
-            builder.Property(x => x.IsStared);
 
             builder.HasMany(x => x.JobPictures)
                 .WithOne(x => x.Job).HasForeignKey(x => x.JobId).OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(x => x.JobComments).WithOne(x => x.Job).HasForeignKey(x => x.CommentOwnerRecordId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(x => x.JobFaqs).WithOne(x => x.Job).HasForeignKey(x => x.JobId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(x => x.Account).WithOne(x => x.Job).HasForeignKey<Account>(x => x.ReferenceRecordId);

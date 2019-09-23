@@ -1,16 +1,26 @@
 ﻿using System.Collections.Generic;
 using Okapia.Domain.ViewModels.Comment;
+using Okapia.Domain.ViewModels.Faq;
 using Okapia.Domain.ViewModels.JobPicture;
 
 namespace Okapia.Domain.ViewModels.Job
 {
     public class JobViewDetailsViewModel
     {
+        public JobViewDetailsViewModel()
+        {
+            JobFeatureList = new List<string>();
+            JobUsageConditionList = new List<string>();
+            Faqs = new List<FaqItemViewModel>();
+        }
+
         public long JobId { get; set; }
         public string JobName { get; set; }
         public double JobBenefitPercentForEndCustomer { get; set; }
         public string JobFeatures { get; set; }
         public List<string> JobFeatureList { get; set; }
+        public string JobUsageCondition { get; set; }
+        public List<string> JobUsageConditionList { get; set; }
         public string JobSmallDescription { get; set; }
         public string JobDescription { get; set; }
         public string JobAddress { get; set; }
@@ -33,7 +43,10 @@ namespace Okapia.Domain.ViewModels.Job
         public string WebsiteUrl { get; set; }
         public string InstagramUrl { get; set; }
         public string TelegramUrl { get; set; }
+        public double JobPrice { get; set; }
+        public double JobDiscountPrice { get; set; }
         public List<JobPictureViewModel> Photos { get; set; }
         public List<CommentItemViewModel> Comments { get; set; }
+        public List<FaqItemViewModel> Faqs { get; set; }
     }
 }

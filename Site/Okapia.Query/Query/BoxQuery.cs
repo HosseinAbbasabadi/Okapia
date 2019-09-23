@@ -14,42 +14,49 @@ namespace Okapia.Query.Query
         {
         }
 
-        public List<BoxWithJobsViewModel> GetBoxesForLandingPage()
+        public List<BoxWithJobsViewModel> GetBoxesForLandingPage(string province)
         {
-            var boxes = _context.Boxes.Where(x => x.BoxIsEnabled).Include(x => x.BoxJobs).Select(x =>
-                new BoxWithJobsViewModel
-                {
-                    BoxId = x.BoxId,
-                    BoxIcon = x.BoxIcon,
-                    BoxColor = x.BoxColor,
-                    BoxLink = x.BoxLink,
-                    BoxLinkText = x.BoxLinkText,
-                    BoxTitle = x.BoxTitle,
-                    BoxLinkBtnText = x.BoxLinkBtnText,
-                    BoxBannerPicture = x.BoxBannerPicture,
-                    BoxBannerPictureAlt = x.BoxBannerPictureAlt,
-                    BoxBannerPictureTitle = x.BoxBannerPictureTitle,
-                    BoxBannerPictureLink = x.BoxBannerPictureLink,
-                    BoxBannerPictureIsEnabled = x.BoxBannerPictureIsEnabled,
-                    BoxJobs = x.BoxJobs.ToList()
-                }).ToList();
+            var boxes = _context.Boxes.Where(x => x.BoxIsEnabled).Join(_context.Provinces, box => box.BoxProvinceId,
+                prvc => prvc.Id, (box, prvc) =>
+                    new BoxWithJobsViewModel
+                    {
+                        BoxId = box.BoxId,
+                        BoxIcon = box.BoxIcon,
+                        BoxColor = box.BoxColor,
+                        BoxLink = box.BoxLink,
+                        BoxLinkText = box.BoxLinkText,
+                        BoxTitle = box.BoxTitle,
+                        BoxLinkBtnText = box.BoxLinkBtnText,
+                        BoxBannerPicture = box.BoxBannerPicture,
+                        BoxBannerPictureAlt = box.BoxBannerPictureAlt,
+                        BoxBannerPictureTitle = box.BoxBannerPictureTitle,
+                        BoxBannerPictureLink = box.BoxBannerPictureLink,
+                        BoxBannerPictureIsEnabled = box.BoxBannerPictureIsEnabled,
+                        BoxProvinceName = prvc.Name,
+                        BoxJobs = box.BoxJobs.ToList()
+                    }).Where(x => x.BoxProvinceName == province).Include(x => x.BoxJobs).ToList();
             foreach (var box in boxes)
             {
                 var boxJobs = new List<JobItemViewModel>();
                 foreach (var boxJob in box.BoxJobs)
                 {
-                    var jobItem = _context.Jobs.Join(_context.Cities, job => job.JobCityId, city => city.Id, (job, city) => new JobItemViewModel
-                    {
-                        JobId = job.JobId,
-                        JobName = job.JobName,
-                        JobPicture = job.JobPictures.First().JobPictureName,
-                        JobPictureAlt = job.JobPictures.First().JobPictureAlt,
-                        JobPictureTitle = job.JobPictures.First().JobPictureTitle,
-                        JobSlug = job.JobSlug,
-                        JobPrice = job.JobPrice,
-                        BenefitPercentForEndCustomer = job.JobBenefitPercentForEndCustomer,
-                        City = city.Name
-                    }).FirstOrDefault(x=>x.JobId == boxJob.JobId);
+                    var jobItem = _context.Jobs
+                        .Join(_context.Provinces, job => job.JobProvienceId, pn => pn.Id,
+                            (job, pn) => new { job, pn })
+                        .Join(_context.Cities, job => job.job.JobCityId, city => city.Id,
+                        (job, city) => new JobItemViewModel
+                        {
+                            JobId = job.job.JobId,
+                            JobName = job.job.JobName,
+                            JobPicture = job.job.JobPictures.First().JobPictureName,
+                            JobPictureAlt = job.job.JobPictures.First().JobPictureAlt,
+                            JobPictureTitle = job.job.JobPictures.First().JobPictureTitle,
+                            JobSlug = job.job.JobSlug,
+                            JobPrice = job.job.JobPrice,
+                            BenefitPercentForEndCustomer = job.job.JobBenefitPercentForEndCustomer,
+                            Province = job.pn.Name,    
+                            City = city.Name
+                        }).FirstOrDefault(x => x.JobId == boxJob.JobId);
                     boxJobs.Add(jobItem);
                 }
 

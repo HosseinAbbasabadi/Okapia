@@ -12,13 +12,6 @@
           <div asp-validation-summary="ModelOnly" class="text-danger"></div>
           <div class="col-md-4">
             <div class="form-group">
-              <label asp-for="SlideTitleText" class="control-label"></label>
-              <input asp-for="SlideTitleText" class="form-control"/>
-              <span asp-validation-for="SlideTitleText" class="text-danger"></span>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
               <label asp-for="SlideFromCreationDate" class="control-label"></label>
               <div class="input-group">
                 <div class="input-group-addon" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#fromDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="left">
@@ -37,6 +30,14 @@
                 </div>
                 <input asp-for="SlideToCreationDate" type="text" class="form-control" id="toDate1" placeholder="تا تاریخ" data-MdDateTimePicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-fromdate="true" data-enabletimepicker="false" data-placement="right"/>
               </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="SlideProvinceId" class="control-label"></label>
+              <select asp-for="SlideProvinceId" asp-items="@Model.Provinces" class="select2">
+              </select>
+              <span asp-validation-for="SlideProvinceId" class="text-danger"></span>
             </div>
           </div>
           <div class="col-md-4">

@@ -6,8 +6,6 @@ namespace Okapia.Domain.SeachModels
     {
         [Display(Name = "بخش مربوطه")]
         public string CommentOwner { get; set; }
-        [Display(Name = "عنوان")]
-        public string CommentTitle { get; set; }
         [Display(Name = "جستجو در تایید شده ها")]
         public bool CommentIsConfirmed { get; set; }
         [Display(Name = "جستجو در حذف شده ها")]

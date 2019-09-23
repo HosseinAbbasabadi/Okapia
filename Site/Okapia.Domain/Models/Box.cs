@@ -24,6 +24,7 @@ namespace Okapia.Domain.Models
         public bool BoxBannerPictureIsEnabled { get; set; }
         public DateTime BoxCreationDate { get; set; }
         public long BoxCreatorAccountId { get; set; }
+        public int BoxProvinceId { get; set; }
         public ICollection<BoxJob> BoxJobs { get; set; }
     }
 }

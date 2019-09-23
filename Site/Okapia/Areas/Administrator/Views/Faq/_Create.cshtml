@@ -1,0 +1,49 @@
+﻿@model Okapia.Domain.Commands.Faq.CreateFaq
+
+<div id="createFaqModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog" style="width: 55%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="custom-width-modalLabel">ایجاد پرسش و پاسخ جدید</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <form id="createFaqFrm" method="post">
+              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label asp-for="Question" class="control-label"></label>
+                  <textarea asp-for="Question" class="form-control" row="5" col="5"></textarea>
+                  <span asp-validation-for="Question" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label asp-for="Answer" class="control-label"></label>
+                  <textarea asp-for="Answer" class="form-control" row="5" col="5"></textarea>
+                  <span asp-validation-for="Answer" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label asp-for="JobId" class="control-label"></label>
+                  <select asp-for="JobId" asp-items="@Model.Jobs" class="select2">
+                    <option value="0">شغل را انتخاب کنید</option>
+                  </select>
+                  <span asp-validation-for="JobId" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityThenFeedList('@Url.Action("Create", "Faq")', 'createFaqFrm', '@Url.Action("ListContent", "Faq")', 'listFaqDiv')"/>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

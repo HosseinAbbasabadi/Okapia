@@ -1,0 +1,27 @@
+﻿@model Okapia.Areas.Administrator.Models.FaqIndexViewModel
+@{
+  ViewData["Title"] = "مدیریت پرسش و پاسخ ها";
+}
+
+
+<h1>صفحه مدیریت پرسش و پاسخ ها</h1>
+
+<h2>
+  <button onclick="openCreateFaqModal()" class="btn btn-success text-lg-center">ایجاد پرسش و پاسخ جدید</button>
+</h2>
+
+<div id="createFaqDiv">
+
+</div>
+
+<script>
+  function openCreateFaqModal() {
+    openModalWithData('@Url.Action("Create", "Faq")', 'createFaqDiv', 'createFaqModal');
+  }
+</script>
+
+@await Html.PartialAsync("~/Areas/Administrator/Views/Faq/_SearchFaqs.cshtml", Model.FaqSearchModel)
+
+<div id="listFaqDiv">
+  @await Html.PartialAsync("~/Areas/Administrator/Views/Faq/_ListFaqs.cshtml", Model.FaqViewModels)
+</div>

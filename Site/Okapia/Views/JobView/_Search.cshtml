@@ -1,64 +1,66 @@
 ﻿@model Okapia.Domain.SeachModels.JobViewSearchModel
 
-<a style="margin-bottom: 20px;" class="btn btn-outline-dark" data-toggle="collapse" href="#searchCollapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-  شرایط جستجو
-</a>
-<div class="collapse" id="searchCollapse">
-  <fieldset class="FormSearch">
-    <legend>
-      منطقه مورد نظر خود را مشخص کنید
-    </legend>
-    <div class="row rtl text-right mb-4">
-      <form method="get" id="createUserFrm" class="form-inline" asp-controller="JobView" asp-action="مراکز-خدماتی-و-فروشگاهی">
-        <div class="form-group" style="float: right">
-          <label asp-for="CategoryId" class="control-label">گروه:</label>
-          <div class="col">
-            <select asp-for="CategoryId" asp-items="@Model.Categories" class="form-control"></select>
+<div class="col-lg-24 col-md-24 col-sm-24 col-xs-24 padd-0-xs clearfix">
+  <a class="btn btn-lg btn-success" data-toggle="collapse" href="#searchCollapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+    شرایط جستجو
+  </a>
+
+  <hr/>
+
+  <div class="collapse" id="searchCollapse">
+    <fieldset class="FormSearch">
+      <div class="row rtl text-right mb-4">
+        <form method="get" id="createUserFrm" class="form-inline" asp-controller="JobView" asp-action="مراکز-خدماتی-و-فروشگاهی">
+          <div class="form-group" style="float: right">
+            <label asp-for="CategoryId" class="control-label">گروه:</label>
+            <div class="col">
+              <select asp-for="CategoryId" asp-items="@Model.Categories" class="form-control"></select>
+            </div>
+            @*<span asp-validation-for="ProvinceId" class="text-danger"></span>*@
           </div>
-          @*<span asp-validation-for="ProvinceId" class="text-danger"></span>*@
-        </div>
-        <div class="form-group" style="float: right">
-          <label asp-for="Province" class="control-label">استان:</label>
-          <div class="col">
-            <select asp-for="Province" asp-items="@Model.Provinces" class="form-control" id="CreateProvinceDropDown" onchange="getCityList('CreateProvinceDropDown', '@Url.Action("GetCitiesByProvince", "Home", new {area = ""})', 'createCityDropDown')">
-              <option value="0">شهر را انتخاب کنید...</option>
-            </select>
+          <div class="form-group" style="float: right">
+            <label asp-for="Province" class="control-label">استان:</label>
+            <div class="col">
+              <select asp-for="Province" asp-items="@Model.Provinces" class="form-control" id="CreateProvinceDropDown" onchange="getCityList('CreateProvinceDropDown', '@Url.Action("GetCitiesByProvince", "Home", new {area = ""})', 'createCityDropDown')">
+                <option value="0">شهر را انتخاب کنید...</option>
+              </select>
+            </div>
+            @*<span asp-validation-for="ProvinceId" class="text-danger"></span>*@
           </div>
-          @*<span asp-validation-for="ProvinceId" class="text-danger"></span>*@
-        </div>
-        <div class="form-group" style="float: right">
-          <label asp-for="City" class="control-label">شهر:</label>
-          <div class="col">
-            <select asp-for="City" class="form-control" asp-items="@Model.Cities" id="createCityDropDown" onchange="getDistrictList('createCityDropDown', '@Url.Action("GetDistrictsByCity", "Home", new {area = ""})', 'createDistrictDropDown')">
-              <option value="0">شهر را انتخاب کنید...</option>
-            </select>
+          <div class="form-group" style="float: right">
+            <label asp-for="City" class="control-label">شهر:</label>
+            <div class="col">
+              <select asp-for="City" class="form-control" asp-items="@Model.Cities" id="createCityDropDown" onchange="getDistrictList('createCityDropDown', '@Url.Action("GetDistrictsByCity", "Home", new {area = ""})', 'createDistrictDropDown')">
+                <option value="0">شهر را انتخاب کنید...</option>
+              </select>
+            </div>
+            @*<span asp-validation-for="CityId" class="text-danger"></span>*@
           </div>
-          @*<span asp-validation-for="CityId" class="text-danger"></span>*@
-        </div>
-        <div class="form-group" style="float: right">
-          <label asp-for="District" class="control-label">منطقه:</label>
-          <div class="col">
-            <select asp-for="District" class="form-control" id="createDistrictDropDown" onchange="getDistrictList('createDistrictDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Home", new {area = ""})', 'createNeighborhoodDropDown')">
-              <option value="0">شهر را انتخاب کنید...</option>
-            </select>
+          <div class="form-group" style="float: right">
+            <label asp-for="District" class="control-label">منطقه:</label>
+            <div class="col">
+              <select asp-for="District" class="form-control" id="createDistrictDropDown" onchange="getDistrictList('createDistrictDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Home", new {area = ""})', 'createNeighborhoodDropDown')">
+                <option value="0">شهر را انتخاب کنید...</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="form-group" style="float: right">
-          <label asp-for="Neighborhood" class="control-label">محله:</label>
-          <div class="col">
-            <select asp-for="Neighborhood" class="form-control" id="createNeighborhoodDropDown">
-              <option value="0">شهر را انتخاب کنید...</option>
-            </select>
+          <div class="form-group" style="float: right">
+            <label asp-for="Neighborhood" class="control-label">محله:</label>
+            <div class="col">
+              <select asp-for="Neighborhood" class="form-control" id="createNeighborhoodDropDown">
+                <option value="0">شهر را انتخاب کنید...</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <br />
-        <br />
-        <br />
-        <div class="col-md-12">
-          <button type="submit" class="btn btn-lg btn-dark mb-2">جستجو</button>
-          <a class="btn btn-default" asp-action="مراکز-خدماتی-و-فروشگاهی" asp-controller="JobView">نمایش همه</a>
-        </div>
-      </form>
-    </div>
-  </fieldset>
+          <br/>
+          <br/>
+          <br/>
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-lg btn-dark mb-2">جستجو</button>
+            <a class="btn btn-default" asp-action="مراکز-خدماتی-و-فروشگاهی" asp-controller="JobView">نمایش همه</a>
+          </div>
+        </form>
+      </div>
+    </fieldset>
+  </div>
 </div>

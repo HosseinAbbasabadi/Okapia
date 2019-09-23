@@ -37,7 +37,6 @@ namespace Okapia.Application.Applications
                     CommentOwner = command.CommentOwner,
                     CommentAgreeCount = 0,
                     CommentDisagreeCount = 0,
-                    CommentTitle = command.CommentTitle,
                     CommnetText = command.CommentText,
                     CommentCreationDate = DateTime.Now,
                     CommentConfirmDate = DateTime.Now

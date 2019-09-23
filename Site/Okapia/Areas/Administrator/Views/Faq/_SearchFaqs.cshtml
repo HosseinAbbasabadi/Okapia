@@ -1,0 +1,45 @@
+﻿@model Okapia.Domain.SeachModels.FaqSearchModel
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-border panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">جستجو در پرسش و پاسخ ها</h2>
+      </div>
+      <div class="panel-body">
+        <form asp-action="Index" asp-controller="Faq" asp-area="Administrator" method="GET">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="Question" class="control-label"></label>
+              <input asp-for="Question" class="form-control" />
+              <span asp-validation-for="Question" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobId" class="control-label"></label>
+              <select asp-for="JobId" asp-items="@Model.Jobs" class="select2">
+                <option value="0">شغل را انتخاب کنید</option>
+              </select>
+              <span asp-validation-for="JobId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="IsDeleted" class="control-label"></label>
+              <input asp-for="IsDeleted" class="form-control" />
+              <span asp-validation-for="IsDeleted" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="submit" value="جستجو" class="btn btn-primary" />
+              <a asp-area="Administrator" asp-controller="Faq" asp-action="Index" class="btn btn-warning">به روزرسانی/پاکسازی فرم جستجو</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

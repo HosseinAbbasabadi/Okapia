@@ -1,4 +1,5 @@
-﻿using Framework;
+﻿using System;
+using Framework;
 using Microsoft.AspNetCore.Mvc;
 using Okapia.Application.Contracts;
 using Okapia.Domain.Commands;
@@ -52,10 +53,11 @@ namespace Okapia.Controllers
             return View(createUser);
         }
 
-        public ActionResult Login()
+        public ActionResult Login([FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
             if (_authHelper.GetCurrnetUserInfo().IsAuthorized) return RedirectToAction("Index", "Home");
             var login = new Login();
+            ViewData["redirectUrl"] = redirectUrl;
             return View(login);
         }
 
@@ -67,6 +69,11 @@ namespace Okapia.Controllers
             var result = _accountApplication.Login(login);
             if (result.Success)
             {
+                if (!string.IsNullOrEmpty(login.RedirectUrl))
+                {
+                    var redirectUrl = new Uri(login.RedirectUrl);
+                    return Redirect(redirectUrl.AbsoluteUri);
+                }
                 if (result.RecordId == 5 || result.RecordId == 4)
                     return RedirectToAction("Index", "Home", new {area = "Administrator"});
                 if (result.RecordId == 3)

@@ -16,9 +16,12 @@ namespace Okapia.Application.Contracts
         List<JobViewModel> GetJobsForList(JobSearchModel searchModel, out int recordCount);
         OperationResult CheckJobSlugDuplication(string slug);
         OperationResult AddJobToBox(AddToBox command);
-        //
+        List<JobViewModel> GetActiveJobs();
+            //
+        List<JobSearchResultViewModel> Search(string phrase, string province);
+        List<JobItemViewModel> SearchResult(string phrase, string province);
         JobViewDetailsViewModel GetJobViewDetails(string slug);
-        List<JobStaredViewModel> GetStaredJobsForLandingPage();
+        List<JobItemViewModel> GetJobsByCategoryId(int categoryId);
         List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel);
         long GetActiveJobsCount();
     }

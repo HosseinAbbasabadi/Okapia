@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Application.Utilities;
 using Okapia.Areas.Administrator.Models;
@@ -30,6 +31,7 @@ namespace Okapia.Areas.Administrator.Controllers
             }
 
             var categories = _boxApplication.Search(searchModel, out var recordCount);
+            searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
             var categoryIndex = ProviceBoxIndex(searchModel, categories);
             Pager.PreparePager(searchModel, recordCount);
             ViewData["searchModel"] = searchModel;
@@ -49,7 +51,7 @@ namespace Okapia.Areas.Administrator.Controllers
 
         public ActionResult Create()
         {
-            var createBox = new CreateBox();
+            var createBox = new CreateBox {Provinces = new SelectList(Provinces.ToList(), "Id", "Name")};
             return View(createBox);
         }
 
@@ -63,6 +65,7 @@ namespace Okapia.Areas.Administrator.Controllers
         public ActionResult Edit(int id, [FromQuery(Name = "redirectUrl")] string redirectUrl)
         {
             var editBox = _boxApplication.GetDetails(id);
+            editBox.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
             ViewData["redirectUrl"] = redirectUrl;
             return View(editBox);
         }
