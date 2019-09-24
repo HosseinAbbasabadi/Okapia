@@ -14,7 +14,7 @@ namespace Okapia.Helpers
 
         public string Get(string key)
         {
-            return _httpContext.HttpContext.Request.Cookies[key];
+            return _httpContext.HttpContext.Request.Cookies["province"];
         }
 
         public void Set(string key, string value)

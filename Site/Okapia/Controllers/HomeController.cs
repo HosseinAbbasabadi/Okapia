@@ -46,6 +46,11 @@ namespace Okapia.Controllers
         public IActionResult Index([FromQuery(Name = "pn")] string pn)
         {
             var province = _cookieHelper.Get("province");
+            if (!string.IsNullOrEmpty(pn))
+                province = pn;
+            if (string.IsNullOrEmpty(province))
+                province = "البرز";
+            _cookieHelper.Set("province", province);
             ViewData["province"] = province;
             return View();
         }

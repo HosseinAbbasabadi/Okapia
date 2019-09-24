@@ -4829,19 +4829,21 @@ ul.side-extra-items {
     opacity: 1; }
 
 .nb-carousel-2 .carousel-control {
-  display: table;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1px solid #ffffff;
-  background: none;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: #3c3c3c;
-  top: 50%;
-  margin: -21px 20px 0 20px;
-  text-align: center;
-  opacity: .8;
-  z-index: 3; }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    background: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #3c3c3c;
+    top: 50%;
+    margin: -21px 20px 0 20px;
+    text-align: center;
+    opacity: .8;
+    z-index: 3; }
   .nb-carousel-2 .carousel-control span.icon {
     display: table-cell;
     vertical-align: middle;

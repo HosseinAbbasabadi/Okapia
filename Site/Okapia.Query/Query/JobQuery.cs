@@ -237,7 +237,7 @@ namespace Okapia.Query.Query
             return query.ToList();
         }
 
-        public List<JobItemViewModel> GetJobsByCatgoryId(int categoryId)
+        public List<JobItemViewModel> GetJobsByCatgoryId(int categoryId, string province)
         {
             var childrenCategories = _context.Categories.Where(x => x.CategoryParentId == categoryId)
                 .Select(cat => new CategoryViewDetailsViewModel
@@ -247,32 +247,39 @@ namespace Okapia.Query.Query
                     }
                 ).ToList();
             var totalJobs = new List<JobItemViewModel>();
-            totalJobs.AddRange(GetJobsByCategoryIdQuery(categoryId));
+            totalJobs.AddRange(GetJobsByCategoryIdQuery(categoryId, province));
             foreach (var category in childrenCategories)
             {
-                var jobs = GetJobsByCategoryIdQuery(category.CategoryId);
+                var jobs = GetJobsByCategoryIdQuery(category.CategoryId, province);
                 totalJobs.AddRange(jobs);
             }
 
             return totalJobs;
         }
 
-        private List<JobItemViewModel> GetJobsByCategoryIdQuery(int categoryId)
+        private List<JobItemViewModel> GetJobsByCategoryIdQuery(int categoryId, string pn)
         {
-            return _context.Jobs.Include(x => x.JobPictures).Include(x => x.Account)
-                .Where(x => x.JobCategory == categoryId && x.Account.IsDeleted == false).Join(
-                    _context.Cities, job => job.JobCityId, city => city.Id, (job, city) => new JobItemViewModel
+            return _context.Jobs
+                .Include(x => x.JobPictures)
+                .Include(x => x.Account)
+                .Where(x => x.JobCategory == categoryId && x.Account.IsDeleted == false)
+                .Join(_context.Provinces, job=>job.JobProvienceId, province => province.Id, (job, province) => new {job , province})
+                .Join(
+                    _context.Cities, job => job.job.JobCityId, city => city.Id, (job, city) => new JobItemViewModel
                     {
-                        JobName = job.JobName,
-                        JobId = job.JobId,
-                        JobSlug = job.JobSlug,
-                        JobPicture = job.JobPictures.FirstOrDefault().JobPictureName,
-                        JobPictureAlt = job.JobPictures.FirstOrDefault().JobPictureAlt,
-                        JobPictureTitle = job.JobPictures.FirstOrDefault().JobPictureTitle,
-                        JobPrice = job.JobPrice,
+                        JobName = job.job.JobName,
+                        JobId = job.job.JobId,
+                        JobSlug = job.job.JobSlug,
+                        JobPicture = job.job.JobPictures.FirstOrDefault().JobPictureName,
+                        JobPictureAlt = job.job.JobPictures.FirstOrDefault().JobPictureAlt,
+                        JobPictureTitle = job.job.JobPictures.FirstOrDefault().JobPictureTitle,
+                        JobPrice = job.job.JobPrice,
                         City = city.Name,
-                        BenefitPercentForEndCustomer = job.JobBenefitPercentForEndCustomer
-                    }).ToList();
+                        Province = job.province.Name,
+                        BenefitPercentForEndCustomer = job.job.JobBenefitPercentForEndCustomer
+                    })
+                .Where(x=>x.Province == pn)
+                .ToList();
         }
 
         public long GetActiveJobsCount()

@@ -12,7 +12,7 @@ namespace Okapia.Domain.QueryContracts
         List<JobItemViewModel> SearchResult(string phrase, string province);
         JobViewDetailsViewModel GetJobViewDetails(string slug);
         List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel);
-        List<JobItemViewModel> GetJobsByCatgoryId(int categoryId);
+        List<JobItemViewModel> GetJobsByCatgoryId(int categoryId, string province);
         long GetActiveJobsCount();
     }
 }

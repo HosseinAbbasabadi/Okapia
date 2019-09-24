@@ -12,9 +12,10 @@ namespace Okapia.ViewComponents
             _categoryQuery = categoryQuery;
         }
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(string pn)
         {
             var categories = _categoryQuery.GetCategoriesForMenu();
+            ViewData["province"] = pn;
             return View("_Categories", categories);
         }
     }

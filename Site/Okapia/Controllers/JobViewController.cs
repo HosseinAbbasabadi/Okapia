@@ -36,7 +36,6 @@ namespace Okapia.Controllers
             searchModel.Categories =
                 new SelectList(_categoryApplication.GetCategoriesForSearch(), "CategoryId", "CategoryName");
             searchModel.Provinces = new SelectList(Provinces.ToList(), "Id", "Name");
-            searchModel.Province = _cookieHelper.Get("province");
             var category =_categoryApplication.GetCategoryViewDetails(searchModel.CategoryId, searchModel.Province);
             var jobIndex = new JobViewIndexViewModel
             {
@@ -47,9 +46,9 @@ namespace Okapia.Controllers
             return View("Index", jobIndex);
         }
 
-        public ActionResult GetJobsByCategoryId(int id, string color)
+        public ActionResult GetJobsByCategoryId(int id, string color, string province)
         {
-            var jobs = _jobApplication.GetJobsByCategoryId(id);
+            var jobs = _jobApplication.GetJobsByCategoryId(id, province);
             ViewData["Color"] = color;
             return PartialView("_Jobs", jobs);
         }

@@ -21,7 +21,7 @@ namespace Okapia.Application.Contracts
         List<JobSearchResultViewModel> Search(string phrase, string province);
         List<JobItemViewModel> SearchResult(string phrase, string province);
         JobViewDetailsViewModel GetJobViewDetails(string slug);
-        List<JobItemViewModel> GetJobsByCategoryId(int categoryId);
+        List<JobItemViewModel> GetJobsByCategoryId(int categoryId, string province);
         List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel);
         long GetActiveJobsCount();
     }

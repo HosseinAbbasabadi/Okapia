@@ -1,8 +1,6 @@
 ﻿@inject ICookieHelper _CookieHelper;
 @inject IAuthHelper _AuthHelper
-@using Microsoft.AspNetCore.WebUtilities
 @using Okapia.Application.Contracts
-@using Okapia.Areas.Administrator.Controllers
 @{
   var provinceName = ViewData["province"];
 }
@@ -92,7 +90,7 @@
               <i class="icon icon-arrow-back search-close hidden">
               </i>
               <input name="q" id="search-box" type="text" placeholder="جستجو (رستوران، مکان ورزشی، کالا، ...)">
-              <input type="hidden" name="pn" value="@provinceName" />
+              <input type="hidden" name="pn" value="@provinceName"/>
               <button class="btn btn-warning btn-type-1">جستجو</button>
               <i id="closeSearchResult" class="icon icon-close search-clean hidden"></i>
             </div>
@@ -115,8 +113,8 @@
               </a>
             </div>
           </div>
-          
-          @await Component.InvokeAsync("Provinces")
+
+          @await Component.InvokeAsync("Provinces", new {pn = provinceName})
 
           <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
             @if (_AuthHelper.GetCurrnetUserInfo().IsAuthorized)
@@ -187,7 +185,7 @@
 
 <main>
 
-    @RenderBody()
+  @RenderBody()
 
 </main>
 

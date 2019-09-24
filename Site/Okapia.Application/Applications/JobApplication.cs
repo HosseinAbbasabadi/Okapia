@@ -470,9 +470,9 @@ namespace Okapia.Application.Applications
             return _jobQuery.GetJobViewDetails(slug);
         }
 
-        public List<JobItemViewModel> GetJobsByCategoryId(int categoryId)
+        public List<JobItemViewModel> GetJobsByCategoryId(int categoryId, string province)
         {
-            return _jobQuery.GetJobsByCatgoryId(categoryId);
+            return _jobQuery.GetJobsByCatgoryId(categoryId, province);
         }
 
         public List<JobItemViewModel> GetJobsForCategoryView(JobViewSearchModel searchModel)

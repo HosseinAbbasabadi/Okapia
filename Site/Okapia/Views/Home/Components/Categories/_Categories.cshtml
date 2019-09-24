@@ -2,11 +2,7 @@
 @model List<Okapia.Domain.ViewModels.Category.CategoryMenuViewModel>
 
 @{
-  var province = Context.Request.Query["pn"].ToString();
-  if (province == "")
-  {
-    province = "البرز";
-  }
+  var province = ViewData["province"].ToString();
 }
 
 <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
@@ -15,7 +11,7 @@
       @foreach (var category in Model)
       {
         <li onMouseOver="addCategoryMenuItemStyle('a-@category.CategoryId', '@category.Color')" onmouseout="removeCategoryMenuItemStyle('a-@category.CategoryId')">
-          <a id="a-@category.CategoryId" href="@Url.Action("مراکز-خدماتی-و-فروشگاهی", "JobView", new JobViewSearchModel() {CategoryId = category.CategoryId})" data-toggle="collapse" data-target="#sub-menu-8">
+          <a id="a-@category.CategoryId" href="@Url.Action("مراکز-خدماتی-و-فروشگاهی", "JobView", new JobViewSearchModel() {CategoryId = category.CategoryId, Province = province})" data-toggle="collapse" data-target="#sub-menu-8">
             <i>
               <i class="icon @category.Icon"></i>
             </i>

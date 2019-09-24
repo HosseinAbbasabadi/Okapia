@@ -1,13 +1,16 @@
 ﻿@using Okapia.Domain.SeachModels
 @model List<Okapia.Domain.ViewModels.Category.CategoryMenuViewModel>
 
+@{
+  var province = ViewData["province"].ToString();
+}
 <div class="col-lg-1 col-md-1 hidden-sm hidden-xs right-aside sticky-aside">
   <div id="nava" class="">
     <div class="float-cat">
       <ul>
         @foreach (var category in Model)
         {
-          <a href="@Url.Action("مراکز-خدماتی-و-فروشگاهی", "JobView", new JobViewSearchModel {CategoryId = category.CategoryId})">
+          <a href="@Url.Action("مراکز-خدماتی-و-فروشگاهی", "JobView", new JobViewSearchModel {CategoryId = category.CategoryId, Province = province})">
             <li id="li-@category.CategoryId" onmouseover="addFloatingCategoryMenuItemStyle('li-@category.CategoryId', '@category.Color')" onmouseout="removeFloatingCategoryMenuItemStyle('li-@category.CategoryId')">
               <i>
                 <i class="icon @category.Icon"></i>

@@ -320,7 +320,7 @@
     @if (!AuthHelper.GetCurrnetUserInfo().IsAuthorized)
     {
       <div class="nb-alert nb-alert-info noLogin">
-        کاربر گرامی جهت طرح پرسش لطفا ابتدا
+        کاربر گرامی جهت ثبت نظر لطفا ابتدا
         <a asp-controller="Account" asp-action="Login" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">وارد</a>شوید.<i class="icon icon-close"></i>
       </div>
     }

@@ -6,72 +6,94 @@
 @{
   ViewData["Title"] = "درخواست نمایندگی و عضویت در سیستم اکاپیا";
 }
-<section class="custom-banner dark-overlay" style="background: url('/assets/images/counter.jpg') no-repeat fixed;"></section>
 
-<section class="form-area section-padding">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-8 centered">
-        <div class="section-title">
-          <h2>ثبت درخواست نمایندگی</h2>
+<div class="page-signinup">
+  <div class="wrapper-1">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+        <div class="col-lg-10 col-md-10">
+          <div class="panel panel-default">
+            <div class="panel-body tab-content">
+              <div class="nb-signinup-wrapper nb-signin tab-pane personal-tab fade in active">
+                <p class="rb-header">درخواست نمایندگی اَکاپیا</p>
+                <form id="createJobRequestFrm" asp-action="Agency" asp-controller="Home" asp-area="" accept-charset="utf-8" class="personal-pro ajaxform">
+                  <div style="display: none;">
+                    <input type="hidden" name="_method" value="POST"/>
+                  </div>
+                  <div class="nameandfname">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group req input-label-animate">
+                      <div class="input text">
+                        <label asp-for="Name"></label>
+                        <input type="text" asp-for="Name" class="single-input required-input"/>
+                      </div><span class="hint danger" asp-validation-for="Name"></span>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group req input-label-animate">
+                      <div class="input text">
+                        <label asp-for="ContactTitle"></label>
+                        <input type="text" asp-for="ContactTitle" class="single-input required-input"/>
+                      </div><span class="hint danger" asp-validation-for="ContactTitle"></span>
+                    </div>
+                    <div class="col-xs-12 form-group">
+                      <select name="ProvinceId" id="searchProvinceDropDown" asp-items="@Model.Provinces" onchange="getCityList('searchProvinceDropDown', '@Url.Action("GetCitiesByProvince", "Home", new {area = ""})', 'searchCityDropDown')">
+                      </select>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group req">
+                      <label asp-for="CityId"></label>
+                      <select asp-for="CityId" class="single-select required-input" id="searchCityDropDown">
+                      </select>
+                      <span class="hint danger" asp-validation-for="CityId"></span>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group req input-label-animate">
+                      <div class="input text">
+                        <label asp-for="Tel"></label>
+                        <input type="text" asp-for="Tel" class="single-input required-input"/>
+                      </div><span class="hint danger" asp-validation-for="Tel"></span>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group req input-label-animate">
+                      <div class="input text">
+                        <label asp-for="Mobile"></label>
+                        <input type="text" asp-for="Mobile" class="single-input required-input"/>
+                      </div><span class="hint danger" asp-validation-for="Mobile"></span>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group req input-label-animate">
+                      <div class="input text">
+                        <label asp-for="ContactTitle"></label>
+                        <input type="text" asp-for="ContactTitle" class="single-input required-input"/>
+                      </div><span class="hint danger" asp-validation-for="ContactTitle"></span>
+                    </div>
+                    <div class="col-lg-24 col-md-24 col-sm-24 col-xs-24 form-group req input-label-animate">
+                      <div class="input text">
+                        <label asp-for="Address"></label>
+                        <input type="text" asp-for="Address" class="single-input required-input"/>
+                      </div><span class="hint danger" asp-validation-for="Address"></span>
+                    </div>
+                    <div class="col-lg-24 col-md-24 col-sm-24 col-xs-24 form-group req input-label-animate">
+                      <div class="input text">
+                        <label asp-for="Description"></label>
+                        <input type="text" asp-for="Description" class="single-input required-input"/>
+                      </div><span class="hint danger" asp-validation-for="Description"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="nb-btn nb-btn-success">ثبت درخواست</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="circle-sign"></div>
+            <div class="e"></div>
+          </div>
         </div>
-      </div>
-      <div class="col-md-8">
-        <form id="createJobRequestFrm" method="post" asp-action="Agency" asp-controller="Home" asp-area="">
-          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          <div class="single-field">
-            <label asp-for="Name" class="control-label"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="ContactTitle" class="control-label"></label>
-            <input asp-for="ContactTitle" class="form-control" />
-            <span asp-validation-for="ContactTitle" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="ProvinceId" class="control-label"></label>
-            <select asp-for="ProvinceId" asp-items="@Model.Provinces" class="form-control" id="searchProvinceDropDown" onchange="getCityList('searchProvinceDropDown', '@Url.Action("GetCitiesByProvince", "Home", new {area = ""})', 'searchCityDropDown')">
-              <option value="0">استان را انتخاب کنید...</option>
-            </select>
-            <span asp-validation-for="ProvinceId" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="CityId" class="control-label"></label>
-            <select asp-for="CityId" class="form-control" id="searchCityDropDown">
-              <option value="0">شهر را انتخاب کنید...</option>
-            </select>
-            <span asp-validation-for="CityId" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="Tel" class="control-label"></label>
-            <input asp-for="Tel" class="form-control" />
-            <span asp-validation-for="Tel" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="Mobile" class="control-label"></label>
-            <input asp-for="Mobile" class="form-control" />
-            <span asp-validation-for="Mobile" class="text-danger"></span>
-          </div>
+        <div class="col-lg-12 col-md-12 hidden-sm hidden-xs">
+          <img src="~/assets/theme/img/signin.jpg"
+               alt="netbarg-signin"
+               class="img-responsive nb-center">
+        </div>
 
-          <div class="single-field">
-            <label asp-for="Address" class="control-label"></label>
-            <input asp-for="Address" class="form-control" />
-            <span asp-validation-for="Address" class="text-danger"></span>
-          </div>
-          <div class="single-field">
-            <label asp-for="Description" class="control-label"></label>
-            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-          </div>
-          @*<div class="single-field">
-            @Html.Recaptcha(RecaptchaSettings.Value)
-          </div>*@
-          <div class="form-group">
-            <input type="submit" value="ثبت درخواست" class="bttn-mid btn-fill" onclick="checkFormValidation('createJobRequestFrm')" />
-          </div>
-        </form>
       </div>
     </div>
   </div>
-</section>
+</div>
+
+<div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
