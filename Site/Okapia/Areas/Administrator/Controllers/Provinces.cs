@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Okapia.Domain.Commands.Job;
 
 namespace Okapia.Areas.Administrator.Controllers
@@ -41,7 +42,7 @@ namespace Okapia.Areas.Administrator.Controllers
                 new Provience(29, "خراسان شمالي"),
                 new Provience(30, "خراسان جنوبي"),
                 new Provience(31, "البرز")
-            };
+            }.OrderBy(x => x.Name);
         }
     }
 }

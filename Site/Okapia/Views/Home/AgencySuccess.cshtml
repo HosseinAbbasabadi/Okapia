@@ -2,7 +2,41 @@
 @{
   ViewData["Title"] = "AgencySuccess";
   Layout = "~/Views/Shared/_Layout.cshtml";
+  var province = ViewData["province"].ToString();
 }
+
+<div class="page-static">
+  <div class="wrapper-2">
+    <div class="container-fluid">
+      <div class="row h-position">
+        @await Component.InvokeAsync("FloatingCategories", new { pn = province })
+        <div class="col-lg-22 col-md-22 col-sm-24 col-xs-24 clearfix page-aboutus">
+          <div class="page-content">
+            @*<div class="row part1">
+              <div class="col-lg-24 col-md-24">
+                <div class="header-aboutus">
+                  <h1 class="ft-3">درخواست با موفقیت ثبت شد</h1>
+                </div>
+              </div>
+            </div>*@
+            <div class="row part2">
+              <div data-wow-delay=".2s" data-wow-duration=".8s" class="col-lg-24 col-md-24 wow fadeIn">
+                <h1 class="ft-3">درخواست با موفقیت ثبت شد</h1>
+                <h3 class="ft-3">
+                  @ViewData["name"] عزیز درخواست نمایندگی شما به شماره پیگیری
+                  <span class="text-danger">@Model</span>
+                  ثبت شد. کارشناسان اُکاپیا در اسرع وقت با شما تماس خواهند گرفت
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        @await Component.InvokeAsync("CompanyNumbers")
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="custom-banner dark-overlay" style="background: url('/assets/images/counter.jpg') no-repeat fixed;"></section>
 
 <section class="form-area section-padding">
@@ -18,7 +52,7 @@
           <h3>
             @ViewData["name"] عزیز درخواست نمایندگی شما به شماره پیگیری
             <span class="text-danger">@Model</span>
-            ثبت شد. کارشناسان اُکاپیا در اسرع وقت با شما تماس خواند گرفت
+            ثبت شد. کارشناسان اُکاپیا در اسرع وقت با شما تماس خواهند گرفت
           </h3>
         </div>
       </div>

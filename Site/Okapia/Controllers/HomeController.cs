@@ -69,27 +69,23 @@ namespace Okapia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Agency(CreateJobRequest command)
         {
-            //var recaptcha = _recaptchaService.Validate(Request);
-            //if (!recaptcha.IsCompletedSuccessfully)
-            //{
-            //    ViewData["errorMessage"] = "خطای اعتبارسنجی. لطفا دوباره تلاش کنید";
-            //    return View();
-            //}
-
             var result = _jobRequestApplication.Create(command);
             if (result.Success)
             {
                 ViewData["name"] = command.ContactTitle;
+            ViewData["province"] = _cookieHelper.Get("province");
                 return View("AgencySuccess", result.RecordId.ToString());
             }
 
             ViewData["errorMessage"] = result.Message;
+            ViewData["province"] = _cookieHelper.Get("province");
             return View();
         }
 
         [ActionName("ثبت-موفق-نمایندگی-در-اُکاپیا")]
         public ActionResult AgencySuccess()
         {
+            ViewData["province"] = _cookieHelper.Get("province");
             return View("AgencySuccess");
         }
 
@@ -97,6 +93,7 @@ namespace Okapia.Controllers
         public IActionResult Privacy()
         {
             var privacy = _settingApplication.GetPrivacy();
+            ViewData["province"] = _cookieHelper.Get("province");
             return View("Privacy", privacy);
         }
 
@@ -104,6 +101,7 @@ namespace Okapia.Controllers
         public IActionResult About()
         {
             var about = _settingApplication.GetSettings();
+            ViewData["province"] = _cookieHelper.Get("province");
             return View("About", about);
         }
 
@@ -111,6 +109,7 @@ namespace Okapia.Controllers
         public IActionResult Contact()
         {
             var contact = _settingApplication.GetSettings();
+            ViewData["province"] = _cookieHelper.Get("province");
             return View("Contact", contact);
         }
 
@@ -119,16 +118,7 @@ namespace Okapia.Controllers
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
-
-        public ActionResult Search([FromForm] string q)
-        {
-            var search = new JobViewSearchModel
-            {
-                Text = q
-            };
-            return RedirectToAction("مراکز-خدماتی-و-فروشگاهی", "JobView", search);
-        }
-
+        
         [HttpGet]
         public JsonResult GetCitiesByProvince(int id)
         {

@@ -2,29 +2,34 @@
 
 @{
   ViewData["Title"] = "درباره اُکاپیا";
+  var province = ViewData["province"].ToString();
 }
-<section class="custom-banner dark-overlay" style="background: url('/assets/images/counter.jpg') no-repeat fixed;"></section><!--/Custom Banner-->
-<!--About Area-->
-<section class="about-area section-padding-2">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-12 centered wow fadeInUp" data-wow-delay="0.3s">
-        <div class="section-title">
-          <h2>درباره ما</h2>
+
+<div class="page-static">
+  <div class="wrapper-2">
+    <div class="container-fluid">
+      <div class="row h-position">
+        @await Component.InvokeAsync("FloatingCategories", new { pn = province })
+        <div class="col-lg-22 col-md-22 col-sm-24 col-xs-24 clearfix page-aboutus">
+          <div class="page-content">
+            <div class="row part1">
+              <div class="col-lg-24 col-md-24">
+                <img src="~/AboutPicture/@Model.AboutPicture" alt="@Model.AboutPictureAlt" title="@Model.AboutPictureTitle" class="img-responsive" style="height: 500px">
+                <div class="header-aboutus">
+                  <h1 class="ft-3">درباره اُکاپیا</h1>
+                </div>
+              </div>
+            </div>
+            <div class="row part2">
+              <div data-wow-delay=".2s" data-wow-duration=".8s" class="col-lg-24 col-md-24 wow fadeIn">
+                <h2 class="title1 ft-3"> شرکت اُکاپیا</h2>
+                <p class="text1 ft-5">@Model.About</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="row rtl">
-      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInLeft" data-wow-delay="0.4s">
-        <div class="about-media">
-          <img src="~/AboutPicture/@Model.AboutPicture" alt="@Model.AboutPictureAlt" title="@Model.AboutPictureTitle">
-        </div>
-      </div>
-      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInRight" data-wow-delay="0.4s">
-        <div class="about-content">
-          <p>@Model.About</p>
-        </div>
+        @await Component.InvokeAsync("CompanyNumbers")
       </div>
     </div>
   </div>
-</section><!--/About Area-->
+</div>

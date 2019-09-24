@@ -61,6 +61,7 @@ namespace Okapia.Controllers
                 JobViewDetailsViewModel = jobDetails,
                 AddComment = new AddComment()
             };
+            ViewData["province"] = _cookieHelper.Get("province");
             return View(index);
         }
 

@@ -116,7 +116,7 @@
 
           @await Component.InvokeAsync("Provinces", new {pn = provinceName})
 
-          <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
+          <div class="col-lg-13 col-md-13 hidden-sm hidden-xs">
             @if (_AuthHelper.GetCurrnetUserInfo().IsAuthorized)
             {
               var area = "";
@@ -133,31 +133,84 @@
               {
                 area = "User";
               }
-              <div class="login-dropdown clearfix">
-                <a href="/@area/Home/Index">
-                  <div style="background-image: url(/assets/theme/img/user-pic.png)" class="avatar inline-block"></div>
-                  <span class="avatar-info inline-block">
-                    حسین عباس آبادی
+              <div class="loginout">
+                <a asp-controller="Home" asp-action="درخواست-ثبت-نمایندگی-اُکاپیا" style="padding-right: 0 !important">
+                  <span>
+                    درخواست نمایندگی
+                  </span>
+                </a>
+                <a asp-controller="Home" asp-action="تماس-با-اُکاپیا" style="padding-right: 0 !important">
+                  <span>
+
+                    تماس با ما
+                  </span>
+                </a>
+                <a asp-controller="Home" asp-action="درباره-اُکاپیا" style="padding-right: 0 !important">
+                  <span>
+                    درباره اُکاپیا
                   </span>
                 </a>
               </div>
+                <div class="login-dropdown clearfix">
+                  <a data-toggle="dropdown" href="#Page" class="dropdown-toggle">
+                    <div style="background-image:url(/assets/theme/img/user-pic.png)" class="avatar inline-block"></div>
+                    <span class="avatar-info inline-block">
+                      <p class="name">@_AuthHelper.GetCurrnetUserInfo().Username</p>
+                      <p class="credit">
+                        <span></span>
+                      </p>
+                    </span>
+                    <span class="inline-block icon icon-arrow-down"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="/@area/Home/Index" data-tab="#tab1">
+                        <span>
+                          <i class="icon icon-user-avatar"></i>
+                        </span>پروفایل شخصی
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/Account/Logout">
+                        <span>
+                          <i class="icon icon-logout"></i>
+                        </span>خـروج
+                      </a>
+                    </li>
+                  </ul>
+                </div>
             }
             else
             {
-              <div class="loginout">
-                <a asp-controller="Account" asp-action="Login" class="login">
-                  <span>
-                    <i class="icon icon-Login"></i>
-                    ورود
-                  </span>
-                </a>
-                <a asp-controller="Account" asp-action="Register" class="signup">
-                  <span>
-                    <i class="icon icon-signup"></i>
-                    ثبت نام
-                  </span>
-                </a>
-              </div>
+                <div class="loginout">
+                  <a asp-controller="Home" asp-action="درخواست-ثبت-نمایندگی-اُکاپیا" style="padding-right: 0 !important">
+                    <span>
+                      درخواست نمایندگی
+                    </span>
+                  </a>
+                  <a asp-controller="Home" asp-action="تماس-با-اُکاپیا" style="padding-right: 0 !important">
+                    <span>
+                      تماس با ما
+                    </span>
+                  </a>
+                  <a asp-controller="Home" asp-action="درباره-اُکاپیا" style="padding-right: 0 !important">
+                    <span>
+                      درباره اُکاپیا
+                    </span>
+                  </a>
+                  <a asp-controller="Account" asp-action="Register" class="signup">
+                    <span>
+                      <i class="icon icon-signup"></i>
+                      ثبت نام
+                    </span>
+                  </a>
+                  <a asp-controller="Account" asp-action="Login" class="login">
+                    <span>
+                      <i class="icon icon-Login"></i>
+                      ورود
+                    </span>
+                  </a>
+                </div>
             }
 
           </div>

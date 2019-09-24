@@ -12,19 +12,22 @@ namespace Okapia.Controllers
     {
         private readonly IAuthHelper _authHelper;
         private readonly IAccountApplication _accountApplication;
+        private readonly ICookieHelper _cookieHelper;
 
         public AccountController(IAccountApplication accountApplication, IAuthHelper authHelper,
             ICityApplication cityApplication, IDistrictApplication districtApplication,
-            INeighborhoodApplication neighborhoodApplication)
+            INeighborhoodApplication neighborhoodApplication, ICookieHelper cookieHelper)
         {
             _accountApplication = accountApplication;
             _authHelper = authHelper;
+            _cookieHelper = cookieHelper;
         }
 
         public ActionResult Register()
         {
             if (_authHelper.GetCurrnetUserInfo().IsAuthorized) return RedirectToAction("Index", "Home");
             var createUser = new CreateUser();
+            ViewData["province"] = _cookieHelper.Get("province");
             return View(createUser);
         }
 
@@ -58,6 +61,7 @@ namespace Okapia.Controllers
             if (_authHelper.GetCurrnetUserInfo().IsAuthorized) return RedirectToAction("Index", "Home");
             var login = new Login();
             ViewData["redirectUrl"] = redirectUrl;
+            ViewData["province"] = _cookieHelper.Get("province");
             return View(login);
         }
 
@@ -96,6 +100,7 @@ namespace Okapia.Controllers
 
         public ActionResult AccessDenied()
         {
+            ViewData["province"] = _cookieHelper.Get("province");
             return View();
         }
 
@@ -104,6 +109,7 @@ namespace Okapia.Controllers
         {
             var model = new ChangePassword();
             ViewData["accountId"] = id;
+            ViewData["province"] = _cookieHelper.Get("province");
             return PartialView("_ChangePassword", model);
         }
 
@@ -118,6 +124,7 @@ namespace Okapia.Controllers
         public ActionResult ChooseFpMethod()
         {
             var chooseFpMethod = new ChooseFpMethod();
+            ViewData["province"] = _cookieHelper.Get("province");
             return View(chooseFpMethod);
         }
 
@@ -147,6 +154,7 @@ namespace Okapia.Controllers
 
         public ActionResult VerifyVerificationCode(ChooseFpMethod command)
         {
+            ViewData["province"] = _cookieHelper.Get("province");
             return View(command);
         }
 
@@ -175,6 +183,7 @@ namespace Okapia.Controllers
         {
             var model = new ChangePassword();
             ViewData["accountId"] = id;
+            ViewData["province"] = _cookieHelper.Get("province");
             return View("ChangePassword", model);
         }
 

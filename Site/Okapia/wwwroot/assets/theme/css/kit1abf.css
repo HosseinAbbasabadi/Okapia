@@ -2055,7 +2055,7 @@ ul.dropdown-menu {
       .float-left-button ul a:last-child li i i {
         font-size: 1.6rem; }
     .float-left-button ul a:nth-child(1) li:hover, .float-left-button ul a:nth-child(2) li:hover, .float-left-button ul a:nth-child(3) li:hover {
-      width: 225px;
+      width: 250px;
       padding: 0 17px 0 48px;
       color: #a2a2a2; }
       .float-left-button ul a:nth-child(1) li:hover span, .float-left-button ul a:nth-child(2) li:hover span, .float-left-button ul a:nth-child(3) li:hover span {
@@ -7052,7 +7052,7 @@ header .bar {
   header .bar .login-dropdown {
     position: relative;
     height: 48px;
-    width: 66.666662%;
+    width: 45%;
     float: right; }
     header .bar .login-dropdown .dropdown-toggle {
       display: block; }
@@ -7169,15 +7169,15 @@ header .bar {
     height: 48px; }
   header .bar .loginout {
     height: 48px;
-    width: 66.666662%;
     float: right; }
     header .bar .loginout a {
       float: right;
       height: 48px;
       color: #cccccc;
-      width: 50%;
       text-align: center;
-      position: relative; }
+      position: relative;
+        padding: 0px 20px;
+    }
       header .bar .loginout a span {
         line-height: 30px;
         display: inline-block;
@@ -7204,10 +7204,12 @@ header .bar {
         color: #f58221; }
         header .bar .loginout a:hover span i {
           color: #f58221; }
-      header .bar .loginout a:first-child:hover span {
-        color: #4ec51c; }
-        header .bar .loginout a:first-child:hover span i {
-          color: #4ec51c; }
+        header .bar .loginout a:first-child:hover span {
+            color: #f58221;
+        }
+            header .bar .loginout a:first-child:hover span i {
+                color: #f58221;
+            }
 
 header .burger-menu-right {
   position: fixed;
