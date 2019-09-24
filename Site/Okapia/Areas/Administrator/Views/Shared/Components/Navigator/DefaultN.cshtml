@@ -235,7 +235,7 @@
   </li>
 }
 
-@if (Model.Any(x => x.ControllerName == "Slide") || Model.Any(x => x.ControllerName == "Setting") || Model.Any(x => x.ControllerName == "Link") || Model.Any(x => x.ControllerName == "Box"))
+@if (Model.Any(x => x.ControllerName == "Slide") || Model.Any(x => x.ControllerName == "Setting") || Model.Any(x => x.ControllerName == "Box"))
 {
   <li>
     <a class="waves-effect">
@@ -259,12 +259,6 @@
       {
         <li>
           <a asp-action="Index" asp-controller="Setting" asp-area="Administrator">مدیریت تنظیمات سایت</a>
-        </li>
-      }
-      @if (Model.Any(x => x.ControllerName == "Link"))
-      {
-        <li>
-          <a asp-action="Index" asp-controller="Link" asp-area="Administrator">مدیریت لینک ها</a>
         </li>
       }
     </ul>

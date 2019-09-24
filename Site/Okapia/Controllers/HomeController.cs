@@ -155,10 +155,12 @@ namespace Okapia.Controllers
         }
 
         [HttpPost]
-        public JsonResult Contactus(CreateContact command)
+        public ActionResult Contactus(CreateContact command)
         {
             var result = _contactApplication.Create(command);
-            return Json(result);
+            ViewData["Message"] = result.Message;
+            var contact = _settingApplication.GetSettings();
+            return View("Contact", contact);
         }
     }
 }

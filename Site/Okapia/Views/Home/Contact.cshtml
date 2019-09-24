@@ -4,13 +4,125 @@
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="custom-banner dark-overlay" style="background: url('/assets/images/counter.jpg') no-repeat fixed;"></section>
+<div class="page-static">
+  <div class="wrapper-2">
+    <div class="container-fluid">
+      <div class="row h-position">
+        @await Component.InvokeAsync("FloatingCategories")
+
+        <div class="col-lg-22 col-md-22 col-sm-24 col-xs-24 clearfix page-contactus">
+          <div class="art-border">
+            <div class="cu-top">
+              <h1>ارتباط با ما</h1>
+            </div>
+            <article class="netbarg-map">
+              <div id="dealLocation">
+                <div id="onMap">
+                  @Html.Raw(Model.Map)
+                </div>
+              </div>
+            </article>
+            <div class="row tw-col">
+              <div data-wow-delay=".3s" data-wow-duration=".8s" class="col-sm-12 wow fadeIn">
+                <article class="cu cu-call clearfix">
+                  <header class="section-header margin-b20">
+                    <h6 class="hx">
+                      <span class="article-h3">فرم تماس</span>
+                    </h6>
+                  </header>
+                </article>
+                <form class="cu personal-pro ajaxform" method="post" asp-controller="Home" asp-action="Contactus">
+                  <div class="nameandfname">
+                    <div class="row">
+                      <div class="col-xs-12 form-group req input-label-animate">
+                        <div class="input text">
+                          <label for="pe1">نام</label>
+                          <input id="pe1" maxlength="50" name="Name" class="single-input required-input">
+                        </div>
+                        <span class="hint danger"></span>
+                      </div>
+                      <div class="col-xs-12 form-group req input-label-animate">
+                        <div class="input text">
+                          <label for="pe3">ایمیل</label>
+                          <input id="pe3" maxlength="50" type="email" name="Email" class="single-input required-input emailcheck">
+                        </div>
+                        <span class="hint danger"></span>
+                      </div>
+                      <div class="col-xs-24 form-group req input-label-animate">
+                        <label for="donate4">پیام شما</label>
+                        <textarea id="donate4" name="Message" class="single-input required-input"></textarea>
+                      </div>
+                      @if (ViewData["message"] != null)
+                      {
+                        <div class="col-sm-23 alert alert-success" role="alert">
+                          @ViewData["Message"]
+                        </div>
+                      }
+                      <div class="col-xs-24">
+                        <button type="submit" class="nb-btn nb-btn-success pull-left">ارسال</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div data-wow-delay=".9s" data-wow-duration=".8s" class="col-sm-12 wow fadeIn">
+                <article class="cu cu-call clearfix">
+                  <header class="section-header margin-b20">
+                    <h6 class="hx">
+                      <span class="article-h3">راه های ارتباطی دیگر</span>
+                    </h6>
+                  </header>
+                  <ul class="clearfix">
+                    <li>
+                      <i class="icon icon-location74"></i><span> آدرس شرکت : @Model.Address</span>
+                    </li>
+                    <li>
+                      <i class="icon icon-phone-call"></i><a href="tel:@Model.Tell1" class="tel"> تماس با پشتیبانی : @Model.Tell1</a>
+                    </li>
+                    <li>
+                      <i class="icon icon-phone-call"></i><a href="tel:Model.Tell2" class="tel"> تماس با شرکت : @Model.Tell2</a>
+                    </li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        @await Component.InvokeAsync("CompanyNumbers")
+        @*<script>
+      function myNet() {
+        var mapCanvas = document.getElementById("onMap");
+        var myCenter = new google.maps.LatLng(35.7560031, 51.4095368);
+        var mapOptions = { center: myCenter, zoom: 15, disableDefaultUI: false };
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(35.7560031, 51.4095368),
+          icon: '/assets/site/img/pin.png',
+          animation: google.maps.Animation.DROP
+        });
+
+        marker.setMap(map);
+      }
+
+      $(document).ready(function () {
+        myNet();
+      })
+    </script>*@
+
+      </div>
+    </div>
+  </div>
+</div>
+
+@*<section class="custom-banner dark-overlay" style="background: url('/assets/images/counter.jpg') no-repeat fixed;"></section>
 
 <div id="map">
   @Html.Raw(Model.Map)
-</div>
+</div>*@
 
-<section class="contact-area section-padding-2">
+@*<section class="contact-area section-padding-2">
   <div class="container">
     <div class="row ">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 wow fadeInLeft" data-wow-delay="0.4s">
@@ -44,7 +156,7 @@
 
     </div>
   </div>
-</section>
+</section>*@
 
 @*<script>
   function initMap() {
