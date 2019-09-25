@@ -7,6 +7,6 @@ namespace Okapia.Models
     public class PageCategoryMenuIndexViewModel
     {
         public AccountViewModel AccountViewModel { get; set; }
-        public List<PageCategoryMenuViewModel> PageCategoryMenuViewModels { get; set; }
+        public List<PageCategoryItemViewModel> PageCategoryMenuViewModels { get; set; }
     }
 }

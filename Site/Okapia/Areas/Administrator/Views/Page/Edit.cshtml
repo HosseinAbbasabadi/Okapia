@@ -112,7 +112,7 @@
         <tr>
           <td>
             <input id="pagePicture" name="pagePicture" type="file" size="1" onchange="uploadFile('pagePicture', 'PagePicture', 'deleteImage', 'page');PreviewImage('pagePicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
-            <input asp-for="PagePicture" type="hidden" size="1" value="" />
+            <input asp-for="PagePicture" type="hidden" size="1" value="@Model.PagePicture" />
             <span class="text-danger"><strong>نکته:</strong> سایز عکس باید ۴۵۲ * ۶۴۰ باشد</span>
           </td>
           <td>
@@ -133,12 +133,24 @@
               <span asp-validation-for="PagePictureDescription" class="text-danger"></span>
             </div>
           </td>
-          <td>
-            <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100" />
-          </td>
-          <td>
-            <button type="button" id="deleteImage" onclick="deletePhoto('PagePicture', 'prevImage', 'deleteImage', 'TitleImage', 'AltImage', 'DescImage', 'page')" class="btn btn-danger hidden">حذف</button>
-          </td>
+          @if (string.IsNullOrEmpty(Model.PagePicture))
+          {
+            <td>
+              <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100" />
+            </td>
+            <td>
+              <button type="button" id="deleteImage" onclick="deletePhoto('PagePicture', 'prevImage', 'deleteImage', 'TitleImage', 'AltImage', 'DescImage', 'page')" class="btn btn-danger hidden">حذف</button>
+            </td>
+          }
+          else
+          {
+            <td>
+              <img id="prevImage" src="~/PagePhotos/Thumbs/@Model.PagePicture" with="100" height="100" />
+            </td>
+            <td>
+              <button type="button" id="deleteImage" onclick="deletePhoto('PagePicture', 'prevImage', 'deleteImage', 'TitleImage', 'AltImage', 'DescImage', 'page')" class="btn btn-danger">حذف</button>
+            </td>
+          }
         </tr>
       </table>
       <div class="col-md-12">

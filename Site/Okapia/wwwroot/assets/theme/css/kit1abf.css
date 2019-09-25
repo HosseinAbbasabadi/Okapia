@@ -5552,7 +5552,7 @@ input[type="radio"] .styled:checked + label:after {
 .input-label-animate input,
 .input-label-animate textarea {
   z-index: 1;
-  color: transparent; }
+  color: #000; }
   .input-label-animate input:focus + label,
   .input-label-animate textarea:focus + label {
     z-index: 2;

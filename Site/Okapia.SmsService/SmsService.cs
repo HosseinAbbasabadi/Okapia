@@ -5,8 +5,8 @@ namespace Okapia.SmsService
 {
     public class SmsService : ISmsService
     {
-        private const string Sender = "30005088146330";
-        private const string ApiKey = "7H0gOxlOHcmIc90s5mqJs/43S9uKuXmbOD3dstei/t8";
+        private const string Sender = "3000133741";
+        private const string ApiKey = "rPPqdw9bOPV8OGgOdg9KTJcfSBzFlpT3iPZV0xmQuTU";
         private readonly JsonSerializer _jsonSerializer;
 
         public SmsService()

@@ -36,6 +36,7 @@
     <Folder Include="Areas\Reporting\Data\" />
     <Folder Include="Areas\Reporting\Models\" />
     <Folder Include="Areas\Reporting\Views\" />
+    <Folder Include="Views\PageView\Components\" />
     <Folder Include="wwwroot\AboutPicture\Thumbs\" />
     <Folder Include="wwwroot\BannerPhoto\Thumbs\" />
     <Folder Include="wwwroot\BoxPhotos\Thumbs\" />

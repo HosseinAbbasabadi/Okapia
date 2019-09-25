@@ -3,19 +3,19 @@ using Okapia.Application.Contracts;
 
 namespace Okapia.ViewComponents
 {
-    public class PageCategoryBlogSideViewComponent : ViewComponent
+    public class FooterPageCategoriesViewComponent : ViewComponent
     {
         private readonly IPageCategoryApplication _pageCategoryApplication;
 
-        public PageCategoryBlogSideViewComponent(IPageCategoryApplication pageCategoryApplication)
+        public FooterPageCategoriesViewComponent(IPageCategoryApplication pageCategoryApplication)
         {
             _pageCategoryApplication = pageCategoryApplication;
         }
 
         public IViewComponentResult Invoke()
         {
-            var pageCategories = _pageCategoryApplication.GetPageCategoriesForMenu();            
-            return View("_PageCategoryBlogSide", pageCategories);
+            var pages = _pageCategoryApplication.GetPageCategoriesForFooter();
+            return View("_FooterPageCategories", pages);
         }
     }
 }

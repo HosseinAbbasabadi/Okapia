@@ -1,6 +1,6 @@
 ﻿namespace Okapia.Domain.ViewModels.PageCategory
 {
-    public class PageCategoryMenuViewModel
+    public class PageCategoryItemViewModel
     {
         public int PageCategoryId { get; set; }
         public string PageCategoryName { get; set; }

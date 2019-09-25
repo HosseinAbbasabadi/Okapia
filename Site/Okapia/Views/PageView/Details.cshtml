@@ -7,11 +7,9 @@
   ViewData["MetaTags"] = Model.PageViewDetailsViewModel.PageMetaTag;
   ViewData["CanonicalAddress"] = Model.PageViewDetailsViewModel.PageCanonicalAddress;
   Layout = "~/Views/Shared/_Layout.cshtml";
+  var province = ViewData["province"].ToString();
 }
 
-<section class="custom-banner dark-overlay" style="background: url('/assets/images/counter.jpg') no-repeat fixed;"></section>
-<!--/Custom Banner-->
-<!--Blog Details Area-->
 <section class="blog-details section-padding gray-bg">
   <div class="container">
     <div class="row">
@@ -33,59 +31,8 @@
             @Html.Raw(Model.PageViewDetailsViewModel.PageDescription)
           </p>
         </div>
-
-        
       </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-        @await Component.InvokeAsync("LatestPagesBlogSide")
-        @await Component.InvokeAsync("PageCategoryBlogSide")
-
-        <div class="single-sidebar wow fadeInRight" data-wow-delay="0.6s">
-          <h3>عضویت در خبرنامه</h3>
-          <div class="newslatter">
-            <form action="#">
-              <input type="email" placeholder="ایمیل" required>
-              <button class="bttn-mid btn-fill">عضویت</button>
-            </form>
-          </div>
-        </div>
-        @*<div class="single-sidebar wow fadeInRight" data-wow-delay="0.7s">
-          <h3>تگ ها</h3>
-          <div class="tags">
-            @foreach (var tag in Model.PageViewDetailsViewModel.MetaTags)
-            {
-              <a title="@tag">@tag</a>
-            }
-          </div>
-        </div>*@
-      </div>
-      @if (AuthHelper.GetCurrnetUserInfo().IsAuthorized)
-      {
-        <div class="blog-comment-form wow fadeInUp" data-wow-delay="0.3s">
-          <h3>نظر خود را بنویسید</h3>
-          <form asp-action="AddComment" method="post">
-            <div class="row">
-              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-              <div class="col-md-12">
-                <label asp-for="AddComment.CommentText" class="control-label"></label>
-                <textarea asp-for="AddComment.CommentText" name="CommentText" rows="6" class="form-control"></textarea>
-                <span asp-validation-for="AddComment.CommentText" class="text-danger"></span>
-              </div>
-              <input type="hidden" name="CommentOwnerRecordId" value="@Model.PageViewDetailsViewModel.PageId"/>
-              <div class="col-md-12">
-                <button class="bttn-mid btn-fill" type="submit">ارسال نظر</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      }
-      else
-      {
-        <div class="blog-comment-form wow fadeInUp" data-wow-delay="0.3s">
-          <h3>برای ثبت نظر لطفا ابتدا وارد شوید <a href="/Account/Login">ورود به سایت</a></h3>
-        </div>
-      }
+      
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         @foreach (var comment in Model.PageViewDetailsViewModel.Comments)
         {

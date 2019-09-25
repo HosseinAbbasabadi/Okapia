@@ -18,7 +18,7 @@ namespace Okapia.Application.Contracts
         OperationResult CheckSlugDuplication(string slug);
 
         //
-        List<PageCategoryMenuViewModel> GetPageCategoriesForMenu();
+        List<PageCategoryItemViewModel> GetPageCategoriesForFooter();
         PageCategoryBlogViewModel GetPageCategoryForBlog(string categorySlug);
     }
 }

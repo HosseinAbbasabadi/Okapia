@@ -97,6 +97,7 @@ namespace Okapia.Controllers
         {
             var jobs = _jobApplication.SearchResult(q, pn);
             ViewData["Phrase"] = q;
+            ViewData["province"] = _cookieHelper.Get("province");
             return View(jobs);
         }
     }

@@ -151,66 +151,66 @@
                   </span>
                 </a>
               </div>
-                <div class="login-dropdown clearfix">
-                  <a data-toggle="dropdown" href="#Page" class="dropdown-toggle">
-                    <div style="background-image:url(/assets/theme/img/user-pic.png)" class="avatar inline-block"></div>
-                    <span class="avatar-info inline-block">
-                      <p class="name">@_AuthHelper.GetCurrnetUserInfo().Username</p>
-                      <p class="credit">
+              <div class="login-dropdown clearfix">
+                <a data-toggle="dropdown" href="#Page" class="dropdown-toggle">
+                  <div style="background-image: url(/assets/theme/img/user-pic.png)" class="avatar inline-block"></div>
+                  <span class="avatar-info inline-block">
+                    <p class="name">@_AuthHelper.GetCurrnetUserInfo().Username</p>
+                    @*<p class="credit">
                         <span></span>
-                      </p>
-                    </span>
-                    <span class="inline-block icon icon-arrow-down"></span>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="/@area/Home/Index" data-tab="#tab1">
-                        <span>
-                          <i class="icon icon-user-avatar"></i>
-                        </span>پروفایل شخصی
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/Account/Logout">
-                        <span>
-                          <i class="icon icon-logout"></i>
-                        </span>خـروج
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+                      </p>*@
+                  </span>
+                  <span class="inline-block icon icon-arrow-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/@area/Home/Index" data-tab="#tab1">
+                      <span>
+                        <i class="icon icon-user-avatar"></i>
+                      </span>پروفایل شخصی
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/Account/Logout">
+                      <span>
+                        <i class="icon icon-logout"></i>
+                      </span>خـروج
+                    </a>
+                  </li>
+                </ul>
+              </div>
             }
             else
             {
-                <div class="loginout">
-                  <a asp-controller="Home" asp-action="درخواست-ثبت-نمایندگی-اُکاپیا" style="padding-right: 0 !important">
-                    <span>
-                      درخواست نمایندگی
-                    </span>
-                  </a>
-                  <a asp-controller="Home" asp-action="تماس-با-اُکاپیا" style="padding-right: 0 !important">
-                    <span>
-                      تماس با ما
-                    </span>
-                  </a>
-                  <a asp-controller="Home" asp-action="درباره-اُکاپیا" style="padding-right: 0 !important">
-                    <span>
-                      درباره اُکاپیا
-                    </span>
-                  </a>
-                  <a asp-controller="Account" asp-action="Register" class="signup">
-                    <span>
-                      <i class="icon icon-signup"></i>
-                      ثبت نام
-                    </span>
-                  </a>
-                  <a asp-controller="Account" asp-action="Login" class="login">
-                    <span>
-                      <i class="icon icon-Login"></i>
-                      ورود
-                    </span>
-                  </a>
-                </div>
+              <div class="loginout">
+                <a asp-controller="Home" asp-action="درخواست-ثبت-نمایندگی-اُکاپیا" style="padding-right: 0 !important">
+                  <span>
+                    درخواست نمایندگی
+                  </span>
+                </a>
+                <a asp-controller="Home" asp-action="تماس-با-اُکاپیا" style="padding-right: 0 !important">
+                  <span>
+                    تماس با ما
+                  </span>
+                </a>
+                <a asp-controller="Home" asp-action="درباره-اُکاپیا" style="padding-right: 0 !important">
+                  <span>
+                    درباره اُکاپیا
+                  </span>
+                </a>
+                <a asp-controller="Account" asp-action="Register" class="signup">
+                  <span>
+                    <i class="icon icon-signup"></i>
+                    ثبت نام
+                  </span>
+                </a>
+                <a asp-controller="Account" asp-action="Login" class="login">
+                  <span>
+                    <i class="icon icon-Login"></i>
+                    ورود
+                  </span>
+                </a>
+              </div>
             }
 
           </div>
@@ -232,7 +232,7 @@
     </div>
   </div>
 
-  @await Component.InvokeAsync("MobileCategories")
+  @await Component.InvokeAsync("MobileCategories", new {pn = provinceName})
 
 </header>
 
@@ -246,7 +246,23 @@
 
   @await Component.InvokeAsync("FooterBoxes")
 
-  @await Component.InvokeAsync("FooterLinks")
+
+  <div class="row-footer-menu">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-1 hidden-sm hidden-xs"></div>
+        <div class="col-md-22">
+          <div class="row">
+
+            @await Component.InvokeAsync("FooterPageCategories")
+            @await Component.InvokeAsync("FooterLinks")
+
+          </div>
+        </div>
+        <div class="col-md-1 hidden-sm hidden-xs"></div>
+      </div>
+    </div>
+  </div>
 
   @await Component.InvokeAsync("FooterAbout")
 
@@ -278,6 +294,9 @@
 <script src="~/assets/theme/js/elastic.js"></script>
 <script src="~/assets/theme/js/swiper.min.js"></script>
 <script src="~/js/ajaxFunctions.js"></script>
+<script src="~/js/site.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
 @*<script src="~/assets/theme/js/site.min.js"></script>*@
 

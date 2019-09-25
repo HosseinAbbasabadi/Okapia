@@ -4,7 +4,8 @@
 @model Okapia.Domain.Commands.JobRequest.CreateJobRequest
 
 @{
-  ViewData["Title"] = "درخواست نمایندگی و عضویت در سیستم اکاپیا";
+    ViewData["Title"] = "درخواست نمایندگی و عضویت در سیستم اکاپیا";
+    //var province = ViewData["province"].ToString();
 }
 
 <div class="page-signinup">
@@ -62,15 +63,21 @@
                     <div class="col-lg-24 col-md-24 col-sm-24 col-xs-24 form-group req input-label-animate">
                       <div class="input text">
                         <label asp-for="Address"></label>
-                        <input type="text" asp-for="Address" class="single-input required-input"/>
+                        <input type="text" asp-for="Address" class="single-input"/>
                       </div><span class="hint danger" asp-validation-for="Address"></span>
                     </div>
                     <div class="col-lg-24 col-md-24 col-sm-24 col-xs-24 form-group input-label-animate">
                       <div class="input text">
                         <label asp-for="Description"></label>
-                        <input type="text" asp-for="Description" class="single-input required-input"/>
+                        <textarea type="text" asp-for="Description" class="single-input required-input"></textarea>
                       </div>
                     </div>
+                    @if (ViewData["errorMessage"] != null)
+                    {
+                      <div class="col-sm-23 alert alert-danger" role="alert">
+                        @ViewData["errorMessage"]
+                      </div>
+                    }
                     <div class="col-lg-24 col-md-24 col-sm-24 col-xs-24 form-group">
                       <button type="submit" class="nb-btn nb-btn-success">ثبت درخواست</button>
                     </div>

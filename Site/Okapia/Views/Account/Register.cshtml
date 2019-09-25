@@ -16,62 +16,69 @@
               <div class="nb-signinup-wrapper nb-signup tab-pane personal-tab fade active in">
                 <p class="rb-header">ثبت نام در اُکاپیا</p>
 
-                <form method="post" accept-charset="utf-8" class="personal-pro ajaxform" id="registration-form">
-                  <div style="display: none;">
-                    <input type="hidden" name="_method" value="POST" />
-                  </div>
+                <form method="post" accept-charset="utf-8" class="personal-pro" asp-controller="Account" asp-action="Register">
                   <div class="nameandfname">
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group req input-label-animate">
                         <div class="input text">
-                          <label for="user-profile-first-name">نام</label>
-                          <input type="text" asp-for="Name" name="user_profile[first_name]" class="single-input required-input" id="user-profile-first-name" />
-                        </div><span class="hint danger"></span>
+                          <label asp-for="Name">نام</label>
+                          <input type="text" asp-for="Name" class="single-input required-input" id="user-profile-first-name" />
+                        </div><span asp-validation-for="Name" class="hint danger"></span>
                       </div>
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group req input-label-animate">
                         <div class="input text">
-                          <label for="user-profile-last-name">نام خانوادگی</label>
-                          <input type="text" asp-for="Family" name="user_profile[last_name]" class="single-input required-input" id="user-profile-last-name" />
-                        </div><span class="hint danger"></span>
+                          <label asp-for="Family">نام خانوادگی</label>
+                          <input type="text" asp-for="Family" class="single-input required-input" id="user-profile-last-name" />
+                        </div><span asp-validation-for="Family" class="hint danger"></span>
                       </div>
                     </div>
                     <div class="form-group req input-label-animate">
                       <div class="input email">
-                        <label for="registeremail">ایمیل</label>
-                        <input type="email" asp-for="Email" name="email" id="registeremail" class="single-input required-input" />
-                      </div><span class="hint danger"></span>
+                        <label asp-for="Email">ایمیل</label>
+                        <input type="email" asp-for="Email" id="registeremail" class="single-input required-input" />
+                      </div><span asp-validation-for="Email" class="hint danger"></span>
                     </div>
                     <div class="form-group req input-label-animate">
                       <div class="input password">
-                        <label for="password">کدملی(به عنوان نام کاربری)</label>
-                        <input type="password" asp-for="NationalCardNumber" name="password" class="single-input required-input password-check" id="password" />
-                      </div><span class="hint danger"></span>
+                        <label asp-for="NationalCardNumber">کدملی(به عنوان نام کاربری)</label>
+                        <input type="text" asp-for="NationalCardNumber" class="single-input required-input password-check" id="password" />
+                      </div><span asp-validation-for="NationalCardNumber" class="hint danger"></span>
                     </div>
                     <div class="form-group req input-label-animate">
                       <div class="input text">
-                        <label for="phone">موبایل(به عنوان رمز عبور)</label>
-                        <input type="text" asp-for="PhoneNumber" name="phone" maxlength="11" class="single-input required-input phonenumbervalid" id="phone" />
-                      </div><span class="hint danger"></span>
+                        <label asp-for="PhoneNumber">موبایل(به عنوان رمز عبور)</label>
+                        <input type="text" asp-for="PhoneNumber" maxlength="11" class="single-input required-input phonenumbervalid" id="phone" />
+                      </div><span asp-validation-for="PhoneNumber" class="hint danger"></span>
                     </div>
-                    @*<div class="form-group req input-label-animate">
-                  <label class="hascontent">شهر محل سکونت</label>
-                  <select name="user_profile[city_id]" class="single-select required-input" asp-items="@Model.Provinces">
-                    <option value="0">انتخاب شهر</option>
-                  </select>
-                  <span class="hint danger"></span>
-                </div>*@
+                    <div id="bankCards">
+                      <div class="form-group req input-label-animate">
+                        <div class="input text">
+                          <label asp-for="Card1"></label>
+                          <input asp-for="Card1" class="single-input required-input" />
+                          <span asp-validation-for="Card1" class="hint danger"></span>
+                        </div>
+                      </div>
+                    </div>
+                    @if (ViewData["errorMessage"] != null)
+                    {
+                      <div class="col-sm-23 alert alert-danger" role="alert">
+                        @ViewData["errorMessage"]
+                      </div>
+                    }
+                    <button type="button" class="btn btn-success" onclick="dynamicCard('ui')">افزودن کارت</button>
+                    
                     <div class="m-b re-captcha text-center">
                       <div class="control-input captcha-net" style="display: inline-block; margin: 0 auto;">
                         @*<div align="right" class="captcha-block">
-                      <div class="g-recaptcha" id="g-recaptcha-register-verify" data-sitekey="6LfyZz0UAAAAAABOhV3qPjoUSA6U-lg1I76PjhKc"></div>
-                    </div>*@
-                      </div>
+                        <div class="g-recaptcha" id="g-recaptcha-register-verify" data-sitekey="6LfyZz0UAAAAAABOhV3qPjoUSA6U-lg1I76PjhKc"></div>
+                      </div>*@
+                    </div>
                     </div>
                     <div class="form-group">
-                      <button type="submit" class="nb-btn nb-btn-success" sync-bybutton="btn1">ثبت نام</button>
+                      <button type="submit" class="nb-btn nb-btn-success">ثبت نام</button>
                       <div class="link-signup clearfix">
-                        <span>در نت برگ عضو هستید؟</span>
-                        <a data-toggle="tab" asp-controller="Account" asp-action="Login"
+                        <span>در اُکاپیا عضو هستید؟</span>
+                        <a asp-controller="Account" asp-action="Login"
                            class="not-register nb-btn nb-btn-sm nb-btn-border show-basket">
                           ورود به حساب کاربری
                         </a>

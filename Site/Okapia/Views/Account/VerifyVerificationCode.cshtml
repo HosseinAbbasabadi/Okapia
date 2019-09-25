@@ -5,36 +5,56 @@
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="custom-banner dark-overlay" style="background: url('/assets/images/counter.jpg') no-repeat fixed;"></section>
-
-<section class="form-area section-padding">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-8 centered">
-        <div class="section-title">
-          <h2>کد ارسال شده را وارد نمایید</h2>
+<div class="page-signinup">
+  <div class="wrapper-1">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+        <div class="col-lg-10 col-md-10">
+          <div class="panel panel-default">
+            <div class="panel-body tab-content">
+              <div class="nb-signinup-wrapper nb-signin tab-pane personal-tab fade in active">
+                <p class="rb-header">کد ارسال شده را وارد نمایید</p>
+                <form class="personal-pro" id="verifyCodeFrm" method="post" asp-controller="Account" asp-action="VerifyCode">
+                  <div style="display: none;">
+                    <input type="hidden" name="_method" value="POST" />
+                  </div>
+                  <div class="nameandfname">
+                    <div class="form-group input-label-animate">
+                      <div class="input">
+                        <label asp-for="Code"></label>
+                        <input asp-for="Code" class="single-input" />
+                      </div>
+                      <span asp-validation-for="Code" class="hint danger"></span>
+                    </div>
+                  </div>
+                  <input asp-for="Type" type="hidden" />
+                  <input asp-for="Phonenumber" type="hidden" />
+                  <input asp-for="Email" type="hidden" />
+                  <div class="form-group">
+                    <button type="submit" class="nb-btn nb-btn-success">تایید</button>
+                  </div>
+                </form>
+                <div class="link-signup clearfix">
+                  <span>در اُکاپیا عضو نیستید؟</span>
+                  <a asp-controller="Account" asp-action="Register"
+                     class="not-register nb-btn nb-btn-sm nb-btn-border">
+                    ثبت
+                    نام کنید
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="circle-sign"></div>
+            <div class="e"></div>
+          </div>
         </div>
-      </div>
-      <div class="col-md-6">
-        <form id="verifyCodeFrm" method="post" asp-controller="Account" asp-action="VerifyCode">
-          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-          <div class="single-field">
-            <label asp-for="Code" class="control-label"></label>
-            <input asp-for="Code" class="form-control direct-ltr" />
-            <span asp-validation-for="Code" class="text-danger"></span>
-          </div>
-          <input asp-for="Type" type="hidden" />
-          <input asp-for="Phonenumber" type="hidden" />
-          <input asp-for="Email" type="hidden" />
-          <br />
-          <h3 class="text-danger">@ViewData["errorMessage"]</h3>
-          <br />
-          <div class="form-group">
-            <button type="submit" onclick="" class="bttn-mid btn-fill">تایید</button>
-          </div>
-        </form>
+        <div class="col-lg-12 col-md-12 hidden-sm hidden-xs">
+          <img src="~/assets/theme/img/finalOK.png"
+               alt="netbarg-signin"
+               class="img-responsive nb-center">
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>

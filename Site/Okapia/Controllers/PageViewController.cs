@@ -10,17 +10,21 @@ namespace Okapia.Controllers
         private readonly IPageApplication _pageApplication;
         private readonly ICommentApplication _commentApplication;
         private readonly IPageCategoryApplication _pageCategoryApplication;
+        private readonly ICookieHelper _cookieHelper;
 
-        public PageViewController(IPageApplication pageApplication, IPageCategoryApplication pageCategoryApplication, ICommentApplication commentApplication)
+        public PageViewController(IPageApplication pageApplication, IPageCategoryApplication pageCategoryApplication,
+            ICommentApplication commentApplication, ICookieHelper cookieHelper)
         {
             _pageApplication = pageApplication;
             _pageCategoryApplication = pageCategoryApplication;
             _commentApplication = commentApplication;
+            _cookieHelper = cookieHelper;
         }
 
         public ActionResult Index(string id)
         {
             var pageCategory = _pageCategoryApplication.GetPageCategoryForBlog(id);
+            ViewData["province"] = _cookieHelper.Get("province");
             return View(pageCategory);
         }
 
@@ -32,6 +36,7 @@ namespace Okapia.Controllers
                 AddComment = new AddComment(),
                 PageViewDetailsViewModel = pageDetails
             };
+            ViewData["province"] = _cookieHelper.Get("province");
             return View(index);
         }
 
@@ -41,9 +46,9 @@ namespace Okapia.Controllers
             command.CommentOwner = "Page";
             var result = _commentApplication.Create(command);
             if (result.Success)
-                return RedirectToAction("Details", new { id = command.CommentOwnerRecordId });
+                return RedirectToAction("Details", new {id = command.CommentOwnerRecordId});
             ViewData["errorMessage"] = result.Message;
-            return RedirectToAction("Details", new { id = command.CommentOwnerRecordId });
+            return RedirectToAction("Details", new {id = command.CommentOwnerRecordId});
         }
     }
 }

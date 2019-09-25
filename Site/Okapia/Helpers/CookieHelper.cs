@@ -14,7 +14,10 @@ namespace Okapia.Helpers
 
         public string Get(string key)
         {
-            return _httpContext.HttpContext.Request.Cookies["province"];
+            var province = _httpContext.HttpContext.Request.Cookies["province"];
+            if (string.IsNullOrEmpty(province))
+                province = "البرز";
+            return province;
         }
 
         public void Set(string key, string value)

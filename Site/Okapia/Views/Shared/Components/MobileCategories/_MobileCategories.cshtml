@@ -1,17 +1,21 @@
 ﻿@using Okapia.Domain.SeachModels
 @model List<Okapia.Domain.ViewModels.Category.CategoryMenuViewModel>
 
+@{
+  var province = ViewData["province"].ToString();
+}
+
 <div class="burger-menu-right hidden-lg hidden-md clearfix out ">
   <div class="fix"></div>
   <div class="wrapper">
     <div class="loginout">
-      <a href="Account/Login" class="login">
+      <a asp-controller="Account" asp-action="Login" class="login">
         <span>
           <i class="icon icon-Login"></i>
           ورود
         </span>
       </a>
-      <a href="Account/Register" class="signup">
+      <a asp-controller="Account" asp-action="Register" class="signup">
         <span>
           <i class="icon icon-signup"></i>
           ثبت نام
@@ -23,7 +27,7 @@
       @foreach (var category in Model)
       {
         <li class="li-restaurant">
-          <a href="@Url.Action("مراکز-خدماتی-و-فروشگاهی", "JobView", new JobViewSearchModel() {CategoryId = category.CategoryId})" data-toggle="collapse" data-target="#sub-menu-8">
+          <a href="@Url.Action("مراکز-خدماتی-و-فروشگاهی", "JobView", new JobViewSearchModel {CategoryId = category.CategoryId, Province = province})" data-toggle="collapse" data-target="#sub-menu-8">
             <i>
               <i class="icon @category.Icon"></i>
             </i>
@@ -37,7 +41,7 @@
             @foreach (var child in category.CategoryChilds)
             {
               <li mj-success="successMegaMenu" class="item2">
-                <a href="@Url.Action("مراکز-خدماتی-و-فروشگاهی", "JobView", new JobViewSearchModel() {CategoryId = category.CategoryId})">
+                <a href="@Url.Action("مراکز-خدماتی-و-فروشگاهی", "JobView", new JobViewSearchModel() {CategoryId = category.CategoryId, Province = province})">
                   @child.CategoryName
                 </a>
               </li>
@@ -56,14 +60,21 @@
           </i><span>۰۲۱-۴۱۰۹۶۰۰۰</span>
         </a>
       </li>
-      @*<li>
-        <a href="page/buy-netbarg/index.html">
-          <i>
-            <i class="icon icon-lifebuoy">
-            </i>
-          </i><span>راهنمای خرید</span>
+      <li>
+        <a asp-controller="Home" asp-action="Agency">
+          <span>درخواست نمایندگی</span>
         </a>
-      </li>*@
+      </li>
+      <li>
+        <a asp-controller="Home" asp-action="تماس-با-اُکاپیا">
+          <span>تماس با ما</span>
+        </a>
+      </li>
+      <li>
+        <a asp-controller="Home" asp-action="درباره-اُکاپیا">
+          <span>درباره ما</span>
+        </a>
+      </li>
     </ul>
   </div>
 </div>

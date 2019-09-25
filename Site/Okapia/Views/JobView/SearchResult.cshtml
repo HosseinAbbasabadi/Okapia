@@ -3,13 +3,14 @@
 @{
   ViewData["Title"] = "SearchResult";
   Layout = "~/Views/Shared/_Layout.cshtml";
+  var province = ViewData["province"].ToString();
 }
 
 <div class="wrapper-2">
   <div class="container-fluid">
     <div class="row h-position">
 
-      @await Component.InvokeAsync("FloatingCategories")
+      @await Component.InvokeAsync("FloatingCategories", new {pn = province})
       <div class="col-lg-22 col-md-22 col-sm-24 col-xs-24 padd-0-xs clearfix">
 
         <article class="cat-deal-color main-cat clearfix">

@@ -105,8 +105,7 @@ namespace Okapia.Application.Applications
                     IsDeleted = false,
                     RoleId = Constants.Roles.User.Id
                 };
-
-                command.BirthDateG = command.BirthDate.ToGeorgianDateTime();
+                command.BirthDateG = string.IsNullOrEmpty(command.BirthDate) ? DateTime.Now : command.BirthDate.ToGeorgianDateTime();
                 var user = new User
                 {
                     UserFirstName = command.Name,
@@ -119,7 +118,7 @@ namespace Okapia.Application.Applications
                     UserProvinceId = command.ProvinceId,
                     UserDistrictId = command.DistrictId,
                     UserNeighborhoodId = command.NeighborhoodId,
-                    UserBirthDate = command.BirthDateG,
+                    UserBirthDate = DateTime.Now,
                     UserNationalCode = command.NationalCardNumber,
                     UserPhoneNumber = command.PhoneNumber,
                     UserPostalCode = command.Postalcode,

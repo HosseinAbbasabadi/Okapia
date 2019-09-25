@@ -6,47 +6,54 @@
   ViewData["MetaTags"] = Model.MetaTags;
   ViewData["CanonicalAddress"] = Model.PageCategoryCanonicalAddress;
   Layout = "~/Views/Shared/_Layout.cshtml";
+  var province = ViewData["province"].ToString();
 }
 
+<div class="page-static">
+  <div class="wrapper-2">
+    <div class="container-fluid">
+      <div class="row h-position">
 
-<section class="custom-banner dark-overlay" style="background: url(/assets/images/counter.jpg) no-repeat fixed;"></section>
+        @await Component.InvokeAsync("FloatingCategories", new { pn = province })
 
-<section class="blog-area section-padding-2">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-8 centered wow fadeInUp" data-wow-delay="0.3s">
-        <div class="section-title">
-          <h2>نوشته های وبلاگ</h2>
-          <p>آخرین نوشته ها و آموزش های اوکاپیا</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      @foreach (var pageItem in Model.Pages)
-      {
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="0.4s">
-          <div class="single-blog-block">
-            <div class="single-blog-block-img">
-              <img src="/PagePhotos/@pageItem.PagePicture" alt="@pageItem.PagePictureAlt" title="@pageItem.PagePictureTitle">
-              <a title="@pageItem.PageTitle" asp-controller="PageView" asp-action="Details" asp-route-id="@pageItem.PageSlug">
-                <i class="fa fa-expand"></i>
-              </a>
+        <div class="col-lg-22 col-md-22 col-sm-24 col-xs-24 padd-0-xs clearfix page-news">
+          <div class="art-border ct">
+            <div class="cu-top">
+              <h1 class="static-header">@Model.PageCategoryName</h1>
             </div>
-            <div class="single-blog-block-content">
-              <div class="blog-meta">
-                <h3>
-                 <a title="@pageItem.PageTitle" asp-controller="PageView" asp-action="Details" asp-route-id="@pageItem.PageSlug">@pageItem.PageTitle</a>
-                </h3>
-                <div class="blog-text">
-                  <p>
-                    @pageItem.PageSmallDescription
-                  </p>
+
+            @*<div class="row tw-col2">
+      <div data-wow-delay=".9s" data-wow-duration=".8s" class="video_box1 col-lg-8 col-md-12 col-sm-12 col-xs-24 animated8 fadeIn">
+        <div id="14998585618913189" class="video_pic1">
+          <script type="text/JavaScript" src="https://www.aparat.com/embed/lJa3y?data[rnddiv]=14998585618913189&amp;data[responsive]=yes"></script>
+        </div>
+        <h4 class="fig-title"></h4>
+      </div>
+    </div>*@
+
+            <div class="row newspaper">
+              @foreach (var item in Model.Pages)
+              {
+                <div data-wow-delay=".4s" data-wow-duration=".8s" class="col-lg-8 col-md-12 col-sm-12 col-xs-24 wow fadeIn fa">
+                  <div class="np-box">
+                    <a asp-controller="PageView" asp-action="Details" asp-route-id="@item.PageSlug">
+                      <img src="~/PagePhotos/Thumbs/@item.PagePicture" class="img-radius" alt="@item.PagePictureAlt" title="@item.PagePictureTitle"/>
+                    </a>
+                    <h3 class="np-title">
+                      <a asp-controller="PageView" asp-action="Details" asp-route-id="@item.PageSlug">@item.PageTitle</a>
+                    </h3>
+                    <p class="np-p fa-p">@item.PageSmallDescription</p>
+                  </div>
                 </div>
-              </div>
+              }
+
             </div>
           </div>
         </div>
-      }
+
+        @await Component.InvokeAsync("CompanyNumbers")
+
+      </div>
     </div>
   </div>
-</section>
+</div>

@@ -15,21 +15,19 @@ namespace Okapia.Query.Query
         {
         }
 
-        public List<PageCategoryMenuViewModel> GetPageCategoriesForMenu()
+        public List<PageCategoryItemViewModel> GetPageCategoriesForFooter()
         {
-            return _context.PageCategory.Where(x => x.PageCategoryIsDeleted == false && x.PageCategoryParentId == 0)
-                .OrderByDescending(x => x.PageCategoryShowOrder)
-                .Select(x => new PageCategoryMenuViewModel
+            return _context.PageCategory.Where(x => x.PageCategoryIsDeleted == false && x.PageCategoryParentId == 0).Select(x => new PageCategoryItemViewModel
                 {
                     PageCategoryId = x.PageCategoryId,
                     PageCategorySlug = x.PageCategorySlug,
                     PageCategoryName = x.PageCategoryName,
-                    PageCategoryMetaDesccription = x.PageCategoryMetaDesccription,
-                    PageCategoryMetaTag = x.PageCategoryMetaTag,
-                    PageCategoryPageTitle = x.PageCategoryPageTitle,
-                    PageCategorySeohead = x.PageCategorySeohead,
-                    PageCategoryShowOrder = x.PageCategoryShowOrder
-                }).ToList();
+                    //PageCategoryMetaDesccription = x.PageCategoryMetaDesccription,
+                    //PageCategoryMetaTag = x.PageCategoryMetaTag,
+                    //PageCategoryPageTitle = x.PageCategoryPageTitle,
+                    //PageCategorySeohead = x.PageCategorySeohead,
+                    //PageCategoryShowOrder = x.PageCategoryShowOrder
+                }).OrderByDescending(x => x.PageCategoryShowOrder).ToList();
         }
 
         public PageCategoryBlogViewModel GetPageCategoryForBlog(string categorySlug)

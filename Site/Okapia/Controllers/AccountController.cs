@@ -39,19 +39,24 @@ namespace Okapia.Controllers
             var result = _accountApplication.Register(createUser);
             if (result.Success)
             {
-                var loginResult = _accountApplication.Login(new Login { Username = createUser.NationalCardNumber, Password = createUser.PhoneNumber });
+                var loginResult = _accountApplication.Login(new Login
+                {
+                    Username = createUser.NationalCardNumber,
+                    Password = createUser.PhoneNumber
+                });
                 if (loginResult.Success)
                 {
                     if (loginResult.RecordId == 5 || loginResult.RecordId == 4)
-                        return RedirectToAction("Index", "Home", new { area = "Administrator" });
+                        return RedirectToAction("Index", "Home", new {area = "Administrator"});
                     if (loginResult.RecordId == 3)
-                        return RedirectToAction("Index", "Home", new { area = "Club" });
+                        return RedirectToAction("Index", "Home", new {area = "Club"});
                     if (loginResult.RecordId == 2)
-                        return RedirectToAction("Index", "Home", new { area = "Job" });
+                        return RedirectToAction("Index", "Home", new {area = "Job"});
                     if (loginResult.RecordId == 1)
-                        return RedirectToAction("Index", "Home", new { area = "Customer" });
+                        return RedirectToAction("Index", "Home", new {area = "Customer"});
                 }
             }
+
             ViewData["errorMessage"] = result.Message;
             return View(createUser);
         }
@@ -78,6 +83,7 @@ namespace Okapia.Controllers
                     var redirectUrl = new Uri(login.RedirectUrl);
                     return Redirect(redirectUrl.AbsoluteUri);
                 }
+
                 if (result.RecordId == 5 || result.RecordId == 4)
                     return RedirectToAction("Index", "Home", new {area = "Administrator"});
                 if (result.RecordId == 3)
@@ -121,11 +127,12 @@ namespace Okapia.Controllers
             return Json(result);
         }
 
+        [ActionName("انتخاب شیوه احراز هویت")]
         public ActionResult ChooseFpMethod()
         {
             var chooseFpMethod = new ChooseFpMethod();
             ViewData["province"] = _cookieHelper.Get("province");
-            return View(chooseFpMethod);
+            return View("ChooseFpMethod", chooseFpMethod);
         }
 
         [HttpPost]
@@ -133,29 +140,32 @@ namespace Okapia.Controllers
         public ActionResult ChooseFpMethod(ChooseFpMethod command)
         {
             var result = new OperationResult();
-            if (command.Type == "sms")
+            if (!string.IsNullOrEmpty(command.Phonenumber))
             {
+                command.Type = "sms";
                 result = _accountApplication.CreateVerificationCodeByMobile(command.Phonenumber);
             }
 
-            if (command.Type == "email")
+            if (!string.IsNullOrEmpty(command.Email))
             {
+                command.Type = "email";
                 result = _accountApplication.CreateVerificationCodeByEmail(command.Email);
             }
 
             if (result.Success)
             {
-                return RedirectToAction("VerifyVerificationCode", command);
+                return RedirectToAction("تایید کد ارسال شده", command);
             }
 
             ViewData["errorMessage"] = result.Message;
             return View(command);
         }
 
+        [ActionName("تایید کد ارسال شده")]
         public ActionResult VerifyVerificationCode(ChooseFpMethod command)
         {
             ViewData["province"] = _cookieHelper.Get("province");
-            return View(command);
+            return View("VerifyVerificationCode",command);
         }
 
         [HttpPost]
@@ -173,7 +183,7 @@ namespace Okapia.Controllers
             }
 
             if (result.Success)
-                return RedirectToAction("ChangePasswordPage", routeValues: new {id = result.RecordId});
+                return RedirectToAction("انتخاب شیوه احراز هویت", routeValues: new {id = result.RecordId});
             ViewData["errorMessage"] = result.Message;
             return View("VerifyVerificationCode");
         }

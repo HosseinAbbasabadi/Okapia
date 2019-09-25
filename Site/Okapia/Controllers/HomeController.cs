@@ -1,12 +1,10 @@
 ﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Okapia.Application.Contracts;
 using Okapia.Areas.Administrator.Controllers;
 using Okapia.Domain.Commands.Contactus;
 using Okapia.Domain.Commands.JobRequest;
-using Okapia.Domain.SeachModels;
 using Okapia.Models;
 using reCAPTCHA.AspNetCore;
 
@@ -62,6 +60,7 @@ namespace Okapia.Controllers
             {
                 Provinces = new SelectList(Provinces.ToList(), "Id", "Name")
             };
+            ViewData["province"] = _cookieHelper.Get("province");
             return View("Agency", createJobRequest);
         }
 
@@ -77,8 +76,8 @@ namespace Okapia.Controllers
                 return View("AgencySuccess", result.RecordId.ToString());
             }
 
-            ViewData["errorMessage"] = result.Message;
             ViewData["province"] = _cookieHelper.Get("province");
+            ViewData["errorMessage"] = result.Message;
             return View();
         }
 
@@ -155,6 +154,7 @@ namespace Okapia.Controllers
             var result = _contactApplication.Create(command);
             ViewData["Message"] = result.Message;
             var contact = _settingApplication.GetSettings();
+            ViewData["province"] = _cookieHelper.Get("province");
             return View("Contact", contact);
         }
     }

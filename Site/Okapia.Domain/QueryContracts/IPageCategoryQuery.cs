@@ -7,7 +7,7 @@ namespace Okapia.Domain.QueryContracts
 {
     public interface IPageCategoryQuery: IRepository<int, PageCategory>
     {
-        List<PageCategoryMenuViewModel> GetPageCategoriesForMenu();
+        List<PageCategoryItemViewModel> GetPageCategoriesForFooter();
         PageCategoryBlogViewModel GetPageCategoryForBlog(string categorySlug);
     }
 }

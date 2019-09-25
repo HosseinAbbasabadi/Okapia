@@ -200,9 +200,9 @@ namespace Okapia.Application.Applications
             }
         }
 
-        public List<PageCategoryMenuViewModel> GetPageCategoriesForMenu()
+        public List<PageCategoryItemViewModel> GetPageCategoriesForFooter()
         {
-            return _pageCategoryQuery.GetPageCategoriesForMenu();
+            return _pageCategoryQuery.GetPageCategoriesForFooter();
         }
 
         public PageCategoryBlogViewModel GetPageCategoryForBlog(string categorySlug)
