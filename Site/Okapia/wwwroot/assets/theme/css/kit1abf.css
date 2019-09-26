@@ -3639,7 +3639,7 @@ ul.dropdown-menu {
     height: 46px;
     left: 0;
     bottom: -68px;
-    display: block;
+    display: none;
     background: url(../img/netbarg-logo2.png) no-repeat;
     background-size: cover;
     image-rendering: pixelated; }

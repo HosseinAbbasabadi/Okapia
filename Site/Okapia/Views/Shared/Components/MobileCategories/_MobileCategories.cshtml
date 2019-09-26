@@ -54,10 +54,15 @@
     <div class="spacer"></div>
     <ul class="side-extra-items">
       <li>
-        <a href="tel:+982141096000">
+        <a href="tel:@ViewData["tel"]">
           <i>
             <i class="icon icon-home-phone"></i>
-          </i><span>۰۲۱-۴۱۰۹۶۰۰۰</span>
+          </i><span>@ViewData["tel"]</span>
+        </a>
+      </li>
+      <li>
+        <a asp-controller="PageView" asp-action="Index" asp-route-id="همه">
+          <span>مقالات اُکاپیا</span>
         </a>
       </li>
       <li>
