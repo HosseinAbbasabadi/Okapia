@@ -82,7 +82,7 @@ namespace Okapia.Controllers
             jobs.ForEach(job =>
             {
                 job.JobUrl = Url.Action("Details", "JobView", new {id = job.JobSlug});
-                job.JobPictureUrl = _environment.WebRootPath + "/JobPhotos/Thumbs/" + job.JobPicture;
+                job.JobPictureUrl = "/JobPhotos/Thumbs/" + job.JobPicture;
             });
 
             jobs.Add(new JobSearchResultViewModel

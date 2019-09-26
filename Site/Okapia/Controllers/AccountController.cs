@@ -58,6 +58,7 @@ namespace Okapia.Controllers
             }
 
             ViewData["errorMessage"] = result.Message;
+            ViewData["province"] = _cookieHelper.Get("province");
             return View(createUser);
         }
 
@@ -95,6 +96,7 @@ namespace Okapia.Controllers
             }
 
             ViewData["errorMessage"] = result.Message;
+            ViewData["province"] = _cookieHelper.Get("province");
             return View(login);
         }
 
@@ -183,12 +185,13 @@ namespace Okapia.Controllers
             }
 
             if (result.Success)
-                return RedirectToAction("انتخاب شیوه احراز هویت", routeValues: new {id = result.RecordId});
+                return RedirectToAction("تغییر کلمه رمز", routeValues: new {id = result.RecordId});
             ViewData["errorMessage"] = result.Message;
             return View("VerifyVerificationCode");
         }
 
         [HttpGet]
+        [ActionName("تغییر کلمه رمز")]
         public ActionResult ChangePasswordPage(long id)
         {
             var model = new ChangePassword();

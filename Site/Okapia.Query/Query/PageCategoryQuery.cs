@@ -33,14 +33,14 @@ namespace Okapia.Query.Query
 
         public PageCategoryBlogViewModel GetPageCategoryForBlog(string categorySlug)
         {
-            if (categorySlug == "همه")
+            if (categorySlug == "اخبار اُکاپیا")
             {
                 var pageCategory = new PageCategoryBlogViewModel
                 {
                     MetaTags = new List<string> {"", "", ""},
                     PageCategoryMetaDescription = "",
-                    PageCategorySlug = "همه",
-                    PageCategoryName = "همه",
+                    PageCategorySlug = "اخبار اُکاپیا",
+                    PageCategoryName = "اخبار اُکاپیا",
                     PageCategoryMetaTags = ""                    
                 };
 
