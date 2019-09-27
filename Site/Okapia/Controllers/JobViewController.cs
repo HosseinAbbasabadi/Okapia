@@ -16,7 +16,6 @@ namespace Okapia.Controllers
         private readonly IJobApplication _jobApplication;
         private readonly ICommentApplication _commentApplication;
         private readonly ICategoryApplication _categoryApplication;
-        private readonly IHostingEnvironment _environment;
         private readonly ICookieHelper _cookieHelper;
 
         public JobViewController(IJobApplication jobApplication, ICityApplication cityApplication,
@@ -26,7 +25,6 @@ namespace Okapia.Controllers
             _jobApplication = jobApplication;
             _commentApplication = commentApplication;
             _categoryApplication = categoryApplication;
-            _environment = environment;
             _cookieHelper = cookieHelper;
         }
 

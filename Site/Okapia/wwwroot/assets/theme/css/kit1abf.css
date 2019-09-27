@@ -660,7 +660,7 @@ header .logo {
     .sazman-img .tooltop-hover > div {
       line-height: 15px; }
     .sazman-img .tooltop-hover .tt-h-bottom {
-      color: #f58221; }
+      color: #6E297A; }
     .sazman-img .tooltop-hover:after {
       width: 0;
       height: 0;
@@ -1102,7 +1102,7 @@ input {
 @keyframes color {
   100%,
   0% {
-    stroke: #FF8F00; }
+    stroke: #6E297A; }
   40% {
     stroke: #8dc63f; }
   66% {
@@ -1210,23 +1210,25 @@ UI KIT
     font-size: 1.2rem; }
     .input-btn input:hover, .input-btn input:active {
       outline: none !important; }
-  .input-btn button {
-    position: absolute;
-    left: 2px;
-    top: 2px;
-    height: 34px;
-    width: 130px;
-    -webkit-border-radius: 19px;
-    -moz-border-radius: 19px;
-    border-radius: 19px;
-    background-color: #ff8f00 !important;
-    border-color: #ff8f00 !important;
-    outline: none !important; }
-    .input-btn button:hover, .input-btn button:active {
-      background-color: #ff8f00 !important;
-      border-color: #ff8f00 !important;
-      opacity: 0.9;
-      outline: none !important; }
+    .input-btn button {
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        height: 34px;
+        width: 130px;
+        -webkit-border-radius: 19px;
+        -moz-border-radius: 19px;
+        border-radius: 19px;
+        background-color: #6E297A !important;
+        border-color: #6E297A !important;
+        outline: none !important;
+    }
+        .input-btn button:hover, .input-btn button:active {
+            background-color: #6E297A !important;
+            border-color: #6E297A !important;
+            opacity: 0.9;
+            outline: none !important;
+        }
 
 .req .red {
   border-color: #ff0000 !important;
@@ -1289,10 +1291,10 @@ ul.dropdown-menu {
       -o-transition: 0.2s;
       transition: 0.2s; }
     ul.dropdown-menu li:hover > span, ul.dropdown-menu li:hover > a {
-      color: #f58221; }
+      color: #6E297A; }
     ul.dropdown-menu li:hover i {
       right: 18px;
-      color: #f58221; }
+      color: #6E297A; }
     ul.dropdown-menu li > span, ul.dropdown-menu li > a {
       padding: 0 !important;
       font-size: 1.3rem;
@@ -1370,12 +1372,12 @@ ul.dropdown-menu {
     -webkit-border-radius: 19px;
     -moz-border-radius: 19px;
     border-radius: 19px;
-    background-color: #f58221;
-    border-color: #f58221;
+    background-color: #6E297A;
+    border-color: #6E297A;
     outline: none !important; }
     .dropdown-input-btn button:hover, .dropdown-input-btn button:active, .dropdown-input-btn button:focus {
-      background-color: #f58221 !important;
-      border-color: #f58221 !important;
+      background-color: #6E297A !important;
+      border-color: #6E297A !important;
       opacity: 0.9;
       outline: none !important; }
   .dropdown-input-btn .dropdown {
@@ -1657,7 +1659,7 @@ ul.dropdown-menu {
 
 .nb-btn-warning {
   color: #ffffff !important;
-  background-color: #ff8f00;
+  background-color: #6E297A;
   border: 0; }
   .nb-btn-warning:hover, .nb-btn-warning:active {
     color: #ffffff;
@@ -1857,7 +1859,7 @@ ul.dropdown-menu {
       .right-aside .float-cat ul a.float-cat-restaurant.active {
         background-color: #f44336; }
       .right-aside .float-cat ul a.float-cat-todaydeal.active {
-        background-color: #ff8f00; }
+        background-color: #6E297A; }
       .right-aside .float-cat ul a.float-cat-entertainment.active {
         background-color: #1cbd2f; }
       .right-aside .float-cat ul a.float-cat-beauty.active {
@@ -1941,7 +1943,7 @@ ul.dropdown-menu {
           .right-aside .float-cat ul a li:hover span {
             color: #FFF; }
       .right-aside .float-cat ul a:nth-child(1) li:hover {
-        background-color: #ff8f00; }
+        background-color: #6E297A; }
       .right-aside .float-cat ul a.float-cat-restaurant li:hover {
         background-color: #f44336; }
       .right-aside .float-cat ul a.float-cat-entertainment li:hover {
@@ -2176,7 +2178,7 @@ ul.dropdown-menu {
       .deals-filter > span ul li.active {
         background-color: #ffffff; }
         .deals-filter > span ul li.active i {
-          color: #ff8f00; }
+          color: #6E297A; }
 
 .deals-filter .gender-selector {
   float: right; }
@@ -2197,7 +2199,7 @@ ul.dropdown-menu {
     .deals-filter .gender-selector ul li input:checked + label {
       background-color: #ffffff; }
       .deals-filter .gender-selector ul li input:checked + label i {
-        color: #ff8f00; }
+        color: #6E297A; }
   .deals-filter .gender-selector .male-filter {
     -webkit-border-radius: 50px 0 0 50px;
     -moz-border-radius: 50px 0 0 50px;
@@ -2437,11 +2439,11 @@ ul.dropdown-menu {
   font-size: 1.2rem !important; }
 
 .cat-deal-color.main-cat .section-header {
-  border-color: #f58221; }
+  border-color: #6E297A; }
   .cat-deal-color.main-cat .section-header .hx {
     border-color: inherit; }
     .cat-deal-color.main-cat .section-header .hx .icon {
-      color: #f58221; }
+      color: #6E297A; }
 
 .cat-deal-color.main-cat .main-cat-deal-list.general-row-deal > div {
   overflow: hidden; }
@@ -2499,7 +2501,7 @@ ul.dropdown-menu {
         margin: 0;
         font-size: 1.6rem;
         display: inline-block;
-        color: #f58221;
+        color: #6E297A;
         white-space: nowrap; }
       .cat-deal-color.main-cat .main-cat-deal-list .list-items .list-deal-details .top-panel .deal-like {
         display: inline-block;
@@ -2608,7 +2610,7 @@ ul.dropdown-menu {
     .cat-deal-color.main-cat .main-cat-deal-list .list-items .list-deal-cp .list-discount-tag {
       height: 34px;
       width: 66px;
-      background-color: #ff8f00;
+      background-color: #6E297A;
       color: #ffffff;
       position: absolute;
       left: 1px;
@@ -2706,7 +2708,7 @@ ul.dropdown-menu {
       .cat-deal-color.main-cat .main-cat-deal-thumbnail .cds-item .cat-deal-box .cat-deal-box-footer .cdbf-takhfif {
         margin-top: 5px; }
         .cat-deal-color.main-cat .main-cat-deal-thumbnail .cds-item .cat-deal-box .cat-deal-box-footer .cdbf-takhfif .cdbft-shape-text {
-          background-color: #ff8f00 !important;
+          background-color: #6E297A !important;
           padding: 5px 14px 2px;
           font-size: 1.3rem;
           top: -1px;
@@ -3373,7 +3375,7 @@ ul.dropdown-menu {
     height: 27px;
     margin: 0;
     font-size: 1.6rem;
-    color: #f58221; }
+    color: #6E297A; }
   .sd-parent-detail.list-deal-details .top-panel .deal-like {
     display: inline-block;
     border: 1px solid #dddddd;
@@ -3409,7 +3411,7 @@ ul.dropdown-menu {
     margin: 0;
     font-size: 1.6rem;
     display: inline-block;
-    color: #f58221; }
+    color: #6E297A; }
 
 .sd-parent-detail.list-deal-details .bottom-panel {
   border-bottom: 1px solid #dcdcdc;
@@ -3441,7 +3443,7 @@ ul.dropdown-menu {
     margin-top: 0; }
     .sd-parent-detail.list-deal-details .list-deal-cp .cdbf-takhfif .cdbft-shape {
       position: relative;
-      background-color: #f58221;
+      background-color: #6E297A;
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%;
       border-radius: 50%;
@@ -3619,7 +3621,7 @@ ul.dropdown-menu {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  border-bottom: 10px solid #f58221;
+  border-bottom: 10px solid #6E297A;
   position: relative; }
   .nb-modal .modal-content:before {
     position: absolute;
@@ -3627,7 +3629,7 @@ ul.dropdown-menu {
     width: 1px;
     height: 1px;
     border-width: 10px;
-    border-color: transparent transparent transparent #f58221;
+    border-color: transparent transparent transparent #6E297A;
     border-style: solid;
     left: 15px;
     bottom: -20px;
@@ -3738,9 +3740,9 @@ ul.dropdown-menu {
 .nb-pagination > .active > a:focus,
 .nb-pagination > .active > span:focus {
   z-index: 3;
-  color: #f58221;
+  color: #6E297A;
   background-color: transparent;
-  border-color: #f58221;
+  border-color: #6E297A;
   cursor: default; }
 
 .nb-pagination > li > a:hover,
@@ -3748,7 +3750,7 @@ ul.dropdown-menu {
 .nb-pagination > li > a:focus,
 .nb-pagination > li > span:focus {
   z-index: 2;
-  color: #f58221;
+  color: #6E297A;
   background-color: #eeeeee;
   border-color: #dddddd; }
 
@@ -3851,7 +3853,7 @@ table.table-1 td.more .open-me {
   display: block;
   color: #787878; }
   table.table-1 td.more .open-me:hover {
-    color: #f58221; }
+    color: #6E297A; }
 
 table.table-1 td.more.opened .open-me {
   transform: rotateX(180deg);
@@ -3946,7 +3948,7 @@ textarea.single-input::-webkit-scrollbar {
   border-right: 1px solid #dcdcdc;
   background-color: #ffffff; }
   .tab-wrapper .tab-header a.ruler {
-    color: #f58221 !important;
+    color: #6E297A !important;
     font-size: 1.2rem; }
   .tab-wrapper .tab-header .user-menu-link .icon {
     color: #b4b4b4; }
@@ -3978,7 +3980,7 @@ textarea.single-input::-webkit-scrollbar {
       font-size: 2.2rem; }
   .tab-wrapper .tab-header .rule {
     float: right;
-    color: #f58221;
+    color: #6E297A;
     height: 30px;
     line-height: 30px;
     margin: 0;
@@ -4035,17 +4037,17 @@ textarea.single-input::-webkit-scrollbar {
     .tab-wrapper ul.nav li:last-child {
       border-left: 0px solid #dcdcdc; }
     .tab-wrapper ul.nav li.active {
-      border-bottom: 2px solid #f58221;
+      border-bottom: 2px solid #6E297A;
       position: relative;
       background-color: #fafafa !important;
-      color: #f58221; }
+      color: #6E297A; }
       .tab-wrapper ul.nav li.active:after {
         position: absolute;
         content: '';
         width: 0;
         height: 0;
         border-width: 8px;
-        border-color: #f58221 transparent transparent transparent;
+        border-color: #6E297A transparent transparent transparent;
         border-style: solid;
         left: 50%;
         margin-left: -8px;
@@ -4053,9 +4055,9 @@ textarea.single-input::-webkit-scrollbar {
         display: block; }
       .tab-wrapper ul.nav li.active a {
         background-color: #fafafa !important;
-        color: #f58221; }
+        color: #6E297A; }
         .tab-wrapper ul.nav li.active a i {
-          color: #f58221; }
+          color: #6E297A; }
     .tab-wrapper ul.nav li a {
       border: 0 !important;
       -webkit-border-radius: 0;
@@ -4074,7 +4076,7 @@ textarea.single-input::-webkit-scrollbar {
         background-color: #fafafa; }
         .tab-wrapper ul.nav li a:hover i,
         .tab-wrapper ul.nav li a:hover span {
-          color: #f58221; }
+          color: #6E297A; }
 
 .tab-wrapper .tab-content {
   border: 1px solid #dcdcdc;
@@ -4196,8 +4198,8 @@ textarea.single-input::-webkit-scrollbar {
 ul.side-extra-items {
   padding-bottom: 25px !important; }
   ul.side-extra-items a:nth-child(1) li {
-    color: #f58221;
-    border-bottom-color: #f58221;
+    color: #6E297A;
+    border-bottom-color: #6E297A;
     border-bottom-width: 2px; }
   ul.side-extra-items a:nth-child(2) li {
     color: #4895c9;
@@ -4216,8 +4218,8 @@ ul.side-cat > li:hover > a > i i, ul.side-cat > li.active > a > i i {
 ul.side-cat > li.li-all:hover > a, ul.side-cat > li.li-all:active > a,
 ul.side-cat > li.li-home:hover > a,
 ul.side-cat > li.li-home:active > a {
-  color: #ff8f00;
-  border-bottom-color: #ff8f00;
+  color: #6E297A;
+  border-bottom-color: #6E297A;
   border-bottom-width: 2px; }
 
 ul.side-cat > li.li-restaurant:hover > a, ul.side-cat > li.li-restaurant.active > a {
@@ -4958,7 +4960,7 @@ ul.side-extra-items {
     .comments-row .cr-top > div {
       padding-left: 0; }
     .comments-row .cr-top .comment-title {
-      color: #f58221;
+      color: #6E297A;
       float: right;
       margin-top: 0;
       margin-bottom: 0;
@@ -5197,7 +5199,7 @@ textarea.single-input {
     .starIt-wrapper .starIt[data-v="5"] > span:nth-child(4):after {
       background: #ff9800; }
     .starIt-wrapper .starIt[data-v="5"] > span:nth-child(5):after {
-      background: #f58221; }
+      background: #6E297A; }
 
 .nb-reCaptcha {
   height: 35px;
@@ -5532,7 +5534,7 @@ label.checkbox-toggle label span {
     margin-top: -14px;
     right: -4px; }
   .radio-ring input[type="radio"]:checked + label:before {
-    border: solid 5px #ff8f00; }
+    border: solid 5px #6E297A; }
   .radio-ring input[type="radio"]:checked + label:after {
     background-color: #f5f5f5; }
   .radio-ring input[type="radio"].disabled {
@@ -6229,7 +6231,7 @@ ul.emoji-ratings {
   width: 35px;
   height: 35px;
   background-color: #ffffff;
-  border: 1px solid #ff8f00;
+  border: 1px solid #6E297A;
   text-align: center;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -6380,10 +6382,10 @@ border-radius: 20px; }
         -o-transition: 0.2s;
         transition: 0.2s; }
     #subscriptionModal .Discount-modal-box .Discount-modal-body .Discount-form .search-input .form-item .dropdown-menu li:hover > span, #subscriptionModal .Discount-modal-box .Discount-modal-body .Discount-form .search-input .form-item .dropdown-menu li:hover > a {
-        color: #f58221; }
+        color: #6E297A; }
     #subscriptionModal .Discount-modal-box .Discount-modal-body .Discount-form .search-input .form-item .dropdown-menu li:hover i {
         right: 18px;
-        color: #f58221; }
+        color: #6E297A; }
     #subscriptionModal .Discount-modal-box .Discount-modal-body .Discount-form .search-input .form-item .dropdown-menu li > span, #subscriptionModal .Discount-modal-box .Discount-modal-body .Discount-form .search-input .form-item .dropdown-menu li > a {
         padding: 0 !important;
         font-size: 1.3rem;
@@ -6425,7 +6427,7 @@ border-radius: 20px; }
     -webkit-border-radius: 40px;
     -moz-border-radius: 40px;
     border-radius: 40px;
-    background: #ff8f00; }
+    background: #6E297A; }
   #subscriptionModal .Discount-modal-box .Discount-modal-body .Discount-form .percent-pic {
     width: 130px;
     height: 130px;
@@ -6748,7 +6750,7 @@ header .header {
           header .header .site-search ul li:last-child div a i {
             background: url("../img/home-search-more.png") no-repeat center !important; }
           header .header .site-search ul li:last-child div a span {
-            color: #ff8f00; }
+            color: #6E297A; }
     header .header .site-search.open .easy-autocomplete-container {
         border: 1px solid gainsboro;
         margin: -1px -1px 0;
@@ -6913,10 +6915,10 @@ header .bar {
           -o-transition: 0.3s;
           transition: 0.3s; }
         header .bar .dropdown-1 .dropdown-menu li:hover a {
-          color: #f58221; }
+          color: #6E297A; }
         header .bar .dropdown-1 .dropdown-menu li:hover i {
           right: 18px;
-          color: #f58221; }
+          color: #6E297A; }
         header .bar .dropdown-1 .dropdown-menu li a {
           padding: 0 !important;
           font-size: 1.3rem;
@@ -6951,9 +6953,9 @@ header .bar {
           height: 40px;
           color: #787878; }
         header .bar .dropdown-1 .dropdown-menu li:last-child:hover a {
-          color: #f58221; }
+          color: #6E297A; }
         header .bar .dropdown-1 .dropdown-menu li:last-child:hover .map_icon {
-          color: #f58221; }
+          color: #6E297A; }
     header .bar .dropdown-1 .select2-container {
       width: 100% !important;
       position: relative; }
@@ -7052,7 +7054,7 @@ header .bar {
   header .bar .login-dropdown {
     position: relative;
     height: 48px;
-    width: 45%;
+    width: 25%;
     float: right; }
     header .bar .login-dropdown .dropdown-toggle {
       display: block; }
@@ -7074,7 +7076,7 @@ header .bar {
       background-size: cover; }
     header .bar .login-dropdown .avatar-info {
       height: 48px;
-      padding: 8px 10px 8px 0;
+      padding: 15px 10px 8px 0;
       color: #ffffff;
       font-size: 1.2rem;
       max-width: calc(100% - 76px);
@@ -7138,10 +7140,10 @@ header .bar {
           -o-transition: 0.3s;
           transition: 0.3s; }
         header .bar .login-dropdown .dropdown-menu li:hover a {
-          color: #f58221; }
+          color: #6E297A; }
         header .bar .login-dropdown .dropdown-menu li:hover i {
           right: 18px;
-          color: #f58221; }
+          color: #6E297A; }
         header .bar .login-dropdown .dropdown-menu li a {
           padding: 0 48px 0 0 !important;
           font-size: 1.2rem;
@@ -7201,14 +7203,15 @@ header .bar {
         width: 1px;
         background-color: rgba(255, 255, 255, 0.2); }
       header .bar .loginout a:hover span {
-        color: #f58221; }
+        color: #FFFFFF; }
         header .bar .loginout a:hover span i {
-          color: #f58221; }
+            color: #FFFFFF;
+        }
         header .bar .loginout a:first-child:hover span {
-            color: #f58221;
+            color: #FFFFFF;
         }
             header .bar .loginout a:first-child:hover span i {
-                color: #f58221;
+                color: #6E297A;
             }
 
 header .burger-menu-right {
@@ -7280,7 +7283,7 @@ header .burger-menu-right {
         border-bottom-width: 0; }
       .select2-dropdown--below .select2-results ul li:hover {
         background: transparent;
-        color: #f58221 !important; }
+        color: #6E297A !important; }
 
 #mapModal svg {
   margin-top: -10px; }
@@ -7313,7 +7316,7 @@ header .burger-menu-right {
       #mapModal .cities-lists ul li a:hover {
         list-style: none;
         text-decoration: none;
-        color: #ff8f00; }
+        color: #6E297A; }
       #mapModal .cities-lists ul li a:hover:before {
         position: relative;
         display: inline-block;
@@ -7322,11 +7325,11 @@ header .burger-menu-right {
         font-family: 'netbarg';
         content: '\e950';
         font-size: 12px;
-        color: #ff8f00; }
+        color: #6E297A; }
     #mapModal .cities-lists ul li a.path-hover {
       list-style: none;
       text-decoration: none;
-      color: #ff8f00; }
+      color: #6E297A; }
       #mapModal .cities-lists ul li a.path-hover:before {
         position: relative;
         display: inline-block;
@@ -7335,7 +7338,7 @@ header .burger-menu-right {
         font-family: 'netbarg';
         content: '\e950';
         font-size: 12px;
-        color: #ff8f00; }
+        color: #6E297A; }
 
 #mapModal.nb-modal .modal-body {
   padding: 30px 50px 0 !important; }
@@ -7390,7 +7393,7 @@ footer {
     padding-bottom: 45px;
     background-size: cover; }
     footer .row-newslatter h3 {
-      color: #f58221;
+      color: #6E297A;
       font-size: 2.5rem; }
     footer .row-newslatter h6 {
       color: #ffffff; }
@@ -7560,7 +7563,8 @@ footer {
         footer .row-footer-copy-right .rfcr-p2 .rfcr-contact .phone-num > span:first-child {
           color: #3c3c3c; }
         footer .row-footer-copy-right .rfcr-p2 .rfcr-contact .phone-num span {
-          color: #f58221; }
+            color: #6E297A;
+        }
       footer .row-footer-copy-right .rfcr-p2 .rfcr-contact.dis-none-767 .phone-num {
         padding-bottom: 0px; }
   footer .row-footer-description {
@@ -7646,7 +7650,7 @@ footer {
   background-color: #ff0000; }
 
 .page-ui-kit p.color-box:nth-child(11) {
-  background-color: #f58221; }
+  background-color: #6E297A; }
 
 .page-ui-kit p.color-box:nth-child(12) {
   background-color: #f57621; }
@@ -7658,7 +7662,7 @@ footer {
   background-color: #e6e6e6; }
 
 .page-ui-kit p.color-box:nth-child(15) {
-  background-color: #f58221; }
+  background-color: #6E297A; }
 
 .page-ui-kit p.color-box:nth-child(16) {
   background-color: #646464; }
@@ -7675,7 +7679,7 @@ footer {
   background-color: #7a7a7a; }
 
 .page-ui-kit p.color-box:nth-child(20) {
-  background-color: #ff8f00; }
+  background-color: #6E297A; }
 
 .page-ui-kit p.color-box:nth-child(21) {
   background-color: #4ec51c; }
@@ -8047,7 +8051,7 @@ main #basket-guide .mb-header {
           font-size: 35px; }
           .page-basket .div-table-print .divTableCell .icon.icon-eyeglasses:hover,
           .page-basket .div-table-print .divTableHead .icon.icon-eyeglasses:hover {
-            color: #f58221; }
+            color: #6E297A; }
     .page-basket .div-table-print .divTableCell .dis-table {
       vertical-align: top;
       padding-right: 10px; }
@@ -8055,7 +8059,7 @@ main #basket-guide .mb-header {
         padding-right: 0; }
       .page-basket .div-table-print .divTableCell .dis-table .deal-td-title {
         margin-top: 0;
-        color: #ff8f00;
+        color: #6E297A;
         font-size: 1.4rem;
         margin-bottom: 0; }
       .page-basket .div-table-print .divTableCell .dis-table img {
@@ -8356,7 +8360,7 @@ main #basket-guide .mb-header {
           line-height: 1;
           margin: 0;
           display: inline-block;
-          color: #f58221; }
+          color: #6E297A; }
         .page-basket .cat-deal-color.main-cat .basket-main-deal .list-items .li-top-box .list-deal-details .middle-panel {
           height: auto;
           vertical-align: top; }
@@ -9704,7 +9708,7 @@ main #basket-guide .mb-header {
       text-align: center;
       color: #ffffff;
       border-radius: 50%;
-      background-color: #ff8f00;
+      background-color: #6E297A;
       position: absolute;
       right: 0;
       padding: 11px 0 0 0;
@@ -9855,7 +9859,7 @@ main #basket-guide .mb-header {
   color: #646464;
   font-size: 25px; }
   .body-profile-color .profile-page .view-icon i:hover {
-    color: #f58221; }
+    color: #6E297A; }
 
 .body-profile-color .profile-page .print-icon i {
   color: #646464;
@@ -10247,10 +10251,10 @@ main #basket-guide .mb-header {
   .body-profile-color .profile-page .mynet-table .deal-td .deal-td-title {
     margin: 10px 0 0;
     text-align: right;
-    color: #ff8f00;
+    color: #6E297A;
     font-size: 1.5rem; }
     .body-profile-color .profile-page .mynet-table .deal-td .deal-td-title span {
-      color: #ff8f00;
+      color: #6E297A;
       font-size: 1.3rem; }
     .body-profile-color .profile-page .mynet-table .deal-td .deal-td-title span.pipeline {
       color: #b3b3b3;
@@ -10308,7 +10312,7 @@ main #basket-guide .mb-header {
   .body-profile-color .profile-page .float-center .fav-box .item-fav-box > a {
     display: inline-block;
     padding-right: 15px;
-    color: #ff8f00;
+    color: #6E297A;
     font-size: 1.5rem;
     position: absolute;
     right: 55px;
@@ -10563,9 +10567,9 @@ main #basket-guide .mb-header {
       padding-bottom: 70px; }
       .deals-package .discount-percent .discount_1 .percent {
         font-size: 3.5rem;
-        color: #ff8f00; }
+        color: #6E297A; }
       .deals-package .discount-percent .discount_1 .text {
-        color: #ff8f00;
+        color: #6E297A;
         font-size: 1.8rem; }
     .deals-package .discount-percent .discount_2 {
       text-align: center;
@@ -10609,8 +10613,8 @@ main #basket-guide .mb-header {
       height: 33px;
       line-height: 33px; }
       .deals-package .discount-percent .sideBySideBtn .btn:first-child {
-        background: #ff8f00;
-        border-color: #ff8f00;
+        background: #6E297A;
+        border-color: #6E297A;
         color: #FFF;
         width: 110px;
         padding: 0 10px;
@@ -10641,7 +10645,7 @@ main #basket-guide .mb-header {
       height: 34px;
       line-height: 34px; }
       #quickview-package .modal-lg .modal-content .modal-body ._1 .title-modal .deal-name {
-        color: #f58221;
+        color: #6E297A;
         font-size: 2rem; }
       #quickview-package .modal-lg .modal-content .modal-body ._1 .title-modal .star {
         top: 3px;
@@ -10654,7 +10658,7 @@ main #basket-guide .mb-header {
         height: 34px;
         width: 70px;
         border-radius: 50px;
-        background: #ff8f00;
+        background: #6E297A;
         color: #ffffff;
         font-size: 2.4rem;
         float: left;
@@ -10789,7 +10793,7 @@ main #basket-guide .mb-header {
           top: 0;
           left: -8px;
           width: 70px;
-          background: #ff8f00;
+          background: #6E297A;
           color: white;
           height: 40px;
           line-height: 44px;
@@ -10809,7 +10813,7 @@ main #basket-guide .mb-header {
             .page-deal .deal ._2 .top ._h1 a:hover {
               color: inherit; }
         .page-deal .deal ._2 .top ._h2 {
-          color: #ff8f00;
+          color: #6E297A;
           line-height: 32px;
           margin: 5px 0 10px; }
           .page-deal .deal ._2 .top ._h2 a {
@@ -10848,8 +10852,8 @@ main #basket-guide .mb-header {
           -o-transition: background-color .6s, padding-right .6s;
           transition: background-color .6s, padding-right .6s; }
           .page-deal .deal ._2 .bill .sideBySideBtn .btn:first-child {
-            background: #ff8f00;
-            border-color: #ff8f00;
+            background: #6E297A;
+            border-color: #6E297A;
             color: #FFF;
             width: 130px;
             padding: 0 10px;
@@ -10901,7 +10905,7 @@ main #basket-guide .mb-header {
           overflow: hidden;
           text-overflow: ellipsis;
           background: #FFF url(../img/btn_preload.gif) no-repeat right 8px center !important;
-          color: #ff8f00;
+          color: #6E297A;
           border-width: 1px;
           padding-right: 30px; }
         .page-deal .deal ._2 .bill .sideBySideBtn.added .btn:first-child {
@@ -10910,7 +10914,7 @@ main #basket-guide .mb-header {
           overflow: hidden;
           text-overflow: ellipsis;
           background: #FFF url(../img/btn_tick.gif) no-repeat right 8px center !important;
-          color: #ff8f00;
+          color: #6E297A;
           border-width: 1px;
           padding-right: 30px; }
         .page-deal .deal ._2 .bill .sideBySideBtn.error .btn:first-child {
@@ -10919,7 +10923,7 @@ main #basket-guide .mb-header {
           overflow: hidden;
           text-overflow: ellipsis;
           background: #FFF url(../img/btn_tick.gif) no-repeat right 8px center !important;
-          color: #ff8f00;
+          color: #6E297A;
           border-width: 1px;
           padding-right: 30px; }
         .page-deal .deal ._2 .bill ._quantity {
@@ -11258,7 +11262,7 @@ main #basket-guide .mb-header {
             .page-deal .deal ._2 .extra .share .pull-left a._green:hover, .page-deal .deal ._2 .extra .share .pull-left button._green:hover {
               color: #39a716; }
             .page-deal .deal ._2 .extra .share .pull-left a._email:hover, .page-deal .deal ._2 .extra .share .pull-left button._email:hover {
-              color: #f58221; }
+              color: #6E297A; }
     .page-deal .deal.dealType1 ._type1 {
       display: block; }
     .page-deal .deal.dealType2 ._type2 {
@@ -11344,7 +11348,7 @@ main #basket-guide .mb-header {
         .page-deal .merchant > ._2 ._t i {
           color: inherit; }
         .page-deal .merchant > ._2 ._t.menu {
-          color: #ff8f00; }
+          color: #6E297A; }
           .page-deal .merchant > ._2 ._t.menu p {
             font-size: 115%;
             cursor: pointer; }
@@ -11657,7 +11661,7 @@ main #basket-guide .mb-header {
           border-radius: 50%;
           float: right;
           margin-left: 15px;
-          color: #f58221; }
+          color: #6E297A; }
       .page-deal .q-a .qa .name {
         padding-bottom: 5px;
         border-bottom: 1px solid #dcdcdc;
@@ -11759,7 +11763,7 @@ main #basket-guide .mb-header {
           position: absolute;
           top: 0;
           right: 0;
-          color: #f58221; }
+          color: #6E297A; }
         .page-deal .q-a .qa .a p {
           background: #f5f5f5;
           padding: 15px;
@@ -11783,7 +11787,7 @@ main #basket-guide .mb-header {
       background: #FFF;
       margin-bottom: 10px; }
       .page-deal #dealProperty .modal-body .dealProp.hascheck {
-        border: 1px solid #ff8f00; }
+        border: 1px solid #6E297A; }
       .page-deal #dealProperty .modal-body .dealProp .radio label {
         margin-right: 0;
         padding-right: 0;
@@ -11846,7 +11850,7 @@ main #basket-guide .mb-header {
         padding: 0 15px 0 5px; }
         .page-deal #dealProperty .modal-body .dealProp ._2 .off {
           position: absolute;
-          background: #ff8f00;
+          background: #6E297A;
           color: white;
           text-align: center;
           border-radius: 0 20px 20px 0;
@@ -11906,8 +11910,8 @@ main #basket-guide .mb-header {
             width: 110px;
             font-size: 1.2rem; }
             .page-deal #dealProperty .modal-body .dealProp ._3 .sideBySideBtn .btn:first-child {
-              background: #ff8f00;
-              border-color: #ff8f00;
+              background: #6E297A;
+              border-color: #6E297A;
               color: #FFF;
               padding: 0 10px;
               -webkit-border-radius: 0 20px 20px 0;
@@ -11981,8 +11985,8 @@ main #basket-guide .mb-header {
             width: 110px;
             font-size: 1.2rem; }
             .page-deal #dealProperty .modal-body .btn-part ._3 .sideBySideBtn .btn:first-child {
-              background: #ff8f00;
-              border-color: #ff8f00;
+              background: #6E297A;
+              border-color: #6E297A;
               color: #FFF;
               padding: 0 10px;
               -webkit-border-radius: 0 20px 20px 0;
@@ -12041,7 +12045,7 @@ main #basket-guide .mb-header {
         margin: 0 auto;
         float: left; }
   .page-deal #dealProperty.has-property .dealProp.haschecke:hover {
-    border: solid 1px #ff8f00; }
+    border: solid 1px #6E297A; }
     .page-deal #dealProperty.has-property .dealProp.haschecke:hover.done:hover {
       border: solid 1px #dcdcdc; }
   .page-deal #dealProperty.default-property .modal-body .dealProp ._2 {
@@ -12072,8 +12076,8 @@ main #basket-guide .mb-header {
         width: 110px;
         font-size: 1.2rem; }
         .page-deal #dealProperty.default-property .modal-body .dealProp ._2 .sideBySideBtn .btn:first-child {
-          background: #ff8f00;
-          border-color: #ff8f00;
+          background: #6E297A;
+          border-color: #6E297A;
           color: #FFF;
           padding: 0 10px;
           -webkit-border-radius: 0 20px 20px 0;
@@ -12089,7 +12093,7 @@ main #basket-guide .mb-header {
           border-radius: 20px 0 0 20px; }
     .page-deal #dealProperty.default-property .modal-body .dealProp ._2 .off {
       position: absolute;
-      background: #ff8f00;
+      background: #6E297A;
       color: white;
       text-align: center;
       border-radius: 0 20px 20px 0;
@@ -12356,7 +12360,7 @@ body.dealMap {
             padding: 0;
             text-align: center;
             font-weight: normal;
-            background-color: #f58221;
+            background-color: #6E297A;
             color: #FFF;
             font-size: 1.4rem; }
           body.dealMap .container-fluid.fit #cards .card .w-bottom .green-link {
@@ -12380,9 +12384,9 @@ body.dealMap {
         body.dealMap .container-fluid.fit #cards .card.hey {
           background-color: #F5f5f5;
           border: 0 solid #dcdcdc;
-          border-right: 3px solid #f58221; }
+          border-right: 3px solid #6E297A; }
           body.dealMap .container-fluid.fit #cards .card.hey .w-top p {
-            color: #f58221; }
+            color: #6E297A; }
           body.dealMap .container-fluid.fit #cards .card.hey .green-link {
             display: block !important;
             float: right;
@@ -12442,7 +12446,7 @@ body.dealMap {
           position: absolute;
           top: 7px;
           left: 14px;
-          color: #ff8f00; }
+          color: #6E297A; }
         body.dealMap .container-fluid.fit #cats .result span {
           font-size: 1.2rem; }
       body.dealMap .container-fluid.fit #cats ul {
@@ -12524,7 +12528,7 @@ body.dealMap {
     z-index: 1200; }
     body.dealMap.minimized #minimized p {
       margin: 100px auto;
-      color: #ff8f00;
+      color: #6E297A;
       font-size: 1.8rem;
       line-height: 34px;
       padding: 0 20px; }
@@ -13254,7 +13258,7 @@ body.dealMap {
   border: 1px solid #dcdcdc; }
   .page-merchant .mer-rating .progress .progress-bar {
     border-radius: 5px;
-    background: #ff8f00;
+    background: #6E297A;
     float: left; }
 
 .page-merchant .merchant-header .article-merchant-header {
@@ -13590,7 +13594,7 @@ body.dealMap {
   border-right: 1px solid #000; }
 
 .page-news .st-header * {
-  color: #f58221; }
+  color: #6E297A; }
 
 .page-news .st-header + p {
   line-height: 1.8;
@@ -14054,7 +14058,7 @@ body.dealMap {
               .page-urbusiness .page-content .body-urbusiness .part2 .chartpart1 .point1 .icon1 .icon-user-avatar {
                 color: #ff0000; }
               .page-urbusiness .page-content .body-urbusiness .part2 .chartpart1 .point1 .icon1 .icon-shop {
-                color: #ff8f00; }
+                color: #6E297A; }
               .page-urbusiness .page-content .body-urbusiness .part2 .chartpart1 .point1 .icon1 .icon-shopping-cart_L {
                 color: #00ae4d; }
         .page-urbusiness .page-content .body-urbusiness .part2 .chart_bg {
@@ -14217,9 +14221,9 @@ body.dealMap {
           .page-urbusiness .page-content .body-urbusiness .part5 .slide_show2 .active.center .item {
             opacity: 1; }
             .page-urbusiness .page-content .body-urbusiness .part5 .slide_show2 .active.center .item .slide_item .work1, .page-urbusiness .page-content .body-urbusiness .part5 .slide_show2 .active.center .item .slide_item .name1 {
-              color: #f58221; }
+              color: #6E297A; }
             .page-urbusiness .page-content .body-urbusiness .part5 .slide_show2 .active.center .item .slide_item .pic1 {
-              box-shadow: 0 0 0 2px #f58221; }
+              box-shadow: 0 0 0 2px #6E297A; }
           .page-urbusiness .page-content .body-urbusiness .part5 .slide_show2 .slide_item {
             width: 100%;
             text-align: center; }
@@ -14458,7 +14462,7 @@ body.dealMap {
   border: 1px solid #dcdcdc; }
   .page-aboutus .page-content .title1 {
     line-height: 25px;
-    color: #ff8f00;
+    color: #6E297A;
     padding-bottom: 10px; }
   .page-aboutus .page-content .text1 {
     line-height: 25px;
@@ -14522,7 +14526,7 @@ body.dealMap {
     text-align: center;
     padding: 25px 20px; }
     .rate-section .rate_header .merchant-name {
-      color: #f58221;
+      color: #6E297A;
       font-size: 2rem;
       line-height: 30px;
       padding-bottom: 20px;
@@ -14685,7 +14689,7 @@ body.dealMap {
     transition: background-color 0.3s ease; }
     .main-cat-product .main-cat-product-thumbnail .nb-btn-border:hover {
       color: #ffffff;
-      background-color: #ff8f00;
+      background-color: #6E297A;
       border-color: #ffffff; }
 
 .product-category {
@@ -14776,8 +14780,8 @@ body.dealMap {
       font-size: 1.4rem;
       margin-bottom: 5px; }
     .filter-box .checkbox input[type="checkbox"]:checked + label:before {
-      background-color: #ff8f00;
-      border-color: #ff8f00; }
+      background-color: #6E297A;
+      border-color: #6E297A; }
     .filter-box .checkbox input[type="checkbox"]:checked + label:after {
       color: #fff; }
   .filter-box .selected-filter {
@@ -14802,7 +14806,7 @@ body.dealMap {
       .filter-box .selected-filter .content-select p {
         color: #3c3c3c; }
       .filter-box .selected-filter .content-select span {
-        border: 1px solid #ff8f00;
+        border: 1px solid #6E297A;
         -webkit-border-radius: 15px;
         -moz-border-radius: 15px;
         border-radius: 15px;
@@ -15075,7 +15079,7 @@ body.dealMap {
           color: #3c3c3c;
           font-size: 1.4rem; }
           .mobile-menu-filter .filter-sort-body .body-filter .filter-sort-item .radio label::after {
-            background-color: #ff8f00; }
+            background-color: #6E297A; }
   .mobile-menu-filter .filter-option-body {
     position: fixed;
     z-index: 1003;
@@ -15151,7 +15155,7 @@ body.dealMap {
               .mobile-menu-filter .filter-option-body .body-filter .gender-filter .box-gender-filter > span ul li.active {
                 background-color: #ffffff; }
                 .mobile-menu-filter .filter-option-body .body-filter .gender-filter .box-gender-filter > span ul li.active i {
-                  color: #ff8f00; }
+                  color: #6E297A; }
         .mobile-menu-filter .filter-option-body .body-filter .gender-filter .box-gender-filter .gender-selector {
           float: right; }
           .mobile-menu-filter .filter-option-body .body-filter .gender-filter .box-gender-filter .gender-selector ul li {
@@ -15171,7 +15175,7 @@ body.dealMap {
             .mobile-menu-filter .filter-option-body .body-filter .gender-filter .box-gender-filter .gender-selector ul li input:checked + label {
               background-color: #ffffff; }
               .mobile-menu-filter .filter-option-body .body-filter .gender-filter .box-gender-filter .gender-selector ul li input:checked + label i {
-                color: #ff8f00; }
+                color: #6E297A; }
           .mobile-menu-filter .filter-option-body .body-filter .gender-filter .box-gender-filter .gender-selector .male-filter {
             -webkit-border-radius: 50px 0 0 50px;
             -moz-border-radius: 50px 0 0 50px;
@@ -15305,7 +15309,7 @@ body.dealMap {
       .company-info-box .company-content .share a._green:hover {
         color: #39a716; }
       .company-info-box .company-content .share a._email:hover {
-        color: #f58221; }
+        color: #6E297A; }
       .company-info-box .company-content .share a._linkdin:hover {
         color: #0e76a8; }
     .company-info-box .company-content .company-name {
@@ -15572,7 +15576,7 @@ body.dealMap {
         width: 6px;
         height: 6px;
         top: 8px;
-        background: #ff8f00;
+        background: #6E297A;
         -webkit-border-radius: 50px;
         -moz-border-radius: 50px;
         border-radius: 50px;
@@ -15867,7 +15871,7 @@ body.dealMap {
         .page-code-offer .navigation .inner-navigation .nav-item1 .active-nav {
           direction: rtl;
           display: inline;
-          background-color: #ff8f00;
+          background-color: #6E297A;
           padding: 0 10px 0 10px;
           float: right;
           color: #ffffff; }
@@ -15880,7 +15884,7 @@ body.dealMap {
           float: right; }
           .page-code-offer .navigation .inner-navigation .nav-item1 #outer #inner {
             transform: rotate(45deg);
-            background-color: #ff8f00;
+            background-color: #6E297A;
             width: 62px;
             height: 62px;
             top: 10px;
@@ -16187,7 +16191,7 @@ body.dealMap {
   .page-productstatus ._1 .info-box .des-box {
     padding: 26px 13px 19px; }
     .page-productstatus ._1 .info-box .des-box .title-kala span {
-      color: #f58221;
+      color: #6E297A;
       font-size: 1.7rem; }
     .page-productstatus ._1 .info-box .des-box .title-kala p {
       font-size: 1.4rem;
@@ -17745,7 +17749,7 @@ body.dealMap {
     background-color: transparent;
     border: 0; }
   .side-extra-items li:first-child * {
-    color: #ff8f00; }
+    color: #6E297A; }
   .side-extra-items li:last-child * {
     color: #5f9be7; }
   .tab-wrapper ul.nav li a {
@@ -17830,7 +17834,7 @@ body.dealMap {
         border: none; }
         body.dealMap #cards .wr .card.hey {
           border: none !important;
-          border-right: 3px solid #f58221 !important; }
+          border-right: 3px solid #6E297A !important; }
         body.dealMap #cards .wr .card > div {
           direction: rtl; }
         body.dealMap #cards .wr .card .w-top {
@@ -17919,7 +17923,7 @@ body.dealMap {
         width: 17px;
         height: 22px;
         display: block;
-        color: #ff8f00; }
+        color: #6E297A; }
       body.dealMap #catModal .all span {
         float: right;
         padding-right: 10px;
@@ -17956,7 +17960,7 @@ body.dealMap {
       float: right;
       padding-right: 10px; }
   body.dealMap #fab {
-    background: #f58221;
+    background: #6E297A;
     height: 50px;
     width: 50px;
     -webkit-border-radius: 50%;
@@ -18169,8 +18173,8 @@ body.dealMap {
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
         border-radius: 0;
-        background-color: #f58221;
-        border-color: #f58221;
+        background-color: #6E297A;
+        border-color: #6E297A;
         outline: none !important;
         font-size: 1.2rem; }
   header .header .bar .dropdown-1 > .btn:after {
@@ -18282,9 +18286,9 @@ body.dealMap {
         width: 1px;
         background-color: rgba(255, 255, 255, 0.2); }
       header .burger-menu-right .loginout a:hover {
-        color: #f58221; }
+        color: #6E297A; }
         header .burger-menu-right .loginout a:hover i {
-          color: #f58221; }
+          color: #6E297A; }
   header .side-cat {
     border-top: 1px solid #dcdcdc; }
   header .side-extra-items,
@@ -19720,7 +19724,7 @@ body.dealMap {
         font-size: 12px;
         width: 100%; }
       .page-company-offer .offer-item .offer-option .nb-tag {
-        color: #ff8f00; }
+        color: #6E297A; }
         .page-company-offer .offer-item .offer-option .nb-tag i {
           font-size: 18px;
           position: relative;
@@ -21596,7 +21600,7 @@ body.dealMap {
     .cat-deal-color.main-cat .main-cat-deal-list.general-row-deal .list-items .list-deal-cp .cp-holder > span.cp-price-float .discount {
       display: none; }
   .cat-deal-color.main-cat .main-cat-deal-list.general-row-deal .list-items .list-deal-cp .list-discount-tag {
-    background-color: #ff8f00 !important;
+    background-color: #6E297A !important;
     padding: 3px 14px 1px;
     font-size: 1.3rem;
     /* top: 2px !important; */
@@ -21716,7 +21720,7 @@ body.dealMap {
         .page-urbusiness .page-content .body-urbusiness .part2 .responsive_item1 .point2 .icon1 .icon-user-avatar {
           color: #ff0000; }
         .page-urbusiness .page-content .body-urbusiness .part2 .responsive_item1 .point2 .icon1 .icon-shop {
-          color: #ff8f00; }
+          color: #6E297A; }
         .page-urbusiness .page-content .body-urbusiness .part2 .responsive_item1 .point2 .icon1 .icon.icon-shopping-cart_L {
           color: #00ae4d; }
       .page-urbusiness .page-content .body-urbusiness .part2 .responsive_item1 .point2:last-child {
@@ -21943,7 +21947,7 @@ body.dealMap {
       .deals-package .responsive-package .right_box .percent {
         font-size: 2rem; }
       .deals-package .responsive-package .right_box span {
-        color: #ff8f00 !important; }
+        color: #6E297A !important; }
     .deals-package .responsive-package .left_box {
       width: 50%;
       line-height: 45px;
@@ -22115,12 +22119,12 @@ body.dealMap {
       -webkit-border-radius: 19px;
       -moz-border-radius: 19px;
       border-radius: 19px;
-      background-color: #f58221;
-      border-color: #f58221;
+      background-color: #6E297A;
+      border-color: #6E297A;
       outline: none !important; }
       .input-btn button:hover, .input-btn button:active {
-        background-color: #f58221;
-        border-color: #f58221;
+        background-color: #6E297A;
+        border-color: #6E297A;
         opacity: 0.9;
         outline: none !important; }
   .section-header {
@@ -22171,12 +22175,12 @@ body.dealMap {
       -webkit-border-radius: 19px;
       -moz-border-radius: 19px;
       border-radius: 19px;
-      background-color: #f58221;
-      border-color: #f58221;
+      background-color: #6E297A;
+      border-color: #6E297A;
       outline: none !important; }
       .dropdown-input-btn button:hover, .dropdown-input-btn button:active {
-        background-color: #f58221;
-        border-color: #f58221;
+        background-color: #6E297A;
+        border-color: #6E297A;
         opacity: 0.9;
         outline: none !important; }
     .dropdown-input-btn .dropdown {

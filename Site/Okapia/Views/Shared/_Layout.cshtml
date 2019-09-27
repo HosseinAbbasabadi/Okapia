@@ -136,7 +136,7 @@
               <div class="loginout">
                 <a asp-controller="PageView" asp-action="Index" asp-route-id="اخبار اُکاپیا" style="padding-right: 0 !important">
                   <span>
-                    مقالات اُکاپیا
+                    اخبار اُکاپیا
                   </span>
                 </a>
                 <a asp-controller="Home" asp-action="درخواست-ثبت-نمایندگی-اُکاپیا" style="padding-right: 0 !important">
@@ -275,9 +275,17 @@
   </div>
 
   @await Component.InvokeAsync("FooterAbout")
-
+  <div class="col-lg-24 col-md-24- col-sm-24 col-xl-24" style="padding: 10px 10px 0 0; margin: 0 0;">
+    <p>طراحی و توسعه توسط <a href="http://www.tahlildadeh.com/" target="_blank">تحلیل داده</a></p>
+  </div>
 </footer>
 
+<!---begin GOFTINO code--->
+<script type="text/javascript">
+  !function(){function g(){var g=document.createElement("script"),s="https://www.goftino.com/widget/I6wY11";g.type="text/javascript", g.async=!0,g.src=localStorage.getItem("goftino")?s+"?o="+localStorage.getItem("goftino"):s;var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(g, e);}
+    var a = window;"complete" === document.readyState ? g() : a.attachEvent ? a.attachEvent("onload", g) : a.addEventListener("load", g, !1);}();
+</script>
+<!---end GOFTINO code--->
 
 <script src="~/assets/theme/js/jquery-1.12.0.min.js"></script>
 <script src="~/assets/theme/js/bootstrap.min.js"></script>

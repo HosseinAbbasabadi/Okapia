@@ -1,7 +1,7 @@
 ﻿@model List<Okapia.Domain.ViewModels.Job.JobItemViewModel>
 
 @{
-  ViewData["Title"] = "SearchResult";
+  ViewData["Title"] = "نتیجه جستجو برای " + ViewData["Phrase"];
   Layout = "~/Views/Shared/_Layout.cshtml";
   var province = ViewData["province"].ToString();
 }

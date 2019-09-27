@@ -3,113 +3,116 @@
 @using Okapia.Application.Contracts
 @model JobDetailsIndexViewModel
 @{
-  ViewData["Title"] = "جزپیات مرکز خدماتی";
-  Layout = "~/Views/Shared/_Layout.cshtml";
-  var province = ViewData["province"].ToString();
+    ViewData["Title"] = Model.JobViewDetailsViewModel.JobPageTittle;
+    ViewData["MetaDescription"] =
+    Model.JobViewDetailsViewModel.JobMetaDesccription;
+    ViewData["MetaTags"] = Model.JobViewDetailsViewModel.JobMetaTag;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var province = ViewData["province"].ToString();
 }
 
 <div class="nb-breadcrumb-spacer hidden-lg hidden-md hidden-sm"></div>
 <div class="page-deal">
-<div class="container-fluid">
-<div class="row h-position">
-@await Component.InvokeAsync("FloatingCategories", new {pn = province})
+  <div class="container-fluid">
+    <div class="row h-position">
+      @await Component.InvokeAsync("FloatingCategories", new { pn = province })
 
-<div class="col-lg-22 col-md-22 main-col">
-<section class="deal relative clearfix equal dealType2 is-">
-  <div class="row">
-    <div class="col-sm-14 col-xs-24 _1 cell">
-      <div class="nb-carousel-2">
-        <div id="upSide" data-ride="carousel" class="carousel slide ">
-          <ul class="deal-tag list-unstyled"></ul>
-          <div class="carousel-inner ">
+      <div class="col-lg-22 col-md-22 main-col">
+        <section class="deal relative clearfix equal dealType2 is-">
+          <div class="row">
+            <div class="col-sm-14 col-xs-24 _1 cell">
+              <div class="nb-carousel-2">
+                <div id="upSide" data-ride="carousel" class="carousel slide ">
+                  <ul class="deal-tag list-unstyled"></ul>
+                  <div class="carousel-inner ">
 
-            @foreach (var photo in Model.JobViewDetailsViewModel.Photos)
-            {
-              var active = "";
-              if (photo.IsDefault)
-              {
-                active = "active";
-              }
-              <div class="item @active">
-                <img src="~/JobPhotos/@photo.Name" alt="@photo.Alt" title="@photo.Title"/>
-              </div>
-            }
-          </div>
-          <!-- Controls-->
-          <a href="#upSide" role="button" data-slide="next"
-             class="left carousel-control">
-            <span aria-hidden="true"
-                  class="icon icon-arrow-left">
-            </span><span class="sr-only">Previous</span>
-          </a>
-          <a href="#upSide" role="button"
-             data-slide="prev"
-             class="right carousel-control">
-            <span aria-hidden="true" class="icon icon-arrow-right"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-        <div id="downSide" class="clearfix">
-          <div id="thumbCarousel" data-interval="false" class="carousel slide">
-            <div class="carousel-inner">
-              <div class="place-holder">
-                <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-              </div>
-
-              <div class="item active">
-                @foreach (var photo in Model.JobViewDetailsViewModel.Photos.Select((value, index) => new {index, value}))
-                {
-                  <div data-target="#upSide" data-slide-to="@photo.index"
-                       class="thumb active">
-                    <img src="~/JobPhotos/Thumbs/@photo.value.Name" alt="@photo.value.Alt" title="@photo.value.Title"/>
+                    @foreach (var photo in Model.JobViewDetailsViewModel.Photos)
+                    {
+                      var active = "";
+                      if (photo.IsDefault)
+                      {
+                        active = "active";
+                      }
+                      <div class="item @active">
+                        <img src="~/JobPhotos/@photo.Name" alt="@photo.Alt" title="@photo.Title" />
+                      </div>
+                    }
                   </div>
-                }
+                  <!-- Controls-->
+                  <a href="#upSide" role="button" data-slide="next"
+                     class="left carousel-control">
+                    <span aria-hidden="true"
+                          class="icon icon-arrow-left">
+                    </span><span class="sr-only">Previous</span>
+                  </a>
+                  <a href="#upSide" role="button"
+                     data-slide="prev"
+                     class="right carousel-control">
+                    <span aria-hidden="true" class="icon icon-arrow-right"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+                <div id="downSide" class="clearfix">
+                  <div id="thumbCarousel" data-interval="false" class="carousel slide">
+                    <div class="carousel-inner">
+                      <div class="place-holder">
+                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                      </div>
+
+                      <div class="item active">
+                        @foreach (var photo in Model.JobViewDetailsViewModel.Photos.Select((value, index) => new { index, value }))
+                        {
+                          <div data-target="#upSide" data-slide-to="@photo.index"
+                               class="thumb active">
+                            <img src="~/JobPhotos/Thumbs/@photo.value.Name" alt="@photo.value.Alt" title="@photo.value.Title" />
+                          </div>
+                        }
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+            <div class="col-sm-10 col-xs-24 _2 cell">
+              <div class="top">
+                <span class="off ft-1">
+                  %@Model.JobViewDetailsViewModel.JobBenefitPercentForEndCustomer
+                </span>
+                <h1 class="_h2">
+                  <a href="" class="merchant-name ft-2 truncate">
+                    @Model.JobViewDetailsViewModel.JobName
+                  </a>
+                </h1>
+                <h2 class="_h1">
+                  <a href="" class="title ft-2 ellipsis">
+                    @Model.JobViewDetailsViewModel.JobSmallDescription
+                  </a>
+                </h2>
+              </div>
+              <div class="bill clearfix">
+                <form method="post" accept-charset="utf-8" class="add-to-basket" mj-type="form" mj-target="/baskets/addToBasket/162585.json" mj-method="post" mj-success="addToBasket" mj-before="prepairAddToBasket" mj-model="model1" action="/tabriz/d/c:restaurant/162585/%D9%85%D9%86%D9%88-%D8%BA%D8%B0%D8%A7%D9%87%D8%A7%DB%8C-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86%DB%8C-%D8%AF%D8%B1-%D8%B1%D8%B3%D8%AA%D9%88%D8%B1%D8%A7%D9%86-%D8%AA%DA%A9-%D8%A8%D9%86%D8%A7%D8%A8-%DA%A9%D8%A8%D8%A7%D8%A8%DA%86%DB%8C/">
+                  <div style="display: none;">
+                    <input type="hidden" name="_method" value="POST" />
+                  </div>
+                  <div class="_type2">
+                    <div class="realValue">
+                      <span>ارزش واقعی:</span>
+                      <del>@Model.JobViewDetailsViewModel.JobPrice</del>
+                      <span>تومان</span>
+                    </div>
+                    <div class="currentValue">
+                      <span class="currentDealValue" data-calcPrice="17600">پرداخت شما:</span>
+                      <ins>@Model.JobViewDetailsViewModel.JobDiscountPrice</ins>
+                      <span>تومان</span>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="extra clearfix">
+                <div class="sold">
 
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-10 col-xs-24 _2 cell">
-      <div class="top">
-        <span class="off ft-1">
-          %@Model.JobViewDetailsViewModel.JobBenefitPercentForEndCustomer
-        </span>
-        <h1 class="_h2">
-          <a href="" class="merchant-name ft-2 truncate">
-            @Model.JobViewDetailsViewModel.JobName
-          </a>
-        </h1>
-        <h2 class="_h1">
-          <a href="" class="title ft-2 ellipsis">
-            @Model.JobViewDetailsViewModel.JobSmallDescription
-          </a>
-        </h2>
-      </div>
-      <div class="bill clearfix">
-        <form method="post" accept-charset="utf-8" class="add-to-basket" mj-type="form" mj-target="/baskets/addToBasket/162585.json" mj-method="post" mj-success="addToBasket" mj-before="prepairAddToBasket" mj-model="model1" action="/tabriz/d/c:restaurant/162585/%D9%85%D9%86%D9%88-%D8%BA%D8%B0%D8%A7%D9%87%D8%A7%DB%8C-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86%DB%8C-%D8%AF%D8%B1-%D8%B1%D8%B3%D8%AA%D9%88%D8%B1%D8%A7%D9%86-%D8%AA%DA%A9-%D8%A8%D9%86%D8%A7%D8%A8-%DA%A9%D8%A8%D8%A7%D8%A8%DA%86%DB%8C/">
-          <div style="display: none;">
-            <input type="hidden" name="_method" value="POST"/>
-          </div>
-          <div class="_type2">
-            <div class="realValue">
-              <span>ارزش واقعی:</span>
-              <del>@Model.JobViewDetailsViewModel.JobPrice</del>
-              <span>تومان</span>
-            </div>
-            <div class="currentValue">
-              <span class="currentDealValue" data-calcPrice="17600">پرداخت شما:</span>
-              <ins>@Model.JobViewDetailsViewModel.JobDiscountPrice</ins>
-              <span>تومان</span>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="extra clearfix">
-        <div class="sold">
-
-          @*<span class="deal-sell pull-left">
+                  @*<span class="deal-sell pull-left">
                       <div class="pull-left">
                         <i class="icon icon-shopping-cart_L"></i>
                         <p class="cart-num">
@@ -118,46 +121,46 @@
                         </p>
                       </div>
                     </span>*@
-          <span class="address">
-            <div class="pull-right">
-              <i class="icon icon-location74"></i>
-              <a href="">@Model.JobViewDetailsViewModel.JobNeighborhood</a>
+                  <span class="address">
+                    <div class="pull-right">
+                      <i class="icon icon-location74"></i>
+                      <a href="">@Model.JobViewDetailsViewModel.JobCity -> @Model.JobViewDetailsViewModel.JobDistrict -> @Model.JobViewDetailsViewModel.JobNeighborhood</a>
+                    </div>
+                  </span>
+
+                </div>
+
+                <div class="share">
+
+                  <i class="icon icon-share"></i>
+                  <p>اشتراک با دوستان</p>
+                  <div class="pull-left">
+                    @{
+                      var path = Url.Action("Details", "JobView", new { id = Model.JobViewDetailsViewModel.JobSlug });
+                    }
+                    <a class="_gPlus" href="https://plus.okapia.com/share?url=@path">
+                      <i class="icon icon-google-plus"></i>
+                    </a>
+
+                    <a class="_facebook" href="http://facebook.com/share.php?u=@path">
+                      <i class="icon icon-facebook-logo"></i>
+                    </a>
+
+                    <a class="_twitter" href="https://twitter.com/share?url=@path">
+                      <i class="icon icon-twitter"></i>
+                    </a>
+
+                    <a class="_telegram" href="https://telegram.me/share/url?url=@path">
+                      <i class="icon icon-telegram-logo"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
-          </span>
-
-        </div>
-
-        <div class="share">
-
-          <i class="icon icon-share"></i>
-          <p>اشتراک با دوستان</p>
-          <div class="pull-left">
-            @{
-              var path = Url.Action("Details", "JobView", new {id = Model.JobViewDetailsViewModel.JobSlug});
-            }
-            <a class="_gPlus" href="https://plus.okapia.com/share?url=@path">
-              <i class="icon icon-google-plus"></i>
-            </a>
-
-            <a class="_facebook" href="http://facebook.com/share.php?u=@path">
-              <i class="icon icon-facebook-logo"></i>
-            </a>
-
-            <a class="_twitter" href="https://twitter.com/share?url=@path">
-              <i class="icon icon-twitter"></i>
-            </a>
-
-            <a class="_telegram" href="https://telegram.me/share/url?url=@path">
-              <i class="icon icon-telegram-logo"></i>
-            </a>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        </section>
 
-@*<section class="price-compare" style="display: none;">
+        @*<section class="price-compare" style="display: none;">
             <div class="icon-torob">
               <img src="/assets/site/img/torob.png">
             </div>
@@ -174,45 +177,45 @@
             </div>
           </section>*@
 
-<section class="merchant">
+        <section class="merchant">
 
-  <div class="_2">
+          <div class="_2">
 
-  </div>
-  <div class="_3">
-    <div class="_r">
-      <div class="_m">
-        <i class="pic"></i>
-        <p class="truncate">@Model.JobViewDetailsViewModel.JobAddress - شماره تماس:@Model.JobViewDetailsViewModel.JobTel1</p>
-      </div>
-    </div>
+          </div>
+          <div class="_3">
+            <div class="_r">
+              <div class="_m">
+                <i class="pic"></i>
+                <p class="truncate">@Model.JobViewDetailsViewModel.JobAddress - شماره تماس:@Model.JobViewDetailsViewModel.JobTel1</p>
+              </div>
+            </div>
 
-    <button data-toggle="modal" data-target="#dealLocation" class="btn nb-btn nb-btn-danger">
-      نمایش
-      روی نقشه
-    </button>
+            <button data-toggle="modal" data-target="#dealLocation" class="btn nb-btn nb-btn-danger">
+              نمایش
+              روی نقشه
+            </button>
 
-  </div>
-</section>
-<!-- detials -->
-<section class="details clearfix">
-  <div class="col-md-14 _1">
-    <div class="header">
-      <h3>ویژگی ها</h3>
-    </div>
-    <div class="conditions">
-      @foreach (var feature in Model.JobViewDetailsViewModel.JobFeatureList)
-      {
-        <p>@feature</p>
-      }
-    </div>
-  </div>
-  <div class="col-md-10 _2">
-    <div class="header">
-      <h3>شرایط استفاده </h3>
-    </div>
-    <div>
-      @*<div class="im">
+          </div>
+        </section>
+        <!-- detials -->
+        <section class="details clearfix">
+          <div class="col-md-14 _1">
+            <div class="header">
+              <h3>ویژگی ها</h3>
+            </div>
+            <div class="conditions">
+              @foreach (var feature in Model.JobViewDetailsViewModel.JobFeatureList)
+              {
+                <p>@feature</p>
+              }
+            </div>
+          </div>
+          <div class="col-md-10 _2">
+            <div class="header">
+              <h3>شرایط استفاده </h3>
+            </div>
+            <div>
+              @*<div class="im">
                   <i class="icon icon-calendar-deal"></i>
                   <p>
                     فرصت استفاده از
@@ -221,204 +224,204 @@
                     02 آبان 1398
                   </p>
                 </div>*@
-      @*<div class="im">
+              @*<div class="im">
                   <i class="icon icon-tag_netbarg"></i>
                   <p>هر نت برگ برای یک نفر</p>
                 </div>*@
-      @*<div class="im">
+              @*<div class="im">
                   <i class="icon icon-phone-call"></i>
                   <p>مراجعه حتما با هماهنگی و رزرو تلفنی</p>
                 </div>*@
-      @*<div class="extra-netbarg">
+              @*<div class="extra-netbarg">
                   <i class="icon icon-money-hand"></i>
                   <p>
                     <a href="http://landing.netbarg.com/extra/" target="_blank"> درصورت عدم استفاده در مدت مشخص شده، نت&zwnj;برگ شما به مدت 3ماه و به اندازه&zwnj;ی مبلغ پرداختی قابل استفاده می&zwnj;باشد </a>
                   </p>
                 </div>*@
-      @*<a href="/landing/GreenNetbarg/" target="_blank">
+              @*<a href="/landing/GreenNetbarg/" target="_blank">
                   <div class="green-netbarg">
                     <i class="icon icon-paperless"></i>
                     <p>ارائه پرینت الزامی نیست. فقط QR کد یا کدهای نت برگ را همراه داشته باشید</p>
                   </div>
                 </a>*@
-      <div class="highlights">
-        @if (!string.IsNullOrEmpty(Model.JobViewDetailsViewModel.JobTel2))
-        {
-          <p>
-            <strong>شماره تماس :</strong>
-            <span dir="RTL" lang="FA">
-              &nbsp;
-              <strong>
-                <span dir="RTL" lang="FA">@Model.JobViewDetailsViewModel.JobTel2</span>
-              </strong>
-            </span>
-          </p>
-        }
-        @foreach (var usage in Model.JobViewDetailsViewModel.JobUsageConditionList)
-        {
-          <p>
-            @usage
-          </p>
-        }
+              <div class="highlights">
+                @if (!string.IsNullOrEmpty(Model.JobViewDetailsViewModel.JobTel2))
+                {
+                  <p>
+                    <strong>شماره تماس :</strong>
+                    <span dir="RTL" lang="FA">
+                      &nbsp;
+                      <strong>
+                        <span dir="RTL" lang="FA">@Model.JobViewDetailsViewModel.JobTel2</span>
+                      </strong>
+                    </span>
+                  </p>
+                }
+                @foreach (var usage in Model.JobViewDetailsViewModel.JobUsageConditionList)
+                {
+                  <p>
+                    @usage
+                  </p>
+                }
 
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end details -->
-<!-- description -->
-<section class="desc clearfix _open">
-  <div class="header">
-    <h3>توضیحات</h3>
-  </div>
-  <div>
-    @Html.Raw(Model.JobViewDetailsViewModel.JobDescription)
-    <div class="col-md-12 col-lg-offset-6 col-sm-24 col-sm-offset-0 col-xs-offset-0 iframe-wrapper">
-
-    </div>
-  </div>
-</section>
-<!-- end description -->
-<section class="article-comment desc _open ">
-  <div class="header">
-    <h6> نظر مشتریان</h6>
-  </div>
-  <div class="cat-deal-color">
-    <div class="article-comment-box">
-      @foreach (var comment in Model.JobViewDetailsViewModel.Comments)
-      {
-        <div class="acb-row">
-          <div class="acbr-cell pro-img">
-            <img src="~/personImage.jpg">
-          </div>
-          <div class="acbr-cell pro-box">
-            <div class="c-boxer">
-              <div class="cb-top clearfix">
-                <div class="pull-right">
-                  <span>@comment.CommentorFullname</span>
-                  <span>@comment.CommentCreationDate</span>
-                  <span>
-                    <a href="@Url.Action("Details", "JobView", new {id = Model.JobViewDetailsViewModel.JobSlug})" target="_blank">
-                      @Model.JobViewDetailsViewModel.JobName
-                    </a>
-                  </span>
-                </div>
-                <div class="pull-left">
-                  <i class="icon icon-happy-face green"></i>
-                </div>
-              </div>
-              <div class="cb-bottom">
-                <p>@comment.CommentText</p>
               </div>
             </div>
           </div>
-        </div>
-      }
-    </div>
-  </div>
-  <br/>
-  <div class="row_ clearfix">
-    @if (!AuthHelper.GetCurrnetUserInfo().IsAuthorized)
-    {
-      <div class="nb-alert nb-alert-info noLogin">
-        کاربر گرامی جهت ثبت نظر لطفا ابتدا
-        <a asp-controller="Account" asp-action="Login" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">وارد</a>شوید.<i class="icon icon-close"></i>
-      </div>
-    }
-    else
-    {
-      <div class="col-md-24">
-        <div class="_1 clearfix">
-          @*<i class="icon icon-question-fill-r"></i>*@
-          <p>نظر خود را راجع به @Model.JobViewDetailsViewModel.JobName با ما به اشتراک بگذارید</p>
-        </div>
-        <div class="_2 clearfix">
-          <form method="Get" accept-charset="utf-8" class="comment-form" asp-controller="JobView" asp-action="AddComment">
-            <input type="hidden" name="CommentOwnerRecordId" id="CommentOwnerRecordId" value="@Model.JobViewDetailsViewModel.JobId"/>
-            <input type="hidden" name="CommentOwnerRecordSlug" id="CommentOwnerRecordSlug" value="@Model.JobViewDetailsViewModel.JobSlug"/>
-            <div class="form-group req input-label-animate">
-              <div class="input textarea">
-                <textarea name="CommentText" placeholder="متن نظر خود را در این قسمت وارد کنید ..." 
-                          class="form-control required-input" id="CommentText" rows="5" style="color: #000"></textarea>
-              </div>
+        </section>
+        <!-- end details -->
+        <!-- description -->
+        <section class="desc clearfix _open">
+          <div class="header">
+            <h3>توضیحات</h3>
+          </div>
+          <div>
+            @Html.Raw(Model.JobViewDetailsViewModel.JobDescription)
+            <div class="col-md-12 col-lg-offset-6 col-sm-24 col-sm-offset-0 col-xs-offset-0 iframe-wrapper">
+
             </div>
-            @*<div class="nb-reCaptcha">
-              <div class="nb-reCaptcha2">
-                <div class="control-input captcha-net">
-                  <div align="right" class="captcha-block">
-                    <div class="g-recaptcha" id="g-recaptcha-deal-comment-form" data-sitekey="6LfyZz0UAAAAAABOhV3qPjoUSA6U-lg1I76PjhKc">
+          </div>
+        </section>
+        <!-- end description -->
+        <section class="article-comment desc _open ">
+          <div class="header">
+            <h6> نظر مشتریان</h6>
+          </div>
+          <div class="cat-deal-color">
+            <div class="article-comment-box">
+              @foreach (var comment in Model.JobViewDetailsViewModel.Comments)
+              {
+                <div class="acb-row">
+                  <div class="acbr-cell pro-img">
+                    <img src="~/personImage.jpg">
+                  </div>
+                  <div class="acbr-cell pro-box">
+                    <div class="c-boxer">
+                      <div class="cb-top clearfix">
+                        <div class="pull-right">
+                          <span>@comment.CommentorFullname</span>
+                          <span>@comment.CommentCreationDate</span>
+                          <span>
+                            <a href="@Url.Action("Details", "JobView", new {id = Model.JobViewDetailsViewModel.JobSlug})" target="_blank">
+                              @Model.JobViewDetailsViewModel.JobName
+                            </a>
+                          </span>
+                        </div>
+                        <div class="pull-left">
+                          <i class="icon icon-happy-face green"></i>
+                        </div>
+                      </div>
+                      <div class="cb-bottom">
+                        <p>@comment.CommentText</p>
+                      </div>
                     </div>
                   </div>
                 </div>
+              }
+            </div>
+          </div>
+          <br />
+          <div class="row_ clearfix">
+            @if (!AuthHelper.GetCurrnetUserInfo().IsAuthorized)
+            {
+              <div class="nb-alert nb-alert-info noLogin">
+                کاربر گرامی جهت ثبت نظر لطفا ابتدا
+                <a asp-controller="Account" asp-action="Login" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">وارد</a>شوید.<i class="icon icon-close"></i>
               </div>
-            </div>*@
-            <button class="btn nb-btn nb-btn-primary" type="submit">ارسال نظر</button>
-          </form>
-        </div>
-      </div>
-    }
+            }
+            else
+            {
+              <div class="col-md-24">
+                <div class="_1 clearfix">
+                  @*<i class="icon icon-question-fill-r"></i>*@
+                  <p>نظر خود را راجع به @Model.JobViewDetailsViewModel.JobName با ما به اشتراک بگذارید</p>
+                </div>
+                <div class="_2 clearfix">
+                  <form method="Get" accept-charset="utf-8" class="comment-form" asp-controller="JobView" asp-action="AddComment">
+                    <input type="hidden" name="CommentOwnerRecordId" id="CommentOwnerRecordId" value="@Model.JobViewDetailsViewModel.JobId" />
+                    <input type="hidden" name="CommentOwnerRecordSlug" id="CommentOwnerRecordSlug" value="@Model.JobViewDetailsViewModel.JobSlug" />
+                    <div class="form-group req input-label-animate">
+                      <div class="input textarea">
+                        <textarea name="CommentText" placeholder="متن نظر خود را در این قسمت وارد کنید ..."
+                                  class="form-control required-input" id="CommentText" rows="5" style="color: #000"></textarea>
+                      </div>
+                    </div>
+                    @*<div class="nb-reCaptcha">
+                        <div class="nb-reCaptcha2">
+                          <div class="control-input captcha-net">
+                            <div align="right" class="captcha-block">
+                              <div class="g-recaptcha" id="g-recaptcha-deal-comment-form" data-sitekey="6LfyZz0UAAAAAABOhV3qPjoUSA6U-lg1I76PjhKc">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>*@
+                    <button class="btn nb-btn nb-btn-primary" type="submit">ارسال نظر</button>
+                  </form>
+                </div>
+              </div>
+            }
 
-  </div>
-</section>
-<!-- question -->
-
-<section class="q-a _open clearfix">
-  <div class="header">
-    <h3>پرسش و پاسخ</h3>
-  </div>
-
-  <div class="row_ clearfix">
-    <div class="col-lg-24" id="commentBox">
-      @foreach (var faq in Model.JobViewDetailsViewModel.Faqs)
-      {
-        <div class="qa">
-          @*<div class="name clearfix" data-comment-id="705925">
-          <img src="/assets/site/img/user-pic.png">
-          <p>
-            امیرحسین جباری
-          </p>
-          <span data-toggle="modal"
-                data-target="#reply"
-                data-reply-id="705925"
-                data-deal-id="163300"
-                class="reply"
-                onclick="setCurrentCommentId(this);">
-            پاسخ
-          </span>
-        </div>*@
-          <div class="q">
-            <p>@faq.Question</p>
           </div>
-          <div class="answere">
-            <div class="name clearfix nested " data-reply-id="706541">
-              <i class="icon icon-question-strock-r"></i>
-              <p>
-                اُکاپیا
-              </p>
-              @*<span data-toggle="modal" data-target="#reply"
-                    onclick="setCurrentCommentId(this);"
-                    data-deal-id="163300"
-                    class="reply" data-reply-id="706541">
-                پاسخ
-              </span>*@
-            </div>
-            <div class="q nested">
-              <p>@faq.Answer</p>
+        </section>
+        <!-- question -->
+
+        <section class="q-a _open clearfix">
+          <div class="header">
+            <h3>پرسش و پاسخ</h3>
+          </div>
+
+          <div class="row_ clearfix">
+            <div class="col-lg-24" id="commentBox">
+              @foreach (var faq in Model.JobViewDetailsViewModel.Faqs)
+              {
+                <div class="qa">
+                  @*<div class="name clearfix" data-comment-id="705925">
+                      <img src="/assets/site/img/user-pic.png">
+                      <p>
+                        امیرحسین جباری
+                      </p>
+                      <span data-toggle="modal"
+                            data-target="#reply"
+                            data-reply-id="705925"
+                            data-deal-id="163300"
+                            class="reply"
+                            onclick="setCurrentCommentId(this);">
+                        پاسخ
+                      </span>
+                    </div>*@
+                  <div class="q">
+                    <p>@faq.Question</p>
+                  </div>
+                  <div class="answere">
+                    <div class="name clearfix nested " data-reply-id="706541">
+                      <i class="icon icon-question-strock-r"></i>
+                      <p>
+                        اُکاپیا
+                      </p>
+                      @*<span data-toggle="modal" data-target="#reply"
+                              onclick="setCurrentCommentId(this);"
+                              data-deal-id="163300"
+                              class="reply" data-reply-id="706541">
+                          پاسخ
+                        </span>*@
+                    </div>
+                    <div class="q nested">
+                      <p>@faq.Answer</p>
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <div id="moreQa" class="moreWrapper">
+              </div>
             </div>
           </div>
-        </div>
-      }
-
-      <div id="moreQa" class="moreWrapper">
+        </section>
       </div>
+
+      @await Component.InvokeAsync("CompanyNumbers")
     </div>
   </div>
-</section>
-</div>
-
-@await Component.InvokeAsync("CompanyNumbers")
-</div>
-</div>
 </div>
 <!-- map modal -->
 <div id="dealLocation" tabindex="-1" role="dialog" class="modal nb-modal nb-fade">
@@ -469,100 +472,100 @@
 </div>
 
 @*<div id="editQ" tabindex="-1" role="dialog" class="modal fade">
-      <div role="document" class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title title-admin">ارسال پاسخ به سوال</h4>
+    <div role="document" class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title title-admin">ارسال پاسخ به سوال</h4>
+        </div>
+        <form method="post" accept-charset="utf-8" class="comment-form" mj-type="form" mj-target="/comment/admin/comments/replyFromClient/162585.json" mj-method="post" mj-success="responseDataCommentAdmin" action="/tabriz/d/c:restaurant/162585/%D9%85%D9%86%D9%88-%D8%BA%D8%B0%D8%A7%D9%87%D8%A7%DB%8C-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86%DB%8C-%D8%AF%D8%B1-%D8%B1%D8%B3%D8%AA%D9%88%D8%B1%D8%A7%D9%86-%D8%AA%DA%A9-%D8%A8%D9%86%D8%A7%D8%A8-%DA%A9%D8%A8%D8%A7%D8%A8%DA%86%DB%8C/">
+          <div style="display: none;">
+            <input type="hidden" name="_method" value="POST"/>
           </div>
-          <form method="post" accept-charset="utf-8" class="comment-form" mj-type="form" mj-target="/comment/admin/comments/replyFromClient/162585.json" mj-method="post" mj-success="responseDataCommentAdmin" action="/tabriz/d/c:restaurant/162585/%D9%85%D9%86%D9%88-%D8%BA%D8%B0%D8%A7%D9%87%D8%A7%DB%8C-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86%DB%8C-%D8%AF%D8%B1-%D8%B1%D8%B3%D8%AA%D9%88%D8%B1%D8%A7%D9%86-%D8%AA%DA%A9-%D8%A8%D9%86%D8%A7%D8%A8-%DA%A9%D8%A8%D8%A7%D8%A8%DA%86%DB%8C/">
-            <div style="display: none;">
-              <input type="hidden" name="_method" value="POST"/>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-xs-24 m-b">
-                  <div class="input textarea">
-                    <textarea name="mainQBody" id="mainQBody" placeholder="سوال کاربر" class="single-input" rows="5"></textarea>
-                  </div> <input type="hidden" name="mainQId" id="mainQId"/><input type="hidden" name="deal_id" id="deal_id"/><input type="hidden" name="admin_reply_id" id="admin_reply_id"/><input type="hidden" name="typeQ" id="typeQ"/>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-xs-24 m-b">
+                <div class="input textarea">
+                  <textarea name="mainQBody" id="mainQBody" placeholder="سوال کاربر" class="single-input" rows="5"></textarea>
+                </div> <input type="hidden" name="mainQId" id="mainQId"/><input type="hidden" name="deal_id" id="deal_id"/><input type="hidden" name="admin_reply_id" id="admin_reply_id"/><input type="hidden" name="typeQ" id="typeQ"/>
+              </div>
+              <div class="col-xs-24 m-b">
+                <select name="defaultAnswers" type="select" id="defaultAnswers" class="form-control" onChange="prepareReplyAdminComment(this)"></select>
+              </div>
+              <div class="col-xs-24 m-b">
+                <div class="input textarea">
+                  <textarea name="adminReply" placeholder="پاسخ خود را تایپ کنید ..." class="single-input" id="adminreply" rows="5"></textarea>
                 </div>
-                <div class="col-xs-24 m-b">
-                  <select name="defaultAnswers" type="select" id="defaultAnswers" class="form-control" onChange="prepareReplyAdminComment(this)"></select>
-                </div>
-                <div class="col-xs-24 m-b">
-                  <div class="input textarea">
-                    <textarea name="adminReply" placeholder="پاسخ خود را تایپ کنید ..." class="single-input" id="adminreply" rows="5"></textarea>
-                  </div>
-                </div>
-                <div class="col-xs-24">
-                  <div class="checkbox checkbox-success checked">
+              </div>
+              <div class="col-xs-24">
+                <div class="checkbox checkbox-success checked">
 
-                    <input type="checkbox" name="status" value="1" class="styled" id="status"> <label for="status">فعال شدن نظر و پاسخ</label>
-                  </div>
+                  <input type="checkbox" name="status" value="1" class="styled" id="status"> <label for="status">فعال شدن نظر و پاسخ</label>
                 </div>
-                <div class="col-xs-24">
-                  <div class="checkbox checkbox-success  checked">
-                    <input type="checkbox" name="notify" value="1" class="styled" checked="checked" id="notify"> <label for="notify">ارسال پاسخ به کاربر از طریق ایمیل</label>
-                  </div>
+              </div>
+              <div class="col-xs-24">
+                <div class="checkbox checkbox-success  checked">
+                  <input type="checkbox" name="notify" value="1" class="styled" checked="checked" id="notify"> <label for="notify">ارسال پاسخ به کاربر از طریق ایمیل</label>
                 </div>
               </div>
             </div>
-            <div class="modal-footer clearfix">
-              <button type="submit" class="btn btn-success pull-left" mj-for="model1">ثبت</button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div class="modal-footer clearfix">
+            <button type="submit" class="btn btn-success pull-left" mj-for="model1">ثبت</button>
+          </div>
+        </form>
       </div>
     </div>
-    <div id="reply" tabindex="-1" role="dialog" class="InDealPage modal nb-modal fade">
-      <div role="document" class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
-              <i aria-hidden="true"
-                 class="icon icon-close">
-              </i>
-            </button>
-            <div class="modal-title-wrapper">
-              <h4 class="modal-title ft-3">پاسخ شما به این دیدگاه</h4>
-            </div>
+  </div>
+  <div id="reply" tabindex="-1" role="dialog" class="InDealPage modal nb-modal fade">
+    <div role="document" class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+            <i aria-hidden="true"
+               class="icon icon-close">
+            </i>
+          </button>
+          <div class="modal-title-wrapper">
+            <h4 class="modal-title ft-3">پاسخ شما به این دیدگاه</h4>
           </div>
-          <div class="modal-body clearfix">
-            <iframe src="" class="embded-iframe" data-test=""></iframe>
+        </div>
+        <div class="modal-body clearfix">
+          <iframe src="" class="embded-iframe" data-test=""></iframe>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div id="mainModal" tabindex="-1" role="dialog" class="modal nb-modal nb-fade">
+    <div role="document" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+            <i aria-hidden="true"
+               class="icon icon-close">
+            </i>
+          </button>
+          <div class="modal-title-wrapper">
+            <h4 class="modal-title ft-3"></h4>
           </div>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div id="giftCardModal" tabindex="-1" role="dialog" class="modal nb-modal nb-fade">
+    <div role="document" class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+            <i aria-hidden="true" class="icon icon-close"></i>
+          </button>
+        </div>
+        <div class="modal-body modal-body-gift">
 
         </div>
       </div>
     </div>
-    <div id="mainModal" tabindex="-1" role="dialog" class="modal nb-modal nb-fade">
-      <div role="document" class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
-              <i aria-hidden="true"
-                 class="icon icon-close">
-              </i>
-            </button>
-            <div class="modal-title-wrapper">
-              <h4 class="modal-title ft-3"></h4>
-            </div>
-          </div>
-          <div class="modal-body"></div>
-          <div class="modal-footer"></div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <div id="giftCardModal" tabindex="-1" role="dialog" class="modal nb-modal nb-fade">
-      <div role="document" class="modal-dialog modal-md">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
-              <i aria-hidden="true" class="icon icon-close"></i>
-            </button>
-          </div>
-          <div class="modal-body modal-body-gift">
-
-          </div>
-        </div>
-      </div>
-    </div>*@
+  </div>*@

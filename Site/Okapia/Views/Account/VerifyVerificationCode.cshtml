@@ -28,6 +28,11 @@
                       <span asp-validation-for="Code" class="hint danger"></span>
                     </div>
                   </div>
+                  <div class="form-group remember-forget">
+                    <div class="forget-pass">
+                      <a asp-controller="Account" asp-action="انتخاب شیوه احراز هویت">کد ارسال نشده است؟ ارسال مجدد کد</a>
+                    </div>
+                  </div>
                   <input asp-for="Type" type="hidden" />
                   <input asp-for="Phonenumber" type="hidden" />
                   <input asp-for="Email" type="hidden" />

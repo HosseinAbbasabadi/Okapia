@@ -40,7 +40,8 @@ namespace Okapia.Repository.Repositories
                 CategoryCanonicalAddress = x.CategoryCanonicalAddress,
                 IsDeleted = x.IsDeleted,
                 CategoryColor = x.CategoryColor,
-                CategoryIcon = x.CategoryIcon
+                CategoryIcon = x.CategoryIcon,
+                CategoryIsNew = x.CategoryIsNew
             }).ToList().First();
             return category;
         }

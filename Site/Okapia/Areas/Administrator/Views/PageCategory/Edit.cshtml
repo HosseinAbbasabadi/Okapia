@@ -4,150 +4,158 @@
   ViewData["Title"] = "ویرایش رده بندی";
 }
 
-<h1>ویرایش رده بندی</h1>
-<hr/>
-<div class="row">
-  <div class="col-md-12">
-    <form method="post" id="editPageCategoryFrm">
-      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="PageCategoryName" class="control-label"></label>
-          <input asp-for="PageCategoryName" class="form-control" onchange="makeSlug('PageCategoryName', 'PageCategorySlug', '@Url.Action("CheckSlugDuplication", "PageCategory")')"/>
-          <span asp-validation-for="PageCategoryName" class="text-danger"></span>
-        </div>
-      </div>
-      @*<div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="PageCategoryParentId" class="control-label"></label>
-          <select asp-for="PageCategoryParentId" asp-items="@Model.PageCategories" class="form-control">
-            <option value="0">رده مافوق را انتخاب کنید...</option>
-          </select>
-          <span asp-validation-for="PageCategoryParentId" class="text-danger"></span>
-        </div>
-      </div>*@
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="PageCategoryPageTitle" class="control-label"></label>
-          <input asp-for="PageCategoryPageTitle" class="form-control" />
-          <span asp-validation-for="PageCategoryPageTitle" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="PageCategorySlug" class="control-label"></label>
-          <input asp-for="PageCategorySlug" class="form-control" onchange="checkSlugDuplication('@Url.Action("CheckSlugDuplication", "PageCategory")', 'PageCategorySlug')"/>
-          <span asp-validation-for="PageCategorySlug" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="PageCategoryMetaTag" class="control-label"></label>
-          <input asp-for="PageCategoryMetaTag" class="form-control" />
-          <span asp-validation-for="PageCategoryMetaTag" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="PageCategoryMetaDesccription" class="control-label"></label>
-          <input asp-for="PageCategoryMetaDesccription" class="form-control" />
-          <span asp-validation-for="PageCategoryMetaDesccription" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="PageCategorySeohead" class="control-label"></label>
-          <input asp-for="PageCategorySeohead" class="form-control" />
-          <span asp-validation-for="PageCategorySeohead" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="PageCanonicalAddress" class="control-label"></label>
-          <input asp-for="PageCanonicalAddress" class="form-control" />
-          <span asp-validation-for="PageCanonicalAddress" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="PageCategoryShowOrder" class="control-label"></label>
-          <input asp-for="PageCategoryShowOrder" class="form-control" />
-          <span asp-validation-for="PageCategoryShowOrder" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="PageCategoryIsDeleted" class="control-label"></label>
-          <input asp-for="PageCategoryIsDeleted" class="form-control" />
-          <span asp-validation-for="PageCategoryIsDeleted" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="PageCategoryRemoved301InsteadUrl" class="control-label"></label>
-          <input asp-for="PageCategoryRemoved301InsteadUrl" class="form-control" />
-          <span asp-validation-for="PageCategoryRemoved301InsteadUrl" class="text-danger"></span>
-        </div>
-      </div>
-      <table class="col-md-12 table table-bordered text-center">
-        <tr>
-          <td>فایل</td>
-          <td>عنوان عکس</td>
-          <td>Alt</td>
-          <td>توضیحات</td>
-          <td>پیش نمایش</td>
-          <td>حذف</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="categoryPicture" name="categoryPicture" type="file" size="1" onchange="uploadFile('categoryPicture', 'NameImage', 'deleteImage', 'pageCategory');PreviewImage('categoryPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
-          </td>
-          <td>
-            <div class="form-group">
-              <input asp-for="TitleImage" class="form-control" />
-              <span asp-validation-for="TitleImage" class="text-danger"></span>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input asp-for="AltImage" class="form-control" />
-              <span asp-validation-for="AltImage" class="text-danger"></span>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input asp-for="DescImage" class="form-control" />
-              <span asp-validation-for="DescImage" class="text-danger"></span>
-            </div>
-          </td>
-          @if (string.IsNullOrEmpty(Model.NameImage))
-          {
-            <td>
-              <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100" />
-              <input asp-for="NameImage" type="hidden" size="1" value="" />
-            </td>
-            <td>
-              <button type="button" id="deleteImage" onclick="deletePhoto('NameImage', 'prevImage', 'deleteImage', 'TitleImage', 'AltImage', 'DescImage', 'pageCategory')" class="btn btn-danger hidden">حذف</button>
-            </td>
-          }
-          else
-          {
-            <td>
-              <img id="prevImage" src="~/PageCategoryPhotos/Thumbs/@Model.NameImage" alt="your image" with="100" height="100" />
-              <input asp-for="NameImage" type="hidden" size="1" value="@Model.NameImage" />
-            </td>
-            <td>
-              <button type="button" id="deleteImage" onclick="deletePhoto('NameImage', 'prevImage', 'deleteImage', 'TitleImage', 'AltImage', 'DescImage', 'pageCategory')" class="btn btn-danger">حذف</button>
-            </td>
-          }
-        </tr>
-      </table>
+<div class="panel panel-border panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      ویرایش رده بندی - @Model.PageCategoryName
+    </h3>
+  </div>
+  <br/>
+  <div class="panel-body">
+    <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
-          <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "PageCategory")', 'editPageCategoryFrm', '@ViewData["redirectUrl"]')" />
-          <a class="btn btn-warning btn-lg" href="@ViewData["redirectUrl"]">بازگشت به لیست</a>
-        </div>
+        <form method="post" id="editPageCategoryFrm">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryName" class="control-label"></label>
+              <input asp-for="PageCategoryName" class="form-control" onchange="makeSlug('PageCategoryName', 'PageCategorySlug', '@Url.Action("CheckSlugDuplication", "PageCategory")')" />
+              <span asp-validation-for="PageCategoryName" class="text-danger"></span>
+            </div>
+          </div>
+          @*<div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryParentId" class="control-label"></label>
+              <select asp-for="PageCategoryParentId" asp-items="@Model.PageCategories" class="form-control">
+                <option value="0">رده مافوق را انتخاب کنید...</option>
+              </select>
+              <span asp-validation-for="PageCategoryParentId" class="text-danger"></span>
+            </div>
+          </div>*@
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryPageTitle" class="control-label"></label>
+              <input asp-for="PageCategoryPageTitle" class="form-control" />
+              <span asp-validation-for="PageCategoryPageTitle" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategorySlug" class="control-label"></label>
+              <input asp-for="PageCategorySlug" class="form-control" onchange="checkSlugDuplication('@Url.Action("CheckSlugDuplication", "PageCategory")', 'PageCategorySlug')" />
+              <span asp-validation-for="PageCategorySlug" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryMetaTag" class="control-label"></label>
+              <input asp-for="PageCategoryMetaTag" class="form-control" />
+              <span asp-validation-for="PageCategoryMetaTag" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryMetaDesccription" class="control-label"></label>
+              <input asp-for="PageCategoryMetaDesccription" class="form-control" />
+              <span asp-validation-for="PageCategoryMetaDesccription" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategorySeohead" class="control-label"></label>
+              <input asp-for="PageCategorySeohead" class="form-control" />
+              <span asp-validation-for="PageCategorySeohead" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCanonicalAddress" class="control-label"></label>
+              <input asp-for="PageCanonicalAddress" class="form-control" />
+              <span asp-validation-for="PageCanonicalAddress" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryShowOrder" class="control-label"></label>
+              <input asp-for="PageCategoryShowOrder" class="form-control" />
+              <span asp-validation-for="PageCategoryShowOrder" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryIsDeleted" class="control-label"></label>
+              <input asp-for="PageCategoryIsDeleted" class="form-control" />
+              <span asp-validation-for="PageCategoryIsDeleted" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="PageCategoryRemoved301InsteadUrl" class="control-label"></label>
+              <input asp-for="PageCategoryRemoved301InsteadUrl" class="form-control" />
+              <span asp-validation-for="PageCategoryRemoved301InsteadUrl" class="text-danger"></span>
+            </div>
+          </div>
+          <table class="col-md-12 table table-bordered text-center">
+            <tr>
+              <td>فایل</td>
+              <td>عنوان عکس</td>
+              <td>Alt</td>
+              <td>توضیحات</td>
+              <td>پیش نمایش</td>
+              <td>حذف</td>
+            </tr>
+            <tr>
+              <td>
+                <input id="categoryPicture" name="categoryPicture" type="file" size="1" onchange="uploadFile('categoryPicture', 'NameImage', 'deleteImage', 'pageCategory');PreviewImage('categoryPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
+              </td>
+              <td>
+                <div class="form-group">
+                  <input asp-for="TitleImage" class="form-control" />
+                  <span asp-validation-for="TitleImage" class="text-danger"></span>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input asp-for="AltImage" class="form-control" />
+                  <span asp-validation-for="AltImage" class="text-danger"></span>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input asp-for="DescImage" class="form-control" />
+                  <span asp-validation-for="DescImage" class="text-danger"></span>
+                </div>
+              </td>
+              @if (string.IsNullOrEmpty(Model.NameImage))
+              {
+                <td>
+                  <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100" />
+                  <input asp-for="NameImage" type="hidden" size="1" value="" />
+                </td>
+                <td>
+                  <button type="button" id="deleteImage" onclick="deletePhoto('NameImage', 'prevImage', 'deleteImage', 'TitleImage', 'AltImage', 'DescImage', 'pageCategory')" class="btn btn-danger hidden">حذف</button>
+                </td>
+              }
+              else
+              {
+                <td>
+                  <img id="prevImage" src="~/PageCategoryPhotos/Thumbs/@Model.NameImage" alt="your image" with="100" height="100" />
+                  <input asp-for="NameImage" type="hidden" size="1" value="@Model.NameImage" />
+                </td>
+                <td>
+                  <button type="button" id="deleteImage" onclick="deletePhoto('NameImage', 'prevImage', 'deleteImage', 'TitleImage', 'AltImage', 'DescImage', 'pageCategory')" class="btn btn-danger">حذف</button>
+                </td>
+              }
+            </tr>
+          </table>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="button" value="اعمال تغییرات" class="btn btn-success btn-lg" onclick="updateEntityPage('@Url.Action("Edit", "PageCategory")', 'editPageCategoryFrm', '@ViewData["redirectUrl"]')" />
+              <a class="btn btn-warning btn-lg" href="@ViewData["redirectUrl"]">بازگشت به لیست</a>
+            </div>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
 </div>

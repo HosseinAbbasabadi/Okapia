@@ -5,411 +5,416 @@
   ViewData["Title"] = "ایجاد شغل جدید";
 }
 
-<h1>فرم ایجاد شغل جدید</h1>
-<h4>برای ثبت فرم جدید فرم زیر را کامل کنید</h4>
+<div class="panel panel-border panel-primary">
+<div class="panel-heading">
+  <h3 class="panel-title">
+    فرم ایجاد شغل جدید جدید
+  </h3>
+</div>
+<br />
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+        <form method="post" id="createJobFrm">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <input asp-for="JobRequestId" type="hidden" class="form-control" />
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobName" class="control-label"></label>
+              <input asp-for="JobName" class="form-control" onchange="makeSlug('JobName','JobSlug','@Url.Action("CheckSlugDuplication", "Job")')" />
+              <span asp-validation-for="JobName" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobSmallDescription" class="control-label"></label>
+              <textarea asp-for="JobSmallDescription" class="form-control"></textarea>
+              <span asp-validation-for="JobSmallDescription" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobFeatures" class="control-label">ویژگی ها(با , جدا شود)</label>
+              <textarea asp-for="JobFeatures" class="form-control"></textarea>
+              <span asp-validation-for="JobFeatures" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobUsageCondition" class="control-label">شرایط استفاده( با , جدا شود)</label>
+              <textarea asp-for="JobUsageCondition" class="form-control"></textarea>
+              <span asp-validation-for="JobUsageCondition" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label asp-for="Content" class="control-label"></label>
+              <textarea name="Content" asp-for="Content" class="form-control"></textarea>
+              <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="Username" class="control-label"></label>
+              <input asp-for="Username" class="form-control direct-ltr" />
+              <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="Password" class="control-label"></label>
+              <input asp-for="Password" class="form-control direct-ltr" />
+              <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobContactTitile" class="control-label"></label>
+              <input asp-for="JobContactTitile" class="form-control" />
+              <span asp-validation-for="JobContactTitile" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobPrice" class="control-label"></label>
+              <input asp-for="JobPrice" class="form-control" />
+              <span asp-validation-for="JobPrice" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobDiscountPrice" class="control-label"></label>
+              <input asp-for="JobDiscountPrice" class="form-control" />
+              <span asp-validation-for="JobDiscountPrice" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobManagerFirstName" class="control-label"></label>
+              <input asp-for="JobManagerFirstName" class="form-control" />
+              <span asp-validation-for="JobManagerFirstName" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobManagerLastName" class="control-label"></label>
+              <input asp-for="JobManagerLastName" class="form-control" />
+              <span asp-validation-for="JobManagerLastName" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobEmailAddress" class="control-label"></label>
+              <input asp-for="JobEmailAddress" class="form-control" />
+              <span asp-validation-for="JobEmailAddress" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobTel1" class="control-label"></label>
+              <input asp-for="JobTel1" class="form-control direct-ltr" />
+              <span asp-validation-for="JobTel1" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobTel2" class="control-label"></label>
+              <input asp-for="JobTel2" class="form-control direct-ltr" />
+              <span asp-validation-for="JobTel2" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobMobile1" class="control-label"></label>
+              <input asp-for="JobMobile1" class="form-control direct-ltr" />
+              <span asp-validation-for="JobMobile1" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobMobile2" class="control-label"></label>
+              <input asp-for="JobMobile2" class="form-control direct-ltr" />
+              <span asp-validation-for="JobMobile2" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobAddress" class="control-label"></label>
+              <input asp-for="JobAddress" class="form-control" />
+              <span asp-validation-for="JobAddress" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobProvienceId" class="control-label"></label>
+              @*<input asp-for="JobProvienceId" class="form-control" />*@
+              <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="select2" id="provinceDropDown" onchange="getCityList('provinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'cityDropDown')"></select>
+              <span asp-validation-for="JobProvienceId" class="text-danger"></span>
+            </div>
+          </div>
 
-<hr/>
-<div class="row">
-<div class="col-md-12">
-<form method="post" id="createJobFrm">
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<input asp-for="JobRequestId" type="hidden" class="form-control"/>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobName" class="control-label"></label>
-    <input asp-for="JobName" class="form-control" onchange="makeSlug('JobName','JobSlug','@Url.Action("CheckSlugDuplication", "Job")')"/>
-    <span asp-validation-for="JobName" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobSmallDescription" class="control-label"></label>
-    <textarea asp-for="JobSmallDescription" class="form-control"></textarea>
-    <span asp-validation-for="JobSmallDescription" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobFeatures" class="control-label"></label>
-    <textarea asp-for="JobFeatures" class="form-control"></textarea>
-    <span asp-validation-for="JobFeatures" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobUsageCondition" class="control-label"></label>
-    <textarea asp-for="JobUsageCondition" class="form-control"></textarea>
-    <span asp-validation-for="JobUsageCondition" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-12">
-  <div class="form-group">
-    <label asp-for="Content" class="control-label"></label>
-    <textarea name="Content" asp-for="Content" class="form-control"></textarea>
-    <span asp-validation-for="Content" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="Username" class="control-label"></label>
-    <input asp-for="Username" class="form-control direct-ltr"/>
-    <span asp-validation-for="Username" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="Password" class="control-label"></label>
-    <input asp-for="Password" class="form-control direct-ltr"/>
-    <span asp-validation-for="Password" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobContactTitile" class="control-label"></label>
-    <input asp-for="JobContactTitile" class="form-control"/>
-    <span asp-validation-for="JobContactTitile" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobPrice" class="control-label"></label>
-    <input asp-for="JobPrice" class="form-control"/>
-    <span asp-validation-for="JobPrice" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobDiscountPrice" class="control-label"></label>
-    <input asp-for="JobDiscountPrice" class="form-control"/>
-    <span asp-validation-for="JobDiscountPrice" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobManagerFirstName" class="control-label"></label>
-    <input asp-for="JobManagerFirstName" class="form-control"/>
-    <span asp-validation-for="JobManagerFirstName" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobManagerLastName" class="control-label"></label>
-    <input asp-for="JobManagerLastName" class="form-control"/>
-    <span asp-validation-for="JobManagerLastName" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobEmailAddress" class="control-label"></label>
-    <input asp-for="JobEmailAddress" class="form-control"/>
-    <span asp-validation-for="JobEmailAddress" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobTel1" class="control-label"></label>
-    <input asp-for="JobTel1" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobTel1" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobTel2" class="control-label"></label>
-    <input asp-for="JobTel2" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobTel2" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobMobile1" class="control-label"></label>
-    <input asp-for="JobMobile1" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobMobile1" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobMobile2" class="control-label"></label>
-    <input asp-for="JobMobile2" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobMobile2" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobAddress" class="control-label"></label>
-    <input asp-for="JobAddress" class="form-control" />
-    <span asp-validation-for="JobAddress" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobProvienceId" class="control-label"></label>
-    @*<input asp-for="JobProvienceId" class="form-control" />*@
-    <select asp-for="JobProvienceId" asp-items="@Model.Proviences" class="select2" id="provinceDropDown" onchange="getCityList('provinceDropDown', '@Url.Action("GetCitiesByProvince", "City")', 'cityDropDown')"></select>
-    <span asp-validation-for="JobProvienceId" class="text-danger"></span>
-  </div>
-</div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobCityId" class="control-label"></label>
+              <select asp-for="JobCityId" class="select2" id="cityDropDown" onchange="getDistrictList('cityDropDown', '@Url.Action("GetDistrictsByCity", "District")', 'districtDropDown')">
+                <option value="0">شهر مورد نظر را انتخاب کنید</option>
+              </select>
+              <span asp-validation-for="JobCityId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobDistrictId" class="control-label"></label>
+              <select asp-for="JobDistrictId" class="select2" id="districtDropDown" onchange="getNeighborhoodList('districtDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Neighborhood")', 'neighborhoodDropDown')">
+                <option value="0">منطقه مورد نظر را انتخاب کنید</option>
+              </select>
+              <span asp-validation-for="JobDistrictId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobneighborhoodId" class="control-label"></label>
+              <select asp-for="JobneighborhoodId" class="select2" id="neighborhoodDropDown">
+                <option value="0">محله مورد نظر را انتخاب کنید</option>
+              </select>
+              <span asp-validation-for="JobneighborhoodId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobCategoryId" class="control-label"></label>
+              <select asp-for="JobCategoryId" asp-items="@Model.Categories" class="select2">
+                <option value="0">گروه مربوط به شغل را انتخاب کنید</option>
+              </select>
+              <span asp-validation-for="JobCategoryId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobWazeMap" class="control-label"></label>
+              <input asp-for="JobWazeMap" class="form-control direct-ltr" />
+              <span asp-validation-for="JobWazeMap" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobWazeLink" class="control-label"></label>
+              <input asp-for="JobWazeLink" class="form-control direct-ltr" />
+              <span asp-validation-for="JobWazeLink" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobPageTittle" class="control-label"></label>
+              <input asp-for="JobPageTittle" class="form-control" />
+              <span asp-validation-for="JobPageTittle" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobSlug" class="control-label"></label>
+              <input asp-for="JobSlug" class="form-control" onblur="checkSlugDuplication('@Url.Action("CheckSlugDuplication", "Job")', 'JobSlug')" />
+              <span asp-validation-for="JobSlug" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobMetaTag" class="control-label"></label>
+              <textarea asp-for="JobMetaTag" class="form-control"></textarea>
+              <span asp-validation-for="JobMetaTag" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobMetaDesccription" class="control-label"></label>
+              <textarea asp-for="JobMetaDesccription" class="form-control"></textarea>
+              <span asp-validation-for="JobMetaDesccription" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobSeohead" class="control-label"></label>
+              <input asp-for="JobSeohead" class="form-control" />
+              <span asp-validation-for="JobSeohead" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobCanonicalAddress" class="control-label"></label>
+              <textarea asp-for="JobCanonicalAddress" class="form-control"></textarea>
+              <span asp-validation-for="JobCanonicalAddress" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobContractNumber" class="control-label"></label>
+              <input asp-for="JobContractNumber" class="form-control" />
+              <span asp-validation-for="JobContractNumber" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobBenefitPercentForEndCustomer" class="control-label"></label>
+              <input asp-for="JobBenefitPercentForEndCustomer" class="form-control direct-ltr" />
+              <span asp-validation-for="JobBenefitPercentForEndCustomer" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobBenefitPercentForCompany" class="control-label"></label>
+              <input asp-for="JobBenefitPercentForCompany" class="form-control direct-ltr" />
+              <span asp-validation-for="JobBenefitPercentForCompany" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobDiscountPercentForCustomer" class="control-label"></label>
+              <input asp-for="JobDiscountPercentForCustomer" class="form-control direct-ltr" />
+              <span asp-validation-for="JobDiscountPercentForCustomer" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobBefitPercentForIntroducingEndCustomer" class="control-label"></label>
+              <input asp-for="JobBefitPercentForIntroducingEndCustomer" class="form-control direct-ltr" />
+              <span asp-validation-for="JobBefitPercentForIntroducingEndCustomer" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="MarketerPercentForRegisteringShop" class="control-label"></label>
+              <input asp-for="MarketerPercentForRegisteringShop" class="form-control direct-ltr" />
+              <span asp-validation-for="MarketerPercentForRegisteringShop" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="MarketerId" class="control-label"></label>
+              <select class="select2" asp-for="MarketerId" asp-items="@Model.Marketers" class="form-control">
+                <option value="0">بازاریاب مورد نظر را انتخاب کنید</option>
+              </select>
+              <span asp-validation-for="MarketerId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobPosNameNumber" class="control-label"></label>
+              <input asp-for="JobPosNameNumber" class="form-control direct-ltr" />
+              <span asp-validation-for="JobPosNameNumber" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobAccountNumber" class="control-label"></label>
+              <input asp-for="JobAccountNumber" class="form-control direct-ltr" />
+              <span asp-validation-for="JobAccountNumber" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="JobShowOrderIncategory" class="control-label"></label>
+              <input asp-for="JobShowOrderIncategory" class="form-control direct-ltr" />
+              <span asp-validation-for="JobShowOrderIncategory" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="CustomerIntroductionLimit" class="control-label"></label>
+              <input asp-for="CustomerIntroductionLimit" class="form-control direct-ltr" value="2000" />
+              <span asp-validation-for="CustomerIntroductionLimit" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" asp-for="IsWebsite" /> @Html.DisplayNameFor(model => model.IsWebsite)
+              </label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="WebsiteUrl" class="control-label"></label>
+              <input asp-for="WebsiteUrl" class="form-control direct-ltr" />
+              <span asp-validation-for="WebsiteUrl" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="InstagramUrl" class="control-label"></label>
+              <input asp-for="InstagramUrl" class="form-control direct-ltr" />
+              <span asp-validation-for="InstagramUrl" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="TelegramUrl" class="control-label"></label>
+              <input asp-for="TelegramUrl" class="form-control direct-ltr" />
+              <span asp-validation-for="TelegramUrl" class="text-danger"></span>
+            </div>
+          </div>
 
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobCityId" class="control-label"></label>
-    <select asp-for="JobCityId" class="select2" id="cityDropDown" onchange="getDistrictList('cityDropDown', '@Url.Action("GetDistrictsByCity", "District")', 'districtDropDown')">
-      <option value="0">شهر مورد نظر را انتخاب کنید</option>
-    </select>
-    <span asp-validation-for="JobCityId" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobDistrictId" class="control-label"></label>
-    <select asp-for="JobDistrictId" class="select2" id="districtDropDown" onchange="getNeighborhoodList('districtDropDown', '@Url.Action("GetNeighborhoodsByDistrict", "Neighborhood")', 'neighborhoodDropDown')">
-      <option value="0">منطقه مورد نظر را انتخاب کنید</option>
-    </select>
-    <span asp-validation-for="JobDistrictId" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobneighborhoodId" class="control-label"></label>
-    <select asp-for="JobneighborhoodId" class="select2" id="neighborhoodDropDown">
-      <option value="0">محله مورد نظر را انتخاب کنید</option>
-    </select>
-    <span asp-validation-for="JobneighborhoodId" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobCategoryId" class="control-label"></label>
-    <select asp-for="JobCategoryId" asp-items="@Model.Categories" class="select2">
-      <option value="0">گروه مربوط به شغل را انتخاب کنید</option>
-    </select>
-    <span asp-validation-for="JobCategoryId" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobWazeMap" class="control-label"></label>
-    <input asp-for="JobWazeMap" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobWazeMap" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobWazeLink" class="control-label"></label>
-    <input asp-for="JobWazeLink" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobWazeLink" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobPageTittle" class="control-label"></label>
-    <input asp-for="JobPageTittle" class="form-control"/>
-    <span asp-validation-for="JobPageTittle" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobSlug" class="control-label"></label>
-    <input asp-for="JobSlug" class="form-control" onblur="checkSlugDuplication('@Url.Action("CheckSlugDuplication", "Job")', 'JobSlug')"/>
-    <span asp-validation-for="JobSlug" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobMetaTag" class="control-label"></label>
-    <textarea asp-for="JobMetaTag" class="form-control"></textarea>
-    <span asp-validation-for="JobMetaTag" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobMetaDesccription" class="control-label"></label>
-    <textarea asp-for="JobMetaDesccription" class="form-control"></textarea>
-    <span asp-validation-for="JobMetaDesccription" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobSeohead" class="control-label"></label>
-    <input asp-for="JobSeohead" class="form-control"/>
-    <span asp-validation-for="JobSeohead" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobCanonicalAddress" class="control-label"></label>
-    <textarea asp-for="JobCanonicalAddress" class="form-control"></textarea>
-    <span asp-validation-for="JobCanonicalAddress" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobContractNumber" class="control-label"></label>
-    <input asp-for="JobContractNumber" class="form-control"/>
-    <span asp-validation-for="JobContractNumber" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobBenefitPercentForEndCustomer" class="control-label"></label>
-    <input asp-for="JobBenefitPercentForEndCustomer" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobBenefitPercentForEndCustomer" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobBenefitPercentForCompany" class="control-label"></label>
-    <input asp-for="JobBenefitPercentForCompany" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobBenefitPercentForCompany" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobDiscountPercentForCustomer" class="control-label"></label>
-    <input asp-for="JobDiscountPercentForCustomer" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobDiscountPercentForCustomer" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobBefitPercentForIntroducingEndCustomer" class="control-label"></label>
-    <input asp-for="JobBefitPercentForIntroducingEndCustomer" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobBefitPercentForIntroducingEndCustomer" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="MarketerPercentForRegisteringShop" class="control-label"></label>
-    <input asp-for="MarketerPercentForRegisteringShop" class="form-control direct-ltr"/>
-    <span asp-validation-for="MarketerPercentForRegisteringShop" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="MarketerId" class="control-label"></label>
-    <select class="select2" asp-for="MarketerId" asp-items="@Model.Marketers" class="form-control">
-      <option value="0">بازاریاب مورد نظر را انتخاب کنید</option>
-    </select>
-    <span asp-validation-for="MarketerId" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobPosNameNumber" class="control-label"></label>
-    <input asp-for="JobPosNameNumber" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobPosNameNumber" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobAccountNumber" class="control-label"></label>
-    <input asp-for="JobAccountNumber" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobAccountNumber" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="JobShowOrderIncategory" class="control-label"></label>
-    <input asp-for="JobShowOrderIncategory" class="form-control direct-ltr"/>
-    <span asp-validation-for="JobShowOrderIncategory" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="CustomerIntroductionLimit" class="control-label"></label>
-    <input asp-for="CustomerIntroductionLimit" class="form-control direct-ltr" value="2000"/>
-    <span asp-validation-for="CustomerIntroductionLimit" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-12">
-  <div class="form-group form-check">
-    <label class="form-check-label">
-      <input class="form-check-input" asp-for="IsWebsite"/> @Html.DisplayNameFor(model => model.IsWebsite)
-    </label>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="WebsiteUrl" class="control-label"></label>
-    <input asp-for="WebsiteUrl" class="form-control direct-ltr"/>
-    <span asp-validation-for="WebsiteUrl" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="InstagramUrl" class="control-label"></label>
-    <input asp-for="InstagramUrl" class="form-control direct-ltr"/>
-    <span asp-validation-for="InstagramUrl" class="text-danger"></span>
-  </div>
-</div>
-<div class="col-md-4">
-  <div class="form-group">
-    <label asp-for="TelegramUrl" class="control-label"></label>
-    <input asp-for="TelegramUrl" class="form-control direct-ltr"/>
-    <span asp-validation-for="TelegramUrl" class="text-danger"></span>
-  </div>
-</div>
+          <table class="col-md-12 table table-bordered text-center">
+            <tr>
+              <td class="col-md-1">ردیف</td>
+              <td>فایل</td>
+              <td>عنوان عکس</td>
+              <td>Alt</td>
+              <td>توضیحات</td>
+              <td>پیش نمایش</td>
+              <td>حذف</td>
+            </tr>
+            @for (var i = 1; i <= 6; i++)
+            {
+              var inputId = "Photo" + i;
+              var propertyInputId = "Name" + "Photo" + i;
+              var prevImageId = "prev" + inputId;
+              var deleteBtnId = "delete" + inputId;
+              var titleImage = "Title" + inputId;
+              var descImage = "Desc" + inputId;
+              var altImage = "Alt" + inputId;
+              <tr>
+                <td>@i</td>
+                <td>
+                  <input id="@inputId" name="@inputId" type="file" size="1" onchange="uploadFile('@inputId', '@propertyInputId', '@deleteBtnId', 'job');PreviewImage('@inputId', '@prevImageId');" class="form-control custom-file-input" accept="image/*" />
+                  <input asp-for="@propertyInputId" id="@propertyInputId" name="@propertyInputId" type="hidden" size="1" value="" />
+                  <span class="text-danger"><strong>نکته:</strong> سایز عکس باید 372 * 600 باشد</span>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input asp-for="@titleImage" id="@titleImage" name="@titleImage" value="" class="form-control" />
+                    <span asp-validation-for="@titleImage" class="text-danger"></span>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input asp-for="@altImage" id="@altImage" name="@altImage" value="" class="form-control" />
+                    <span asp-validation-for="@altImage" class="text-danger"></span>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input asp-for="@descImage" id="@descImage" name="@descImage" value="" class="form-control" />
+                    <span asp-validation-for="@descImage" class="text-danger"></span>
+                  </div>
+                </td>
+                <td>
+                  <img id="@prevImageId" src="~/defaultimage.png" alt="your image" with="100" height="100" />
+                </td>
+                <td>
+                  <button type="button" id="@deleteBtnId" onclick="deletePhoto('@propertyInputId', '@prevImageId', '@deleteBtnId', '@titleImage', '@altImage', '@descImage', 'job')" class="btn btn-danger hidden">حذف</button>
+                </td>
+              </tr>
+            }
 
-<table class="col-md-12 table table-bordered text-center">
-  <tr>
-    <td class="col-md-1">ردیف</td>
-    <td>فایل</td>
-    <td>عنوان عکس</td>
-    <td>Alt</td>
-    <td>توضیحات</td>
-    <td>پیش نمایش</td>
-    <td>حذف</td>
-  </tr>
-  @for (var i = 1; i <= 6; i++)
-  {
-    var inputId = "Photo" + i;
-    var propertyInputId = "Name" + "Photo" + i;
-    var prevImageId = "prev" + inputId;
-    var deleteBtnId = "delete" + inputId;
-    var titleImage = "Title" + inputId;
-    var descImage = "Desc" + inputId;
-    var altImage = "Alt" + inputId;
-    <tr>
-      <td>@i</td>
-      <td>
-        <input id="@inputId" name="@inputId" type="file" size="1" onchange="uploadFile('@inputId', '@propertyInputId', '@deleteBtnId', 'job');PreviewImage('@inputId', '@prevImageId');" class="form-control custom-file-input" accept="image/*"/>
-        <input asp-for="@propertyInputId" id="@propertyInputId" name="@propertyInputId" type="hidden" size="1" value=""/>
-        <span class="text-danger"><strong>نکته:</strong> سایز عکس باید 372 * 600 باشد</span>
-      </td>
-      <td>
-        <div class="form-group">
-          <input asp-for="@titleImage" id="@titleImage" name="@titleImage" value="" class="form-control"/>
-          <span asp-validation-for="@titleImage" class="text-danger"></span>
-        </div>
-      </td>
-      <td>
-        <div class="form-group">
-          <input asp-for="@altImage" id="@altImage" name="@altImage" value="" class="form-control"/>
-          <span asp-validation-for="@altImage" class="text-danger"></span>
-        </div>
-      </td>
-      <td>
-        <div class="form-group">
-          <input asp-for="@descImage" id="@descImage" name="@descImage" value="" class="form-control"/>
-          <span asp-validation-for="@descImage" class="text-danger"></span>
-        </div>
-      </td>
-      <td>
-        <img id="@prevImageId" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
-      </td>
-      <td>
-        <button type="button" id="@deleteBtnId" onclick="deletePhoto('@propertyInputId', '@prevImageId', '@deleteBtnId', '@titleImage', '@altImage', '@descImage', 'job')" class="btn btn-danger hidden">حذف</button>
-      </td>
-    </tr>
-  }
-
-</table>
-<div class="col-md-12">
-  <div class="form-group">
-    <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityThenReferesh('@Url.Action("Create", "Job")', 'createJobFrm')"/>
-    <a class="btn btn-warning btn-lg" asp-action="Index" asp-controller="Job" asp-area="Administrator">بازگشت به لیست</a>
+          </table>
+          <div class="col-md-12">
+            <div class="form-group">
+              <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityThenReferesh('@Url.Action("Create", "Job")', 'createJobFrm')" />
+              <a class="btn btn-warning btn-lg" asp-action="Index" asp-controller="Job" asp-area="Administrator">بازگشت به لیست</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-</div>
-
-</form>
-</div>
 </div>

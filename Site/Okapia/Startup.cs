@@ -93,7 +93,7 @@ namespace Okapia
                 OnPrepareResponse = ctx =>
                 {
                     const int durationInSeconds = 60 * 60 * 24;
-                    ctx.Context.Response.Headers[HeaderNames.CacheControl] =
+                    ctx.Context.Response.Headers[HeaderNames.Expires] =
                         "public,max-age=" + durationInSeconds;
                 }
             });

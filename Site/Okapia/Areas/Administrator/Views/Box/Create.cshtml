@@ -4,118 +4,122 @@
   ViewData["Title"] = "ایجاد باکس جدید";
 }
 
-<h1>فرم ایجاد باکس</h1>
-
-<h4>برای ثبت باکس جدید فرم زیر را کامل کنید</h4>
-
-<hr/>
-<div class="row">
-  <div class="col-md-12">
-    <form method="post" id="createBoxFrm">
-      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="BoxTitle" class="control-label"></label>
-          <input asp-for="BoxTitle" class="form-control"/>
-          <span asp-validation-for="BoxTitle" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="BoxLink" class="control-label"></label>
-          <input asp-for="BoxLink" class="form-control direct-ltr"/>
-          <span asp-validation-for="BoxLink" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="BoxLinkText" class="control-label"></label>
-          <input asp-for="BoxLinkText" class="form-control"/>
-          <span asp-validation-for="BoxLinkText" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="BoxLinkBtnText" class="control-label"></label>
-          <input asp-for="BoxLinkBtnText" class="form-control"/>
-          <span asp-validation-for="BoxLinkBtnText" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="BoxColor" class="control-label"></label>
-          <input asp-for="BoxColor" class="colorpicker-default form-control direct-ltr"/>
-          <span asp-validation-for="BoxColor" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="BoxIcon" class="control-label"></label>
-          <input asp-for="BoxIcon" class="form-control direct-ltr"/>
-          <span asp-validation-for="BoxIcon" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="BoxBannerPictureLink" class="control-label"></label>
-          <input asp-for="BoxBannerPictureLink" class="form-control direct-ltr"/>
-          <span asp-validation-for="BoxBannerPictureLink" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="BoxProvinceId" class="control-label"></label>
-          <select asp-for="BoxProvinceId" asp-items="@Model.Provinces" class="select2"></select>
-          <span asp-validation-for="BoxProvinceId" class="text-danger"></span>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label asp-for="BoxBannerPictureIsEnabled" class="control-label"></label>
-          <input asp-for="BoxBannerPictureIsEnabled" class="form-control"/>
-          <span asp-validation-for="BoxBannerPictureIsEnabled" class="text-danger"></span>
-        </div>
-      </div>
-      <table class="col-md-12 table table-bordered text-center">
-        <tr>
-          <td>عکس بنر</td>
-          <td>عنوان عکس</td>
-          <td>Alt</td>
-          <td>پیش نمایش</td>
-          <td>حذف</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="boxPicture" name="categoryPicture" type="file" size="1" onchange="uploadFile('boxPicture', 'BoxBannerPicture', 'deleteImage', 'box');PreviewImage('boxPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*"/>
-            <input asp-for="BoxBannerPicture" type="hidden" size="1" value=""/>
-          </td>
-          <td>
+<div class="panel panel-border panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      فرم ایجاد باکس جدید
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+        <form method="post" id="createBoxFrm">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="col-md-4">
             <div class="form-group">
-              <input asp-for="BoxBannerPictureTitle" class="form-control"/>
-              <span asp-validation-for="BoxBannerPictureTitle" class="text-danger"></span>
+              <label asp-for="BoxTitle" class="control-label"></label>
+              <input asp-for="BoxTitle" class="form-control" />
+              <span asp-validation-for="BoxTitle" class="text-danger"></span>
             </div>
-          </td>
-          <td>
+          </div>
+          <div class="col-md-4">
             <div class="form-group">
-              <input asp-for="BoxBannerPictureAlt" class="form-control"/>
-              <span asp-validation-for="BoxBannerPictureAlt" class="text-danger"></span>
+              <label asp-for="BoxLink" class="control-label"></label>
+              <input asp-for="BoxLink" class="form-control direct-ltr" />
+              <span asp-validation-for="BoxLink" class="text-danger"></span>
             </div>
-          </td>
-          <td>
-              <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100"/>
-          </td>
-          <td>
-            <button type="button" id="deleteImage" onclick="deletePhoto('BoxBannerPicture', 'prevImage', 'deleteImage', 'BoxBannerPictureTitle', 'BoxBannerPictureAlt', 'desc', 'box')" class="btn btn-danger hidden">حذف</button>
-          </td>
-        </tr>
-      </table>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="BoxLinkText" class="control-label"></label>
+              <input asp-for="BoxLinkText" class="form-control" />
+              <span asp-validation-for="BoxLinkText" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="BoxLinkBtnText" class="control-label"></label>
+              <input asp-for="BoxLinkBtnText" class="form-control" />
+              <span asp-validation-for="BoxLinkBtnText" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="BoxColor" class="control-label"></label>
+              <input asp-for="BoxColor" class="colorpicker-default form-control direct-ltr" />
+              <span asp-validation-for="BoxColor" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="BoxIcon" class="control-label"></label>
+              <input asp-for="BoxIcon" class="form-control direct-ltr" />
+              <span asp-validation-for="BoxIcon" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="BoxBannerPictureLink" class="control-label"></label>
+              <input asp-for="BoxBannerPictureLink" class="form-control direct-ltr" />
+              <span asp-validation-for="BoxBannerPictureLink" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="BoxProvinceId" class="control-label"></label>
+              <select asp-for="BoxProvinceId" asp-items="@Model.Provinces" class="select2"></select>
+              <span asp-validation-for="BoxProvinceId" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label asp-for="BoxBannerPictureIsEnabled" class="control-label"></label>
+              <input asp-for="BoxBannerPictureIsEnabled" class="form-control" />
+              <span asp-validation-for="BoxBannerPictureIsEnabled" class="text-danger"></span>
+            </div>
+          </div>
+          <table class="col-md-12 table table-bordered text-center">
+            <tr>
+              <td>عکس بنر</td>
+              <td>عنوان عکس</td>
+              <td>Alt</td>
+              <td>پیش نمایش</td>
+              <td>حذف</td>
+            </tr>
+            <tr>
+              <td>
+                <input id="boxPicture" name="categoryPicture" type="file" size="1" onchange="uploadFile('boxPicture', 'BoxBannerPicture', 'deleteImage', 'box');PreviewImage('boxPicture', 'prevImage');" class="form-control custom-file-input" accept="image/*" />
+                <input asp-for="BoxBannerPicture" type="hidden" size="1" value="" />
+              </td>
+              <td>
+                <div class="form-group">
+                  <input asp-for="BoxBannerPictureTitle" class="form-control" />
+                  <span asp-validation-for="BoxBannerPictureTitle" class="text-danger"></span>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input asp-for="BoxBannerPictureAlt" class="form-control" />
+                  <span asp-validation-for="BoxBannerPictureAlt" class="text-danger"></span>
+                </div>
+              </td>
+              <td>
+                <img id="prevImage" src="~/defaultimage.png" alt="your image" with="100" height="100" />
+              </td>
+              <td>
+                <button type="button" id="deleteImage" onclick="deletePhoto('BoxBannerPicture', 'prevImage', 'deleteImage', 'BoxBannerPictureTitle', 'BoxBannerPictureAlt', 'desc', 'box')" class="btn btn-danger hidden">حذف</button>
+              </td>
+            </tr>
+          </table>
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityThenReferesh('@Url.Action("Create", "Box")', 'createBoxFrm')"/>
-          <a class="btn btn-warning btn-lg" asp-action="Index" asp-controller="Box" asp-area="Administrator">بازگشت به لیست</a>
-        </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="button" value="ثبت" class="btn btn-success btn-lg" onclick="createEntityThenReferesh('@Url.Action("Create", "Box")', 'createBoxFrm')" />
+              <a class="btn btn-warning btn-lg" asp-action="Index" asp-controller="Box" asp-area="Administrator">بازگشت به لیست</a>
+            </div>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
 </div>

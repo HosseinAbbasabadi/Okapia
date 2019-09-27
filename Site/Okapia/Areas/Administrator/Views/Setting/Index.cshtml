@@ -161,11 +161,6 @@
             <span>@Html.DisplayFor(model => model.ForgetPasswordText)</span>
           </div>
         </div>
-        <div class="col-md-12">
-          <div class="form-group">
-            <a class="btn btn-lg btn-info" asp-action="Create" asp-controller="Setting" asp-area="Administrator" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>
-          </div>
-        </div>
       </div>
     </div>
     
@@ -398,6 +393,11 @@
             @Html.DisplayNameFor(model => model.FooterBoxIcon5):
           </strong>
           <span>@Html.DisplayFor(model => model.FooterBoxIcon5)</span>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <a class="btn btn-lg btn-info" asp-action="Create" asp-controller="Setting" asp-area="Administrator" asp-route-redirectUrl="@Context.Request.GetDisplayUrl()">ویرایش</a>
         </div>
       </div>
     </div>
